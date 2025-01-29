@@ -53,9 +53,18 @@ export function registerRoutes(app: Express): Server {
     try {
       console.log('Sending chat message:', { sourceId: req.body.sourceId });
 
+      // Add maxLength parameter to control response length
+      const chatRequest = {
+        ...req.body,
+        config: {
+          ...req.body.config,
+          maxLength: 1000 // Limite la réponse à 1000 caractères
+        }
+      };
+
       const response = await axios.post(
         `${CHATPDF_API_BASE}/v1/chats/message`,
-        req.body,
+        chatRequest,
         {
           headers: {
             "x-api-key": CHATPDF_API_KEY,
@@ -64,7 +73,7 @@ export function registerRoutes(app: Express): Server {
         }
       );
 
-      console.log('Chat response received');
+      console.log('Chat response received, length:', response.data.content.length);
       res.json(response.data);
     } catch (error: any) {
       console.error('Chat message error:', error.response?.data || error.message);
