@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, AlertCircle } from "lucide-react";
+import { Send, AlertCircle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -10,6 +10,7 @@ import type { Message } from '@/types';
 interface ChatInterfaceProps {
   messages: Message[];
   onSendMessage: (content: string) => void;
+  onReset: () => void;
   isLoading?: boolean;
   error?: string | null;
 }
@@ -17,6 +18,7 @@ interface ChatInterfaceProps {
 export function ChatInterface({
   messages,
   onSendMessage,
+  onReset,
   isLoading,
   error
 }: ChatInterfaceProps) {
@@ -45,7 +47,19 @@ export function ChatInterface({
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      
+
+      <div className="flex justify-end mb-4">
+        <Button
+          variant="outline"
+          onClick={onReset}
+          className="flex items-center gap-2"
+          disabled={isLoading || messages.length === 0}
+        >
+          <RefreshCw className="h-4 w-4" />
+          Réinitialiser la conversation
+        </Button>
+      </div>
+
       <Card className="flex-1 mb-4">
         <ScrollArea className="h-[500px] p-4" ref={scrollRef}>
           {messages.map((message, index) => (
@@ -89,10 +103,10 @@ export function ChatInterface({
           <Send className="h-4 w-4" />
         </Button>
       </form>
-      
+
       {messages.length >= 6 && (
         <p className="text-sm text-muted-foreground mt-2">
-          Limite de 6 messages atteinte. Veuillez démarrer une nouvelle conversation.
+          Limite de 6 messages atteinte. Veuillez réinitialiser la conversation.
         </p>
       )}
     </div>

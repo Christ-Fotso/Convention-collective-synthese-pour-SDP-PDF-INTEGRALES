@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ConventionSelect } from '@/components/convention-select';
 import { ChatInterface } from '@/components/chat-interface';
@@ -72,6 +72,23 @@ export default function Home() {
     setMessages([...newMessages, assistantMessage]);
   };
 
+  const handleReset = async () => {
+    if (sourceId) {
+      await deleteSourceMutation.mutateAsync(sourceId);
+    }
+    if (selectedConvention) {
+      createSourceMutation.mutate(selectedConvention.url);
+    }
+    setMessages([]);
+  };
+
+  // Réinitialiser la conversation au chargement de la page
+  useEffect(() => {
+    if (selectedConvention) {
+      handleReset();
+    }
+  }, []); // Seulement au montage du composant
+
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
@@ -91,6 +108,7 @@ export default function Home() {
           <ChatInterface
             messages={messages}
             onSendMessage={handleSendMessage}
+            onReset={handleReset}
             isLoading={chatMutation.isPending}
             error={chatMutation.error?.message}
           />
