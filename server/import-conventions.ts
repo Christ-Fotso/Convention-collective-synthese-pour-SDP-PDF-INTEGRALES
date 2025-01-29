@@ -22,9 +22,12 @@ async function importConventions() {
       .map(line => {
         const [id, name, url] = line.split('\t').map(s => s.trim());
 
+        // Format IDCC to 4 digits
+        const formattedId = id.padStart(4, '0');
+
         // If this ID has been seen before, append a suffix
-        idCounts[id] = (idCounts[id] || 0) + 1;
-        const uniqueId = idCounts[id] > 1 ? `${id}-${idCounts[id]}` : id;
+        idCounts[formattedId] = (idCounts[formattedId] || 0) + 1;
+        const uniqueId = idCounts[formattedId] > 1 ? `${formattedId}-${idCounts[formattedId]}` : formattedId;
 
         return { id: uniqueId, name, url };
       })
