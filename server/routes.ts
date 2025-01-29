@@ -53,9 +53,25 @@ export function registerRoutes(app: Express): Server {
     try {
       console.log('Sending chat message:', { sourceId: req.body.sourceId });
 
+      // Configuration enrichie pour des réponses plus détaillées
+      const chatRequest = {
+        ...req.body,
+        referenceSources: true, // Force l'inclusion des références
+        config: {
+          systemPrompt: `Tu es un expert juridique spécialisé dans l'analyse des conventions collectives. Ta mission est de:
+1. Fournir des réponses exhaustives et détaillées
+2. Citer systématiquement les articles et sections pertinents
+3. Expliquer le contexte et les implications de chaque disposition
+4. Donner des exemples concrets d'application quand c'est pertinent
+5. Ne jamais résumer ou simplifier les informations importantes`,
+          temperature: 0.2, // Réduit la température pour des réponses plus précises et détaillées
+          contextWindow: 8192, // Augmente la fenêtre de contexte au maximum
+        }
+      };
+
       const response = await axios.post(
         `${CHATPDF_API_BASE}/v1/chats/message`,
-        req.body,
+        chatRequest,
         {
           headers: {
             "x-api-key": CHATPDF_API_KEY,
