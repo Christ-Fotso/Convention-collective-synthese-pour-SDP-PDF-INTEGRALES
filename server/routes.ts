@@ -24,8 +24,10 @@ export function registerRoutes(app: Express): Server {
   // Create ChatPDF source
   apiRouter.post("/chat/source", async (req, res) => {
     try {
+      console.log('Creating ChatPDF source for URL:', req.body.url);
+
       const response = await axios.post(
-        `${CHATPDF_API_BASE}/sources/add-url`,
+        `${CHATPDF_API_BASE}/v1/sources/add-url`,
         { url: req.body.url },
         {
           headers: {
@@ -34,17 +36,25 @@ export function registerRoutes(app: Express): Server {
           },
         }
       );
+
+      console.log('ChatPDF source created:', response.data);
       res.json(response.data);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to create ChatPDF source" });
+    } catch (error: any) {
+      console.error('ChatPDF source creation error:', error.response?.data || error.message);
+      res.status(500).json({ 
+        message: "Failed to create ChatPDF source",
+        error: error.response?.data || error.message 
+      });
     }
   });
 
   // Send chat message
   apiRouter.post("/chat/message", async (req, res) => {
     try {
+      console.log('Sending chat message:', { sourceId: req.body.sourceId });
+
       const response = await axios.post(
-        `${CHATPDF_API_BASE}/chats/message`,
+        `${CHATPDF_API_BASE}/v1/chats/message`,
         req.body,
         {
           headers: {
@@ -53,17 +63,25 @@ export function registerRoutes(app: Express): Server {
           },
         }
       );
+
+      console.log('Chat response received');
       res.json(response.data);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to send message" });
+    } catch (error: any) {
+      console.error('Chat message error:', error.response?.data || error.message);
+      res.status(500).json({ 
+        message: "Failed to send message",
+        error: error.response?.data || error.message
+      });
     }
   });
 
   // Delete ChatPDF source
   apiRouter.post("/chat/source/delete", async (req, res) => {
     try {
+      console.log('Deleting ChatPDF sources:', req.body.sources);
+
       await axios.post(
-        `${CHATPDF_API_BASE}/sources/delete`,
+        `${CHATPDF_API_BASE}/v1/sources/delete`,
         { sources: req.body.sources },
         {
           headers: {
@@ -72,9 +90,15 @@ export function registerRoutes(app: Express): Server {
           },
         }
       );
+
+      console.log('ChatPDF sources deleted');
       res.status(200).send();
-    } catch (error) {
-      res.status(500).json({ message: "Failed to delete ChatPDF source" });
+    } catch (error: any) {
+      console.error('Source deletion error:', error.response?.data || error.message);
+      res.status(500).json({ 
+        message: "Failed to delete ChatPDF source",
+        error: error.response?.data || error.message
+      });
     }
   });
 
