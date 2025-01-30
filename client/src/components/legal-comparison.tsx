@@ -1,4 +1,5 @@
 import { type Category, type Subcategory } from '@/types';
+import ReactMarkdown from 'react-markdown';
 
 interface LegalComparisonProps {
   category: Category;
@@ -31,13 +32,13 @@ const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
 - Décès enfant : 7 jours + 8 jours
 - Décès conjoint/parent : 3 jours
 - Annonce handicap enfant : 2 jours`
-  },
-  // Ajoutez d'autres comparaisons légales ici
+  }
+  // Les comparaisons légales ne seront affichées que pour les catégories non-RAS
 };
 
 export function LegalComparison({ category, subcategory }: LegalComparisonProps) {
   const comparison = LEGAL_COMPARISONS[category.id]?.[subcategory.id];
-  
+
   if (!comparison) {
     return null;
   }
