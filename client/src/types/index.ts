@@ -661,7 +661,51 @@ Si la convention collective ne contient aucune disposition sur le maintien de sa
       - Taux/montants par âge
       - Taux/montants par année d'exécution
       - Majoration éventuelle vs légal
-      - Base de calcul utilisée`,
+      - Base de calcul utilisée
+
+   B) Avantages spécifiques :
+      - Primes particulières
+      - Treizième mois si prévu
+      - Autres avantages monétaires
+      - Avantages en nature
+
+2. CONTRATS DE PROFESSIONNALISATION :
+   A) Rémunération :
+      - Taux/montants par âge
+      - Taux/montants par niveau de formation
+      - Majorations conventionnelles
+      - Base de calcul
+
+   B) Dispositions particulières :
+      - Primes spécifiques
+      - Avantages complémentaires
+      - Conditions particulières
+
+3. STAGIAIRES :
+   A) Gratification :
+      - Montants prévus
+      - Base de calcul
+      - Conditions d'attribution
+      - Durée d'application
+
+   B) Avantages annexes :
+      - Frais de transport
+      - Tickets restaurant
+      - Autres avantages
+
+4. PRÉCISIONS À EXTRAIRE :
+   - Variations géographiques
+   - Évolution selon ancienneté
+   - Dispositions spécifiques par métier
+   - Modalités de versement
+
+Format :
+- Copier-coller exact du texte conventionnel
+- Référence précise des articles
+- Conservation de toutes les notes et commentaires
+- Maintien des tableaux d'origine
+
+Si aucune disposition n'existe pour une ou plusieurs catégories : indiquer "RAS" pour chacune`,
     'prime': `Récupère toutes les informations relatives aux primes dans la convention collective.
 
 1. Pour CHAQUE prime mentionnée, extraire EXACTEMENT :
