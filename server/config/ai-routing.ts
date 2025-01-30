@@ -18,6 +18,7 @@ export const aiRoutingConfig: Record<string, Record<string, AIRouting>> = {
    - Inclure TOUS les coefficients correspondants
    - Détailler les critères de classification pour chaque niveau
    - Citer les articles précis de la convention pour chaque information
+   - Enrichir les descriptions avec des informations pertinentes trouvées sur Internet concernant les spécificités de cette convention collective
 
 3. Format attendu :
 | Niveau/Classification | Description et Critères |
@@ -25,17 +26,17 @@ export const aiRoutingConfig: Record<string, Record<string, AIRouting>> = {
 | Niveau 1 - Coef. XX | - Critères détaillés... |
 
 4. Règles importantes :
-   - Analyser UNIQUEMENT la convention collective spécifiée dans le contexte
-   - Ne faire référence à AUCUNE autre convention collective
-   - Si une information n'est pas explicitement mentionnée, l'indiquer clairement
+   - Analyser la convention collective spécifiée dans le contexte
+   - Enrichir l'analyse avec des sources externes fiables
+   - Si une information n'est pas explicitement mentionnée dans la convention, chercher des clarifications dans la jurisprudence ou les accords de branche
    - Structurer la réponse de manière hiérarchique, du niveau le plus bas au plus élevé
 
-5. Après le tableau, ajouter une section "Informations complémentaires" si nécessaire pour :
-   - Les modalités de passage d'un niveau à l'autre
+5. Après le tableau, ajouter :
+   - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
+   - Une section "Sources complémentaires" listant les références externes utilisées
    - Les spécificités par filière si elles existent
-   - Toute autre information pertinente sur la classification
 
-Votre réponse doit être exhaustive mais strictement limitée au contenu de la convention collective présentée.`
+Votre réponse doit combiner les informations de la convention collective avec des sources externes pertinentes.`
     }
   },
   'default': {

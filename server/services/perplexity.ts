@@ -22,7 +22,10 @@ export async function queryPerplexity(messages: PerplexityMessage[]) {
         temperature: 0.2,
         max_tokens: 1000,
         top_p: 0.9,
-        frequency_penalty: 1
+        frequency_penalty: 1,
+        // Activer la recherche Internet
+        search_domain_filter: ["*"],
+        return_citations: true
       },
       {
         headers: {
