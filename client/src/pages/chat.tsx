@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { ArrowLeft, Loader, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Loader, AlertTriangle, MessageCircle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
@@ -15,7 +15,13 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface ChatMessageParams {
   sourceId: string;
@@ -32,6 +38,7 @@ export default function Chat({ params }: { params: { id: string } }) {
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
   const [currentSubcategory, setCurrentSubcategory] = useState<Subcategory | null>(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const { toast } = useToast();
 
   const { data: conventions, isLoading: isLoadingConventions } = useQuery({
@@ -190,69 +197,72 @@ export default function Chat({ params }: { params: { id: string } }) {
           isLoading={chatMutation.isPending}
         />
 
-        <div className="space-y-8">
-          <Tabs defaultValue="sections">
-            <TabsList className="mb-4">
-              <TabsTrigger value="sections">Sections</TabsTrigger>
-              <TabsTrigger value="chat">Chat</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="sections">
-              <Card className="p-6">
-                {chatMutation.isPending ? (
-                  <div className="space-y-6">
-                    <Skeleton className="h-6 w-1/3" />
-                    <div className="space-y-4">
-                      <Skeleton className="h-4 w-full" />
-                      <Skeleton className="h-4 w-5/6" />
-                      <Skeleton className="h-4 w-4/6" />
-                    </div>
-                    <div className="flex items-center justify-center mt-8">
-                      <div className="flex flex-col items-center gap-3">
-                        <Loader className="h-8 w-8 animate-spin text-primary" />
-                        <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
-                      </div>
-                    </div>
-                  </div>
-                ) : messages.length > 0 ? (
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                      <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
-                        <ReactMarkdown>
-                          {messages[1].content.replace(/\n/g, '\n\n')}
-                        </ReactMarkdown>
-                      </div>
-                      {currentCategory && currentSubcategory && (
-                        <LegalComparison 
-                          category={currentCategory} 
-                          subcategory={currentSubcategory} 
-                        />
-                      )}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-center text-muted-foreground">
-                    Sélectionnez une catégorie pour voir les informations correspondantes
-                  </div>
+        <Card className="p-6">
+          {chatMutation.isPending ? (
+            <div className="space-y-6">
+              <Skeleton className="h-6 w-1/3" />
+              <div className="space-y-4">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+                <Skeleton className="h-4 w-4/6" />
+              </div>
+              <div className="flex items-center justify-center mt-8">
+                <div className="flex flex-col items-center gap-3">
+                  <Loader className="h-8 w-8 animate-spin text-primary" />
+                  <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
+                </div>
+              </div>
+            </div>
+          ) : messages.length > 0 ? (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold">{messages[0].content}</h3>
+                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                  <ReactMarkdown>
+                    {messages[1].content.replace(/\n/g, '\n\n')}
+                  </ReactMarkdown>
+                </div>
+                {currentCategory && currentSubcategory && (
+                  <LegalComparison 
+                    category={currentCategory} 
+                    subcategory={currentSubcategory} 
+                  />
                 )}
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="chat">
-              <Card className="p-6">
-                <ChatInterface
-                  messages={chatMessages}
-                  onSendMessage={handleSendMessage}
-                  onReset={handleResetChat}
-                  isLoading={chatMutation.isPending}
-                  error={chatMutation.error ? "Une erreur est survenue lors de la communication avec l'IA" : null}
-                />
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center text-muted-foreground">
+              Sélectionnez une catégorie pour voir les informations correspondantes
+            </div>
+          )}
+        </Card>
       </div>
+
+      {/* Floating chat button and dialog */}
+      <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
+        <DialogTrigger asChild>
+          <Button 
+            className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg"
+            size="icon"
+          >
+            <MessageCircle className="h-6 w-6" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Chat avec la convention collective</DialogTitle>
+          </DialogHeader>
+          <div className="mt-4">
+            <ChatInterface
+              messages={chatMessages}
+              onSendMessage={handleSendMessage}
+              onReset={handleResetChat}
+              isLoading={chatMutation.isPending}
+              error={chatMutation.error ? "Une erreur est survenue lors de la communication avec l'IA" : null}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
