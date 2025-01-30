@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { getConventions, createChatPDFSource, sendChatMessage, deleteChatPDFSource } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
@@ -124,10 +125,10 @@ export default function Chat({ params }: { params: { id: string } }) {
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 prose prose-sm max-w-none">
-                  {messages[1].content.split('\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4">{paragraph}</p>
-                  ))}
+                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                  <ReactMarkdown>
+                    {messages[1].content.replace(/\n/g, '\n\n')}
+                  </ReactMarkdown>
                 </div>
               </div>
             </div>
