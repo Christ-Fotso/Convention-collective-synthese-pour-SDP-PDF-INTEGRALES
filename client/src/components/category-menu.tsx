@@ -29,6 +29,18 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
     );
   };
 
+  // Réorganiser les catégories selon l'ordre prioritaire
+  const priorityOrder = ['informations-generales', 'embauche', 'maintien-salaire', 'depart'];
+  const sortedCategories = [...categories].sort((a, b) => {
+    const aIndex = priorityOrder.indexOf(a.id);
+    const bIndex = priorityOrder.indexOf(b.id);
+
+    if (aIndex === -1 && bIndex === -1) return 0;
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
+
   return (
     <Card className={`shadow-md ${isLoading ? 'opacity-50' : ''}`}>
       <div className="p-4 border-b bg-primary/10">
@@ -36,7 +48,7 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
       </div>
       <div className="p-4">
         <Accordion type="multiple" value={expandedCategories}>
-          {categories.map(category => (
+          {sortedCategories.map(category => (
             <AccordionItem 
               key={category.id} 
               value={category.id}
