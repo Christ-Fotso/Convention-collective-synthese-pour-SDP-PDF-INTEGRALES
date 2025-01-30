@@ -309,23 +309,130 @@ Il est donc essentiel de consulter la convention collective pour connaître les 
   },
   'depart': {
     'indemnite-licenciement': `### Comparaison avec le cadre légal
-#### Conditions d'attribution :
+
+#### 1. Conditions d'éligibilité
 - Ancienneté minimale : 8 mois ininterrompus
-- Type de contrat : CDI
-- Motif : Hors faute grave ou lourde
+- CDI uniquement
+- Hors licenciement pour faute grave ou lourde
+- Calcul de l'ancienneté : temps de présence continu dans l'entreprise
 
-#### Calcul de l'indemnité :
-- Jusqu'à 10 ans d'ancienneté : 1/4 de mois de salaire par année
-- Au-delà de 10 ans : 1/3 de mois de salaire par année supplémentaire`,
+#### 2. Calcul de l'indemnité légale
+**Formule de calcul :**
+- Jusqu'à 10 ans d'ancienneté : 1/4 de mois de salaire par année d'ancienneté
+- Au-delà de 10 ans : 1/3 de mois de salaire par année d'ancienneté supplémentaire
 
-    'preavis': `### Comparaison avec le cadre légal
-#### Préavis de licenciement :
-- Moins de 6 mois d'ancienneté : Selon convention collective
-- Entre 6 mois et 2 ans : 1 mois
-- Plus de 2 ans : 2 mois
+**Exemple :**
+Pour 12 ans d'ancienneté :
+- Premiers 10 ans : (10 × 1/4) = 2,5 mois
+- 2 années suivantes : (2 × 1/3) = 0,67 mois
+- Total = 3,17 mois de salaire
 
-#### Préavis de démission :
-- Durée fixée par la convention collective ou les usages`
+#### 3. Salaire de référence
+Le plus favorable entre :
+- La moyenne des 12 derniers mois
+- La moyenne des 3 derniers mois (primes incluses)
+- Base : salaire brut (incluant les primes et avantages réguliers)
+
+#### Points importants
+- La convention collective peut prévoir :
+  * Une ancienneté minimale plus courte
+  * Des taux de calcul plus avantageux
+  * Une base de calcul plus favorable
+  * Des majorations selon l'âge ou le statut
+
+**Règle fondamentale :** Appliquer le plus favorable entre :
+- L'indemnité légale
+- L'indemnité conventionnelle
+- L'indemnité prévue au contrat de travail`,
+
+    'indemnite-mise-retraite': `### Comparaison avec le cadre légal
+
+#### 1. Conditions d'éligibilité
+- Initiative de l'employeur
+- Salarié en âge de bénéficier d'une retraite à taux plein
+- Pas de condition d'ancienneté minimale légale
+
+#### 2. Calcul de l'indemnité légale
+**Même calcul que l'indemnité de licenciement :**
+- 1/4 de mois par année jusqu'à 10 ans
+- 1/3 de mois par année au-delà de 10 ans
+
+#### 3. Salaire de référence
+Identique à l'indemnité de licenciement :
+- Le plus favorable entre moyenne des 12 ou 3 derniers mois
+- Inclusion de tous les éléments de rémunération fixes
+
+#### Points importants
+- La mise à la retraite avant l'âge légal est interdite
+- La convention collective peut prévoir :
+  * Des conditions plus favorables de calcul
+  * Des majorations spécifiques
+  * Une base de calcul plus avantageuse
+
+**Règle fondamentale :** Appliquer le plus favorable entre :
+- L'indemnité légale
+- L'indemnité conventionnelle`,
+
+    'indemnite-depart-retraite': `### Comparaison avec le cadre légal
+
+#### 1. Conditions d'éligibilité
+- Initiative du salarié
+- Départ volontaire à la retraite
+- Ancienneté minimale : pas de minimum légal
+
+#### 2. Calcul de l'indemnité légale
+**Barème légal :**
+- 1/2 mois de salaire après 10 ans d'ancienneté
+- 1 mois de salaire après 15 ans d'ancienneté
+- 1,5 mois de salaire après 20 ans d'ancienneté
+- 2 mois de salaire après 30 ans d'ancienneté
+
+#### 3. Salaire de référence
+Identique aux autres indemnités :
+- Le plus favorable entre moyenne des 12 ou 3 derniers mois
+- Inclusion des primes et avantages réguliers
+
+#### Points importants
+- Montants inférieurs à l'indemnité de mise à la retraite
+- La convention collective peut prévoir :
+  * Des montants plus favorables
+  * Des paliers d'ancienneté différents
+  * Des majorations spécifiques
+
+**Règle fondamentale :** Appliquer le plus favorable entre :
+- L'indemnité légale
+- L'indemnité conventionnelle`,
+
+    'indemnite-rupture': `### Comparaison avec le cadre légal
+
+#### 1. Conditions d'éligibilité
+- Accord entre l'employeur et le salarié
+- CDI uniquement
+- Ancienneté minimale : pas de minimum légal
+
+#### 2. Montant minimal légal
+**Au minimum égal à l'indemnité légale de licenciement :**
+- 1/4 de mois par année jusqu'à 10 ans
+- 1/3 de mois par année au-delà de 10 ans
+
+#### 3. Salaire de référence
+Identique à l'indemnité de licenciement :
+- Le plus favorable entre moyenne des 12 ou 3 derniers mois
+- Inclusion de tous les éléments de rémunération
+
+#### Points importants
+- Le montant est négociable mais ne peut être inférieur à l'indemnité légale de licenciement
+- La convention collective peut prévoir :
+  * Des modalités de calcul spécifiques
+  * Des montants minimaux plus élevés
+  * Des majorations particulières
+
+**Règle fondamentale :** Appliquer le plus favorable entre :
+- L'indemnité légale de licenciement
+- L'indemnité conventionnelle
+- Le montant négocié dans la convention de rupture
+
+**Note :** Le montant négocié dans la convention de rupture peut être supérieur aux minimums légaux et conventionnels.`,
   },
   'remuneration': {
     'majoration-ferie': `### Comparaison avec le cadre légal
