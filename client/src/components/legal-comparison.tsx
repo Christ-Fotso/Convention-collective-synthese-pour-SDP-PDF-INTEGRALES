@@ -7,6 +7,32 @@ interface LegalComparisonProps {
 }
 
 const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
+  'conges': {
+    'conges-payes': `### Comparaison avec le cadre légal
+
+#### Période d'acquisition et durée
+- Période légale d'acquisition : du 1er juin au 31 mai
+- Durée légale : 5 semaines (30 jours ouvrables ou 25 jours ouvrés)
+- Le décompte en jours ouvrés n'est possible que si prévu par la convention collective
+
+#### Acquisition pendant les absences
+- En cas d'arrêt maladie : acquisition de 2,5 jours par mois (ou 2,08 jours ouvrés)
+- La convention collective peut prévoir des dispositions plus favorables
+- Certains arrêts sont assimilés à du temps de travail effectif pour l'acquisition des congés
+
+#### Points importants
+- Les congés d'ancienneté ne sont pas prévus par la loi
+- Seule la convention collective peut prévoir des congés supplémentaires liés à l'ancienneté
+- Le fractionnement des congés peut donner droit à des jours supplémentaires selon les règles légales
+
+#### Prise des congés
+- L'employeur fixe les dates de congés
+- Consultation des représentants du personnel obligatoire
+- Délai de prévenance raisonnable
+- Ordre des départs tenant compte de la situation familiale
+
+**Note :** La convention collective peut prévoir des dispositions plus favorables sur tous ces points.`,
+  },
   'embauche': {
     'periode-essai': `### Comparaison avec le cadre légal
 #### Durées maximales de la période d'essai par catégorie :
