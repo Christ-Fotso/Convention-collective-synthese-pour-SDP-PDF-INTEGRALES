@@ -72,7 +72,7 @@ export function LegalComparison({ category, subcategory }: LegalComparisonProps)
   }
 
   return (
-    <div className="mt-8 p-4 bg-warning/10 border border-warning/20 rounded-lg">
+    <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
       <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
         {comparison}
       </ReactMarkdown>

@@ -182,9 +182,9 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Alert className="mb-6 bg-warning border-warning/70">
-        <AlertTriangle className="h-4 w-4 text-warning-foreground" />
-        <AlertDescription className="text-warning-foreground">
+      <Alert className="mb-6 bg-warning/75 border-warning text-warning-foreground shadow-md">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertDescription>
           Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
         </AlertDescription>
       </Alert>
