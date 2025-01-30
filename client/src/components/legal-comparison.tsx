@@ -6,7 +6,42 @@ interface LegalComparisonProps {
   subcategory: Subcategory;
 }
 
-const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
+export function LegalComparison({ category, subcategory }: LegalComparisonProps) {
+  const comparison = LEGAL_COMPARISONS[category.id]?.[subcategory.id];
+
+  // Message spécial pour la grille et la classification si non disponibles
+  if (category.id === 'remuneration' && subcategory.id === 'grille' ||
+      category.id === 'classification' && subcategory.id === 'classification-details') {
+    return (
+      <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm dark:bg-yellow-900/10 dark:border-yellow-900/20">
+        <div className="flex items-center space-x-3">
+          <svg className="w-6 h-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+            Cette information n'est pas disponible pour le moment. Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!comparison) {
+    return null;
+  }
+
+  return (
+    <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
+      <ReactMarkdown 
+        className="prose prose-sm dark:prose-invert max-w-none [&>table]:w-full [&>table]:border-collapse [&>table]:border [&>table]:border-gray-300 [&>table_th]:bg-gray-100 [&>table_th]:px-4 [&>table_th]:py-2 [&>table_th]:border [&>table_th]:border-gray-300 [&>table_td]:px-4 [&>table_td]:py-2 [&>table_td]:border [&>table_td]:border-gray-300"
+      >
+        {comparison}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
+export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
   'cotisations': {
     'prevoyance': `### Comparaison avec le cadre légal
 
@@ -638,21 +673,8 @@ La loi impose uniquement :
   * Accès aux activités sociales et culturelles
 
 **Note :** La convention collective peut prévoir des dispositions plus favorables pour tous ces types de contrats, mais ne peut jamais prévoir de rémunération inférieure aux minimums légaux.`,
+  },
+  'classification': {
+    'classification-details': '### Comparaison avec le cadre légal\n\n[Contenu de la classification]'
   }
 };
-
-export function LegalComparison({ category, subcategory }: LegalComparisonProps) {
-  const comparison = LEGAL_COMPARISONS[category.id]?.[subcategory.id];
-
-  if (!comparison) {
-    return null;
-  }
-
-  return (
-    <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
-      <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
-        {comparison}
-      </ReactMarkdown>
-    </div>
-  );
-}
