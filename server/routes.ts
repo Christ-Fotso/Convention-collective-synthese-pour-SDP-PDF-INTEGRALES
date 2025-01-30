@@ -8,6 +8,7 @@ import { queryPerplexity } from "./services/perplexity";
 import { shouldUsePerplexity } from "./config/ai-routing";
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 const CHATPDF_API_BASE = "https://api.chatpdf.com";
 const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
@@ -15,6 +16,9 @@ const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
 if (!CHATPDF_API_KEY) {
   throw new Error("CHATPDF_API_KEY is required");
 }
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export function registerRoutes(app: Express): Server {
   const apiRouter = express.Router();
@@ -65,8 +69,11 @@ export function registerRoutes(app: Express): Server {
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
 
       // Check if we have a static legal data response
-      const legalDataPath = path.join(__dirname, '../attached_assets/Pasted-Informations-g-n-rales-RAS-D-lai-de-pr-venance-delai-prevenance-ancien-1738227284785.txt');
+      const legalDataPath = path.join(__dirname, '../../attached_assets/Pasted-Informations-g-n-rales-RAS-D-lai-de-pr-venance-delai-prevenance-ancien-1738227284785.txt');
+      console.log('Looking for legal data at:', legalDataPath);
+
       if (fs.existsSync(legalDataPath)) {
+        console.log('Legal data file found');
         const legalData = fs.readFileSync(legalDataPath, 'utf8');
         const lines = legalData.split('\n');
 
@@ -74,6 +81,8 @@ export function registerRoutes(app: Express): Server {
           const line = lines[i].trim();
           if (line.startsWith(messages[0].content)) {
             const nextLine = lines[i + 1].trim();
+            console.log('Found matching content:', messages[0].content);
+            console.log('Next line:', nextLine);
             // Si la réponse est "RAS", on renvoie une chaîne vide
             if (nextLine === "RAS") {
               return res.json({ content: "" });
@@ -82,6 +91,8 @@ export function registerRoutes(app: Express): Server {
             return res.json({ content: nextLine });
           }
         }
+      } else {
+        console.log('Legal data file not found');
       }
 
       const routing = shouldUsePerplexity(category, subcategory);
