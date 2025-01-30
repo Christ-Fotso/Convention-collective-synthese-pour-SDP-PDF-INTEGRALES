@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, AlertCircle, RefreshCw, Loader } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -82,7 +83,15 @@ export function ChatInterface({
                     : "bg-muted"
                 }`}
               >
-                {message.content}
+                {message.role === "user" ? (
+                  message.content
+                ) : (
+                  <div className="prose prose-sm dark:prose-invert">
+                    <ReactMarkdown>
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
+                )}
               </div>
             </div>
           ))}
