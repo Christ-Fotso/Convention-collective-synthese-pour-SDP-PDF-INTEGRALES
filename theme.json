@@ -7,5 +7,10 @@
   "background": "hsl(0, 0%, 100%)",
   "muted": "hsl(210, 40%, 96%)",
   "warning": "hsl(48, 96%, 89%)",
-  "destructive": "hsl(0, 84%, 60%)"
+  "destructive": "hsl(0, 84%, 60%)",
+  "secondary": "hsl(220, 14%, 96%)",
+  "accent": "hsl(210, 40%, 96%)",
+  "card": "hsl(0, 0%, 100%)",
+  "popover": "hsl(0, 0%, 100%)",
+  "border": "hsl(220, 13%, 91%)"
 }
