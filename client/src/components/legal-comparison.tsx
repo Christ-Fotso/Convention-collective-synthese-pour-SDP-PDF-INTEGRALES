@@ -20,14 +20,9 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
           <svg className="w-6 h-6 text-yellow-600 mt-1 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <div>
-            <h4 className="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-              Fonctionnalité en développement
-            </h4>
-            <p className="text-sm text-yellow-800 dark:text-yellow-200">
-              Cette information n'est pas disponible pour le moment. Notre équipe travaille activement à l'intégration de ces données pour vous fournir une analyse complète et détaillée. Cette fonctionnalité sera disponible très prochainement.
-            </p>
-          </div>
+          <p className="text-sm text-yellow-800 dark:text-yellow-200">
+            Cette information n'est pas disponible pour le moment. Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.
+          </p>
         </div>
       </div>
     );
