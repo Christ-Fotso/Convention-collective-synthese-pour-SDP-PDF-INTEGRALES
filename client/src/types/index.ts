@@ -713,7 +713,43 @@ Si aucune disposition n'existe pour une ou plusieurs catégories : indiquer "RAS
       - Nom exact de la prime
       - Nature/Type
       - Base légale (article précis)
-      - Date de mise en place ou avenant`,
+      - Date de mise en place ou avenant
+
+   B) Calcul et montant :
+      - Base de calcul précise
+      - Taux ou montant exact
+      - Périodicité de versement
+      - Modalités de calcul détaillées
+
+   C) Conditions d'attribution :
+      - Ancienneté requise
+      - Catégories concernées
+      - Proratisation temps partiel
+      - Conditions particulières
+
+   D) Spécificités :
+      - Période de référence
+      - Modalités de versement
+      - Cas de suspension
+      - Régime social si précisé
+
+2. Types de primes à rechercher (liste non limitative) :
+   - Prime d'ancienneté
+   - Prime de 13ème mois
+   - Prime de vacances
+   - Prime de rendement
+   - Primes exceptionnelles
+   - Gratifications
+   - Toute autre prime mentionnée
+
+3. Format de présentation :
+   - Copier-coller exact du texte
+   - Conservation des formules de calcul
+   - Maintien des tableaux et barèmes
+   - Report de toutes les notes et exceptions
+   - Référence précise des articles
+
+Si la convention collective ne contient aucune disposition sur les primes : indiquer "RAS"`,
     'grille': `Extrais la grille complète des rémunérations de la convention collective.
 
 1. STRUCTURE GÉNÉRALE À EXTRAIRE EXACTEMENT :
@@ -721,7 +757,57 @@ Si aucune disposition n'existe pour une ou plusieurs catégories : indiquer "RAS
      - Titre exact de la grille
      - Date d'application/avenant
      - Référence précise des articles
-     - Champ d'application territorial`,
+     - Champ d'application territorial
+
+  B) Pour chaque classification :
+     - Niveau/Échelon exact
+     - Coefficient si existant  
+     - Position précise
+     - Valeur du point si applicable
+     - Montant exact du salaire
+
+2. ÉLÉMENTS TECHNIQUES :
+
+  - TOUS les commentaires :
+     • En bas de tableau
+     • En marge
+     • Entre parenthèses
+     • En note de bas de page
+
+  - TOUTES les particularités :
+     • Mentions "voir article X"
+     • Calculs spécifiques
+     • Exceptions mentionnées
+     • Cas particuliers
+
+3. FORMAT ET PRÉSENTATION :
+  - Copier-coller STRICT des tableaux
+  - Conservation de la mise en forme d'origine
+  - Maintien de TOUS les sauts de ligne
+  - Report de TOUS les espacements
+  - Reproduction exacte de la structure visuelle
+
+4. VARIATIONS À INCLURE :
+  - Par zone géographique
+  - Par département
+  - Par région
+  - Par secteur d'activité
+
+5. ÉLÉMENTS COMPLÉMENTAIRES :
+  - Valeur du point si existante
+  - Formules de calcul
+  - Modalités d'application
+  - Garanties diverses
+  - TOUT autre élément lié aux salaires
+
+RÈGLES ABSOLUES :
+- Ne rien omettre
+- Ne rien reformuler
+- Conserver la structure exacte
+- Reporter TOUS les détails
+- Maintenir TOUTE la mise en forme
+
+Si la convention collective ne contient aucune grille de rémunération : indiquer "RAS"`,
     'majoration-dimanche': `Récupère toutes les informations sur la majoration du dimanche dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -729,7 +815,33 @@ Si aucune disposition n'existe pour une ou plusieurs catégories : indiquer "RAS
       - Pourcentage exact
       - Montant forfaitaire si prévu
       - Base de calcul de la majoration
-      - Assiette de calcul`,
+      - Assiette de calcul
+
+   B) Conditions d'application :
+      - Horaires concernés 
+      - Durée minimum d'intervention
+      - Personnel concerné
+      - Exceptions éventuelles
+
+   C) Modalités spécifiques :
+      - Cumul possible avec d'autres majorations
+      - Repos compensateur éventuel
+      - Mode de récupération
+      - Délais de prévenance
+
+   D) Spécificités :
+      - Jours fériés tombant un dimanche
+      - Particularités selon services
+      - Cas exceptionnels
+      - Règles de rotation si prévues
+
+2. Présentation :
+   - Copier-coller exact du texte conventionnel
+   - Référence précise des articles
+   - Conservation de toutes les notes
+   - Maintien des exceptions et cas particuliers
+
+Si la convention collective ne contient aucune disposition sur la majoration du dimanche : indiquer "RAS"`,
     'majoration-ferie': `Cherche toutes les informations sur la majoration des jours fériés dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -737,7 +849,39 @@ Si aucune disposition n'existe pour une ou plusieurs catégories : indiquer "RAS
       - Jours fériés garantis
       - Jours fériés travaillés
       - Jours fériés chômés
-      - 1er mai (dispositions spécifiques)`,
+      - 1er mai (dispositions spécifiques)
+
+   B) Taux de majoration :
+      - Pourcentage exact
+      - Montant forfaitaire si prévu
+      - Base de calcul de la majoration
+      - Assiette de calcul
+
+   C) Conditions d'application :
+      - Ancienneté requise si prévue
+      - Conditions particulières
+      - Personnel concerné/exclu
+      - Modalités de paiement
+
+   D) Modalités spécifiques :
+      - Repos compensateur si prévu
+      - Cumul avec d'autres majorations
+      - Règles de récupération
+      - Délais de prévenance
+
+   E) Spécificités :
+      - Jour férié tombant un repos hebdo
+      - Particularités selon services
+      - Cas exceptionnels
+      - Veille/lendemain de jour férié
+
+2. Présentation :
+   - Copier-coller exact du texte
+   - Référence précise des articles
+   - Conservation de toutes les notes
+   - Maintien de tous les cas particuliers
+
+Si la convention collective ne contient aucune disposition sur la majoration des jours fériés : indiquer "RAS"`,
     'majoration-nuit': `Analyse la convention collective pour récupérer toutes les informations concernant la majoration pour les heures de travail effectuées la nuit.
 
 1. Extraire EXACTEMENT :
@@ -745,7 +889,39 @@ Si aucune disposition n'existe pour une ou plusieurs catégories : indiquer "RAS
       - Définition précise du travail de nuit
       - Horaires de début et de fin
       - Durée minimale de travail de nuit
-      - Distinction éventuelle selon les services`
+      - Distinction éventuelle selon les services
+
+   B) Taux de majoration :
+      - Pourcentage exact
+      - Montant forfaitaire si prévu
+      - Base de calcul
+      - Assiette de la majoration
+
+   C) Conditions d'application :
+      - Travailleurs de nuit réguliers
+      - Travailleurs de nuit occasionnels
+      - Personnel concerné/exclu
+      - Conditions particulières
+
+   D) Contreparties :
+      - Repos compensateur si prévu
+      - Majoration salariale
+      - Cumul possible avec d'autres majorations
+      - Avantages spécifiques
+
+   E) Spécificités :
+      - Travail de nuit exceptionnel
+      - Cas particuliers
+      - Règles de rotation si prévues
+      - Changement de planning
+
+2. Présentation :
+   - Copier-coller exact du texte conventionnel
+   - Référence précise des articles
+   - Conservation de toutes les notes
+   - Maintien de tous les cas particuliers
+
+Si la convention collective ne contient aucune disposition sur la majoration du travail de nuit : indiquer "RAS"`,
   },
   'depart': {
     'indemnite-licenciement': `Récupère toutes les informations concernant l'indemnité de licenciement dans la convention collective.
