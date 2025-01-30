@@ -181,11 +181,6 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <p className="mb-6 text-warning flex items-center gap-2">
-        <span>⚠️</span>
-        Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
-      </p>
-
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -218,6 +213,13 @@ export default function Chat({ params }: { params: { id: string } }) {
             </div>
           </DialogContent>
         </Dialog>
+      </div>
+
+      <div className="flex items-start gap-2 mb-6 p-4 bg-warning/10 rounded-lg">
+        <span className="text-xl">⚠️</span>
+        <p className="text-warning text-sm">
+          Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
