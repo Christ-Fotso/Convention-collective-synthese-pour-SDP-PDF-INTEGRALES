@@ -30,15 +30,21 @@ La durée de la période d'essai ne peut excéder une durée calculée à raison
 
 Ces durées peuvent être réduites par la convention collective applicable ou par accord entre les parties.`,
     'delai-prevenance': `### Comparaison avec le cadre légal
-#### En cas de rupture par l'employeur :
+#### Règle générale
+Il convient d'appliquer le délai de prévenance le plus favorable au salarié entre celui prévu par la loi et celui prévu par la convention collective.
+
+#### Délais légaux minimums
+En cas de rupture par l'employeur :
 - Moins de 8 jours de présence : 24 heures
 - Entre 8 jours et 1 mois de présence : 48 heures
 - Entre 1 et 3 mois de présence : 2 semaines
 - Plus de 3 mois de présence : 1 mois
 
-#### En cas de rupture par le salarié :
+En cas de rupture par le salarié :
 - Moins de 8 jours de présence : 24 heures
-- Plus de 8 jours de présence : 48 heures`
+- Plus de 8 jours de présence : 48 heures
+
+**Important :** Si la convention collective prévoit des délais plus longs, ce sont ces délais plus favorables qui s'appliquent au salarié.`
   },
   'maintien-salaire': {
     'maladie': `### Comparaison avec le cadre légal
