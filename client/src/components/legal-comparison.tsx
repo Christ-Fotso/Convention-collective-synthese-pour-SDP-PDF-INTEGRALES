@@ -38,11 +38,39 @@ const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
 - Base ou assiette de calcul`,
 
     'mutuelle': `### Comparaison avec le cadre légal
-#### Organismes :
-- Noms des organismes recommandés/désignés
-- Date de désignation/recommandation
-- Gestionnaire des prestations si différent
-- Durée de la désignation si précisée`
+
+#### Obligation de mise en place
+- Toutes les entreprises doivent proposer une mutuelle collective à leurs salariés
+- Cette obligation s'applique à tous les salariés (CDD, CDI, temps partiel)
+- La mise en place doit se faire par :
+  * Une convention collective
+  * Un accord d'entreprise
+  * Une décision unilatérale de l'employeur (DUE)
+
+#### Participation employeur
+- L'employeur doit prendre en charge au minimum 50% de la cotisation
+- Cette participation minimale s'applique sur la couverture obligatoire minimale
+
+#### Cas de dispense
+Les salariés peuvent refuser d'adhérer dans certains cas :
+- CDD ou contrat de mission < 12 mois
+- CDD ou contrat de mission ≥ 12 mois avec une couverture individuelle
+- Temps partiel avec cotisation ≥ 10% du salaire brut
+- Bénéficiaires de la CSS ou de l'ACS
+- Couverture obligatoire par ailleurs (y compris en tant qu'ayant droit)
+- Multi-employeurs déjà couverts
+
+#### Panier de soins minimal
+La couverture doit inclure au minimum :
+- Intégralité du ticket modérateur
+- Forfait journalier hospitalier sans limitation de durée
+- Soins dentaires (125% BR) et orthodontie (125% BR)
+- Optique : forfait tous les 2 ans (100€ minimum pour des verres simples)
+
+**Note :** La convention collective peut prévoir :
+- Une répartition plus favorable de la cotisation
+- Des garanties supérieures au minimum légal
+- Des conditions d'ancienneté (maximum 6 mois)`,
   },
   'conges': {
     'cet': `### Comparaison avec le cadre légal
