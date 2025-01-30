@@ -59,8 +59,8 @@ export function registerRoutes(app: Express): Server {
   // Modified chat message endpoint to support both AIs
   apiRouter.post("/chat/message", async (req, res) => {
     try {
-      const { sourceId, messages, category, subcategory } = req.body;
-      const convention = await db.select().from(conventions).where(eq(conventions.id, req.body.conventionId)).limit(1);
+      const { sourceId, messages, category, subcategory, conventionId } = req.body;
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
       const routing = shouldUsePerplexity(category, subcategory);
 
       if (routing.usePerplexity) {
@@ -89,7 +89,6 @@ export function registerRoutes(app: Express): Server {
       } else {
         console.log('Using ChatPDF for category:', category, subcategory);
         try {
-          // Add detailed response instruction to the user's message
           const enhancedMessages = messages.map(msg => {
             if (msg.role === 'user') {
               return {
@@ -100,9 +99,14 @@ export function registerRoutes(app: Express): Server {
             return msg;
           });
 
-          const response = await axios.post(
-            `${CHATPDF_API_BASE}/v1/chats/message`,
-            {
+          const response = await axios({
+            method: 'post',
+            url: `${CHATPDF_API_BASE}/v1/chats/message`,
+            headers: {
+              "x-api-key": CHATPDF_API_KEY,
+              "Content-Type": "application/json",
+            },
+            data: {
               sourceId,
               messages: enhancedMessages,
               config: {
@@ -110,13 +114,13 @@ export function registerRoutes(app: Express): Server {
                 contextWindow: 8192,
               }
             },
-            {
-              headers: {
-                "x-api-key": CHATPDF_API_KEY,
-                "Content-Type": "application/json",
-              },
-            }
-          );
+            validateStatus: (status) => status < 500,  // Only treat 500+ as errors
+          });
+
+          if (response.status !== 200) {
+            throw new Error(response.data?.error || 'ChatPDF request failed');
+          }
+
           res.json(response.data);
         } catch (chatPDFError: any) {
           console.error('ChatPDF query error:', chatPDFError.response?.data || chatPDFError.message);
@@ -139,7 +143,7 @@ export function registerRoutes(app: Express): Server {
   apiRouter.post("/chat/source/delete", async (req, res) => {
     try {
       console.log('Deleting ChatPDF sources:', req.body.sources);
-      await axios.post(
+      const response = await axios.post(
         `${CHATPDF_API_BASE}/v1/sources/delete`,
         { sources: req.body.sources },
         {
@@ -155,7 +159,7 @@ export function registerRoutes(app: Express): Server {
       console.error('Source deletion error:', error.response?.data || error.message);
       res.status(500).json({ 
         message: "Failed to delete ChatPDF source",
-        error: error.response?.data || error.message
+        error: error.response?.data || error.message 
       });
     }
   });
