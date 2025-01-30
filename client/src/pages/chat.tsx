@@ -241,11 +241,13 @@ export default function Chat({ params }: { params: { id: string } }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
-        <CategoryMenu 
-          categories={CATEGORIES}
-          onSelectSubcategory={handleSelectSubcategory}
-          isLoading={chatMutation.isPending}
-        />
+        <div className="h-auto">
+          <CategoryMenu 
+            categories={CATEGORIES}
+            onSelectSubcategory={handleSelectSubcategory}
+            isLoading={chatMutation.isPending}
+          />
+        </div>
 
         <Card className="p-6">
           {chatMutation.isPending ? (
