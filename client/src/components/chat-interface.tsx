@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, AlertCircle, RefreshCw } from "lucide-react";
+import { Send, AlertCircle, RefreshCw, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -55,7 +55,11 @@ export function ChatInterface({
           className="flex items-center gap-2"
           disabled={isLoading || messages.length === 0}
         >
-          <RefreshCw className="h-4 w-4" />
+          {isLoading ? (
+            <Loader className="h-4 w-4 animate-spin" />
+          ) : (
+            <RefreshCw className="h-4 w-4" />
+          )}
           Réinitialiser la conversation
         </Button>
       </div>
@@ -85,7 +89,10 @@ export function ChatInterface({
           {isLoading && (
             <div className="text-left">
               <div className="inline-block bg-muted px-4 py-2 rounded-lg">
-                <span className="animate-pulse">...</span>
+                <div className="flex items-center gap-2">
+                  <Loader className="h-4 w-4 animate-spin" />
+                  <span>En cours de traitement...</span>
+                </div>
               </div>
             </div>
           )}
@@ -99,8 +106,16 @@ export function ChatInterface({
           placeholder="Posez votre question..."
           disabled={isLoading || messages.length >= 6}
         />
-        <Button type="submit" disabled={isLoading || messages.length >= 6}>
-          <Send className="h-4 w-4" />
+        <Button 
+          type="submit" 
+          disabled={isLoading || messages.length >= 6}
+          className="flex items-center gap-2"
+        >
+          {isLoading ? (
+            <Loader className="h-4 w-4 animate-spin" />
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
         </Button>
       </form>
 
