@@ -217,7 +217,7 @@ export default function Chat({ params }: { params: { id: string } }) {
 
       <div className="flex items-start gap-2 mb-6 p-4 bg-warning/10 rounded-lg">
         <span className="text-xl">⚠️</span>
-        <p className="text-warning text-sm">
+        <p className="text-[hsl(33,100%,50%)] text-sm">
           Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
         </p>
       </div>
