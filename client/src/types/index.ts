@@ -1092,6 +1092,54 @@ Si la convention collective ne contient aucune disposition sur l'indemnité de d
    - Conservation de tous les commentaires
 
 Si la convention collective ne contient aucune disposition sur l'indemnité de rupture conventionnelle : indiquer "RAS"`,
-    'preavis': 'Quelles sont les durées de préavis selon les cas de rupture ? Détaillez par motif et catégorie.'
+    'preavis': `Récupère toutes les informations concernant le préavis dans la convention collective.
+
+1. Extraire EXACTEMENT pour chaque type de rupture :
+   A) Préavis de licenciement :
+      - Durée selon catégories
+      - Durée selon ancienneté
+      - Conditions particulières
+      - Cas de dispense
+
+   B) Préavis de démission :
+      - Durée selon catégories
+      - Durée selon ancienneté
+      - Conditions spécifiques
+      - Cas particuliers
+
+   C) Préavis de départ/mise à la retraite :
+      - Durée selon catégories
+      - Durée selon ancienneté
+      - Modalités spécifiques
+      - Exceptions
+
+   D) Modalités d'exécution :
+      - Heures pour recherche d'emploi
+      - Montant/maintien du salaire
+      - Possibilité de dispense
+      - Congés pendant préavis
+
+   E) Points spécifiques :
+      - Point de départ du préavis
+      - Cas de non-exécution
+      - Calcul des délais
+      - Impact des congés/absences
+
+   F) Cas particuliers :
+      - Période d'essai
+      - CDD
+      - Faute grave/lourde
+      - Inaptitude
+
+2. Format de présentation :
+   - Copier-coller exact du texte
+   - Conservation des tableaux
+   - Maintien des durées précises
+   - Référence des articles
+   - Report de toutes les notes
+   - Conservation des exceptions
+   - Reprise de tous les commentaires
+
+Si la convention collective ne contient aucune disposition sur le préavis : indiquer "RAS"`
   }
 };
