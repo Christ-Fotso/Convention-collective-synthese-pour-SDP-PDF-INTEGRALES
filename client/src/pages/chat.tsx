@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft } from 'lucide-react';
-import { ChatInterface } from '@/components/chat-interface';
+import { CategoryMenu } from '@/components/category-menu';
 import { getConventions, createChatPDFSource, sendChatMessage, deleteChatPDFSource } from '@/lib/api';
-import type { Convention, Message } from '@/types';
+import { CATEGORIES } from '@/lib/categories';
+import type { Convention, Message, Category, Subcategory, PREDEFINED_PROMPTS } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -43,7 +44,7 @@ export default function Chat({ params }: { params: { id: string } }) {
       toast({
         variant: "destructive",
         title: "Erreur",
-        description: "Impossible d'envoyer le message",
+        description: "Impossible d'obtenir la réponse",
       });
     }
   });
@@ -58,31 +59,31 @@ export default function Chat({ params }: { params: { id: string } }) {
     }
   }, [convention]);
 
-  const handleSendMessage = async (content: string) => {
+  const handleSelectSubcategory = async (category: Category, subcategory: Subcategory) => {
     if (!sourceId) return;
 
-    const newUserMessage: Message = { role: 'user', content };
-    const newMessages = [...messages, newUserMessage];
-    setMessages(newMessages);
+    const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] || 
+                  PREDEFINED_PROMPTS[category.id]?.['default'];
+
+    if (!prompt) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Question prédéfinie non trouvée pour cette catégorie",
+      });
+      return;
+    }
 
     const response = await chatMutation.mutateAsync({
       sourceId,
-      messages: newMessages,
+      messages: [{ role: 'user', content: prompt }],
       referenceSources: false
     });
 
-    const assistantMessage: Message = { role: 'assistant', content: response.content };
-    setMessages([...newMessages, assistantMessage]);
-  };
-
-  const handleReset = async () => {
-    if (sourceId) {
-      await deleteSourceMutation.mutateAsync(sourceId);
-    }
-    if (convention) {
-      createSourceMutation.mutate(convention.url);
-    }
-    setMessages([]);
+    setMessages([
+      { role: 'user', content: `${category.name} > ${subcategory.name}` },
+      { role: 'assistant', content: response.content }
+    ]);
   };
 
   if (!convention) {
@@ -101,24 +102,40 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-4 mb-8">
-          <Button variant="outline" onClick={() => navigate('/')}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour à la liste
-          </Button>
-          <h1 className="text-2xl font-bold">
-            IDCC {convention.id} - {convention.name}
-          </h1>
-        </div>
+      <div className="flex items-center gap-4 mb-8">
+        <Button variant="outline" onClick={() => navigate('/')}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Retour à la liste
+        </Button>
+        <h1 className="text-2xl font-bold">
+          IDCC {convention.id} - {convention.name}
+        </h1>
+      </div>
 
-        <ChatInterface
-          messages={messages}
-          onSendMessage={handleSendMessage}
-          onReset={handleReset}
-          isLoading={chatMutation.isPending}
-          error={chatMutation.error?.message}
+      <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
+        <CategoryMenu 
+          categories={CATEGORIES}
+          onSelectSubcategory={handleSelectSubcategory}
         />
+
+        <Card className="p-6">
+          {messages.length > 0 ? (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold">{messages[0].content}</h3>
+                <div className="mt-4 prose prose-sm max-w-none">
+                  {messages[1].content.split('\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center text-muted-foreground">
+              Sélectionnez une catégorie pour voir les informations correspondantes
+            </div>
+          )}
+        </Card>
       </div>
     </div>
   );
