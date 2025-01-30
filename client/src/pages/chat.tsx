@@ -241,7 +241,7 @@ export default function Chat({ params }: { params: { id: string } }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
-        <div className="h-auto">
+        <div>
           <CategoryMenu 
             categories={CATEGORIES}
             onSelectSubcategory={handleSelectSubcategory}
