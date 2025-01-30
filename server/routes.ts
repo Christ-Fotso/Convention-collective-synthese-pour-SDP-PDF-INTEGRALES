@@ -51,41 +51,17 @@ export function registerRoutes(app: Express): Server {
   // Send chat message
   apiRouter.post("/chat/message", async (req, res) => {
     try {
-      console.log('Sending chat message:', { sourceId: req.body.sourceId });
+      console.log('Sending chat message:', { 
+        sourceId: req.body.sourceId,
+        message: req.body.messages[req.body.messages.length - 1].content.substring(0, 100) + '...'
+      });
 
-      // Configuration enrichie pour des réponses plus détaillées
       const chatRequest = {
-        ...req.body,
-        referenceSources: false, // Désactive l'inclusion des références
+        sourceId: req.body.sourceId,
+        messages: req.body.messages,
         config: {
-          systemPrompt: `Tu es un expert juridique spécialisé dans l'analyse des conventions collectives. Voici tes instructions OBLIGATOIRES pour CHAQUE réponse:
-
-1. EXHAUSTIVITÉ: Tu DOIS fournir TOUTES les informations disponibles dans le document sur le sujet demandé, sans exception.
-
-2. CITATIONS: Tu DOIS citer textuellement les passages pertinents du document, en incluant les numéros d'articles et de sections.
-
-3. STRUCTURE:
-   - Commence par une vue d'ensemble complète
-   - Liste TOUS les articles pertinents
-   - Pour CHAQUE article:
-     * Cite le texte exact
-     * Explique en détail chaque point
-     * Mentionne les exceptions et cas particuliers
-
-4. DÉTAILS CRUCIAUX:
-   - Ne jamais omettre d'informations
-   - Mentionner tous les cas de figure
-   - Inclure les conditions spécifiques
-   - Préciser les délais et les montants exacts
-
-5. VÉRIFICATION:
-   - Confirme avoir parcouru l'intégralité du document
-   - Indique si d'autres sections peuvent être pertinentes
-   - Signale si des informations complémentaires existent
-
-RAPPEL: Tu as accès à l'intégralité du document. Ne te limite pas. Fournis TOUTES les informations disponibles.`,
-          temperature: 0.1, // Température très basse pour des réponses plus consistantes et détaillées
-          contextWindow: 8192, // Fenêtre de contexte maximale
+          temperature: 0.1,
+          contextWindow: 8192,
         }
       };
 
