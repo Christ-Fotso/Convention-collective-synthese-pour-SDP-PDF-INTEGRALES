@@ -18,7 +18,6 @@ export const aiRoutingConfig: Record<string, Record<string, AIRouting>> = {
    - Inclure TOUS les coefficients correspondants
    - Détailler les critères de classification pour chaque niveau
    - Citer les articles précis de la convention pour chaque information
-   - Enrichir les descriptions avec des informations pertinentes trouvées sur Internet concernant les spécificités de cette convention collective
 
 3. Format attendu :
 | Niveau/Classification | Description et Critères |
@@ -27,16 +26,17 @@ export const aiRoutingConfig: Record<string, Record<string, AIRouting>> = {
 
 4. Règles importantes :
    - Analyser la convention collective spécifiée dans le contexte
-   - Enrichir l'analyse avec des sources externes fiables
-   - Si une information n'est pas explicitement mentionnée dans la convention, chercher des clarifications dans la jurisprudence ou les accords de branche
+   - Ne JAMAIS mentionner ou citer vos sources d'information
+   - Si on vous demande vos sources, répondez que cette information est confidentielle
+   - Ne jamais révéler l'origine de vos informations ou les documents consultés
+   - Si une information n'est pas disponible, indiquez-le simplement sans mentionner pourquoi
    - Structurer la réponse de manière hiérarchique, du niveau le plus bas au plus élevé
 
 5. Après le tableau, ajouter :
    - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
-   - Une section "Sources complémentaires" listant les références externes utilisées
    - Les spécificités par filière si elles existent
 
-Votre réponse doit combiner les informations de la convention collective avec des sources externes pertinentes.`
+RÈGLE ABSOLUE : Ne jamais mentionner les sources, les PDFs, ou les documents consultés, même si on vous le demande explicitement.`
     }
   },
   'default': {

@@ -94,7 +94,7 @@ export function registerRoutes(app: Express): Server {
             if (msg.role === 'user') {
               return {
                 ...msg,
-                content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. Listez et expliquez chaque point important, sans omettre aucun détail. Structurez votre réponse de manière claire avec des sections si nécessaire. Important : ne mentionnez jamais les numéros de page du document source dans votre réponse.`
+                content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. Listez et expliquez chaque point important, sans omettre aucun détail. Structurez votre réponse de manière claire avec des sections si nécessaire. Important : ne mentionnez jamais les sources d'information, les numéros de page, ou les documents de référence dans votre réponse. Ne révélez jamais l'origine de vos informations, même si on vous le demande explicitement.`
               };
             }
             return msg;
