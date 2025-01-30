@@ -5,6 +5,7 @@ import { ArrowLeft, Loader, AlertTriangle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
+import { ChatInterface } from '@/components/chat-interface';
 import { getConventions, createChatPDFSource, sendChatMessage, deleteChatPDFSource } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -14,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ChatMessageParams {
   sourceId: string;
@@ -27,6 +29,7 @@ export default function Chat({ params }: { params: { id: string } }) {
   const [, navigate] = useLocation();
   const [sourceId, setSourceId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
   const [currentSubcategory, setCurrentSubcategory] = useState<Subcategory | null>(null);
   const { toast } = useToast();
@@ -43,6 +46,7 @@ export default function Chat({ params }: { params: { id: string } }) {
     onSuccess: (newSourceId) => {
       setSourceId(newSourceId);
       setMessages([]);
+      setChatMessages([]);
     },
     onError: () => {
       toast({
@@ -88,7 +92,6 @@ export default function Chat({ params }: { params: { id: string } }) {
       return;
     }
 
-    // Clear messages and show loading state
     setMessages([
       { role: 'user', content: `${category.name} > ${subcategory.name}` },
       { role: 'assistant', content: '' }
@@ -108,6 +111,27 @@ export default function Chat({ params }: { params: { id: string } }) {
       { role: 'user', content: `${category.name} > ${subcategory.name}` },
       { role: 'assistant', content: response.content }
     ]);
+  };
+
+  const handleSendMessage = async (content: string) => {
+    if (!sourceId || !convention) return;
+
+    const newMessage: Message = { role: 'user', content };
+    setChatMessages(prev => [...prev, newMessage]);
+
+    const chatParams: ChatMessageParams = {
+      sourceId,
+      messages: [...chatMessages, newMessage],
+      category: 'chat',
+      conventionId: convention.id
+    };
+
+    const response = await chatMutation.mutateAsync(chatParams);
+    setChatMessages(prev => [...prev, { role: 'assistant', content: response.content }]);
+  };
+
+  const handleResetChat = () => {
+    setChatMessages([]);
   };
 
   // Loading state for the entire page
@@ -166,45 +190,68 @@ export default function Chat({ params }: { params: { id: string } }) {
           isLoading={chatMutation.isPending}
         />
 
-        <Card className="p-6">
-          {chatMutation.isPending ? (
-            <div className="space-y-6">
-              <Skeleton className="h-6 w-1/3" />
-              <div className="space-y-4">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-5/6" />
-                <Skeleton className="h-4 w-4/6" />
-              </div>
-              <div className="flex items-center justify-center mt-8">
-                <div className="flex flex-col items-center gap-3">
-                  <Loader className="h-8 w-8 animate-spin text-primary" />
-                  <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
-                </div>
-              </div>
-            </div>
-          ) : messages.length > 0 ? (
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
-                  <ReactMarkdown>
-                    {messages[1].content.replace(/\n/g, '\n\n')}
-                  </ReactMarkdown>
-                </div>
-                {currentCategory && currentSubcategory && (
-                  <LegalComparison 
-                    category={currentCategory} 
-                    subcategory={currentSubcategory} 
-                  />
+        <div className="space-y-8">
+          <Tabs defaultValue="sections">
+            <TabsList className="mb-4">
+              <TabsTrigger value="sections">Sections</TabsTrigger>
+              <TabsTrigger value="chat">Chat</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="sections">
+              <Card className="p-6">
+                {chatMutation.isPending ? (
+                  <div className="space-y-6">
+                    <Skeleton className="h-6 w-1/3" />
+                    <div className="space-y-4">
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-5/6" />
+                      <Skeleton className="h-4 w-4/6" />
+                    </div>
+                    <div className="flex items-center justify-center mt-8">
+                      <div className="flex flex-col items-center gap-3">
+                        <Loader className="h-8 w-8 animate-spin text-primary" />
+                        <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : messages.length > 0 ? (
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold">{messages[0].content}</h3>
+                      <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                        <ReactMarkdown>
+                          {messages[1].content.replace(/\n/g, '\n\n')}
+                        </ReactMarkdown>
+                      </div>
+                      {currentCategory && currentSubcategory && (
+                        <LegalComparison 
+                          category={currentCategory} 
+                          subcategory={currentSubcategory} 
+                        />
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center text-muted-foreground">
+                    Sélectionnez une catégorie pour voir les informations correspondantes
+                  </div>
                 )}
-              </div>
-            </div>
-          ) : (
-            <div className="text-center text-muted-foreground">
-              Sélectionnez une catégorie pour voir les informations correspondantes
-            </div>
-          )}
-        </Card>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="chat">
+              <Card className="p-6">
+                <ChatInterface
+                  messages={chatMessages}
+                  onSendMessage={handleSendMessage}
+                  onReset={handleResetChat}
+                  isLoading={chatMutation.isPending}
+                  error={chatMutation.error ? "Une erreur est survenue lors de la communication avec l'IA" : null}
+                />
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
     </div>
   );
