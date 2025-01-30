@@ -172,15 +172,15 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Alert className="mb-6">
-        <AlertTriangle className="h-4 w-4 text-warning" />
-        <AlertDescription>
+      <Alert className="mb-6 bg-warning border-0">
+        <AlertTriangle className="h-4 w-4 text-amber-700" />
+        <AlertDescription className="text-amber-900">
           Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
         </AlertDescription>
       </Alert>
 
-      <div className="flex items-center gap-4 mb-8">
-        <Button variant="outline" onClick={() => navigate('/')}>
+      <div className="flex items-center gap-4 mb-8 bg-secondary p-4 rounded-lg shadow-sm">
+        <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-white">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Retour à la liste
         </Button>
@@ -191,7 +191,7 @@ export default function Chat({ params }: { params: { id: string } }) {
           <DialogTrigger asChild>
             <Button 
               variant="secondary"
-              className="ml-4"
+              className="ml-auto hover:bg-primary hover:text-white"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
               Poser une question sur la CCN
