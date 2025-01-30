@@ -931,7 +931,38 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
       - Ancienneté minimale requise
       - Catégories concernées
       - Cas d'exclusion
-      - Base de calcul du salaire de référence`,
+      - Base de calcul du salaire de référence
+
+   B) Mode de calcul :
+      - Formule exacte de calcul
+      - Tranches d'ancienneté
+      - Taux par tranche
+      - Base de calcul précise
+
+   C) Salaire de référence :
+      - Définition exacte
+      - Eléments inclus
+      - Eléments exclus
+      - Période de référence
+      - Cas des variables/primes
+
+   D) Cas particuliers :
+      - Temps partiel
+      - Suspension du contrat
+      - Absences
+      - Licenciement économique
+      - Inaptitude
+
+2. Format de présentation :
+   - Copier-coller exact du texte
+   - Maintien des formules et tableaux
+   - Conservation de tous les exemples
+   - Report des cas particuliers
+   - Référence précise des articles
+   - Conservation de toutes les notes
+   - Maintien de tous les renvois
+
+Si la convention collective ne contient aucune disposition sur l'indemnité de licenciement : indiquer "RAS"`,
     'indemnite-mise-retraite': `Récupère toutes les informations sur l'indemnité de mise à la retraite dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -939,15 +970,85 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
       - Ancienneté minimale requise
       - Catégories concernées
       - Cas d'exclusion
-      - Conditions particulières`,
-    'indemnite-depart-retraite': `Récupère toutes les informations sur l'indemnité de départ à la retraite (départ volontaire) dans la convention collective.
+      - Conditions particulières
+
+   B) Mode de calcul :
+      - Formule exacte de calcul
+      - Tranches d'ancienneté
+      - Taux par tranche
+      - Montants ou pourcentages précis
+
+   C) Salaire de référence :
+      - Définition exacte
+      - Éléments inclus
+      - Éléments exclus
+      - Période de référence
+      - Traitement des variables/primes
+
+   D) Précisions techniques :
+      - Date de calcul ancienneté
+      - Décompte de l'ancienneté
+      - Périodes assimilées
+      - Périodes exclues
+
+   E) Cas particuliers :
+      - Temps partiel
+      - Absences
+      - Suspensions de contrat
+      - Situations spécifiques
+
+2. Format de présentation :
+   - Copier-coller exact du texte
+   - Maintien des formules/tableaux
+   - Conservation des exemples
+   - Report des notes et renvois
+   - Référence précise des articles
+   - Conservation de tous les commentaires
+
+Si la convention collective ne contient aucune disposition sur l'indemnité de mise à la retraite : indiquer "RAS"`,
+    'indemnite-depart-retraite': `Récupère toutesles informations sur l'indemnité de départ à la retraite (départ volontaire) dans la convention collective.
 
 1. Extraire EXACTEMENT :
    A) Conditions d'attribution :
       - Ancienneté minimale requise
       - Catégories concernées
       - Conditions particulières
-      - Délai de prévenance si précisé`,
+      - Délai de prévenance si précisé
+
+   B) Mode de calcul :
+      - Formule exacte de calcul
+      - Tranches d'ancienneté
+      - Taux ou montants par tranche
+      - Plafonds éventuels
+
+   C) Salaire de référence :
+      - Définition exacte
+      - Éléments inclus
+      - Éléments exclus
+      - Période de référence
+      - Cas des variables/primes
+
+   D) Calcul de l'ancienneté :
+      - Mode de décompte
+      - Périodes prises en compte
+      - Périodes exclues
+      - Date de calcul
+
+   E) Cas particuliers :
+      - Temps partiel
+      - Suspension du contrat
+      - Absences
+      - Situations spécifiques
+
+2. Format de présentation :
+   - Copier-coller exact du texte
+   - Maintien des formules/tableaux
+   - Conservation des exemples
+   - Report des notes et renvois
+   - Référence précise des articles
+   - Conservation de tous les commentaires
+
+Si la convention collective ne contient aucune disposition sur l'indemnité de départ volontaire à la retraite : indiquer "RAS"`,
     'indemnite-rupture': `Récupère toutes les informations sur l'indemnité de rupture conventionnelle dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -955,7 +1056,42 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
       - Ancienneté requise
       - Catégories concernées
       - Conditions spécifiques
-      - Cas d'exclusion`,
+      - Cas d'exclusion
+
+   B) Mode de calcul :
+      - Formule exacte
+      - Base de calcul
+      - Montants ou pourcentages
+      - Tranches éventuelles
+
+   C) Salaire de référence :
+      - Définition exacte
+      - Éléments inclus
+      - Éléments exclus
+      - Période de référence
+      - Traitement des variables
+
+   D) Calcul de l'ancienneté :
+      - Mode de décompte
+      - Périodes prises en compte
+      - Périodes exclues
+      - Date de calcul
+
+   E) Procédure spécifique :
+      - Formalités particulières
+      - Délais conventionnels
+      - Documents requis
+      - Modalités de versement
+
+2. Format de présentation :
+   - Copier-coller exact du texte
+   - Maintien des formules/tableaux
+   - Conservation des exemples
+   - Report des notes et renvois
+   - Référence précise des articles
+   - Conservation de tous les commentaires
+
+Si la convention collective ne contient aucune disposition sur l'indemnité de rupture conventionnelle : indiquer "RAS"`,
     'preavis': 'Quelles sont les durées de préavis selon les cas de rupture ? Détaillez par motif et catégorie.'
   }
 };
