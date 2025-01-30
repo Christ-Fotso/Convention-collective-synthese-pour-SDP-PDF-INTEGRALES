@@ -433,6 +433,46 @@ Identique à l'indemnité de licenciement :
 - Le montant négocié dans la convention de rupture
 
 **Note :** Le montant négocié dans la convention de rupture peut être supérieur aux minimums légaux et conventionnels.`,
+    'indemnite-precarite': `### Comparaison avec le cadre légal
+
+#### 1. Conditions d'éligibilité
+- Applicable aux contrats CDD et intérim
+- Versée à la fin du contrat
+- Due même en cas de rupture anticipée (sauf faute grave ou force majeure)
+
+#### 2. Montant légal
+**Taux légal :**
+- 10% de la rémunération totale brute versée pendant le contrat
+- Base de calcul : totalité des salaires perçus, y compris :
+  * Heures supplémentaires
+  * Primes
+  * Indemnités (sauf indemnité de congés payés)
+
+#### 3. Cas d'exclusion
+L'indemnité n'est pas due dans les cas suivants :
+- CDI proposé à l'issue du CDD
+- Refus d'un CDI pour un poste similaire (même classification, même rémunération)
+- Rupture anticipée à l'initiative du salarié
+- Faute grave ou force majeure
+- Contrats saisonniers
+- Contrats d'usage dans certains secteurs
+- Contrats conclus avec des jeunes pendant leurs vacances scolaires/universitaires
+
+#### 4. Points importants
+- La convention collective peut prévoir :
+  * Un taux supérieur à 10%
+  * Des cas supplémentaires de versement
+  * Des modalités de calcul plus favorables
+  * Des conditions particulières selon les types de contrats
+
+**Règle fondamentale :** Appliquer le plus favorable entre :
+- Le taux légal de 10%
+- Le taux prévu par la convention collective
+
+**Note :** La prime de précarité est un droit d'ordre public, la convention collective ne peut prévoir :
+- Un taux inférieur à 10%
+- Des cas d'exclusion supplémentaires
+- Des conditions plus restrictives`,
   },
   'remuneration': {
     'majoration-ferie': `### Comparaison avec le cadre légal

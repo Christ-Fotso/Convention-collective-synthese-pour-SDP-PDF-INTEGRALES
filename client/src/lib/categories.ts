@@ -71,6 +71,7 @@ export const CATEGORIES: Category[] = [
       { id: 'indemnite-mise-retraite', name: 'Indemnité de Mise a la Retraite' },
       { id: 'indemnite-depart-retraite', name: 'Indemnité de Départ a la Retraite' },
       { id: 'indemnite-rupture', name: 'Indemnité de Rupture Conventionnelle' },
+      { id: 'indemnite-precarite', name: 'Indemnité de Précarité' },
       { id: 'preavis', name: 'Préavis' }
     ]
   }
