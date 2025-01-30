@@ -1,9 +1,11 @@
 {
-  "variant": "vibrant",
+  "variant": "professional",
   "primary": "hsl(102, 89%, 45%)",
   "appearance": "light",
   "radius": 0.5,
   "font": "Figtree",
   "background": "hsl(0, 0%, 100%)",
-  "muted": "hsl(102, 95%, 96%)"
+  "muted": "hsl(210, 40%, 96%)",
+  "warning": "hsl(48, 96%, 89%)",
+  "destructive": "hsl(0, 84%, 60%)"
 }

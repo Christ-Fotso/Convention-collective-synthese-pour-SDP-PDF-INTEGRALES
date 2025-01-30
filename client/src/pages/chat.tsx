@@ -172,8 +172,8 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Alert variant="warning" className="mb-6">
-        <AlertTriangle className="h-4 w-4" />
+      <Alert className="mb-6">
+        <AlertTriangle className="h-4 w-4 text-warning" />
         <AlertDescription>
           Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
         </AlertDescription>
