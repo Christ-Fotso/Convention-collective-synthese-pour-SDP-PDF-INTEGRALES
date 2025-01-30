@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'wouter';
 import { getConventions } from '@/lib/api';
-import { Search } from 'lucide-react';
 import {
   Command,
   CommandEmpty,
@@ -31,10 +30,6 @@ export default function Home() {
   return (
     <div className="container mx-auto py-8 px-4">
       <Card className="max-w-4xl mx-auto p-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Search className="w-5 h-5 text-muted-foreground" />
-        </div>
-
         <Command className="rounded-lg border shadow-md">
           <CommandInput 
             placeholder="Rechercher par IDCC ou nom..." 
