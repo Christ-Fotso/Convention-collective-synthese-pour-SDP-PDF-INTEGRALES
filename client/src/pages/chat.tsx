@@ -89,8 +89,9 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentSubcategory(subcategory);
 
     // Check if content is not available for these specific categories
-    if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
-        (category.id === 'classification' && subcategory.id === 'classification-details')) {
+    if ((category.id === 'classification' && subcategory.id === 'classification-details') ||
+        (category.id === 'remuneration' && subcategory.id === 'grille')) {
+      setMessages([]); // Clear any existing messages
       return;
     }
 
@@ -286,14 +287,13 @@ export default function Chat({ params }: { params: { id: string } }) {
                     {messages[1].content}
                   </ReactMarkdown>
                 </div>
-                {currentCategory && currentSubcategory && (
-                  <LegalComparison 
-                    category={currentCategory} 
-                    subcategory={currentSubcategory} 
-                  />
-                )}
               </div>
             </div>
+          ) : currentCategory && currentSubcategory ? (
+            <LegalComparison 
+              category={currentCategory} 
+              subcategory={currentSubcategory} 
+            />
           ) : (
             <div className="text-center text-muted-foreground">
               Sélectionnez une catégorie pour voir les informations correspondantes
