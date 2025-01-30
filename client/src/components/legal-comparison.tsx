@@ -326,6 +326,63 @@ Il est donc essentiel de consulter la convention collective pour connaître les 
 
 #### Préavis de démission :
 - Durée fixée par la convention collective ou les usages`
+  },
+  'remuneration': {
+    'apprenti': `### Comparaison avec le cadre légal
+
+#### 1. CONTRAT D'APPRENTISSAGE
+**Rémunération minimale légale (en % du SMIC) :**
+
+| Âge | 1ère année | 2ème année | 3ème année |
+|-----|------------|------------|------------|
+| 16-17 ans | 27% | 39% | 55% |
+| 18-20 ans | 43% | 51% | 67% |
+| 21-25 ans | 53% | 61% | 78% |
+| 26 ans et + | 100% | 100% | 100% |
+
+**Points importants :**
+- Ces pourcentages sont des minimums légaux
+- La convention collective peut prévoir des taux plus favorables
+- Majoration de 15 points si :
+  * Contrat préparant à un diplôme de même niveau
+  * Expérience d'un an en apprentissage
+
+#### 2. CONTRAT DE PROFESSIONNALISATION
+**Rémunération minimale légale (en % du SMIC) :**
+
+| Âge | < Bac Pro | ≥ Bac Pro |
+|-----|-----------|-----------|
+| < 21 ans | 55% | 65% |
+| 21-25 ans | 70% | 80% |
+| 26 ans et + | 100% ou 85% du minimum conventionnel |
+
+**Points importants :**
+- Base de calcul : SMIC ou minimum conventionnel si plus favorable
+- La convention collective peut prévoir une rémunération plus élevée
+- Le niveau de formation est celui acquis avant le contrat
+- Possibilité de dispositions plus favorables par accord de branche
+
+#### 3. STAGE
+**Gratification minimale légale :**
+- Obligatoire si durée > 2 mois (consécutifs ou non)
+- Montant horaire : 15% du plafond horaire de la sécurité sociale
+- Base de calcul : nombre d'heures de présence effective
+
+**Conditions de versement :**
+- Due à compter du 1er jour du 1er mois de stage
+- Versée mensuellement
+- Proratisée en cas de temps partiel
+
+**Points importants :**
+- Exonération de charges sociales dans la limite du minimum légal
+- La convention collective peut prévoir une gratification plus élevée
+- Les avantages en nature doivent être précisés dans la convention de stage
+- Droits similaires aux salariés pour :
+  * Accès au restaurant d'entreprise
+  * Prise en charge des frais de transport
+  * Accès aux activités sociales et culturelles
+
+**Note :** La convention collective peut prévoir des dispositions plus favorables pour tous ces types de contrats, mais ne peut jamais prévoir de rémunération inférieure aux minimums légaux.`,
   }
 };
 
