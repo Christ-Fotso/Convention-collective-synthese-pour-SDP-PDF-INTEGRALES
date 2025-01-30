@@ -19,8 +19,16 @@ export function registerRoutes(app: Express): Server {
 
   // Get all conventions
   apiRouter.get("/conventions", async (_req, res) => {
-    const allConventions = await db.select().from(conventions);
-    res.json(allConventions);
+    try {
+      const allConventions = await db.select().from(conventions);
+      res.json(allConventions);
+    } catch (error: any) {
+      console.error('Error fetching conventions:', error.message);
+      res.status(500).json({ 
+        message: "Failed to fetch conventions",
+        error: error.message 
+      });
+    }
   });
 
   // Create ChatPDF source
@@ -68,40 +76,55 @@ export function registerRoutes(app: Express): Server {
         }
 
         perplexityMessages.push(...messages);
-        const response = await queryPerplexity(perplexityMessages);
-        res.json(response);
+        try {
+          const response = await queryPerplexity(perplexityMessages);
+          res.json(response);
+        } catch (perplexityError: any) {
+          console.error('Perplexity query error:', perplexityError);
+          res.status(500).json({
+            message: "Failed to query Perplexity",
+            error: perplexityError.message
+          });
+        }
       } else {
         console.log('Using ChatPDF for category:', category, subcategory);
-
-        // Add detailed response instruction to the user's message
-        const enhancedMessages = messages.map(msg => {
-          if (msg.role === 'user') {
-            return {
-              ...msg,
-              content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. Listez et expliquez chaque point important, sans omettre aucun détail. Structurez votre réponse de manière claire avec des sections si nécessaire. Important : ne mentionnez jamais les numéros de page du document source dans votre réponse.`
-            };
-          }
-          return msg;
-        });
-
-        const response = await axios.post(
-          `${CHATPDF_API_BASE}/v1/chats/message`,
-          {
-            sourceId,
-            messages: enhancedMessages,
-            config: {
-              temperature: 0.1,
-              contextWindow: 8192,
+        try {
+          // Add detailed response instruction to the user's message
+          const enhancedMessages = messages.map(msg => {
+            if (msg.role === 'user') {
+              return {
+                ...msg,
+                content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. Listez et expliquez chaque point important, sans omettre aucun détail. Structurez votre réponse de manière claire avec des sections si nécessaire. Important : ne mentionnez jamais les numéros de page du document source dans votre réponse.`
+              };
             }
-          },
-          {
-            headers: {
-              "x-api-key": CHATPDF_API_KEY,
-              "Content-Type": "application/json",
+            return msg;
+          });
+
+          const response = await axios.post(
+            `${CHATPDF_API_BASE}/v1/chats/message`,
+            {
+              sourceId,
+              messages: enhancedMessages,
+              config: {
+                temperature: 0.1,
+                contextWindow: 8192,
+              }
             },
-          }
-        );
-        res.json(response.data);
+            {
+              headers: {
+                "x-api-key": CHATPDF_API_KEY,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          res.json(response.data);
+        } catch (chatPDFError: any) {
+          console.error('ChatPDF query error:', chatPDFError.response?.data || chatPDFError.message);
+          res.status(500).json({
+            message: "Failed to query ChatPDF",
+            error: chatPDFError.response?.data?.error || chatPDFError.message
+          });
+        }
       }
     } catch (error: any) {
       console.error('Chat message error:', error.response?.data || error.message);
