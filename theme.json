@@ -1,16 +1,16 @@
 {
   "variant": "professional",
-  "primary": "hsl(102, 89%, 45%)",
+  "primary": "#42D80F",
   "appearance": "light",
   "radius": 0.5,
   "font": "Figtree",
   "background": "hsl(0, 0%, 100%)",
-  "muted": "hsl(102, 40%, 96%)",
+  "muted": "hsl(102, 40%, 98%)",
   "warning": "hsl(48, 96%, 89%)",
   "destructive": "hsl(0, 84%, 60%)",
-  "secondary": "hsl(102, 14%, 98%)",
-  "accent": "hsl(102, 14%, 95%)",
+  "secondary": "hsl(102, 85%, 95%)",
+  "accent": "hsl(102, 85%, 98%)",
   "card": "hsl(0, 0%, 100%)",
   "popover": "hsl(0, 0%, 100%)",
-  "border": "hsl(102, 13%, 91%)"
+  "border": "hsl(102, 85%, 90%)"
 }
