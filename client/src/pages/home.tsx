@@ -38,7 +38,7 @@ export default function Home() {
             className="h-10"
           />
 
-          <ScrollArea className="h-[400px]">
+          <ScrollArea>
             <CommandEmpty>Aucune convention trouvée.</CommandEmpty>
             <CommandGroup>
               {filteredConventions.map((convention) => (
