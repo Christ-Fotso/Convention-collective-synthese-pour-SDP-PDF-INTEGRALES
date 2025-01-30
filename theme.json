@@ -6,7 +6,7 @@
   "font": "Figtree",
   "background": "hsl(0, 0%, 100%)",
   "muted": "hsl(210, 40%, 96%)",
-  "warning": "hsl(48, 96%, 80%)",
+  "warning": "hsl(48, 96%, 89%)",
   "destructive": "hsl(0, 84%, 60%)",
   "secondary": "hsl(220, 14%, 98%)",
   "accent": "hsl(220, 14%, 95%)",

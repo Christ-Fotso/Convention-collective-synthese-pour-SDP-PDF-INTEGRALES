@@ -87,7 +87,7 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] || 
+    const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                   PREDEFINED_PROMPTS[category.id]?.['default'];
 
     if (!prompt) {
@@ -172,15 +172,15 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Alert className="mb-6 bg-warning border-0">
-        <AlertTriangle className="h-4 w-4 text-amber-700" />
-        <AlertDescription className="text-amber-900">
+      <Alert className="mb-6 bg-warning/20 border-warning/50">
+        <AlertTriangle className="h-4 w-4 text-warning-foreground" />
+        <AlertDescription className="text-warning-foreground">
           Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
         </AlertDescription>
       </Alert>
 
-      <div className="flex items-center gap-4 mb-8 bg-secondary p-4 rounded-lg shadow-sm">
-        <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-white">
+      <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
+        <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Retour à la liste
         </Button>
@@ -190,8 +190,7 @@ export default function Chat({ params }: { params: { id: string } }) {
         <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
           <DialogTrigger asChild>
             <Button 
-              variant="secondary"
-              className="ml-auto hover:bg-primary hover:text-white"
+              className="ml-auto bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
               Poser une question sur la CCN
