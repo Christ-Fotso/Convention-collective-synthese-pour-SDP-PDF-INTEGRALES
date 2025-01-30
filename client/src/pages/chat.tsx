@@ -181,7 +181,8 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <p className="mb-6 text-warning">
+      <p className="mb-6 text-warning flex items-center gap-2">
+        <span>⚠️</span>
         Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
       </p>
 
