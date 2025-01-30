@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { ArrowLeft, Loader } from 'lucide-react';
+import { ArrowLeft, Loader, AlertTriangle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface ChatMessageParams {
   sourceId: string;
@@ -141,6 +142,13 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
+      <Alert variant="warning" className="mb-6">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertDescription>
+          Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
+        </AlertDescription>
+      </Alert>
+
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" onClick={() => navigate('/')}>
           <ArrowLeft className="mr-2 h-4 w-4" />
