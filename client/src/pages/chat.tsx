@@ -3,6 +3,7 @@ import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft, Loader, AlertTriangle, MessageCircle } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
@@ -267,7 +268,19 @@ export default function Chat({ params }: { params: { id: string } }) {
               <div>
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
                 <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
-                  <ReactMarkdown>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      table: ({ node, ...props }) => (
+                        <div className="overflow-x-auto">
+                          <table className="min-w-full border-collapse border border-border" {...props} />
+                        </div>
+                      ),
+                      thead: props => <thead className="bg-muted" {...props} />,
+                      th: props => <th className="border border-border p-2 text-left" {...props} />,
+                      td: props => <td className="border border-border p-2" {...props} />
+                    }}
+                  >
                     {messages[1].content}
                   </ReactMarkdown>
                 </div>
