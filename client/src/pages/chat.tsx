@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
-import { getConventions, createChatPDFSource, sendChatMessage, deleteChatPDFSource } from '@/lib/api';
+import { getConventions, createChatPDFSource, sendChatMessage } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
 import { PREDEFINED_PROMPTS } from '@/types';
@@ -87,25 +87,31 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    // Afficher d'abord le titre de la catégorie sélectionnée
-    setMessages([
-      { role: 'user', content: `${category.name} > ${subcategory.name}` },
-      { role: 'assistant', content: '' }
-    ]);
-
     // Check if content is not available for these specific categories
     if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
         (category.id === 'classification' && subcategory.id === 'classification-details')) {
       return;
     }
 
+    // Trouver le prompt approprié
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                   PREDEFINED_PROMPTS[category.id]?.['default'];
 
-    // Si pas de prompt trouvé, ne pas afficher d'erreur, continuer silencieusement
+    // Si pas de prompt trouvé, afficher un message d'erreur
     if (!prompt) {
+      toast({
+        variant: "warning",
+        title: "Information",
+        description: "Cette section est en cours de développement",
+      });
       return;
     }
+
+    // Initialiser les messages avec le titre
+    setMessages([
+      { role: 'user', content: `${category.name} > ${subcategory.name}` },
+      { role: 'assistant', content: '' }
+    ]);
 
     const chatParams: ChatMessageParams = {
       sourceId,
@@ -115,21 +121,29 @@ export default function Chat({ params }: { params: { id: string } }) {
       conventionId: convention.id
     };
 
-    const response = await chatMutation.mutateAsync(chatParams);
+    try {
+      const response = await chatMutation.mutateAsync(chatParams);
 
-    // Si la réponse est vide (cas "RAS"), on ne met pas à jour les messages
-    if (!response.content) {
-      setMessages([]);
-      return;
+      // Si la réponse est vide (cas "RAS"), on ne met pas à jour les messages
+      if (!response.content) {
+        setMessages([]);
+        return;
+      }
+
+      // Convertir le contenu en Markdown si nécessaire
+      const formattedContent = convertJsonToMarkdown(response.content);
+
+      setMessages([
+        { role: 'user', content: `${category.name} > ${subcategory.name}` },
+        { role: 'assistant', content: formattedContent }
+      ]);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la récupération des informations",
+      });
     }
-
-    // Convertir le contenu en Markdown si nécessaire
-    const formattedContent = convertJsonToMarkdown(response.content);
-
-    setMessages([
-      { role: 'user', content: `${category.name} > ${subcategory.name}` },
-      { role: 'assistant', content: formattedContent }
-    ]);
   };
 
   const handleSendMessage = async (content: string) => {
