@@ -30,14 +30,9 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-        Assistant Conventions Collectives
-      </h1>
-
       <Card className="max-w-4xl mx-auto p-6">
         <div className="flex items-center gap-2 mb-4">
           <Search className="w-5 h-5 text-muted-foreground" />
-          <h2 className="text-xl font-semibold">Rechercher une convention collective</h2>
         </div>
 
         <Command className="rounded-lg border shadow-md">
