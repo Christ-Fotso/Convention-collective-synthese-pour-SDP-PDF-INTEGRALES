@@ -56,7 +56,7 @@ export function registerRoutes(app: Express): Server {
       // Configuration enrichie pour des réponses plus détaillées
       const chatRequest = {
         ...req.body,
-        referenceSources: true, // Force l'inclusion des références
+        referenceSources: false, // Désactive l'inclusion des références
         config: {
           systemPrompt: `Tu es un expert juridique spécialisé dans l'analyse des conventions collectives. Voici tes instructions OBLIGATOIRES pour CHAQUE réponse:
 
