@@ -80,7 +80,30 @@ Les durées d'indemnisation augmentent de 10 jours par période de 5 ans d'ancie
 - Pas de délai de carence
 - Justificatifs nécessaires :
   * Certificat médical
-  * Respect des obligations de déclaration`
+  * Respect des obligations de déclaration
+
+#### Calcul de l'indemnisation légale
+Le salarié perçoit un pourcentage de sa rémunération brute qu'il aurait perçue s'il avait continué à travailler :
+
+**Montant de l'indemnisation :**
+- Premiers 30 jours : 90% de la rémunération brute
+- 30 jours suivants : 66,66% de la rémunération brute
+
+**Important :** Ces montants incluent les indemnités journalières versées par la Sécurité sociale.
+
+#### Augmentation des durées selon l'ancienneté
+Les durées d'indemnisation augmentent de 10 jours par période de 5 ans d'ancienneté au-delà de 1 an, sans dépasser 90 jours par période.
+
+**Durées d'indemnisation selon l'ancienneté :**
+- 1 à 5 ans : 30 jours à 90% + 30 jours à 66,66%
+- 6 à 10 ans : 40 jours à 90% + 40 jours à 66,66%
+- 11 à 15 ans : 50 jours à 90% + 50 jours à 66,66%
+- 16 à 20 ans : 60 jours à 90% + 60 jours à 66,66%
+- 21 à 25 ans : 70 jours à 90% + 70 jours à 66,66%
+- 26 à 30 ans : 80 jours à 90% + 80 jours à 66,66%
+- 31 ans et plus : 90 jours à 90% + 90 jours à 66,66%
+
+**Note :** En cas de dispositions plus favorables dans la convention collective, celles-ci s'appliquent en priorité.`
   },
   'depart': {
     'indemnite-licenciement': `### Comparaison avec le cadre légal
