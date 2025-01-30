@@ -30,14 +30,14 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+      <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
         Assistant Conventions Collectives
       </h1>
 
       <Card className="max-w-4xl mx-auto p-6">
-        <div className="flex items-center gap-2 mb-6">
-          <Search className="w-6 h-6 text-muted-foreground" />
-          <h2 className="text-2xl font-semibold">Rechercher une convention collective</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <Search className="w-5 h-5 text-muted-foreground" />
+          <h2 className="text-xl font-semibold">Rechercher une convention collective</h2>
         </div>
 
         <Command className="rounded-lg border shadow-md">
@@ -45,7 +45,7 @@ export default function Home() {
             placeholder="Rechercher par IDCC ou nom..." 
             value={search}
             onValueChange={setSearch}
-            className="h-12 text-lg"
+            className="h-10"
           />
 
           <ScrollArea className="h-[600px]">
@@ -55,13 +55,13 @@ export default function Home() {
                 <CommandItem
                   key={convention.id}
                   onSelect={() => navigate(`/chat/${convention.id}`)}
-                  className="cursor-pointer hover:bg-muted py-4"
+                  className="cursor-pointer hover:bg-muted py-3"
                 >
                   <div className="flex flex-col gap-1">
-                    <div className="font-medium text-lg">
+                    <div className="text-base font-medium">
                       IDCC {convention.id}
                     </div>
-                    <div className="text-base text-muted-foreground">
+                    <div className="text-sm text-muted-foreground">
                       {convention.name}
                     </div>
                   </div>
