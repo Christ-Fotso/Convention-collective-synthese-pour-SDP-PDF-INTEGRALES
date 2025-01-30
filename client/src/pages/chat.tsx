@@ -194,7 +194,7 @@ export default function Chat({ params }: { params: { id: string } }) {
               className="ml-4"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
-              Poser une question
+              Poser une question sur la CCN
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
