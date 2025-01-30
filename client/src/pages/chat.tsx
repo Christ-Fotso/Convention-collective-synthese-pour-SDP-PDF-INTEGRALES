@@ -89,7 +89,7 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentSubcategory(subcategory);
 
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
-                  PREDEFINED_PROMPTS[category.id]?.['default'];
+                    PREDEFINED_PROMPTS[category.id]?.['default'];
 
     if (!prompt) {
       toast({
@@ -182,7 +182,7 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Alert className="mb-6 bg-primary/10 border-primary text-primary-foreground shadow-md">
+      <Alert className="mb-6 bg-warning/10 border-warning text-warning-foreground shadow-md">
         <AlertTriangle className="h-4 w-4" />
         <AlertDescription>
           Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
