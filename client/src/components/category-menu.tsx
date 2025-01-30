@@ -31,7 +31,7 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
 
   return (
     <Card className={`shadow-md ${isLoading ? 'opacity-50' : ''}`}>
-      <div className="p-4 border-b bg-secondary">
+      <div className="p-4 border-b bg-primary/10">
         <h2 className="text-lg font-semibold">Catégories</h2>
       </div>
       <ScrollArea className="h-[600px]">
@@ -45,7 +45,7 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
               >
                 <AccordionTrigger 
                   onClick={() => toggleCategory(category.id)}
-                  className="hover:no-underline px-4 py-2 bg-accent hover:bg-muted"
+                  className="hover:no-underline px-4 py-2 bg-primary/5 hover:bg-primary/10"
                   disabled={isLoading}
                 >
                   <span className="text-base font-medium">{category.name}</span>
