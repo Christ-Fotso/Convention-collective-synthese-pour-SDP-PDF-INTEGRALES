@@ -52,16 +52,18 @@ export function registerRoutes(app: Express): Server {
   apiRouter.post("/chat/message", async (req, res) => {
     try {
       const { sourceId, messages, category, subcategory } = req.body;
+      const convention = await db.select().from(conventions).where(eq(conventions.id, req.body.conventionId)).limit(1);
       const routing = shouldUsePerplexity(category, subcategory);
 
       if (routing.usePerplexity) {
         console.log('Using Perplexity for category:', category, subcategory);
         const perplexityMessages = [];
 
-        if (routing.systemPrompt) {
+        if (routing.systemPrompt && convention.length > 0) {
+          const conventionContext = `Convention collective: IDCC ${convention[0].id} - ${convention[0].name}`;
           perplexityMessages.push({
             role: 'system',
-            content: routing.systemPrompt
+            content: `${conventionContext}\n\n${routing.systemPrompt}`
           });
         }
 

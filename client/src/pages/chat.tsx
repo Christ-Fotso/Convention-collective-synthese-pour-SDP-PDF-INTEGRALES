@@ -18,6 +18,7 @@ interface ChatMessageParams {
   messages: Message[];
   category: string;
   subcategory?: string;
+  conventionId: string;
 }
 
 export default function Chat({ params }: { params: { id: string } }) {
@@ -72,7 +73,7 @@ export default function Chat({ params }: { params: { id: string } }) {
   }, [convention]);
 
   const handleSelectSubcategory = async (category: Category, subcategory: Subcategory) => {
-    if (!sourceId) return;
+    if (!sourceId || !convention) return;
 
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
@@ -93,7 +94,8 @@ export default function Chat({ params }: { params: { id: string } }) {
       sourceId,
       messages: [{ role: 'user', content: prompt }],
       category: category.id,
-      subcategory: subcategory.id
+      subcategory: subcategory.id,
+      conventionId: convention.id
     };
 
     const response = await chatMutation.mutateAsync(chatParams);

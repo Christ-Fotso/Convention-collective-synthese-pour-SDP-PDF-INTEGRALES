@@ -16,6 +16,7 @@ export async function createChatPDFSource(url: string): Promise<string> {
 export interface SendChatMessageParams extends ChatRequestBody {
   category: string;
   subcategory?: string;
+  conventionId: string;
 }
 
 export async function sendChatMessage(params: SendChatMessageParams): Promise<ChatResponse> {
