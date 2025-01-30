@@ -174,8 +174,50 @@ Si la convention collective ne contient aucune disposition sur les délais de pr
       - Durée hebdomadaire conventionnelle
       - Durée quotidienne maximale
       - Durée mensuelle de référence
-      - Volume annuel si mentionné`,
+      - Volume annuel si mentionné
+
+   b) Organisation du temps de travail :
+      - Répartition des horaires
+      - Cycles de travail éventuels
+      - Modulation/annualisation
+      - Forfaits (heures/jours)
+
+   c) Temps de pause et repos :
+      - Pauses quotidiennes
+      - Repos entre deux journées
+      - Repos hebdomadaire
+      - Durée minimale de travail par séquence
+
+   d) Heures supplémentaires :
+      - Contingent conventionnel
+      - Modalités de décompte
+      - Repos compensateur conventionnel
+
+   e) Temps partiel si mentionné :
+      - Durée minimale
+      - Modalités d'organisation
+      - Coupures et répartition
+
+   f) Conditions d'application du forfait jours :
+      - Catégories de salariés éligibles
+      - Nombre de jours
+      - Modalités de décompte
+      - Suivi de la charge de travail
+
+2. Pour chaque disposition :
+   - Copier-coller le texte exact de la convention
+   - Indiquer la référence précise des articles
+   - Mentionner les éventuels avenants modificatifs
+
+3. Format de présentation :
+   - Organiser par thème (utiliser les catégories ci-dessus)
+   - Créer des sous-sections claires
+   - Séparer les dispositions générales des cas particuliers
+
+Si la convention collective ne contient aucune disposition sur le temps de travail : indiquer "RAS"`,
     'periode-essai': `EXTRACTION DES INFORMATIONS SUR LA PÉRIODE D'ESSAI
+
+Étape 1 : Récupère toutes les informations disponibles concernant la période d'essai dans la convention collective :
 
 A. Durées initiales :
    - Par catégorie professionnelle/classification
@@ -186,30 +228,155 @@ B. Conditions de renouvellement :
    - Durée du renouvellement possible
    - Modalités de mise en œuvre
    - Formalisme requis
-   - Délai pour proposer le renouvellement`
-  },
-  'conges': {
+   - Délai pour proposer le renouvellement
+
+C. Cas particuliers mentionnés :
+   - Absences pendant la période d'essai
+   - Embauche après stage/CDD/intérim
+   - Postes avec conditions spécifiques
+
+FORMAT :
+- Copier-coller exact du texte conventionnel
+- Référence précise des articles
+- Structure en tableau par catégorie
+- Conservation des notes et commentaires
+
+Étape 2 : Vérification d'applicabilité
+- Rechercher spécifiquement toute mention/commentaire/note indiquant :
+  • La non-applicabilité des durées conventionnelles
+  • Le renvoi aux dispositions légales
+  • Des réserves ou conditions particulières d'application
+  • Des exclusions de certaines catégories
+
+SI AUCUNE MENTION DE NON-APPLICABILITÉ :
+→ S'arrêter après l'étape 1 et présenter uniquement le tableau des dispositions conventionnelles
+
+Étape 3 : En cas de mention de non-applicabilité
+→ Copier exactement le message indiquant la non-applicabilité
+→ Indiquer en gras : "⚠️ ATTENTION : Veuillez consulter les informations ci-dessous pour connaître les dispositions applicables"
+
+PRÉSENTATION FINALE :
+- Structure chronologique des étapes
+- Mise en évidence des points d'alerte
+- Conservation de la formulation exacte`,
     'cet': `Analyse la convention collective pour récupérer toutes les informations relatives au Compte Épargne Temps (CET).
 
 1. Extraction des informations sur la mise en place :
    - Modalités d'ouverture du CET
    - Salariés bénéficiaires
    - Conditions d'ancienneté éventuelles
-   - Formalités d'adhésion`,
+   - Formalités d'adhésion
+
+2. Alimentation du CET :
+   - Éléments pouvant être épargnés :
+     • Congés payés
+     • RTT
+     • Repos compensateurs
+     • Primes et éléments de salaire
+     • Autres éléments
+   - Plafonds d'épargne éventuels
+   - Périodicité des versements
+
+3. Utilisation du CET :
+   - Conditions d'utilisation
+   - Délais de prévenance
+   - Modes d'utilisation possibles :
+     • Congés
+     • Monétisation
+     • Formation
+     • Autres
+
+4. Gestion et garanties :
+   - Modalités de tenue du compte
+   - Valorisation des droits
+   - Information du salarié
+   - Garanties financières si mentionnées
+
+5. Transfert et clôture :
+   - Cas de transfert
+   - Conditions de clôture
+   - Modalités de liquidation
+
+FORMAT DE PRÉSENTATION :
+- Copier-coller exact du texte conventionnel
+- Référence précise des articles
+- Conservation de la structure originale des dispositions
+- Indication des éventuels renvois à des accords d'entreprise
+
+Si la convention collective ne contient aucune disposition sur le CET : indiquer "RAS"`,
     'conges-payes': `Récupère toutes les dispositions concernant les congés payés dans la convention collective.
 
 1. Extraction des règles générales sur les congés payés :
    - Durée des congés (légaux et supplémentaires)
    - Période de référence
    - Période de prise des congés
-   - Ordre des départs`,
+   - Ordre des départs
+
+2. Modalités d'acquisition :
+   - Règles spécifiques d'acquisition
+   - Périodes assimilées à du travail effectif
+   - Cas particuliers d'acquisition
+   - Dispositions pour les temps partiels
+
+3. Organisation des congés :
+   - Règles de fractionnement
+   - Délais de prévenance
+   - Modification des dates
+   - Fermeture de l'entreprise
+
+4. Situations particulières :
+   - Maladie pendant les congés
+   - Congés et préavis
+   - Report des congés
+   - Cas des nouveaux embauchés
+
+5. Indemnisation :
+   - Mode de calcul de l'indemnité
+   - Période de versement
+   - Cas particuliers d'indemnisation
+
+6. Dispositions spécifiques :
+   - Congés supplémentaires (ancienneté, âge, etc.)
+   - Congés non pris
+   - Règles prioritaires
+
+FORMAT DE PRÉSENTATION :
+- Copier-coller exact du texte conventionnel
+- Référence précise des articles
+- Organisation thématique sans modification du contenu
+- Conservation des notes et commentaires d'origine
+
+Si la convention collective ne contient aucune disposition sur les congés payés : indiquer "RAS"`,
     'evenement-familial': `Analyse la convention collective pour récupérer toutes les dispositions relatives aux congés pour événements familiaux.
 
 1. Extraire exactement tous les congés prévus pour :
    - Mariage/PACS
    - Naissance/Adoption
    - Décès
-   - Autres événements mentionnés`
+   - Autres événements mentionnés
+
+2. Pour chaque type de congé, reprendre EXACTEMENT :
+   - Le texte complet tel qu'écrit dans la convention
+   - La durée précise indiquée
+   - La mention explicite : jours ouvrables/ouvrés/calendaires
+   - Si aucune précision sur le type de jours : le signaler
+   - Les conditions d'attribution
+   - Les modalités de prise
+   - Tout commentaire ou note même en apparence mineure
+
+3. Présentation en tableau :
+   - Événement | Durée exacte + type de jours | Conditions et modalités
+   - Copier-coller intégral du texte conventionnel
+   - Référence précise des articles
+   - Conservation de toutes les notes et mentions
+
+4. IMPORTANT :
+   - Ne rien reformuler
+   - Reprendre tous les détails, même ceux semblant mineurs
+   - Si le type de jour n'est pas précisé : l'indiquer clairement
+   - Reporter toute mention particulière sur le décompte des jours
+
+Si la convention collective ne contient aucune disposition sur les congés pour événements familiaux : indiquer "RAS"`,
   },
   'classification': {
     'classification-details': `Récupère toutes les informations concernant les classifications dans la convention collective.
