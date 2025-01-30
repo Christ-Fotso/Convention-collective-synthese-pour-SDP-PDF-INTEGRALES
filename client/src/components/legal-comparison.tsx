@@ -441,12 +441,19 @@ Identique à l'indemnité de licenciement :
 - Due même en cas de rupture anticipée (sauf faute grave ou force majeure)
 
 #### 2. Montant légal
-**Taux légal :**
+**Taux légal de base :**
 - 10% de la rémunération totale brute versée pendant le contrat
 - Base de calcul : totalité des salaires perçus, y compris :
   * Heures supplémentaires
   * Primes
   * Indemnités (sauf indemnité de congés payés)
+
+**Possibilité de réduction du taux :**
+- Peut être réduit à 6% sous conditions cumulatives :
+  * Doit être prévu par une convention ou un accord collectif
+  * Doit prévoir des contreparties réelles en termes de formation professionnelle
+  * L'employeur doit effectivement proposer ces formations aux salariés concernés
+- Important : le taux de 10% reste dû si les contreparties ne sont pas effectivement proposées
 
 #### 3. Cas d'exclusion
 L'indemnité n'est pas due dans les cas suivants :
@@ -463,16 +470,18 @@ L'indemnité n'est pas due dans les cas suivants :
   * Un taux supérieur à 10%
   * Des cas supplémentaires de versement
   * Des modalités de calcul plus favorables
+  * Une réduction à 6% avec contreparties de formation
   * Des conditions particulières selon les types de contrats
 
 **Règle fondamentale :** Appliquer le plus favorable entre :
 - Le taux légal de 10%
-- Le taux prévu par la convention collective
+- Le taux prévu par la convention collective (si supérieur)
+- Le taux réduit de 6% ne s'applique que si toutes les conditions sont réunies
 
-**Note :** La prime de précarité est un droit d'ordre public, la convention collective ne peut prévoir :
-- Un taux inférieur à 10%
-- Des cas d'exclusion supplémentaires
-- Des conditions plus restrictives`,
+**Note :** La prime de précarité est un droit d'ordre public :
+- Le taux ne peut être inférieur à 6% même avec contreparties
+- Les cas d'exclusion ne peuvent être étendus
+- Les conditions plus restrictives sont interdites`,
   },
   'remuneration': {
     'majoration-ferie': `### Comparaison avec le cadre légal
