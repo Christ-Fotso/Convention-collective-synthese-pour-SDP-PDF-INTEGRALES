@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { type Category, type Subcategory } from '@/types';
 import { Button } from "@/components/ui/button";
@@ -29,58 +29,66 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
     );
   };
 
-  // Réorganiser les catégories selon l'ordre prioritaire
-  const priorityOrder = ['informations-generales', 'embauche', 'maintien-salaire', 'depart'];
-  const sortedCategories = [...categories].sort((a, b) => {
-    const aIndex = priorityOrder.indexOf(a.id);
-    const bIndex = priorityOrder.indexOf(b.id);
+  // Mémoiser le tri des catégories
+  const sortedCategories = useMemo(() => {
+    const priorityOrder = ['informations-generales', 'embauche', 'maintien-salaire', 'depart'];
+    return [...categories].sort((a, b) => {
+      const aIndex = priorityOrder.indexOf(a.id);
+      const bIndex = priorityOrder.indexOf(b.id);
 
-    if (aIndex === -1 && bIndex === -1) return 0;
-    if (aIndex === -1) return 1;
-    if (bIndex === -1) return -1;
-    return aIndex - bIndex;
-  });
+      if (aIndex === -1 && bIndex === -1) return 0;
+      if (aIndex === -1) return 1;
+      if (bIndex === -1) return -1;
+      return aIndex - bIndex;
+    });
+  }, [categories]);
 
   return (
     <Card className={`shadow-md ${isLoading ? 'opacity-50' : ''}`}>
       <div className="p-4 border-b bg-primary/10">
         <h2 className="text-lg font-semibold">Catégories</h2>
       </div>
-      <div className="p-4">
-        <Accordion type="multiple" value={expandedCategories}>
-          {sortedCategories.map(category => (
-            <AccordionItem 
-              key={category.id} 
-              value={category.id}
-              className="border rounded-md mb-2 overflow-hidden"
-            >
-              <AccordionTrigger 
-                onClick={() => toggleCategory(category.id)}
-                className="hover:no-underline px-4 py-2 bg-primary/5 hover:bg-primary/10"
-                disabled={isLoading}
+      <ScrollArea className="h-[calc(100vh-200px)]">
+        <div className="p-4">
+          <Accordion 
+            type="multiple" 
+            value={expandedCategories}
+            className="space-y-2"
+          >
+            {sortedCategories.map(category => (
+              <AccordionItem 
+                key={category.id} 
+                value={category.id}
+                className="border rounded-md overflow-hidden"
               >
-                <span className="text-base font-medium">{category.name}</span>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex flex-col gap-1 p-2">
-                  {category.subcategories.map(subcategory => (
-                    <Button
-                      key={subcategory.id}
-                      variant="ghost"
-                      className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary hover:text-primary-foreground whitespace-normal text-left"
-                      onClick={() => onSelectSubcategory(category, subcategory)}
-                      disabled={isLoading}
-                    >
-                      <ChevronRight className="h-4 w-4 mr-2 shrink-0" />
-                      {subcategory.name}
-                    </Button>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+                <AccordionTrigger 
+                  onClick={() => toggleCategory(category.id)}
+                  className="hover:no-underline px-4 py-2 bg-primary/5 hover:bg-primary/10"
+                  disabled={isLoading}
+                >
+                  <span className="text-base font-medium">{category.name}</span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-col gap-1 p-2">
+                    {category.subcategories.map(subcategory => (
+                      <Button
+                        key={subcategory.id}
+                        variant="ghost"
+                        className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary/10 hover:text-primary whitespace-normal text-left"
+                        onClick={() => onSelectSubcategory(category, subcategory)}
+                        disabled={isLoading}
+                      >
+                        <ChevronRight className="h-4 w-4 mr-2 shrink-0" />
+                        <span className="line-clamp-2">{subcategory.name}</span>
+                      </Button>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </ScrollArea>
     </Card>
   );
 }

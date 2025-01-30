@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { type Category, type Subcategory } from '@/types';
 import ReactMarkdown from 'react-markdown';
 
@@ -6,7 +7,7 @@ interface LegalComparisonProps {
   subcategory: Subcategory;
 }
 
-export function LegalComparison({ category, subcategory }: LegalComparisonProps) {
+export const LegalComparison = memo(function LegalComparison({ category, subcategory }: LegalComparisonProps) {
   const comparison = LEGAL_COMPARISONS[category.id]?.[subcategory.id];
 
   // Message spécial pour la grille et la classification si non disponibles
@@ -39,7 +40,10 @@ export function LegalComparison({ category, subcategory }: LegalComparisonProps)
       </ReactMarkdown>
     </div>
   );
-}
+}, (prevProps, nextProps) => {
+  return prevProps.category.id === nextProps.category.id && 
+         prevProps.subcategory.id === nextProps.subcategory.id;
+});
 
 export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
   'cotisations': {
