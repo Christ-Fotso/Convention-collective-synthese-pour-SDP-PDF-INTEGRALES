@@ -616,7 +616,42 @@ Si la convention collective ne contient aucune disposition sur le maintien de sa
       - Ancienneté requise si prévue
       - Justificatifs à fournir
       - Délais de prévenance
-      - Conditions spécifiques maternité/paternité`
+      - Conditions spécifiques maternité/paternité
+
+   B) Maternité :
+      - Durée du maintien de salaire
+      - Taux de maintien
+      - Période prénatale
+      - Période postnatale
+      - Pathologies/Grossesse difficile
+      - Cas d'adoption
+
+   C) Paternité :
+      - Durée du maintien
+      - Taux de maintien
+      - Conditions spécifiques
+      - Délais de prise
+
+   D) Salaire de référence :
+      - Définition exacte de l'assiette
+      - Éléments inclus/exclus
+      - Période de référence
+      - Cas des variables/primes
+
+   E) IJSS :
+      - Modalités de prise en compte
+      - Système de déduction
+      - Subrogation si prévue
+      - Cas particuliers
+
+2. Présentation :
+   - Copier-coller intégral du texte
+   - Conservation des tableaux
+   - Maintien de toutes les notes
+   - Référence précise des articles
+   - Report de tous les cas particuliers
+
+Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas de maternité/paternité : indiquer "RAS"`,
   },
   'remuneration': {
     'apprenti': `Analyse la convention collective pour récupérer toutes les dispositions concernant la rémunération des alternants et stagiaires.
