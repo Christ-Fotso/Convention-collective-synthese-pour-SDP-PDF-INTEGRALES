@@ -87,8 +87,18 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
+    // Check if content is not available for these specific categories
+    if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
+        (category.id === 'classification' && subcategory.id === 'classification-details')) {
+      setMessages([
+        { role: 'user', content: `${category.name} > ${subcategory.name}` },
+        { role: 'assistant', content: '' }
+      ]);
+      return;
+    }
+
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
-                    PREDEFINED_PROMPTS[category.id]?.['default'];
+                  PREDEFINED_PROMPTS[category.id]?.['default'];
 
     if (!prompt) {
       toast({
