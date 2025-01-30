@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Card className="max-w-4xl mx-auto p-6">
+      <Card className="max-w-6xl mx-auto p-8">
         <Command className="rounded-lg border shadow-md">
           <CommandInput 
             placeholder="Rechercher par IDCC ou nom..." 
