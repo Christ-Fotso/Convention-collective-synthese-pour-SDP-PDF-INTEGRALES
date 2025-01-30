@@ -1,0 +1,611 @@
+Informations générales	RAS
+Délai de prévenance	"{
+  ""delai_prevenance"": [
+    {
+      ""anciennete"": ""Moins de 8 jours"",
+      ""initiateur"": ""Employeur"",
+      ""delai"": ""24 heures""
+    },
+    {
+      ""anciennete"": ""Entre 8 jours et 1 mois"",
+      ""initiateur"": ""Employeur"",
+      ""delai"": ""48 heures""
+    },
+    {
+      ""anciennete"": ""Entre 1 et 3 mois"",
+      ""initiateur"": ""Employeur"",
+      ""delai"": ""2 semaines""
+    },
+    {
+      ""anciennete"": ""Plus de 3 mois"",
+      ""initiateur"": ""Employeur"",
+      ""delai"": ""1 mois""
+    },
+    {
+      ""anciennete"": ""Moins de 8 jours"",
+      ""initiateur"": ""Salarié"",
+      ""delai"": ""24 heures""
+    },
+    {
+      ""anciennete"": ""Plus de 8 jours"",
+      ""initiateur"": ""Salarié"",
+      ""delai"": ""48 heures""
+    }
+  ]
+}"
+Durée du temps de travail	RAS
+Période d'essai	"{
+  ""periode_essai"": [
+    {
+      ""categorie_professionnelle"": ""Ouvriers et employés"",
+      ""duree_maximale_initiale"": ""2 mois"",
+      ""duree_maximale_renouvellement"": ""4 mois""
+    },
+    {
+      ""categorie_professionnelle"": ""Agents de maîtrise et techniciens"",
+      ""duree_maximale_initiale"": ""3 mois"",
+      ""duree_maximale_renouvellement"": ""6 mois""
+    },
+    {
+      ""categorie_professionnelle"": ""Cadres"",
+      ""duree_maximale_initiale"": ""4 mois"",
+      ""duree_maximale_renouvellement"": ""8 mois""
+    }
+  ]
+}"
+CET	RAS
+Congés payés	RAS
+Evènement familial	"{
+  ""conges_evenements_familiaux"": [
+    {
+      ""evenement"": ""Mariage du salarié ou conclusion d'un PACS"",
+      ""duree_minimale"": ""4 jours ouvrables"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat de mariage ou attestation de PACS""
+    },
+    {
+      ""evenement"": ""Mariage d'un enfant"",
+      ""duree_minimale"": ""1 jour ouvrable"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat de mariage de l'enfant""
+    },
+    {
+      ""evenement"": ""Naissance ou adoption d'un enfant"",
+      ""duree_minimale"": ""3 jours ouvrables"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Acte de naissance ou document d'adoption""
+    },
+    {
+      ""evenement"": ""Décès d'un enfant"",
+      ""duree_minimale"": ""12 jours ouvrables"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat de décès""
+    },
+    {
+      ""evenement"": ""Décès d'un enfant de moins de 25 ans ou d'une personne de moins de 25 ans à charge effective et permanente"",
+      ""duree_minimale"": ""14 jours ouvrables"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat de décès et preuve de la charge effective""
+    },
+    {
+      ""evenement"": ""Décès du conjoint, partenaire de PACS, concubin, père, mère, beau-père, belle-mère, frère ou sœur"",
+      ""duree_minimale"": ""3 jours ouvrables"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat de décès""
+    },
+    {
+      ""evenement"": ""Annonce de la survenue d'un handicap chez un enfant"",
+      ""duree_minimale"": ""2 jours ouvrables"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat médical attestant du handicap""
+    },
+    {
+      ""evenement"": ""Décès d'un enfant de moins de 25 ans ou d'une personne de moins de 25 ans à charge effective et permanente (congé de deuil)"",
+      ""duree_minimale"": ""8 jours"",
+      ""remuneration"": ""Maintenue"",
+      ""justificatif"": ""Certificat de décès et preuve de la charge effective""
+    }
+  ]
+}
+"
+Classification Con + Détails	RAS
+Cotisation prévoyance	"{
+  ""cotisations_prevoyance_cadres"": {
+    ""obligation_legale"": {
+      ""description"": ""Les employeurs doivent verser une cotisation de prévoyance pour leurs salariés cadres et assimilés."",
+      ""taux"": ""1,50 % de la tranche 1 du salaire (rémunération jusqu'au plafond de la Sécurité sociale)."",
+      ""affectation_prioritaire"": ""Au moins 0,76 % de cette cotisation doit être dédiée à la couverture du risque décès.""
+    },
+    ""repartition_cotisation"": {
+      ""employeur"": ""1,50 % à sa charge exclusive.""
+    },
+  
+        ""imposition"": ""Les cotisations patronales financant des garanties de prévoyance sont soumises à l'impôt sur le revenu du salarié.""
+      }
+    },
+    ""mention_bulletin_paie"": ""Les cotisations de prévoyance doivent figurer sur le bulletin de paie, généralement sous la rubrique 'Prévoyance cadre'.""
+  }
+}
+"
+Cotisation retraite	"{
+  ""agirc_arrco"": {
+    ""description"": ""Régime de retraite complémentaire obligatoire pour les salariés du secteur privé en France."",
+    ""cotisations"": {
+      ""tranches_de_salaire"": {
+        ""tranche_1"": {
+          ""description"": ""Part du salaire brut jusqu'au plafond mensuel de la Sécurité sociale (PMSS)."",
+          ""plafond"": ""1 PMSS"",
+          ""taux_de_cotisation"": 7.87,
+          ""repartition"": {
+            ""part_salariale"": 3.15,
+            ""part_patronale"": 4.72
+          }
+        },
+        ""tranche_2"": {
+          ""description"": ""Part du salaire brut comprise entre 1 et 8 fois le PMSS."",
+          ""plafond"": ""8 PMSS"",
+          ""taux_de_cotisation"": 21.59,
+          ""repartition"": {
+            ""part_salariale"": 8.64,
+            ""part_patronale"": 12.95
+          }
+        }
+      }
+    },
+    ""acquisition_de_points"": {
+      ""description"": ""Les cotisations versées sont converties en points de retraite."",
+      ""calcul"": {
+        ""formule"": ""Nombre de points = (Assiette des cotisations x Taux contractuel de cotisation) / Prix d'achat du point"",
+        ""prix_d_achat_du_point"": 19.9321
+      }
+    },
+
+  }
+}
+"
+Cotisation mutuelle	"{
+  ""mutuelle_entreprise"": {
+    ""obligation_generale"": {
+      ""description"": ""Depuis le 1ᵉʳ janvier 2016, tous les employeurs du secteur privé doivent proposer une couverture complémentaire santé collective à l'ensemble de leurs salariés, sans distinction de statut ou d'ancienneté."",
+      ""participation_employeur"": ""L'employeur doit financer au moins 50 % du montant de la cotisation, le reste étant à la charge du salarié."",
+      ""garanties_minimales"": ""Le contrat doit respecter un socle de garanties minimales, incluant notamment la prise en charge intégrale du ticket modérateur pour les consultations, actes et prestations remboursables par l'assurance maladie, ainsi que le forfait journalier hospitalier.""
+    },
+    ""dispenses_adhesion"": {
+      ""description"": ""Certains salariés peuvent refuser l'adhésion à la mutuelle d'entreprise dans des situations spécifiques."",
+      ""cas_possibles"": [
+        {
+          ""situation"": ""Couverture individuelle préexistante"",
+          ""condition"": ""Le salarié bénéficie déjà d'une couverture individuelle jusqu'à son échéance.""
+        },
+        {
+          ""situation"": ""Contrat à durée déterminée (CDD) ou contrat de mission"",
+          ""condition"": ""La durée de couverture collective est inférieure à 3 mois et le salarié justifie d'une couverture individuelle responsable.""
+        },
+        {
+          ""situation"": ""Salariés à temps partiel ou apprentis"",
+          ""condition"": ""La cotisation représente au moins 10 % de leur rémunération brute.""
+        }
+      ]
+    },
+    ""choix_organisme_assureur"": {
+      ""description"": ""L'entreprise a la liberté de choisir l'organisme assureur pour la mutuelle d'entreprise, même si un organisme est recommandé par la branche professionnelle."",
+      ""condition"": ""Le contrat souscrit doit respecter les garanties minimales légales et les obligations de financement.""
+    }
+  }
+}
+
+"
+Accident de travail	"{
+  ""maintien_salaire_accident_travail"": {
+    ""conditions_eligibilite"": {
+      ""anciennete_minimale"": ""1 an"",
+      ""justificatifs"": [
+        ""Certificat médical"",
+        ""Respect des obligations de déclaration""
+      ]
+    },
+    ""delai_carence"": ""Aucun, versement dès le premier jour d'arrêt"",
+    ""indemnisation"": [
+      {
+        ""anciennete"": ""1 à 5 ans"",
+        ""maintien_90"": ""30 jours"",
+        ""maintien_66_66"": ""30 jours""
+      },
+      {
+        ""anciennete"": ""6 à 10 ans"",
+        ""maintien_90"": ""40 jours"",
+        ""maintien_66_66"": ""40 jours""
+      },
+      {
+        ""anciennete"": ""11 à 15 ans"",
+        ""maintien_90"": ""50 jours"",
+        ""maintien_66_66"": ""50 jours""
+      },
+      {
+        ""anciennete"": ""16 à 20 ans"",
+        ""maintien_90"": ""60 jours"",
+        ""maintien_66_66"": ""60 jours""
+      },
+      {
+        ""anciennete"": ""21 à 25 ans"",
+        ""maintien_90"": ""70 jours"",
+        ""maintien_66_66"": ""70 jours""
+      },
+      {
+        ""anciennete"": ""26 à 30 ans"",
+        ""maintien_90"": ""80 jours"",
+        ""maintien_66_66"": ""80 jours""
+      },
+      {
+        ""anciennete"": ""31 ans et plus"",
+        ""maintien_90"": ""90 jours"",
+        ""maintien_66_66"": ""90 jours""
+      }
+    ],
+
+  }
+}
+"
+Maladie	"{
+  ""maintien_salaire_maladie_non_professionnelle"": {
+    ""conditions_eligibilite"": {
+      ""anciennete_minimale"": ""1 an"",
+      ""justificatifs"": [
+        ""Certificat médical transmis à l'employeur dans les 48 heures"",
+        ""Prise en charge par la Sécurité sociale"",
+        ""Soins reçus en France ou dans un État membre de l'Espace économique européen""
+      ]
+    },
+    ""delai_carence"": ""7 jours calendaires, sauf dispositions conventionnelles plus favorables"",
+    ""indemnisation"": [
+      {
+        ""anciennete"": ""1 à 5 ans"",
+        ""maintien_90"": ""30 jours"",
+        ""maintien_66_66"": ""30 jours""
+      },
+      {
+        ""anciennete"": ""6 à 10 ans"",
+        ""maintien_90"": ""40 jours"",
+        ""maintien_66_66"": ""40 jours""
+      },
+      {
+        ""anciennete"": ""11 à 15 ans"",
+        ""maintien_90"": ""50 jours"",
+        ""maintien_66_66"": ""50 jours""
+      },
+      {
+        ""anciennete"": ""16 à 20 ans"",
+        ""maintien_90"": ""60 jours"",
+        ""maintien_66_66"": ""60 jours""
+      },
+      {
+        ""anciennete"": ""21 à 25 ans"",
+        ""maintien_90"": ""70 jours"",
+        ""maintien_66_66"": ""70 jours""
+      },
+      {
+        ""anciennete"": ""26 à 30 ans"",
+        ""maintien_90"": ""80 jours"",
+        ""maintien_66_66"": ""80 jours""
+      },
+      {
+        ""anciennete"": ""31 ans et plus"",
+        ""maintien_90"": ""90 jours"",
+        ""maintien_66_66"": ""90 jours""
+      }
+    ],
+    ""remarques"": [
+      ""L'indemnisation complémentaire est versée par l'employeur."",
+      ""Des dispositions plus favorables peuvent être prévues par la convention collective ou un accord d'entreprise.""
+    ]
+  }
+}"
+Maternité / Paternité	RAS
+Apprenti / Contrat Pro / Stagiaire	"{
+  ""apprentissage"": {
+    ""description"": ""Contrat de travail permettant à un jeune de suivre une formation en alternance en vue d'acquérir un diplôme d'État ou un titre à finalité professionnelle."",
+    ""rémunération"": [
+      {
+        ""année"": 1,
+        ""moins_de_18_ans"": 27,
+        ""18_20_ans"": 43,
+        ""21_25_ans"": 53,
+        ""26_ans_et_plus"": 100
+      },
+      {
+        ""année"": 2,
+        ""moins_de_18_ans"": 39,
+        ""18_20_ans"": 51,
+        ""21_25_ans"": 61,
+        ""26_ans_et_plus"": 100
+      },
+      {
+        ""année"": 3,
+        ""moins_de_18_ans"": 55,
+        ""18_20_ans"": 67,
+        ""21_25_ans"": 78,
+        ""26_ans_et_plus"": 100
+      }
+    ],
+    ""base"": ""Pourcentage du SMIC ou du salaire minimum conventionnel (SMC) si plus favorable.""
+  },
+  ""contrat_professionnalisation"": {
+    ""description"": ""Contrat de travail associant des périodes de formation et d'activité professionnelle en entreprise, visant à acquérir une qualification professionnelle reconnue."",
+    ""rémunération"": {
+      ""niveau_inférieur_au_bac"": {
+        ""moins_de_21_ans"": 55,
+        ""21_25_ans"": 70,
+        ""26_ans_et_plus"": 100
+      },
+      ""niveau_supérieur_ou_égal_au_bac"": {
+        ""moins_de_21_ans"": 65,
+        ""21_25_ans"": 80,
+        ""26_ans_et_plus"": 100
+      }
+    },
+    ""base"": ""Pourcentage du SMIC ou 85% du SMC si plus favorable pour les 26 ans et plus.""
+  },
+  ""stage"": {
+    ""description"": ""Période de formation pratique en entreprise pour les étudiants, intégrée à un cursus pédagogique."",
+    ""rémunération"": {
+      ""indemnité_minimale"": 656.85,
+      ""base"": ""15% du plafond horaire de la sécurité sociale (PSS) fixé à 29€ en 2024.""
+    },
+    ""notes"": ""L'indemnité est obligatoire pour les stages de plus de deux mois et est exonérée d'impôt sur le revenu.""
+  }
+}"
+Prime	RAS
+Grille de Rémunération	RAS
+Majoration Dimanche	"{
+  ""travail_dominical"": {
+    ""principes_généraux"": {
+      ""description"": ""Le repos hebdomadaire est en principe accordé le dimanche. Toutefois, des dérogations permettent le travail ce jour-là, avec des compensations variables.""
+    },
+    ""secteurs_et_conditions"": {
+      ""commerce_détail_alimentaire"": {
+        ""surface_supérieure_400m2"": {
+          ""majoration"": 30,
+          ""base"": ""Pourcentage du salaire horaire pour les heures travaillées le dimanche jusqu'à 13h""
+        },
+        ""surface_inférieure_ou_égale_400m2"": {
+          ""majoration"": ""Variable selon les conventions collectives"",
+          ""base"": ""Pourcentage du salaire horaire pour les heures travaillées le dimanche""
+        }
+      },
+      ""autres_commerces_détail"": {
+        ""dérogation_maire"": {
+          ""majoration"": 100,
+          ""base"": ""Pourcentage du salaire horaire pour les dimanches travaillés sur autorisation municipale (jusqu'à 12 par an)""
+        },
+        ""zones_touristiques_commerciales"": {
+          ""majoration"": ""Définie par accord collectif"",
+          ""base"": ""Pourcentage du salaire horaire pour les dimanches travaillés dans les zones définies""
+        }
+      },
+      ""autres_secteurs"": {
+        ""dérogations_permanentes"": {
+          ""majoration"": ""Non obligatoire"",
+          ""base"": ""Selon les conventions collectives ou accords d'entreprise""
+        }
+      }
+    },
+    ""notes"": [
+      ""Les majorations indiquées sont exprimées en pourcentage du salaire horaire de base."",
+      ""Les dispositions conventionnelles ou contractuelles peuvent prévoir des majorations plus favorables pour le salarié."",
+      ""Il est recommandé de consulter la convention collective applicable ou le contrat de travail pour connaître les conditions spécifiques.""
+    ]
+  }
+}"
+Majoration Férié	"{
+  ""majoration_jours_feries"": {
+    ""1er_mai"": {
+      ""obligation_de_chomage"": ""Oui, sauf pour les établissements et services qui, en raison de la nature de leur activité, ne peuvent interrompre le travail."",
+      ""rémunération"": {
+        ""salaries_travaillant"": ""Doublement du salaire journalier."",
+        ""salaries_ne_travaillant_pas"": ""Maintien intégral du salaire sans condition d'ancienneté.""
+      },
+      ""reference_legale"": ""Article L3133-6 du Code du travail""
+    },
+    ""autres_jours_feries"": {
+      ""obligation_de_chomage"": ""Non, sauf dispositions conventionnelles ou décision de l'employeur."",
+      ""rémunération"": {
+        ""salaries_travaillant"": ""Pas de majoration légale prévue."",
+        ""salaries_ne_travaillant_pas"": {
+          ""condition"": ""Ancienneté d'au moins 3 mois dans l'entreprise ou l'établissement."",
+          ""maintien_du_salaire"": ""Oui, sans réduction de rémunération.""
+        }
+      },
+      ""reference_legale"": ""Article L3133-3 du Code du travail""
+    },
+  }
+}
+"
+Majoration Nuit	"{
+  ""travail_de_nuit"": {
+    ""définition"": ""Période de travail effectuée entre 21 heures et 6 heures du matin."",
+    ""rémunération"": {
+      ""majoration"": {
+        ""pourcentage"": ""Variable selon les conventions collectives"",
+        ""description"": ""La loi ne prévoit pas de majoration salariale spécifique pour le travail de nuit. Les majorations sont déterminées par les conventions collectives ou les accords d'entreprise.""
+      },
+      ""repos_compensateur"": {
+        ""description"": ""En l'absence de majoration salariale, un repos compensateur doit être accordé aux travailleurs de nuit."",
+        ""durée"": ""Variable selon les accords collectifs ou, à défaut, déterminée par l'employeur.""
+      }
+    },
+    ""exceptions"": {
+      ""secteurs_spécifiques"": ""Certains secteurs, tels que l'hôtellerie, la santé ou le transport, peuvent appliquer des règles particulières concernant le travail de nuit."",
+      ""conventions_collectives"": ""Il est essentiel de consulter la convention collective applicable ou les accords d'entreprise pour connaître les conditions spécifiques.""
+    }
+  }
+}"
+Indemnité de Licenciement	"{
+  ""indemnite_legale_licenciement"": {
+    ""conditions_d_attribution"": {
+      ""anciennete_minimale"": ""8 mois d'ancienneté ininterrompus dans l'entreprise"",
+      ""type_de_contrat"": ""Contrat à durée indéterminée (CDI)"",
+      ""motif_du_licenciement"": ""Autre qu'une faute grave ou lourde""
+    },
+    ""calcul_de_l_indemnite"": {
+      ""salaire_de_reference"": {
+        ""methode_1"": ""Moyenne mensuelle des 12 derniers mois précédant le licenciement"",
+        ""methode_2"": ""Moyenne mensuelle des 3 derniers mois précédant le licenciement"",
+        ""choix"": ""La méthode la plus avantageuse pour le salarié est retenue""
+      },
+      ""montant"": {
+        ""anciennete_jusqu_a_10_ans"": ""1/4 de mois de salaire par année d'ancienneté"",
+        ""anciennete_superieure_a_10_ans"": ""1/3 de mois de salaire par année d'ancienneté au-delà de 10 ans""
+      }
+    },
+    ""modalites_de_paiement"": {
+      ""moment_du_versement"": ""À la fin du préavis, que celui-ci soit exécuté ou non""
+    },
+    ""cumul_avec_autres_indemnites"": {
+      ""indemnites_cumulables"": ""Indemnité compensatrice de préavis, indemnité compensatrice de congés payés"",
+      ""indemnites_non_cumulables"": ""Indemnité conventionnelle de licenciement, indemnité de départ ou de mise à la retraite""
+    },
+    ""exonerations_fiscales_et_sociales"": {
+      ""impot_sur_le_revenu"": ""Exonération totale ou partielle selon le montant et les circonstances"",
+      ""cotisations_sociales"": ""Exonération totale ou partielle selon le montant et les circonstances""
+    }
+  }
+}"
+Indemnité de Mise a la Retraite	"{
+  ""indemnite_mise_a_la_retraite"": {
+    ""conditions_d_attribution"": {
+      ""initiative"": ""Employeur"",
+      ""age_du_salarie"": {
+        ""proposition_possible"": ""À partir de 67 ans"",
+        ""opposition_possible"": ""Jusqu'à 70 ans"",
+        ""imposition_possible"": ""À partir de 70 ans""
+      }
+    },
+    ""montant_de_l_indemnite"": {
+      ""calcul_de_l_indemnite_legale"": {
+        ""anciennete_jusqu_a_10_ans"": ""1/4 de mois de salaire par année d'ancienneté"",
+        ""anciennete_superieure_a_10_ans"": ""1/3 de mois de salaire par année d'ancienneté au-delà de 10 ans""
+      },
+      ""salaire_de_reference"": {
+        ""methode_1"": ""Moyenne mensuelle des 12 derniers mois précédant la notification"",
+        ""methode_2"": ""Moyenne mensuelle des 3 derniers mois précédant la notification"",
+        ""choix"": ""La méthode la plus favorable pour le salarié est retenue""
+      },
+      ""dispositions_conventionnelles"": ""Certaines conventions collectives ou accords d'entreprise peuvent prévoir des indemnités plus favorables.""
+    },
+    ""modalites_de_versement"": {
+      ""moment_du_versement"": ""À la fin du préavis, que celui-ci soit exécuté ou non.""
+    },
+    ""regime_fiscal_et_social"": {
+      ""impot_sur_le_revenu"": ""Exonération dans la limite du montant légal ou conventionnel."",
+      ""cotisations_sociales"": ""Exonération dans la limite de deux fois le plafond annuel de la Sécurité sociale (PASS). Au-delà, soumise à cotisations.""
+    },
+    ""remarques"": [
+      ""Il est essentiel de consulter la convention collective applicable ou le contrat de travail pour connaître les conditions spécifiques relatives à l'indemnité de mise à la retraite."",
+      ""Pour des informations détaillées et actualisées, il est recommandé de consulter les sources officielles ou de contacter les services compétents.""
+    ]
+  }
+}"
+Indemnité de Départ a la Retraite	"{
+  ""indemnite_depart_volontaire_retraite"": {
+    ""conditions_d_attribution"": {
+      ""anciennete_minimale"": ""10 ans d'ancienneté ininterrompus dans l'entreprise"",
+      ""initiative"": ""Salarié"",
+      ""demande_de_liquidation"": ""Le salarié doit avoir demandé la liquidation de sa pension de vieillesse""
+    },
+    ""montant_de_l_indemnite"": {
+      ""calcul_de_l_indemnite_legale"": {
+        ""anciennete_10_a_15_ans"": ""1/2 mois de salaire"",
+        ""anciennete_15_a_20_ans"": ""1 mois de salaire"",
+        ""anciennete_20_a_30_ans"": ""1,5 mois de salaire"",
+        ""anciennete_plus_de_30_ans"": ""2 mois de salaire""
+      },
+      ""salaire_de_reference"": {
+        ""methode_1"": ""Moyenne mensuelle des 12 derniers mois précédant le départ"",
+        ""methode_2"": ""Moyenne mensuelle des 3 derniers mois précédant le départ"",
+        ""choix"": ""La méthode la plus avantageuse pour le salarié est retenue""
+      },
+      ""dispositions_conventionnelles"": ""Certaines conventions collectives ou accords d'entreprise peuvent prévoir des indemnités plus favorables""
+    },
+    ""modalites_de_versement"": {
+      ""moment_du_versement"": ""À la fin du préavis, que celui-ci soit exécuté ou non""
+    },
+    ""regime_fiscal_et_social"": {
+      ""impot_sur_le_revenu"": ""Soumise à l'impôt sur le revenu"",
+      ""cotisations_sociales"": ""Soumise aux cotisations sociales, CSG et CRDS""
+    },
+    ""remarques"": [
+      ""Il est essentiel de consulter la convention collective applicable ou le contrat de travail pour connaître les conditions spécifiques relatives à l'indemnité de départ volontaire à la retraite"",
+      ""Pour des informations détaillées et actualisées, il est recommandé de consulter les sources officielles ou de contacter les services compétents""
+    ]
+  }
+}
+"
+Indemnité de Rupture de Contrat	"{
+  ""indemnite_rupture_conventionnelle"": {
+    ""conditions_d_attribution"": {
+      ""anciennete_minimale"": ""Aucune ancienneté minimale requise"",
+      ""type_de_contrat"": ""Contrat à durée indéterminée (CDI)"",
+      ""accord_des_parties"": ""Consentement mutuel entre l'employeur et le salarié""
+    },
+    ""montant_de_l_indemnite"": {
+      ""calcul_de_l_indemnite_legale"": {
+        ""anciennete_jusqu_a_10_ans"": ""1/4 de mois de salaire par année d'ancienneté"",
+        ""anciennete_superieure_a_10_ans"": ""1/3 de mois de salaire par année d'ancienneté au-delà de 10 ans""
+      },
+      ""salaire_de_reference"": {
+        ""methode_1"": ""Moyenne mensuelle des 12 derniers mois précédant la rupture"",
+        ""methode_2"": ""Moyenne mensuelle des 3 derniers mois précédant la rupture"",
+        ""choix"": ""La méthode la plus avantageuse pour le salarié est retenue""
+      },
+      ""dispositions_conventionnelles"": ""Certaines conventions collectives ou accords d'entreprise peuvent prévoir des indemnités plus favorables""
+    },
+    ""modalites_de_versement"": {
+      ""moment_du_versement"": ""À la date de cessation effective du contrat de travail""
+    },
+    ""regime_fiscal_et_social"": {
+      ""impot_sur_le_revenu"": ""Exonération totale ou partielle selon le montant et les circonstances"",
+      ""cotisations_sociales"": ""Exonération totale ou partielle selon le montant et les circonstances""
+    },
+    ""remarques"": [
+      ""Il est essentiel de consulter la convention collective applicable ou le contrat de travail pour connaître les conditions spécifiques relatives à l'indemnité de rupture conventionnelle"",
+      ""Pour des informations détaillées et actualisées, il est recommandé de consulter les sources officielles ou de contacter les services compétents""
+    ]
+  }
+}"
+Préavis	"{
+  ""preavis_licenciement"": {
+    ""description"": ""Durée du préavis à respecter par l'employeur lors du licenciement d'un salarié en CDI."",
+    ""durées"": {
+      ""moins_de_6_mois"": {
+        ""anciennete"": ""Moins de 6 mois"",
+        ""duree"": ""Fixée par la convention collective ou les usages en vigueur""
+      },
+      ""6_mois_a_2_ans"": {
+        ""anciennete"": ""Entre 6 mois et 2 ans"",
+        ""duree"": ""1 mois""
+      },
+      ""plus_de_2_ans"": {
+        ""anciennete"": ""Plus de 2 ans"",
+        ""duree"": ""2 mois""
+      }
+    },
+    ""remarques"": [
+      ""Les conventions collectives ou le contrat de travail peuvent prévoir des durées de préavis plus favorables pour le salarié."",
+      ""En cas de faute grave ou lourde du salarié, le licenciement peut être prononcé sans préavis.""
+    ]
+  },
+  ""preavis_demission"": {
+    ""description"": ""Durée du préavis à respecter par le salarié lors de sa démission d'un CDI."",
+    ""durées"": {
+      ""general"": {
+        ""anciennete"": ""Toutes anciennetés"",
+        ""duree"": ""Fixée par la convention collective, le contrat de travail ou les usages en vigueur""
+      }
+    },
+    ""remarques"": [
+      ""En l'absence de dispositions spécifiques, le préavis est déterminé par les usages pratiqués dans la localité et la profession."",
+      ""Le salarié peut être dispensé de préavis avec l'accord de l'employeur.""
+    ]
+  }
+}
+"
