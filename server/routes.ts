@@ -72,11 +72,23 @@ export function registerRoutes(app: Express): Server {
         res.json(response);
       } else {
         console.log('Using ChatPDF for category:', category, subcategory);
+
+        // Add detailed response instruction to the user's message
+        const enhancedMessages = messages.map(msg => {
+          if (msg.role === 'user') {
+            return {
+              ...msg,
+              content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. N'omettez aucun détail important et structurez votre réponse de manière claire avec des sections si nécessaire.`
+            };
+          }
+          return msg;
+        });
+
         const response = await axios.post(
           `${CHATPDF_API_BASE}/v1/chats/message`,
           {
             sourceId,
-            messages,
+            messages: enhancedMessages,
             config: {
               temperature: 0.1,
               contextWindow: 8192,
