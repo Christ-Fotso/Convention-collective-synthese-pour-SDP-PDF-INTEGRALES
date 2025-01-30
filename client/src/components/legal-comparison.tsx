@@ -423,6 +423,48 @@ Le travail du dimanche n'entraîne pas automatiquement de majoration de salaire 
   * Accès aux activités sociales et culturelles
 
 **Note :** La convention collective peut prévoir des dispositions plus favorables pour tous ces types de contrats, mais ne peut jamais prévoir de rémunération inférieure aux minimums légaux.`,
+    'majoration-nuit': `### Comparaison avec le cadre légal
+
+#### 1. Définition légale du travail de nuit
+- Période de travail : 21h - 6h (sauf accord collectif différent)
+- Travailleur de nuit si :
+  * Minimum 3h dans la période de nuit au moins 2 fois par semaine
+  * Ou 270h de travail de nuit sur 12 mois consécutifs
+
+#### 2. Majoration salariale
+**Important :** La loi n'impose PAS de majoration salariale spécifique pour le travail de nuit.
+
+#### 3. Contreparties obligatoires
+La loi impose uniquement :
+- Un repos compensateur obligatoire
+- Des contreparties (sans en fixer le montant) qui doivent être fixées par :
+  * La convention collective
+  * Un accord d'entreprise ou d'établissement
+  * Un accord de branche étendu
+
+#### 4. Types de contreparties possibles
+- Compensation financière
+- Repos compensateur
+- Réduction du temps de travail
+- Combinaison de ces différentes formes
+
+#### 5. Durées maximales de travail
+- Durée quotidienne : 8h maximum
+- Durée hebdomadaire : 40h en moyenne sur 12 semaines consécutives
+
+#### Points importants
+- La convention collective DOIT prévoir des contreparties
+- En présence de dispositions conventionnelles :
+  * Elles s'appliquent en priorité
+  * Elles peuvent être plus favorables en termes de :
+    - Taux de majoration
+    - Durée du repos compensateur
+    - Conditions d'attribution
+- Si la convention collective ne prévoit rien :
+  * L'employeur doit négocier des contreparties
+  * Un accord d'entreprise ou une décision unilatérale doit les fixer
+
+**Note :** Même en l'absence de disposition conventionnelle sur la majoration, l'employeur doit obligatoirement prévoir des contreparties au travail de nuit, qu'elles soient financières ou sous forme de repos.`,
   }
 };
 
