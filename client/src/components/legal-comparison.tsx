@@ -328,6 +328,46 @@ Il est donc essentiel de consulter la convention collective pour connaître les 
 - Durée fixée par la convention collective ou les usages`
   },
   'remuneration': {
+    'majoration-dimanche': `### Comparaison avec le cadre légal
+
+#### 1. Principe général
+Le travail du dimanche n'entraîne pas automatiquement de majoration de salaire selon la loi.
+
+#### 2. Cas où la majoration est obligatoire
+
+**a) Commerces de détail alimentaire > 400 m² :**
+- Majoration légale minimale : 30%
+- S'applique pour le travail du dimanche à partir de 13h
+- Applicable même en l'absence de disposition conventionnelle
+
+**b) Travail dominical sur dérogation permanente :**
+- Aucune majoration minimale légale imposée
+- Contreparties obligatoires mais à négocier :
+  * Par accord collectif
+  * Par décision unilatérale après consultation du CSE
+
+**c) Dimanches du maire :**
+- Majoration légale minimale : 100%
+- Un repos compensateur doit être accordé
+
+#### 3. Cas où la majoration n'est pas obligatoire
+- Entreprises autorisées de plein droit à donner le repos hebdomadaire par roulement
+- Établissements qui doivent fonctionner en continu
+- Industries utilisant des matières périssables
+- Établissements de spectacles
+
+#### Points importants
+- La convention collective peut prévoir :
+  * Une majoration plus favorable que le minimum légal
+  * Une majoration même dans les cas où la loi ne l'impose pas
+  * Des contreparties supplémentaires (repos compensateur)
+- En présence de dispositions conventionnelles plus favorables :
+  * Elles s'appliquent en priorité
+  * Elles remplacent le minimum légal
+  * Elles sont obligatoires pour l'employeur
+
+**Note :** En l'absence de convention collective ou si celle-ci ne prévoit rien, seules les majorations légales obligatoires s'appliquent dans les cas prévus par la loi.`,
+
     'apprenti': `### Comparaison avec le cadre légal
 
 #### 1. CONTRAT D'APPRENTISSAGE
