@@ -3,5 +3,6 @@
   "primary": "hsl(102, 89%, 45%)",
   "appearance": "light",
   "radius": 0.5,
-  "font": "Figtree"
+  "font": "Figtree",
+  "background": "hsl(0, 0%, 100%)"
 }
