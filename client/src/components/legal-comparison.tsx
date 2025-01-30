@@ -29,6 +29,7 @@ La durée de la période d'essai ne peut excéder une durée calculée à raison
 - 1 mois maximum pour les contrats > 6 mois
 
 Ces durées peuvent être réduites par la convention collective applicable ou par accord entre les parties.`,
+
     'delai-prevenance': `### Comparaison avec le cadre légal
 #### Règle générale
 Il convient d'appliquer le délai de prévenance le plus favorable au salarié entre celui prévu par la loi et celui prévu par la convention collective.
@@ -44,7 +45,40 @@ En cas de rupture par le salarié :
 - Moins de 8 jours de présence : 24 heures
 - Plus de 8 jours de présence : 48 heures
 
-**Important :** Si la convention collective prévoit des délais plus longs, ce sont ces délais plus favorables qui s'appliquent au salarié.`
+**Important :** Si la convention collective prévoit des délais plus longs, ce sont ces délais plus favorables qui s'appliquent au salarié.`,
+
+    'duree-travail': `### Comparaison avec le cadre légal
+
+#### Durée légale du travail
+- Durée légale hebdomadaire : 35 heures
+- Durée quotidienne maximale : 10 heures
+- Durée hebdomadaire maximale : 48 heures (ou 44 heures sur 12 semaines consécutives)
+
+#### Heures supplémentaires
+**Majoration légale :**
+- De la 36e à la 43e heure : 25%
+- À partir de la 44e heure : 50%
+
+**Important :** La convention collective peut prévoir des taux de majoration différents (10%, 20%, 50%), mais ils ne peuvent pas être inférieurs à 10%.
+
+#### Temps partiel
+**Durée minimale :**
+- 24 heures hebdomadaires, sauf dérogation prévue par la convention collective ou demande écrite et motivée du salarié
+
+**Heures complémentaires :**
+- Limite légale : 10% du temps de travail contractuel
+- Possibilité d'augmentation jusqu'à 1/3 si prévu par accord collectif
+- Majoration minimale de 10% dans la limite du 1/10e
+- Majoration minimale de 25% au-delà, si autorisé par accord
+
+#### Forfait jours
+**Conditions :**
+- Maximum légal : 218 jours par an
+- Ne peut être mis en place que si prévu par la convention collective
+- Nécessite un accord écrit du salarié
+- Réservé aux cadres autonomes et salariés dont la durée de travail ne peut être prédéterminée
+
+**Important :** En l'absence de disposition dans la convention collective autorisant le forfait jours, ce dispositif ne peut pas être mis en place.`
   },
   'maintien-salaire': {
     'maladie': `### Comparaison avec le cadre légal
@@ -74,6 +108,7 @@ Les durées d'indemnisation augmentent de 10 jours par période de 5 ans d'ancie
 - 31 ans et plus : 90 jours à 90% + 90 jours à 66,66%
 
 **Note :** En cas de dispositions plus favorables dans la convention collective, celles-ci s'appliquent en priorité.`,
+
     'accident-travail': `### Comparaison avec le cadre légal
 #### Conditions d'indemnisation
 - Ancienneté minimale : 1 an
@@ -104,6 +139,7 @@ Les durées d'indemnisation augmentent de 10 jours par période de 5 ans d'ancie
 - 31 ans et plus : 90 jours à 90% + 90 jours à 66,66%
 
 **Note :** En cas de dispositions plus favorables dans la convention collective, celles-ci s'appliquent en priorité.`,
+
     'maternite-paternite': `### Comparaison avec le cadre légal
 
 **Important :** La loi ne prévoit aucun maintien de salaire obligatoire pendant les congés de maternité et de paternité. Seules les indemnités journalières de la Sécurité sociale sont prévues par la loi.
@@ -126,6 +162,7 @@ Il est donc essentiel de consulter la convention collective pour connaître les 
 #### Calcul de l'indemnité :
 - Jusqu'à 10 ans d'ancienneté : 1/4 de mois de salaire par année
 - Au-delà de 10 ans : 1/3 de mois de salaire par année supplémentaire`,
+
     'preavis': `### Comparaison avec le cadre légal
 #### Préavis de licenciement :
 - Moins de 6 mois d'ancienneté : Selon convention collective
