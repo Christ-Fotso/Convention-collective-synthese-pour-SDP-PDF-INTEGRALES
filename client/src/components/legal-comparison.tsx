@@ -12,9 +12,16 @@ const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
 #### Durées maximales de la période d'essai par catégorie :
 
 **Pour les CDI :**
-- Ouvriers et employés : 2 mois, renouvelable jusqu'à 4 mois
-- Agents de maîtrise et techniciens : 3 mois, renouvelable jusqu'à 6 mois
-- Cadres : 4 mois, renouvelable jusqu'à 8 mois`,
+- Ouvriers et employés : 2 mois maximum de durée initiale
+- Agents de maîtrise et techniciens : 3 mois maximum de durée initiale
+- Cadres : 4 mois maximum de durée initiale
+
+**Important :** Le renouvellement de la période d'essai n'est possible que s'il est expressément prévu par un accord de branche étendu ou la convention collective applicable. Si la convention collective ne prévoit pas de renouvellement, il n'est pas possible de renouveler la période d'essai.
+
+Dans le cas où le renouvellement est prévu par la convention collective, les durées maximales avec renouvellement sont :
+- Ouvriers et employés : jusqu'à 4 mois
+- Agents de maîtrise et techniciens : jusqu'à 6 mois
+- Cadres : jusqu'à 8 mois`,
     'delai-prevenance': `### Comparaison avec le cadre légal
 #### En cas de rupture par l'employeur :
 - Moins de 8 jours de présence : 24 heures
