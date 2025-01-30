@@ -34,7 +34,7 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
       <div className="p-4 border-b bg-primary/10">
         <h2 className="text-lg font-semibold">Catégories</h2>
       </div>
-      <ScrollArea className="h-[600px]">
+      <ScrollArea className="h-auto max-h-[calc(100vh-12rem)]">
         <div className="p-4">
           <Accordion type="multiple" value={expandedCategories}>
             {categories.map(category => (
@@ -56,11 +56,11 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
                       <Button
                         key={subcategory.id}
                         variant="ghost"
-                        className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary hover:text-primary-foreground"
+                        className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary hover:text-primary-foreground whitespace-normal text-left"
                         onClick={() => onSelectSubcategory(category, subcategory)}
                         disabled={isLoading}
                       >
-                        <ChevronRight className="h-4 w-4 mr-2" />
+                        <ChevronRight className="h-4 w-4 mr-2 shrink-0" />
                         {subcategory.name}
                       </Button>
                     ))}
