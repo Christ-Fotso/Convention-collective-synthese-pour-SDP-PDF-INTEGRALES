@@ -1,9 +1,9 @@
 {
-  "variant": "professional",
+  "variant": "vibrant",
   "primary": "hsl(102, 89%, 45%)",
   "appearance": "light",
   "radius": 0.5,
   "font": "Figtree",
   "background": "hsl(0, 0%, 100%)",
-  "muted": "hsl(102, 100%, 98%)"
+  "muted": "hsl(102, 95%, 96%)"
 }
