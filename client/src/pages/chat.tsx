@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { ArrowLeft, Loader, AlertTriangle, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Loader, AlertTriangle, MessageCircle } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
@@ -141,7 +141,6 @@ export default function Chat({ params }: { params: { id: string } }) {
     setChatMessages([]);
   };
 
-  // Loading state for the entire page
   if (isLoadingConventions || createSourceMutation.isLoading) {
     return (
       <div className="container mx-auto py-8 px-4">
@@ -188,6 +187,31 @@ export default function Chat({ params }: { params: { id: string } }) {
         <h1 className="text-2xl font-bold">
           IDCC {convention.id} - {convention.name}
         </h1>
+        <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
+          <DialogTrigger asChild>
+            <Button 
+              variant="secondary"
+              className="ml-4"
+            >
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Poser une question
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>Chat avec la convention collective</DialogTitle>
+            </DialogHeader>
+            <div className="mt-4">
+              <ChatInterface
+                messages={chatMessages}
+                onSendMessage={handleSendMessage}
+                onReset={handleResetChat}
+                isLoading={chatMutation.isPending}
+                error={chatMutation.error ? "Une erreur est survenue lors de la communication avec l'IA" : null}
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
@@ -237,32 +261,6 @@ export default function Chat({ params }: { params: { id: string } }) {
           )}
         </Card>
       </div>
-
-      {/* Floating chat button and dialog */}
-      <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
-        <DialogTrigger asChild>
-          <Button 
-            className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg"
-            size="icon"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle>Chat avec la convention collective</DialogTitle>
-          </DialogHeader>
-          <div className="mt-4">
-            <ChatInterface
-              messages={chatMessages}
-              onSendMessage={handleSendMessage}
-              onReset={handleResetChat}
-              isLoading={chatMutation.isPending}
-              error={chatMutation.error ? "Une erreur est survenue lors de la communication avec l'IA" : null}
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
