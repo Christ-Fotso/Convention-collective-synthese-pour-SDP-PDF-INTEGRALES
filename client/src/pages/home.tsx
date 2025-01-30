@@ -44,10 +44,10 @@ export default function Home() {
               <CommandItem
                 key={convention.id}
                 onSelect={() => navigate(`/chat/${convention.id}`)}
-                className="cursor-pointer hover:bg-green-100 dark:hover:bg-green-900/20 bg-green-50/50 dark:bg-green-900/10 p-6 border-b"
+                className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-900/20 p-6 border-b"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="text-xl font-medium">
+                  <div className="text-xl font-medium text-green-600 dark:text-green-400">
                     IDCC {convention.id}
                   </div>
                   <div className="text-lg text-muted-foreground">
