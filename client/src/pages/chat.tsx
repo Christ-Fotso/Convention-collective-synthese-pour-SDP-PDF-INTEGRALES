@@ -100,9 +100,9 @@ export default function Chat({ params }: { params: { id: string } }) {
     // Si pas de prompt trouvé, afficher un message d'erreur
     if (!prompt) {
       toast({
-        variant: "warning",
-        title: "Information",
-        description: "Cette section est en cours de développement",
+        variant: "destructive",
+        title: "Erreur",
+        description: "Question prédéfinie non trouvée pour cette catégorie",
       });
       return;
     }
