@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { type Category, type Subcategory } from '@/types';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface LegalComparisonProps {
   category: Category;
@@ -34,7 +35,18 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
   return (
     <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
       <ReactMarkdown 
-        className="prose prose-sm dark:prose-invert max-w-none [&>table]:w-full [&>table]:border-collapse [&>table]:border [&>table]:border-gray-300 [&>table_th]:bg-gray-100 [&>table_th]:px-4 [&>table_th]:py-2 [&>table_th]:border [&>table_th]:border-gray-300 [&>table_td]:px-4 [&>table_td]:py-2 [&>table_td]:border [&>table_td]:border-gray-300"
+        className="prose prose-sm dark:prose-invert max-w-none [&>table]:w-full [&>table]:border-collapse [&>table]:border [&>table]:border-gray-300"
+        remarkPlugins={[remarkGfm]}
+        components={{
+          table: ({ node, ...props }) => (
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-collapse border border-border" {...props} />
+            </div>
+          ),
+          thead: props => <thead className="bg-muted" {...props} />,
+          th: props => <th className="border border-border p-2 text-left" {...props} />,
+          td: props => <td className="border border-border p-2" {...props} />
+        }}
       >
         {comparison}
       </ReactMarkdown>
