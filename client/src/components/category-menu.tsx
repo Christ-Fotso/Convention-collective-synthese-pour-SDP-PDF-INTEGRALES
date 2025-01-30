@@ -34,43 +34,41 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
       <div className="p-4 border-b bg-primary/10">
         <h2 className="text-lg font-semibold">Catégories</h2>
       </div>
-      <ScrollArea className="h-auto max-h-[calc(100vh-12rem)]">
-        <div className="p-4">
-          <Accordion type="multiple" value={expandedCategories}>
-            {categories.map(category => (
-              <AccordionItem 
-                key={category.id} 
-                value={category.id}
-                className="border rounded-md mb-2 overflow-hidden"
+      <div className="p-4">
+        <Accordion type="multiple" value={expandedCategories}>
+          {categories.map(category => (
+            <AccordionItem 
+              key={category.id} 
+              value={category.id}
+              className="border rounded-md mb-2 overflow-hidden"
+            >
+              <AccordionTrigger 
+                onClick={() => toggleCategory(category.id)}
+                className="hover:no-underline px-4 py-2 bg-primary/5 hover:bg-primary/10"
+                disabled={isLoading}
               >
-                <AccordionTrigger 
-                  onClick={() => toggleCategory(category.id)}
-                  className="hover:no-underline px-4 py-2 bg-primary/5 hover:bg-primary/10"
-                  disabled={isLoading}
-                >
-                  <span className="text-base font-medium">{category.name}</span>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="flex flex-col gap-1 p-2">
-                    {category.subcategories.map(subcategory => (
-                      <Button
-                        key={subcategory.id}
-                        variant="ghost"
-                        className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary hover:text-primary-foreground whitespace-normal text-left"
-                        onClick={() => onSelectSubcategory(category, subcategory)}
-                        disabled={isLoading}
-                      >
-                        <ChevronRight className="h-4 w-4 mr-2 shrink-0" />
-                        {subcategory.name}
-                      </Button>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </ScrollArea>
+                <span className="text-base font-medium">{category.name}</span>
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="flex flex-col gap-1 p-2">
+                  {category.subcategories.map(subcategory => (
+                    <Button
+                      key={subcategory.id}
+                      variant="ghost"
+                      className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary hover:text-primary-foreground whitespace-normal text-left"
+                      onClick={() => onSelectSubcategory(category, subcategory)}
+                      disabled={isLoading}
+                    >
+                      <ChevronRight className="h-4 w-4 mr-2 shrink-0" />
+                      {subcategory.name}
+                    </Button>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     </Card>
   );
 }
