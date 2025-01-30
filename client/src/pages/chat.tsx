@@ -87,32 +87,25 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
+    // Afficher d'abord le titre de la catégorie sélectionnée
+    setMessages([
+      { role: 'user', content: `${category.name} > ${subcategory.name}` },
+      { role: 'assistant', content: '' }
+    ]);
+
     // Check if content is not available for these specific categories
     if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
         (category.id === 'classification' && subcategory.id === 'classification-details')) {
-      setMessages([
-        { role: 'user', content: `${category.name} > ${subcategory.name}` },
-        { role: 'assistant', content: '' }
-      ]);
       return;
     }
 
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                   PREDEFINED_PROMPTS[category.id]?.['default'];
 
+    // Si pas de prompt trouvé, ne pas afficher d'erreur, continuer silencieusement
     if (!prompt) {
-      toast({
-        variant: "destructive",
-        title: "Erreur",
-        description: "Question prédéfinie non trouvée pour cette catégorie",
-      });
       return;
     }
-
-    setMessages([
-      { role: 'user', content: `${category.name} > ${subcategory.name}` },
-      { role: 'assistant', content: '' }
-    ]);
 
     const chatParams: ChatMessageParams = {
       sourceId,
