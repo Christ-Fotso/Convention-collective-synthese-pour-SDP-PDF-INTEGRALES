@@ -16,13 +16,18 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
       category.id === 'classification' && subcategory.id === 'classification-details') {
     return (
       <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm dark:bg-yellow-900/10 dark:border-yellow-900/20">
-        <div className="flex items-center space-x-3">
-          <svg className="w-6 h-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex items-start gap-3">
+          <svg className="w-6 h-6 text-yellow-600 mt-1 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-            Cette information n'est pas disponible pour le moment. Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.
-          </p>
+          <div>
+            <h4 className="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+              Fonctionnalité en développement
+            </h4>
+            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+              Cette information n'est pas disponible pour le moment. Notre équipe travaille activement à l'intégration de ces données pour vous fournir une analyse complète et détaillée. Cette fonctionnalité sera disponible très prochainement.
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -688,7 +693,7 @@ La loi impose uniquement :
   * Prise en charge des frais de transport
   * Accès aux activités sociales et culturelles
 
-**Note :** La convention collective peut prévoir des dispositions plus favorables pour tous ces types de contrats, mais ne peut jamais prévoir de rémunération inférieure aux minimums légaux.`,
+**Note :** La convention collective peut prévoir des dispositions plus favorables pour tous cestypes de contrats, mais ne peut jamais prévoir de rémunération inférieure aux minimums légaux.`,
   },
   'classification': {
     'classification-details': '### Comparaison avec le cadre légal\n\n[Contenu de la classification]'
