@@ -22,6 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { convertJsonToMarkdown } from '@/lib/markdown-converter';
 
 interface ChatMessageParams {
   sourceId: string;
@@ -120,9 +121,12 @@ export default function Chat({ params }: { params: { id: string } }) {
       return;
     }
 
+    // Convertir le contenu en Markdown si nécessaire
+    const formattedContent = convertJsonToMarkdown(response.content);
+
     setMessages([
       { role: 'user', content: `${category.name} > ${subcategory.name}` },
-      { role: 'assistant', content: response.content }
+      { role: 'assistant', content: formattedContent }
     ]);
   };
 
