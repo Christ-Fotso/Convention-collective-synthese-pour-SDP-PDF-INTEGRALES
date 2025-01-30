@@ -47,10 +47,10 @@ export default function Home() {
                 className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-900/20 p-6 border-b"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="text-xl font-medium text-green-600 dark:text-green-400">
+                  <div className="text-base font-medium text-green-600 dark:text-green-400">
                     IDCC {convention.id}
                   </div>
-                  <div className="text-lg text-muted-foreground">
+                  <div className="text-sm text-muted-foreground">
                     {convention.name}
                   </div>
                 </div>
