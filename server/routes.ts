@@ -73,8 +73,13 @@ export function registerRoutes(app: Express): Server {
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i].trim();
           if (line.startsWith(messages[0].content)) {
-            const content = lines[i + 1].trim();
-            return res.json({ content });
+            const nextLine = lines[i + 1].trim();
+            // Si la réponse est "RAS", on renvoie une chaîne vide
+            if (nextLine === "RAS") {
+              return res.json({ content: "" });
+            }
+            // Sinon on renvoie le contenu JSON tel quel
+            return res.json({ content: nextLine });
           }
         }
       }

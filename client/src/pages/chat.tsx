@@ -114,6 +114,12 @@ export default function Chat({ params }: { params: { id: string } }) {
 
     const response = await chatMutation.mutateAsync(chatParams);
 
+    // Si la réponse est vide (cas "RAS"), on ne met pas à jour les messages
+    if (!response.content) {
+      setMessages([]);
+      return;
+    }
+
     setMessages([
       { role: 'user', content: `${category.name} > ${subcategory.name}` },
       { role: 'assistant', content: response.content }
@@ -141,7 +147,7 @@ export default function Chat({ params }: { params: { id: string } }) {
     setChatMessages([]);
   };
 
-  if (isLoadingConventions || createSourceMutation.isLoading) {
+  if (isLoadingConventions || createSourceMutation.isPending) {
     return (
       <div className="container mx-auto py-8 px-4">
         <div className="flex items-center gap-4 mb-8">
@@ -242,7 +248,7 @@ export default function Chat({ params }: { params: { id: string } }) {
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
                 <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
                   <ReactMarkdown>
-                    {messages[1].content.replace(/\n/g, '\n\n')}
+                    {messages[1].content}
                   </ReactMarkdown>
                 </div>
                 {currentCategory && currentSubcategory && (
