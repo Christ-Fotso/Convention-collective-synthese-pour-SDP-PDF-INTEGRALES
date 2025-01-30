@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
+import { LegalComparison } from '@/components/legal-comparison';
 import { getConventions, createChatPDFSource, sendChatMessage, deleteChatPDFSource } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -16,6 +17,8 @@ export default function Chat({ params }: { params: { id: string } }) {
   const [, navigate] = useLocation();
   const [sourceId, setSourceId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
+  const [currentSubcategory, setCurrentSubcategory] = useState<Subcategory | null>(null);
   const { toast } = useToast();
 
   const { data: conventions = [] } = useQuery({
@@ -63,6 +66,9 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   const handleSelectSubcategory = async (category: Category, subcategory: Subcategory) => {
     if (!sourceId) return;
+
+    setCurrentCategory(category);
+    setCurrentSubcategory(subcategory);
 
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] || 
                   PREDEFINED_PROMPTS[category.id]?.['default'];
@@ -130,6 +136,12 @@ export default function Chat({ params }: { params: { id: string } }) {
                     {messages[1].content.replace(/\n/g, '\n\n')}
                   </ReactMarkdown>
                 </div>
+                {currentCategory && currentSubcategory && (
+                  <LegalComparison 
+                    category={currentCategory} 
+                    subcategory={currentSubcategory} 
+                  />
+                )}
               </div>
             </div>
           ) : (
