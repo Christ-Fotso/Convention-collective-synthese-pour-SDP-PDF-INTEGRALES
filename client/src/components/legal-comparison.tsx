@@ -56,7 +56,7 @@ export function LegalComparison({ category, subcategory }: LegalComparisonProps)
   }
 
   return (
-    <div className="mt-8 p-4 bg-muted rounded-lg">
+    <div className="mt-8 p-4 bg-primary/5 rounded-lg">
       <ReactMarkdown className="prose prose-sm dark:prose-invert">
         {comparison}
       </ReactMarkdown>
