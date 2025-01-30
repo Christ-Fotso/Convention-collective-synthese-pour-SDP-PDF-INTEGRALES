@@ -6,6 +6,8 @@ import { conventions } from "@db/schema";
 import { eq } from "drizzle-orm";
 import { queryPerplexity } from "./services/perplexity";
 import { shouldUsePerplexity } from "./config/ai-routing";
+import fs from 'fs';
+import path from 'path';
 
 const CHATPDF_API_BASE = "https://api.chatpdf.com";
 const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
@@ -61,6 +63,22 @@ export function registerRoutes(app: Express): Server {
     try {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+
+      // Check if we have a static legal data response
+      const legalDataPath = path.join(__dirname, '../attached_assets/Pasted-Informations-g-n-rales-RAS-D-lai-de-pr-venance-delai-prevenance-ancien-1738227284785.txt');
+      if (fs.existsSync(legalDataPath)) {
+        const legalData = fs.readFileSync(legalDataPath, 'utf8');
+        const lines = legalData.split('\n');
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (line.startsWith(messages[0].content)) {
+            const content = lines[i + 1].trim();
+            return res.json({ content });
+          }
+        }
+      }
+
       const routing = shouldUsePerplexity(category, subcategory);
 
       if (routing.usePerplexity) {
@@ -114,7 +132,7 @@ export function registerRoutes(app: Express): Server {
                 contextWindow: 8192,
               }
             },
-            validateStatus: (status) => status < 500,  // Only treat 500+ as errors
+            validateStatus: (status) => status < 500,
           });
 
           if (response.status !== 200) {
@@ -126,7 +144,7 @@ export function registerRoutes(app: Express): Server {
           console.error('ChatPDF query error:', chatPDFError.response?.data || chatPDFError.message);
           res.status(500).json({
             message: "Failed to query ChatPDF",
-            error: chatPDFError.response?.data?.error || chatPDFError.message
+            error: chatPDFError.response?.data || chatPDFError.message
           });
         }
       }
