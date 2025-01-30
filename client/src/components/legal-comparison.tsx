@@ -8,6 +8,18 @@ interface LegalComparisonProps {
 
 const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
   'embauche': {
+    'delai-prevenance': `### Comparaison avec le cadre légal
+Pour la rupture de la période d'essai :
+
+#### Rupture par l'employeur :
+- Présence < 8 jours : 24 heures
+- Présence entre 8 jours et 1 mois : 48 heures
+- Présence entre 1 et 3 mois : 2 semaines
+- Présence > 3 mois : 1 mois
+
+#### Rupture par le salarié :
+- Présence < 8 jours : 24 heures
+- Présence ≥ 8 jours : 48 heures`,
     'duree-travail': `### Comparaison avec le cadre légal
 - La durée légale du travail est fixée à 35 heures hebdomadaires
 - La durée quotidienne maximale est de 10 heures

@@ -4,7 +4,9 @@ export const CATEGORIES: Category[] = [
   {
     id: 'informations-generales',
     name: 'Informations Générales',
-    subcategories: []
+    subcategories: [
+      { id: 'generale', name: 'Informations Générales' }
+    ]
   },
   {
     id: 'embauche',

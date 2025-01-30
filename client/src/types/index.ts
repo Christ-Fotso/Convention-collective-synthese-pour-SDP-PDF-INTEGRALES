@@ -47,6 +47,18 @@ export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = {
     • Les derniers avenants mentionnés et leurs dates
     • Le numéro de brochure
     • Les mentions d'extension si présentes
+    • Le code NAF/APE si mentionné`,
+    'generale': `Récupère toutes les informations situées en haut des fichiers de la convention collective. Cela inclut :
+- la date de signature
+- le numéro d'IDCC
+- la date de publication au Journal Officiel
+- et toute autre information pertinente présente dans cette section, notamment :
+    • Le nom exact de la convention collective
+    • Les organisations signataires (syndicales et patronales)
+    • Le champ d'application géographique et professionnel
+    • Les derniers avenants mentionnés et leurs dates
+    • Le numéro de brochure
+    • Les mentions d'extension si présentes
     • Le code NAF/APE si mentionné`
   },
   'embauche': {
@@ -54,14 +66,14 @@ export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = {
 
 1. Extraire précisément :
    - Les délais de prévenance spécifiques pour l'employeur :
-      • Par catégorie professionnelle si différencié
-      • Selon la durée de présence dans l'entreprise
-      • Selon la durée initiale de la période d'essai
+       • Par catégorie professionnelle si différencié
+       • Selon la durée de présence dans l'entreprise
+       • Selon la durée initiale de la période d'essai
 
    - Les délais de prévenance spécifiques pour le salarié :
-      • Par catégorie professionnelle si différencié
-      • Selon la durée de présence
-      • Toute condition particulière mentionnée`,
+       • Par catégorie professionnelle si différencié
+       • Selon la durée de présence
+       • Toute condition particulière mentionnée`,
     'duree-travail': `Cherche toutes les informations relatives à la durée du temps de travail dans la convention collective.
 
 1. Extraire les dispositions concernant :
