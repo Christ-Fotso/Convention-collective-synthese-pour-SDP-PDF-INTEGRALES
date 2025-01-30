@@ -386,7 +386,38 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
       - Tous les niveaux/échelons
       - Coefficients ou indices associés
       - Catégories professionnelles
-      - Filières si existantes`
+      - Filières si existantes
+
+   B) Pour chaque niveau/position :
+      - Description exacte du poste
+      - Critères de classification
+      - Compétences requises
+      - Niveaux de responsabilité
+      - TOUT commentaire associé
+
+   C) Modalités de mise en œuvre :
+      - Règles de positionnement
+      - Évolution/progression
+      - Périodes probatoires si mentionnées
+      - Toute note explicative
+
+2. Format de présentation :
+   COPIER-COLLER STRICT :
+   - Tableaux tels que présentés dans la CCN
+   - Grilles de classification complètes
+   - Définitions de postes
+   - Notes et commentaires, même mineurs
+   - TOUTE annexe liée aux classifications
+
+3. Références à inclure :
+   - Numéros d'articles exacts
+   - Renvois aux annexes
+   - Numéros de page si mentionnés
+   - Dates des avenants modificatifs
+
+Ne rien reformuler, ne rien réorganiser : présenter les informations telles qu'elles apparaissent dans le texte.
+
+Si la convention collective ne contient aucune disposition sur les classifications : indiquer "RAS"`
   },
   'cotisations': {
     'prevoyance': `Récupère toutes les informations relatives aux cotisations pour la prévoyance dans la convention collective.
@@ -396,7 +427,39 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
       - Nom des organismes désignés
       - Date de désignation
       - Clause de migration/réexamen si existante
-      - Organisme gestionnaire si différent`,
+      - Organisme gestionnaire si différent
+
+   B) Cotisations (COPIER-COLLER EXACT) :
+      - Taux global
+      - Répartition employeur/salarié
+      - Base ou assiette de cotisation
+      - Tranches de salaire concernées
+      - Taux par garantie si détaillé
+
+   C) Population couverte :
+      - Catégories de personnel concernées
+      - Conditions d'affiliation
+      - Cas de dispenses si mentionnés
+      - Cas particuliers (temps partiel, suspension contrat...)
+
+   D) Garanties mentionnées avec les taux :
+      - Détail des garanties associées aux cotisations
+      - Niveaux de prestations si précisés
+      - Conditions particulières
+
+2. Informations complémentaires :
+   - Date d'effet du régime
+   - Modalités de révision des taux
+   - Périodicité des cotisations
+   - Portabilité si mentionnée
+
+3. Format de présentation :
+   - Copier-coller exact des tableaux de cotisations
+   - Conservation des notes et renvois
+   - Référence précise des articles et avenants
+   - Reprendre toute mention même mineure sur les cotisations
+
+Si la convention collective ne contient aucune disposition sur la prévoyance : indiquer "RAS"`,
     'retraite': `Cherche toutes les informations relatives aux cotisations pour la retraite dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -404,7 +467,27 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
       - Organismes désignés (AGIRC-ARRCO ou autres)
       - Taux contractuels par tranche
       - Répartition employeur/salarié
-      - Base ou assiette de calcul`,
+      - Base ou assiette de calcul
+
+   B) Spécificités par catégorie :
+      - Taux par catégorie professionnelle
+      - Tranches de salaire concernées
+      - Particularités cadres/non cadres
+      - Taux supplémentaires si prévus
+
+   C) Informations techniques :
+      - Dates d'application
+      - Modalités de versement
+      - Conditions particulières
+      - Cas spécifiques mentionnés
+
+2. Présentation :
+   - Copier-coller exact des tableaux de taux
+   - Reprendre intégralement les répartitions
+   - Conserver toutes les notes techniques
+   - Reporter les références d'articles exactes
+
+Si la convention collective ne contient aucune disposition sur la retraite : indiquer "RAS"`,
     'mutuelle': `Récupère toutes les informations concernant les cotisations pour la mutuelle dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -412,7 +495,34 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
       - Noms des organismes recommandés/désignés
       - Date de désignation/recommandation
       - Gestionnaire des prestations si différent
-      - Durée de la désignation si précisée`
+      - Durée de la désignation si précisée
+
+   B) Cotisations (COPIER-COLLER EXACT) :
+      - Taux global de cotisation
+      - Répartition employeur/salarié
+      - Base de calcul des cotisations
+      - Montants forfaitaires si prévus
+      - Tarifs par composition familiale
+
+   C) Régime frais de santé :
+      - Structure des cotisations (isolé/famille)
+      - Options si prévues
+      - Régimes facultatifs si existants
+      - Surcoûtés éventuels
+
+   D) Conditions d'application :
+      - Personnel concerné
+      - Dispenses possibles
+      - Cas particuliers (temps partiel...)
+      - Date d'effet du régime
+
+2. Format de présentation :
+   - Copier-coller des tableaux de cotisations
+   - Référence précise des articles et avenants
+   - Conservation de toutes les notes
+   - Reprise de tous les commentaires
+
+Si la convention collective ne contient aucune disposition sur la mutuelle : indiquer "RAS"`,
   },
   'maintien-salaire': {
     'accident-travail': `Récupère toutes les informations concernant le maintien du salaire en cas d'accident du travail dans la convention collective.
@@ -423,7 +533,37 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
       - Durée exacte si prévue
       - Conditions d'application de la carence
       - Cas de suppression de la carence
-      - Application en cas de rechute`,
+      - Application en cas de rechute
+
+   B) Salaire de référence :
+      - Définition exacte du salaire de référence
+      - Éléments inclus dans le calcul
+      - Éléments exclus du calcul
+      - Période de référence
+      - Cas particuliers (variables, primes, etc.)
+
+   C) Indemnisation :
+      - Montant ou pourcentage par période
+      - Durée totale d'indemnisation
+      - Fractionnement éventuel
+      - Modalités de versement
+
+   D) IJSS :
+      - Mode de prise en compte
+      - Système de déduction
+      - Règles de coordination
+      - Subrogation si prévue
+
+2. Présentation :
+   - Copier-coller INTÉGRAL de chaque disposition
+   - Conservation de toute mention sur le calcul
+   - Maintien des exemples si fournis
+   - Report des formules de calcul exactes
+   - Référence précise des articles
+   - Reprise de TOUS les cas particuliers
+   - Conservation des renvois et notes de bas de page
+
+Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas d'accident du travail : indiquer "RAS"`,
     'maladie': `Récupère toutes les informations concernant le maintien du salaire en cas d'arrêt maladie dans la convention collective.
 
 1. Extraire EXACTEMENT :
@@ -431,7 +571,44 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
       - Ancienneté requise
       - Justificatifs demandés
       - Délais pour fournir les justificatifs
-      - Contre-visite si prévue`,
+      - Contre-visite si prévue
+
+   B) Carence :
+      - Nombre exact de jours de carence
+      - Application selon ancienneté
+      - Suppression éventuelle de carence
+      - Cas particuliers de carence
+      - Application en cas d'arrêts successifs
+
+   C) Salaire de référence :
+      - Définition exacte de l'assiette
+      - Éléments de salaire inclus
+      - Éléments exclus
+      - Période de référence pour le calcul
+      - Cas des salaires variables
+
+   D) Indemnisation :
+      - Durée totale 
+      - Pourcentage par période
+      - Fractionnement de l'indemnisation
+      - Reconstitution des droits
+      - Plusieurs arrêts dans l'année
+
+   E) IJSS :
+      - Mode de prise en compte
+      - Système de déduction
+      - Subrogation si prévue
+      - Règles en cas de non perception
+
+2. Présentation :
+   - Copier-coller exact du texte conventionnel
+   - Maintien des tableaux d'origine
+   - Conservation de tous les exemples
+   - Report des formules de calcul
+   - Référence précise des articles
+   - Reprise intégrale des notes et renvois
+
+Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas de maladie : indiquer "RAS"`,
     'maternite-paternite': `Récupère toutes les informations concernant le maintien du salaire en cas de maternité ou paternité dans la convention collective.
 
 1. Extraire EXACTEMENT :
