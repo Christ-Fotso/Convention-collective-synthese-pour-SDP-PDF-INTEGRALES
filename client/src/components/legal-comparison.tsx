@@ -328,46 +328,105 @@ Il est donc essentiel de consulter la convention collective pour connaître les 
 - Durée fixée par la convention collective ou les usages`
   },
   'remuneration': {
-    'majoration-dimanche': `### Comparaison avec le cadre légal
+    'majoration-ferie': `### Comparaison avec le cadre légal
 
-#### 1. Principe général
-Le travail du dimanche n'entraîne pas automatiquement de majoration de salaire selon la loi.
+#### 1. Jours fériés légaux
+**Jours fériés nationaux :**
+- 1er janvier
+- Lundi de Pâques
+- 1er mai
+- 8 mai
+- Ascension
+- Lundi de Pentecôte
+- 14 juillet
+- Assomption (15 août)
+- Toussaint (1er novembre)
+- 11 novembre
+- 25 décembre
 
-#### 2. Cas où la majoration est obligatoire
+**Spécificité Alsace-Moselle :**
+Deux jours fériés supplémentaires :
+- 26 décembre
+- Vendredi Saint
 
-**a) Commerces de détail alimentaire > 400 m² :**
-- Majoration légale minimale : 30%
-- S'applique pour le travail du dimanche à partir de 13h
-- Applicable même en l'absence de disposition conventionnelle
+#### 2. Statut particulier du 1er mai
+- Seul jour férié obligatoirement chômé et payé
+- Si travaillé : majoration obligatoire de 100% (doublement du salaire)
+- Non récupérable
+- Applicable à tous les salariés, sans condition d'ancienneté
 
-**b) Travail dominical sur dérogation permanente :**
-- Aucune majoration minimale légale imposée
-- Contreparties obligatoires mais à négocier :
-  * Par accord collectif
-  * Par décision unilatérale après consultation du CSE
+#### 3. Autres jours fériés
+**Principe général :**
+- Aucune majoration légale obligatoire (sauf 1er mai)
+- Le chômage des jours fériés ne peut entraîner de perte de salaire pour les salariés :
+  * Ayant au moins 3 mois d'ancienneté
+  * Ayant travaillé le dernier jour précédant et le premier jour suivant le férié
 
-**c) Dimanches du maire :**
-- Majoration légale minimale : 100%
-- Un repos compensateur doit être accordé
+**Si travaillé :**
+- Aucune majoration légale obligatoire
+- La majoration dépend :
+  * De la convention collective
+  * Des accords d'entreprise
+  * Des usages
 
-#### 3. Cas où la majoration n'est pas obligatoire
-- Entreprises autorisées de plein droit à donner le repos hebdomadaire par roulement
-- Établissements qui doivent fonctionner en continu
-- Industries utilisant des matières périssables
-- Établissements de spectacles
+#### 4. Points importants
+- La convention collective peut prévoir :
+  * Des jours fériés supplémentaires
+  * Des majorations salariales pour le travail les jours fériés
+  * Des conditions plus favorables pour le maintien de salaire
+  * Des règles spécifiques pour certains jours fériés
+
+**Règle fondamentale :** En présence de dispositions conventionnelles plus favorables :
+- Elles s'appliquent en priorité
+- Le salarié bénéficie toujours de la disposition la plus avantageuse entre :
+  * La convention collective
+  * La loi
+  * L'accord d'entreprise
+  * Le contrat de travail
+
+**Note :** L'employeur doit vérifier systématiquement les dispositions de la convention collective qui peuvent prévoir des majorations ou des compensations plus avantageuses que le minimum légal.`,
+    'majoration-nuit': `### Comparaison avec le cadre légal
+
+#### 1. Définition légale du travail de nuit
+- Période de travail : 21h - 6h (sauf accord collectif différent)
+- Travailleur de nuit si :
+  * Minimum 3h dans la période de nuit au moins 2 fois par semaine
+  * Ou 270h de travail de nuit sur 12 mois consécutifs
+
+#### 2. Majoration salariale
+**Important :** La loi n'impose PAS de majoration salariale spécifique pour le travail de nuit.
+
+#### 3. Contreparties obligatoires
+La loi impose uniquement :
+- Un repos compensateur obligatoire
+- Des contreparties (sans en fixer le montant) qui doivent être fixées par :
+  * La convention collective
+  * Un accord d'entreprise ou d'établissement
+  * Un accord de branche étendu
+
+#### 4. Types de contreparties possibles
+- Compensation financière
+- Repos compensateur
+- Réduction du temps de travail
+- Combinaison de ces différentes formes
+
+#### 5. Durées maximales de travail
+- Durée quotidienne : 8h maximum
+- Durée hebdomadaire : 40h en moyenne sur 12 semaines consécutives
 
 #### Points importants
-- La convention collective peut prévoir :
-  * Une majoration plus favorable que le minimum légal
-  * Une majoration même dans les cas où la loi ne l'impose pas
-  * Des contreparties supplémentaires (repos compensateur)
-- En présence de dispositions conventionnelles plus favorables :
+- La convention collective DOIT prévoir des contreparties
+- En présence de dispositions conventionnelles :
   * Elles s'appliquent en priorité
-  * Elles remplacent le minimum légal
-  * Elles sont obligatoires pour l'employeur
+  * Elles peuvent être plus favorables en termes de :
+    - Taux de majoration
+    - Durée du repos compensateur
+    - Conditions d'attribution
+- Si la convention collective ne prévoit rien :
+  * L'employeur doit négocier des contreparties
+  * Un accord d'entreprise ou une décision unilatérale doit les fixer
 
-**Note :** En l'absence de convention collective ou si celle-ci ne prévoit rien, seules les majorations légales obligatoires s'appliquent dans les cas prévus par la loi.`,
-
+**Note :** Même en l'absence de disposition conventionnelle sur la majoration, l'employeur doit obligatoirement prévoir des contreparties au travail de nuit, qu'elles soient financières ou sous forme de repos.`,
     'apprenti': `### Comparaison avec le cadre légal
 
 #### 1. CONTRAT D'APPRENTISSAGE
@@ -423,48 +482,6 @@ Le travail du dimanche n'entraîne pas automatiquement de majoration de salaire 
   * Accès aux activités sociales et culturelles
 
 **Note :** La convention collective peut prévoir des dispositions plus favorables pour tous ces types de contrats, mais ne peut jamais prévoir de rémunération inférieure aux minimums légaux.`,
-    'majoration-nuit': `### Comparaison avec le cadre légal
-
-#### 1. Définition légale du travail de nuit
-- Période de travail : 21h - 6h (sauf accord collectif différent)
-- Travailleur de nuit si :
-  * Minimum 3h dans la période de nuit au moins 2 fois par semaine
-  * Ou 270h de travail de nuit sur 12 mois consécutifs
-
-#### 2. Majoration salariale
-**Important :** La loi n'impose PAS de majoration salariale spécifique pour le travail de nuit.
-
-#### 3. Contreparties obligatoires
-La loi impose uniquement :
-- Un repos compensateur obligatoire
-- Des contreparties (sans en fixer le montant) qui doivent être fixées par :
-  * La convention collective
-  * Un accord d'entreprise ou d'établissement
-  * Un accord de branche étendu
-
-#### 4. Types de contreparties possibles
-- Compensation financière
-- Repos compensateur
-- Réduction du temps de travail
-- Combinaison de ces différentes formes
-
-#### 5. Durées maximales de travail
-- Durée quotidienne : 8h maximum
-- Durée hebdomadaire : 40h en moyenne sur 12 semaines consécutives
-
-#### Points importants
-- La convention collective DOIT prévoir des contreparties
-- En présence de dispositions conventionnelles :
-  * Elles s'appliquent en priorité
-  * Elles peuvent être plus favorables en termes de :
-    - Taux de majoration
-    - Durée du repos compensateur
-    - Conditions d'attribution
-- Si la convention collective ne prévoit rien :
-  * L'employeur doit négocier des contreparties
-  * Un accord d'entreprise ou une décision unilatérale doit les fixer
-
-**Note :** Même en l'absence de disposition conventionnelle sur la majoration, l'employeur doit obligatoirement prévoir des contreparties au travail de nuit, qu'elles soient financières ou sous forme de repos.`,
   }
 };
 
