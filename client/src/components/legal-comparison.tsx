@@ -21,7 +21,14 @@ const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
 Dans le cas où le renouvellement est prévu par la convention collective, les durées maximales avec renouvellement sont :
 - Ouvriers et employés : jusqu'à 4 mois
 - Agents de maîtrise et techniciens : jusqu'à 6 mois
-- Cadres : jusqu'à 8 mois`,
+- Cadres : jusqu'à 8 mois
+
+**Pour les CDD :**
+La durée de la période d'essai ne peut excéder une durée calculée à raison de :
+- 1 jour par semaine, dans la limite de 2 semaines pour les contrats ≤ 6 mois
+- 1 mois maximum pour les contrats > 6 mois
+
+Ces durées peuvent être réduites par la convention collective applicable ou par accord entre les parties.`,
     'delai-prevenance': `### Comparaison avec le cadre légal
 #### En cas de rupture par l'employeur :
 - Moins de 8 jours de présence : 24 heures
