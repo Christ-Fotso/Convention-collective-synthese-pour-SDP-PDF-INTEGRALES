@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Loader } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
@@ -30,12 +30,12 @@ export default function Chat({ params }: { params: { id: string } }) {
   const [currentSubcategory, setCurrentSubcategory] = useState<Subcategory | null>(null);
   const { toast } = useToast();
 
-  const { data: conventions = [] } = useQuery({
+  const { data: conventions, isLoading: isLoadingConventions } = useQuery({
     queryKey: ['/api/conventions'],
     queryFn: getConventions,
   });
 
-  const convention = conventions.find(c => c.id === params.id);
+  const convention = conventions?.find(c => c.id === params.id);
 
   const createSourceMutation = useMutation({
     mutationFn: createChatPDFSource,
@@ -63,10 +63,6 @@ export default function Chat({ params }: { params: { id: string } }) {
     }
   });
 
-  const deleteSourceMutation = useMutation({
-    mutationFn: deleteChatPDFSource
-  });
-
   useEffect(() => {
     if (convention) {
       createSourceMutation.mutate(convention.url);
@@ -91,6 +87,7 @@ export default function Chat({ params }: { params: { id: string } }) {
       return;
     }
 
+    // Clear messages and show loading state
     setMessages([
       { role: 'user', content: `${category.name} > ${subcategory.name}` },
       { role: 'assistant', content: '' }
@@ -111,6 +108,22 @@ export default function Chat({ params }: { params: { id: string } }) {
       { role: 'assistant', content: response.content }
     ]);
   };
+
+  // Loading state for the entire page
+  if (isLoadingConventions || createSourceMutation.isLoading) {
+    return (
+      <div className="container mx-auto py-8 px-4">
+        <div className="flex items-center gap-4 mb-8">
+          <Skeleton className="h-10 w-32" />
+          <Skeleton className="h-8 w-96" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
+          <Skeleton className="h-[600px]" />
+          <Skeleton className="h-[600px]" />
+        </div>
+      </div>
+    );
+  }
 
   if (!convention) {
     return (
@@ -142,17 +155,23 @@ export default function Chat({ params }: { params: { id: string } }) {
         <CategoryMenu 
           categories={CATEGORIES}
           onSelectSubcategory={handleSelectSubcategory}
-          isLoading={chatMutation.isLoading}
+          isLoading={chatMutation.isPending}
         />
 
         <Card className="p-6">
-          {chatMutation.isLoading ? (
+          {chatMutation.isPending ? (
             <div className="space-y-6">
               <Skeleton className="h-6 w-1/3" />
               <div className="space-y-4">
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-5/6" />
                 <Skeleton className="h-4 w-4/6" />
+              </div>
+              <div className="flex items-center justify-center mt-8">
+                <div className="flex flex-col items-center gap-3">
+                  <Loader className="h-8 w-8 animate-spin text-primary" />
+                  <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
+                </div>
               </div>
             </div>
           ) : messages.length > 0 ? (
