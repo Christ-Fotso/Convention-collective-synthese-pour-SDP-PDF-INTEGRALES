@@ -38,14 +38,14 @@ export default function Home() {
             className="h-10"
           />
 
-          <ScrollArea className="h-[600px]">
+          <ScrollArea className="h-[400px]">
             <CommandEmpty>Aucune convention trouvée.</CommandEmpty>
             <CommandGroup>
               {filteredConventions.map((convention) => (
                 <CommandItem
                   key={convention.id}
                   onSelect={() => navigate(`/chat/${convention.id}`)}
-                  className="cursor-pointer hover:bg-muted py-3"
+                  className="cursor-pointer hover:bg-green-100 dark:hover:bg-green-900/20 bg-green-50/50 dark:bg-green-900/10 my-1 rounded-md py-3"
                 >
                   <div className="flex flex-col gap-1">
                     <div className="text-base font-medium">
