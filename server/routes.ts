@@ -68,7 +68,7 @@ export function registerRoutes(app: Express): Server {
         const perplexityMessages = [];
 
         if (routing.systemPrompt && convention.length > 0) {
-          const conventionContext = `Convention collective: IDCC ${convention[0].id} - ${convention[0].name}`;
+          const conventionContext = `Convention collective analysée: IDCC ${convention[0].id} - ${convention[0].name}\n\nConsignes spécifiques: Cette analyse doit porter UNIQUEMENT sur la convention collective ${convention[0].id} (${convention[0].name}). Ne faites référence à aucune autre convention collective.`;
           perplexityMessages.push({
             role: 'system',
             content: `${conventionContext}\n\n${routing.systemPrompt}`
