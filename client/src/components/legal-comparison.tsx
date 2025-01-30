@@ -8,6 +8,17 @@ interface LegalComparisonProps {
 
 const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
   'conges': {
+    'cet': `### Comparaison avec le cadre légal
+
+**Important :** La loi ne prévoit pas de dispositions spécifiques concernant le Compte Épargne Temps (CET). Sa mise en place est uniquement possible par :
+- Une convention collective
+- Un accord d'entreprise
+- Un accord de branche
+
+Le CET n'est donc pas un droit légal et dépend entièrement des dispositions conventionnelles. Sans accord collectif le prévoyant, il n'est pas possible de mettre en place un CET dans l'entreprise.
+
+Les modalités de fonctionnement (alimentation, utilisation, liquidation) sont définies exclusivement par l'accord collectif qui le met en place.`,
+
     'conges-payes': `### Comparaison avec le cadre légal
 
 #### Période d'acquisition et durée
@@ -32,6 +43,13 @@ const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
 - Ordre des départs tenant compte de la situation familiale
 
 **Note :** La convention collective peut prévoir des dispositions plus favorables sur tous ces points.`,
+    'evenement-familial': `### Comparaison avec le cadre légal
+
+1. Extraire exactement tous les congés prévus pour :
+   - Mariage/PACS
+   - Naissance/Adoption
+   - Décès
+   - Autres événements mentionnés`
   },
   'embauche': {
     'periode-essai': `### Comparaison avec le cadre légal
