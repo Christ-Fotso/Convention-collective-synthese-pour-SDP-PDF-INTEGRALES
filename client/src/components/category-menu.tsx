@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { type Category, type Subcategory } from '@/types';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
@@ -14,12 +14,14 @@ import { Card } from "@/components/ui/card";
 interface CategoryMenuProps {
   categories: Category[];
   onSelectSubcategory: (category: Category, subcategory: Subcategory) => void;
+  isLoading?: boolean;
 }
 
-export function CategoryMenu({ categories, onSelectSubcategory }: CategoryMenuProps) {
+export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: CategoryMenuProps) {
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 
   const toggleCategory = (categoryId: string) => {
+    if (isLoading) return;
     setExpandedCategories(prev => 
       prev.includes(categoryId)
         ? prev.filter(id => id !== categoryId)
@@ -28,7 +30,7 @@ export function CategoryMenu({ categories, onSelectSubcategory }: CategoryMenuPr
   };
 
   return (
-    <Card className="p-4">
+    <Card className={`p-4 ${isLoading ? 'opacity-50' : ''}`}>
       <h2 className="text-lg font-semibold mb-4">Catégories</h2>
       <ScrollArea className="h-[600px] pr-4">
         <Accordion type="multiple" value={expandedCategories}>
@@ -37,6 +39,7 @@ export function CategoryMenu({ categories, onSelectSubcategory }: CategoryMenuPr
               <AccordionTrigger 
                 onClick={() => toggleCategory(category.id)}
                 className="hover:no-underline"
+                disabled={isLoading}
               >
                 <span className="text-base font-medium">{category.name}</span>
               </AccordionTrigger>
@@ -48,6 +51,7 @@ export function CategoryMenu({ categories, onSelectSubcategory }: CategoryMenuPr
                       variant="ghost"
                       className="justify-start h-auto py-2 px-4 text-sm font-normal"
                       onClick={() => onSelectSubcategory(category, subcategory)}
+                      disabled={isLoading}
                     >
                       <ChevronRight className="h-4 w-4 mr-2" />
                       {subcategory.name}

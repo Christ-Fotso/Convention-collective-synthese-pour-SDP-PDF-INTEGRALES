@@ -12,6 +12,7 @@ import { PREDEFINED_PROMPTS } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface ChatMessageParams {
   sourceId: string;
@@ -90,6 +91,11 @@ export default function Chat({ params }: { params: { id: string } }) {
       return;
     }
 
+    setMessages([
+      { role: 'user', content: `${category.name} > ${subcategory.name}` },
+      { role: 'assistant', content: '' }
+    ]);
+
     const chatParams: ChatMessageParams = {
       sourceId,
       messages: [{ role: 'user', content: prompt }],
@@ -136,10 +142,20 @@ export default function Chat({ params }: { params: { id: string } }) {
         <CategoryMenu 
           categories={CATEGORIES}
           onSelectSubcategory={handleSelectSubcategory}
+          isLoading={chatMutation.isLoading}
         />
 
         <Card className="p-6">
-          {messages.length > 0 ? (
+          {chatMutation.isLoading ? (
+            <div className="space-y-6">
+              <Skeleton className="h-6 w-1/3" />
+              <div className="space-y-4">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+                <Skeleton className="h-4 w-4/6" />
+              </div>
+            </div>
+          ) : messages.length > 0 ? (
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
