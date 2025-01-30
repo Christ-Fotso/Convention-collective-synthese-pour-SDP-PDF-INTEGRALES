@@ -13,6 +13,13 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
+interface ChatMessageParams {
+  sourceId: string;
+  messages: Message[];
+  category: string;
+  subcategory?: string;
+}
+
 export default function Chat({ params }: { params: { id: string } }) {
   const [, navigate] = useLocation();
   const [sourceId, setSourceId] = useState<string | null>(null);
@@ -82,11 +89,14 @@ export default function Chat({ params }: { params: { id: string } }) {
       return;
     }
 
-    const response = await chatMutation.mutateAsync({
+    const chatParams: ChatMessageParams = {
       sourceId,
       messages: [{ role: 'user', content: prompt }],
-      referenceSources: false
-    });
+      category: category.id,
+      subcategory: subcategory.id
+    };
+
+    const response = await chatMutation.mutateAsync(chatParams);
 
     setMessages([
       { role: 'user', content: `${category.name} > ${subcategory.name}` },

@@ -4,6 +4,8 @@ import { createServer, type Server } from "http";
 import { db } from "@db";
 import { conventions } from "@db/schema";
 import { eq } from "drizzle-orm";
+import { queryPerplexity } from "./services/perplexity";
+import { shouldUsePerplexity } from "./config/ai-routing";
 
 const CHATPDF_API_BASE = "https://api.chatpdf.com";
 const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
@@ -25,7 +27,6 @@ export function registerRoutes(app: Express): Server {
   apiRouter.post("/chat/source", async (req, res) => {
     try {
       console.log('Creating ChatPDF source for URL:', req.body.url);
-
       const response = await axios.post(
         `${CHATPDF_API_BASE}/v1/sources/add-url`,
         { url: req.body.url },
@@ -36,7 +37,6 @@ export function registerRoutes(app: Express): Server {
           },
         }
       );
-
       console.log('ChatPDF source created:', response.data);
       res.json(response.data);
     } catch (error: any) {
@@ -48,36 +48,47 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Send chat message
+  // Modified chat message endpoint to support both AIs
   apiRouter.post("/chat/message", async (req, res) => {
     try {
-      console.log('Sending chat message:', { 
-        sourceId: req.body.sourceId,
-        message: req.body.messages[req.body.messages.length - 1].content.substring(0, 100) + '...'
-      });
+      const { sourceId, messages, category, subcategory } = req.body;
+      const routing = shouldUsePerplexity(category, subcategory);
 
-      const chatRequest = {
-        sourceId: req.body.sourceId,
-        messages: req.body.messages,
-        config: {
-          temperature: 0.1,
-          contextWindow: 8192,
+      if (routing.usePerplexity) {
+        console.log('Using Perplexity for category:', category, subcategory);
+        const perplexityMessages = [];
+
+        if (routing.systemPrompt) {
+          perplexityMessages.push({
+            role: 'system',
+            content: routing.systemPrompt
+          });
         }
-      };
 
-      const response = await axios.post(
-        `${CHATPDF_API_BASE}/v1/chats/message`,
-        chatRequest,
-        {
-          headers: {
-            "x-api-key": CHATPDF_API_KEY,
-            "Content-Type": "application/json",
+        perplexityMessages.push(...messages);
+        const response = await queryPerplexity(perplexityMessages);
+        res.json(response);
+      } else {
+        console.log('Using ChatPDF for category:', category, subcategory);
+        const response = await axios.post(
+          `${CHATPDF_API_BASE}/v1/chats/message`,
+          {
+            sourceId,
+            messages,
+            config: {
+              temperature: 0.1,
+              contextWindow: 8192,
+            }
           },
-        }
-      );
-
-      console.log('Chat response received, length:', response.data.content.length);
-      res.json(response.data);
+          {
+            headers: {
+              "x-api-key": CHATPDF_API_KEY,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        res.json(response.data);
+      }
     } catch (error: any) {
       console.error('Chat message error:', error.response?.data || error.message);
       res.status(500).json({ 
@@ -91,7 +102,6 @@ export function registerRoutes(app: Express): Server {
   apiRouter.post("/chat/source/delete", async (req, res) => {
     try {
       console.log('Deleting ChatPDF sources:', req.body.sources);
-
       await axios.post(
         `${CHATPDF_API_BASE}/v1/sources/delete`,
         { sources: req.body.sources },
@@ -102,7 +112,6 @@ export function registerRoutes(app: Express): Server {
           },
         }
       );
-
       console.log('ChatPDF sources deleted');
       res.status(200).send();
     } catch (error: any) {
@@ -115,6 +124,5 @@ export function registerRoutes(app: Express): Server {
   });
 
   app.use("/api", apiRouter);
-
   return createServer(app);
 }

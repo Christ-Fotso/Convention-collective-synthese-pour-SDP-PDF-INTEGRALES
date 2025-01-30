@@ -13,8 +13,13 @@ export async function createChatPDFSource(url: string): Promise<string> {
   return data.sourceId;
 }
 
-export async function sendChatMessage(chatRequest: ChatRequestBody): Promise<ChatResponse> {
-  const { data } = await axios.post(`${API_BASE}/chat/message`, chatRequest);
+export interface SendChatMessageParams extends ChatRequestBody {
+  category: string;
+  subcategory?: string;
+}
+
+export async function sendChatMessage(params: SendChatMessageParams): Promise<ChatResponse> {
+  const { data } = await axios.post(`${API_BASE}/chat/message`, params);
   return data;
 }
 
