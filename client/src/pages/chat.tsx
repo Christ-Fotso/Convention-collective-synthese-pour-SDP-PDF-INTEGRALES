@@ -14,14 +14,6 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { convertJsonToMarkdown } from '@/lib/markdown-converter';
 
 interface ChatMessageParams {
@@ -182,12 +174,9 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Alert className="mb-6 bg-transparent border-warning/20 text-warning shadow-sm">
-        <AlertTriangle className="h-4 w-4" />
-        <AlertDescription>
-          Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
-        </AlertDescription>
-      </Alert>
+      <p className="mb-6 text-warning">
+        Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
+      </p>
 
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
