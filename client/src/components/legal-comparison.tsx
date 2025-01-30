@@ -75,7 +75,7 @@ Les durées d'indemnisation augmentent de 10 jours par période de 5 ans d'ancie
 
 **Note :** En cas de dispositions plus favorables dans la convention collective, celles-ci s'appliquent en priorité.`,
     'accident-travail': `### Comparaison avec le cadre légal
-#### Conditions d'indemnisation :
+#### Conditions d'indemnisation
 - Ancienneté minimale : 1 an
 - Pas de délai de carence
 - Justificatifs nécessaires :
@@ -103,7 +103,18 @@ Les durées d'indemnisation augmentent de 10 jours par période de 5 ans d'ancie
 - 26 à 30 ans : 80 jours à 90% + 80 jours à 66,66%
 - 31 ans et plus : 90 jours à 90% + 90 jours à 66,66%
 
-**Note :** En cas de dispositions plus favorables dans la convention collective, celles-ci s'appliquent en priorité.`
+**Note :** En cas de dispositions plus favorables dans la convention collective, celles-ci s'appliquent en priorité.`,
+    'maternite-paternite': `### Comparaison avec le cadre légal
+
+**Important :** La loi ne prévoit aucun maintien de salaire obligatoire pendant les congés de maternité et de paternité. Seules les indemnités journalières de la Sécurité sociale sont prévues par la loi.
+
+Un maintien de salaire pendant ces périodes ne peut être prévu que par :
+- La convention collective applicable
+- Un accord d'entreprise
+- Le contrat de travail
+- Un usage d'entreprise
+
+Il est donc essentiel de consulter la convention collective pour connaître les éventuelles dispositions plus favorables concernant le maintien de salaire pendant les congés de maternité et de paternité.`
   },
   'depart': {
     'indemnite-licenciement': `### Comparaison avec le cadre légal
