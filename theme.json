@@ -4,5 +4,6 @@
   "appearance": "light",
   "radius": 0.5,
   "font": "Figtree",
-  "background": "hsl(0, 0%, 100%)"
+  "background": "hsl(0, 0%, 100%)",
+  "muted": "hsl(102, 100%, 98%)"
 }
