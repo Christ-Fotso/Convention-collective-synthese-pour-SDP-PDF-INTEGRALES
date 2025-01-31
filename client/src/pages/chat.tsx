@@ -95,7 +95,9 @@ export default function Chat({ params }: { params: { id: string } }) {
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { 
           role: 'assistant', 
-          content: '⚠️ Cette information n\'est pas disponible pour le moment. Notre équipe travaille à l\'intégration de ces données pour vous fournir une analyse complète prochainement.'
+          content: `⚠️ Cette information n'est pas disponible pour le moment.
+
+Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.`
         }
       ]);
       return;
@@ -232,13 +234,6 @@ export default function Chat({ params }: { params: { id: string } }) {
         </Dialog>
       </div>
 
-      <div className="flex items-start gap-2 mb-6 p-4 bg-warning/10 rounded-lg">
-        <span className="text-xl">⚠️</span>
-        <p className="text-[hsl(33,100%,50%)] text-sm">
-          Cette fonctionnalité est actuellement en version bêta. Notre modèle d'intelligence artificielle est en cours d'entraînement et d'amélioration continue. Les réponses peuvent parfois nécessiter des ajustements ou être incomplètes.
-        </p>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
         <CategoryMenu 
           categories={CATEGORIES}
@@ -264,32 +259,30 @@ export default function Chat({ params }: { params: { id: string } }) {
             </div>
           ) : messages.length > 0 ? (
             <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      table: ({ node, ...props }) => (
-                        <div className="overflow-x-auto">
-                          <table className="min-w-full border-collapse border border-border" {...props} />
-                        </div>
-                      ),
-                      thead: props => <thead className="bg-muted" {...props} />,
-                      th: props => <th className="border border-border p-2 text-left" {...props} />,
-                      td: props => <td className="border border-border p-2" {...props} />
-                    }}
-                  >
-                    {messages[1].content}
-                  </ReactMarkdown>
-                </div>
-                {currentCategory && currentSubcategory && (
-                  <LegalComparison 
-                    category={currentCategory} 
-                    subcategory={currentSubcategory} 
-                  />
-                )}
+              <h3 className="text-lg font-semibold">{messages[0].content}</h3>
+              <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    table: ({ node, ...props }) => (
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full border-collapse border border-border" {...props} />
+                      </div>
+                    ),
+                    thead: props => <thead className="bg-muted" {...props} />,
+                    th: props => <th className="border border-border p-2 text-left" {...props} />,
+                    td: props => <td className="border border-border p-2" {...props} />
+                  }}
+                >
+                  {messages[1].content}
+                </ReactMarkdown>
               </div>
+              {currentCategory && currentSubcategory && (
+                <LegalComparison 
+                  category={currentCategory} 
+                  subcategory={currentSubcategory} 
+                />
+              )}
             </div>
           ) : (
             <div className="text-center text-muted-foreground">
