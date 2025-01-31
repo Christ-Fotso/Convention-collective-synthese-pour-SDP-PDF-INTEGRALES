@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Search } from 'lucide-react';
 import { type Category, type Subcategory } from '@/types';
 import { Button } from "@/components/ui/button";
 import {
@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 interface CategoryMenuProps {
   categories: Category[];
@@ -18,6 +19,8 @@ interface CategoryMenuProps {
 
 export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: CategoryMenuProps) {
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleCategory = (categoryId: string) => {
     if (isLoading) return;
@@ -28,24 +31,70 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
     );
   };
 
-  // Mémoiser le tri des catégories
-  const sortedCategories = useMemo(() => {
+  // Mémoiser le tri et le filtrage des catégories
+  const filteredCategories = useMemo(() => {
     const priorityOrder = ['informations-generales', 'embauche', 'maintien-salaire', 'depart'];
-    return [...categories].sort((a, b) => {
-      const aIndex = priorityOrder.indexOf(a.id);
-      const bIndex = priorityOrder.indexOf(b.id);
+    const normalizedQuery = searchQuery.toLowerCase().trim();
 
-      if (aIndex === -1 && bIndex === -1) return 0;
-      if (aIndex === -1) return 1;
-      if (bIndex === -1) return -1;
-      return aIndex - bIndex;
-    });
-  }, [categories]);
+    if (!normalizedQuery) {
+      return [...categories].sort((a, b) => {
+        const aIndex = priorityOrder.indexOf(a.id);
+        const bIndex = priorityOrder.indexOf(b.id);
+
+        if (aIndex === -1 && bIndex === -1) return 0;
+        if (aIndex === -1) return 1;
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+      });
+    }
+
+    return [...categories]
+      .map(category => ({
+        ...category,
+        subcategories: category.subcategories.filter(sub =>
+          sub.name.toLowerCase().includes(normalizedQuery)
+        )
+      }))
+      .filter(category =>
+        category.name.toLowerCase().includes(normalizedQuery) ||
+        category.subcategories.length > 0
+      )
+      .sort((a, b) => {
+        const aIndex = priorityOrder.indexOf(a.id);
+        const bIndex = priorityOrder.indexOf(b.id);
+
+        if (aIndex === -1 && bIndex === -1) return 0;
+        if (aIndex === -1) return 1;
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+      });
+  }, [categories, searchQuery]);
 
   return (
     <Card className={`h-full ${isLoading ? 'opacity-50' : ''}`}>
       <div className="p-4 border-b bg-primary/10">
-        <h2 className="text-lg font-semibold">Catégories</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Catégories</h2>
+          <div className="flex items-center gap-2">
+            {isSearchOpen && (
+              <Input
+                type="text"
+                placeholder="Rechercher..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-8 w-40 text-sm"
+              />
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="h-8 w-8 p-0"
+            >
+              <Search className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
       </div>
       <div className="p-4">
         <Accordion 
@@ -53,7 +102,7 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
           value={expandedCategories}
           className="space-y-2"
         >
-          {sortedCategories.map(category => (
+          {filteredCategories.map(category => (
             <AccordionItem 
               key={category.id} 
               value={category.id}
