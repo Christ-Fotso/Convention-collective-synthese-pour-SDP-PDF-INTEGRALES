@@ -89,9 +89,8 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentSubcategory(subcategory);
 
     // Check if content is not available for these specific categories
-    if ((category.id === 'classification' && subcategory.id === 'classification-details') ||
-        (category.id === 'remuneration' && subcategory.id === 'grille')) {
-      setMessages([]); // Clear any existing messages
+    if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
+        (category.id === 'classification' && subcategory.id === 'classification-details')) {
       return;
     }
 
@@ -242,13 +241,11 @@ export default function Chat({ params }: { params: { id: string } }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
-        <div>
-          <CategoryMenu 
-            categories={CATEGORIES}
-            onSelectSubcategory={handleSelectSubcategory}
-            isLoading={chatMutation.isPending}
-          />
-        </div>
+        <CategoryMenu 
+          categories={CATEGORIES}
+          onSelectSubcategory={handleSelectSubcategory}
+          isLoading={chatMutation.isPending}
+        />
 
         <Card className="p-6">
           {chatMutation.isPending ? (
@@ -287,13 +284,14 @@ export default function Chat({ params }: { params: { id: string } }) {
                     {messages[1].content}
                   </ReactMarkdown>
                 </div>
+                {currentCategory && currentSubcategory && (
+                  <LegalComparison 
+                    category={currentCategory} 
+                    subcategory={currentSubcategory} 
+                  />
+                )}
               </div>
             </div>
-          ) : currentCategory && currentSubcategory ? (
-            <LegalComparison 
-              category={currentCategory} 
-              subcategory={currentSubcategory} 
-            />
           ) : (
             <div className="text-center text-muted-foreground">
               Sélectionnez une catégorie pour voir les informations correspondantes
