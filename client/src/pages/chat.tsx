@@ -204,10 +204,10 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="mb-8 p-4 bg-orange-50 border border-orange-200 rounded-lg shadow-sm dark:bg-orange-900/10 dark:border-orange-900/20">
+      <div className="mb-6 p-3 bg-orange-50 border border-orange-200 rounded-lg shadow-sm dark:bg-orange-900/10 dark:border-orange-900/20">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">⚠️</span>
-          <p className="text-orange-800 dark:text-orange-200">
+          <span className="text-xl">⚠️</span>
+          <p className="text-sm text-orange-800 dark:text-orange-200">
             Cette fonctionnalité est en version bêta. Certaines informations peuvent être incomplètes pendant que nous entraînons notre IA pour améliorer la qualité des réponses.
           </p>
         </div>
