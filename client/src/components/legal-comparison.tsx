@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { type Category, type Subcategory } from '@/types';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface LegalComparisonProps {
   category: Category;
@@ -35,6 +36,7 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
     <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
       <ReactMarkdown 
         className="prose prose-sm max-w-none dark:prose-invert"
+        remarkPlugins={[remarkGfm]}
         components={{
           table: ({ node, ...props }) => (
             <div className="overflow-x-auto my-4">
@@ -69,9 +71,6 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
       </ReactMarkdown>
     </div>
   );
-}, (prevProps, nextProps) => {
-  return prevProps.category.id === nextProps.category.id && 
-         prevProps.subcategory.id === nextProps.subcategory.id;
 });
 
 export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
