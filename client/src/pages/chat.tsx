@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { ArrowLeft, Loader, AlertTriangle, MessageCircle } from "lucide-react";
+import { ArrowLeft, Loader, MessageCircle } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
@@ -89,8 +89,10 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentSubcategory(subcategory);
 
     // Check if content is not available for these specific categories
-    if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
-        (category.id === 'classification' && subcategory.id === 'classification-details')) {
+    const isUnavailable = (category.id === 'remuneration' && subcategory.id === 'grille') ||
+                         (category.id === 'classification' && subcategory.id === 'classification-details');
+
+    if (isUnavailable) {
       setMessages([
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { 
@@ -196,6 +198,12 @@ export default function Chat({ params }: { params: { id: string } }) {
     );
   }
 
+  // Check if current category/subcategory should show comparison
+  const shouldShowComparison = !(
+    (currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille') ||
+    (currentCategory?.id === 'classification' && currentSubcategory?.id === 'classification-details')
+  );
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
@@ -275,7 +283,7 @@ export default function Chat({ params }: { params: { id: string } }) {
                   {messages[1].content}
                 </ReactMarkdown>
               </div>
-              {currentCategory && currentSubcategory && (
+              {shouldShowComparison && currentCategory && currentSubcategory && (
                 <LegalComparison 
                   category={currentCategory} 
                   subcategory={currentSubcategory} 
