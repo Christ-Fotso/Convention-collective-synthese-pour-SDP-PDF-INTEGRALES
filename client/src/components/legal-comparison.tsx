@@ -13,6 +13,7 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
 
   const comparison = LEGAL_COMPARISONS[category.id]?.[subcategory.id];
 
+  // Message spécial pour la grille et la classification si non disponibles
   if ((category.id === 'classification' && subcategory.id === 'classification-details') ||
       (category.id === 'remuneration' && subcategory.id === 'grille')) {
     console.log('Affichage du message spécial');
@@ -28,11 +29,13 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
     );
   }
 
+  // Pas de comparaison trouvée
   if (!comparison) {
     console.log('Pas de comparaison trouvée');
     return null;
   }
 
+  // Afficher la comparaison légale normale
   return (
     <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
       <ReactMarkdown 
@@ -53,9 +56,6 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
       </ReactMarkdown>
     </div>
   );
-}, (prevProps, nextProps) => {
-  return prevProps.category.id === nextProps.category.id && 
-         prevProps.subcategory.id === nextProps.subcategory.id;
 });
 
 export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
@@ -602,9 +602,10 @@ export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
 587:  * La convention collective
 588:  * La loi
 589:  * L'accord d'entreprise
-590:  * Le contrat de travail
+* Le contrat de travail
+606:
 
-592:**Note :** L'employeur doit vérifier systématiquement les dispositions de la conventioncollective qui peuvent prévoir des majorations ou des compensations plus avantageuses que le minimum légal.`,
+607:592:**Note :** L'employeur doit vérifier systématiquement les dispositions de la conventioncollective qui peuvent prévoir des majorations ou des compensations plus avantageuses que le minimum légal.`,
     'majoration-nuit': `### Comparaison avec le cadre légal
 
 595:#### 1. Définition légale du travail de nuit
