@@ -88,7 +88,6 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    // Check if content is not available for these specific categories
     const isUnavailable = (category.id === 'remuneration' && subcategory.id === 'grille') ||
                          (category.id === 'classification' && subcategory.id === 'classification-details');
 
@@ -198,7 +197,6 @@ export default function Chat({ params }: { params: { id: string } }) {
     );
   }
 
-  // Check if current category/subcategory should show comparison
   const shouldShowComparison = !(
     (currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille') ||
     (currentCategory?.id === 'classification' && currentSubcategory?.id === 'classification-details')
@@ -240,62 +238,66 @@ export default function Chat({ params }: { params: { id: string } }) {
         </Dialog>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8">
-        <CategoryMenu 
-          categories={CATEGORIES}
-          onSelectSubcategory={handleSelectSubcategory}
-          isLoading={chatMutation.isPending}
-        />
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="md:w-[300px] shrink-0">
+          <CategoryMenu 
+            categories={CATEGORIES}
+            onSelectSubcategory={handleSelectSubcategory}
+            isLoading={chatMutation.isPending}
+          />
+        </div>
 
-        <Card className="p-6">
-          {chatMutation.isPending ? (
-            <div className="space-y-6">
-              <Skeleton className="h-6 w-1/3" />
-              <div className="space-y-4">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-5/6" />
-                <Skeleton className="h-4 w-4/6" />
-              </div>
-              <div className="flex items-center justify-center mt-8">
-                <div className="flex flex-col items-center gap-3">
-                  <Loader className="h-8 w-8 animate-spin text-primary" />
-                  <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
+        <div className="flex-1">
+          <Card className="p-6">
+            {chatMutation.isPending ? (
+              <div className="space-y-6">
+                <Skeleton className="h-6 w-1/3" />
+                <div className="space-y-4">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-5/6" />
+                  <Skeleton className="h-4 w-4/6" />
+                </div>
+                <div className="flex items-center justify-center mt-8">
+                  <div className="flex flex-col items-center gap-3">
+                    <Loader className="h-8 w-8 animate-spin text-primary" />
+                    <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : messages.length > 0 ? (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-              <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    table: ({ node, ...props }) => (
-                      <div className="overflow-x-auto">
-                        <table className="min-w-full border-collapse border border-border" {...props} />
-                      </div>
-                    ),
-                    thead: props => <thead className="bg-muted" {...props} />,
-                    th: props => <th className="border border-border p-2 text-left" {...props} />,
-                    td: props => <td className="border border-border p-2" {...props} />
-                  }}
-                >
-                  {messages[1].content}
-                </ReactMarkdown>
+            ) : messages.length > 0 ? (
+              <div className="space-y-6">
+                <h3 className="text-lg font-semibold">{messages[0].content}</h3>
+                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      table: ({ node, ...props }) => (
+                        <div className="overflow-x-auto">
+                          <table className="min-w-full border-collapse border border-border" {...props} />
+                        </div>
+                      ),
+                      thead: props => <thead className="bg-muted" {...props} />,
+                      th: props => <th className="border border-border p-2 text-left" {...props} />,
+                      td: props => <td className="border border-border p-2" {...props} />
+                    }}
+                  >
+                    {messages[1].content}
+                  </ReactMarkdown>
+                </div>
+                {shouldShowComparison && currentCategory && currentSubcategory && (
+                  <LegalComparison 
+                    category={currentCategory} 
+                    subcategory={currentSubcategory} 
+                  />
+                )}
               </div>
-              {shouldShowComparison && currentCategory && currentSubcategory && (
-                <LegalComparison 
-                  category={currentCategory} 
-                  subcategory={currentSubcategory} 
-                />
-              )}
-            </div>
-          ) : (
-            <div className="text-center text-muted-foreground">
-              Sélectionnez une catégorie pour voir les informations correspondantes
-            </div>
-          )}
-        </Card>
+            ) : (
+              <div className="text-center text-muted-foreground">
+                Sélectionnez une catégorie pour voir les informations correspondantes
+              </div>
+            )}
+          </Card>
+        </div>
       </div>
     </div>
   );
