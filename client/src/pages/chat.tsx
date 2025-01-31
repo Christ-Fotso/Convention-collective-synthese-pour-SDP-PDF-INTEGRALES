@@ -239,7 +239,7 @@ export default function Chat({ params }: { params: { id: string } }) {
       </div>
 
       <div className="flex flex-col md:flex-row gap-8">
-        <div className="md:w-[300px] shrink-0">
+        <div className="w-full md:min-w-[300px] md:max-w-[400px]">
           <CategoryMenu 
             categories={CATEGORIES}
             onSelectSubcategory={handleSelectSubcategory}
