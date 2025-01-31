@@ -34,16 +34,35 @@ export const LegalComparison = memo(function LegalComparison({ category, subcate
   return (
     <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm dark:bg-green-900/10 dark:border-green-900/20">
       <ReactMarkdown 
-        className="prose prose-sm dark:prose-invert max-w-none"
+        className="prose prose-sm max-w-none dark:prose-invert"
         components={{
           table: ({ node, ...props }) => (
-            <div className="overflow-x-auto">
-              <table className="min-w-full border-collapse border border-gray-300" {...props} />
+            <div className="overflow-x-auto my-4">
+              <table className="min-w-full border-collapse border border-border" {...props} />
             </div>
           ),
-          thead: props => <thead className="bg-gray-100" {...props} />,
-          th: props => <th className="border border-gray-300 p-2 text-left" {...props} />,
-          td: props => <td className="border border-gray-300 p-2" {...props} />
+          thead: props => <thead className="bg-muted/50" {...props} />,
+          th: props => (
+            <th 
+              className="border border-border p-3 text-left text-sm font-medium text-foreground"
+              {...props}
+            />
+          ),
+          td: props => (
+            <td 
+              className="border border-border p-3 text-sm"
+              {...props}
+            />
+          ),
+          p: ({ children }) => (
+            <p className="my-2">{children}</p>
+          ),
+          ul: ({ children }) => (
+            <ul className="my-2 list-disc pl-6">{children}</ul>
+          ),
+          li: ({ children }) => (
+            <li className="my-1">{children}</li>
+          )
         }}
       >
         {comparison}
@@ -766,7 +785,7 @@ La loi impose uniquement :
 - Possibilité de dispositions plus favorables par accord de branche
     
 
-#### 3. STAGE
+#### 3.STAGE
 **Gratification minimale légale :**
 - Obligatoire si durée > 2 mois (consécutifs ou non)
 - Montant horaire : 15% du plafond horaire de la sécurité sociale
