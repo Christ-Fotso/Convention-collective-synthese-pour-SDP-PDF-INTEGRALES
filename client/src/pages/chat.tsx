@@ -204,13 +204,21 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
+      <div className="mb-8 p-4 bg-orange-50 border border-orange-200 rounded-lg shadow-sm dark:bg-orange-900/10 dark:border-orange-900/20">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">⚠️</span>
+          <p className="text-orange-800 dark:text-orange-200">
+            Cette fonctionnalité est en version bêta. Certaines informations peuvent être incomplètes pendant que nous entraînons notre IA pour améliorer la qualité des réponses.
+          </p>
+        </div>
+      </div>
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Retour à la liste
         </Button>
         <h1 className="text-2xl font-bold">
-          IDCC {convention.id} - {convention.name}
+          IDCC {convention?.id} - {convention?.name}
         </h1>
         <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
           <DialogTrigger asChild>
