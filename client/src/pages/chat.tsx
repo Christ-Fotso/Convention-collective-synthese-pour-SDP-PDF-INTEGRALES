@@ -96,7 +96,7 @@ export default function Chat({ params }: { params: { id: string } }) {
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { 
           role: 'assistant', 
-          content: `Cette information n'est pas disponible pour le moment.\n\nNotre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.`
+          content: `⚠️ Cette information n'est pas disponible pour le moment.\n\nNotre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.`
         }
       ]);
       return;
