@@ -88,10 +88,16 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    // Redirect to unavailable.html for specific categories
+    // Check if content is not available for these specific categories
     if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
         (category.id === 'classification' && subcategory.id === 'classification-details')) {
-      window.open('/unavailable.html', '_blank');
+      setMessages([
+        { role: 'user', content: `${category.name} > ${subcategory.name}` },
+        { 
+          role: 'assistant', 
+          content: '⚠️ Cette information n\'est pas disponible pour le moment. Notre équipe travaille à l\'intégration de ces données pour vous fournir une analyse complète prochainement.'
+        }
+      ]);
       return;
     }
 
