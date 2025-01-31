@@ -287,6 +287,12 @@ export default function Chat({ params }: { params: { id: string } }) {
                     {messages[1].content}
                   </ReactMarkdown>
                 </div>
+                {currentCategory && currentSubcategory && !messages[1].content && (
+                  <LegalComparison 
+                    category={currentCategory} 
+                    subcategory={currentSubcategory} 
+                  />
+                )}
               </div>
             </div>
           ) : currentCategory && currentSubcategory ? (
