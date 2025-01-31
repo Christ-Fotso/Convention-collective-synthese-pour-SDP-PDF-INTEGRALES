@@ -88,17 +88,16 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    // Check if content is not available for these specific categories
+    // Redirect to unavailable.html for specific categories
     if ((category.id === 'remuneration' && subcategory.id === 'grille') ||
         (category.id === 'classification' && subcategory.id === 'classification-details')) {
+      window.open('/unavailable.html', '_blank');
       return;
     }
 
-    // Trouver le prompt approprié
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                   PREDEFINED_PROMPTS[category.id]?.['default'];
 
-    // Si pas de prompt trouvé, afficher un message d'erreur
     if (!prompt) {
       toast({
         variant: "destructive",
@@ -108,7 +107,6 @@ export default function Chat({ params }: { params: { id: string } }) {
       return;
     }
 
-    // Initialiser les messages avec le titre
     setMessages([
       { role: 'user', content: `${category.name} > ${subcategory.name}` },
       { role: 'assistant', content: '' }
@@ -124,16 +122,11 @@ export default function Chat({ params }: { params: { id: string } }) {
 
     try {
       const response = await chatMutation.mutateAsync(chatParams);
-
-      // Si la réponse est vide (cas "RAS"), on ne met pas à jour les messages
       if (!response.content) {
         setMessages([]);
         return;
       }
-
-      // Convertir le contenu en Markdown si nécessaire
       const formattedContent = convertJsonToMarkdown(response.content);
-
       setMessages([
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { role: 'assistant', content: formattedContent }
