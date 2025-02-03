@@ -88,8 +88,8 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    // Only block grille for now, allow classification
-    const isUnavailable = (category.id === 'remuneration' && subcategory.id === 'grille');
+    const isUnavailable = (category.id === 'remuneration' && subcategory.id === 'grille') ||
+                         (category.id === 'classification' && subcategory.id === 'classification-details');
 
     if (isUnavailable) {
       setMessages([
@@ -197,7 +197,10 @@ export default function Chat({ params }: { params: { id: string } }) {
     );
   }
 
-  const shouldShowComparison = !(currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille');
+  const shouldShowComparison = !(
+    (currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille') ||
+    (currentCategory?.id === 'classification' && currentSubcategory?.id === 'classification-details')
+  );
 
   return (
     <div className="container mx-auto py-8 px-4">

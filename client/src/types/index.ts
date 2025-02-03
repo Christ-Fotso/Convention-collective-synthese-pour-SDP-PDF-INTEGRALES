@@ -37,7 +37,7 @@ export interface Category {
 export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = {
   'conges': {
     'cet': `Analyse la convention collective pour récupérer toutes les informations relatives au Compte Épargne Temps (CET).
-    
+
 1. Extraction des informations sur la mise en place :
    - Modalités d'ouverture du CET
    - Salariés bénéficiaires
@@ -499,23 +499,45 @@ Si la convention collective ne contient aucune disposition sur les congés payé
 Si la convention collective ne contient aucune disposition sur les congés pour événements familiaux : indiquer "RAS"`
   },
   'classification': {
-    'classification-details': `Vous êtes un expert en analyse des conventions collectives. Votre tâche est d'extraire et de présenter TOUTES les classifications de la convention collective.
+    'classification-details': `Récupère toutes les informations concernant les classifications dans la convention collective.
 
-Format de réponse attendu :
-| Classification/Niveau | Description détaillée |
-|---------------------|---------------------|
-| [Classification exacte avec son coefficient] | [Description complète des compétences, responsabilités et conditions] |
+1. Extraire EXACTEMENT :
+   A) La structure générale de classification :
+      - Tous les niveaux/échelons
+      - Coefficients ou indices associés
+      - Catégories professionnelles
+      - Filières si existantes
 
-Instructions importantes :
-- Lister TOUTES les classifications du plus bas au plus haut niveau
-- Pour chaque classification, inclure dans la description :
-  • Les compétences requises
-  • Le niveau de responsabilité
-  • L'autonomie
-  • La formation/expérience nécessaire
-  • Les conditions particulières si existantes
+   B) Pour chaque niveau/position :
+      - Description exacte du poste
+      - Critères de classification
+      - Compétences requises
+      - Niveaux de responsabilité
+      - TOUT commentaire associé
 
-RÈGLE ABSOLUE : Ne jamais mentionner les sources d'information ou les documents consultés.`
+   C) Modalités de mise en œuvre :
+      - Règles de positionnement
+      - Évolution/progression
+      - Périodes probatoires si mentionnées
+      - Toute note explicative
+
+2. Format de présentation :
+   COPIER-COLLER STRICT :
+   - Tableaux tels que présentés dans la CCN
+   - Grilles de classification complètes
+   - Définitions de postes
+   - Notes et commentaires, même mineurs
+   - TOUTE annexe liée aux classifications
+
+3. Références à inclure :
+   - Numéros d'articles exacts
+   - Renvois aux annexes
+   - Numéros de page si mentionnés
+   - Dates des avenants modificatifs
+
+Ne rien reformuler, ne rien réorganiser : présenter les informations telles qu'elles apparaissent dans le texte.
+
+Si la convention collective ne contient aucune disposition sur les classifications : indiquer "RAS"`
   },
   'cotisations': {
     'prevoyance': `Récupère toutes les informations relatives aux cotisations pour la prévoyance dans la convention collective.
@@ -620,7 +642,7 @@ Si la convention collective ne contient aucune disposition sur la retraite : ind
    - Conservation de toutes les notes
    - Reprise de tous les commentaires
 
-Si la convention collective ne contient aucune disposition sur la mutuelle : indiquer "RAS"`
+Si la convention collective ne contient aucune disposition sur la mutuelle : indiquer "RAS"`,
   },
   'maintien-salaire': {
     'accident-travail': `Récupère toutes les informations concernant le maintien du salaire en cas d'accident du travail dans la convention collective.
@@ -749,7 +771,7 @@ Si la convention collective ne contient aucune disposition sur le maintien de sa
    - Référence précise des articles
    - Report de tous les cas particuliers
 
-Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas de maternité/paternité : indiquer "RAS"`
+Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas de maternité/paternité : indiquer "RAS"`,
   },
   'remuneration': {
     'apprenti': `Analyse la convention collective pour récupérer toutes les dispositions concernant la rémunération des alternants et stagiaires.
@@ -952,7 +974,7 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
    B) Taux de majoration :
       - Pourcentage exact
       - Montant forfaitaire si prévu
-      - Base decalcul de la majoration
+      - Base de calcul de la majoration
       - Assiette de calcul
 
    C) Conditions d'application :
@@ -964,7 +986,7 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
    D) Modalités spécifiques :
       - Repos compensateur si prévu
       - Cumul avec d'autres majorations
-            - Règles de récupération
+      - Règles de récupération
       - Délais de prévenance
 
    E) Spécificités :
@@ -1019,7 +1041,7 @@ Si la convention collective ne contient aucune disposition sur la majoration des
    - Conservation de toutes les notes
    - Maintien de tous les cas particuliers
 
-Si la convention collective ne contient aucune disposition sur la majoration du travail de nuit : indiquer "RAS"`
+Si la convention collective ne contient aucune disposition sur la majoration du travail de nuit : indiquer "RAS"`,
   },
   'depart': {
     'indemnite-licenciement': `Récupère toutes les informations concernant l'indemnité de licenciement dans la convention collective.
