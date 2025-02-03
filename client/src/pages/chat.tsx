@@ -96,23 +96,7 @@ export default function Chat({ params }: { params: { id: string } }) {
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { 
           role: 'assistant', 
-          content: (
-            <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm dark:bg-yellow-900/10 dark:border-yellow-900/20">
-              <div className="flex items-center space-x-3">
-                <svg className="w-6 h-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-                    Cette information n'est pas disponible pour le moment. Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.
-                  </p>
-                  <p className="text-sm text-yellow-700 dark:text-yellow-300">
-                    En attendant, n'hésitez pas à cliquer sur "Poser une question sur la CCN" en haut de la page pour obtenir cette information.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )
+          content: 'unavailable'  // Special marker for unavailable content
         }
       ]);
       return;
@@ -291,23 +275,41 @@ export default function Chat({ params }: { params: { id: string } }) {
             ) : messages.length > 0 ? (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      table: ({ node, ...props }) => (
-                        <div className="overflow-x-auto">
-                          <table className="min-w-full border-collapse border border-border" {...props} />
-                        </div>
-                      ),
-                      thead: props => <thead className="bg-muted" {...props} />,
-                      th: props => <th className="border border-border p-2 text-left" {...props} />,
-                      td: props => <td className="border border-border p-2" {...props} />
-                    }}
-                  >
-                    {messages[1].content}
-                  </ReactMarkdown>
-                </div>
+                {messages[1].content === 'unavailable' ? (
+                  <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm dark:bg-yellow-900/10 dark:border-yellow-900/20">
+                    <div className="flex items-center space-x-3">
+                      <svg className="w-6 h-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div className="space-y-2">
+                        <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                          Cette information n'est pas disponible pour le moment. Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.
+                        </p>
+                        <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                          En attendant, n'hésitez pas à cliquer sur "Poser une question sur la CCN" en haut de la page pour obtenir cette information.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        table: ({ node, ...props }) => (
+                          <div className="overflow-x-auto">
+                            <table className="min-w-full border-collapse border border-border" {...props} />
+                          </div>
+                        ),
+                        thead: props => <thead className="bg-muted" {...props} />,
+                        th: props => <th className="border border-border p-2 text-left" {...props} />,
+                        td: props => <td className="border border-border p-2" {...props} />
+                      }}
+                    >
+                      {messages[1].content}
+                    </ReactMarkdown>
+                  </div>
+                )}
                 {shouldShowComparison && currentCategory && currentSubcategory && (
                   <LegalComparison 
                     category={currentCategory} 
