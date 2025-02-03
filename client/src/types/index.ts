@@ -502,42 +502,37 @@ Si la convention collective ne contient aucune disposition sur les congés pour 
     'classification-details': `Récupère toutes les informations concernant les classifications dans la convention collective.
 
 1. Extraire EXACTEMENT :
-   A) La structure générale de classification :
-      - Tous les niveaux/échelons
-      - Coefficients ou indices associés
-      - Catégories professionnelles
-      - Filières si existantes
+   A) Liste exhaustive des classifications :
+      - TOUS les niveaux hiérarchiques
+      - TOUS les coefficients/échelons
+      - CHAQUE poste ou emploi-repère
+      - Description détaillée des critères
 
-   B) Pour chaque niveau/position :
-      - Description exacte du poste
-      - Critères de classification
-      - Compétences requises
-      - Niveaux de responsabilité
-      - TOUT commentaire associé
+2. Format de présentation obligatoire :
+| Niveau/Classification | Coefficient/Échelon | Description détaillée |
+|---------------------|---------------------|---------------------|
+| [Niveau exact] | [Coefficient précis] | [Liste des critères et compétences] |
 
-   C) Modalités de mise en œuvre :
-      - Règles de positionnement
-      - Évolution/progression
-      - Périodes probatoires si mentionnées
-      - Toute note explicative
+3. Pour CHAQUE classification :
+   - Titre exact du niveau/poste
+   - Coefficient ou échelon associé
+   - Description complète des :
+     • Compétences requises
+     • Responsabilités
+     • Autonomie
+     • Formation/expérience nécessaire
+   - Critères de distinction avec les autres niveaux
 
-2. Format de présentation :
-   COPIER-COLLER STRICT :
-   - Tableaux tels que présentés dans la CCN
-   - Grilles de classification complètes
-   - Définitions de postes
-   - Notes et commentaires, même mineurs
-   - TOUTE annexe liée aux classifications
+4. Points essentiels :
+   - Lister TOUTES les classifications sans exception
+   - Du niveau le plus bas au plus élevé
+   - Inclure les filières si elles existent
+   - Mentionner les évolutions possibles
 
-3. Références à inclure :
-   - Numéros d'articles exacts
-   - Renvois aux annexes
-   - Numéros de page si mentionnés
-   - Dates des avenants modificatifs
-
-Ne rien reformuler, ne rien réorganiser : présenter les informations telles qu'elles apparaissent dans le texte.
-
-Si la convention collective ne contient aucune disposition sur les classifications : indiquer "RAS"`
+RÈGLES ABSOLUES :
+- Ne JAMAIS mentionner les sources d'information
+- Ne JAMAIS faire référence aux documents consultés
+- Répondre UNIQUEMENT avec les informations de classification`
   },
   'cotisations': {
     'prevoyance': `Récupère toutes les informations relatives aux cotisations pour la prévoyance dans la convention collective.
@@ -642,7 +637,7 @@ Si la convention collective ne contient aucune disposition sur la retraite : ind
    - Conservation de toutes les notes
    - Reprise de tous les commentaires
 
-Si la convention collective ne contient aucune disposition sur la mutuelle : indiquer "RAS"`,
+Si la convention collective ne contient aucune disposition sur la mutuelle : indiquer "RAS"`
   },
   'maintien-salaire': {
     'accident-travail': `Récupère toutes les informations concernant le maintien du salaire en cas d'accident du travail dans la convention collective.
@@ -771,7 +766,7 @@ Si la convention collective ne contient aucune disposition sur le maintien de sa
    - Référence précise des articles
    - Report de tous les cas particuliers
 
-Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas de maternité/paternité : indiquer "RAS"`,
+Si la convention collective ne contient aucune disposition sur le maintien de salaire en cas de maternité/paternité : indiquer "RAS"`
   },
   'remuneration': {
     'apprenti': `Analyse la convention collective pour récupérer toutes les dispositions concernant la rémunération des alternants et stagiaires.
@@ -974,7 +969,7 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
    B) Taux de majoration :
       - Pourcentage exact
       - Montant forfaitaire si prévu
-      - Base de calcul de la majoration
+      - Base decalcul de la majoration
       - Assiette de calcul
 
    C) Conditions d'application :
