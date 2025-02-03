@@ -11,9 +11,8 @@ interface LegalComparisonProps {
 export const LegalComparison = memo(function LegalComparison({ category, subcategory }: LegalComparisonProps) {
   const comparison = LEGAL_COMPARISONS[category.id]?.[subcategory.id];
 
-  // Message spécial pour la grille et la classification si non disponibles
-  if (category.id === 'remuneration' && subcategory.id === 'grille' ||
-      category.id === 'classification' && subcategory.id === 'classification-details') {
+  // Message spécial uniquement pour la grille salariale
+  if (category.id === 'remuneration' && subcategory.id === 'grille') {
     return (
       <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm dark:bg-yellow-900/10 dark:border-yellow-900/20">
         <div className="flex items-center space-x-3">
@@ -657,7 +656,7 @@ La loi impose uniquement :
 - La convention collective peut prévoir des taux plus favorables
 - Majoration de 15 points si :
   * Contrat préparant à un diplôme de même niveau
-  * Expérience d'un an en apprentissage
+  * Expérienced'un an en apprentissage
     
 #### 2. CONTRAT DE PROFESSIONNALISATION
 **Rémunération minimale légale (en % du SMIC) :**

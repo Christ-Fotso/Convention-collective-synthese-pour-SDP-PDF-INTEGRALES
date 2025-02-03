@@ -37,7 +37,7 @@ export interface Category {
 export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = {
   'conges': {
     'cet': `Analyse la convention collective pour récupérer toutes les informations relatives au Compte Épargne Temps (CET).
-
+    
 1. Extraction des informations sur la mise en place :
    - Modalités d'ouverture du CET
    - Salariés bénéficiaires
@@ -499,40 +499,23 @@ Si la convention collective ne contient aucune disposition sur les congés payé
 Si la convention collective ne contient aucune disposition sur les congés pour événements familiaux : indiquer "RAS"`
   },
   'classification': {
-    'classification-details': `Récupère toutes les informations concernant les classifications dans la convention collective.
+    'classification-details': `Vous êtes un expert en analyse des conventions collectives. Votre tâche est d'extraire et de présenter TOUTES les classifications de la convention collective.
 
-1. Extraire EXACTEMENT :
-   A) Liste exhaustive des classifications :
-      - TOUS les niveaux hiérarchiques
-      - TOUS les coefficients/échelons
-      - CHAQUE poste ou emploi-repère
-      - Description détaillée des critères
+Format de réponse attendu :
+| Classification/Niveau | Description détaillée |
+|---------------------|---------------------|
+| [Classification exacte avec son coefficient] | [Description complète des compétences, responsabilités et conditions] |
 
-2. Format de présentation obligatoire :
-| Niveau/Classification | Coefficient/Échelon | Description détaillée |
-|---------------------|---------------------|---------------------|
-| [Niveau exact] | [Coefficient précis] | [Liste des critères et compétences] |
+Instructions importantes :
+- Lister TOUTES les classifications du plus bas au plus haut niveau
+- Pour chaque classification, inclure dans la description :
+  • Les compétences requises
+  • Le niveau de responsabilité
+  • L'autonomie
+  • La formation/expérience nécessaire
+  • Les conditions particulières si existantes
 
-3. Pour CHAQUE classification :
-   - Titre exact du niveau/poste
-   - Coefficient ou échelon associé
-   - Description complète des :
-     • Compétences requises
-     • Responsabilités
-     • Autonomie
-     • Formation/expérience nécessaire
-   - Critères de distinction avec les autres niveaux
-
-4. Points essentiels :
-   - Lister TOUTES les classifications sans exception
-   - Du niveau le plus bas au plus élevé
-   - Inclure les filières si elles existent
-   - Mentionner les évolutions possibles
-
-RÈGLES ABSOLUES :
-- Ne JAMAIS mentionner les sources d'information
-- Ne JAMAIS faire référence aux documents consultés
-- Répondre UNIQUEMENT avec les informations de classification`
+RÈGLE ABSOLUE : Ne jamais mentionner les sources d'information ou les documents consultés.`
   },
   'cotisations': {
     'prevoyance': `Récupère toutes les informations relatives aux cotisations pour la prévoyance dans la convention collective.
@@ -981,7 +964,7 @@ Si la convention collective ne contient aucune disposition sur la majoration du 
    D) Modalités spécifiques :
       - Repos compensateur si prévu
       - Cumul avec d'autres majorations
-      - Règles de récupération
+            - Règles de récupération
       - Délais de prévenance
 
    E) Spécificités :
@@ -1036,7 +1019,7 @@ Si la convention collective ne contient aucune disposition sur la majoration des
    - Conservation de toutes les notes
    - Maintien de tous les cas particuliers
 
-Si la convention collective ne contient aucune disposition sur la majoration du travail de nuit : indiquer "RAS"`,
+Si la convention collective ne contient aucune disposition sur la majoration du travail de nuit : indiquer "RAS"`
   },
   'depart': {
     'indemnite-licenciement': `Récupère toutes les informations concernant l'indemnité de licenciement dans la convention collective.
