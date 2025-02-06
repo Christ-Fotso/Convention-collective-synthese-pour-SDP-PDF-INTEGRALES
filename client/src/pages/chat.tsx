@@ -229,11 +229,11 @@ export default function Chat({ params }: { params: { id: string } }) {
               Poser une question sur la CCN
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[500px]">
+          <DialogContent className="sm:max-w-[500px] max-h-[80vh] overflow-hidden flex flex-col">
             <DialogHeader>
               <DialogTitle>Chat avec la convention collective</DialogTitle>
             </DialogHeader>
-            <div className="mt-4">
+            <div className="flex-1 mt-4 overflow-auto">
               <ChatInterface
                 messages={chatMessages}
                 onSendMessage={handleSendMessage}
