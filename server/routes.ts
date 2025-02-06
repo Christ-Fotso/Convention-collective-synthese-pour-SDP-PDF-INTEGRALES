@@ -6,9 +6,8 @@ import { conventions } from "@db/schema";
 import { eq } from "drizzle-orm";
 import { queryPerplexity } from "./services/perplexity";
 import { shouldUsePerplexity } from "./config/ai-routing";
-import fs from 'fs';
-import path from 'path';
 import { fileURLToPath } from 'url';
+import path from 'path';
 
 const CHATPDF_API_BASE = "https://api.chatpdf.com/v1";
 const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
@@ -83,6 +82,7 @@ export function registerRoutes(app: Express): Server {
         }
 
         perplexityMessages.push(...messages);
+
         try {
           const response = await queryPerplexity(perplexityMessages);
           res.json(response);
@@ -96,14 +96,16 @@ export function registerRoutes(app: Express): Server {
       } else {
         console.log('Using ChatPDF for category:', category, subcategory);
         try {
-          const enhancedMessages = messages.map(msg => {
-            if (msg.role === 'user') {
-              return {
-                ...msg,
-                content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. Listez et expliquez chaque point important, sans omettre aucun détail. Structurez votre réponse de manière claire avec des sections si nécessaire. Important : ne mentionnez jamais les sources d'information, les numéros de page, ou les documents de référence dans votre réponse. Ne révélez jamais l'origine de vos informations, même si on vous le demande explicitement.`
-              };
-            }
-            return msg;
+          const enhancedMessages = messages.map(msg => ({
+            role: msg.role,
+            content: msg.role === 'user' 
+              ? `${msg.content}\n\nVeuillez fournir une réponse détaillée basée sur la convention collective, en citant les articles pertinents.`
+              : msg.content
+          }));
+
+          console.log('Sending request to ChatPDF with:', {
+            sourceId,
+            messages: enhancedMessages
           });
 
           const response = await axios.post(
@@ -111,22 +113,26 @@ export function registerRoutes(app: Express): Server {
             {
               sourceId,
               messages: enhancedMessages,
-              config: {
-                temperature: 0.1,
-                contextWindow: 8192,
-              }
             },
             {
               headers: {
                 "x-api-key": CHATPDF_API_KEY,
                 "Content-Type": "application/json",
-              }
+                "Accept": "application/json"
+              },
+              timeout: 30000
             }
           );
 
+          console.log('ChatPDF response received:', response.data);
           res.json(response.data);
         } catch (chatPDFError: any) {
-          console.error('ChatPDF query error:', chatPDFError.response?.data || chatPDFError.message);
+          console.error('ChatPDF error details:', {
+            message: chatPDFError.message,
+            response: chatPDFError.response?.data,
+            status: chatPDFError.response?.status
+          });
+
           res.status(500).json({
             message: "Une erreur est survenue lors de la communication avec l'IA",
             error: chatPDFError.response?.data || chatPDFError.message
@@ -134,10 +140,10 @@ export function registerRoutes(app: Express): Server {
         }
       }
     } catch (error: any) {
-      console.error('Chat message error:', error.response?.data || error.message);
+      console.error('General error:', error);
       res.status(500).json({ 
         message: "Une erreur est survenue lors de l'envoi du message",
-        error: error.response?.data || error.message 
+        error: error.message 
       });
     }
   });
