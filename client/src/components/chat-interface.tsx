@@ -65,46 +65,48 @@ export function ChatInterface({
         </Button>
       </div>
 
-      <Card className="flex-1 mb-4">
-        <ScrollArea className="h-[500px] p-4" ref={scrollRef}>
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`mb-4 ${
-                message.role === "user" 
-                  ? "text-right" 
-                  : "text-left"
-              }`}
-            >
+      <Card className="flex-1 mb-4 overflow-hidden">
+        <ScrollArea className="h-[400px] p-4" ref={scrollRef}>
+          <div className="space-y-4">
+            {messages.map((message, index) => (
               <div
-                className={`inline-block max-w-[80%] px-4 py-2 rounded-lg ${
-                  message.role === "user"
-                    ? "bg-primary text-primary-foreground ml-auto"
-                    : "bg-muted"
+                key={index}
+                className={`flex ${
+                  message.role === "user" 
+                    ? "justify-end" 
+                    : "justify-start"
                 }`}
               >
-                {message.role === "user" ? (
-                  message.content
-                ) : (
-                  <div className="prose prose-sm dark:prose-invert">
-                    <ReactMarkdown>
-                      {message.content}
-                    </ReactMarkdown>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-          {isLoading && (
-            <div className="text-left">
-              <div className="inline-block bg-muted px-4 py-2 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <Loader className="h-4 w-4 animate-spin" />
-                  <span>En cours de traitement...</span>
+                <div
+                  className={`inline-block max-w-[80%] px-4 py-2 rounded-lg ${
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted"
+                  }`}
+                >
+                  {message.role === "user" ? (
+                    message.content
+                  ) : (
+                    <div className="prose prose-sm dark:prose-invert">
+                      <ReactMarkdown>
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          )}
+            ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="inline-block bg-muted px-4 py-2 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <Loader className="h-4 w-4 animate-spin" />
+                    <span>En cours de traitement...</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </ScrollArea>
       </Card>
 
@@ -114,6 +116,7 @@ export function ChatInterface({
           onChange={(e) => setInput(e.target.value)}
           placeholder="Posez votre question..."
           disabled={isLoading || messages.length >= 6}
+          className="flex-1"
         />
         <Button 
           type="submit" 
