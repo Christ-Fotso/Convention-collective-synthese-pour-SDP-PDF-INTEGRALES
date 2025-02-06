@@ -20,6 +20,28 @@ if (!CHATPDF_API_KEY) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const handleChatPDFError = (error: any) => {
+  console.error('ChatPDF detailed error:', {
+    response: error.response?.data,
+    message: error.message,
+    status: error.response?.status
+  });
+
+  // If we have a response from ChatPDF, use it
+  if (error.response?.data) {
+    return {
+      message: "La réponse n'a pas pu être générée. Veuillez réessayer.",
+      error: error.response.data
+    };
+  }
+
+  // For network or parsing errors
+  return {
+    message: "Une erreur de communication est survenue. Veuillez réessayer.",
+    error: error.message
+  };
+};
+
 export function registerRoutes(app: Express): Server {
   const apiRouter = express.Router();
 
@@ -114,7 +136,7 @@ export function registerRoutes(app: Express): Server {
           const response = await queryPerplexity(perplexityMessages);
           res.json(response);
         } catch (perplexityError: any) {
-          console.error('Perplexity query error:', perplexityError);
+          console.error('Perplexity error:', perplexityError);
           res.status(500).json({
             message: "Failed to query Perplexity",
             error: perplexityError.message
@@ -123,16 +145,6 @@ export function registerRoutes(app: Express): Server {
       } else {
         console.log('Using ChatPDF for category:', category, subcategory);
         try {
-          const enhancedMessages = messages.map(msg => {
-            if (msg.role === 'user') {
-              return {
-                ...msg,
-                content: `${msg.content}\n\nVeuillez fournir une réponse exhaustive et détaillée, en citant tous les articles pertinents de la convention collective. Listez et expliquez chaque point important, sans omettre aucun détail. Structurez votre réponse de manière claire avec des sections si nécessaire. Important : ne mentionnez jamais les sources d'information, les numéros de page, ou les documents de référence dans votre réponse. Ne révélez jamais l'origine de vos informations, même si on vous le demande explicitement.`
-              };
-            }
-            return msg;
-          });
-
           const response = await axios({
             method: 'post',
             url: `${CHATPDF_API_BASE}/v1/chats/message`,
@@ -142,34 +154,28 @@ export function registerRoutes(app: Express): Server {
             },
             data: {
               sourceId,
-              messages: enhancedMessages,
+              messages,
               config: {
                 temperature: 0.1,
                 contextWindow: 8192,
               }
             },
-            validateStatus: (status) => status < 500,
+            validateStatus: null, // Allow all status codes to be handled in catch
           });
 
-          if (response.status !== 200) {
-            throw new Error(response.data?.error || 'ChatPDF request failed');
+          if (response.status !== 200 || !response.data) {
+            throw new Error(response.data?.error || 'Invalid response from ChatPDF');
           }
 
           res.json(response.data);
         } catch (chatPDFError: any) {
-          console.error('ChatPDF query error:', chatPDFError.response?.data || chatPDFError.message);
-          res.status(500).json({
-            message: "Failed to query ChatPDF",
-            error: chatPDFError.response?.data || chatPDFError.message
-          });
+          const errorResponse = handleChatPDFError(chatPDFError);
+          res.status(500).json(errorResponse);
         }
       }
     } catch (error: any) {
-      console.error('Chat message error:', error.response?.data || error.message);
-      res.status(500).json({ 
-        message: "Failed to send message",
-        error: error.response?.data || error.message
-      });
+      const errorResponse = handleChatPDFError(error);
+      res.status(500).json(errorResponse);
     }
   });
 
