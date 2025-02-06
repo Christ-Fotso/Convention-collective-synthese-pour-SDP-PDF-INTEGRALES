@@ -67,12 +67,31 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   const chatMutation = useMutation({
     mutationFn: sendChatMessage,
-    onError: () => {
+    onMutate: (variables) => {
+      // Optimistically update UI
+      const newMessage: Message = { role: 'user', content: variables.messages[variables.messages.length - 1].content };
+      setChatMessages(prev => [...prev, newMessage]);
+    },
+    onError: (error) => {
+      // Remove the optimistically added message on error
+      setChatMessages(prev => prev.slice(0, -1));
       toast({
         variant: "destructive",
         title: "Erreur",
-        description: "Impossible d'obtenir la réponse",
+        description: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
       });
+    },
+    onSuccess: (response) => {
+      if (!response || !response.content) {
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description: "La réponse est invalide. Veuillez réessayer.",
+        });
+        return;
+      }
+      const assistantMessage: Message = { role: 'assistant', content: response.content };
+      setChatMessages(prev => [...prev, assistantMessage]);
     }
   });
 
@@ -150,18 +169,19 @@ export default function Chat({ params }: { params: { id: string } }) {
   const handleSendMessage = async (content: string) => {
     if (!sourceId || !convention) return;
 
-    const newMessage: Message = { role: 'user', content };
-    setChatMessages(prev => [...prev, newMessage]);
-
     const chatParams: ChatMessageParams = {
       sourceId,
-      messages: [...chatMessages, newMessage],
+      messages: [...chatMessages, { role: 'user', content }],
       category: 'chat',
       conventionId: convention.id
     };
 
-    const response = await chatMutation.mutateAsync(chatParams);
-    setChatMessages(prev => [...prev, { role: 'assistant', content: response.content }]);
+    try {
+      await chatMutation.mutateAsync(chatParams);
+    } catch (error) {
+      // Error will be handled by onError callback
+      console.error('Chat error:', error);
+    }
   };
 
   const handleResetChat = () => {
