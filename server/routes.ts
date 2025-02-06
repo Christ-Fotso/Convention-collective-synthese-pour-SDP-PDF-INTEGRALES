@@ -10,7 +10,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const CHATPDF_API_BASE = "https://api.chatpdf.com";
+const CHATPDF_API_BASE = "https://api.chatpdf.com/v1";
 const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
 
 if (!CHATPDF_API_KEY) {
@@ -42,7 +42,7 @@ export function registerRoutes(app: Express): Server {
     try {
       console.log('Creating ChatPDF source for URL:', req.body.url);
       const response = await axios.post(
-        `${CHATPDF_API_BASE}/v1/sources/add-url`,
+        `${CHATPDF_API_BASE}/sources/add-url`,
         { url: req.body.url },
         {
           headers: {
@@ -67,33 +67,6 @@ export function registerRoutes(app: Express): Server {
     try {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
-
-      // Check if we have a static legal data response
-      const legalDataPath = path.join(__dirname, '../../attached_assets/Pasted-Informations-g-n-rales-RAS-D-lai-de-pr-venance-delai-prevenance-ancien-1738227284785.txt');
-      console.log('Looking for legal data at:', legalDataPath);
-
-      if (fs.existsSync(legalDataPath)) {
-        console.log('Legal data file found');
-        const legalData = fs.readFileSync(legalDataPath, 'utf8');
-        const lines = legalData.split('\n');
-
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i].trim();
-          if (line.startsWith(messages[0].content)) {
-            const nextLine = lines[i + 1].trim();
-            console.log('Found matching content:', messages[0].content);
-            console.log('Next line:', nextLine);
-            // Si la réponse est "RAS", on renvoie une chaîne vide
-            if (nextLine === "RAS") {
-              return res.json({ content: "" });
-            }
-            // Sinon on renvoie le contenu JSON tel quel
-            return res.json({ content: nextLine });
-          }
-        }
-      } else {
-        console.log('Legal data file not found');
-      }
 
       const routing = shouldUsePerplexity(category, subcategory);
 
@@ -133,14 +106,9 @@ export function registerRoutes(app: Express): Server {
             return msg;
           });
 
-          const response = await axios({
-            method: 'post',
-            url: `${CHATPDF_API_BASE}/v1/chats/message`,
-            headers: {
-              "x-api-key": CHATPDF_API_KEY,
-              "Content-Type": "application/json",
-            },
-            data: {
+          const response = await axios.post(
+            `${CHATPDF_API_BASE}/chats/message`,
+            {
               sourceId,
               messages: enhancedMessages,
               config: {
@@ -148,18 +116,19 @@ export function registerRoutes(app: Express): Server {
                 contextWindow: 8192,
               }
             },
-            validateStatus: (status) => status < 500,
-          });
-
-          if (response.status !== 200) {
-            throw new Error(response.data?.error || 'ChatPDF request failed');
-          }
+            {
+              headers: {
+                "x-api-key": CHATPDF_API_KEY,
+                "Content-Type": "application/json",
+              }
+            }
+          );
 
           res.json(response.data);
         } catch (chatPDFError: any) {
           console.error('ChatPDF query error:', chatPDFError.response?.data || chatPDFError.message);
           res.status(500).json({
-            message: "Failed to query ChatPDF",
+            message: "Une erreur est survenue lors de la communication avec l'IA",
             error: chatPDFError.response?.data || chatPDFError.message
           });
         }
@@ -167,7 +136,7 @@ export function registerRoutes(app: Express): Server {
     } catch (error: any) {
       console.error('Chat message error:', error.response?.data || error.message);
       res.status(500).json({ 
-        message: "Failed to send message",
+        message: "Une erreur est survenue lors de l'envoi du message",
         error: error.response?.data || error.message 
       });
     }
@@ -177,8 +146,8 @@ export function registerRoutes(app: Express): Server {
   apiRouter.post("/chat/source/delete", async (req, res) => {
     try {
       console.log('Deleting ChatPDF sources:', req.body.sources);
-      const response = await axios.post(
-        `${CHATPDF_API_BASE}/v1/sources/delete`,
+      await axios.post(
+        `${CHATPDF_API_BASE}/sources/delete`,
         { sources: req.body.sources },
         {
           headers: {
