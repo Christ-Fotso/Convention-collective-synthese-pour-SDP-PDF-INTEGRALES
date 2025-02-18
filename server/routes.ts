@@ -85,11 +85,17 @@ export function registerRoutes(app: Express): Server {
 
         try {
           const response = await queryPerplexity(perplexityMessages);
+          if (!response || !response.content) {
+            throw new Error('Invalid Perplexity response');
+          }
           res.json(response);
         } catch (perplexityError: any) {
-          console.error('Perplexity query error:', perplexityError);
+          console.error('Perplexity error details:', {
+            error: perplexityError,
+            messages: perplexityMessages
+          });
           res.status(500).json({
-            message: "Failed to query Perplexity",
+            message: "Une erreur est survenue lors de la récupération des informations",
             error: perplexityError.message
           });
         }
@@ -120,9 +126,14 @@ export function registerRoutes(app: Express): Server {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
               },
-              timeout: 30000
+              timeout: 60000 
             }
           );
+
+          if (!response.data || !response.data.content) {
+            console.error('Invalid ChatPDF response:', response.data);
+            throw new Error('Invalid response from ChatPDF');
+          }
 
           console.log('ChatPDF response received:', response.data);
           res.json(response.data);
@@ -130,17 +141,21 @@ export function registerRoutes(app: Express): Server {
           console.error('ChatPDF error details:', {
             message: chatPDFError.message,
             response: chatPDFError.response?.data,
-            status: chatPDFError.response?.status
+            status: chatPDFError.response?.status,
+            stack: chatPDFError.stack
           });
 
           res.status(500).json({
             message: "Une erreur est survenue lors de la communication avec l'IA",
-            error: chatPDFError.response?.data || chatPDFError.message
+            error: chatPDFError.response?.data?.error || chatPDFError.message
           });
         }
       }
     } catch (error: any) {
-      console.error('General error:', error);
+      console.error('General error:', {
+        error,
+        stack: error.stack
+      });
       res.status(500).json({ 
         message: "Une erreur est survenue lors de l'envoi du message",
         error: error.message 
