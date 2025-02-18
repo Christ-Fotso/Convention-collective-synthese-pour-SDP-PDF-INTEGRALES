@@ -36,13 +36,46 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Proxy PDF endpoint
+  apiRouter.get("/proxy-pdf", async (req, res) => {
+    try {
+      const pdfUrl = req.query.url as string;
+      if (!pdfUrl) {
+        return res.status(400).json({ message: "URL parameter is required" });
+      }
+
+      console.log('Proxying PDF from URL:', pdfUrl);
+
+      const response = await axios.get(pdfUrl, {
+        responseType: 'arraybuffer',
+        timeout: 30000
+      });
+
+      // Forward the PDF content
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'inline');
+      res.send(response.data);
+    } catch (error: any) {
+      console.error('Error proxying PDF:', error.message);
+      res.status(500).json({
+        message: "Failed to proxy PDF",
+        error: error.message
+      });
+    }
+  });
+
   // Create ChatPDF source
   apiRouter.post("/chat/source", async (req, res) => {
     try {
-      console.log('Creating ChatPDF source for URL:', req.body.url);
+      const originalUrl = req.body.url;
+      // Use our proxy URL instead of the direct S3 URL
+      const proxyUrl = `${req.protocol}://${req.get('host')}/api/proxy-pdf?url=${encodeURIComponent(originalUrl)}`;
+
+      console.log('Creating ChatPDF source using proxy URL:', proxyUrl);
+
       const response = await axios.post(
         `${CHATPDF_API_BASE}/sources/add-url`,
-        { url: req.body.url },
+        { url: proxyUrl },
         {
           headers: {
             "x-api-key": CHATPDF_API_KEY,
