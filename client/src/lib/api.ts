@@ -9,11 +9,6 @@ export async function getConventions(): Promise<Convention[]> {
 }
 
 export async function createChatPDFSource(url: string): Promise<string> {
-  // Vérifier que l'URL se termine bien par .pdf
-  if (!url.toLowerCase().endsWith('.pdf')) {
-    throw new Error('URL invalide: le fichier doit être au format PDF');
-  }
-
   const { data } = await axios.post(`${API_BASE}/chat/source`, { url });
   return data.sourceId;
 }
