@@ -3,13 +3,14 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { db } from "@db";
 import { conventions } from "@db/schema";
+import { sql } from 'drizzle-orm';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 async function importConventions() {
   try {
-    const filePath = path.join(__dirname, '..', 'attached_assets', 'Pasted-IDCC-LIBELLE-16-Transports-de-fonds-et-de-valeurs-https-www-elnet-rh-fr-documentation-hulkStatic-1738176105520.txt');
+    const filePath = path.join(__dirname, '..', 'attached_assets', 'Pasted-IDCC-LIBELLE-16-Transports-de-fonds-et-de-valeurs-https-www-elnet-rh-fr-documentation-hulkStatic-1739915869443.txt');
     const fileContent = await fs.promises.readFile(filePath, 'utf-8');
 
     const lines = fileContent.split('\n').slice(1); // Skip header line
@@ -33,8 +34,13 @@ async function importConventions() {
       })
       .filter(conv => conv.id && conv.name && conv.url);
 
-    // Delete existing conventions first to avoid duplicates
+    // First, delete all cached responses
+    await db.execute(sql`DELETE FROM cached_responses`);
+    console.log('Deleted all cached responses');
+
+    // Then delete existing conventions
     await db.delete(conventions);
+    console.log('Deleted existing conventions');
 
     // Insert conventions in batches
     await db.insert(conventions).values(conventionsData);
