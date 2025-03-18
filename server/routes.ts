@@ -55,7 +55,7 @@ Pour chaque variation géographique, créez un tableau distinct :
 Présentez dans un tableau :
 | Niveau départ | Niveau arrivée | Conditions de passage | Durée minimale |
 
-Basez-vous uniquement sur les données de Légifrance. La présentation doit être en markdown avec des tableaux clairs et des notes explicatives précises.`
+IMPORTANT: Ne présentez que les informations explicitement présentes dans Légifrance. Si une information n'est pas disponible, indiquez clairement "Information non disponible dans Légifrance" plutôt que d'extrapoler ou d'inventer des données.`
     : `Pour la convention collective IDCC ${conventionId} (${conventionName}), présentez les salaires minima sous forme de tableaux détaillés:
 
 1. Grille principale des salaires minima
@@ -80,9 +80,12 @@ Pour chaque région/département ayant des spécificités, créez un tableau :
 Présentez dans un tableau chronologique :
 | Date d'application | Valeur du point | Base de calcul | Statut extension |
 
-Basez-vous uniquement sur les données de Légifrance. Tous les montants doivent être présentés en euros.
-Présentez chaque variation (géographique, temporelle) dans un tableau distinct.
-Utilisez des astérisques (*) pour toute note explicative sur les extensions.`;
+IMPORTANT: 
+- Ne présentez que les informations explicitement présentes dans Légifrance
+- Si une information n'est pas disponible, indiquez clairement "Information non disponible dans Légifrance"
+- Ne faites aucune extrapolation ou invention de données
+- Si une année ou une région n'est pas mentionnée dans Légifrance, ne la présentez pas
+- Tous les montants doivent être strictement ceux publiés dans Légifrance`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -90,7 +93,18 @@ Utilisez des astérisques (*) pour toute note explicative sur les extensions.`;
       messages: [
         {
           role: "system",
-          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Structurez votre réponse de manière exhaustive et détaillée, en incluant toutes les informations disponibles. Assurez-vous que toutes les informations proviennent exclusivement de Légifrance. Présentez systématiquement les données sous forme de tableaux avec des notes explicatives claires."
+          content: `Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives.
+
+RÈGLES STRICTES À SUIVRE :
+1. Utilisez UNIQUEMENT les données disponibles sur Légifrance comme source
+2. Ne faites AUCUNE extrapolation ou invention d'information
+3. Si une information n'est pas disponible sur Légifrance, indiquez-le explicitement
+4. Ne combinez pas des informations de différentes sources
+5. Ne faites aucune interprétation personnelle des données
+6. Pour les dates et montants, citez uniquement ceux explicitement mentionnés dans Légifrance
+
+Présentez systématiquement les données sous forme de tableaux avec des notes explicatives claires.
+Pour toute section où l'information n'est pas disponible, indiquez "Information non disponible dans Légifrance" plutôt que de laisser un tableau vide ou d'inventer des données.`
         },
         {
           role: "user",
@@ -98,7 +112,7 @@ Utilisez des astérisques (*) pour toute note explicative sur les extensions.`;
         }
       ],
       response_format: { type: "text" },
-      max_tokens: 4000  // Augmentation de la limite de tokens pour obtenir plus de détails
+      max_tokens: 4000
     });
 
     return {
