@@ -27,6 +27,9 @@ const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Cache pour les PDFs
+const pdfCache = new Map();
+
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
   const prompt = type === 'classification'
     ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), détaillons la classification:
@@ -77,7 +80,6 @@ Formatez la réponse en markdown avec des tableaux et des sections clairement d�
 export function registerRoutes(app: Express): Server {
   const apiRouter = express.Router();
 
-  // Get all conventions
   apiRouter.get("/conventions", async (_req, res) => {
     try {
       const allConventions = await db.select().from(conventions);
@@ -91,7 +93,6 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Proxy PDF endpoint
   apiRouter.get("/proxy-pdf", async (req, res) => {
     try {
       const pdfUrl = req.query.url as string;
@@ -99,18 +100,28 @@ export function registerRoutes(app: Express): Server {
         return res.status(400).json({ message: "URL parameter is required" });
       }
 
-      console.log('Starting PDF proxy request to URL:', pdfUrl);
-      const startTime = Date.now();
+      // Vérifier si le PDF est en cache
+      if (pdfCache.has(pdfUrl)) {
+        const cachedData = pdfCache.get(pdfUrl);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'inline');
+        res.send(cachedData);
+        return;
+      }
 
       const response = await axios.get(pdfUrl, {
         responseType: 'arraybuffer',
-        timeout: 30000
+        timeout: 60000,
+        headers: {
+          'Accept-Encoding': 'gzip, deflate, br',
+          'Connection': 'keep-alive'
+        },
+        maxContentLength: 50 * 1024 * 1024 // 50MB max
       });
 
-      const endTime = Date.now();
-      console.log(`PDF proxy request completed in ${endTime - startTime}ms`);
+      // Mettre en cache le PDF
+      pdfCache.set(pdfUrl, response.data);
 
-      // Forward the PDF content
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', 'inline');
       res.send(response.data);
@@ -123,15 +134,10 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Create ChatPDF source
   apiRouter.post("/chat/source", async (req, res) => {
     try {
       const originalUrl = req.body.url;
-      // Use our proxy URL instead of the direct S3 URL
       const proxyUrl = `${req.protocol}://${req.get('host')}/api/proxy-pdf?url=${encodeURIComponent(originalUrl)}`;
-
-      console.log('Starting ChatPDF source creation...');
-      const sourceStartTime = Date.now();
 
       const response = await axios.post(
         `${CHATPDF_API_BASE}/sources/add-url`,
@@ -141,12 +147,10 @@ export function registerRoutes(app: Express): Server {
             "x-api-key": CHATPDF_API_KEY,
             "Content-Type": "application/json",
           },
+          timeout: 60000
         }
       );
 
-      const sourceEndTime = Date.now();
-      console.log(`ChatPDF source created in ${sourceEndTime - sourceStartTime}ms`);
-      console.log('ChatPDF source created:', response.data);
       res.json(response.data);
     } catch (error: any) {
       console.error('ChatPDF source creation error:', error.response?.data || error.message);
