@@ -29,63 +29,25 @@ const __dirname = path.dirname(__filename);
 
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
   const prompt = type === 'classification' 
-    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez la classification de manière exhaustive en respectant strictement ce format:
+    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez en détail la classification:
 
-1. Tableaux de classification
-Présentez chaque grille de classification dans un tableau avec les colonnes suivantes :
-| Niveau/Échelon | Coefficient | Description du poste | Date de modification | Statut extension |
-Ajoutez des astérisques (*) en bas du tableau pour préciser :
-- Les dates exactes d'extension
-- Les dates de publication au Journal Officiel
-- Toute information importante sur le statut d'extension
+1. Listez tous les coefficients hiérarchiques par catégorie/niveau
+2. Pour chaque coefficient, détaillez:
+   - Les critères précis d'attribution
+   - Les responsabilités associées
+   - Les compétences requises
+   - Les conditions d'expérience
+   - Le niveau de formation requis
+3. Précisez toute spécificité:
+   - Variations régionales ou départementales si elles existent
+   - Conditions particulières d'application
+   - Périodes d'essai spécifiques
+4. Evolution et progression:
+   - Critères de passage d'un coefficient à l'autre
+   - Périodes d'évolution automatique si prévues
 
-2. Valeur du point (si applicable)
-- Présentez l'historique des valeurs du point dans un tableau :
-| Date d'effet | Valeur du point | Statut extension |
-- Précisez la formule de calcul si elle existe
-
-3. Spécificités par région/département
-Pour chaque variation géographique, créez un tableau distinct :
-| Région/Département | Particularités de classification | Date d'effet |
-
-4. Pour chaque coefficient, détaillez dans des tableaux spécifiques :
-| Coefficient | Formation requise | Expérience | Responsabilités | Autonomie |
-
-5. Modalités d'évolution
-Présentez dans un tableau :
-| Niveau départ | Niveau arrivée | Conditions de passage | Durée minimale |
-
-IMPORTANT: Ne présentez que les informations explicitement présentes dans Légifrance. Si une information n'est pas disponible, indiquez clairement "Information non disponible dans Légifrance" plutôt que d'extrapoler ou d'inventer des données.`
-    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), présentez les salaires minima sous forme de tableaux détaillés:
-
-1. Grille principale des salaires minima
-Utilisez ce format de tableau :
-| Niveau/Coefficient | Salaire minimal | Date d'effet | Statut extension |
-Pour chacune des 3 dernières années. 
-Ajoutez des astérisques (*) en bas pour préciser :
-- Les dates exactes d'extension
-- Les dates de publication au Journal Officiel
-- Les informations sur le statut d'extension (étendu/non étendu)
-
-2. Système de calcul (si applicable)
-Présentez dans un tableau :
-| Date d'effet | Valeur du point | Coefficient hiérarchique | Statut extension |
-Précisez en dessous la formule de calcul exacte utilisée.
-
-3. Variations géographiques
-Pour chaque région/département ayant des spécificités, créez un tableau :
-| Niveau/Coefficient | Salaire minimal | Zone/Région | Date d'effet | Statut extension |
-
-4. Historique des valeurs du point (si applicable)
-Présentez dans un tableau chronologique :
-| Date d'application | Valeur du point | Base de calcul | Statut extension |
-
-IMPORTANT: 
-- Ne présentez que les informations explicitement présentes dans Légifrance
-- Si une information n'est pas disponible, indiquez clairement "Information non disponible dans Légifrance"
-- Ne faites aucune extrapolation ou invention de données
-- Si une année ou une région n'est pas mentionnée dans Légifrance, ne la présentez pas
-- Tous les montants doivent être strictement ceux publiés dans Légifrance`;
+Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux et des sections clairement définies pour une meilleure lisibilité.`
+    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), donnez-moi les informations concernant les salaires minima des 3 dernières années (étendus et non étendus). Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux pour plus de clarté.`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -93,26 +55,14 @@ IMPORTANT:
       messages: [
         {
           role: "system",
-          content: `Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives.
-
-RÈGLES STRICTES À SUIVRE :
-1. Utilisez UNIQUEMENT les données disponibles sur Légifrance comme source
-2. Ne faites AUCUNE extrapolation ou invention d'information
-3. Si une information n'est pas disponible sur Légifrance, indiquez-le explicitement
-4. Ne combinez pas des informations de différentes sources
-5. Ne faites aucune interprétation personnelle des données
-6. Pour les dates et montants, citez uniquement ceux explicitement mentionnés dans Légifrance
-
-Présentez systématiquement les données sous forme de tableaux avec des notes explicatives claires.
-Pour toute section où l'information n'est pas disponible, indiquez "Information non disponible dans Légifrance" plutôt que de laisser un tableau vide ou d'inventer des données.`
+          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Concentrez-vous sur les informations factuelles et structurez votre réponse de manière claire et détaillée. Ne citez pas les sources mais assurez-vous que toutes les informations proviennent exclusivement de Légifrance."
         },
         {
           role: "user",
           content: prompt
         }
       ],
-      response_format: { type: "text" },
-      max_tokens: 4000
+      response_format: { type: "text" }
     });
 
     return {
