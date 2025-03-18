@@ -45,7 +45,7 @@ async function queryOpenAIForLegalData(conventionId: string, conventionName: str
           content: prompt
         }
       ],
-      temperature: 0,
+      response_format: { type: "text" }
     });
 
     return {
