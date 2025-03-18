@@ -74,46 +74,25 @@ async function queryOpenAIForLegalData(conventionId: string, conventionName: str
    - Certifications professionnelles
 
 Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des sections claires et des tableaux détaillés pour une lisibilité optimale.`
-    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez de manière exhaustive la rémunération:
+    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez uniquement les salaires minima de manière exhaustive:
 
-1. Salaires minima conventionnels :
-   - Détail complet des 3 dernières années
-   - Grilles étendues ET non étendues
-   - Valeurs des points si applicable
-   - Salaires par coefficient/niveau
-   - Prime d'ancienneté et modalités
+1. Grilles de salaires minima :
+   - Détail des 3 dernières années
+   - Valeurs étendues ET non étendues
+   - Présentation par coefficient/niveau
 
-2. Variations géographiques :
-   - Grilles par région
-   - Particularités départementales
-   - Zones spécifiques (urbaines/rurales)
-   - Indemnités géographiques
+2. Système de calcul :
+   - Valeur du point si applicable
+   - Indices hiérarchiques si existants
+   - Formule de calcul si spécifique
 
-3. Primes et indemnités :
-   - Liste exhaustive des primes
-   - Conditions d'attribution
-   - Montants ou modes de calcul
-   - Périodicité de versement
+3. Variations géographiques :
+   - Grilles par région si différentes
+   - Particularités par département
+   - Zones spécifiques si définies
+   - Coefficients géographiques si existants
 
-4. Majorations et compléments :
-   - Treizième mois
-   - Gratifications
-   - Avantages en nature
-   - Participations spécifiques
-
-5. Évolutions et revalorisations :
-   - Historique des augmentations
-   - Négociations annuelles
-   - Clauses de revoyure
-   - Mécanismes d'indexation
-
-6. Cas particuliers :
-   - Rémunérations spécifiques par métier
-   - Conditions particulières
-   - Dispositions pour temps partiel
-   - Situations exceptionnelles
-
-Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des sections claires et des tableaux détaillés pour une lisibilité optimale.`;
+Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des tableaux détaillés pour une meilleure lisibilité.`;
 
   try {
     const response = await openai.chat.completions.create({
