@@ -8,16 +8,54 @@ import { queryPerplexity } from "./services/perplexity";
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { fileURLToPath } from 'url';
 import path from 'path';
+import OpenAI from "openai";
 
 const CHATPDF_API_BASE = "https://api.chatpdf.com/v1";
 const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 if (!CHATPDF_API_KEY) {
   throw new Error("CHATPDF_API_KEY is required");
 }
 
+if (!OPENAI_API_KEY) {
+  throw new Error("OPENAI_API_KEY is required");
+}
+
+const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
+  const prompt = type === 'classification' 
+    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), donnez-moi les informations concernant la classification. Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux pour plus de clarté.`
+    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), donnez-moi les informations concernant les salaires minima des 3 dernières années (étendus et non étendus). Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux pour plus de clarté.`;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-search-preview-2025-03-11",
+      messages: [
+        {
+          role: "system",
+          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Ne citez pas les sources et concentrez-vous sur les informations factuelles."
+        },
+        {
+          role: "user",
+          content: prompt
+        }
+      ],
+      temperature: 0,
+    });
+
+    return {
+      content: response.choices[0].message.content
+    };
+  } catch (error) {
+    console.error('OpenAI API error:', error);
+    throw new Error('Failed to fetch legal data');
+  }
+}
 
 export function registerRoutes(app: Express): Server {
   const apiRouter = express.Router();
@@ -99,6 +137,28 @@ export function registerRoutes(app: Express): Server {
     try {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+
+      // Special handling for classification and salary grids
+      if (convention.length > 0 && 
+          ((category === 'classification' && subcategory === 'classification-details') ||
+           (category === 'remuneration' && subcategory === 'grille'))) {
+        try {
+          const type = category === 'classification' ? 'classification' : 'salaires';
+          const response = await queryOpenAIForLegalData(
+            convention[0].id,
+            convention[0].name,
+            type
+          );
+          res.json(response);
+        } catch (openaiError) {
+          console.error('OpenAI error details:', openaiError);
+          res.status(500).json({
+            message: "Une erreur est survenue lors de la récupération des informations",
+            error: openaiError.message
+          });
+        }
+        return;
+      }
 
       const routing = shouldUsePerplexity(category, subcategory);
 
