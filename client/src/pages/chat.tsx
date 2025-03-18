@@ -107,20 +107,6 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    const isUnavailable = (category.id === 'remuneration' && subcategory.id === 'grille') ||
-                         (category.id === 'classification' && subcategory.id === 'classification-details');
-
-    if (isUnavailable) {
-      setMessages([
-        { role: 'user', content: `${category.name} > ${subcategory.name}` },
-        { 
-          role: 'assistant', 
-          content: `⚠️ Cette information n'est pas disponible pour le moment.\n\nNotre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.`
-        }
-      ]);
-      return;
-    }
-
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                   PREDEFINED_PROMPTS[category.id]?.['default'];
 
@@ -217,21 +203,11 @@ export default function Chat({ params }: { params: { id: string } }) {
     );
   }
 
-  const shouldShowComparison = !(
-    (currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille') ||
-    (currentCategory?.id === 'classification' && currentSubcategory?.id === 'classification-details')
-  );
+  const shouldShowComparison = true; //Always show comparison now
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="mb-6 p-3 bg-orange-50 border border-orange-200 rounded-lg shadow-sm dark:bg-orange-900/10 dark:border-orange-900/20">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">⚠️</span>
-          <p className="text-sm text-orange-800 dark:text-orange-200">
-            Cette fonctionnalité est en version bêta. Certaines informations peuvent être incomplètes pendant que nous entraînons notre IA pour améliorer la qualité des réponses.
-          </p>
-        </div>
-      </div>
+      
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
