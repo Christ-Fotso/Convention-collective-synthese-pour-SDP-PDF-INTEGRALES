@@ -29,51 +29,33 @@ const __dirname = path.dirname(__filename);
 
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
   const prompt = type === 'classification' 
-    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez la classification de manière exhaustive:
+    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez la classification de manière exhaustive en respectant strictement ce format:
 
-1. Structure générale de la classification :
-   - Organisation des catégories professionnelles
-   - Niveaux hiérarchiques
-   - Filières professionnelles si existantes
+1. Tableaux de classification
+Présentez chaque grille de classification dans un tableau avec les colonnes suivantes :
+| Niveau/Échelon | Coefficient | Description du poste | Date de modification | Statut extension |
+Ajoutez des astérisques (*) en bas du tableau pour préciser :
+- Les dates exactes d'extension
+- Les dates de publication au Journal Officiel
+- Toute information importante sur le statut d'extension
 
-2. Pour chaque coefficient/niveau :
-   - Valeur du coefficient
-   - Description détaillée du poste
-   - Responsabilités précises
-   - Autonomie et initiative
-   - Technicité requise
-   - Formation et diplômes exigés
-   - Expérience nécessaire
-   - Compétences spécifiques
-   - Conditions particulières d'exercice
+2. Valeur du point (si applicable)
+- Présentez l'historique des valeurs du point dans un tableau :
+| Date d'effet | Valeur du point | Statut extension |
+- Précisez la formule de calcul si elle existe
 
-3. Spécificités géographiques :
-   - Variations par région
-   - Particularités départementales
-   - Zones géographiques spécifiques
-   - Adaptations locales des classifications
+3. Spécificités par région/département
+Pour chaque variation géographique, créez un tableau distinct :
+| Région/Département | Particularités de classification | Date d'effet |
 
-4. Modalités d'évolution :
-   - Critères de passage entre coefficients
-   - Périodes d'évolution automatique
-   - Conditions de promotion
-   - Reconnaissance de l'expérience
-   - Validation des acquis
+4. Pour chaque coefficient, détaillez dans des tableaux spécifiques :
+| Coefficient | Formation requise | Expérience | Responsabilités | Autonomie |
 
-5. Cas particuliers :
-   - Métiers spécifiques
-   - Fonctions transverses
-   - Polyvalence
-   - Emplois émergents
-   - Classifications spéciales
+5. Modalités d'évolution
+Présentez dans un tableau :
+| Niveau départ | Niveau arrivée | Conditions de passage | Durée minimale |
 
-6. Dispositions complémentaires :
-   - Périodes d'essai par niveau
-   - Formations requises
-   - Habilitations nécessaires
-   - Certifications professionnelles
-
-Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des sections claires et des tableaux détaillés pour une lisibilité optimale.`
+Basez-vous uniquement sur les données de Légifrance. La présentation doit être en markdown avec des tableaux clairs et des notes explicatives précises.`
     : `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez uniquement les salaires minima de manière exhaustive:
 
 1. Grilles de salaires minima :
@@ -100,7 +82,7 @@ Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en
       messages: [
         {
           role: "system",
-          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Structurez votre réponse de manière exhaustive et détaillée, en incluant toutes les informations disponibles. Assurez-vous que toutes les informations proviennent exclusivement de Légifrance."
+          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Structurez votre réponse de manière exhaustive et détaillée, en incluant toutes les informations disponibles. Assurez-vous que toutes les informations proviennent exclusivement de Légifrance. Présentez systématiquement les données sous forme de tableaux avec des notes explicatives claires."
         },
         {
           role: "user",
