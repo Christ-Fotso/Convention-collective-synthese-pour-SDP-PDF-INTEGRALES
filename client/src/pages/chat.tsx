@@ -68,12 +68,10 @@ export default function Chat({ params }: { params: { id: string } }) {
   const chatMutation = useMutation({
     mutationFn: sendChatMessage,
     onMutate: (variables) => {
-      // Optimistically update UI
       const newMessage: Message = { role: 'user', content: variables.messages[variables.messages.length - 1].content };
       setChatMessages(prev => [...prev, newMessage]);
     },
     onError: (error) => {
-      // Remove the optimistically added message on error
       setChatMessages(prev => prev.slice(0, -1));
       toast({
         variant: "destructive",
@@ -106,6 +104,18 @@ export default function Chat({ params }: { params: { id: string } }) {
 
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
+
+    // Special handling for salary grid
+    if (category.id === 'remuneration' && subcategory.id === 'grille') {
+      setMessages([
+        { role: 'user', content: `${category.name} > ${subcategory.name}` },
+        { 
+          role: 'assistant', 
+          content: `⚠️ Cette information n'est pas disponible pour le moment.\n\nNotre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.`
+        }
+      ]);
+      return;
+    }
 
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                   PREDEFINED_PROMPTS[category.id]?.['default'];
@@ -165,7 +175,6 @@ export default function Chat({ params }: { params: { id: string } }) {
     try {
       await chatMutation.mutateAsync(chatParams);
     } catch (error) {
-      // Error will be handled by onError callback
       console.error('Chat error:', error);
     }
   };
@@ -203,11 +212,10 @@ export default function Chat({ params }: { params: { id: string } }) {
     );
   }
 
-  const shouldShowComparison = true; //Always show comparison now
+  const shouldShowComparison = !(currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille');
 
   return (
     <div className="container mx-auto py-8 px-4">
-
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -306,14 +314,3 @@ export default function Chat({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
-
-// Assumed location for LEGAL_COMPARISONS constant.  Adjust path as needed.
-// client/src/lib/legal-comparisons.ts
-
-export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
-  'classification': {
-    'classification-details': '[Contenu de la classification]'
-  },
-  // ... other comparisons
-};

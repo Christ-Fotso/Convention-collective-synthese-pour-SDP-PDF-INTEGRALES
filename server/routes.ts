@@ -155,16 +155,13 @@ export function registerRoutes(app: Express): Server {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
 
-      // Special handling for classification and salary grids
-      if (convention.length > 0 && 
-          ((category === 'classification' && subcategory === 'classification-details') ||
-           (category === 'remuneration' && subcategory === 'grille'))) {
+      // Special handling for classification only, no longer handling salary grid
+      if (convention.length > 0 && category === 'classification' && subcategory === 'classification-details') {
         try {
-          const type = category === 'classification' ? 'classification' : 'salaires';
           const response = await queryOpenAIForLegalData(
             convention[0].id,
             convention[0].name,
-            type
+            'classification'
           );
           res.json(response);
         } catch (openaiError) {
