@@ -28,7 +28,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
-  const prompt = type === 'classification' 
+  const prompt = type === 'classification'
     ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), détaillons la classification:
 
 1. Coefficients hiérarchiques par catégorie/niveau
@@ -84,9 +84,9 @@ export function registerRoutes(app: Express): Server {
       res.json(allConventions);
     } catch (error: any) {
       console.error('Error fetching conventions:', error.message);
-      res.status(500).json({ 
+      res.status(500).json({
         message: "Failed to fetch conventions",
-        error: error.message 
+        error: error.message
       });
     }
   });
@@ -99,12 +99,16 @@ export function registerRoutes(app: Express): Server {
         return res.status(400).json({ message: "URL parameter is required" });
       }
 
-      console.log('Proxying PDF from URL:', pdfUrl);
+      console.log('Starting PDF proxy request to URL:', pdfUrl);
+      const startTime = Date.now();
 
       const response = await axios.get(pdfUrl, {
         responseType: 'arraybuffer',
         timeout: 30000
       });
+
+      const endTime = Date.now();
+      console.log(`PDF proxy request completed in ${endTime - startTime}ms`);
 
       // Forward the PDF content
       res.setHeader('Content-Type', 'application/pdf');
@@ -126,7 +130,8 @@ export function registerRoutes(app: Express): Server {
       // Use our proxy URL instead of the direct S3 URL
       const proxyUrl = `${req.protocol}://${req.get('host')}/api/proxy-pdf?url=${encodeURIComponent(originalUrl)}`;
 
-      console.log('Creating ChatPDF source using proxy URL:', proxyUrl);
+      console.log('Starting ChatPDF source creation...');
+      const sourceStartTime = Date.now();
 
       const response = await axios.post(
         `${CHATPDF_API_BASE}/sources/add-url`,
@@ -138,13 +143,16 @@ export function registerRoutes(app: Express): Server {
           },
         }
       );
+
+      const sourceEndTime = Date.now();
+      console.log(`ChatPDF source created in ${sourceEndTime - sourceStartTime}ms`);
       console.log('ChatPDF source created:', response.data);
       res.json(response.data);
     } catch (error: any) {
       console.error('ChatPDF source creation error:', error.response?.data || error.message);
-      res.status(500).json({ 
+      res.status(500).json({
         message: "Failed to create ChatPDF source",
-        error: error.response?.data || error.message 
+        error: error.response?.data || error.message
       });
     }
   });
@@ -211,7 +219,7 @@ export function registerRoutes(app: Express): Server {
         try {
           const enhancedMessages = messages.map(msg => ({
             role: msg.role,
-            content: msg.role === 'user' 
+            content: msg.role === 'user'
               ? `${msg.content}\n\nVeuillez fournir une réponse détaillée basée sur la convention collective, en citant les articles pertinents.`
               : msg.content
           }));
@@ -233,7 +241,7 @@ export function registerRoutes(app: Express): Server {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
               },
-              timeout: 60000 
+              timeout: 60000
             }
           );
 
@@ -263,9 +271,9 @@ export function registerRoutes(app: Express): Server {
         error,
         stack: error.stack
       });
-      res.status(500).json({ 
+      res.status(500).json({
         message: "Une erreur est survenue lors de l'envoi du message",
-        error: error.message 
+        error: error.message
       });
     }
   });
@@ -288,9 +296,9 @@ export function registerRoutes(app: Express): Server {
       res.status(200).send();
     } catch (error: any) {
       console.error('Source deletion error:', error.response?.data || error.message);
-      res.status(500).json({ 
+      res.status(500).json({
         message: "Failed to delete ChatPDF source",
-        error: error.response?.data || error.message 
+        error: error.response?.data || error.message
       });
     }
   });

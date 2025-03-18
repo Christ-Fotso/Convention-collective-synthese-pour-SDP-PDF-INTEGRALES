@@ -51,10 +51,23 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   const createSourceMutation = useMutation({
     mutationFn: createChatPDFSource,
+    onMutate: () => {
+      // Afficher un indicateur de chargement plus visible
+      toast({
+        title: "Chargement en cours",
+        description: "Préparation de la convention collective...",
+        duration: 0 // Le toast restera jusqu'à ce que l'opération soit terminée
+      });
+    },
     onSuccess: (newSourceId) => {
       setSourceId(newSourceId);
       setMessages([]);
       setChatMessages([]);
+      toast({
+        title: "Convention chargée",
+        description: "Vous pouvez maintenant explorer les différentes sections.",
+        duration: 3000
+      });
     },
     onError: () => {
       toast({
@@ -118,7 +131,7 @@ export default function Chat({ params }: { params: { id: string } }) {
     }
 
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
-                  PREDEFINED_PROMPTS[category.id]?.['default'];
+                    PREDEFINED_PROMPTS[category.id]?.['default'];
 
     if (!prompt) {
       toast({
