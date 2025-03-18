@@ -207,7 +207,7 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      
+
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -218,7 +218,7 @@ export default function Chat({ params }: { params: { id: string } }) {
         </h1>
         <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
           <DialogTrigger asChild>
-            <Button 
+            <Button
               className="ml-auto bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
@@ -244,7 +244,7 @@ export default function Chat({ params }: { params: { id: string } }) {
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="w-full md:min-w-[300px] md:max-w-[400px]">
-          <CategoryMenu 
+          <CategoryMenu
             categories={CATEGORIES}
             onSelectSubcategory={handleSelectSubcategory}
             isLoading={chatMutation.isPending}
@@ -289,9 +289,9 @@ export default function Chat({ params }: { params: { id: string } }) {
                   </ReactMarkdown>
                 </div>
                 {shouldShowComparison && currentCategory && currentSubcategory && (
-                  <LegalComparison 
-                    category={currentCategory} 
-                    subcategory={currentSubcategory} 
+                  <LegalComparison
+                    category={currentCategory}
+                    subcategory={currentSubcategory}
                   />
                 )}
               </div>
@@ -306,3 +306,14 @@ export default function Chat({ params }: { params: { id: string } }) {
     </div>
   );
 }
+
+
+// Assumed location for LEGAL_COMPARISONS constant.  Adjust path as needed.
+// client/src/lib/legal-comparisons.ts
+
+export const LEGAL_COMPARISONS: Record<string, Record<string, string>> = {
+  'classification': {
+    'classification-details': '[Contenu de la classification]'
+  },
+  // ... other comparisons
+};

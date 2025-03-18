@@ -29,16 +29,16 @@ const __dirname = path.dirname(__filename);
 
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
   const prompt = type === 'classification' 
-    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez en détail la classification:
+    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), détaillons la classification:
 
-1. Listez tous les coefficients hiérarchiques par catégorie/niveau
-2. Pour chaque coefficient, détaillez:
-   - Les critères précis d'attribution
-   - Les responsabilités associées
-   - Les compétences requises
-   - Les conditions d'expérience
-   - Le niveau de formation requis
-3. Précisez toute spécificité:
+1. Coefficients hiérarchiques par catégorie/niveau
+2. Pour chaque coefficient:
+   - Critères précis d'attribution
+   - Responsabilités associées
+   - Compétences requises
+   - Conditions d'expérience
+   - Niveau de formation requis
+3. Spécificités:
    - Variations régionales ou départementales si elles existent
    - Conditions particulières d'application
    - Périodes d'essai spécifiques
@@ -46,7 +46,7 @@ async function queryOpenAIForLegalData(conventionId: string, conventionName: str
    - Critères de passage d'un coefficient à l'autre
    - Périodes d'évolution automatique si prévues
 
-Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux et des sections clairement définies pour une meilleure lisibilité.`
+Formatez la réponse en markdown avec des tableaux et des sections clairement définies pour une meilleure lisibilité.`
     : `Pour la convention collective IDCC ${conventionId} (${conventionName}), donnez-moi les informations concernant les salaires minima des 3 dernières années (étendus et non étendus). Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux pour plus de clarté.`;
 
   try {
