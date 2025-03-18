@@ -98,16 +98,13 @@ IMPORTANT:
 RÈGLES STRICTES À SUIVRE :
 1. Utilisez UNIQUEMENT les données disponibles sur Légifrance comme source
 2. Ne faites AUCUNE extrapolation ou invention d'information
-3. Si une information n'est pas disponible sur Légifrance, répondez exactement avec ce message :
-   "⚠️ Cette information n'est pas disponible pour le moment.
-
-   Notre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement."
+3. Si une information n'est pas disponible sur Légifrance, indiquez-le explicitement
 4. Ne combinez pas des informations de différentes sources
 5. Ne faites aucune interprétation personnelle des données
 6. Pour les dates et montants, citez uniquement ceux explicitement mentionnés dans Légifrance
 
 Présentez systématiquement les données sous forme de tableaux avec des notes explicatives claires.
-Pour toute section où l'information n'est pas disponible, utilisez le message d'indisponibilité ci-dessus plutôt que de laisser un tableau vide ou d'inventer des données.`
+Pour toute section où l'information n'est pas disponible, indiquez "Information non disponible dans Légifrance" plutôt que de laisser un tableau vide ou d'inventer des données.`
         },
         {
           role: "user",
