@@ -29,25 +29,91 @@ const __dirname = path.dirname(__filename);
 
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
   const prompt = type === 'classification' 
-    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez en détail la classification:
+    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez la classification de manière exhaustive:
 
-1. Listez tous les coefficients hiérarchiques par catégorie/niveau
-2. Pour chaque coefficient, détaillez:
-   - Les critères précis d'attribution
-   - Les responsabilités associées
-   - Les compétences requises
-   - Les conditions d'expérience
-   - Le niveau de formation requis
-3. Précisez toute spécificité:
-   - Variations régionales ou départementales si elles existent
-   - Conditions particulières d'application
-   - Périodes d'essai spécifiques
-4. Evolution et progression:
-   - Critères de passage d'un coefficient à l'autre
-   - Périodes d'évolution automatique si prévues
+1. Structure générale de la classification :
+   - Organisation des catégories professionnelles
+   - Niveaux hiérarchiques
+   - Filières professionnelles si existantes
 
-Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux et des sections clairement définies pour une meilleure lisibilité.`
-    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), donnez-moi les informations concernant les salaires minima des 3 dernières années (étendus et non étendus). Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux pour plus de clarté.`;
+2. Pour chaque coefficient/niveau :
+   - Valeur du coefficient
+   - Description détaillée du poste
+   - Responsabilités précises
+   - Autonomie et initiative
+   - Technicité requise
+   - Formation et diplômes exigés
+   - Expérience nécessaire
+   - Compétences spécifiques
+   - Conditions particulières d'exercice
+
+3. Spécificités géographiques :
+   - Variations par région
+   - Particularités départementales
+   - Zones géographiques spécifiques
+   - Adaptations locales des classifications
+
+4. Modalités d'évolution :
+   - Critères de passage entre coefficients
+   - Périodes d'évolution automatique
+   - Conditions de promotion
+   - Reconnaissance de l'expérience
+   - Validation des acquis
+
+5. Cas particuliers :
+   - Métiers spécifiques
+   - Fonctions transverses
+   - Polyvalence
+   - Emplois émergents
+   - Classifications spéciales
+
+6. Dispositions complémentaires :
+   - Périodes d'essai par niveau
+   - Formations requises
+   - Habilitations nécessaires
+   - Certifications professionnelles
+
+Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des sections claires et des tableaux détaillés pour une lisibilité optimale.`
+    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez de manière exhaustive la rémunération:
+
+1. Salaires minima conventionnels :
+   - Détail complet des 3 dernières années
+   - Grilles étendues ET non étendues
+   - Valeurs des points si applicable
+   - Salaires par coefficient/niveau
+   - Prime d'ancienneté et modalités
+
+2. Variations géographiques :
+   - Grilles par région
+   - Particularités départementales
+   - Zones spécifiques (urbaines/rurales)
+   - Indemnités géographiques
+
+3. Primes et indemnités :
+   - Liste exhaustive des primes
+   - Conditions d'attribution
+   - Montants ou modes de calcul
+   - Périodicité de versement
+
+4. Majorations et compléments :
+   - Treizième mois
+   - Gratifications
+   - Avantages en nature
+   - Participations spécifiques
+
+5. Évolutions et revalorisations :
+   - Historique des augmentations
+   - Négociations annuelles
+   - Clauses de revoyure
+   - Mécanismes d'indexation
+
+6. Cas particuliers :
+   - Rémunérations spécifiques par métier
+   - Conditions particulières
+   - Dispositions pour temps partiel
+   - Situations exceptionnelles
+
+Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des sections claires et des tableaux détaillés pour une lisibilité optimale.`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -55,14 +121,15 @@ Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en m
       messages: [
         {
           role: "system",
-          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Concentrez-vous sur les informations factuelles et structurez votre réponse de manière claire et détaillée. Ne citez pas les sources mais assurez-vous que toutes les informations proviennent exclusivement de Légifrance."
+          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Structurez votre réponse de manière exhaustive et détaillée, en incluant toutes les informations disponibles. Assurez-vous que toutes les informations proviennent exclusivement de Légifrance."
         },
         {
           role: "user",
           content: prompt
         }
       ],
-      response_format: { type: "text" }
+      response_format: { type: "text" },
+      max_tokens: 4000  // Augmentation de la limite de tokens pour obtenir plus de détails
     });
 
     return {
