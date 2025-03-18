@@ -56,25 +56,33 @@ Présentez dans un tableau :
 | Niveau départ | Niveau arrivée | Conditions de passage | Durée minimale |
 
 Basez-vous uniquement sur les données de Légifrance. La présentation doit être en markdown avec des tableaux clairs et des notes explicatives précises.`
-    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), analysez uniquement les salaires minima de manière exhaustive:
+    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), présentez les salaires minima sous forme de tableaux détaillés:
 
-1. Grilles de salaires minima :
-   - Détail des 3 dernières années
-   - Valeurs étendues ET non étendues
-   - Présentation par coefficient/niveau
+1. Grille principale des salaires minima
+Utilisez ce format de tableau :
+| Niveau/Coefficient | Salaire minimal | Date d'effet | Statut extension |
+Pour chacune des 3 dernières années. 
+Ajoutez des astérisques (*) en bas pour préciser :
+- Les dates exactes d'extension
+- Les dates de publication au Journal Officiel
+- Les informations sur le statut d'extension (étendu/non étendu)
 
-2. Système de calcul :
-   - Valeur du point si applicable
-   - Indices hiérarchiques si existants
-   - Formule de calcul si spécifique
+2. Système de calcul (si applicable)
+Présentez dans un tableau :
+| Date d'effet | Valeur du point | Coefficient hiérarchique | Statut extension |
+Précisez en dessous la formule de calcul exacte utilisée.
 
-3. Variations géographiques :
-   - Grilles par région si différentes
-   - Particularités par département
-   - Zones spécifiques si définies
-   - Coefficients géographiques si existants
+3. Variations géographiques
+Pour chaque région/département ayant des spécificités, créez un tableau :
+| Niveau/Coefficient | Salaire minimal | Zone/Région | Date d'effet | Statut extension |
 
-Basez-vous uniquement sur les données de Légifrance. Structurez la réponse en markdown avec des tableaux détaillés pour une meilleure lisibilité.`;
+4. Historique des valeurs du point (si applicable)
+Présentez dans un tableau chronologique :
+| Date d'application | Valeur du point | Base de calcul | Statut extension |
+
+Basez-vous uniquement sur les données de Légifrance. Tous les montants doivent être présentés en euros.
+Présentez chaque variation (géographique, temporelle) dans un tableau distinct.
+Utilisez des astérisques (*) pour toute note explicative sur les extensions.`;
 
   try {
     const response = await openai.chat.completions.create({
