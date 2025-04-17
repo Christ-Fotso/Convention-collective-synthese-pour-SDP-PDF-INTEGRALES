@@ -137,12 +137,12 @@ export function registerRoutes(app: Express): Server {
 
       const response = await axios.get(pdfUrl, {
         responseType: 'arraybuffer',
-        timeout: 60000,
+        timeout: 30000, // Réduction du timeout à 30 secondes
         headers: {
           'Accept-Encoding': 'gzip, deflate, br',
           'Connection': 'keep-alive'
         },
-        maxContentLength: 50 * 1024 * 1024 // 50MB max
+        maxContentLength: 25 * 1024 * 1024 // Limite à 25MB
       });
 
       // Mettre en cache le PDF
@@ -173,7 +173,7 @@ export function registerRoutes(app: Express): Server {
             "x-api-key": CHATPDF_API_KEY,
             "Content-Type": "application/json",
           },
-          timeout: 60000
+          timeout: 30000 // Réduction du timeout à 30 secondes
         }
       );
 
@@ -271,7 +271,7 @@ export function registerRoutes(app: Express): Server {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
               },
-              timeout: 60000
+              timeout: 30000 // Réduction du timeout pour les requêtes ChatPDF
             }
           );
 
