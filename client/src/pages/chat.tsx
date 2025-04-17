@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
-import { getConventions, createChatPDFSource, sendChatMessage } from '@/lib/api';
+import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
 import { PREDEFINED_PROMPTS } from '@/types';
@@ -108,7 +108,7 @@ export default function Chat({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (convention) {
-      createSourceMutation.mutate(convention.url);
+      createSourceMutation.mutate({ url: convention.url, conventionId: convention.id });
     }
   }, [convention]);
 

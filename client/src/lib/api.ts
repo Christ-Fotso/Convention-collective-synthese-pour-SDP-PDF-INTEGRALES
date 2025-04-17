@@ -8,8 +8,13 @@ export async function getConventions(): Promise<Convention[]> {
   return data;
 }
 
-export async function createChatPDFSource(url: string): Promise<string> {
-  const { data } = await axios.post(`${API_BASE}/chat/source`, { url });
+export interface CreateSourceParams {
+  url: string;
+  conventionId: string;
+}
+
+export async function createChatPDFSource(params: CreateSourceParams): Promise<string> {
+  const { data } = await axios.post(`${API_BASE}/chat/source`, params);
   return data.sourceId;
 }
 

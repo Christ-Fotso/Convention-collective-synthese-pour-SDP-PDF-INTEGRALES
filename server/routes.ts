@@ -2,8 +2,8 @@ import express, { type Express } from "express";
 import axios from "axios";
 import { createServer, type Server } from "http";
 import { db } from "@db";
-import { conventions } from "@db/schema";
-import { eq } from "drizzle-orm";
+import { conventions, chatpdfSources } from "@db/schema";
+import { eq, desc } from "drizzle-orm";
 import { queryPerplexity } from "./services/perplexity";
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { fileURLToPath } from 'url';
@@ -163,6 +163,25 @@ export function registerRoutes(app: Express): Server {
   apiRouter.post("/chat/source", async (req, res) => {
     try {
       const originalUrl = req.body.url;
+      const conventionId = req.body.conventionId; // Ajouter l'ID de la convention
+
+      if (!conventionId) {
+        return res.status(400).json({ message: "Convention ID is required" });
+      }
+
+      // Vérifier si un sourceId existe déjà pour cette convention
+      const existingSources = await db.select()
+        .from(chatpdfSources)
+        .where(eq(chatpdfSources.conventionId, conventionId))
+        .orderBy(desc(chatpdfSources.createdAt))
+        .limit(1);
+
+      if (existingSources.length > 0) {
+        console.log('Using cached sourceId for convention:', conventionId);
+        return res.json({ sourceId: existingSources[0].sourceId });
+      }
+
+      // Si aucun sourceId n'existe, en créer un nouveau
       const proxyUrl = `${req.protocol}://${req.get('host')}/api/proxy-pdf?url=${encodeURIComponent(originalUrl)}`;
 
       const response = await axios.post(
@@ -177,6 +196,15 @@ export function registerRoutes(app: Express): Server {
         }
       );
 
+      const sourceId = response.data.sourceId;
+
+      // Enregistrer le nouveau sourceId dans la base de données
+      await db.insert(chatpdfSources).values({
+        conventionId,
+        sourceId
+      });
+
+      console.log('Created and cached new sourceId for convention:', conventionId);
       res.json(response.data);
     } catch (error: any) {
       console.error('ChatPDF source creation error:', error.response?.data || error.message);
