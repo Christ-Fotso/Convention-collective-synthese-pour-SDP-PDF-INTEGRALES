@@ -1,0 +1,27 @@
+[
+  {
+    "id": "informations-generales",
+    "name": "Informations Générales",
+    "subcategories": [
+      { "id": "generale", "name": "Informations Générales" }
+    ]
+  },
+  {
+    "id": "embauche",
+    "name": "Embauche",
+    "subcategories": [
+      { "id": "delai-prevenance", "name": "Délai de Prévenance" },
+      { "id": "duree-travail", "name": "Durée du Temps de Travail" },
+      { "id": "periode-essai", "name": "Période d'essai" }
+    ]
+  },
+  {
+    "id": "conges",
+    "name": "Congés",
+    "subcategories": [
+      { "id": "cet", "name": "CET" },
+      { "id": "conges-payes", "name": "Congés Payés" },
+      { "id": "evenement-familial", "name": "Evènement Familial" }
+    ]
+  }
+]

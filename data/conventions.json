@@ -1,0 +1,12 @@
+[
+  {
+    "id": "0001", 
+    "name": "Convention collective nationale des entreprises de propreté et services associés",
+    "url": "https://exemple.com/ccn/0001.pdf"
+  },
+  {
+    "id": "0002",
+    "name": "Convention collective nationale des transports routiers et activités auxiliaires du transport",
+    "url": "https://exemple.com/ccn/0002.pdf"
+  }
+]
