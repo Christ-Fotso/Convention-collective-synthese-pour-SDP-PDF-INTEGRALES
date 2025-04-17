@@ -27,8 +27,34 @@ const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Cache pour les PDFs
-const pdfCache = new Map();
+// Cache pour les PDFs (avec limite de 20 PDFs)
+class LimitedCache {
+  private cache = new Map();
+  private maxSize: number;
+
+  constructor(maxSize: number) {
+    this.maxSize = maxSize;
+  }
+
+  has(key: string): boolean {
+    return this.cache.has(key);
+  }
+
+  get(key: string): any {
+    return this.cache.get(key);
+  }
+
+  set(key: string, value: any): void {
+    if (this.cache.size >= this.maxSize) {
+      // Si le cache est plein, supprimer la première entrée (la plus ancienne dans un Map)
+      const firstKey = this.cache.keys().next().value;
+      this.cache.delete(firstKey);
+    }
+    this.cache.set(key, value);
+  }
+}
+
+const pdfCache = new LimitedCache(20); // Limite à 20 PDFs en cache
 
 async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
   const prompt = type === 'classification'
