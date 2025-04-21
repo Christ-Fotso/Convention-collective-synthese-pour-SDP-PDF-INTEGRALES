@@ -56,15 +56,77 @@ const formatCost = (cost: number) => {
   return (cost / 100).toFixed(2) + " €";
 };
 
-// Définir les différents types de sections disponibles
-const SECTION_TYPES = [
-  { id: 'classification', name: 'Classification' },
-  { id: 'salaires', name: 'Salaires' },
-  { id: 'conges', name: 'Congés' },
-  { id: 'temps-travail', name: 'Temps de travail' },
-  { id: 'rupture', name: 'Rupture' },
-  { id: 'embauche', name: 'Embauche' },
-  { id: 'informations-generales', name: 'Informations générales' },
+// Définir les différents types de sections disponibles avec leurs sous-catégories
+interface SectionType {
+  id: string;
+  name: string;
+  subcategories?: { id: string; name: string }[];
+}
+
+const SECTION_TYPES: SectionType[] = [
+  { 
+    id: 'classification', 
+    name: 'Classification',
+    subcategories: [
+      { id: 'classification.definition', name: 'Définitions' },
+      { id: 'classification.grille', name: 'Grille de classification' },
+      { id: 'classification.evolution', name: 'Évolution professionnelle' }
+    ] 
+  },
+  { 
+    id: 'salaires', 
+    name: 'Salaires',
+    subcategories: [
+      { id: 'salaires.grille', name: 'Grille de salaires' },
+      { id: 'salaires.primes', name: 'Primes et indemnités' },
+      { id: 'salaires.anciennete', name: 'Ancienneté' }
+    ] 
+  },
+  { 
+    id: 'conges', 
+    name: 'Congés',
+    subcategories: [
+      { id: 'conges.payes', name: 'Congés payés' },
+      { id: 'conges.exceptionnels', name: 'Congés exceptionnels' },
+      { id: 'conges.anciennete', name: 'Congés d\'ancienneté' }
+    ] 
+  },
+  { 
+    id: 'temps-travail', 
+    name: 'Temps de travail',
+    subcategories: [
+      { id: 'temps-travail.duree', name: 'Durée du travail' },
+      { id: 'temps-travail.heures-sup', name: 'Heures supplémentaires' },
+      { id: 'temps-travail.amenagement', name: 'Aménagement du temps' }
+    ] 
+  },
+  { 
+    id: 'rupture', 
+    name: 'Rupture',
+    subcategories: [
+      { id: 'rupture.preavis', name: 'Préavis' },
+      { id: 'rupture.indemnites', name: 'Indemnités' },
+      { id: 'rupture.retraite', name: 'Départ en retraite' }
+    ] 
+  },
+  { 
+    id: 'embauche', 
+    name: 'Embauche',
+    subcategories: [
+      { id: 'embauche.essai', name: 'Période d\'essai' },
+      { id: 'embauche.contrat', name: 'Types de contrat' },
+      { id: 'embauche.non-concurrence', name: 'Clause de non-concurrence' }
+    ] 
+  },
+  { 
+    id: 'informations-generales', 
+    name: 'Informations générales',
+    subcategories: [
+      { id: 'informations-generales.champ-application', name: 'Champ d\'application' },
+      { id: 'informations-generales.adhesion', name: 'Adhésion' },
+      { id: 'informations-generales.revision', name: 'Révision et dénonciation' }
+    ] 
+  },
 ];
 
 export default function AdminPage() {
@@ -80,6 +142,8 @@ export default function AdminPage() {
   const [apiUsageStats, setApiUsageStats] = useState<ApiUsageStats | null>(null);
   const [isBatchMode, setIsBatchMode] = useState(false);
   const [selectedSectionTypes, setSelectedSectionTypes] = useState<string[]>([]);
+  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
+  const [showSubcategories, setShowSubcategories] = useState(false);
   
   // État pour le dialogue d'édition
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -89,7 +153,9 @@ export default function AdminPage() {
   // État pour la création de section
   const [isNewSectionDialogOpen, setIsNewSectionDialogOpen] = useState(false);
   const [newSectionType, setNewSectionType] = useState("");
+  const [newSectionSubcategory, setNewSectionSubcategory] = useState("");
   const [newSectionContent, setNewSectionContent] = useState("");
+  const [showSubcategoriesInForm, setShowSubcategoriesInForm] = useState(false);
   
   // Chargement initial des conventions
   useEffect(() => {
@@ -206,9 +272,28 @@ export default function AdminPage() {
     setSelectedSectionTypes(prev => {
       const isSelected = prev.includes(sectionType);
       if (isSelected) {
+        // Si on désélectionne une catégorie, on retire aussi toutes ses sous-catégories
+        const category = SECTION_TYPES.find(t => t.id === sectionType);
+        const subcategoryIds = category?.subcategories?.map(sc => sc.id) || [];
+        
+        setSelectedSubcategories(prevSub => 
+          prevSub.filter(subId => !subcategoryIds.includes(subId))
+        );
+        
         return prev.filter(type => type !== sectionType);
       } else {
         return [...prev, sectionType];
+      }
+    });
+  };
+  
+  const toggleSubcategorySelection = (subcategoryId: string) => {
+    setSelectedSubcategories(prev => {
+      const isSelected = prev.includes(subcategoryId);
+      if (isSelected) {
+        return prev.filter(id => id !== subcategoryId);
+      } else {
+        return [...prev, subcategoryId];
       }
     });
   };
@@ -262,7 +347,12 @@ export default function AdminPage() {
   };
   
   const handleCreateNewSection = async () => {
-    if (!selectedConventionId || !newSectionType || !newSectionContent) {
+    // Déterminer le type de section à utiliser (catégorie ou sous-catégorie)
+    const sectionTypeToUse = showSubcategoriesInForm && newSectionSubcategory 
+      ? newSectionSubcategory 
+      : newSectionType;
+      
+    if (!selectedConventionId || !sectionTypeToUse || !newSectionContent) {
       toast({
         title: "Erreur",
         description: "Veuillez remplir tous les champs",
@@ -277,7 +367,7 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           conventionId: selectedConventionId,
-          sectionType: newSectionType,
+          sectionType: sectionTypeToUse,
           content: newSectionContent,
           status: 'complete'
         })
@@ -296,7 +386,9 @@ export default function AdminPage() {
         
         // Réinitialiser le formulaire
         setNewSectionType("");
+        setNewSectionSubcategory("");
         setNewSectionContent("");
+        setShowSubcategoriesInForm(false);
         setIsNewSectionDialogOpen(false);
       } else {
         throw new Error("Erreur lors de la création");
@@ -354,20 +446,33 @@ export default function AdminPage() {
       return;
     }
     
-    if (selectedSectionTypes.length === 0) {
+    const hasSelectedSections = selectedSectionTypes.length > 0 || selectedSubcategories.length > 0;
+    if (!hasSelectedSections) {
       toast({
         title: "Attention",
-        description: "Veuillez sélectionner au moins un type de section à générer",
+        description: "Veuillez sélectionner au moins une catégorie ou sous-catégorie",
       });
       return;
     }
     
+    // Déterminer les sections à générer
+    const sectionsToGenerate: string[] = [];
+    
+    // Si on a choisi d'afficher les sous-catégories
+    if (showSubcategories && selectedSubcategories.length > 0) {
+      // On génère uniquement les sous-catégories sélectionnées
+      sectionsToGenerate.push(...selectedSubcategories);
+    } else {
+      // Sinon on génère les catégories principales
+      sectionsToGenerate.push(...selectedSectionTypes);
+    }
+    
     // Confirmer avec l'utilisateur
     const conventionCount = selectedConventions.length;
-    const sectionTypeCount = selectedSectionTypes.length;
+    const sectionTypeCount = sectionsToGenerate.length;
     const totalOperations = conventionCount * sectionTypeCount;
     
-    if (!confirm(`Vous êtes sur le point de lancer ${totalOperations} opération(s) de génération (${conventionCount} convention(s) × ${sectionTypeCount} type(s) de section). Voulez-vous continuer ?`)) {
+    if (!confirm(`Vous êtes sur le point de lancer ${totalOperations} opération(s) de génération (${conventionCount} convention(s) × ${sectionTypeCount} section(s)). Voulez-vous continuer ?`)) {
       return;
     }
     
@@ -380,7 +485,7 @@ export default function AdminPage() {
     let errorCount = 0;
     
     for (const convention of selectedConventions) {
-      for (const sectionType of selectedSectionTypes) {
+      for (const sectionType of sectionsToGenerate) {
         try {
           const response = await fetch('/api/admin/generate-section', {
             method: 'POST',
@@ -597,20 +702,66 @@ export default function AdminPage() {
                     </div>
                     
                     <div className="space-y-4">
-                      <h3 className="text-lg font-medium">Sélection des types de sections</h3>
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-lg font-medium">Sélection des types de sections</h3>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => setShowSubcategories(!showSubcategories)}
+                        >
+                          {showSubcategories ? "Afficher catégories" : "Afficher sous-catégories"}
+                        </Button>
+                      </div>
+                      
                       <div className="border rounded-md p-4">
-                        {SECTION_TYPES.map(type => (
-                          <div key={type.id} className="flex items-center space-x-2 py-2">
-                            <Checkbox
-                              id={`section-type-${type.id}`}
-                              checked={selectedSectionTypes.includes(type.id)}
-                              onCheckedChange={() => toggleSectionTypeSelection(type.id)}
-                            />
-                            <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
-                              {type.name}
-                            </Label>
+                        {!showSubcategories ? (
+                          // Affichage des catégories principales
+                          SECTION_TYPES.map(type => (
+                            <div key={type.id} className="flex items-center space-x-2 py-2">
+                              <Checkbox
+                                id={`section-type-${type.id}`}
+                                checked={selectedSectionTypes.includes(type.id)}
+                                onCheckedChange={() => toggleSectionTypeSelection(type.id)}
+                              />
+                              <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
+                                {type.name}
+                              </Label>
+                            </div>
+                          ))
+                        ) : (
+                          // Affichage des sous-catégories
+                          <div className="space-y-6">
+                            {SECTION_TYPES.map(category => (
+                              <div key={category.id} className="space-y-2">
+                                <div className="flex items-center space-x-2 py-1 font-semibold border-b">
+                                  <Checkbox
+                                    id={`category-${category.id}`}
+                                    checked={selectedSectionTypes.includes(category.id)}
+                                    onCheckedChange={() => toggleSectionTypeSelection(category.id)}
+                                  />
+                                  <Label htmlFor={`category-${category.id}`} className="cursor-pointer">
+                                    {category.name}
+                                  </Label>
+                                </div>
+                                
+                                <div className="ml-6 space-y-1">
+                                  {category.subcategories?.map(subcategory => (
+                                    <div key={subcategory.id} className="flex items-center space-x-2 py-1">
+                                      <Checkbox
+                                        id={`subcategory-${subcategory.id}`}
+                                        checked={selectedSubcategories.includes(subcategory.id)}
+                                        onCheckedChange={() => toggleSubcategorySelection(subcategory.id)}
+                                      />
+                                      <Label htmlFor={`subcategory-${subcategory.id}`} className="cursor-pointer text-sm">
+                                        {subcategory.name}
+                                      </Label>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        )}
                       </div>
                     </div>
                   </div>
@@ -624,7 +775,8 @@ export default function AdminPage() {
                     </Button>
                     <Button 
                       onClick={handleBatchGenerate}
-                      disabled={selectedConventions.length === 0 || selectedSectionTypes.length === 0}
+                      disabled={selectedConventions.length === 0 || 
+                              (showSubcategories ? selectedSubcategories.length === 0 : selectedSectionTypes.length === 0)}
                     >
                       Générer les sections sélectionnées
                     </Button>
