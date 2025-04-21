@@ -779,6 +779,26 @@ export default function AdminPage() {
                         onChange={(e) => setConventionSearchQuery(e.target.value)}
                         className="mb-2"
                       />
+                      <div className="flex space-x-2 mb-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => {
+                            setSelectedConventions(filteredConventions);
+                          }}
+                        >
+                          Tout sélectionner
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => {
+                            setSelectedConventions([]);
+                          }}
+                        >
+                          Tout désélectionner
+                        </Button>
+                      </div>
                       <div className="border rounded-md p-4 max-h-80 overflow-y-auto">
                         {filteredConventions.map(convention => (
                           <div key={convention.id} className="flex items-center space-x-2 py-2">
@@ -809,6 +829,40 @@ export default function AdminPage() {
                           onClick={() => setShowSubcategories(!showSubcategories)}
                         >
                           {showSubcategories ? "Afficher catégories" : "Afficher sous-catégories"}
+                        </Button>
+                      </div>
+                      
+                      <div className="flex space-x-2 mb-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => {
+                            if (!showSubcategories) {
+                              // Sélectionner toutes les catégories principales
+                              setSelectedSectionTypes(SECTION_TYPES.map(type => type.id));
+                            } else {
+                              // Sélectionner toutes les catégories et sous-catégories
+                              const mainCategories = SECTION_TYPES.map(type => type.id);
+                              const allSubcategories = SECTION_TYPES.flatMap(type => 
+                                type.subcategories?.map(subcat => subcat.id) || []
+                              );
+                              
+                              setSelectedSectionTypes(mainCategories);
+                              setSelectedSubcategories(allSubcategories);
+                            }
+                          }}
+                        >
+                          Tout sélectionner
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => {
+                            setSelectedSectionTypes([]);
+                            setSelectedSubcategories([]);
+                          }}
+                        >
+                          Tout désélectionner
                         </Button>
                       </div>
                       
