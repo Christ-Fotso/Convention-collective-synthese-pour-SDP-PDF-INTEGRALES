@@ -68,65 +68,109 @@ const SECTION_TYPES: SectionType[] = [
     id: 'classification', 
     name: 'Classification',
     subcategories: [
-      { id: 'classification.definition', name: 'Définitions' },
+      { id: 'classification.classification', name: 'Classification complète' },
       { id: 'classification.grille', name: 'Grille de classification' },
-      { id: 'classification.evolution', name: 'Évolution professionnelle' }
+      { id: 'classification.evolution', name: 'Évolution professionnelle' },
+      { id: 'classification.emplois-reperes', name: 'Emplois repères' },
+      { id: 'classification.coefficients', name: 'Coefficients hiérarchiques' }
     ] 
   },
   { 
-    id: 'salaires', 
-    name: 'Salaires',
+    id: 'remuneration', 
+    name: 'Rémunération',
     subcategories: [
-      { id: 'salaires.grille', name: 'Grille de salaires' },
-      { id: 'salaires.primes', name: 'Primes et indemnités' },
-      { id: 'salaires.anciennete', name: 'Ancienneté' }
+      { id: 'remuneration.grille', name: 'Grille de rémunération' },
+      { id: 'remuneration.13eme-mois', name: '13ème mois' },
+      { id: 'remuneration.anciennete', name: 'Prime d\'ancienneté' },
+      { id: 'remuneration.transport', name: 'Frais de transport' },
+      { id: 'remuneration.repas', name: 'Indemnité de repas' },
+      { id: 'remuneration.astreinte', name: 'Indemnité d\'astreinte' },
+      { id: 'remuneration.prime', name: 'Primes diverses' },
+      { id: 'remuneration.apprenti', name: 'Apprentis' },
+      { id: 'remuneration.contrat-pro', name: 'Contrats de professionalisation' },
+      { id: 'remuneration.stagiaire', name: 'Stagiaires' },
+      { id: 'remuneration.majoration-dimanche', name: 'Majoration dimanche' },
+      { id: 'remuneration.majoration-ferie', name: 'Majoration jours fériés' },
+      { id: 'remuneration.majoration-nuit', name: 'Majoration travail de nuit' }
     ] 
   },
   { 
     id: 'conges', 
     name: 'Congés',
     subcategories: [
-      { id: 'conges.payes', name: 'Congés payés' },
-      { id: 'conges.exceptionnels', name: 'Congés exceptionnels' },
-      { id: 'conges.anciennete', name: 'Congés d\'ancienneté' }
+      { id: 'conges.conges-payes', name: 'Congés payés' },
+      { id: 'conges.cet', name: 'Compte épargne temps (CET)' },
+      { id: 'conges.evenement-familial', name: 'Événements familiaux' },
+      { id: 'conges.anciennete', name: 'Congés d\'ancienneté' },
+      { id: 'conges.conges-exceptionnels', name: 'Congés exceptionnels' },
+      { id: 'conges.jours-supplementaires', name: 'Jours supplémentaires' },
+      { id: 'conges.fractionnement', name: 'Fractionnement des congés' },
+      { id: 'conges.sans-solde', name: 'Congés sans solde' },
+      { id: 'conges.deces', name: 'Congés pour décès' },
+      { id: 'conges.enfant-malade', name: 'Congés enfant malade' }
     ] 
   },
   { 
     id: 'temps-travail', 
     name: 'Temps de travail',
     subcategories: [
-      { id: 'temps-travail.duree', name: 'Durée du travail' },
+      { id: 'temps-travail.duree-travail', name: 'Durée du travail' },
+      { id: 'temps-travail.amenagement-temps', name: 'Aménagement du temps' },
       { id: 'temps-travail.heures-sup', name: 'Heures supplémentaires' },
-      { id: 'temps-travail.amenagement', name: 'Aménagement du temps' }
+      { id: 'temps-travail.temps-partiel', name: 'Temps partiel' },
+      { id: 'temps-travail.forfait-jours', name: 'Forfait jours' },
+      { id: 'temps-travail.travail-nuit', name: 'Travail de nuit' },
+      { id: 'temps-travail.astreintes', name: 'Astreintes' },
+      { id: 'temps-travail.jours-feries', name: 'Jours fériés' },
+      { id: 'temps-travail.repos-hebdomadaire', name: 'Repos hebdomadaire' },
+      { id: 'temps-travail.travail-dimanche', name: 'Travail du dimanche' }
     ] 
   },
   { 
-    id: 'rupture', 
-    name: 'Rupture',
+    id: 'depart', 
+    name: 'Départ',
     subcategories: [
-      { id: 'rupture.preavis', name: 'Préavis' },
-      { id: 'rupture.indemnites', name: 'Indemnités' },
-      { id: 'rupture.retraite', name: 'Départ en retraite' }
+      { id: 'depart.preavis', name: 'Préavis' },
+      { id: 'depart.licenciement', name: 'Indemnité de licenciement' },
+      { id: 'depart.mise-retraite', name: 'Mise à la retraite' },
+      { id: 'depart.depart-retraite', name: 'Départ à la retraite' },
+      { id: 'depart.rupture-conventionnelle', name: 'Rupture conventionnelle' },
+      { id: 'depart.precarite', name: 'Indemnité de précarité' }
     ] 
   },
   { 
     id: 'embauche', 
     name: 'Embauche',
     subcategories: [
-      { id: 'embauche.essai', name: 'Période d\'essai' },
-      { id: 'embauche.contrat', name: 'Types de contrat' },
-      { id: 'embauche.non-concurrence', name: 'Clause de non-concurrence' }
+      { id: 'embauche.periode-essai', name: 'Période d\'essai' },
+      { id: 'embauche.delai-prevenance', name: 'Délai de prévenance' }
     ] 
   },
   { 
     id: 'informations-generales', 
     name: 'Informations générales',
     subcategories: [
-      { id: 'informations-generales.champ-application', name: 'Champ d\'application' },
-      { id: 'informations-generales.adhesion', name: 'Adhésion' },
-      { id: 'informations-generales.revision', name: 'Révision et dénonciation' }
+      { id: 'informations-generales.generale', name: 'Informations générales' }
     ] 
   },
+  {
+    id: 'cotisations',
+    name: 'Cotisations',
+    subcategories: [
+      { id: 'cotisations.prevoyance', name: 'Prévoyance' },
+      { id: 'cotisations.retraite', name: 'Retraite' },
+      { id: 'cotisations.mutuelle', name: 'Mutuelle' }
+    ]
+  },
+  {
+    id: 'maintien-salaire',
+    name: 'Maintien de salaire',
+    subcategories: [
+      { id: 'maintien-salaire.accident-travail', name: 'Accident de travail' },
+      { id: 'maintien-salaire.maladie', name: 'Maladie' },
+      { id: 'maintien-salaire.maternite-paternite', name: 'Maternité / Paternité' }
+    ]
+  }
 ];
 
 export default function AdminPage() {
