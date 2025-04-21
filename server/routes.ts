@@ -3,13 +3,20 @@ import { createServer } from "http";
 import axios from "axios";
 import { Server } from "node:http";
 import { parse as parseUrl } from "url";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 import { db } from "../db";
-import { conventions, chatpdfSources } from "../db/schema";
+import { conventions, chatpdfSources, conventionSections } from "../db/schema";
 import { queryPerplexity } from "./services/perplexity";
 import { getConventionText, queryOpenAI, queryOpenAIForLegalData } from "./services/openai";
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { createHash } from "crypto";
+import { 
+  getAllConventionSections, 
+  getConventionSection,
+  saveConventionSection,
+  getApiMetrics,
+  SECTION_TYPES
+} from "./services/section-manager";
 
 // Cache limité pour éviter de refaire les mêmes requêtes coûteuses
 class LimitedCache {
@@ -610,6 +617,203 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Routes d'administration
+  const adminRouter = Router();
+  
+  // Récupérer toutes les sections pour une convention
+  adminRouter.get("/sections/:conventionId", async (req, res) => {
+    try {
+      const { conventionId } = req.params;
+      const sections = await getAllConventionSections(conventionId);
+      res.json(sections);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des sections:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des sections",
+        error: error.message
+      });
+    }
+  });
+  
+  // Récupérer une section spécifique
+  adminRouter.get("/sections/:conventionId/:sectionType", async (req, res) => {
+    try {
+      const { conventionId, sectionType } = req.params;
+      const section = await getConventionSection(conventionId, sectionType);
+      
+      if (!section) {
+        return res.status(404).json({
+          message: "Section non trouvée"
+        });
+      }
+      
+      res.json(section);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération de la section:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération de la section",
+        error: error.message
+      });
+    }
+  });
+  
+  // Créer une nouvelle section
+  adminRouter.post("/sections", async (req, res) => {
+    try {
+      const { conventionId, sectionType, content, status } = req.body;
+      
+      if (!conventionId || !sectionType || !content) {
+        return res.status(400).json({
+          message: "conventionId, sectionType et content sont requis"
+        });
+      }
+      
+      const newSection = await saveConventionSection({
+        conventionId,
+        sectionType,
+        content,
+        status: status || 'complete'
+      });
+      
+      res.status(201).json(newSection);
+    } catch (error: any) {
+      console.error("Erreur lors de la création de la section:", error);
+      res.status(500).json({
+        message: "Erreur lors de la création de la section",
+        error: error.message
+      });
+    }
+  });
+  
+  // Mettre à jour une section existante
+  adminRouter.put("/sections/:sectionId", async (req, res) => {
+    try {
+      const { sectionId } = req.params;
+      const { content, status } = req.body;
+      
+      // D'abord récupérer la section existante
+      const existingSection = await db.query.conventionSections.findFirst({
+        where: (sections, { eq }) => eq(sections.id, sectionId)
+      });
+      
+      if (!existingSection) {
+        return res.status(404).json({
+          message: "Section non trouvée"
+        });
+      }
+      
+      // Mettre à jour la section
+      const updatedSection = await saveConventionSection({
+        id: sectionId,
+        conventionId: existingSection.conventionId,
+        sectionType: existingSection.sectionType,
+        content: content || existingSection.content,
+        status: status || existingSection.status as 'pending' | 'complete' | 'error'
+      });
+      
+      res.json(updatedSection);
+    } catch (error: any) {
+      console.error("Erreur lors de la mise à jour de la section:", error);
+      res.status(500).json({
+        message: "Erreur lors de la mise à jour de la section",
+        error: error.message
+      });
+    }
+  });
+  
+  // Supprimer une section
+  adminRouter.delete("/sections/:sectionId", async (req, res) => {
+    try {
+      const { sectionId } = req.params;
+      
+      // Supprimer la section
+      await db.delete(conventionSections).where(eq(conventionSections.id, sectionId));
+      
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error("Erreur lors de la suppression de la section:", error);
+      res.status(500).json({
+        message: "Erreur lors de la suppression de la section",
+        error: error.message
+      });
+    }
+  });
+  
+  // Générer une section via OpenAI
+  adminRouter.post("/generate-section", async (req, res) => {
+    try {
+      const { conventionId, sectionType } = req.body;
+      
+      if (!conventionId || !sectionType) {
+        return res.status(400).json({
+          message: "conventionId et sectionType sont requis"
+        });
+      }
+      
+      // Récupérer les infos de la convention
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      
+      if (convention.length === 0) {
+        return res.status(404).json({
+          message: "Convention non trouvée"
+        });
+      }
+      
+      // Démarrer la génération en arrière-plan
+      // Mais renvoyer immédiatement une réponse pour ne pas bloquer le client
+      res.status(202).json({
+        message: "Génération lancée en arrière-plan",
+        conventionId,
+        sectionType
+      });
+      
+      // Déterminer le type de section à générer
+      if (sectionType === 'classification') {
+        queryOpenAIForLegalData(conventionId, convention[0].name, 'classification')
+          .then(() => {
+            console.log(`Section ${sectionType} générée avec succès pour la convention ${conventionId}`);
+          })
+          .catch(error => {
+            console.error(`Erreur lors de la génération de la section ${sectionType}:`, error);
+          });
+      } 
+      else if (sectionType === 'salaires') {
+        queryOpenAIForLegalData(conventionId, convention[0].name, 'salaires')
+          .then(() => {
+            console.log(`Section ${sectionType} générée avec succès pour la convention ${conventionId}`);
+          })
+          .catch(error => {
+            console.error(`Erreur lors de la génération de la section ${sectionType}:`, error);
+          });
+      }
+      // TODO: Ajouter d'autres types de sections au besoin
+      
+    } catch (error: any) {
+      console.error("Erreur lors de la génération de la section:", error);
+      res.status(500).json({
+        message: "Erreur lors de la génération de la section",
+        error: error.message
+      });
+    }
+  });
+  
+  // Récupérer les métriques d'utilisation API
+  adminRouter.get("/metrics", async (req, res) => {
+    try {
+      const conventionId = req.query.conventionId as string;
+      const metrics = await getApiMetrics(conventionId);
+      res.json(metrics);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des métriques:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des métriques",
+        error: error.message
+      });
+    }
+  });
+  
+  // Enregistrer les routes
+  app.use('/api/admin', adminRouter);
   app.use("/api", apiRouter);
   return createServer(app);
 }
