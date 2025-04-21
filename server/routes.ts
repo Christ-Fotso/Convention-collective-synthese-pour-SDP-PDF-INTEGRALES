@@ -7,7 +7,13 @@ import { eq, desc, and } from "drizzle-orm";
 import { db } from "../db";
 import { conventions, chatpdfSources, conventionSections } from "../db/schema";
 import { queryPerplexity } from "./services/perplexity";
-import { getConventionText, queryOpenAI, queryOpenAIForLegalData } from "./services/openai";
+import { getConventionText, queryOpenAI, queryOpenAIForLegalData, calculateCost } from "./services/openai";
+import OpenAI from "openai";
+
+// Configuration du client OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { createHash } from "crypto";
 import { 
@@ -15,6 +21,7 @@ import {
   getConventionSection,
   saveConventionSection,
   getApiMetrics,
+  saveApiMetric,
   SECTION_TYPES
 } from "./services/section-manager";
 
@@ -826,87 +833,254 @@ export function registerRoutes(app: Express): Server {
       
       const conventionName = convention[0].name;
       
-      // Déterminer si nous devons faire un seul appel ou plusieurs
-      // Pour les sous-catégories, on doit faire des appels individuels
+      // Séparation entre catégories principales et sous-catégories
       const mainCategories = sectionTypes.filter(type => !type.includes('.'));
       const subCategories = sectionTypes.filter(type => type.includes('.'));
       
-      // Traitement par lots pour les catégories principales (un seul appel API)
-      if (mainCategories.length > 0) {
-        try {
-          // Construire un prompt qui demande de générer plusieurs sections en une fois
-          const response = await queryOpenAI(
-            `Analyse la convention collective "${conventionName}" et génère les sections suivantes en format JSON : ${mainCategories.join(', ')}. 
-            Chaque section doit être séparée et bien identifiée dans le JSON pour pouvoir être facilement extraite.
-            Format attendu: { "sections": { "${mainCategories[0]}": "contenu...", "${mainCategories[1]}": "contenu...", ... } }`,
-            conventionId,
-            'génération multi-sections'
-          );
-          
-          // Analyser la réponse pour extraire les différentes sections
+      // Limiter à 10 sections par appel pour les catégories principales
+      const MAX_SECTIONS_PER_BATCH = 10;
+      
+      // Diviser les catégories principales en lots de MAX_SECTIONS_PER_BATCH
+      const mainCategoryBatches = [];
+      for (let i = 0; i < mainCategories.length; i += MAX_SECTIONS_PER_BATCH) {
+        mainCategoryBatches.push(mainCategories.slice(i, i + MAX_SECTIONS_PER_BATCH));
+      }
+      
+      // Traitement par lots pour les catégories principales
+      for (const batch of mainCategoryBatches) {
+        if (batch.length > 0) {
           try {
-            const parsedSections = JSON.parse(response);
+            console.log(`Traitement du lot de ${batch.length} catégories: ${batch.join(', ')}`);
             
-            // Sauvegarder chaque section individuellement
-            if (parsedSections && parsedSections.sections) {
-              for (const [sectionType, content] of Object.entries(parsedSections.sections)) {
-                if (mainCategories.includes(sectionType)) {
-                  // Sauvegarder cette section
-                  await saveConventionSection({
-                    conventionId,
-                    sectionType,
-                    content: content as string,
-                    status: 'complete'
-                  });
-                  
-                  console.log(`Section ${sectionType} extraite et sauvegardée avec succès`);
+            // Construire un prompt qui demande de générer plusieurs sections (max 10) en une fois
+            // Le format JSON avec array est moins sujet aux erreurs de parsing
+            const promptText = `Analyse la convention collective "${conventionName}" et génère les sections suivantes en format JSON : ${batch.join(', ')}. 
+Je veux que tu renvoies UNIQUEMENT un objet JSON sans texte supplémentaire.
+Format attendu exactement:
+{
+  "sections": {
+    "${batch[0]}": "contenu détaillé...",
+    ${batch.length > 1 ? `"${batch[1]}": "contenu détaillé...",` : ''}
+    ${batch.length > 2 ? '...' : ''}
+  }
+}`;
+
+            // Extraction du contenu de la convention
+            const conventionText = await getConventionText(conventionId, convention[0].url);
+            
+            // Appel à l'API avec instructions structurées
+            const completion = await openai.chat.completions.create({
+              model: "gpt-4o", // Modèle robuste pour la structuration JSON
+              temperature: 0.2, // Valeur basse pour des réponses plus strictes
+              messages: [
+                {
+                  role: "system",
+                  content: `Tu es un assistant juridique qui analyse les conventions collectives françaises. 
+                  Tu vas recevoir le texte intégral d'une convention collective et une liste de sections à extraire.
+                  Tu dois renvoyer UNIQUEMENT un objet JSON contenant les sections demandées, sans aucun texte supplémentaire.
+                  Assure-toi que ta réponse soit un JSON valide et qu'elle puisse être parsée par JSON.parse().`
+                },
+                {
+                  role: "user",
+                  content: [
+                    `Voici le texte complet de la convention collective IDCC ${conventionId} - ${conventionName}:`,
+                    conventionText,
+                    promptText
+                  ].join("\n\n")
+                }
+              ],
+              response_format: { type: "json_object" } // Force le format JSON
+            });
+            
+            // Récupération de la réponse et parsing
+            const content = completion.choices[0].message.content || '';
+            
+            // Enregistrer les métriques d'utilisation API
+            try {
+              await saveApiMetric({
+                apiName: 'openai',
+                endpoint: 'chat/completions/batch',
+                conventionId,
+                tokensIn: completion.usage?.prompt_tokens || 0,
+                tokensOut: completion.usage?.completion_tokens || 0,
+                estimatedCost: calculateCost(
+                  completion.usage?.prompt_tokens || 0,
+                  completion.usage?.completion_tokens || 0,
+                  "gpt-4o"
+                ),
+                success: true
+              });
+            } catch (metricError) {
+              console.error('Erreur lors de l\'enregistrement des métriques:', metricError);
+            }
+            
+            // Analyser la réponse pour extraire les différentes sections
+            try {
+              const parsedSections = JSON.parse(content);
+              
+              // Sauvegarder chaque section individuellement
+              if (parsedSections && parsedSections.sections) {
+                for (const [sectionType, sectionContent] of Object.entries(parsedSections.sections)) {
+                  if (batch.includes(sectionType)) {
+                    // Sauvegarder cette section
+                    await saveConventionSection({
+                      conventionId,
+                      sectionType,
+                      content: sectionContent as string,
+                      status: 'complete'
+                    });
+                    
+                    console.log(`Section ${sectionType} extraite et sauvegardée avec succès`);
+                  }
                 }
               }
+            } catch (parseError) {
+              console.error("Erreur lors de l'analyse de la réponse JSON:", parseError);
+              // En cas d'erreur, on sauvegarde quand même la réponse brute dans une section "multi"
+              await saveConventionSection({
+                conventionId,
+                sectionType: "multi-sections-" + Date.now(),
+                content: content,
+                status: 'error',
+                errorMessage: "Impossible de parser le JSON retourné"
+              });
             }
-          } catch (parseError) {
-            console.error("Erreur lors de l'analyse de la réponse JSON:", parseError);
-            // En cas d'erreur, on sauvegarde quand même la réponse brute dans une section "multi"
-            await saveConventionSection({
-              conventionId,
-              sectionType: "multi-sections",
-              content: response,
-              status: 'error',
-              errorMessage: "Impossible de parser le JSON retourné"
-            });
+          } catch (error) {
+            console.error("Erreur lors de la génération multiple:", error);
           }
-        } catch (error) {
-          console.error("Erreur lors de la génération multiple:", error);
         }
       }
       
-      // Traitement individuel pour les sous-catégories
-      for (const subcategory of subCategories) {
-        try {
-          // Pour chaque sous-catégorie, on fait un appel individuel
-          const [mainCategory, subType] = subcategory.split('.');
-          
-          // Récupérer des instructions spécifiques pour cette sous-catégorie
-          let prompt = `Analyse la convention collective "${conventionName}" et extrait spécifiquement les informations sur "${subcategory}".`;
-          
-          if (mainCategory === 'classification' && subType === 'grille') {
-            prompt += " Présente la grille de classification de manière structurée avec niveaux, intitulés de postes et coefficients.";
-          } else if (mainCategory === 'salaires' && subType === 'grille') {
-            prompt += " Présente la grille salariale complète avec tous les niveaux, coefficients et montants correspondants.";
+      // Diviser également les sous-catégories en lots
+      const subCategoryBatches = [];
+      for (let i = 0; i < subCategories.length; i += MAX_SECTIONS_PER_BATCH) {
+        subCategoryBatches.push(subCategories.slice(i, i + MAX_SECTIONS_PER_BATCH));
+      }
+      
+      // Traitement des sous-catégories par lots
+      for (const batch of subCategoryBatches) {
+        if (batch.length > 0) {
+          try {
+            console.log(`Traitement du lot de ${batch.length} sous-catégories: ${batch.join(', ')}`);
+            
+            const promptParts = [];
+            
+            // Construire un prompt qui demande de générer plusieurs sous-catégories en une fois
+            for (const subcategory of batch) {
+              const [mainCategory, subType] = subcategory.split('.');
+              
+              // Instructions spécifiques par sous-catégorie
+              let subcategoryPrompt = `Pour "${subcategory}": `;
+              
+              if (mainCategory === 'classification' && subType === 'grille') {
+                subcategoryPrompt += "Présente la grille de classification de manière structurée avec niveaux, intitulés de postes et coefficients.";
+              } else if (mainCategory === 'salaires' && subType === 'grille') {
+                subcategoryPrompt += "Présente la grille salariale complète avec tous les niveaux, coefficients et montants correspondants.";
+              } else {
+                subcategoryPrompt += `Extrait les informations spécifiques à "${subcategory}".`;
+              }
+              
+              promptParts.push(subcategoryPrompt);
+            }
+            
+            // Le format JSON avec array est moins sujet aux erreurs de parsing
+            const promptText = `Analyse la convention collective "${conventionName}" et génère les sous-catégories suivantes en format JSON :
+            
+${promptParts.join('\n')}
+
+Je veux que tu renvoies UNIQUEMENT un objet JSON sans texte supplémentaire.
+Format attendu exactement:
+{
+  "sections": {
+    "${batch[0]}": "contenu détaillé...",
+    ${batch.length > 1 ? `"${batch[1]}": "contenu détaillé...",` : ''}
+    ${batch.length > 2 ? '...' : ''}
+  }
+}`;
+
+            // Extraction du contenu de la convention
+            const conventionText = await getConventionText(conventionId, convention[0].url);
+            
+            // Appel à l'API avec instructions structurées
+            const completion = await openai.chat.completions.create({
+              model: "gpt-4o", // Modèle robuste pour la structuration JSON
+              temperature: 0.2, // Valeur basse pour des réponses plus strictes
+              messages: [
+                {
+                  role: "system",
+                  content: `Tu es un assistant juridique qui analyse les conventions collectives françaises. 
+                  Tu vas recevoir le texte intégral d'une convention collective et une liste de sous-catégories à extraire.
+                  Tu dois renvoyer UNIQUEMENT un objet JSON contenant les sous-catégories demandées, sans aucun texte supplémentaire.
+                  Assure-toi que ta réponse soit un JSON valide et qu'elle puisse être parsée par JSON.parse().`
+                },
+                {
+                  role: "user",
+                  content: [
+                    `Voici le texte complet de la convention collective IDCC ${conventionId} - ${conventionName}:`,
+                    conventionText,
+                    promptText
+                  ].join("\n\n")
+                }
+              ],
+              response_format: { type: "json_object" } // Force le format JSON
+            });
+            
+            // Récupération de la réponse et parsing
+            const content = completion.choices[0].message.content || '';
+            
+            // Enregistrer les métriques d'utilisation API
+            try {
+              await saveApiMetric({
+                apiName: 'openai',
+                endpoint: 'chat/completions/subcategory-batch',
+                conventionId,
+                tokensIn: completion.usage?.prompt_tokens || 0,
+                tokensOut: completion.usage?.completion_tokens || 0,
+                estimatedCost: calculateCost(
+                  completion.usage?.prompt_tokens || 0,
+                  completion.usage?.completion_tokens || 0,
+                  "gpt-4o"
+                ),
+                success: true
+              });
+            } catch (metricError) {
+              console.error('Erreur lors de l\'enregistrement des métriques:', metricError);
+            }
+            
+            // Analyser la réponse pour extraire les différentes sous-catégories
+            try {
+              const parsedSections = JSON.parse(content);
+              
+              // Sauvegarder chaque sous-catégorie individuellement
+              if (parsedSections && parsedSections.sections) {
+                for (const [sectionType, sectionContent] of Object.entries(parsedSections.sections)) {
+                  if (batch.includes(sectionType)) {
+                    // Sauvegarder cette sous-catégorie
+                    await saveConventionSection({
+                      conventionId,
+                      sectionType,
+                      content: sectionContent as string,
+                      status: 'complete'
+                    });
+                    
+                    console.log(`Sous-catégorie ${sectionType} extraite et sauvegardée avec succès`);
+                  }
+                }
+              }
+            } catch (parseError) {
+              console.error("Erreur lors de l'analyse de la réponse JSON pour les sous-catégories:", parseError);
+              // En cas d'erreur, on sauvegarde quand même la réponse brute
+              await saveConventionSection({
+                conventionId,
+                sectionType: "multi-subcategories-" + Date.now(),
+                content: content,
+                status: 'error',
+                errorMessage: "Impossible de parser le JSON retourné"
+              });
+            }
+          } catch (subCategoryError) {
+            console.error(`Erreur lors du traitement du lot de sous-catégories:`, subCategoryError);
           }
-          
-          const response = await queryOpenAI(prompt, conventionId, `sous-catégorie ${subcategory}`);
-          
-          // Sauvegarder la sous-catégorie
-          await saveConventionSection({
-            conventionId,
-            sectionType: subcategory,
-            content: response,
-            status: 'complete'
-          });
-          
-          console.log(`Sous-catégorie ${subcategory} générée et sauvegardée avec succès`);
-        } catch (subcategoryError) {
-          console.error(`Erreur lors de la génération de la sous-catégorie ${subcategory}:`, subcategoryError);
         }
       }
       

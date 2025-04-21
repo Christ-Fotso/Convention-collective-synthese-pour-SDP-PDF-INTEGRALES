@@ -40,7 +40,7 @@ const pdfTextCache = new Map<string, string>();
 /**
  * Calcule le coût estimé d'une requête OpenAI
  */
-function calculateCost(inputTokens: number, outputTokens: number, model: string = MODEL): number {
+export function calculateCost(inputTokens: number, outputTokens: number, model: string = MODEL): number {
   const modelCost = MODEL_COSTS[model] || MODEL_COSTS["gpt-4.1-2025-04-14"];
   
   const inputCost = (inputTokens / 1000) * modelCost.inputPerThousand;
@@ -55,8 +55,8 @@ function calculateCost(inputTokens: number, outputTokens: number, model: string 
  * avec extraction intelligente basée sur la catégorie demandée
  */
 export async function getConventionText(
-  conventionUrl: string, 
   conventionId: string, 
+  conventionUrl: string,
   category?: string, 
   subcategory?: string
 ): Promise<string> {
