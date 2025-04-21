@@ -75,8 +75,18 @@ export function registerRoutes(app: Express): Server {
   // Route pour récupérer toutes les conventions
   apiRouter.get("/conventions", async (req, res) => {
     try {
-      const allConventions = await db.select().from(conventions);
-      res.json(allConventions);
+      // Charger les conventions depuis le fichier JSON au lieu de la base de données
+      const conventionsFilePath = path.join(process.cwd(), 'data', 'conventions.json');
+      const conventionsData = JSON.parse(fs.readFileSync(conventionsFilePath, 'utf8'));
+      
+      // Convertir au format attendu {id, name, url}
+      const formattedConventions = conventionsData.map((conv: any) => ({
+        id: conv.id,
+        name: conv.name,
+        url: conv.url
+      }));
+      
+      res.json(formattedConventions);
     } catch (error: any) {
       console.error("Erreur lors de la récupération des conventions:", error);
       res.status(500).json({
