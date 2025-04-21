@@ -1007,7 +1007,7 @@ export default function AdminPage() {
                       <SelectValue placeholder="Tous les types de section" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Tous les types</SelectItem>
+                      <SelectItem value="all">Tous les types</SelectItem>
                       {SECTION_TYPES.map(type => (
                         <SelectItem key={type.id} value={type.id}>
                           {type.name}
@@ -1082,7 +1082,7 @@ export default function AdminPage() {
                                 // Sélectionner toutes les sections visibles
                                 const newSet = new Set<string>();
                                 Object.values(allSections).flat().forEach(section => {
-                                  if (!tableSectionFilter || section.sectionType.startsWith(tableSectionFilter)) {
+                                  if (tableSectionFilter === "all" || !tableSectionFilter || section.sectionType.startsWith(tableSectionFilter)) {
                                     newSet.add(section.id);
                                   }
                                 });
@@ -1096,7 +1096,7 @@ export default function AdminPage() {
                               selectedSections.size > 0 && 
                               selectedSections.size === Object.values(allSections)
                                 .flat()
-                                .filter(s => !tableSectionFilter || s.sectionType.startsWith(tableSectionFilter))
+                                .filter(s => tableSectionFilter === "all" || !tableSectionFilter || s.sectionType.startsWith(tableSectionFilter))
                                 .length
                             }
                           />
@@ -1162,7 +1162,7 @@ export default function AdminPage() {
                         .flatMap(([conventionId, sections]) => {
                           const convention = conventions.find(c => c.id === conventionId);
                           return sections
-                            .filter(section => !tableSectionFilter || section.sectionType.startsWith(tableSectionFilter))
+                            .filter(section => tableSectionFilter === "all" || !tableSectionFilter || section.sectionType.startsWith(tableSectionFilter))
                             .map(section => ({
                               section,
                               conventionId,
@@ -1378,7 +1378,9 @@ export default function AdminPage() {
                 let successCount = 0;
                 let errorCount = 0;
                 
-                for (const [sectionId, content] of sectionUpdates.entries()) {
+                // Convertir Map en Array pour éviter les problèmes d'itération
+                const sectionUpdatesArray = Array.from(sectionUpdates.entries());
+                for (const [sectionId, content] of sectionUpdatesArray) {
                   try {
                     // Trouver la section dans allSections
                     let sectionToUpdate: ConventionSection | null = null;
