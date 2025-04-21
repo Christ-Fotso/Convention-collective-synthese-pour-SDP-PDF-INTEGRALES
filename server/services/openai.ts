@@ -22,22 +22,10 @@ if (!fs.existsSync(TEMP_DIR)) {
 const pdfTextCache = new Map<string, string>();
 
 /**
- * Télécharge un PDF depuis une URL et retourne le contenu en tant que Buffer
- */
-async function downloadPDFContent(url: string): Promise<Buffer> {
-  try {
-    console.log(`Téléchargement du PDF depuis ${url}`);
-    const response = await axios.get(url, { responseType: 'arraybuffer' });
-    return Buffer.from(response.data);
-  } catch (error: any) {
-    console.error('Erreur lors du téléchargement du PDF:', error);
-    throw new Error(`Impossible de télécharger le PDF: ${error.message}`);
-  }
-}
-
-/**
- * Obtient le texte d'une convention collective depuis son PDF
- * En utilisant l'API GPT-4o pour extraire le texte directement
+ * Cette version simplifiée de l'extraction de texte n'utilise plus pdf-parse
+ * qui posait des problèmes de dépendance.
+ * À la place, nous réutilisons directement les informations de la convention
+ * que nous connaissons déjà via son ID.
  */
 export async function getConventionText(conventionUrl: string, conventionId: string): Promise<string> {
   // Vérifier si le texte est déjà en cache
@@ -48,34 +36,57 @@ export async function getConventionText(conventionUrl: string, conventionId: str
   }
   
   try {
-    // Télécharger le PDF
-    const pdfContent = await downloadPDFContent(conventionUrl);
+    // Récupérer les méta-informations sur la convention depuis l'URL
+    console.log(`Récupération des informations pour la convention ${conventionId} depuis ${conventionUrl}`);
     
-    // Si le PDF est petit, nous pouvons l'utiliser directement
-    // Sinon, nous utilisons une description générique
-    let conventionText = "";
+    // Télécharger le contenu HTML de la page (on ne traite pas le PDF directement)
+    const response = await axios.get(conventionUrl, { 
+      responseType: 'text',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      },
+      timeout: 15000 // 15 secondes de timeout
+    }).catch(() => null);
     
-    try {
-      // Pour éviter d'avoir à extraire le texte du PDF (source de bugs),
-      // nous allons simplement utiliser une requête à GPT-4.1 pour récupérer les informations
-      // pertinentes de la convention collective à partir de son ID
-      conventionText = `Convention collective nationale ${conventionId}. Pour analyser cette convention collective, 
-veuillez consulter le texte intégral sur Légifrance à l'adresse suivante: ${conventionUrl}`;
+    // Construire un texte avec toutes les informations disponibles
+    let conventionText = `CONVENTION COLLECTIVE NATIONALE IDCC ${conventionId}\n`;
+    conventionText += `Source: ${conventionUrl}\n\n`;
+    
+    // Ajouter des informations basiques sur la convention
+    conventionText += `Cette convention collective régit les relations entre employeurs et salariés dans son secteur d'activité.\n`;
+    conventionText += `Pour consulter le texte complet, rendez-vous sur Légifrance à l'adresse : ${conventionUrl}\n\n`;
+    
+    // Ajouter des informations supplémentaires si on a pu récupérer la page
+    if (response && response.data) {
+      const htmlContent = response.data.toString();
+      // Essayer d'extraire le titre
+      const titleMatch = htmlContent.match(/<title>(.*?)<\/title>/i);
+      if (titleMatch && titleMatch[1]) {
+        conventionText += `Titre complet: ${titleMatch[1].replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()}\n\n`;
+      }
       
-      console.log(`Texte de convention généré pour ID ${conventionId}`);
-    } catch (error: any) {
-      console.error('Erreur lors de la génération du texte:', error);
-      conventionText = `Convention collective nationale ${conventionId}. Le texte complet de cette convention 
-collective est disponible sur Légifrance à l'adresse suivante: ${conventionUrl}`;
+      // Essayer d'extraire d'autres informations pertinentes
+      // (codes simplifiés pour éviter les erreurs)
     }
+    
+    // Ajouter une note sur les limites de l'analyse
+    conventionText += `NOTE IMPORTANTE: En raison des limitations techniques, l'analyse qui suit est basée sur les connaissances générales du modèle d'IA concernant cette convention collective, et non sur l'extraction directe du texte intégral du PDF. Pour une analyse juridique précise, veuillez consulter le texte original sur Légifrance.\n\n`;
     
     // Mettre en cache
     pdfTextCache.set(conventionId, conventionText);
     
+    console.log(`Informations sur la convention ${conventionId} récupérées et mises en cache`);
     return conventionText;
   } catch (error: any) {
-    console.error('Erreur lors de l\'obtention du texte de la convention:', error);
-    throw error;
+    console.error('Erreur lors de l\'obtention des informations de la convention:', error);
+    
+    // En cas d'échec, utiliser un message de secours
+    const fallbackText = `Convention collective nationale IDCC ${conventionId}.\n\n` +
+      `ATTENTION: Je n'ai pas pu récupérer les informations détaillées de cette convention collective.\n` +
+      `Merci de consulter le texte intégral sur Légifrance à l'adresse suivante: ${conventionUrl}\n\n` +
+      `L'analyse qui suit sera basée sur les connaissances générales du modèle d'IA concernant cette convention collective.`;
+    
+    return fallbackText;
   }
 }
 
@@ -96,16 +107,18 @@ export async function queryOpenAI(
       role: "system",
       content: `Vous êtes un assistant juridique spécialisé en droit du travail français, et plus particulièrement dans l'analyse des conventions collectives.
 
-Vous allez analyser la convention collective ${conventionId} - ${conventionName}.
+Vous allez analyser la convention collective IDCC ${conventionId} - ${conventionName}.
 
-Voici des informations sur cette convention collective:
+Voici les informations disponibles sur cette convention collective:
 ${conventionText}
 
-Important : Basez-vous sur vos connaissances des conventions collectives françaises pour répondre à la question de l'utilisateur.
-Vos réponses doivent être précises, factuelles et basées sur le contenu de cette convention collective ${conventionId}.
-Citez systématiquement les articles pertinents si vous les connaissez.
-Si une information n'est pas mentionnée ou que vous n'êtes pas certain, indiquez-le clairement.
-Structurez vos réponses de manière claire et organisée, en utilisant des listes à puces, des tableaux ou des sections numérotées si nécessaire.`
+Consignes importantes:
+1. Utilisez vos connaissances sur cette convention collective spécifique (IDCC ${conventionId}) pour répondre à la question.
+2. Précisez clairement quand vous vous basez sur vos connaissances générales de cette convention collective plutôt que sur un extrait précis du texte.
+3. Citez les articles pertinents quand vous les connaissez.
+4. Si vous n'avez pas l'information demandée, indiquez-le clairement.
+5. Structurez vos réponses de manière claire et organisée (listes à puces, sections numérotées, etc.)
+6. Ne faites pas de supposition sur le contenu précis des articles si vous ne les connaissez pas.`
     };
     
     // Préparation des messages pour l'API
@@ -145,8 +158,16 @@ export async function queryOpenAIForLegalData(
   type: 'classification' | 'salaires'
 ): Promise<ChatResponse> {
   try {
-    // On va maintenant demander de récupérer le texte de la convention
+    // Déterminer l'URL de la convention
     const conventionUrl = `https://www.legifrance.gouv.fr/conv_coll/id/${conventionId}`;
+    
+    // Récupérer le texte de la convention si possible
+    let conventionText = "";
+    try {
+      conventionText = await getConventionText(conventionUrl, conventionId);
+    } catch (err) {
+      console.error("Impossible de récupérer les informations sur la convention, utilisation du mode de secours");
+    }
     
     // Message spécifique selon le type demandé
     let systemPrompt = "";
@@ -155,6 +176,10 @@ export async function queryOpenAIForLegalData(
     if (type === 'classification') {
       systemPrompt = `Vous êtes un expert en droit du travail français spécialisé dans les classifications professionnelles. 
 Analysez la structure détaillée de la classification des emplois dans la convention collective IDCC ${conventionId} (${conventionName}).
+
+${conventionText ? "Voici les informations disponibles sur cette convention collective:" : ""}
+${conventionText}
+
 1. Structure et format de votre réponse :
    - Présenter un tableau hiérarchique complet de TOUS les niveaux, échelons et coefficients
    - Structure: du niveau le plus bas au plus élevé
@@ -172,20 +197,16 @@ Analysez la structure détaillée de la classification des emplois dans la conve
 | Niveau 1 - Coef. XX | - Critères détaillés... |
 
 4. Règles importantes :
-   - Analyser la convention collective spécifiée dans le contexte
-   - Ne JAMAIS mentionner ou citer vos sources d'information
-   - Si on vous demande vos sources, répondez que cette information est confidentielle
-   - Ne jamais révéler l'origine de vos informations ou les documents consultés
-   - Si une information n'est pas disponible, indiquez-le simplement sans mentionner pourquoi
-   - Structurer la réponse de manière hiérarchique, du niveau le plus bas au plus élevé
+   - Analysez la convention collective IDCC ${conventionId}
+   - Utilisez vos connaissances sur cette convention spécifique
+   - Si une information n'est pas disponible, indiquez-le clairement
+   - Structurez la réponse de manière hiérarchique, du niveau le plus bas au plus élevé
 
-5. Après le tableau, ajouter :
+5. Après le tableau, ajoutez :
    - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
-   - Les spécificités par filière si elles existent
-
-RÈGLE ABSOLUE : Ne jamais mentionner les sources, les PDFs, ou les documents consultés, même si on vous le demande explicitement.`;
+   - Les spécificités par filière si elles existent`;
       
-      userPrompt = `Présentez la classification complète des emplois pour la convention collective ${conventionId} (${conventionName}).`;
+      userPrompt = `Présentez la classification complète des emplois pour la convention collective IDCC ${conventionId} (${conventionName}).`;
     }
     
     // Faire la requête à OpenAI
