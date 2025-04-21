@@ -6,6 +6,8 @@ import { parse as parseUrl } from "url";
 import { eq, desc, and } from "drizzle-orm";
 import { db } from "../db";
 import { conventions, chatpdfSources, conventionSections } from "../db/schema";
+import path from "path";
+import fs from "fs";
 import { queryPerplexity } from "./services/perplexity";
 import { getConventionText, queryOpenAI, queryOpenAIForLegalData, calculateCost } from "./services/openai";
 import OpenAI from "openai";
@@ -1100,6 +1102,67 @@ Format attendu exactement:
       console.error("Erreur lors de la récupération des métriques:", error);
       res.status(500).json({
         message: "Erreur lors de la récupération des métriques",
+        error: error.message
+      });
+    }
+  });
+  
+  // Mettre à jour les prompts
+  adminRouter.post("/prompts", async (req, res) => {
+    try {
+      const { prompts } = req.body;
+      
+      if (!prompts) {
+        return res.status(400).json({ message: "Les prompts sont requis" });
+      }
+      
+      // Mise à jour du fichier types/index.ts
+      const typesFilePath = path.resolve(__dirname, '../client/src/types/index.ts');
+      let typesFileContent = await fs.promises.readFile(typesFilePath, 'utf-8');
+      
+      // Trouver où commence PREDEFINED_PROMPTS
+      const promptsStartRegex = /export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = \{/;
+      const promptsStartMatch = typesFileContent.match(promptsStartRegex);
+      
+      if (!promptsStartMatch || !promptsStartMatch.index) {
+        return res.status(500).json({ message: "Impossible de trouver la définition des prompts dans le fichier" });
+      }
+      
+      // Trouver la fin de l'objet PREDEFINED_PROMPTS
+      let braceCount = 0;
+      let endIndex = -1;
+      
+      for (let i = promptsStartMatch.index; i < typesFileContent.length; i++) {
+        const char = typesFileContent[i];
+        if (char === '{') braceCount++;
+        if (char === '}') {
+          braceCount--;
+          if (braceCount === 0) {
+            endIndex = i + 1;
+            break;
+          }
+        }
+      }
+      
+      if (endIndex === -1) {
+        return res.status(500).json({ message: "Impossible de déterminer la fin de la définition des prompts" });
+      }
+      
+      // Remplacer l'objet PREDEFINED_PROMPTS par le nouveau
+      const newPromptsContent = `export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = ${JSON.stringify(prompts, null, 2)};`;
+      
+      typesFileContent = 
+        typesFileContent.slice(0, promptsStartMatch.index) + 
+        newPromptsContent +
+        typesFileContent.slice(endIndex);
+      
+      await fs.promises.writeFile(typesFilePath, typesFileContent);
+      
+      res.json({ message: "Prompts mis à jour avec succès" });
+    } catch (error: any) {
+      console.error("Erreur lors de la mise à jour des prompts:", error);
+      res.status(500).json({
+        message: "Erreur lors de la mise à jour des prompts",
         error: error.message
       });
     }

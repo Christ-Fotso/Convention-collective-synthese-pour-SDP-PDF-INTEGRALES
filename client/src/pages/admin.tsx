@@ -1696,6 +1696,43 @@ export default function AdminPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Boîte de dialogue d'édition de prompt */}
+      <Dialog open={isPromptDialogOpen} onOpenChange={setIsPromptDialogOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              {selectedPromptCategory && CATEGORIES.find(c => c.id === selectedPromptCategory)?.name}
+              {selectedPromptSubcategory && selectedPromptSubcategory !== "default" && (
+                <>
+                  {" > "}
+                  {CATEGORIES.find(c => c.id === selectedPromptCategory)?.subcategories?.find(s => s.id === selectedPromptSubcategory)?.name}
+                </>
+              )}
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <Label htmlFor="prompt-content">Contenu du prompt</Label>
+            <Textarea
+              id="prompt-content"
+              value={currentPromptContent}
+              onChange={(e) => setCurrentPromptContent(e.target.value)}
+              rows={20}
+              className="font-mono text-sm"
+            />
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsPromptDialogOpen(false)}>
+              Annuler
+            </Button>
+            <Button onClick={handleSavePrompt}>
+              Enregistrer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
