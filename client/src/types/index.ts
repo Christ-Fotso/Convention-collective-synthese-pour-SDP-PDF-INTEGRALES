@@ -17,6 +17,7 @@ export interface ChatResponse {
   inProgress?: boolean;
   error?: boolean;
   message?: string;
+  fromCache?: boolean;
 }
 
 export interface ChatRequestBody {

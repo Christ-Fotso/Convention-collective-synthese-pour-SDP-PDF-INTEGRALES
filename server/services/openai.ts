@@ -1,9 +1,27 @@
 import OpenAI from "openai";
 import { ChatResponse, Message } from '../../client/src/types';
 import { extractTextFromURL } from "./pdf-extractor";
+import { 
+  saveConventionSection, 
+  getConventionSection, 
+  saveApiMetric,
+  SECTION_TYPES 
+} from "./section-manager";
 
 // Utilisation du modèle gpt-4.1-2025-04-14 comme demandé explicitement par l'utilisateur
 const MODEL = "gpt-4.1-2025-04-14";
+
+// Constantes pour les coûts et les modèles
+const MODEL_COSTS = {
+  "gpt-4.1-2025-04-14": {
+    inputPerThousand: 10, // Coût en cents par 1000 tokens d'entrée 
+    outputPerThousand: 30  // Coût en cents par 1000 tokens de sortie
+  },
+  "gpt-4o": {
+    inputPerThousand: 5,
+    outputPerThousand: 15
+  }
+};
 
 // Configuration du client OpenAI
 const openai = new OpenAI({
@@ -12,6 +30,19 @@ const openai = new OpenAI({
 
 // Cache pour les PDFs déjà traités
 const pdfTextCache = new Map<string, string>();
+
+/**
+ * Calcule le coût estimé d'une requête OpenAI
+ */
+function calculateCost(inputTokens: number, outputTokens: number, model: string = MODEL): number {
+  const modelCost = MODEL_COSTS[model] || MODEL_COSTS["gpt-4.1-2025-04-14"];
+  
+  const inputCost = (inputTokens / 1000) * modelCost.inputPerThousand;
+  const outputCost = (outputTokens / 1000) * modelCost.outputPerThousand;
+  
+  // Retourne le coût total en centimes
+  return Math.round(inputCost + outputCost);
+}
 
 /**
  * Obtient le texte brut d'une convention collective depuis son PDF
@@ -146,8 +177,24 @@ export async function queryOpenAI(
   conventionText: string,
   messages: Message[],
   conventionId: string,
-  conventionName: string
+  conventionName: string,
+  category?: string,
+  subcategory?: string
 ): Promise<ChatResponse> {
+  // Vérifier si la section est déjà en base de données
+  if (category && category !== 'chat') {
+    const sectionType = subcategory ? `${category}-${subcategory}` : category;
+    const existingSection = await getConventionSection(conventionId, sectionType);
+    
+    if (existingSection && existingSection.status === 'complete') {
+      console.log(`Utilisation de la section ${sectionType} stockée en base de données pour la convention ${conventionId}`);
+      return {
+        content: existingSection.content,
+        fromCache: true
+      };
+    }
+  }
+
   console.log(`Interrogation d'OpenAI pour la convention ${conventionId}`);
   
   try {
@@ -196,17 +243,86 @@ Si vous ne trouvez pas l'information demandée après une recherche approfondie 
     const content = completion.choices[0].message.content || '';
     console.log(`Réponse reçue d'OpenAI: ${content.substring(0, 100)}...`);
     
+    // Calcul et enregistrement des métriques
+    const inputTokens = completion.usage?.prompt_tokens || 0;
+    const outputTokens = completion.usage?.completion_tokens || 0;
+    const estimatedCost = calculateCost(inputTokens, outputTokens);
+    
+    try {
+      await saveApiMetric({
+        apiName: 'openai',
+        endpoint: 'chat/completions',
+        conventionId,
+        tokensIn: inputTokens,
+        tokensOut: outputTokens,
+        estimatedCost,
+        success: true
+      });
+    } catch (metricError) {
+      console.error('Erreur lors de l\'enregistrement des métriques:', metricError);
+      // On continue malgré l'erreur
+    }
+    
+    // Sauvegarde de la section en base de données si ce n'est pas une requête de chat
+    if (category && category !== 'chat') {
+      const sectionType = subcategory ? `${category}-${subcategory}` : category;
+      
+      try {
+        await saveConventionSection({
+          conventionId,
+          sectionType,
+          content: content || '',
+          status: 'complete'
+        });
+        console.log(`Section ${sectionType} sauvegardée en base de données pour la convention ${conventionId}`);
+      } catch (sectionError) {
+        console.error('Erreur lors de la sauvegarde de la section:', sectionError);
+        // On continue malgré l'erreur
+      }
+    }
+    
     return {
       content
     };
   } catch (error: any) {
     console.error('Erreur lors de l\'interrogation d\'OpenAI:', error);
+    
+    // Enregistrement de l'erreur dans les métriques
+    try {
+      await saveApiMetric({
+        apiName: 'openai',
+        endpoint: 'chat/completions',
+        conventionId,
+        success: false,
+        errorMessage: error.message
+      });
+    } catch (metricError) {
+      console.error('Erreur lors de l\'enregistrement des métriques d\'erreur:', metricError);
+    }
+    
+    // Si c'est une requête pour une section spécifique, enregistrer l'erreur
+    if (category && category !== 'chat' && subcategory) {
+      const sectionType = `${category}-${subcategory}`;
+      
+      try {
+        await saveConventionSection({
+          conventionId,
+          sectionType,
+          content: `Erreur lors de l'extraction: ${error.message}`,
+          status: 'error',
+          errorMessage: error.message
+        });
+      } catch (sectionError) {
+        console.error('Erreur lors de la sauvegarde de l\'erreur de section:', sectionError);
+      }
+    }
+    
     throw error;
   }
 }
 
 /**
- * Ancienne fonction pour des requêtes spécifiques (à conserver pour compatibilité)
+ * Fonction pour des requêtes spécifiques (classification, salaires)
  */
 export async function queryOpenAIForLegalData(
   conventionId: string, 
@@ -214,6 +330,27 @@ export async function queryOpenAIForLegalData(
   type: 'classification' | 'salaires'
 ): Promise<ChatResponse> {
   try {
+    // Déterminer le type de section
+    let sectionType = '';
+    if (type === 'classification') {
+      sectionType = SECTION_TYPES.CLASSIFICATION;
+    } else if (type === 'salaires') {
+      sectionType = SECTION_TYPES.SALAIRES;
+    } else {
+      throw new Error(`Type de requête non reconnu: ${type}`);
+    }
+    
+    // Vérifier si la section est déjà en base de données
+    const existingSection = await getConventionSection(conventionId, sectionType);
+    
+    if (existingSection && existingSection.status === 'complete') {
+      console.log(`Utilisation de la section ${sectionType} stockée en base de données pour la convention ${conventionId}`);
+      return {
+        content: existingSection.content,
+        fromCache: true
+      };
+    }
+    
     // Récupérer l'URL de la convention
     const conventionUrl = `https://www.legifrance.gouv.fr/conv_coll/id/${conventionId}`;
     
@@ -223,6 +360,33 @@ export async function queryOpenAIForLegalData(
       conventionText = await getConventionText(conventionUrl, conventionId, type);
     } catch (err) {
       console.error("Erreur lors de l'extraction du texte:", err);
+      
+      // Enregistrer l'erreur dans les métriques
+      try {
+        await saveApiMetric({
+          apiName: 'pdf-extractor',
+          endpoint: 'extractTextFromURL',
+          conventionId,
+          success: false,
+          errorMessage: err.message
+        });
+      } catch (metricError) {
+        console.error('Erreur lors de l\'enregistrement des métriques d\'erreur:', metricError);
+      }
+      
+      // Enregistrer l'erreur dans la section
+      try {
+        await saveConventionSection({
+          conventionId,
+          sectionType,
+          content: `Erreur: Impossible d'extraire le texte de la convention collective.`,
+          status: 'error',
+          errorMessage: err.message
+        });
+      } catch (sectionError) {
+        console.error('Erreur lors de la sauvegarde de l\'erreur de section:', sectionError);
+      }
+      
       throw new Error("Impossible d'extraire le texte de la convention collective");
     }
     
@@ -315,6 +479,7 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
     }
     
     // Faire la requête à OpenAI
+    console.log(`Interrogation d'OpenAI pour ${type} de la convention ${conventionId}`);
     const completion = await openai.chat.completions.create({
       model: MODEL,
       messages: [
@@ -326,10 +491,80 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
     });
     
     const content = completion.choices[0].message.content || '';
+    console.log(`Réponse reçue d'OpenAI pour ${type}: ${content.substring(0, 100)}...`);
+    
+    // Calcul et enregistrement des métriques
+    const inputTokens = completion.usage?.prompt_tokens || 0;
+    const outputTokens = completion.usage?.completion_tokens || 0;
+    const estimatedCost = calculateCost(inputTokens, outputTokens);
+    
+    try {
+      await saveApiMetric({
+        apiName: 'openai',
+        endpoint: 'chat/completions',
+        conventionId,
+        tokensIn: inputTokens,
+        tokensOut: outputTokens,
+        estimatedCost,
+        success: true
+      });
+    } catch (metricError) {
+      console.error('Erreur lors de l\'enregistrement des métriques:', metricError);
+    }
+    
+    // Sauvegarde de la section en base de données
+    try {
+      await saveConventionSection({
+        conventionId,
+        sectionType,
+        content: content || '',
+        status: 'complete'
+      });
+      console.log(`Section ${sectionType} sauvegardée en base de données pour la convention ${conventionId}`);
+    } catch (sectionError) {
+      console.error('Erreur lors de la sauvegarde de la section:', sectionError);
+    }
     
     return { content };
   } catch (error: any) {
     console.error('Erreur lors de l\'interrogation d\'OpenAI:', error);
+    
+    // Enregistrement de l'erreur dans les métriques
+    try {
+      await saveApiMetric({
+        apiName: 'openai',
+        endpoint: 'chat/completions',
+        conventionId,
+        success: false,
+        errorMessage: error.message
+      });
+    } catch (metricError) {
+      console.error('Erreur lors de l\'enregistrement des métriques d\'erreur:', metricError);
+    }
+    
+    // Déterminer le type de section
+    let sectionType = '';
+    if (type === 'classification') {
+      sectionType = SECTION_TYPES.CLASSIFICATION;
+    } else if (type === 'salaires') {
+      sectionType = SECTION_TYPES.SALAIRES;
+    }
+    
+    // Enregistrer l'erreur en base de données
+    if (sectionType) {
+      try {
+        await saveConventionSection({
+          conventionId,
+          sectionType,
+          content: `Erreur: ${error.message}`,
+          status: 'error',
+          errorMessage: error.message
+        });
+      } catch (sectionError) {
+        console.error('Erreur lors de la sauvegarde de l\'erreur de section:', sectionError);
+      }
+    }
+    
     throw error;
   }
 }
