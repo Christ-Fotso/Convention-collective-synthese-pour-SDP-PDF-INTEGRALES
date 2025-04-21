@@ -306,12 +306,8 @@ export default function AdminPage() {
   };
   
   const handleCreateNewSection = async () => {
-    // Déterminer le type de section à utiliser (catégorie ou sous-catégorie)
-    const sectionTypeToUse = showSubcategoriesInForm && newSectionSubcategory 
-      ? newSectionSubcategory 
-      : newSectionType;
-      
-    if (!selectedConventionId || !sectionTypeToUse || !newSectionContent) {
+    // Utiliser directement le type de section sélectionné
+    if (!selectedConventionId || !newSectionType || !newSectionContent) {
       toast({
         title: "Erreur",
         description: "Veuillez remplir tous les champs",
@@ -326,7 +322,7 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           conventionId: selectedConventionId,
-          sectionType: sectionTypeToUse,
+          sectionType: newSectionType,
           content: newSectionContent,
           status: 'complete'
         })
@@ -345,9 +341,7 @@ export default function AdminPage() {
         
         // Réinitialiser le formulaire
         setNewSectionType("");
-        setNewSectionSubcategory("");
         setNewSectionContent("");
-        setShowSubcategoriesInForm(false);
         setIsNewSectionDialogOpen(false);
       } else {
         throw new Error("Erreur lors de la création");
@@ -770,8 +764,7 @@ export default function AdminPage() {
                     </Button>
                     <Button 
                       onClick={handleBatchGenerate}
-                      disabled={selectedConventions.length === 0 || 
-                              (showSubcategories ? selectedSubcategories.length === 0 : selectedSectionTypes.length === 0)}
+                      disabled={selectedConventions.length === 0 || selectedSectionTypes.length === 0}
                     >
                       Générer les sections sélectionnées
                     </Button>
@@ -1412,81 +1405,24 @@ export default function AdminPage() {
           </DialogHeader>
           
           <div className="py-4 space-y-4">
-            <div className="flex justify-between items-center">
-              <h3 className="text-sm font-medium">Niveau de détail</h3>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setShowSubcategoriesInForm(!showSubcategoriesInForm)}
+            <div>
+              <Label htmlFor="section-type">Type de section</Label>
+              <Select 
+                value={newSectionType} 
+                onValueChange={setNewSectionType}
               >
-                {showSubcategoriesInForm ? "Utiliser catégorie" : "Utiliser sous-catégorie"}
-              </Button>
+                <SelectTrigger id="section-type">
+                  <SelectValue placeholder="Choisir un type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {SECTION_TYPES.map(type => (
+                    <SelectItem key={type.id} value={type.id}>
+                      {type.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-            
-            {!showSubcategoriesInForm ? (
-              // Sélection de la catégorie principale
-              <div>
-                <Label htmlFor="section-type">Type de section</Label>
-                <Select 
-                  value={newSectionType} 
-                  onValueChange={setNewSectionType}
-                >
-                  <SelectTrigger id="section-type">
-                    <SelectValue placeholder="Choisir un type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {SECTION_TYPES.map(type => (
-                      <SelectItem key={type.id} value={type.id}>
-                        {type.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            ) : (
-              // Sélection de la catégorie puis de la sous-catégorie
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="section-category">Catégorie</Label>
-                  <Select 
-                    value={newSectionType} 
-                    onValueChange={setNewSectionType}
-                  >
-                    <SelectTrigger id="section-category">
-                      <SelectValue placeholder="Choisir une catégorie" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {SECTION_TYPES.map(type => (
-                        <SelectItem key={type.id} value={type.id}>
-                          {type.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                {newSectionType && (
-                  <div>
-                    <Label htmlFor="section-subcategory">Sous-catégorie</Label>
-                    <Select 
-                      value={newSectionSubcategory} 
-                      onValueChange={setNewSectionSubcategory}
-                    >
-                      <SelectTrigger id="section-subcategory">
-                        <SelectValue placeholder="Choisir une sous-catégorie" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {SECTION_TYPES.find(t => t.id === newSectionType)?.subcategories?.map(subcat => (
-                          <SelectItem key={subcat.id} value={subcat.id}>
-                            {subcat.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-              </div>
-            )}
             
             <div>
               <Label htmlFor="section-content">Contenu</Label>
