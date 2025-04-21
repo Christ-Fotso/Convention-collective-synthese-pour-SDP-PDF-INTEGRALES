@@ -115,8 +115,13 @@ export default function AdminPage() {
   const [newSectionContent, setNewSectionContent] = useState("");
   const [showSubcategoriesInForm, setShowSubcategoriesInForm] = useState(false);
   
-  // État pour l'édition du prompt système
+  // État pour l'édition des prompts
+  const [promptsData, setPromptsData] = useState<Record<string, Record<string, string>>>({...PREDEFINED_PROMPTS});
   const [systemPromptData, setSystemPromptData] = useState({ content: SYSTEM_PROMPT.content });
+  const [selectedPromptCategory, setSelectedPromptCategory] = useState<string>("");
+  const [selectedPromptSubcategory, setSelectedPromptSubcategory] = useState<string>("");
+  const [currentPromptContent, setCurrentPromptContent] = useState<string>("");
+  const [isPromptDialogOpen, setIsPromptDialogOpen] = useState(false);
   const [isSystemPromptDialogOpen, setIsSystemPromptDialogOpen] = useState(false);
   
   // Chargement initial des conventions
@@ -538,9 +543,70 @@ export default function AdminPage() {
     );
   }, [conventions, conventionSearchQuery]);
   
-  // Fonction pour l'édition du prompt système
+  // Fonctions pour l'édition des prompts
+  const handleEditPrompt = (categoryId: string, subcategoryId?: string) => {
+    setSelectedPromptCategory(categoryId);
+    setSelectedPromptSubcategory(subcategoryId || "default");
+    
+    // Récupérer le contenu du prompt
+    let content = "";
+    if (subcategoryId) {
+      content = promptsData[categoryId]?.[subcategoryId] || "";
+    } else {
+      content = promptsData[categoryId]?.["default"] || "";
+    }
+    
+    setCurrentPromptContent(content);
+    setIsPromptDialogOpen(true);
+  };
+  
   const handleEditSystemPrompt = () => {
     setIsSystemPromptDialogOpen(true);
+  };
+  
+  const handleSavePrompt = async () => {
+    try {
+      // Mise à jour locale des prompts
+      const updatedPrompts = { ...promptsData };
+      
+      // S'assurer que la catégorie existe
+      if (!updatedPrompts[selectedPromptCategory]) {
+        updatedPrompts[selectedPromptCategory] = {};
+      }
+      
+      // Mettre à jour le prompt
+      updatedPrompts[selectedPromptCategory][selectedPromptSubcategory] = currentPromptContent;
+      
+      // Mettre à jour l'état local
+      setPromptsData(updatedPrompts);
+      
+      // Appel API pour sauvegarder le prompt (cette API doit être créée côté serveur)
+      const response = await fetch('/api/admin/prompts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompts: updatedPrompts
+        })
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Succès",
+          description: "Prompt sauvegardé avec succès"
+        });
+        
+        setIsPromptDialogOpen(false);
+      } else {
+        throw new Error("Erreur lors de la sauvegarde du prompt");
+      }
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde du prompt:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de sauvegarder le prompt",
+        variant: "destructive"
+      });
+    }
   };
   
   const handleSaveSystemPrompt = async () => {
@@ -1357,7 +1423,7 @@ export default function AdminPage() {
         </TabsContent>
         
         <TabsContent value="prompts">
-          <Card>
+          <Card className="mb-6">
             <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <div>
                 <CardTitle>Prompt Système Global</CardTitle>
@@ -1373,8 +1439,55 @@ export default function AdminPage() {
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="prose max-w-none dark:prose-invert border rounded-md p-4 bg-muted/30 text-sm whitespace-pre-wrap">
-                <div dangerouslySetInnerHTML={{ __html: systemPromptData.content.replace(/\n/g, '<br>') }} />
+              <div className="whitespace-pre-wrap border rounded-md p-4 bg-muted/30 text-sm">
+                {systemPromptData.content}
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Gestion des prompts par catégorie</CardTitle>
+              <p className="text-muted-foreground">
+                Éditez les prompts spécifiques utilisés pour extraire et générer les réponses pour chaque catégorie et sous-catégorie
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {CATEGORIES.map((category) => (
+                  <div key={category.id} className="border p-4 rounded-md">
+                    <div className="mb-4 flex justify-between items-center">
+                      <h3 className="text-lg font-medium">{category.name}</h3>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleEditPrompt(category.id)}
+                      >
+                        Éditer le prompt général
+                      </Button>
+                    </div>
+                    
+                    {category.subcategories && category.subcategories.length > 0 && (
+                      <div className="mt-4 border-t pt-4">
+                        <h4 className="text-md font-medium mb-2">Sous-catégories:</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {category.subcategories.map((subcategory) => (
+                            <div key={subcategory.id} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                              <span>{subcategory.name}</span>
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                onClick={() => handleEditPrompt(category.id, subcategory.id)}
+                              >
+                                Éditer
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -1643,7 +1756,42 @@ export default function AdminPage() {
         </DialogContent>
       </Dialog>
 
-
+      {/* Boîte de dialogue d'édition de prompt */}
+      <Dialog open={isPromptDialogOpen} onOpenChange={setIsPromptDialogOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              {selectedPromptCategory && CATEGORIES.find(c => c.id === selectedPromptCategory)?.name}
+              {selectedPromptSubcategory && selectedPromptSubcategory !== "default" && (
+                <>
+                  {" > "}
+                  {CATEGORIES.find(c => c.id === selectedPromptCategory)?.subcategories?.find(s => s.id === selectedPromptSubcategory)?.name}
+                </>
+              )}
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <Label htmlFor="prompt-content">Contenu du prompt</Label>
+            <Textarea
+              id="prompt-content"
+              value={currentPromptContent}
+              onChange={(e) => setCurrentPromptContent(e.target.value)}
+              rows={20}
+              className="font-mono text-sm"
+            />
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsPromptDialogOpen(false)}>
+              Annuler
+            </Button>
+            <Button onClick={handleSavePrompt}>
+              Enregistrer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       
       {/* Boîte de dialogue d'édition du prompt système */}
       <Dialog open={isSystemPromptDialogOpen} onOpenChange={setIsSystemPromptDialogOpen}>
