@@ -238,6 +238,19 @@ export default function AdminPage() {
   };
   
   const toggleSubcategorySelection = (subcategoryId: string) => {
+    // Assurons-nous que l'ID est correctement formaté (catégorie.sous-catégorie)
+    if (!subcategoryId.includes('.')) {
+      console.warn('Sous-catégorie sans préfixe détectée lors de la sélection:', subcategoryId);
+      // Chercher manuellement la sous-catégorie dans SECTION_TYPES
+      for (const category of SECTION_TYPES) {
+        const subcat = category.subcategories?.find(s => s.id === subcategoryId);
+        if (subcat) {
+          subcategoryId = subcat.id; // Utilise l'ID déjà préfixé dans SECTION_TYPES
+          break;
+        }
+      }
+    }
+    
     setSelectedSubcategories(prev => {
       const isSelected = prev.includes(subcategoryId);
       if (isSelected) {
