@@ -277,13 +277,36 @@ export function registerRoutes(app: Express): Server {
       // Clé de cache
       const cacheKey = `classification_${conventionId}`;
       
+      // Clé d'état pour vérifier si le traitement est déjà en cours
+      const processingKey = `processing_classification_${conventionId}`;
+      
       // Vérifier si la réponse est en cache
       if (openaiCache.has(cacheKey)) {
         console.log('Utilisation de la classification en cache');
         return res.json(openaiCache.get(cacheKey));
       }
       
+      // Vérifier si le traitement est déjà en cours
+      if (openaiCache.has(processingKey)) {
+        return res.status(202).json({ 
+          message: "La classification est en cours de génération, veuillez réessayer dans quelques instants",
+          inProgress: true
+        });
+      }
+      
+      // Marquer le traitement comme en cours
+      openaiCache.set(processingKey, { startTime: Date.now() });
+      
+      // Répondre immédiatement que le traitement est lancé
+      res.status(202).json({ 
+        message: "La classification est en cours de génération, veuillez réessayer dans quelques instants", 
+        inProgress: true
+      });
+      
+      // Lancer le traitement en arrière-plan
       try {
+        console.log(`Lancement du traitement de classification pour la convention ${conventionId} en arrière-plan`);
+        
         // Récupérer la classification via OpenAI
         const classificationResponse = await queryOpenAIForLegalData(
           conventionId,
@@ -294,13 +317,25 @@ export function registerRoutes(app: Express): Server {
         // Mettre en cache la réponse
         openaiCache.set(cacheKey, classificationResponse);
         
-        console.log('Classification obtenue et envoyée');
-        res.json(classificationResponse);
+        // Supprimer le marqueur de traitement en cours
+        if (openaiCache.has(processingKey)) {
+          openaiCache.cache.delete(processingKey);
+        }
+        
+        console.log('Classification obtenue et mise en cache avec succès');
       } catch (error: any) {
         console.error('Erreur lors de la récupération de la classification:', error);
-        res.status(500).json({
+        
+        // Supprimer le marqueur de traitement en cours en cas d'erreur
+        if (openaiCache.has(processingKey)) {
+          openaiCache.cache.delete(processingKey);
+        }
+        
+        // Stocker l'erreur dans le cache pour pouvoir l'afficher
+        openaiCache.set(cacheKey, { 
+          error: true, 
           message: "Une erreur est survenue lors de la récupération de la classification",
-          error: error.message
+          details: error.message
         });
       }
     } catch (error: any) {
@@ -327,13 +362,36 @@ export function registerRoutes(app: Express): Server {
       // Clé de cache
       const cacheKey = `salaires_${conventionId}`;
       
+      // Clé d'état pour vérifier si le traitement est déjà en cours
+      const processingKey = `processing_salaires_${conventionId}`;
+      
       // Vérifier si la réponse est en cache
       if (openaiCache.has(cacheKey)) {
         console.log('Utilisation des salaires en cache');
         return res.json(openaiCache.get(cacheKey));
       }
       
+      // Vérifier si le traitement est déjà en cours
+      if (openaiCache.has(processingKey)) {
+        return res.status(202).json({ 
+          message: "La grille des salaires est en cours de génération, veuillez réessayer dans quelques instants",
+          inProgress: true
+        });
+      }
+      
+      // Marquer le traitement comme en cours
+      openaiCache.set(processingKey, { startTime: Date.now() });
+      
+      // Répondre immédiatement que le traitement est lancé
+      res.status(202).json({ 
+        message: "La grille des salaires est en cours de génération, veuillez réessayer dans quelques instants", 
+        inProgress: true
+      });
+      
+      // Lancer le traitement en arrière-plan
       try {
+        console.log(`Lancement du traitement des salaires pour la convention ${conventionId} en arrière-plan`);
+        
         // Récupérer les salaires via OpenAI
         const salairesResponse = await queryOpenAIForLegalData(
           conventionId,
@@ -344,19 +402,91 @@ export function registerRoutes(app: Express): Server {
         // Mettre en cache la réponse
         openaiCache.set(cacheKey, salairesResponse);
         
-        console.log('Grille de salaires obtenue et envoyée');
-        res.json(salairesResponse);
+        // Supprimer le marqueur de traitement en cours
+        if (openaiCache.has(processingKey)) {
+          openaiCache.cache.delete(processingKey);
+        }
+        
+        console.log('Grille de salaires obtenue et mise en cache avec succès');
       } catch (error: any) {
         console.error('Erreur lors de la récupération des salaires:', error);
-        res.status(500).json({
+        
+        // Supprimer le marqueur de traitement en cours en cas d'erreur
+        if (openaiCache.has(processingKey)) {
+          openaiCache.cache.delete(processingKey);
+        }
+        
+        // Stocker l'erreur dans le cache pour pouvoir l'afficher
+        openaiCache.set(cacheKey, { 
+          error: true, 
           message: "Une erreur est survenue lors de la récupération de la grille de salaires",
-          error: error.message
+          details: error.message
         });
       }
     } catch (error: any) {
       console.error('Erreur générale:', error);
       res.status(500).json({
         message: "Une erreur est survenue",
+        error: error.message
+      });
+    }
+  });
+
+  // Endpoint pour vérifier le statut d'une génération en cours
+  apiRouter.get("/process-status/:type/:id", (req, res) => {
+    try {
+      const { type, id } = req.params;
+      
+      if (!type || !id) {
+        return res.status(400).json({ message: "Type et ID sont requis" });
+      }
+      
+      // Vérifier le type
+      if (type !== 'classification' && type !== 'salaires') {
+        return res.status(400).json({ message: "Type invalide. Utilisez 'classification' ou 'salaires'" });
+      }
+      
+      // Clés de cache
+      const cacheKey = `${type}_${id}`;
+      const processingKey = `processing_${type}_${id}`;
+      
+      // Si la réponse est en cache, elle est prête
+      if (openaiCache.has(cacheKey)) {
+        const cachedData = openaiCache.get(cacheKey);
+        
+        // Vérifier si c'est une erreur
+        if (cachedData && cachedData.error) {
+          return res.status(500).json(cachedData);
+        }
+        
+        return res.status(200).json({ 
+          status: "complete",
+          message: `Les données de ${type} sont disponibles`
+        });
+      }
+      
+      // Vérifier si le traitement est en cours
+      if (openaiCache.has(processingKey)) {
+        const processingData = openaiCache.get(processingKey);
+        const startTime = processingData?.startTime || Date.now();
+        const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+        
+        return res.status(202).json({ 
+          status: "processing",
+          message: `La génération de ${type} est en cours depuis ${elapsedTime} secondes`, 
+          elapsedTime
+        });
+      }
+      
+      // Aucun traitement n'est en cours et rien n'est en cache
+      return res.status(404).json({ 
+        status: "not_found",
+        message: `Aucune demande de génération de ${type} n'a été trouvée pour cette convention`
+      });
+    } catch (error: any) {
+      console.error('Erreur lors de la vérification du statut:', error);
+      res.status(500).json({
+        message: "Une erreur est survenue lors de la vérification du statut",
         error: error.message
       });
     }
