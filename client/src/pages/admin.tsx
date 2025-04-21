@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Convention, PREDEFINED_PROMPTS, SYSTEM_PROMPT } from "../types";
 import { CATEGORIES } from '@/lib/categories';
+import ReactMarkdown from 'react-markdown';
 
 // Types pour l'administration
 interface ConventionSection {
@@ -544,17 +545,12 @@ export default function AdminPage() {
   }, [conventions, conventionSearchQuery]);
   
   // Fonctions pour l'édition des prompts
-  const handleEditPrompt = (categoryId: string, subcategoryId?: string) => {
+  const handleEditPrompt = (categoryId: string, subcategoryId: string) => {
     setSelectedPromptCategory(categoryId);
-    setSelectedPromptSubcategory(subcategoryId || "default");
+    setSelectedPromptSubcategory(subcategoryId);
     
-    // Récupérer le contenu du prompt
-    let content = "";
-    if (subcategoryId) {
-      content = promptsData[categoryId]?.[subcategoryId] || "";
-    } else {
-      content = promptsData[categoryId]?.["default"] || "";
-    }
+    // Récupérer le contenu du prompt pour la sous-catégorie
+    let content = promptsData[categoryId]?.[subcategoryId] || "";
     
     setCurrentPromptContent(content);
     setIsPromptDialogOpen(true);
@@ -1753,7 +1749,7 @@ export default function AdminPage() {
 
       {/* Boîte de dialogue d'édition de prompt */}
       <Dialog open={isPromptDialogOpen} onOpenChange={setIsPromptDialogOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-blue-800">
               {selectedPromptCategory && CATEGORIES.find(c => c.id === selectedPromptCategory)?.name}
@@ -1769,20 +1765,36 @@ export default function AdminPage() {
             </p>
           </DialogHeader>
           
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <Label htmlFor="prompt-content" className="text-blue-700">Contenu du prompt (Markdown)</Label>
-              <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
-                Astuce: Utilisez # pour les titres, ** pour le gras, * pour l'italique
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <Label htmlFor="prompt-content" className="text-blue-700">Éditeur Markdown</Label>
+                <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                  Astuce: Utilisez # pour les titres, ** pour le gras, * pour l'italique
+                </div>
+              </div>
+              <Textarea
+                id="prompt-content"
+                value={currentPromptContent}
+                onChange={(e) => setCurrentPromptContent(e.target.value)}
+                rows={20}
+                className="font-mono text-sm border-blue-200 bg-blue-50/30"
+              />
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <Label className="text-blue-700">Prévisualisation</Label>
+                <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                  Résultat formaté
+                </div>
+              </div>
+              <div className="border rounded-md p-4 h-[452px] overflow-y-auto bg-white prose prose-sm max-w-none">
+                <ReactMarkdown>
+                  {currentPromptContent}
+                </ReactMarkdown>
               </div>
             </div>
-            <Textarea
-              id="prompt-content"
-              value={currentPromptContent}
-              onChange={(e) => setCurrentPromptContent(e.target.value)}
-              rows={20}
-              className="font-mono text-sm border-blue-200 bg-blue-50/30"
-            />
           </div>
           
           <DialogFooter>
@@ -1798,7 +1810,7 @@ export default function AdminPage() {
       
       {/* Boîte de dialogue d'édition du prompt système */}
       <Dialog open={isSystemPromptDialogOpen} onOpenChange={setIsSystemPromptDialogOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-blue-800">
               Prompt Système Global
@@ -1808,20 +1820,36 @@ export default function AdminPage() {
             </p>
           </DialogHeader>
           
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <Label htmlFor="system-prompt-content" className="text-blue-700">Contenu du prompt système (Markdown)</Label>
-              <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
-                Astuce: Utilisez les listes avec - et les sections avec ###
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <Label htmlFor="system-prompt-content" className="text-blue-700">Éditeur Markdown</Label>
+                <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                  Astuce: Utilisez les listes avec - et les sections avec ###
+                </div>
+              </div>
+              <Textarea
+                id="system-prompt-content"
+                value={systemPromptData.content}
+                onChange={(e) => setSystemPromptData({ content: e.target.value })}
+                rows={20}
+                className="font-mono text-sm border-blue-200 bg-blue-50/30"
+              />
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <Label className="text-blue-700">Prévisualisation</Label>
+                <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                  Résultat formaté
+                </div>
+              </div>
+              <div className="border rounded-md p-4 h-[452px] overflow-y-auto bg-white prose prose-sm max-w-none">
+                <ReactMarkdown>
+                  {systemPromptData.content}
+                </ReactMarkdown>
               </div>
             </div>
-            <Textarea
-              id="system-prompt-content"
-              value={systemPromptData.content}
-              onChange={(e) => setSystemPromptData({ content: e.target.value })}
-              rows={20}
-              className="font-mono text-sm border-blue-200 bg-blue-50/30"
-            />
           </div>
           
           <DialogFooter>
