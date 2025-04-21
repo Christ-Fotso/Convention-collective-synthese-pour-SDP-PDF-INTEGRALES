@@ -154,43 +154,11 @@ export async function extractTextFromURL(url: string, conventionId: string, keyw
     // Télécharger le PDF
     const pdfPath = await downloadPDF(url, conventionId);
     
-    // Extraire le texte complet
+    // Extraire le texte complet sans aucune limite
     const fullText = await extractTextFromPDF(pdfPath);
-    console.log(`Texte complet extrait: ${fullText.length} caractères`);
+    console.log(`Texte complet extrait: ${fullText.length} caractères - Envoi de l'intégralité du contenu`);
     
-    // Mot-clés par défaut pour les recherches pertinentes (à adapter selon les besoins)
-    const defaultKeywords = [
-      "congés pour événements familiaux", 
-      "congé familial", 
-      "mariage", 
-      "pacs", 
-      "naissance", 
-      "décès", 
-      "article", 
-      "titre", 
-      "chapitre",
-      "classification", 
-      "emploi", 
-      "coefficient", 
-      "salaire", 
-      "indemnité",
-      "licenciement", 
-      "préavis", 
-      "durée du travail",
-      "repos",
-      "maladie",
-      "accident"
-    ];
-    
-    // GPT-4.1 a une capacité de 1 million de tokens, ce qui est amplement suffisant pour la plupart des conventions
-    // Nous allons envoyer le texte complet ou, si vraiment trop grand (>700K caractères), le texte avec priorité aux sections pertinentes
-    const maxLength = 700000; // GPT-4.1 peut gérer environ 1M tokens soit ~700K caractères
-    if (fullText.length > maxLength) {
-      console.log(`Texte extrêmement volumineux (${fullText.length} caractères), priorisation des parties les plus pertinentes...`);
-      return extractRelevantSections(fullText, keywords || defaultKeywords, 10000); // Contexte plus large
-    }
-    
-    // Sinon, utiliser le texte complet
+    // Retourner le texte complet sans aucune troncature
     return fullText;
   } catch (error: any) {
     console.error('Erreur lors de l\'extraction du texte depuis l\'URL:', error);
