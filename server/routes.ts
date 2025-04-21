@@ -192,7 +192,7 @@ export function registerRoutes(app: Express): Server {
             "x-api-key": CHATPDF_API_KEY,
             "Content-Type": "application/json",
           },
-          timeout: 30000 // Réduction du timeout à 30 secondes
+          timeout: 90000 // Augmentation du timeout à 90 secondes pour les documents volumineux
         }
       );
 
@@ -299,7 +299,7 @@ export function registerRoutes(app: Express): Server {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
               },
-              timeout: 30000 // Réduction du timeout pour les requêtes ChatPDF
+              timeout: 60000 // Augmentation du timeout pour les requêtes de messages ChatPDF
             }
           );
 
