@@ -898,8 +898,8 @@ export default function AdminPage() {
                                 </div>
                                 
                                 <div className="ml-6 space-y-1">
-                                  {/* Liste des sous-catégories sans cases à cocher individuelles */}
-                                  <div className="flex items-center space-x-2 py-2 mt-2 mb-2">
+                                  {/* Option pour sélectionner toutes les sous-catégories de cette catégorie */}
+                                  <div className="flex items-center space-x-2 py-2 mt-2 mb-2 border-b pb-2">
                                     <Checkbox
                                       id={`all-subcategories-${category.id}`}
                                       checked={category.subcategories?.every(subcat => selectedSubcategories.includes(subcat.id)) || false}
@@ -918,9 +918,23 @@ export default function AdminPage() {
                                       }}
                                     />
                                     <Label htmlFor={`all-subcategories-${category.id}`} className="cursor-pointer font-medium">
-                                      Utiliser toutes les sous-catégories
+                                      Tout sélectionner pour cette catégorie
                                     </Label>
                                   </div>
+                                  
+                                  {/* Liste des sous-catégories avec cases à cocher individuelles */}
+                                  {category.subcategories?.map(subcategory => (
+                                    <div key={subcategory.id} className="flex items-center space-x-2 py-1">
+                                      <Checkbox
+                                        id={`subcategory-${subcategory.id}`}
+                                        checked={selectedSubcategories.includes(subcategory.id)}
+                                        onCheckedChange={() => toggleSubcategorySelection(subcategory.id)}
+                                      />
+                                      <Label htmlFor={`subcategory-${subcategory.id}`} className="cursor-pointer text-sm">
+                                        {subcategory.name}
+                                      </Label>
+                                    </div>
+                                  ))}
                                 </div>
                               </div>
                             ))}
