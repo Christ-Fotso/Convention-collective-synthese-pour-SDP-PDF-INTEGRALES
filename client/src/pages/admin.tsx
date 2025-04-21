@@ -191,10 +191,18 @@ export default function AdminPage() {
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
   const [showSubcategories, setShowSubcategories] = useState(false);
   
+  // État pour le tri et filtrage du tableur
+  const [tableSectionFilter, setTableSectionFilter] = useState<string>("");
+  const [tableSortField, setTableSortField] = useState<string>("convention");
+  const [tableSortDirection, setTableSortDirection] = useState<"asc" | "desc">("asc");
+  const [selectedSections, setSelectedSections] = useState<Set<string>>(new Set());
+  
   // État pour le dialogue d'édition
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isBatchEditDialogOpen, setIsBatchEditDialogOpen] = useState(false);
   const [selectedSection, setSelectedSection] = useState<ConventionSection | null>(null);
   const [editedContent, setEditedContent] = useState("");
+  const [batchUpdates, setBatchUpdates] = useState<string>("");
   
   // État pour la création de section
   const [isNewSectionDialogOpen, setIsNewSectionDialogOpen] = useState(false);
@@ -625,6 +633,7 @@ export default function AdminPage() {
       <Tabs defaultValue="sections">
         <TabsList className="mb-4">
           <TabsTrigger value="sections">Sections des conventions</TabsTrigger>
+          <TabsTrigger value="spreadsheet">Vue Tableur</TabsTrigger>
           <TabsTrigger value="metrics">Métriques d'API</TabsTrigger>
         </TabsList>
         
@@ -935,6 +944,306 @@ export default function AdminPage() {
           </Card>
         </TabsContent>
         
+        <TabsContent value="spreadsheet">
+          <Card>
+            <CardHeader>
+              <CardTitle>Vue Tableur des données</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="mb-6 space-y-4">
+                <div className="flex gap-4 items-end">
+                  <div className="flex-1">
+                    <Label htmlFor="spreadsheet-search">Rechercher une convention (IDCC ou nom)</Label>
+                    <Input
+                      id="spreadsheet-search"
+                      placeholder="Rechercher une convention..."
+                      value={conventionSearchQuery}
+                      onChange={(e) => setConventionSearchQuery(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <Button 
+                      onClick={async () => {
+                        // Charger toutes les sections pour toutes les conventions filtrées
+                        const allSectionsData: Record<string, ConventionSection[]> = {};
+                        
+                        // Utiliser les conventions filtrées
+                        for (const convention of filteredConventions) {
+                          try {
+                            const response = await fetch(`/api/admin/sections/${convention.id}`);
+                            if (response.ok) {
+                              const data = await response.json();
+                              if (data.length > 0) {
+                                allSectionsData[convention.id] = data;
+                              }
+                            }
+                          } catch (error) {
+                            console.error(`Erreur lors du chargement des sections pour ${convention.id}:`, error);
+                          }
+                        }
+                        
+                        setAllSections(allSectionsData);
+                        
+                        toast({
+                          title: "Sections chargées",
+                          description: `${Object.keys(allSectionsData).length} conventions chargées.`,
+                        });
+                      }}
+                    >
+                      Charger toutes les sections
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mb-4 flex justify-between">
+                <div>
+                  <Label htmlFor="section-type-filter">Filtrer par type de section</Label>
+                  <Select 
+                    value={tableSectionFilter} 
+                    onValueChange={setTableSectionFilter}
+                  >
+                    <SelectTrigger id="section-type-filter" className="w-[250px]">
+                      <SelectValue placeholder="Tous les types de section" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Tous les types</SelectItem>
+                      {SECTION_TYPES.map(type => (
+                        <SelectItem key={type.id} value={type.id}>
+                          {type.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <Button 
+                  variant="default"
+                  onClick={() => {
+                    if (selectedSections.size === 0) {
+                      toast({
+                        title: "Aucune section sélectionnée",
+                        description: "Veuillez sélectionner au moins une section à modifier",
+                      });
+                      return;
+                    }
+                    
+                    // Préparer le contenu d'édition par lot avec des commentaires pour chaque section
+                    let content = "";
+                    let sectionsByType: Record<string, { section: ConventionSection; convention: Convention }[]> = {};
+                    
+                    // Regrouper les sections par type
+                    Object.entries(allSections).forEach(([conventionId, sections]) => {
+                      const convention = conventions.find(c => c.id === conventionId);
+                      if (!convention) return;
+                      
+                      sections.forEach(section => {
+                        if (selectedSections.has(section.id)) {
+                          const sectionType = section.sectionType;
+                          if (!sectionsByType[sectionType]) {
+                            sectionsByType[sectionType] = [];
+                          }
+                          sectionsByType[sectionType].push({ section, convention });
+                        }
+                      });
+                    });
+                    
+                    // Construire le contenu par type de section
+                    Object.entries(sectionsByType).forEach(([sectionType, items]) => {
+                      const typeName = SECTION_TYPES.find(t => t.id === sectionType.split('.')[0])?.name || sectionType;
+                      content += `\n\n/* ======== SECTION: ${typeName} ======== */\n\n`;
+                      
+                      items.forEach(({ section, convention }) => {
+                        content += `/* CONVENTION: ${convention.name} (${convention.id}) */\n`;
+                        content += `/* ID: ${section.id} */\n`;
+                        content += `${section.content}\n\n`;
+                        content += `/* ---------------------------------------- */\n\n`;
+                      });
+                    });
+                    
+                    setBatchUpdates(content);
+                    setIsBatchEditDialogOpen(true);
+                  }}
+                  disabled={selectedSections.size === 0}
+                >
+                  Édition groupée ({selectedSections.size})
+                </Button>
+              </div>
+              
+              {Object.keys(allSections).length > 0 ? (
+                <div className="overflow-x-auto">
+                  <Table className="w-full border-collapse">
+                    <TableHeader className="sticky top-0 bg-background">
+                      <TableRow>
+                        <TableHead className="w-[40px]">
+                          <Checkbox 
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                // Sélectionner toutes les sections visibles
+                                const newSet = new Set<string>();
+                                Object.values(allSections).flat().forEach(section => {
+                                  if (!tableSectionFilter || section.sectionType.startsWith(tableSectionFilter)) {
+                                    newSet.add(section.id);
+                                  }
+                                });
+                                setSelectedSections(newSet);
+                              } else {
+                                // Désélectionner tout
+                                setSelectedSections(new Set());
+                              }
+                            }}
+                            checked={
+                              selectedSections.size > 0 && 
+                              selectedSections.size === Object.values(allSections)
+                                .flat()
+                                .filter(s => !tableSectionFilter || s.sectionType.startsWith(tableSectionFilter))
+                                .length
+                            }
+                          />
+                        </TableHead>
+                        <TableHead className="w-[180px]">
+                          <div className="flex items-center space-x-1 cursor-pointer" 
+                               onClick={() => {
+                                 if (tableSortField === "convention") {
+                                   setTableSortDirection(prev => prev === "asc" ? "desc" : "asc");
+                                 } else {
+                                   setTableSortField("convention");
+                                   setTableSortDirection("asc");
+                                 }
+                               }}
+                          >
+                            <span>Convention</span>
+                            {tableSortField === "convention" && (
+                              <span>{tableSortDirection === "asc" ? "↑" : "↓"}</span>
+                            )}
+                          </div>
+                        </TableHead>
+                        <TableHead className="w-[150px]">
+                          <div className="flex items-center space-x-1 cursor-pointer"
+                               onClick={() => {
+                                 if (tableSortField === "sectionType") {
+                                   setTableSortDirection(prev => prev === "asc" ? "desc" : "asc");
+                                 } else {
+                                   setTableSortField("sectionType");
+                                   setTableSortDirection("asc");
+                                 }
+                               }}
+                          >
+                            <span>Type de section</span>
+                            {tableSortField === "sectionType" && (
+                              <span>{tableSortDirection === "asc" ? "↑" : "↓"}</span>
+                            )}
+                          </div>
+                        </TableHead>
+                        <TableHead className="w-[100px]">Statut</TableHead>
+                        <TableHead className="w-[150px]">
+                          <div className="flex items-center space-x-1 cursor-pointer"
+                               onClick={() => {
+                                 if (tableSortField === "updatedAt") {
+                                   setTableSortDirection(prev => prev === "asc" ? "desc" : "asc");
+                                 } else {
+                                   setTableSortField("updatedAt");
+                                   setTableSortDirection("desc"); // Par défaut du plus récent au plus ancien
+                                 }
+                               }}
+                          >
+                            <span>Dernière mise à jour</span>
+                            {tableSortField === "updatedAt" && (
+                              <span>{tableSortDirection === "asc" ? "↑" : "↓"}</span>
+                            )}
+                          </div>
+                        </TableHead>
+                        <TableHead>Contenu</TableHead>
+                        <TableHead className="w-[100px]">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {Object.entries(allSections)
+                        .flatMap(([conventionId, sections]) => {
+                          const convention = conventions.find(c => c.id === conventionId);
+                          return sections
+                            .filter(section => !tableSectionFilter || section.sectionType.startsWith(tableSectionFilter))
+                            .map(section => ({
+                              section,
+                              conventionId,
+                              conventionName: convention?.name || conventionId
+                            }));
+                        })
+                        .sort((a, b) => {
+                          if (tableSortField === "convention") {
+                            return tableSortDirection === "asc" 
+                              ? a.conventionName.localeCompare(b.conventionName)
+                              : b.conventionName.localeCompare(a.conventionName);
+                          } else if (tableSortField === "sectionType") {
+                            return tableSortDirection === "asc"
+                              ? a.section.sectionType.localeCompare(b.section.sectionType)
+                              : b.section.sectionType.localeCompare(a.section.sectionType);
+                          } else if (tableSortField === "updatedAt") {
+                            const dateA = new Date(a.section.updatedAt).getTime();
+                            const dateB = new Date(b.section.updatedAt).getTime();
+                            return tableSortDirection === "asc" ? dateA - dateB : dateB - dateA;
+                          }
+                          return 0;
+                        })
+                        .map(({ section, conventionId, conventionName }) => (
+                          <TableRow key={section.id} className={selectedSections.has(section.id) ? "bg-muted/30" : ""}>
+                            <TableCell>
+                              <Checkbox 
+                                checked={selectedSections.has(section.id)}
+                                onCheckedChange={(checked) => {
+                                  setSelectedSections(prev => {
+                                    const newSet = new Set(prev);
+                                    if (checked) {
+                                      newSet.add(section.id);
+                                    } else {
+                                      newSet.delete(section.id);
+                                    }
+                                    return newSet;
+                                  });
+                                }}
+                              />
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {conventionName} (IDCC {conventionId})
+                            </TableCell>
+                            <TableCell>
+                              {SECTION_TYPES.find(t => t.id === section.sectionType.split('.')[0])?.name || section.sectionType}
+                              {section.sectionType.includes('.') && (
+                                <div className="text-xs text-gray-500 mt-1">
+                                  {section.sectionType.split('.')[1]}
+                                </div>
+                              )}
+                            </TableCell>
+                            <TableCell>{getStatusBadge(section.status)}</TableCell>
+                            <TableCell>{new Date(section.updatedAt).toLocaleString()}</TableCell>
+                            <TableCell className="max-w-[400px] overflow-hidden text-ellipsis whitespace-nowrap">
+                              {section.content.length > 100
+                                ? section.content.substring(0, 100) + "..."
+                                : section.content}
+                            </TableCell>
+                            <TableCell>
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => handleEditSection(section)}
+                              >
+                                Éditer
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              ) : (
+                <div className="text-center p-6 bg-gray-50 rounded-md">
+                  <p>Utilisez la recherche ci-dessus puis cliquez sur "Charger toutes les sections" pour afficher les données.</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
         <TabsContent value="metrics">
           <Card>
             <CardHeader>
@@ -1010,6 +1319,131 @@ export default function AdminPage() {
             </Button>
             <Button onClick={handleSaveSection}>
               Enregistrer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      {/* Dialogue d'édition par lot */}
+      <Dialog open={isBatchEditDialogOpen} onOpenChange={setIsBatchEditDialogOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh]">
+          <DialogHeader>
+            <DialogTitle>
+              Édition groupée de {selectedSections.size} section(s)
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="py-4 flex flex-col h-full">
+            <p className="text-sm text-muted-foreground mb-2">
+              Les sections sont regroupées par type. Les commentaires (lignes commençant par /* */) sont pour vous aider à identifier les sections, ne les modifiez pas.
+            </p>
+            
+            <div className="flex-1 min-h-[300px] overflow-y-auto border rounded-md">
+              <Textarea
+                value={batchUpdates}
+                onChange={(e) => setBatchUpdates(e.target.value)}
+                className="min-h-[500px] w-full font-mono"
+              />
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsBatchEditDialogOpen(false)}>
+              Annuler
+            </Button>
+            <Button 
+              onClick={async () => {
+                const sectionUpdates: Map<string, string> = new Map();
+                const sections = batchUpdates.split("/* ID: ");
+                
+                // Ignorer la première partie (avant le premier ID)
+                for (let i = 1; i < sections.length; i++) {
+                  const section = sections[i];
+                  const idEndIndex = section.indexOf(" */");
+                  if (idEndIndex === -1) continue;
+                  
+                  const sectionId = section.substring(0, idEndIndex);
+                  
+                  // Trouver où commence et se termine le contenu réel de la section
+                  const contentStartIndex = section.indexOf(" */") + 3;
+                  const contentEndIndex = section.indexOf("/* ---------------------------------------- */");
+                  
+                  if (contentEndIndex === -1) continue;
+                  
+                  const content = section.substring(contentStartIndex, contentEndIndex).trim();
+                  sectionUpdates.set(sectionId, content);
+                }
+                
+                // Mettre à jour chaque section
+                let successCount = 0;
+                let errorCount = 0;
+                
+                for (const [sectionId, content] of sectionUpdates.entries()) {
+                  try {
+                    // Trouver la section dans allSections
+                    let sectionToUpdate: ConventionSection | null = null;
+                    let conventionIdForSection = "";
+                    
+                    for (const [conventionId, sections] of Object.entries(allSections)) {
+                      const found = sections.find(s => s.id === sectionId);
+                      if (found) {
+                        sectionToUpdate = found;
+                        conventionIdForSection = conventionId;
+                        break;
+                      }
+                    }
+                    
+                    if (!sectionToUpdate) continue;
+                    
+                    const response = await fetch(`/api/admin/sections/${sectionId}`, {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        ...sectionToUpdate,
+                        content: content
+                      })
+                    });
+                    
+                    if (response.ok) {
+                      // Mettre à jour localement
+                      setAllSections(prev => {
+                        const newSections = { ...prev };
+                        if (newSections[conventionIdForSection]) {
+                          newSections[conventionIdForSection] = newSections[conventionIdForSection].map(s => 
+                            s.id === sectionId ? { ...s, content } : s
+                          );
+                        }
+                        return newSections;
+                      });
+                      
+                      // Si la section est aussi dans la liste des sections de la convention sélectionnée
+                      if (selectedConventionId === conventionIdForSection) {
+                        setSections(prev => 
+                          prev.map(s => s.id === sectionId ? { ...s, content } : s)
+                        );
+                      }
+                      
+                      successCount++;
+                    } else {
+                      errorCount++;
+                    }
+                  } catch (error) {
+                    console.error(`Erreur lors de la mise à jour de la section ${sectionId}:`, error);
+                    errorCount++;
+                  }
+                }
+                
+                toast({
+                  title: "Mise à jour par lot terminée",
+                  description: `${successCount} section(s) mise(s) à jour avec succès, ${errorCount} échec(s).`,
+                  variant: errorCount > 0 ? "destructive" : "default"
+                });
+                
+                setIsBatchEditDialogOpen(false);
+                setSelectedSections(new Set());
+              }}
+            >
+              Enregistrer toutes les modifications
             </Button>
           </DialogFooter>
         </DialogContent>
