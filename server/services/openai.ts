@@ -271,6 +271,48 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
       
       userPrompt = `En vous basant uniquement sur le texte extrait fourni, présentez la classification complète des emplois pour la convention collective IDCC ${conventionId} (${conventionName}).`;
     }
+    else if (type === 'salaires') {
+      systemPrompt = `Vous êtes un expert en droit du travail français spécialisé dans l'analyse des rémunérations et grilles salariales.
+Analysez en détail les dispositions salariales de la convention collective IDCC ${conventionId} (${conventionName}).
+
+Ci-dessous se trouve le texte intégral du document PDF de cette convention collective. Ce texte a été extrait automatiquement et contient l'ensemble du document à votre disposition:
+
+---DÉBUT DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
+${conventionText}
+---FIN DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
+
+DIRECTIVES STRICTES POUR VOTRE ANALYSE:
+
+1. Structure et format de votre réponse :
+   - Présenter un tableau complet des salaires minima par niveau, échelon, coefficient selon la convention
+   - Structure: du niveau le plus bas au plus élevé
+   - Inclure TOUTES les catégories mentionnées (employés, techniciens, cadres, etc.)
+
+2. Pour chaque niveau/coefficient, votre réponse doit inclure :
+   - Le salaire minimum conventionnel exact
+   - La date d'entrée en vigueur de la grille salariale
+   - Les modalités particulières (temps de travail associé, etc.)
+   - Citer les articles ou accords précis trouvés dans le texte
+
+3. Format attendu :
+| Niveau/Coefficient | Salaire minimum | Base de calcul | Date d'application |
+|-------------------|----------------|---------------|-------------------|
+| Niveau 1 - Coef. XX | XXX € | Mensuel/Horaire | JJ/MM/AAAA |
+
+4. Règles ESSENTIELLES :
+   - Basez-vous EXCLUSIVEMENT sur le texte fourni ci-dessus
+   - Recherchez méticuleusement dans TOUT le document les informations demandées
+   - Identifiez l'accord salarial le plus récent mentionné dans le document
+   - Ne faites JAMAIS appel à des connaissances générales qui ne seraient pas présentes dans ce document spécifique
+   - Si une information n'est pas présente dans le texte, indiquez-le clairement: "Cette information n'apparaît pas dans le document de la convention collective IDCC ${conventionId}"
+
+5. Après le tableau des salaires minima, ajoutez les sections suivantes :
+   - "Primes et indemnités" : liste exhaustive des primes prévues par la convention
+   - "Majorations" : majorations pour heures supplémentaires, travail de nuit, etc.
+   - "Autres éléments de rémunération" : avantages en nature, 13ème mois, etc.`;
+      
+      userPrompt = `En vous basant uniquement sur le texte extrait fourni, présentez la grille complète des salaires minima pour la convention collective IDCC ${conventionId} (${conventionName}). Incluez également toutes les primes, indemnités et autres éléments de rémunération prévus par cette convention.`;
+    }
     
     // Faire la requête à OpenAI
     const completion = await openai.chat.completions.create({

@@ -262,6 +262,106 @@ export function registerRoutes(app: Express): Server {
     res.status(200).json({ message: "Cache vidé avec succès" });
   });
 
+  // Endpoint pour obtenir la classification d'une convention collective
+  apiRouter.get("/convention/:id/classification", async (req, res) => {
+    try {
+      const conventionId = req.params.id;
+      
+      // Récupérer les informations de la convention
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId));
+      
+      if (convention.length === 0) {
+        return res.status(404).json({ message: "Convention collective non trouvée" });
+      }
+      
+      // Clé de cache
+      const cacheKey = `classification_${conventionId}`;
+      
+      // Vérifier si la réponse est en cache
+      if (openaiCache.has(cacheKey)) {
+        console.log('Utilisation de la classification en cache');
+        return res.json(openaiCache.get(cacheKey));
+      }
+      
+      try {
+        // Récupérer la classification via OpenAI
+        const classificationResponse = await queryOpenAIForLegalData(
+          conventionId,
+          convention[0].name,
+          'classification'
+        );
+        
+        // Mettre en cache la réponse
+        openaiCache.set(cacheKey, classificationResponse);
+        
+        console.log('Classification obtenue et envoyée');
+        res.json(classificationResponse);
+      } catch (error: any) {
+        console.error('Erreur lors de la récupération de la classification:', error);
+        res.status(500).json({
+          message: "Une erreur est survenue lors de la récupération de la classification",
+          error: error.message
+        });
+      }
+    } catch (error: any) {
+      console.error('Erreur générale:', error);
+      res.status(500).json({
+        message: "Une erreur est survenue",
+        error: error.message
+      });
+    }
+  });
+
+  // Endpoint pour obtenir la grille de salaires d'une convention collective
+  apiRouter.get("/convention/:id/salaires", async (req, res) => {
+    try {
+      const conventionId = req.params.id;
+      
+      // Récupérer les informations de la convention
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId));
+      
+      if (convention.length === 0) {
+        return res.status(404).json({ message: "Convention collective non trouvée" });
+      }
+      
+      // Clé de cache
+      const cacheKey = `salaires_${conventionId}`;
+      
+      // Vérifier si la réponse est en cache
+      if (openaiCache.has(cacheKey)) {
+        console.log('Utilisation des salaires en cache');
+        return res.json(openaiCache.get(cacheKey));
+      }
+      
+      try {
+        // Récupérer les salaires via OpenAI
+        const salairesResponse = await queryOpenAIForLegalData(
+          conventionId,
+          convention[0].name,
+          'salaires'
+        );
+        
+        // Mettre en cache la réponse
+        openaiCache.set(cacheKey, salairesResponse);
+        
+        console.log('Grille de salaires obtenue et envoyée');
+        res.json(salairesResponse);
+      } catch (error: any) {
+        console.error('Erreur lors de la récupération des salaires:', error);
+        res.status(500).json({
+          message: "Une erreur est survenue lors de la récupération de la grille de salaires",
+          error: error.message
+        });
+      }
+    } catch (error: any) {
+      console.error('Erreur générale:', error);
+      res.status(500).json({
+        message: "Une erreur est survenue",
+        error: error.message
+      });
+    }
+  });
+
   app.use("/api", apiRouter);
   return createServer(app);
 }
