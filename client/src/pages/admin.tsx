@@ -484,33 +484,34 @@ export default function AdminPage() {
     let successCount = 0;
     let errorCount = 0;
     
+    // Approche optimisée: un seul appel par convention avec toutes les sections
     for (const convention of selectedConventions) {
-      for (const sectionType of sectionsToGenerate) {
-        try {
-          const response = await fetch('/api/admin/generate-section', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              conventionId: convention.id,
-              sectionType
-            })
-          });
-          
-          if (response.ok) {
-            successCount++;
-          } else {
-            errorCount++;
-          }
-        } catch (error) {
-          console.error(`Erreur lors de la génération pour ${convention.id} - ${sectionType}:`, error);
-          errorCount++;
+      try {
+        // On utilise la nouvelle API optimisée qui fait un seul appel pour plusieurs sections
+        const response = await fetch('/api/admin/generate-sections-batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            conventionId: convention.id,
+            sectionTypes: sectionsToGenerate
+          })
+        });
+        
+        if (response.ok) {
+          // Un appel réussi compte pour toutes les sections de cette convention
+          successCount += sectionsToGenerate.length;
+        } else {
+          errorCount += sectionsToGenerate.length;
         }
+      } catch (error) {
+        console.error(`Erreur lors de la génération pour la convention ${convention.id}:`, error);
+        errorCount += sectionsToGenerate.length;
       }
     }
     
     toast({
       title: "Résultat de la génération par lot",
-      description: `${successCount} génération(s) lancée(s) avec succès, ${errorCount} échec(s).`,
+      description: `${successCount} génération(s) lancée(s) avec succès, ${errorCount} échec(s). La génération continue en arrière-plan et peut prendre plusieurs minutes.`,
       variant: errorCount > 0 ? "destructive" : "default"
     });
   };

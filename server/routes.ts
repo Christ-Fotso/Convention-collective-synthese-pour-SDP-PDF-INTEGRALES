@@ -797,6 +797,125 @@ export function registerRoutes(app: Express): Server {
     }
   });
   
+  // Endpoint pour générer plusieurs sections à la fois (optimisation des coûts)
+  app.post('/api/admin/generate-sections-batch', async (req, res) => {
+    try {
+      const { conventionId, sectionTypes } = req.body;
+      
+      if (!conventionId || !sectionTypes || !Array.isArray(sectionTypes) || sectionTypes.length === 0) {
+        return res.status(400).json({
+          message: "Paramètres invalides. 'conventionId' et 'sectionTypes' (array) sont requis"
+        });
+      }
+      
+      // Vérifier la convention
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      
+      if (convention.length === 0) {
+        return res.status(404).json({
+          message: "Convention non trouvée"
+        });
+      }
+      
+      // Répondre immédiatement pour ne pas bloquer le client
+      res.status(202).json({
+        message: `Génération de ${sectionTypes.length} sections lancée en arrière-plan`,
+        conventionId,
+        sectionTypes
+      });
+      
+      const conventionName = convention[0].name;
+      
+      // Déterminer si nous devons faire un seul appel ou plusieurs
+      // Pour les sous-catégories, on doit faire des appels individuels
+      const mainCategories = sectionTypes.filter(type => !type.includes('.'));
+      const subCategories = sectionTypes.filter(type => type.includes('.'));
+      
+      // Traitement par lots pour les catégories principales (un seul appel API)
+      if (mainCategories.length > 0) {
+        try {
+          // Construire un prompt qui demande de générer plusieurs sections en une fois
+          const response = await queryOpenAI(
+            `Analyse la convention collective "${conventionName}" et génère les sections suivantes en format JSON : ${mainCategories.join(', ')}. 
+            Chaque section doit être séparée et bien identifiée dans le JSON pour pouvoir être facilement extraite.
+            Format attendu: { "sections": { "${mainCategories[0]}": "contenu...", "${mainCategories[1]}": "contenu...", ... } }`,
+            conventionId,
+            'génération multi-sections'
+          );
+          
+          // Analyser la réponse pour extraire les différentes sections
+          try {
+            const parsedSections = JSON.parse(response);
+            
+            // Sauvegarder chaque section individuellement
+            if (parsedSections && parsedSections.sections) {
+              for (const [sectionType, content] of Object.entries(parsedSections.sections)) {
+                if (mainCategories.includes(sectionType)) {
+                  // Sauvegarder cette section
+                  await saveConventionSection({
+                    conventionId,
+                    sectionType,
+                    content: content as string,
+                    status: 'complete'
+                  });
+                  
+                  console.log(`Section ${sectionType} extraite et sauvegardée avec succès`);
+                }
+              }
+            }
+          } catch (parseError) {
+            console.error("Erreur lors de l'analyse de la réponse JSON:", parseError);
+            // En cas d'erreur, on sauvegarde quand même la réponse brute dans une section "multi"
+            await saveConventionSection({
+              conventionId,
+              sectionType: "multi-sections",
+              content: response,
+              status: 'error',
+              errorMessage: "Impossible de parser le JSON retourné"
+            });
+          }
+        } catch (error) {
+          console.error("Erreur lors de la génération multiple:", error);
+        }
+      }
+      
+      // Traitement individuel pour les sous-catégories
+      for (const subcategory of subCategories) {
+        try {
+          // Pour chaque sous-catégorie, on fait un appel individuel
+          const [mainCategory, subType] = subcategory.split('.');
+          
+          // Récupérer des instructions spécifiques pour cette sous-catégorie
+          let prompt = `Analyse la convention collective "${conventionName}" et extrait spécifiquement les informations sur "${subcategory}".`;
+          
+          if (mainCategory === 'classification' && subType === 'grille') {
+            prompt += " Présente la grille de classification de manière structurée avec niveaux, intitulés de postes et coefficients.";
+          } else if (mainCategory === 'salaires' && subType === 'grille') {
+            prompt += " Présente la grille salariale complète avec tous les niveaux, coefficients et montants correspondants.";
+          }
+          
+          const response = await queryOpenAI(prompt, conventionId, `sous-catégorie ${subcategory}`);
+          
+          // Sauvegarder la sous-catégorie
+          await saveConventionSection({
+            conventionId,
+            sectionType: subcategory,
+            content: response,
+            status: 'complete'
+          });
+          
+          console.log(`Sous-catégorie ${subcategory} générée et sauvegardée avec succès`);
+        } catch (subcategoryError) {
+          console.error(`Erreur lors de la génération de la sous-catégorie ${subcategory}:`, subcategoryError);
+        }
+      }
+      
+    } catch (error: any) {
+      console.error("Erreur lors de la génération par lot:", error);
+      // La réponse a déjà été envoyée, donc pas besoin de répondre à nouveau
+    }
+  });
+  
   // Récupérer les métriques d'utilisation API
   adminRouter.get("/metrics", async (req, res) => {
     try {
