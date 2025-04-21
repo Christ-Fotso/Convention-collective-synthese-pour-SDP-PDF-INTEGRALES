@@ -1423,23 +1423,24 @@ export default function AdminPage() {
         </TabsContent>
         
         <TabsContent value="prompts">
-          <Card className="mb-6">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+          <Card className="mb-6 border-blue-300 bg-gradient-to-r from-blue-50 to-cyan-50">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <div>
-                <CardTitle>Prompt Système Global</CardTitle>
-                <p className="text-muted-foreground mt-1">
-                  Prompt principal utilisé comme base pour toutes les interactions
+                <CardTitle className="text-blue-900">Prompt Système Global</CardTitle>
+                <p className="text-blue-600 mt-1">
+                  Prompt principal utilisé comme base pour toutes les interactions (format Markdown)
                 </p>
               </div>
               <Button 
                 variant="outline" 
+                className="bg-blue-100 hover:bg-blue-200 text-blue-800 border-blue-300"
                 onClick={() => handleEditSystemPrompt()}
               >
                 Éditer le prompt système
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="whitespace-pre-wrap border rounded-md p-4 bg-muted/30 text-sm">
+              <div className="whitespace-pre-wrap border border-blue-200 rounded-md p-4 bg-white text-sm font-mono shadow-sm">
                 {systemPromptData.content}
               </div>
             </CardContent>
@@ -1455,28 +1456,22 @@ export default function AdminPage() {
             <CardContent>
               <div className="space-y-6">
                 {CATEGORIES.map((category) => (
-                  <div key={category.id} className="border p-4 rounded-md">
+                  <div key={category.id} className="border p-4 rounded-md bg-gradient-to-r from-blue-50 to-indigo-50">
                     <div className="mb-4 flex justify-between items-center">
-                      <h3 className="text-lg font-medium">{category.name}</h3>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => handleEditPrompt(category.id)}
-                      >
-                        Éditer le prompt général
-                      </Button>
+                      <h3 className="text-lg font-medium text-blue-800">{category.name}</h3>
                     </div>
                     
                     {category.subcategories && category.subcategories.length > 0 && (
-                      <div className="mt-4 border-t pt-4">
-                        <h4 className="text-md font-medium mb-2">Sous-catégories:</h4>
+                      <div className="mt-2">
+                        <h4 className="text-md font-medium mb-2 text-blue-700">Sous-catégories:</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           {category.subcategories.map((subcategory) => (
-                            <div key={subcategory.id} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                              <span>{subcategory.name}</span>
+                            <div key={subcategory.id} className="flex justify-between items-center p-3 bg-white rounded-md border border-blue-200 shadow-sm">
+                              <span className="text-blue-600 font-medium">{subcategory.name}</span>
                               <Button 
-                                variant="ghost" 
+                                variant="outline" 
                                 size="sm"
+                                className="bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
                                 onClick={() => handleEditPrompt(category.id, subcategory.id)}
                               >
                                 Éditer
@@ -1760,7 +1755,7 @@ export default function AdminPage() {
       <Dialog open={isPromptDialogOpen} onOpenChange={setIsPromptDialogOpen}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle className="text-blue-800">
               {selectedPromptCategory && CATEGORIES.find(c => c.id === selectedPromptCategory)?.name}
               {selectedPromptSubcategory && selectedPromptSubcategory !== "default" && (
                 <>
@@ -1769,16 +1764,24 @@ export default function AdminPage() {
                 </>
               )}
             </DialogTitle>
+            <p className="text-sm text-blue-600 mt-1">
+              Vous pouvez utiliser la syntaxe Markdown pour mettre en forme votre prompt
+            </p>
           </DialogHeader>
           
           <div className="space-y-4">
-            <Label htmlFor="prompt-content">Contenu du prompt</Label>
+            <div className="flex justify-between items-center">
+              <Label htmlFor="prompt-content" className="text-blue-700">Contenu du prompt (Markdown)</Label>
+              <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                Astuce: Utilisez # pour les titres, ** pour le gras, * pour l'italique
+              </div>
+            </div>
             <Textarea
               id="prompt-content"
               value={currentPromptContent}
               onChange={(e) => setCurrentPromptContent(e.target.value)}
               rows={20}
-              className="font-mono text-sm"
+              className="font-mono text-sm border-blue-200 bg-blue-50/30"
             />
           </div>
           
@@ -1786,7 +1789,7 @@ export default function AdminPage() {
             <Button variant="outline" onClick={() => setIsPromptDialogOpen(false)}>
               Annuler
             </Button>
-            <Button onClick={handleSavePrompt}>
+            <Button onClick={handleSavePrompt} className="bg-blue-600 hover:bg-blue-700">
               Enregistrer
             </Button>
           </DialogFooter>
@@ -1797,22 +1800,27 @@ export default function AdminPage() {
       <Dialog open={isSystemPromptDialogOpen} onOpenChange={setIsSystemPromptDialogOpen}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle className="text-blue-800">
               Prompt Système Global
             </DialogTitle>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-blue-600 mt-1">
               Ce prompt est utilisé comme base pour toutes les interactions avec l'IA
             </p>
           </DialogHeader>
           
           <div className="space-y-4">
-            <Label htmlFor="system-prompt-content">Contenu du prompt système</Label>
+            <div className="flex justify-between items-center">
+              <Label htmlFor="system-prompt-content" className="text-blue-700">Contenu du prompt système (Markdown)</Label>
+              <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                Astuce: Utilisez les listes avec - et les sections avec ###
+              </div>
+            </div>
             <Textarea
               id="system-prompt-content"
               value={systemPromptData.content}
               onChange={(e) => setSystemPromptData({ content: e.target.value })}
               rows={20}
-              className="font-mono text-sm"
+              className="font-mono text-sm border-blue-200 bg-blue-50/30"
             />
           </div>
           
@@ -1820,7 +1828,7 @@ export default function AdminPage() {
             <Button variant="outline" onClick={() => setIsSystemPromptDialogOpen(false)}>
               Annuler
             </Button>
-            <Button onClick={handleSaveSystemPrompt}>
+            <Button onClick={handleSaveSystemPrompt} className="bg-blue-600 hover:bg-blue-700">
               Enregistrer
             </Button>
           </DialogFooter>
