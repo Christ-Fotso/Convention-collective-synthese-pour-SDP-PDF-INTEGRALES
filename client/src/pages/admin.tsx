@@ -57,120 +57,48 @@ const formatCost = (cost: number) => {
   return (cost / 100).toFixed(2) + " €";
 };
 
-// Définir les différents types de sections disponibles avec leurs sous-catégories
+// Définir les différents types de sections disponibles
 interface SectionType {
   id: string;
   name: string;
-  subcategories?: { id: string; name: string }[];
 }
 
 const SECTION_TYPES: SectionType[] = [
   { 
     id: 'informations-generales', 
-    name: 'Informations Générales',
-    subcategories: [
-      { id: 'informations-generales.generale', name: 'Informations Générales' }
-    ] 
+    name: 'Informations Générales'
   },
   { 
     id: 'embauche', 
-    name: 'Embauche',
-    subcategories: [
-      { id: 'embauche.delai-prevenance', name: 'Délai de prévenance' },
-      { id: 'embauche.periode-essai', name: 'Période d\'essai' }
-    ] 
+    name: 'Embauche'
   },
   { 
     id: 'temps-travail', 
-    name: 'Temps de travail',
-    subcategories: [
-      { id: 'temps-travail.duree-travail', name: 'Durées du travail' },
-      { id: 'temps-travail.amenagement-temps', name: 'Aménagement du temps de travail' },
-      { id: 'temps-travail.heures-sup', name: 'Heures supplémentaires' },
-      { id: 'temps-travail.temps-partiel', name: 'Temps partiel' },
-      { id: 'temps-travail.forfait-jours', name: 'Forfait jours' },
-      { id: 'temps-travail.travail-nuit', name: 'Travail de nuit' },
-      { id: 'temps-travail.astreintes', name: 'Astreintes' },
-      { id: 'temps-travail.jours-feries', name: 'Jours fériés' },
-      { id: 'temps-travail.repos-hebdomadaire', name: 'Repos hebdomadaire' },
-      { id: 'temps-travail.travail-dimanche', name: 'Travail du dimanche' }
-    ] 
+    name: 'Temps de travail'
   },
   { 
     id: 'conges', 
-    name: 'Congés',
-    subcategories: [
-      { id: 'conges.cet', name: 'CET' },
-      { id: 'conges.conges-payes', name: 'Congés payés' },
-      { id: 'conges.evenement-familial', name: 'Evènement familial' },
-      { id: 'conges.anciennete', name: 'Congés d\'ancienneté' },
-      { id: 'conges.conges-exceptionnels', name: 'Congés exceptionnels' },
-      { id: 'conges.jours-supplementaires', name: 'Jours supplémentaires' },
-      { id: 'conges.fractionnement', name: 'Fractionnement des congés' },
-      { id: 'conges.sans-solde', name: 'Congés sans solde' },
-      { id: 'conges.deces', name: 'Congés pour décès' },
-      { id: 'conges.enfant-malade', name: 'Congés enfant malade' }
-    ] 
+    name: 'Congés'
   },
   { 
     id: 'classification', 
-    name: 'Classification',
-    subcategories: [
-      { id: 'classification.classification', name: 'Classification Con + Détails' },
-      { id: 'classification.grille', name: 'Grille de classification' },
-      { id: 'classification.evolution', name: 'Évolution professionnelle' },
-      { id: 'classification.emplois-reperes', name: 'Emplois repères' },
-      { id: 'classification.coefficients', name: 'Coefficients hiérarchiques' }
-    ] 
+    name: 'Classification'
   },
   { 
     id: 'remuneration', 
-    name: 'Rémunération',
-    subcategories: [
-      { id: 'remuneration.apprenti', name: 'Apprenti' },
-      { id: 'remuneration.contrat-pro', name: 'Contrat de professionalisation' },
-      { id: 'remuneration.stagiaire', name: 'Stagiaire' },
-      { id: 'remuneration.prime', name: 'Prime' },
-      { id: 'remuneration.grille', name: 'Grille de Rémunération' },
-      { id: 'remuneration.13eme-mois', name: '13ème mois' },
-      { id: 'remuneration.anciennete', name: 'Prime d\'ancienneté' },
-      { id: 'remuneration.transport', name: 'Frais de transport' },
-      { id: 'remuneration.repas', name: 'Indemnité de repas' },
-      { id: 'remuneration.astreinte', name: 'Indemnité d\'astreinte' },
-      { id: 'remuneration.majoration-dimanche', name: 'Majoration Dimanche' },
-      { id: 'remuneration.majoration-ferie', name: 'Majoration Férié' },
-      { id: 'remuneration.majoration-nuit', name: 'Majoration Nuit' }
-    ] 
+    name: 'Rémunération'
   },
   { 
     id: 'depart', 
-    name: 'Départ',
-    subcategories: [
-      { id: 'depart.licenciement', name: 'Indemnité de Licenciement' },
-      { id: 'depart.mise-retraite', name: 'Indemnité de Mise a la Retraite' },
-      { id: 'depart.depart-retraite', name: 'Indemnité de Départ a la Retraite' },
-      { id: 'depart.rupture-conventionnelle', name: 'Indemnité de Rupture conventionnelle' },
-      { id: 'depart.preavis', name: 'Préavis' },
-      { id: 'depart.precarite', name: 'Indemnité de précarité' }
-    ] 
+    name: 'Départ'
   },
   {
     id: 'cotisations',
-    name: 'Cotisations',
-    subcategories: [
-      { id: 'cotisations.prevoyance', name: 'Cotisation prévoyance' },
-      { id: 'cotisations.retraite', name: 'Cotisation retraite' },
-      { id: 'cotisations.mutuelle', name: 'Cotisation mutuelle' }
-    ]
+    name: 'Cotisations'
   },
   {
     id: 'maintien-salaire',
-    name: 'Maintien de salaire',
-    subcategories: [
-      { id: 'maintien-salaire.accident-travail', name: 'Accident de travail' },
-      { id: 'maintien-salaire.maladie', name: 'Maladie' },
-      { id: 'maintien-salaire.maternite-paternite', name: 'Maternité / Paternité' }
-    ]
+    name: 'Maintien de salaire'
   }
 ];
 
@@ -188,8 +116,6 @@ export default function AdminPage() {
   const [apiUsageStats, setApiUsageStats] = useState<ApiUsageStats | null>(null);
   const [isBatchMode, setIsBatchMode] = useState(false);
   const [selectedSectionTypes, setSelectedSectionTypes] = useState<string[]>([]);
-  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
-  const [showSubcategories, setShowSubcategories] = useState(false);
   
   // État pour le tri et filtrage du tableur
   const [tableSectionFilter, setTableSectionFilter] = useState<string>("all");
@@ -207,9 +133,7 @@ export default function AdminPage() {
   // État pour la création de section
   const [isNewSectionDialogOpen, setIsNewSectionDialogOpen] = useState(false);
   const [newSectionType, setNewSectionType] = useState("");
-  const [newSectionSubcategory, setNewSectionSubcategory] = useState("");
   const [newSectionContent, setNewSectionContent] = useState("");
-  const [showSubcategoriesInForm, setShowSubcategoriesInForm] = useState(false);
   
   // Chargement initial des conventions
   useEffect(() => {
@@ -326,28 +250,9 @@ export default function AdminPage() {
     setSelectedSectionTypes(prev => {
       const isSelected = prev.includes(sectionType);
       if (isSelected) {
-        // Si on désélectionne une catégorie, on retire aussi toutes ses sous-catégories
-        const category = SECTION_TYPES.find(t => t.id === sectionType);
-        const subcategoryIds = category?.subcategories?.map(sc => sc.id) || [];
-        
-        setSelectedSubcategories(prevSub => 
-          prevSub.filter(subId => !subcategoryIds.includes(subId))
-        );
-        
         return prev.filter(type => type !== sectionType);
       } else {
         return [...prev, sectionType];
-      }
-    });
-  };
-  
-  const toggleSubcategorySelection = (subcategoryId: string) => {
-    setSelectedSubcategories(prev => {
-      const isSelected = prev.includes(subcategoryId);
-      if (isSelected) {
-        return prev.filter(id => id !== subcategoryId);
-      } else {
-        return [...prev, subcategoryId];
       }
     });
   };
@@ -500,26 +405,17 @@ export default function AdminPage() {
       return;
     }
     
-    const hasSelectedSections = selectedSectionTypes.length > 0 || selectedSubcategories.length > 0;
+    const hasSelectedSections = selectedSectionTypes.length > 0;
     if (!hasSelectedSections) {
       toast({
         title: "Attention",
-        description: "Veuillez sélectionner au moins une catégorie ou sous-catégorie",
+        description: "Veuillez sélectionner au moins une catégorie",
       });
       return;
     }
     
     // Déterminer les sections à générer
-    const sectionsToGenerate: string[] = [];
-    
-    // Si on a choisi d'afficher les sous-catégories
-    if (showSubcategories && selectedSubcategories.length > 0) {
-      // On génère uniquement les sous-catégories sélectionnées
-      sectionsToGenerate.push(...selectedSubcategories);
-    } else {
-      // Sinon on génère les catégories principales
-      sectionsToGenerate.push(...selectedSectionTypes);
-    }
+    const sectionsToGenerate: string[] = [...selectedSectionTypes];
     
     // Confirmer avec l'utilisateur
     const conventionCount = selectedConventions.length;
@@ -821,15 +717,8 @@ export default function AdminPage() {
                     </div>
                     
                     <div className="space-y-4">
-                      <div className="flex justify-between items-center">
+                      <div>
                         <h3 className="text-lg font-medium">Sélection des types de sections</h3>
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => setShowSubcategories(!showSubcategories)}
-                        >
-                          {showSubcategories ? "Afficher catégories" : "Afficher sous-catégories"}
-                        </Button>
                       </div>
                       
                       <div className="flex space-x-2 mb-2">
@@ -837,19 +726,8 @@ export default function AdminPage() {
                           variant="outline" 
                           size="sm"
                           onClick={() => {
-                            if (!showSubcategories) {
-                              // Sélectionner toutes les catégories principales
-                              setSelectedSectionTypes(SECTION_TYPES.map(type => type.id));
-                            } else {
-                              // Sélectionner toutes les catégories et sous-catégories
-                              const mainCategories = SECTION_TYPES.map(type => type.id);
-                              const allSubcategories = SECTION_TYPES.flatMap(type => 
-                                type.subcategories?.map(subcat => subcat.id) || []
-                              );
-                              
-                              setSelectedSectionTypes(mainCategories);
-                              setSelectedSubcategories(allSubcategories);
-                            }
+                            // Sélectionner toutes les catégories principales
+                            setSelectedSectionTypes(SECTION_TYPES.map(type => type.id));
                           }}
                         >
                           Tout sélectionner
@@ -859,7 +737,6 @@ export default function AdminPage() {
                           size="sm"
                           onClick={() => {
                             setSelectedSectionTypes([]);
-                            setSelectedSubcategories([]);
                           }}
                         >
                           Tout désélectionner
@@ -867,79 +744,19 @@ export default function AdminPage() {
                       </div>
                       
                       <div className="border rounded-md p-4">
-                        {!showSubcategories ? (
-                          // Affichage des catégories principales
-                          SECTION_TYPES.map(type => (
-                            <div key={type.id} className="flex items-center space-x-2 py-2">
-                              <Checkbox
-                                id={`section-type-${type.id}`}
-                                checked={selectedSectionTypes.includes(type.id)}
-                                onCheckedChange={() => toggleSectionTypeSelection(type.id)}
-                              />
-                              <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
-                                {type.name}
-                              </Label>
-                            </div>
-                          ))
-                        ) : (
-                          // Affichage des sous-catégories
-                          <div className="space-y-6">
-                            {SECTION_TYPES.map(category => (
-                              <div key={category.id} className="space-y-2">
-                                <div className="flex items-center space-x-2 py-1 font-semibold border-b">
-                                  <Checkbox
-                                    id={`category-${category.id}`}
-                                    checked={selectedSectionTypes.includes(category.id)}
-                                    onCheckedChange={() => toggleSectionTypeSelection(category.id)}
-                                  />
-                                  <Label htmlFor={`category-${category.id}`} className="cursor-pointer">
-                                    {category.name}
-                                  </Label>
-                                </div>
-                                
-                                <div className="ml-6 space-y-1">
-                                  {/* Option pour sélectionner toutes les sous-catégories de cette catégorie */}
-                                  <div className="flex items-center space-x-2 py-2 mt-2 mb-2 border-b pb-2">
-                                    <Checkbox
-                                      id={`all-subcategories-${category.id}`}
-                                      checked={category.subcategories?.every(subcat => selectedSubcategories.includes(subcat.id)) || false}
-                                      onCheckedChange={(checked) => {
-                                        if (checked) {
-                                          // Sélectionner toutes les sous-catégories de cette catégorie
-                                          const subcategoryIds = category.subcategories?.map(subcat => subcat.id) || [];
-                                          setSelectedSubcategories(prev => [...prev, ...subcategoryIds]);
-                                        } else {
-                                          // Désélectionner toutes les sous-catégories de cette catégorie
-                                          const subcategoryIds = category.subcategories?.map(subcat => subcat.id) || [];
-                                          setSelectedSubcategories(prev => 
-                                            prev.filter(id => !subcategoryIds.includes(id))
-                                          );
-                                        }
-                                      }}
-                                    />
-                                    <Label htmlFor={`all-subcategories-${category.id}`} className="cursor-pointer font-medium">
-                                      Tout sélectionner pour cette catégorie
-                                    </Label>
-                                  </div>
-                                  
-                                  {/* Liste des sous-catégories avec cases à cocher individuelles */}
-                                  {category.subcategories?.map(subcategory => (
-                                    <div key={subcategory.id} className="flex items-center space-x-2 py-1">
-                                      <Checkbox
-                                        id={`subcategory-${subcategory.id}`}
-                                        checked={selectedSubcategories.includes(subcategory.id)}
-                                        onCheckedChange={() => toggleSubcategorySelection(subcategory.id)}
-                                      />
-                                      <Label htmlFor={`subcategory-${subcategory.id}`} className="cursor-pointer text-sm">
-                                        {subcategory.name}
-                                      </Label>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            ))}
+                        {/* Affichage des catégories principales */}
+                        {SECTION_TYPES.map(type => (
+                          <div key={type.id} className="flex items-center space-x-2 py-2">
+                            <Checkbox
+                              id={`section-type-${type.id}`}
+                              checked={selectedSectionTypes.includes(type.id)}
+                              onCheckedChange={() => toggleSectionTypeSelection(type.id)}
+                            />
+                            <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
+                              {type.name}
+                            </Label>
                           </div>
-                        )}
+                        ))}
                       </div>
                     </div>
                   </div>
