@@ -99,7 +99,7 @@ export default function AdminPage() {
   const [selectedSections, setSelectedSections] = useState<Set<string>>(new Set());
   
   // État pour les sous-catégories en mode batch
-  const [showSubcategories, setShowSubcategories] = useState<boolean>(false);
+  const [showSubcategories, setShowSubcategories] = useState<boolean>(true);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
   
   // État pour le dialogue d'édition
