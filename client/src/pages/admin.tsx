@@ -192,7 +192,7 @@ export default function AdminPage() {
   const [showSubcategories, setShowSubcategories] = useState(false);
   
   // État pour le tri et filtrage du tableur
-  const [tableSectionFilter, setTableSectionFilter] = useState<string>("");
+  const [tableSectionFilter, setTableSectionFilter] = useState<string>("all");
   const [tableSortField, setTableSortField] = useState<string>("convention");
   const [tableSortDirection, setTableSortDirection] = useState<"asc" | "desc">("asc");
   const [selectedSections, setSelectedSections] = useState<Set<string>>(new Set());
