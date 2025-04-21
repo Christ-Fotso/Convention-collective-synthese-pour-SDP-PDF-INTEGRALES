@@ -419,17 +419,25 @@ export default function AdminPage() {
       return;
     }
     
-    // Vérifier si des sous-catégories sont sélectionnées
-    if (selectedSubcategories.length === 0) {
+    // Vérifier si des sections ou sous-catégories sont sélectionnées
+    const hasSelectedSections = showSubcategories 
+      ? selectedSubcategories.length > 0 
+      : selectedSectionTypes.length > 0;
+      
+    if (!hasSelectedSections) {
       toast({
         title: "Attention",
-        description: "Veuillez sélectionner au moins une sous-catégorie",
+        description: showSubcategories 
+          ? "Veuillez sélectionner au moins une sous-catégorie" 
+          : "Veuillez sélectionner au moins une catégorie",
       });
       return;
     }
     
     // Déterminer les sections à générer
-    const sectionsToGenerate: string[] = [...selectedSubcategories];
+    const sectionsToGenerate: string[] = showSubcategories 
+      ? [...selectedSubcategories] 
+      : [...selectedSectionTypes];
     
     // Confirmer avec l'utilisateur
     const conventionCount = selectedConventions.length;
@@ -900,7 +908,8 @@ export default function AdminPage() {
                     </Button>
                     <Button 
                       onClick={handleBatchGenerate}
-                      disabled={selectedConventions.length === 0 || selectedSubcategories.length === 0}
+                      disabled={selectedConventions.length === 0 || 
+                              (showSubcategories ? selectedSubcategories.length === 0 : selectedSectionTypes.length === 0)}
                     >
                       Générer les sections sélectionnées
                     </Button>
