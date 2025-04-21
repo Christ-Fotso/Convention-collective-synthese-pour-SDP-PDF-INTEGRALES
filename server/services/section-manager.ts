@@ -1,6 +1,6 @@
 import { db } from "../../db";
 import { conventionSections, apiMetrics, extractionTasks } from "../../db/schema";
-import { eq, and } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 import { log } from "../vite";
 import { v4 as uuidv4 } from "uuid";
 
@@ -53,6 +53,34 @@ export interface ExtractionTask {
 /**
  * Récupère une section spécifique d'une convention
  */
+// Fonction utilitaire pour convertir les résultats de la base de données vers notre type ConventionSection
+function convertToConventionSection(dbSection: any): ConventionSection {
+  return {
+    id: dbSection.id,
+    conventionId: dbSection.conventionId,
+    sectionType: dbSection.sectionType,
+    content: dbSection.content,
+    status: dbSection.status as 'pending' | 'complete' | 'error',
+    errorMessage: dbSection.errorMessage || undefined,
+    createdAt: dbSection.createdAt,
+    updatedAt: dbSection.updatedAt
+  };
+}
+
+// Fonction utilitaire pour convertir les résultats de la base de données vers notre type ExtractionTask
+function convertToExtractionTask(dbTask: any): ExtractionTask {
+  return {
+    id: dbTask.id,
+    conventionId: dbTask.conventionId,
+    sectionTypes: dbTask.sectionTypes,
+    status: dbTask.status as 'pending' | 'processing' | 'complete' | 'error',
+    progress: dbTask.progress || undefined,
+    completedSections: dbTask.completedSections || undefined,
+    errorSections: dbTask.errorSections || undefined
+    // Nous ne stockons pas createdAt et updatedAt dans le type ExtractionTask
+  };
+}
+
 export async function getConventionSection(conventionId: string, sectionType: string): Promise<ConventionSection | null> {
   try {
     const sections = await db.select().from(conventionSections)
@@ -63,7 +91,7 @@ export async function getConventionSection(conventionId: string, sectionType: st
         )
       );
     
-    return sections.length > 0 ? sections[0] : null;
+    return sections.length > 0 ? convertToConventionSection(sections[0]) : null;
   } catch (error) {
     log(`Erreur lors de la récupération de la section ${sectionType} pour la convention ${conventionId}: ${error}`, "section-manager");
     return null;
@@ -78,7 +106,7 @@ export async function getAllConventionSections(conventionId: string): Promise<Co
     const sections = await db.select().from(conventionSections)
       .where(eq(conventionSections.conventionId, conventionId));
     
-    return sections;
+    return sections.map(section => convertToConventionSection(section));
   } catch (error) {
     log(`Erreur lors de la récupération des sections pour la convention ${conventionId}: ${error}`, "section-manager");
     return [];
@@ -110,7 +138,7 @@ export async function saveConventionSection(section: ConventionSection): Promise
         )
         .returning();
       
-      return updated.length > 0 ? updated[0] : null;
+      return updated.length > 0 ? convertToConventionSection(updated[0]) : null;
     } else {
       // Insertion
       const inserted = await db.insert(conventionSections)
@@ -126,7 +154,7 @@ export async function saveConventionSection(section: ConventionSection): Promise
         })
         .returning();
       
-      return inserted.length > 0 ? inserted[0] : null;
+      return inserted.length > 0 ? convertToConventionSection(inserted[0]) : null;
     }
   } catch (error) {
     log(`Erreur lors de la sauvegarde de la section ${section.sectionType} pour la convention ${section.conventionId}: ${error}`, "section-manager");
@@ -195,7 +223,7 @@ export async function createExtractionTask(task: ExtractionTask): Promise<Extrac
       })
       .returning();
     
-    return inserted.length > 0 ? inserted[0] : null;
+    return inserted.length > 0 ? convertToExtractionTask(inserted[0]) : null;
   } catch (error) {
     log(`Erreur lors de la création d'une tâche d'extraction: ${error}`, "section-manager");
     return null;
@@ -215,7 +243,7 @@ export async function updateExtractionTask(taskId: string, updates: Partial<Extr
       .where(eq(extractionTasks.id, taskId))
       .returning();
     
-    return updated.length > 0 ? updated[0] : null;
+    return updated.length > 0 ? convertToExtractionTask(updated[0]) : null;
   } catch (error) {
     log(`Erreur lors de la mise à jour de la tâche d'extraction ${taskId}: ${error}`, "section-manager");
     return null;
@@ -230,7 +258,7 @@ export async function getExtractionTask(taskId: string): Promise<ExtractionTask 
     const tasks = await db.select().from(extractionTasks)
       .where(eq(extractionTasks.id, taskId));
     
-    return tasks.length > 0 ? tasks[0] : null;
+    return tasks.length > 0 ? convertToExtractionTask(tasks[0]) : null;
   } catch (error) {
     log(`Erreur lors de la récupération de la tâche d'extraction ${taskId}: ${error}`, "section-manager");
     return null;
@@ -245,7 +273,7 @@ export async function getExtractionTasksByConvention(conventionId: string): Prom
     const tasks = await db.select().from(extractionTasks)
       .where(eq(extractionTasks.conventionId, conventionId));
     
-    return tasks;
+    return tasks.map(task => convertToExtractionTask(task));
   } catch (error) {
     log(`Erreur lors de la récupération des tâches d'extraction pour la convention ${conventionId}: ${error}`, "section-manager");
     return [];
@@ -258,7 +286,7 @@ export async function getExtractionTasksByConvention(conventionId: string): Prom
 export async function getAllExtractionTasks(): Promise<ExtractionTask[]> {
   try {
     const tasks = await db.select().from(extractionTasks);
-    return tasks;
+    return tasks.map(task => convertToExtractionTask(task));
   } catch (error) {
     log(`Erreur lors de la récupération des tâches d'extraction: ${error}`, "section-manager");
     return [];

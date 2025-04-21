@@ -11,8 +11,14 @@ import {
 // Utilisation du modèle gpt-4.1-2025-04-14 comme demandé explicitement par l'utilisateur
 const MODEL = "gpt-4.1-2025-04-14";
 
+// Définition des types pour les coûts des modèles
+interface ModelCost {
+  inputPerThousand: number;
+  outputPerThousand: number;
+}
+
 // Constantes pour les coûts et les modèles
-const MODEL_COSTS = {
+const MODEL_COSTS: Record<string, ModelCost> = {
   "gpt-4.1-2025-04-14": {
     inputPerThousand: 10, // Coût en cents par 1000 tokens d'entrée 
     outputPerThousand: 30  // Coût en cents par 1000 tokens de sortie
@@ -358,8 +364,8 @@ export async function queryOpenAIForLegalData(
     let conventionText: string;
     try {
       conventionText = await getConventionText(conventionUrl, conventionId, type);
-    } catch (err) {
-      console.error("Erreur lors de l'extraction du texte:", err);
+    } catch (error: any) {
+      console.error("Erreur lors de l'extraction du texte:", error);
       
       // Enregistrer l'erreur dans les métriques
       try {
@@ -368,7 +374,7 @@ export async function queryOpenAIForLegalData(
           endpoint: 'extractTextFromURL',
           conventionId,
           success: false,
-          errorMessage: err.message
+          errorMessage: error?.message || "Erreur inconnue"
         });
       } catch (metricError) {
         console.error('Erreur lors de l\'enregistrement des métriques d\'erreur:', metricError);
@@ -381,7 +387,7 @@ export async function queryOpenAIForLegalData(
           sectionType,
           content: `Erreur: Impossible d'extraire le texte de la convention collective.`,
           status: 'error',
-          errorMessage: err.message
+          errorMessage: error?.message || "Erreur inconnue"
         });
       } catch (sectionError) {
         console.error('Erreur lors de la sauvegarde de l\'erreur de section:', sectionError);
