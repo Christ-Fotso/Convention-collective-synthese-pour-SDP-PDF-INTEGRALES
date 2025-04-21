@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Convention } from "../types";
 
@@ -604,6 +605,19 @@ export default function AdminPage() {
     }
   };
   
+  // Filtrer les conventions en fonction de la recherche
+  const filteredConventions = useMemo(() => {
+    if (!conventionSearchQuery.trim()) {
+      return conventions;
+    }
+    
+    const searchTerm = conventionSearchQuery.toLowerCase().trim();
+    return conventions.filter(convention => 
+      convention.id.toLowerCase().includes(searchTerm) || 
+      convention.name.toLowerCase().includes(searchTerm)
+    );
+  }, [conventions, conventionSearchQuery]);
+
   return (
     <div className="container mx-auto py-10">
       <h1 className="text-2xl font-bold mb-6">Administration ConventionsAI</h1>
@@ -623,13 +637,19 @@ export default function AdminPage() {
               <div className="flex justify-between items-center mb-4">
                 <Button 
                   variant={isBatchMode ? "outline" : "default"}
-                  onClick={() => setIsBatchMode(false)}
+                  onClick={() => {
+                    setIsBatchMode(false);
+                    setConventionSearchQuery("");
+                  }}
                 >
                   Mode individuel
                 </Button>
                 <Button 
                   variant={isBatchMode ? "default" : "outline"}
-                  onClick={() => setIsBatchMode(true)}
+                  onClick={() => {
+                    setIsBatchMode(true);
+                    setConventionSearchQuery("");
+                  }}
                 >
                   Mode traitement par lot
                 </Button>
@@ -638,23 +658,36 @@ export default function AdminPage() {
               {!isBatchMode ? (
                 // Mode individuel
                 <>
-                  <div className="mb-6">
-                    <Label htmlFor="convention-select">Sélectionner une convention</Label>
-                    <Select 
-                      value={selectedConventionId} 
-                      onValueChange={handleConventionChange}
-                    >
-                      <SelectTrigger id="convention-select" className="w-full">
-                        <SelectValue placeholder="Choisir une convention" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {conventions.map(convention => (
-                          <SelectItem key={convention.id} value={convention.id}>
-                            {convention.name} (IDCC {convention.id})
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                  <div className="mb-6 space-y-4">
+                    <div>
+                      <Label htmlFor="convention-search">Rechercher une convention (IDCC ou nom)</Label>
+                      <Input
+                        id="convention-search"
+                        placeholder="Rechercher une convention par IDCC ou nom..."
+                        value={conventionSearchQuery}
+                        onChange={(e) => setConventionSearchQuery(e.target.value)}
+                        className="mb-2"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="convention-select">Sélectionner une convention</Label>
+                      <Select 
+                        value={selectedConventionId} 
+                        onValueChange={handleConventionChange}
+                      >
+                        <SelectTrigger id="convention-select" className="w-full">
+                          <SelectValue placeholder="Choisir une convention" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filteredConventions.map(convention => (
+                            <SelectItem key={convention.id} value={convention.id}>
+                              {convention.name} (IDCC {convention.id})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                   
                   {selectedConventionId && (
@@ -731,8 +764,14 @@ export default function AdminPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <h3 className="text-lg font-medium">Sélection des conventions</h3>
+                      <Input
+                        placeholder="Rechercher une convention par IDCC ou nom..."
+                        value={conventionSearchQuery}
+                        onChange={(e) => setConventionSearchQuery(e.target.value)}
+                        className="mb-2"
+                      />
                       <div className="border rounded-md p-4 max-h-80 overflow-y-auto">
-                        {conventions.map(convention => (
+                        {filteredConventions.map(convention => (
                           <div key={convention.id} className="flex items-center space-x-2 py-2">
                             <Checkbox
                               id={`convention-${convention.id}`}
@@ -744,6 +783,11 @@ export default function AdminPage() {
                             </Label>
                           </div>
                         ))}
+                        {filteredConventions.length === 0 && (
+                          <div className="py-4 text-center text-gray-500">
+                            Aucune convention ne correspond à votre recherche
+                          </div>
+                        )}
                       </div>
                     </div>
                     
