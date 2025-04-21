@@ -1388,11 +1388,33 @@ export default function AdminPage() {
         </TabsContent>
         
         <TabsContent value="prompts">
+          <Card className="mb-6">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+              <div>
+                <CardTitle>Prompt Système Global</CardTitle>
+                <p className="text-muted-foreground mt-1">
+                  Prompt principal utilisé comme base pour toutes les interactions
+                </p>
+              </div>
+              <Button 
+                variant="outline" 
+                onClick={() => handleEditSystemPrompt()}
+              >
+                Éditer le prompt système
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <div className="whitespace-pre-wrap border rounded-md p-4 bg-muted/30 text-sm">
+                {systemPromptData.content}
+              </div>
+            </CardContent>
+          </Card>
+          
           <Card>
             <CardHeader>
-              <CardTitle>Gestion des prompts</CardTitle>
+              <CardTitle>Gestion des prompts par catégorie</CardTitle>
               <p className="text-muted-foreground">
-                Éditez les prompts utilisés pour extraire et générer les réponses pour chaque catégorie et sous-catégorie
+                Éditez les prompts spécifiques utilisés pour extraire et générer les réponses pour chaque catégorie et sous-catégorie
               </p>
             </CardHeader>
             <CardContent>
