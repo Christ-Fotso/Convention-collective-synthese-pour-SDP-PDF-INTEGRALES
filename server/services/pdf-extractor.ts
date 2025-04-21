@@ -182,13 +182,15 @@ export async function extractTextFromURL(url: string, conventionId: string, keyw
       "accident"
     ];
     
-    // Si le texte est trop grand, extraire les sections pertinentes
-    const maxLength = 90000; // Nombre approximatif de caractères pour rester dans les limites de tokens
+    // GPT-4.1 a une capacité de 1 million de tokens, ce qui est amplement suffisant pour la plupart des conventions
+    // Nous allons envoyer le texte complet ou, si vraiment trop grand (>700K caractères), le texte avec priorité aux sections pertinentes
+    const maxLength = 700000; // GPT-4.1 peut gérer environ 1M tokens soit ~700K caractères
     if (fullText.length > maxLength) {
-      console.log(`Texte trop volumineux (${fullText.length} caractères), extraction des parties pertinentes...`);
-      return extractRelevantSections(fullText, keywords || defaultKeywords);
+      console.log(`Texte extrêmement volumineux (${fullText.length} caractères), priorisation des parties les plus pertinentes...`);
+      return extractRelevantSections(fullText, keywords || defaultKeywords, 10000); // Contexte plus large
     }
     
+    // Sinon, utiliser le texte complet
     return fullText;
   } catch (error: any) {
     console.error('Erreur lors de l\'extraction du texte depuis l\'URL:', error);
