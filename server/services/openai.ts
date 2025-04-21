@@ -340,8 +340,8 @@ export async function queryOpenAIForLegalData(
     let sectionType = '';
     if (type === 'classification') {
       sectionType = SECTION_TYPES.CLASSIFICATION;
-    } else if (type === 'salaires') {
-      sectionType = SECTION_TYPES.SALAIRES;
+    } else if (type === 'salaires' || type === 'remuneration') {
+      sectionType = SECTION_TYPES.REMUNERATION_GRILLE;
     } else {
       throw new Error(`Type de requête non reconnu: ${type}`);
     }
@@ -552,8 +552,8 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
     let sectionType = '';
     if (type === 'classification') {
       sectionType = SECTION_TYPES.CLASSIFICATION;
-    } else if (type === 'salaires') {
-      sectionType = SECTION_TYPES.SALAIRES;
+    } else if (type === 'salaires' || type === 'remuneration') {
+      sectionType = SECTION_TYPES.REMUNERATION_GRILLE;
     }
     
     // Enregistrer l'erreur en base de données
