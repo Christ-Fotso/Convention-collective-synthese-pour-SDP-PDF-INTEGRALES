@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Convention } from "../types";
+import { Convention, PREDEFINED_PROMPTS } from "../types";
 import { CATEGORIES } from '@/lib/categories';
 
 // Types pour l'administration
@@ -114,6 +114,13 @@ export default function AdminPage() {
   const [newSectionSubcategory, setNewSectionSubcategory] = useState("");
   const [newSectionContent, setNewSectionContent] = useState("");
   const [showSubcategoriesInForm, setShowSubcategoriesInForm] = useState(false);
+  
+  // État pour l'édition des prompts
+  const [promptsData, setPromptsData] = useState<Record<string, Record<string, string>>>({...PREDEFINED_PROMPTS});
+  const [selectedPromptCategory, setSelectedPromptCategory] = useState<string>("");
+  const [selectedPromptSubcategory, setSelectedPromptSubcategory] = useState<string>("");
+  const [currentPromptContent, setCurrentPromptContent] = useState<string>("");
+  const [isPromptDialogOpen, setIsPromptDialogOpen] = useState(false);
   
   // Chargement initial des conventions
   useEffect(() => {
@@ -533,6 +540,68 @@ export default function AdminPage() {
       convention.name.toLowerCase().includes(searchTerm)
     );
   }, [conventions, conventionSearchQuery]);
+  
+  // Fonctions pour l'édition des prompts
+  const handleEditPrompt = (categoryId: string, subcategoryId?: string) => {
+    setSelectedPromptCategory(categoryId);
+    setSelectedPromptSubcategory(subcategoryId || "default");
+    
+    // Récupérer le contenu du prompt
+    let content = "";
+    if (subcategoryId) {
+      content = promptsData[categoryId]?.[subcategoryId] || "";
+    } else {
+      content = promptsData[categoryId]?.["default"] || "";
+    }
+    
+    setCurrentPromptContent(content);
+    setIsPromptDialogOpen(true);
+  };
+  
+  const handleSavePrompt = async () => {
+    try {
+      // Mise à jour locale des prompts
+      const updatedPrompts = { ...promptsData };
+      
+      // S'assurer que la catégorie existe
+      if (!updatedPrompts[selectedPromptCategory]) {
+        updatedPrompts[selectedPromptCategory] = {};
+      }
+      
+      // Mettre à jour le prompt
+      updatedPrompts[selectedPromptCategory][selectedPromptSubcategory] = currentPromptContent;
+      
+      // Mettre à jour l'état local
+      setPromptsData(updatedPrompts);
+      
+      // Appel API pour sauvegarder le prompt (cette API doit être créée côté serveur)
+      const response = await fetch('/api/admin/prompts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompts: updatedPrompts
+        })
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Succès",
+          description: "Prompt sauvegardé avec succès"
+        });
+        
+        setIsPromptDialogOpen(false);
+      } else {
+        throw new Error("Erreur lors de la sauvegarde du prompt");
+      }
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde du prompt:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de sauvegarder le prompt",
+        variant: "destructive"
+      });
+    }
+  };
 
   return (
     <div className="container mx-auto py-10">
