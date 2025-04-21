@@ -1,6 +1,4 @@
-import { type Category } from '@/types';
-
-export const CATEGORIES: Category[] = [
+[
   {
     "id": "informations-generales",
     "name": "Informations Générales",
@@ -87,4 +85,4 @@ export const CATEGORIES: Category[] = [
       { "id": "precarite", "name": "Indemnité de précarité" }
     ]
   }
-];
+]
