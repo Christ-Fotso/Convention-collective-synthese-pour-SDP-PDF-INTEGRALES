@@ -61,44 +61,116 @@ const formatCost = (cost: number) => {
 interface SectionType {
   id: string;
   name: string;
+  subcategories?: { id: string; name: string }[];
 }
 
 const SECTION_TYPES: SectionType[] = [
   { 
     id: 'informations-generales', 
-    name: 'Informations Générales'
+    name: 'Informations Générales',
+    subcategories: [
+      { id: 'informations-generales.generale', name: 'Informations Générales' }
+    ] 
   },
   { 
     id: 'embauche', 
-    name: 'Embauche'
+    name: 'Embauche',
+    subcategories: [
+      { id: 'embauche.delai-prevenance', name: 'Délai de prévenance' },
+      { id: 'embauche.periode-essai', name: 'Période d\'essai' }
+    ] 
   },
   { 
     id: 'temps-travail', 
-    name: 'Temps de travail'
+    name: 'Temps de travail',
+    subcategories: [
+      { id: 'temps-travail.duree-travail', name: 'Durées du travail' },
+      { id: 'temps-travail.amenagement-temps', name: 'Aménagement du temps de travail' },
+      { id: 'temps-travail.heures-sup', name: 'Heures supplémentaires' },
+      { id: 'temps-travail.temps-partiel', name: 'Temps partiel' },
+      { id: 'temps-travail.forfait-jours', name: 'Forfait jours' },
+      { id: 'temps-travail.travail-nuit', name: 'Travail de nuit' },
+      { id: 'temps-travail.astreintes', name: 'Astreintes' },
+      { id: 'temps-travail.jours-feries', name: 'Jours fériés' },
+      { id: 'temps-travail.repos-hebdomadaire', name: 'Repos hebdomadaire' },
+      { id: 'temps-travail.travail-dimanche', name: 'Travail du dimanche' }
+    ] 
   },
   { 
     id: 'conges', 
-    name: 'Congés'
+    name: 'Congés',
+    subcategories: [
+      { id: 'conges.cet', name: 'CET' },
+      { id: 'conges.conges-payes', name: 'Congés payés' },
+      { id: 'conges.evenement-familial', name: 'Evènement familial' },
+      { id: 'conges.anciennete', name: 'Congés d\'ancienneté' },
+      { id: 'conges.conges-exceptionnels', name: 'Congés exceptionnels' },
+      { id: 'conges.jours-supplementaires', name: 'Jours supplémentaires' },
+      { id: 'conges.fractionnement', name: 'Fractionnement des congés' },
+      { id: 'conges.sans-solde', name: 'Congés sans solde' },
+      { id: 'conges.deces', name: 'Congés pour décès' },
+      { id: 'conges.enfant-malade', name: 'Congés enfant malade' }
+    ] 
   },
   { 
     id: 'classification', 
-    name: 'Classification'
+    name: 'Classification',
+    subcategories: [
+      { id: 'classification.classification', name: 'Classification Con + Détails' },
+      { id: 'classification.grille', name: 'Grille de classification' },
+      { id: 'classification.evolution', name: 'Évolution professionnelle' },
+      { id: 'classification.emplois-reperes', name: 'Emplois repères' },
+      { id: 'classification.coefficients', name: 'Coefficients hiérarchiques' }
+    ] 
   },
   { 
     id: 'remuneration', 
-    name: 'Rémunération'
+    name: 'Rémunération',
+    subcategories: [
+      { id: 'remuneration.apprenti', name: 'Apprenti' },
+      { id: 'remuneration.contrat-pro', name: 'Contrat de professionalisation' },
+      { id: 'remuneration.stagiaire', name: 'Stagiaire' },
+      { id: 'remuneration.prime', name: 'Prime' },
+      { id: 'remuneration.grille', name: 'Grille de Rémunération' },
+      { id: 'remuneration.13eme-mois', name: '13ème mois' },
+      { id: 'remuneration.anciennete', name: 'Prime d\'ancienneté' },
+      { id: 'remuneration.transport', name: 'Frais de transport' },
+      { id: 'remuneration.repas', name: 'Indemnité de repas' },
+      { id: 'remuneration.astreinte', name: 'Indemnité d\'astreinte' },
+      { id: 'remuneration.majoration-dimanche', name: 'Majoration Dimanche' },
+      { id: 'remuneration.majoration-ferie', name: 'Majoration Férié' },
+      { id: 'remuneration.majoration-nuit', name: 'Majoration Nuit' }
+    ] 
   },
   { 
     id: 'depart', 
-    name: 'Départ'
+    name: 'Départ',
+    subcategories: [
+      { id: 'depart.licenciement', name: 'Indemnité de Licenciement' },
+      { id: 'depart.mise-retraite', name: 'Indemnité de Mise a la Retraite' },
+      { id: 'depart.depart-retraite', name: 'Indemnité de Départ a la Retraite' },
+      { id: 'depart.rupture-conventionnelle', name: 'Indemnité de Rupture conventionnelle' },
+      { id: 'depart.preavis', name: 'Préavis' },
+      { id: 'depart.precarite', name: 'Indemnité de précarité' }
+    ] 
   },
   {
     id: 'cotisations',
-    name: 'Cotisations'
+    name: 'Cotisations',
+    subcategories: [
+      { id: 'cotisations.prevoyance', name: 'Cotisation prévoyance' },
+      { id: 'cotisations.retraite', name: 'Cotisation retraite' },
+      { id: 'cotisations.mutuelle', name: 'Cotisation mutuelle' }
+    ]
   },
   {
     id: 'maintien-salaire',
-    name: 'Maintien de salaire'
+    name: 'Maintien de salaire',
+    subcategories: [
+      { id: 'maintien-salaire.accident-travail', name: 'Accident de travail' },
+      { id: 'maintien-salaire.maladie', name: 'Maladie' },
+      { id: 'maintien-salaire.maternite-paternite', name: 'Maternité / Paternité' }
+    ]
   }
 ];
 
@@ -123,6 +195,10 @@ export default function AdminPage() {
   const [tableSortDirection, setTableSortDirection] = useState<"asc" | "desc">("asc");
   const [selectedSections, setSelectedSections] = useState<Set<string>>(new Set());
   
+  // État pour les sous-catégories en mode batch
+  const [showSubcategories, setShowSubcategories] = useState<boolean>(false);
+  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
+  
   // État pour le dialogue d'édition
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isBatchEditDialogOpen, setIsBatchEditDialogOpen] = useState(false);
@@ -133,7 +209,9 @@ export default function AdminPage() {
   // État pour la création de section
   const [isNewSectionDialogOpen, setIsNewSectionDialogOpen] = useState(false);
   const [newSectionType, setNewSectionType] = useState("");
+  const [newSectionSubcategory, setNewSectionSubcategory] = useState("");
   const [newSectionContent, setNewSectionContent] = useState("");
+  const [showSubcategoriesInForm, setShowSubcategoriesInForm] = useState(false);
   
   // Chargement initial des conventions
   useEffect(() => {
@@ -257,6 +335,17 @@ export default function AdminPage() {
     });
   };
   
+  const toggleSubcategorySelection = (subcategoryId: string) => {
+    setSelectedSubcategories(prev => {
+      const isSelected = prev.includes(subcategoryId);
+      if (isSelected) {
+        return prev.filter(id => id !== subcategoryId);
+      } else {
+        return [...prev, subcategoryId];
+      }
+    });
+  };
+  
   const handleEditSection = (section: ConventionSection) => {
     setSelectedSection(section);
     setEditedContent(section.content);
@@ -306,8 +395,12 @@ export default function AdminPage() {
   };
   
   const handleCreateNewSection = async () => {
-    // Utiliser directement le type de section sélectionné
-    if (!selectedConventionId || !newSectionType || !newSectionContent) {
+    // Déterminer le type de section à utiliser (catégorie ou sous-catégorie)
+    const sectionTypeToUse = showSubcategoriesInForm && newSectionSubcategory 
+      ? newSectionSubcategory 
+      : newSectionType;
+      
+    if (!selectedConventionId || !sectionTypeToUse || !newSectionContent) {
       toast({
         title: "Erreur",
         description: "Veuillez remplir tous les champs",
@@ -322,7 +415,7 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           conventionId: selectedConventionId,
-          sectionType: newSectionType,
+          sectionType: sectionTypeToUse,
           content: newSectionContent,
           status: 'complete'
         })
@@ -341,7 +434,9 @@ export default function AdminPage() {
         
         // Réinitialiser le formulaire
         setNewSectionType("");
+        setNewSectionSubcategory("");
         setNewSectionContent("");
+        setShowSubcategoriesInForm(false);
         setIsNewSectionDialogOpen(false);
       } else {
         throw new Error("Erreur lors de la création");
@@ -399,17 +494,25 @@ export default function AdminPage() {
       return;
     }
     
-    const hasSelectedSections = selectedSectionTypes.length > 0;
+    // Vérifier si des sections ou sous-catégories sont sélectionnées
+    const hasSelectedSections = showSubcategories 
+      ? selectedSubcategories.length > 0 
+      : selectedSectionTypes.length > 0;
+      
     if (!hasSelectedSections) {
       toast({
         title: "Attention",
-        description: "Veuillez sélectionner au moins une catégorie",
+        description: showSubcategories 
+          ? "Veuillez sélectionner au moins une sous-catégorie" 
+          : "Veuillez sélectionner au moins une catégorie",
       });
       return;
     }
     
     // Déterminer les sections à générer
-    const sectionsToGenerate: string[] = [...selectedSectionTypes];
+    const sectionsToGenerate: string[] = showSubcategories 
+      ? [...selectedSubcategories] 
+      : [...selectedSectionTypes];
     
     // Confirmer avec l'utilisateur
     const conventionCount = selectedConventions.length;
@@ -1405,24 +1508,81 @@ export default function AdminPage() {
           </DialogHeader>
           
           <div className="py-4 space-y-4">
-            <div>
-              <Label htmlFor="section-type">Type de section</Label>
-              <Select 
-                value={newSectionType} 
-                onValueChange={setNewSectionType}
+            <div className="flex justify-between items-center">
+              <h3 className="text-sm font-medium">Niveau de détail</h3>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setShowSubcategoriesInForm(!showSubcategoriesInForm)}
               >
-                <SelectTrigger id="section-type">
-                  <SelectValue placeholder="Choisir un type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {SECTION_TYPES.map(type => (
-                    <SelectItem key={type.id} value={type.id}>
-                      {type.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {showSubcategoriesInForm ? "Utiliser catégorie" : "Utiliser sous-catégorie"}
+              </Button>
             </div>
+            
+            {!showSubcategoriesInForm ? (
+              // Sélection de la catégorie principale
+              <div>
+                <Label htmlFor="section-type">Type de section</Label>
+                <Select 
+                  value={newSectionType} 
+                  onValueChange={setNewSectionType}
+                >
+                  <SelectTrigger id="section-type">
+                    <SelectValue placeholder="Choisir un type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SECTION_TYPES.map(type => (
+                      <SelectItem key={type.id} value={type.id}>
+                        {type.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            ) : (
+              // Sélection de la catégorie puis de la sous-catégorie
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="section-category">Catégorie</Label>
+                  <Select 
+                    value={newSectionType} 
+                    onValueChange={setNewSectionType}
+                  >
+                    <SelectTrigger id="section-category">
+                      <SelectValue placeholder="Choisir une catégorie" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SECTION_TYPES.map(type => (
+                        <SelectItem key={type.id} value={type.id}>
+                          {type.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {newSectionType && (
+                  <div>
+                    <Label htmlFor="section-subcategory">Sous-catégorie</Label>
+                    <Select 
+                      value={newSectionSubcategory} 
+                      onValueChange={setNewSectionSubcategory}
+                    >
+                      <SelectTrigger id="section-subcategory">
+                        <SelectValue placeholder="Choisir une sous-catégorie" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {SECTION_TYPES.find(t => t.id === newSectionType)?.subcategories?.map(subcat => (
+                          <SelectItem key={subcat.id} value={subcat.id}>
+                            {subcat.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+              </div>
+            )}
             
             <div>
               <Label htmlFor="section-content">Contenu</Label>
