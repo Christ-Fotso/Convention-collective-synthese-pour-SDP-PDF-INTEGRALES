@@ -14,6 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Convention } from "../types";
 
@@ -72,9 +73,13 @@ export default function AdminPage() {
   // États
   const [conventions, setConventions] = useState<Convention[]>([]);
   const [selectedConventionId, setSelectedConventionId] = useState<string>("");
+  const [selectedConventions, setSelectedConventions] = useState<Convention[]>([]);
   const [sections, setSections] = useState<ConventionSection[]>([]);
+  const [allSections, setAllSections] = useState<Record<string, ConventionSection[]>>({});
   const [apiMetrics, setApiMetrics] = useState<ApiMetric[]>([]);
   const [apiUsageStats, setApiUsageStats] = useState<ApiUsageStats | null>(null);
+  const [isBatchMode, setIsBatchMode] = useState(false);
+  const [selectedSectionTypes, setSelectedSectionTypes] = useState<string[]>([]);
   
   // État pour le dialogue d'édition
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -146,6 +151,66 @@ export default function AdminPage() {
   // Gestionnaires d'événements
   const handleConventionChange = (conventionId: string) => {
     setSelectedConventionId(conventionId);
+    setIsBatchMode(false);
+  };
+  
+  const toggleConventionSelection = (convention: Convention) => {
+    setSelectedConventions(prev => {
+      const isSelected = prev.some(c => c.id === convention.id);
+      if (isSelected) {
+        return prev.filter(c => c.id !== convention.id);
+      } else {
+        return [...prev, convention];
+      }
+    });
+  };
+  
+  const loadSectionsForSelectedConventions = async () => {
+    if (selectedConventions.length === 0) {
+      toast({
+        title: "Attention",
+        description: "Veuillez sélectionner au moins une convention",
+      });
+      return;
+    }
+    
+    const newAllSections: Record<string, ConventionSection[]> = {};
+    let hasLoadedAny = false;
+    
+    for (const convention of selectedConventions) {
+      try {
+        const response = await fetch(`/api/admin/sections/${convention.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          newAllSections[convention.id] = data;
+          hasLoadedAny = true;
+        }
+      } catch (error) {
+        console.error(`Erreur lors du chargement des sections pour ${convention.id}:`, error);
+      }
+    }
+    
+    if (hasLoadedAny) {
+      setAllSections(newAllSections);
+      setIsBatchMode(true);
+    } else {
+      toast({
+        title: "Erreur",
+        description: "Impossible de charger les sections pour les conventions sélectionnées",
+        variant: "destructive"
+      });
+    }
+  };
+  
+  const toggleSectionTypeSelection = (sectionType: string) => {
+    setSelectedSectionTypes(prev => {
+      const isSelected = prev.includes(sectionType);
+      if (isSelected) {
+        return prev.filter(type => type !== sectionType);
+      } else {
+        return [...prev, sectionType];
+      }
+    });
   };
   
   const handleEditSection = (section: ConventionSection) => {
@@ -280,6 +345,71 @@ export default function AdminPage() {
     }
   };
   
+  const handleBatchGenerate = async () => {
+    if (selectedConventions.length === 0) {
+      toast({
+        title: "Attention",
+        description: "Veuillez sélectionner au moins une convention",
+      });
+      return;
+    }
+    
+    if (selectedSectionTypes.length === 0) {
+      toast({
+        title: "Attention",
+        description: "Veuillez sélectionner au moins un type de section à générer",
+      });
+      return;
+    }
+    
+    // Confirmer avec l'utilisateur
+    const conventionCount = selectedConventions.length;
+    const sectionTypeCount = selectedSectionTypes.length;
+    const totalOperations = conventionCount * sectionTypeCount;
+    
+    if (!confirm(`Vous êtes sur le point de lancer ${totalOperations} opération(s) de génération (${conventionCount} convention(s) × ${sectionTypeCount} type(s) de section). Voulez-vous continuer ?`)) {
+      return;
+    }
+    
+    toast({
+      title: "Génération par lot lancée",
+      description: `${totalOperations} génération(s) en cours. Cela peut prendre plusieurs minutes...`
+    });
+    
+    let successCount = 0;
+    let errorCount = 0;
+    
+    for (const convention of selectedConventions) {
+      for (const sectionType of selectedSectionTypes) {
+        try {
+          const response = await fetch('/api/admin/generate-section', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              conventionId: convention.id,
+              sectionType
+            })
+          });
+          
+          if (response.ok) {
+            successCount++;
+          } else {
+            errorCount++;
+          }
+        } catch (error) {
+          console.error(`Erreur lors de la génération pour ${convention.id} - ${sectionType}:`, error);
+          errorCount++;
+        }
+      }
+    }
+    
+    toast({
+      title: "Résultat de la génération par lot",
+      description: `${successCount} génération(s) lancée(s) avec succès, ${errorCount} échec(s).`,
+      variant: errorCount > 0 ? "destructive" : "default"
+    });
+  };
+  
   const handleDeleteSection = async (sectionId: string) => {
     if (!confirm("Êtes-vous sûr de vouloir supprimer cette section ?")) return;
     
@@ -339,91 +469,225 @@ export default function AdminPage() {
               <CardTitle>Gestion des sections extraites</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mb-6">
-                <Label htmlFor="convention-select">Sélectionner une convention</Label>
-                <Select 
-                  value={selectedConventionId} 
-                  onValueChange={handleConventionChange}
+              <div className="flex justify-between items-center mb-4">
+                <Button 
+                  variant={isBatchMode ? "outline" : "default"}
+                  onClick={() => setIsBatchMode(false)}
                 >
-                  <SelectTrigger id="convention-select" className="w-full">
-                    <SelectValue placeholder="Choisir une convention" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {conventions.map(convention => (
-                      <SelectItem key={convention.id} value={convention.id}>
-                        {convention.name} (IDCC {convention.id})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  Mode individuel
+                </Button>
+                <Button 
+                  variant={isBatchMode ? "default" : "outline"}
+                  onClick={() => setIsBatchMode(true)}
+                >
+                  Mode traitement par lot
+                </Button>
               </div>
               
-              {selectedConventionId && (
-                <div className="space-y-4">
-                  <div className="flex justify-between">
-                    <h3 className="text-lg font-medium">Sections disponibles</h3>
-                    <Button onClick={() => setIsNewSectionDialogOpen(true)}>
-                      Nouvelle section
-                    </Button>
+              {!isBatchMode ? (
+                // Mode individuel
+                <>
+                  <div className="mb-6">
+                    <Label htmlFor="convention-select">Sélectionner une convention</Label>
+                    <Select 
+                      value={selectedConventionId} 
+                      onValueChange={handleConventionChange}
+                    >
+                      <SelectTrigger id="convention-select" className="w-full">
+                        <SelectValue placeholder="Choisir une convention" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {conventions.map(convention => (
+                          <SelectItem key={convention.id} value={convention.id}>
+                            {convention.name} (IDCC {convention.id})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   
-                  {sections.length > 0 ? (
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Type</TableHead>
-                          <TableHead>Statut</TableHead>
-                          <TableHead>Dernière mise à jour</TableHead>
-                          <TableHead>Actions</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {sections.map(section => (
-                          <TableRow key={section.id}>
-                            <TableCell>
-                              {SECTION_TYPES.find(t => t.id === section.sectionType)?.name || section.sectionType}
-                            </TableCell>
-                            <TableCell>{getStatusBadge(section.status)}</TableCell>
-                            <TableCell>{new Date(section.updatedAt).toLocaleString()}</TableCell>
-                            <TableCell>
-                              <div className="flex space-x-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm"
-                                  onClick={() => handleEditSection(section)}
-                                >
-                                  Éditer
-                                </Button>
-                                <Button 
-                                  variant="destructive" 
-                                  size="sm"
-                                  onClick={() => handleDeleteSection(section.id)}
-                                >
-                                  Supprimer
-                                </Button>
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  ) : (
-                    <div className="text-center p-6 bg-gray-50 rounded-md">
-                      <p className="mb-4">Aucune section disponible pour cette convention.</p>
-                      <div className="flex flex-wrap gap-2 justify-center">
-                        {SECTION_TYPES.map(type => (
-                          <Button 
-                            key={type.id}
-                            variant="outline"
-                            onClick={() => handleGenerateSection(selectedConventionId, type.id)}
-                          >
-                            Générer {type.name}
-                          </Button>
+                  {selectedConventionId && (
+                    <div className="space-y-4">
+                      <div className="flex justify-between">
+                        <h3 className="text-lg font-medium">Sections disponibles</h3>
+                        <Button onClick={() => setIsNewSectionDialogOpen(true)}>
+                          Nouvelle section
+                        </Button>
+                      </div>
+                      
+                      {sections.length > 0 ? (
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Type</TableHead>
+                              <TableHead>Statut</TableHead>
+                              <TableHead>Dernière mise à jour</TableHead>
+                              <TableHead>Actions</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {sections.map(section => (
+                              <TableRow key={section.id}>
+                                <TableCell>
+                                  {SECTION_TYPES.find(t => t.id === section.sectionType)?.name || section.sectionType}
+                                </TableCell>
+                                <TableCell>{getStatusBadge(section.status)}</TableCell>
+                                <TableCell>{new Date(section.updatedAt).toLocaleString()}</TableCell>
+                                <TableCell>
+                                  <div className="flex space-x-2">
+                                    <Button 
+                                      variant="outline" 
+                                      size="sm"
+                                      onClick={() => handleEditSection(section)}
+                                    >
+                                      Éditer
+                                    </Button>
+                                    <Button 
+                                      variant="destructive" 
+                                      size="sm"
+                                      onClick={() => handleDeleteSection(section.id)}
+                                    >
+                                      Supprimer
+                                    </Button>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      ) : (
+                        <div className="text-center p-6 bg-gray-50 rounded-md">
+                          <p className="mb-4">Aucune section disponible pour cette convention.</p>
+                          <div className="flex flex-wrap gap-2 justify-center">
+                            {SECTION_TYPES.map(type => (
+                              <Button 
+                                key={type.id}
+                                variant="outline"
+                                onClick={() => handleGenerateSection(selectedConventionId, type.id)}
+                              >
+                                Générer {type.name}
+                              </Button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
+              ) : (
+                // Mode traitement par lot
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium">Sélection des conventions</h3>
+                      <div className="border rounded-md p-4 max-h-80 overflow-y-auto">
+                        {conventions.map(convention => (
+                          <div key={convention.id} className="flex items-center space-x-2 py-2">
+                            <Checkbox
+                              id={`convention-${convention.id}`}
+                              checked={selectedConventions.some(c => c.id === convention.id)}
+                              onCheckedChange={() => toggleConventionSelection(convention)}
+                            />
+                            <Label htmlFor={`convention-${convention.id}`} className="cursor-pointer">
+                              {convention.name} (IDCC {convention.id})
+                            </Label>
+                          </div>
                         ))}
                       </div>
                     </div>
+                    
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium">Sélection des types de sections</h3>
+                      <div className="border rounded-md p-4">
+                        {SECTION_TYPES.map(type => (
+                          <div key={type.id} className="flex items-center space-x-2 py-2">
+                            <Checkbox
+                              id={`section-type-${type.id}`}
+                              checked={selectedSectionTypes.includes(type.id)}
+                              onCheckedChange={() => toggleSectionTypeSelection(type.id)}
+                            />
+                            <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
+                              {type.name}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between mt-6">
+                    <Button 
+                      variant="outline"
+                      onClick={loadSectionsForSelectedConventions}
+                    >
+                      Charger les sections existantes
+                    </Button>
+                    <Button 
+                      onClick={handleBatchGenerate}
+                      disabled={selectedConventions.length === 0 || selectedSectionTypes.length === 0}
+                    >
+                      Générer les sections sélectionnées
+                    </Button>
+                  </div>
+                  
+                  {Object.keys(allSections).length > 0 && (
+                    <div className="mt-8 space-y-6">
+                      <h3 className="text-lg font-medium">Sections existantes</h3>
+                      {Object.entries(allSections).map(([conventionId, sections]) => {
+                        const convention = conventions.find(c => c.id === conventionId);
+                        return (
+                          <div key={conventionId} className="border rounded-md p-4">
+                            <h4 className="text-md font-medium mb-4">{convention?.name} (IDCC {conventionId})</h4>
+                            
+                            {sections.length > 0 ? (
+                              <Table>
+                                <TableHeader>
+                                  <TableRow>
+                                    <TableHead>Type</TableHead>
+                                    <TableHead>Statut</TableHead>
+                                    <TableHead>Dernière mise à jour</TableHead>
+                                    <TableHead>Actions</TableHead>
+                                  </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                  {sections.map(section => (
+                                    <TableRow key={section.id}>
+                                      <TableCell>
+                                        {SECTION_TYPES.find(t => t.id === section.sectionType)?.name || section.sectionType}
+                                      </TableCell>
+                                      <TableCell>{getStatusBadge(section.status)}</TableCell>
+                                      <TableCell>{new Date(section.updatedAt).toLocaleString()}</TableCell>
+                                      <TableCell>
+                                        <div className="flex space-x-2">
+                                          <Button 
+                                            variant="outline" 
+                                            size="sm"
+                                            onClick={() => handleEditSection(section)}
+                                          >
+                                            Éditer
+                                          </Button>
+                                          <Button 
+                                            variant="destructive" 
+                                            size="sm"
+                                            onClick={() => handleDeleteSection(section.id)}
+                                          >
+                                            Supprimer
+                                          </Button>
+                                        </div>
+                                      </TableCell>
+                                    </TableRow>
+                                  ))}
+                                </TableBody>
+                              </Table>
+                            ) : (
+                              <p className="text-center py-4">Aucune section disponible pour cette convention</p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
                   )}
-                </div>
+                </>
               )}
             </CardContent>
           </Card>
