@@ -898,18 +898,29 @@ export default function AdminPage() {
                                 </div>
                                 
                                 <div className="ml-6 space-y-1">
-                                  {category.subcategories?.map(subcategory => (
-                                    <div key={subcategory.id} className="flex items-center space-x-2 py-1">
-                                      <Checkbox
-                                        id={`subcategory-${subcategory.id}`}
-                                        checked={selectedSubcategories.includes(subcategory.id)}
-                                        onCheckedChange={() => toggleSubcategorySelection(subcategory.id)}
-                                      />
-                                      <Label htmlFor={`subcategory-${subcategory.id}`} className="cursor-pointer text-sm">
-                                        {subcategory.name}
-                                      </Label>
-                                    </div>
-                                  ))}
+                                  {/* Liste des sous-catégories sans cases à cocher individuelles */}
+                                  <div className="flex items-center space-x-2 py-2 mt-2 mb-2">
+                                    <Checkbox
+                                      id={`all-subcategories-${category.id}`}
+                                      checked={category.subcategories?.every(subcat => selectedSubcategories.includes(subcat.id)) || false}
+                                      onCheckedChange={(checked) => {
+                                        if (checked) {
+                                          // Sélectionner toutes les sous-catégories de cette catégorie
+                                          const subcategoryIds = category.subcategories?.map(subcat => subcat.id) || [];
+                                          setSelectedSubcategories(prev => [...prev, ...subcategoryIds]);
+                                        } else {
+                                          // Désélectionner toutes les sous-catégories de cette catégorie
+                                          const subcategoryIds = category.subcategories?.map(subcat => subcat.id) || [];
+                                          setSelectedSubcategories(prev => 
+                                            prev.filter(id => !subcategoryIds.includes(id))
+                                          );
+                                        }
+                                      }}
+                                    />
+                                    <Label htmlFor={`all-subcategories-${category.id}`} className="cursor-pointer font-medium">
+                                      Utiliser toutes les sous-catégories
+                                    </Label>
+                                  </div>
                                 </div>
                               </div>
                             ))}
