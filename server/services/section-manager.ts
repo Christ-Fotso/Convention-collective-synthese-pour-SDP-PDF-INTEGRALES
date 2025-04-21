@@ -7,20 +7,26 @@ import { v4 as uuidv4 } from "uuid";
 // Constantes pour les types de sections supportées
 export const SECTION_TYPES = {
   // Classifications
-  CLASSIFICATION: 'classification',
+  CLASSIFICATION: 'classification.classification',
   CLASSIFICATION_GRILLE: 'classification.grille',
   CLASSIFICATION_EVOLUTION: 'classification.evolution',
   CLASSIFICATION_EMPLOIS_REPERES: 'classification.emplois-reperes',
   CLASSIFICATION_COEFFICIENTS: 'classification.coefficients',
   
   // Rémunérations
-  SALAIRES: 'remuneration.grille',
-  SALAIRES_13EME_MOIS: 'remuneration.13eme-mois',
-  SALAIRES_ANCIENNETE: 'remuneration.anciennete',
-  SALAIRES_TRANSPORT: 'remuneration.transport',
-  SALAIRES_REPAS: 'remuneration.repas',
-  SALAIRES_ASTREINTE: 'remuneration.astreinte',
-  SALAIRES_PRIME: 'remuneration.prime',
+  REMUNERATION_GRILLE: 'remuneration.grille',
+  REMUNERATION_13EME_MOIS: 'remuneration.13eme-mois',
+  REMUNERATION_ANCIENNETE: 'remuneration.anciennete',
+  REMUNERATION_TRANSPORT: 'remuneration.transport',
+  REMUNERATION_REPAS: 'remuneration.repas',
+  REMUNERATION_ASTREINTE: 'remuneration.astreinte',
+  REMUNERATION_PRIME: 'remuneration.prime',
+  REMUNERATION_APPRENTI: 'remuneration.apprenti',
+  REMUNERATION_CONTRAT_PRO: 'remuneration.contrat-pro',
+  REMUNERATION_STAGIAIRE: 'remuneration.stagiaire',
+  REMUNERATION_MAJORATION_DIMANCHE: 'remuneration.majoration-dimanche',
+  REMUNERATION_MAJORATION_FERIE: 'remuneration.majoration-ferie',
+  REMUNERATION_MAJORATION_NUIT: 'remuneration.majoration-nuit',
   
   // Temps de travail
   TEMPS_TRAVAIL: 'temps-travail.duree-travail',
@@ -47,17 +53,29 @@ export const SECTION_TYPES = {
   CONGES_ENFANT_MALADE: 'conges.enfant-malade',
   
   // Départ
-  RUPTURE: 'depart.preavis',
+  DEPART_PREAVIS: 'depart.preavis',
   DEPART_LICENCIEMENT: 'depart.licenciement',
   DEPART_MISE_RETRAITE: 'depart.mise-retraite',
   DEPART_RETRAITE: 'depart.depart-retraite',
   DEPART_RUPTURE_CONVENTIONNELLE: 'depart.rupture-conventionnelle',
   DEPART_PRECARITE: 'depart.precarite',
   
-  // Autres
+  // Embauche
   EMBAUCHE: 'embauche.periode-essai',
   EMBAUCHE_DELAI_PREVENANCE: 'embauche.delai-prevenance',
+  
+  // Informations générales
   INFORMATIONS_GENERALES: 'informations-generales.generale',
+  
+  // Cotisations
+  COTISATIONS_PREVOYANCE: 'cotisations.prevoyance',
+  COTISATIONS_RETRAITE: 'cotisations.retraite',
+  COTISATIONS_MUTUELLE: 'cotisations.mutuelle',
+  
+  // Maintien de salaire
+  MAINTIEN_SALAIRE_ACCIDENT: 'maintien-salaire.accident-travail',
+  MAINTIEN_SALAIRE_MALADIE: 'maintien-salaire.maladie',
+  MAINTIEN_SALAIRE_MATERNITE: 'maintien-salaire.maternite-paternite',
 };
 
 // Interface pour les sections de convention
