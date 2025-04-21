@@ -178,6 +178,7 @@ export default function AdminPage() {
   
   // États
   const [conventions, setConventions] = useState<Convention[]>([]);
+  const [conventionSearchQuery, setConventionSearchQuery] = useState<string>("");
   const [selectedConventionId, setSelectedConventionId] = useState<string>("");
   const [selectedConventions, setSelectedConventions] = useState<Convention[]>([]);
   const [sections, setSections] = useState<ConventionSection[]>([]);
