@@ -4,8 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import { ChatResponse, Message } from '../../client/src/types';
 
-// Le modèle le plus récent d'OpenAI est "gpt-4o" sorti le 13 mai 2024, ne pas le changer sauf demande explicite de l'utilisateur
-const MODEL = "gpt-4o";
+// Utilisation du modèle gpt-4.1-2025-04-14 comme demandé explicitement par l'utilisateur
+const MODEL = "gpt-4.1-2025-04-14";
 
 // Configuration du client OpenAI
 const openai = new OpenAI({
@@ -57,7 +57,7 @@ export async function getConventionText(conventionUrl: string, conventionId: str
     
     try {
       // Pour éviter d'avoir à extraire le texte du PDF (source de bugs),
-      // nous allons simplement utiliser une requête à GPT-4o pour récupérer les informations
+      // nous allons simplement utiliser une requête à GPT-4.1 pour récupérer les informations
       // pertinentes de la convention collective à partir de son ID
       conventionText = `Convention collective nationale ${conventionId}. Pour analyser cette convention collective, 
 veuillez consulter le texte intégral sur Légifrance à l'adresse suivante: ${conventionUrl}`;
