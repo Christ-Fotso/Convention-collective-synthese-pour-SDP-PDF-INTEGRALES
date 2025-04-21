@@ -814,8 +814,15 @@ export default function AdminPage() {
                     </div>
                     
                     <div className="space-y-4">
-                      <div>
+                      <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium">Sélection des types de sections</h3>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => setShowSubcategories(!showSubcategories)}
+                        >
+                          {showSubcategories ? "Utiliser catégories" : "Utiliser sous-catégories"}
+                        </Button>
                       </div>
                       
                       <div className="flex space-x-2 mb-2">
@@ -823,8 +830,21 @@ export default function AdminPage() {
                           variant="outline" 
                           size="sm"
                           onClick={() => {
-                            // Sélectionner toutes les catégories principales
-                            setSelectedSectionTypes(SECTION_TYPES.map(type => type.id));
+                            if (showSubcategories) {
+                              // Sélectionner toutes les sous-catégories
+                              const allSubcategoryIds: string[] = [];
+                              SECTION_TYPES.forEach(type => {
+                                if (type.subcategories) {
+                                  type.subcategories.forEach(subcat => {
+                                    allSubcategoryIds.push(subcat.id);
+                                  });
+                                }
+                              });
+                              setSelectedSubcategories(allSubcategoryIds);
+                            } else {
+                              // Sélectionner toutes les catégories principales
+                              setSelectedSectionTypes(SECTION_TYPES.map(type => type.id));
+                            }
                           }}
                         >
                           Tout sélectionner
@@ -833,28 +853,57 @@ export default function AdminPage() {
                           variant="outline" 
                           size="sm"
                           onClick={() => {
-                            setSelectedSectionTypes([]);
+                            if (showSubcategories) {
+                              setSelectedSubcategories([]);
+                            } else {
+                              setSelectedSectionTypes([]);
+                            }
                           }}
                         >
                           Tout désélectionner
                         </Button>
                       </div>
                       
-                      <div className="border rounded-md p-4">
-                        {/* Affichage des catégories principales */}
-                        {SECTION_TYPES.map(type => (
-                          <div key={type.id} className="flex items-center space-x-2 py-2">
-                            <Checkbox
-                              id={`section-type-${type.id}`}
-                              checked={selectedSectionTypes.includes(type.id)}
-                              onCheckedChange={() => toggleSectionTypeSelection(type.id)}
-                            />
-                            <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
-                              {type.name}
-                            </Label>
-                          </div>
-                        ))}
-                      </div>
+                      {!showSubcategories ? (
+                        // Affichage des catégories principales
+                        <div className="border rounded-md p-4">
+                          {SECTION_TYPES.map(type => (
+                            <div key={type.id} className="flex items-center space-x-2 py-2">
+                              <Checkbox
+                                id={`section-type-${type.id}`}
+                                checked={selectedSectionTypes.includes(type.id)}
+                                onCheckedChange={() => toggleSectionTypeSelection(type.id)}
+                              />
+                              <Label htmlFor={`section-type-${type.id}`} className="cursor-pointer">
+                                {type.name}
+                              </Label>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        // Affichage des sous-catégories par catégorie principale
+                        <div className="border rounded-md p-4 space-y-2">
+                          {SECTION_TYPES.map(type => (
+                            <div key={type.id} className="space-y-1">
+                              <div className="font-medium py-1">{type.name}</div>
+                              <div className="pl-4 space-y-1">
+                                {type.subcategories?.map(subcat => (
+                                  <div key={subcat.id} className="flex items-center space-x-2 py-1">
+                                    <Checkbox
+                                      id={`subcat-${subcat.id}`}
+                                      checked={selectedSubcategories.includes(subcat.id)}
+                                      onCheckedChange={() => toggleSubcategorySelection(subcat.id)}
+                                    />
+                                    <Label htmlFor={`subcat-${subcat.id}`} className="cursor-pointer">
+                                      {subcat.name}
+                                    </Label>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   
@@ -867,7 +916,8 @@ export default function AdminPage() {
                     </Button>
                     <Button 
                       onClick={handleBatchGenerate}
-                      disabled={selectedConventions.length === 0 || selectedSectionTypes.length === 0}
+                      disabled={selectedConventions.length === 0 || 
+                              (showSubcategories ? selectedSubcategories.length === 0 : selectedSectionTypes.length === 0)}
                     >
                       Générer les sections sélectionnées
                     </Button>
