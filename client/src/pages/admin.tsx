@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Convention, PREDEFINED_PROMPTS } from "../types";
+import { Convention, PREDEFINED_PROMPTS, SYSTEM_PROMPT } from "../types";
 import { CATEGORIES } from '@/lib/categories';
 
 // Types pour l'administration
@@ -117,10 +117,12 @@ export default function AdminPage() {
   
   // État pour l'édition des prompts
   const [promptsData, setPromptsData] = useState<Record<string, Record<string, string>>>({...PREDEFINED_PROMPTS});
+  const [systemPromptData, setSystemPromptData] = useState({ content: SYSTEM_PROMPT.content });
   const [selectedPromptCategory, setSelectedPromptCategory] = useState<string>("");
   const [selectedPromptSubcategory, setSelectedPromptSubcategory] = useState<string>("");
   const [currentPromptContent, setCurrentPromptContent] = useState<string>("");
   const [isPromptDialogOpen, setIsPromptDialogOpen] = useState(false);
+  const [isSystemPromptDialogOpen, setIsSystemPromptDialogOpen] = useState(false);
   
   // Chargement initial des conventions
   useEffect(() => {

@@ -38,6 +38,14 @@ export interface Category {
   subcategories: Subcategory[];
 }
 
+export interface SystemPrompt {
+  content: string;
+}
+
+export const SYSTEM_PROMPT: SystemPrompt = {
+  content: "Tu es ConventionsAI, un assistant spécialisé dans l'analyse des conventions collectives françaises. Ton rôle est d'extraire des informations pertinentes et précises à partir des textes officiels des conventions collectives pour répondre aux questions des utilisateurs.\n\nCONSIGNES GÉNÉRALES :\n1. Toujours te baser uniquement sur le contenu de la convention collective fournie\n2. Citer les articles pertinents et leur numéro lorsque tu réponds\n3. Préciser quand une information n'est pas présente dans la convention\n4. Organiser ta réponse de façon structurée et claire\n5. Être factuel et objectif\n6. Ne pas inventer d'informations qui ne seraient pas dans le texte\n7. Conserver la terminologie exacte utilisée dans la convention\n\nTu dois t'en tenir aux faits présents dans la convention collective et éviter toute interprétation personnelle ou toute généralisation qui ne serait pas explicitement mentionnée dans le texte."
+};
+
 export const PREDEFINED_PROMPTS: Record<string, Record<string, string>> = {
   "conges": {
     "cet": "Analyse la convention collective pour récupérer toutes les informations relatives au Compte Épargne Temps (CET).\n\n1. Extraction des informations sur la mise en place :\n   - Modalités d'ouverture du CET\n   - Salariés bénéficiaires\n   - Conditions d'ancienneté éventuelles\n   - Formalités d'adhésion\n\n2. Alimentation du CET :\n   - Éléments pouvant être épargnés :\n     • Congés payés\n     • RTT\n     • Repos compensateurs\n     • Primes et éléments de salaire\n     • Autres éléments\n   - Plafonds d'épargne éventuels\n   - Périodicité des versements\n\n3. Utilisation du CET :\n   - Conditions d'utilisation\n   - Délais de prévenance\n   - Modes d'utilisation possibles :\n     • Congés\n     • Monétisation\n     • Formation\n     • Autres\n\n4. Gestion et garanties :\n   - Modalités de tenue du compte\n   - Valorisation des droits\n   - Information du salarié\n   - Garanties financières si mentionnées\n\n5. Transfert et clôture :\n   - Cas de transfert\n   - Conditions de clôture\n   - Modalités de liquidation\n\nFORMAT DE PRÉSENTATION :\n- Copier-coller exact du texte conventionnel\n- Référence précise des articles\n- Conservation de la structure originale des dispositions\n- Indication des éventuels renvois à des accords d'entreprise\n\nSi la convention collective ne contient aucune disposition sur le CET : indiquer \"RAS\"",
