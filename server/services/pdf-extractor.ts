@@ -37,55 +37,90 @@ async function downloadPDF(url: string, conventionId: string): Promise<string> {
 }
 
 /**
- * Extrait le texte d'un fichier PDF en utilisant une méthode simple basée sur le stdout
+ * Extrait le texte d'un fichier PDF en utilisant pdftotext (méthode plus précise)
  */
 async function extractTextFromPDF(filePath: string): Promise<string> {
   try {
-    // Utilise la commande 'strings' pour extraire le texte lisible du PDF
-    // C'est une approche simple mais souvent efficace pour les fichiers PDF standards
-    const { stdout } = await execPromise(`strings "${filePath}"`);
+    // Utiliser pdftotext pour une extraction de texte précise
+    const txtFilePath = filePath.replace('.pdf', '.txt');
     
-    // Nettoyage basique du texte
-    let text = stdout
-      .replace(/[\r\n]+/g, '\n')  // Normaliser les sauts de ligne
-      .replace(/\s{2,}/g, ' ')    // Remplacer les espaces multiples par un seul
-      .trim();
-
-    // Vérification minimale du contenu
-    if (text.length < 100) {
-      throw new Error("Extraction de texte insuffisante");
+    console.log(`Extraction du texte avec pdftotext pour ${filePath}`);
+    
+    // Utiliser pdftotext avec des options pour préserver la mise en page
+    await execPromise(`pdftotext -layout -nopgbrk "${filePath}" "${txtFilePath}"`);
+    
+    // Lire le fichier texte extrait
+    if (!fs.existsSync(txtFilePath)) {
+      throw new Error(`Le fichier texte extrait n'existe pas: ${txtFilePath}`);
     }
     
-    console.log(`Extraction réussie: ${text.length} caractères extraits`);
+    // Lire le contenu du fichier texte
+    const text = fs.readFileSync(txtFilePath, 'utf8')
+      .replace(/\f/g, '\n') // Remplacer les sauts de page par des sauts de ligne
+      .replace(/[\r\n]{3,}/g, '\n\n') // Normaliser les blocs de sauts de ligne
+      .trim();
+    
+    // Vérification de la qualité du contenu
+    if (text.length < 1000) {
+      console.warn(`Extraction pdftotext insuffisante: seulement ${text.length} caractères - essai de la méthode strings`);
+      throw new Error("Extraction de texte insuffisante avec pdftotext");
+    }
+    
+    console.log(`Extraction pdftotext réussie: ${text.length} caractères extraits`);
+    
+    // Supprimer le fichier temporaire txt
+    fs.unlinkSync(txtFilePath);
+    
     return text;
   } catch (error: any) {
-    console.error('Erreur lors de l\'extraction du texte:', error);
+    console.error('Erreur lors de l\'extraction du texte avec pdftotext:', error);
     
-    // Méthode de secours - lire le fichier et essayer de récupérer du texte ASCII
     try {
-      const buffer = fs.readFileSync(filePath);
-      // Convertir en texte et filtrer les caractères non-imprimables
-      let fallbackText = '';
-      for (let i = 0; i < buffer.length; i++) {
-        const byte = buffer[i];
-        // Garder uniquement les caractères ASCII imprimables
-        if (byte >= 32 && byte <= 126) {
-          fallbackText += String.fromCharCode(byte);
-        } else if (byte === 10 || byte === 13) {
-          fallbackText += '\n';
-        }
-      }
+      // Méthode alternative en cas d'échec de pdftotext: utiliser strings
+      console.log("Tentative d'extraction avec la commande 'strings'");
+      const { stdout } = await execPromise(`strings "${filePath}"`);
       
-      // Nettoyage supplémentaire
-      fallbackText = fallbackText
+      // Nettoyage basique du texte
+      let text = stdout
         .replace(/[\r\n]+/g, '\n')
         .replace(/\s{2,}/g, ' ')
         .trim();
       
-      console.log(`Extraction de secours: ${fallbackText.length} caractères extraits`);
-      return fallbackText;
-    } catch (secondaryError) {
-      throw new Error(`Impossible d'extraire le texte du PDF: ${error.message}`);
+      if (text.length < 100) {
+        throw new Error("Extraction de texte insuffisante avec strings");
+      }
+      
+      console.log(`Extraction strings réussie: ${text.length} caractères extraits`);
+      return text;
+    } catch (stringsError) {
+      console.error('Erreur lors de l\'extraction avec strings:', stringsError);
+      
+      // Méthode de dernier recours - lire le fichier binaire et extraire le texte ASCII
+      try {
+        const buffer = fs.readFileSync(filePath);
+        // Convertir en texte et filtrer les caractères non-imprimables
+        let fallbackText = '';
+        for (let i = 0; i < buffer.length; i++) {
+          const byte = buffer[i];
+          // Garder uniquement les caractères ASCII imprimables
+          if (byte >= 32 && byte <= 126) {
+            fallbackText += String.fromCharCode(byte);
+          } else if (byte === 10 || byte === 13) {
+            fallbackText += '\n';
+          }
+        }
+        
+        // Nettoyage supplémentaire
+        fallbackText = fallbackText
+          .replace(/[\r\n]+/g, '\n')
+          .replace(/\s{2,}/g, ' ')
+          .trim();
+        
+        console.log(`Extraction ASCII de secours: ${fallbackText.length} caractères extraits`);
+        return fallbackText;
+      } catch (finalError) {
+        throw new Error(`Impossible d'extraire le texte du PDF avec toutes les méthodes disponibles`);
+      }
     }
   }
 }

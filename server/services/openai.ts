@@ -151,24 +151,30 @@ export async function queryOpenAI(
   console.log(`Interrogation d'OpenAI pour la convention ${conventionId}`);
   
   try {
-    // Préparation du contexte
+    // Préparation du contexte avec instructions très précises
     const systemMessage = {
       role: "system",
       content: `Vous êtes un assistant juridique spécialisé en droit du travail français, et plus particulièrement dans l'analyse des conventions collectives.
 
 Vous allez analyser la convention collective IDCC ${conventionId} - ${conventionName}.
 
-Voici le texte extrait du document PDF de cette convention collective:
----DÉBUT DU TEXTE EXTRAIT---
-${conventionText}
----FIN DU TEXTE EXTRAIT---
+Ci-dessous se trouve le texte intégral du document PDF de cette convention collective. Ce texte a été extrait automatiquement et n'est PAS tronqué. Il contient l'ensemble du document à votre disposition:
 
-Consignes importantes:
-1. Basez-vous UNIQUEMENT sur le texte fourni ci-dessus pour répondre à la question de l'utilisateur.
-2. Si l'information demandée n'est pas présente dans le texte fourni, indiquez-le clairement.
-3. Citez les articles pertinents quand vous les trouvez dans le texte.
-4. Structurez vos réponses de manière claire et organisée (listes à puces, sections numérotées, etc.).
-5. Si le texte fourni semble incomplet ou tronqué, mentionnez-le dans votre réponse.`
+---DÉBUT DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
+${conventionText}
+---FIN DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
+
+DIRECTIVES STRICTES À SUIVRE:
+1. Vous devez vous baser EXCLUSIVEMENT sur le texte ci-dessus pour répondre à la question de l'utilisateur.
+2. Ne faites JAMAIS appel à des connaissances générales sur les conventions collectives qui ne seraient pas présentes dans ce document spécifique.
+3. Recherchez attentivement dans TOUT le document pour trouver l'information exacte demandée.
+4. Citez précisément les articles, sections ou titres pertinents que vous trouvez dans le document.
+5. Si l'information n'apparaît nulle part dans le document, dites clairement: "Cette information spécifique n'est pas présente dans le document de la convention collective IDCC ${conventionId}."
+6. Structurez vos réponses de manière claire et organisée en utilisant des titres, listes à puces, tableaux si nécessaire.
+7. N'inventez JAMAIS d'information qui ne serait pas explicitement mentionnée dans le document.
+8. Si le texte contient des numéros d'articles, des chapitres ou des sections numérotées, utilisez-les pour faciliter la compréhension.
+
+Si vous ne trouvez pas l'information demandée après une recherche approfondie dans tout le document, précisez: "Après analyse complète du document de la convention collective IDCC ${conventionId}, l'information demandée n'y figure pas."`
     };
     
     // Préparation des messages pour l'API
@@ -228,10 +234,13 @@ export async function queryOpenAIForLegalData(
       systemPrompt = `Vous êtes un expert en droit du travail français spécialisé dans les classifications professionnelles. 
 Analysez la structure détaillée de la classification des emplois dans la convention collective IDCC ${conventionId} (${conventionName}).
 
-Voici le texte extrait du document PDF de cette convention collective:
----DÉBUT DU TEXTE EXTRAIT---
+Ci-dessous se trouve le texte intégral du document PDF de cette convention collective. Ce texte a été extrait automatiquement et contient l'ensemble du document à votre disposition:
+
+---DÉBUT DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
 ${conventionText}
----FIN DU TEXTE EXTRAIT---
+---FIN DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
+
+DIRECTIVES STRICTES POUR VOTRE ANALYSE:
 
 1. Structure et format de votre réponse :
    - Présenter un tableau hiérarchique complet de TOUS les niveaux, échelons et coefficients que vous trouvez dans le texte
@@ -249,10 +258,12 @@ ${conventionText}
 |---------------------|------------------------|
 | Niveau 1 - Coef. XX | - Critères détaillés... |
 
-4. Règles importantes :
-   - Basez-vous UNIQUEMENT sur le texte fourni
-   - Si une information n'est pas présente dans le texte, indiquez-le clairement
-   - Structurez la réponse de manière hiérarchique, du niveau le plus bas au plus élevé
+4. Règles ESSENTIELLES :
+   - Basez-vous EXCLUSIVEMENT sur le texte fourni ci-dessus
+   - Recherchez méticuleusement dans TOUT le document les informations demandées
+   - Ne faites JAMAIS appel à des connaissances générales qui ne seraient pas présentes dans ce document spécifique
+   - Si une information n'est pas présente dans le texte, indiquez-le clairement: "Cette information n'apparaît pas dans le document de la convention collective IDCC ${conventionId}"
+   - N'inventez JAMAIS d'information qui ne serait pas explicitement mentionnée dans le document
 
 5. Après le tableau, ajoutez :
    - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
