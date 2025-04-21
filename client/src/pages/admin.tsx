@@ -1053,6 +1053,18 @@ export default function AdminPage() {
               <div className="mb-4 flex justify-between">
                 <div>
                   <Label htmlFor="section-type-filter">Filtrer par type de section</Label>
+                  <div className="flex space-x-2 mb-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        // Sélectionner toutes les sections
+                        setTableSectionFilter("all");
+                      }}
+                    >
+                      Afficher tout
+                    </Button>
+                  </div>
                   <Select 
                     value={tableSectionFilter} 
                     onValueChange={setTableSectionFilter}
@@ -1071,16 +1083,52 @@ export default function AdminPage() {
                   </Select>
                 </div>
                 
-                <Button 
-                  variant="default"
-                  onClick={() => {
-                    if (selectedSections.size === 0) {
-                      toast({
-                        title: "Aucune section sélectionnée",
-                        description: "Veuillez sélectionner au moins une section à modifier",
-                      });
-                      return;
-                    }
+                <div className="flex flex-col gap-2">
+                  <div className="flex space-x-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        // Sélectionner toutes les sections visibles
+                        const newSet = new Set<string>();
+                        Object.values(allSections).flat().forEach(section => {
+                          if (tableSectionFilter === "all" || !tableSectionFilter || section.sectionType.startsWith(tableSectionFilter)) {
+                            newSet.add(section.id);
+                          }
+                        });
+                        setSelectedSections(newSet);
+                        toast({
+                          title: "Tout sélectionné",
+                          description: `${newSet.size} sections sélectionnées.`,
+                        });
+                      }}
+                    >
+                      Tout sélectionner
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        setSelectedSections(new Set());
+                        toast({
+                          title: "Sélection effacée",
+                          description: "Toutes les sections ont été désélectionnées.",
+                        });
+                      }}
+                    >
+                      Tout désélectionner
+                    </Button>
+                  </div>
+                  <Button 
+                    variant="default"
+                    onClick={() => {
+                      if (selectedSections.size === 0) {
+                        toast({
+                          title: "Aucune section sélectionnée",
+                          description: "Veuillez sélectionner au moins une section à modifier",
+                        });
+                        return;
+                      }
                     
                     // Préparer le contenu d'édition par lot avec des commentaires pour chaque section
                     let content = "";
@@ -1123,6 +1171,7 @@ export default function AdminPage() {
                   Édition groupée ({selectedSections.size})
                 </Button>
               </div>
+            </div>
               
               {Object.keys(allSections).length > 0 ? (
                 <div className="overflow-x-auto">
@@ -1141,9 +1190,17 @@ export default function AdminPage() {
                                   }
                                 });
                                 setSelectedSections(newSet);
+                                toast({
+                                  title: "Sélection complète",
+                                  description: `${newSet.size} sections sélectionnées.`,
+                                });
                               } else {
                                 // Désélectionner tout
                                 setSelectedSections(new Set());
+                                toast({
+                                  title: "Sélection effacée",
+                                  description: "Toutes les sections ont été désélectionnées.",
+                                });
                               }
                             }}
                             checked={
