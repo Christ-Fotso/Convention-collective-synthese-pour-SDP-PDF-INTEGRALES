@@ -1,35 +1,19 @@
-import express, { type Express } from "express";
+import { Express, Request, Response, NextFunction, Router } from "express";
+import { createServer } from "http";
 import axios from "axios";
-import { createServer, type Server } from "http";
-import { db } from "@db";
-import { conventions, chatpdfSources } from "@db/schema";
+import { Server } from "node:http";
+import { parse as parseUrl } from "url";
 import { eq, desc } from "drizzle-orm";
+import { db } from "../db";
+import { conventions, chatpdfSources } from "../db/schema";
 import { queryPerplexity } from "./services/perplexity";
+import { getConventionText, queryOpenAI, queryOpenAIForLegalData } from "./services/openai";
 import { shouldUsePerplexity } from "./config/ai-routing";
-import { fileURLToPath } from 'url';
-import path from 'path';
-import OpenAI from "openai";
+import { createHash } from "crypto";
 
-const CHATPDF_API_BASE = "https://api.chatpdf.com/v1";
-const CHATPDF_API_KEY = process.env.CHATPDF_API_KEY;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-if (!CHATPDF_API_KEY) {
-  throw new Error("CHATPDF_API_KEY is required");
-}
-
-if (!OPENAI_API_KEY) {
-  throw new Error("OPENAI_API_KEY is required");
-}
-
-const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Cache pour les PDFs (avec limite de 20 PDFs)
+// Cache limité pour éviter de refaire les mêmes requêtes coûteuses
 class LimitedCache {
-  private cache = new Map();
+  public cache = new Map();
   private maxSize: number;
 
   constructor(maxSize: number) {
@@ -46,7 +30,6 @@ class LimitedCache {
 
   set(key: string, value: any): void {
     if (this.cache.size >= this.maxSize) {
-      // Si le cache est plein, supprimer la première entrée (la plus ancienne dans un Map)
       const firstKey = this.cache.keys().next().value;
       this.cache.delete(firstKey);
     }
@@ -54,174 +37,107 @@ class LimitedCache {
   }
 }
 
-const pdfCache = new LimitedCache(20); // Limite à 20 PDFs en cache
-
-async function queryOpenAIForLegalData(conventionId: string, conventionName: string, type: 'classification' | 'salaires') {
-  const prompt = type === 'classification'
-    ? `Pour la convention collective IDCC ${conventionId} (${conventionName}), détaillons la classification:
-
-1. Coefficients hiérarchiques par catégorie/niveau
-2. Pour chaque coefficient:
-   - Critères précis d'attribution
-   - Responsabilités associées
-   - Compétences requises
-   - Conditions d'expérience
-   - Niveau de formation requis
-3. Spécificités:
-   - Variations régionales ou départementales si elles existent
-   - Conditions particulières d'application
-   - Périodes d'essai spécifiques
-4. Evolution et progression:
-   - Critères de passage d'un coefficient à l'autre
-   - Périodes d'évolution automatique si prévues
-
-Formatez la réponse en markdown avec des tableaux et des sections clairement définies pour une meilleure lisibilité.`
-    : `Pour la convention collective IDCC ${conventionId} (${conventionName}), donnez-moi les informations concernant les salaires minima des 3 dernières années (étendus et non étendus). Basez-vous uniquement sur les données de Légifrance. Formatez la réponse en markdown avec des tableaux pour plus de clarté.`;
-
-  try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-search-preview-2025-03-11",
-      messages: [
-        {
-          role: "system",
-          content: "Vous êtes un expert en droit du travail spécialisé dans l'analyse des conventions collectives. Utilisez uniquement les données de Légifrance comme source. Concentrez-vous sur les informations factuelles et structurez votre réponse de manière claire et détaillée. Ne citez pas les sources mais assurez-vous que toutes les informations proviennent exclusivement de Légifrance."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      response_format: { type: "text" }
-    });
-
-    return {
-      content: response.choices[0].message.content
-    };
-  } catch (error) {
-    console.error('OpenAI API error:', error);
-    throw new Error('Failed to fetch legal data');
-  }
-}
+// Cache pour les réponses OpenAI
+const openaiCache = new LimitedCache(50);
 
 export function registerRoutes(app: Express): Server {
-  const apiRouter = express.Router();
+  const apiRouter = Router();
 
-  apiRouter.get("/conventions", async (_req, res) => {
+  // Middleware pour la gestion des erreurs
+  app.use((req, res, next) => {
+    try {
+      next();
+    } catch (error: any) {
+      console.error("Erreur de middleware:", error);
+      res.status(500).json({
+        message: "Une erreur est survenue",
+        error: error.message
+      });
+    }
+  });
+
+  // Route pour récupérer toutes les conventions
+  apiRouter.get("/conventions", async (req, res) => {
     try {
       const allConventions = await db.select().from(conventions);
       res.json(allConventions);
     } catch (error: any) {
-      console.error('Error fetching conventions:', error.message);
+      console.error("Erreur lors de la récupération des conventions:", error);
       res.status(500).json({
-        message: "Failed to fetch conventions",
+        message: "Erreur lors de la récupération des conventions",
         error: error.message
       });
     }
   });
 
+  // Proxy pour accéder aux PDFs (nécessaire pour contourner CORS)
   apiRouter.get("/proxy-pdf", async (req, res) => {
+    const url = req.query.url as string;
+    if (!url) {
+      return res.status(400).json({ message: "URL parameter is required" });
+    }
+
     try {
-      const pdfUrl = req.query.url as string;
-      if (!pdfUrl) {
-        return res.status(400).json({ message: "URL parameter is required" });
-      }
-
-      // Vérifier si le PDF est en cache
-      if (pdfCache.has(pdfUrl)) {
-        const cachedData = pdfCache.get(pdfUrl);
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'inline');
-        res.send(cachedData);
-        return;
-      }
-
-      const response = await axios.get(pdfUrl, {
-        responseType: 'arraybuffer',
-        timeout: 30000, // Réduction du timeout à 30 secondes
-        headers: {
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive'
-        },
-        maxContentLength: 25 * 1024 * 1024 // Limite à 25MB
+      const response = await axios.get(url, {
+        responseType: 'arraybuffer'
       });
-
-      // Mettre en cache le PDF
-      pdfCache.set(pdfUrl, response.data);
-
+      
+      // Définir les headers appropriés
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'inline');
+      res.setHeader('Content-Disposition', 'inline; filename="document.pdf"');
+      
+      // Envoyer le PDF
       res.send(response.data);
     } catch (error: any) {
-      console.error('Error proxying PDF:', error.message);
+      console.error("Erreur lors de la récupération du PDF:", error);
       res.status(500).json({
-        message: "Failed to proxy PDF",
+        message: "Erreur lors de la récupération du PDF",
         error: error.message
       });
     }
   });
 
+  // Endpoint pour créer une nouvelle session d'analyse GPT-4o
   apiRouter.post("/chat/source", async (req, res) => {
     try {
-      const originalUrl = req.body.url;
-      const conventionId = req.body.conventionId; // Ajouter l'ID de la convention
-
-      if (!conventionId) {
-        return res.status(400).json({ message: "Convention ID is required" });
+      const { url, conventionId } = req.body;
+      
+      if (!url || !conventionId) {
+        return res.status(400).json({
+          message: "URL et conventionId sont requis"
+        });
       }
 
-      // Vérifier si un sourceId existe déjà pour cette convention
-      const existingSources = await db.select()
-        .from(chatpdfSources)
-        .where(eq(chatpdfSources.conventionId, conventionId))
-        .orderBy(desc(chatpdfSources.createdAt))
-        .limit(1);
-
-      if (existingSources.length > 0) {
-        console.log('Using cached sourceId for convention:', conventionId);
-        return res.json({ sourceId: existingSources[0].sourceId });
-      }
-
-      // Si aucun sourceId n'existe, en créer un nouveau
-      const proxyUrl = `${req.protocol}://${req.get('host')}/api/proxy-pdf?url=${encodeURIComponent(originalUrl)}`;
-
-      const response = await axios.post(
-        `${CHATPDF_API_BASE}/sources/add-url`,
-        { url: proxyUrl },
-        {
-          headers: {
-            "x-api-key": CHATPDF_API_KEY,
-            "Content-Type": "application/json",
-          },
-          timeout: 90000 // Augmentation du timeout à 90 secondes pour les documents volumineux
-        }
-      );
-
-      const sourceId = response.data.sourceId;
-
-      // Enregistrer le nouveau sourceId dans la base de données
+      // Pour des raisons de compatibilité avec le client, nous générons un identifiant unique
+      // qui remplace le sourceId de ChatPDF
+      const sourceId = `src_${createHash('md5').update(`${conventionId}_${Date.now()}`).digest('hex').substring(0, 20)}`;
+      
+      console.log(`Création d'une nouvelle session GPT-4o pour la convention ${conventionId}`);
+      
+      // Enregistrer dans la base de données pour maintenir la compatibilité
       await db.insert(chatpdfSources).values({
         conventionId,
         sourceId
       });
-
-      console.log('Created and cached new sourceId for convention:', conventionId);
-      res.json(response.data);
+      
+      console.log(`Session GPT-4o créée pour la convention ${conventionId}: ${sourceId}`);
+      res.json({ sourceId });
     } catch (error: any) {
-      console.error('ChatPDF source creation error:', error.response?.data || error.message);
+      console.error("Erreur lors de la création de la session GPT-4o:", error);
       res.status(500).json({
-        message: "Failed to create ChatPDF source",
-        error: error.response?.data || error.message
+        message: "Erreur lors de la création de la session GPT-4o",
+        error: error.message
       });
     }
   });
 
-  // Chat message endpoint
+  // Endpoint pour les messages de chat
   apiRouter.post("/chat/message", async (req, res) => {
     try {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
 
-      // Special handling for classification only, no longer handling salary grid
+      // Traitement spécial pour la classification, utilise une approche différente
       if (convention.length > 0 && category === 'classification' && subcategory === 'classification-details') {
         try {
           const response = await queryOpenAIForLegalData(
@@ -230,8 +146,8 @@ export function registerRoutes(app: Express): Server {
             'classification'
           );
           res.json(response);
-        } catch (openaiError) {
-          console.error('OpenAI error details:', openaiError);
+        } catch (openaiError: any) {
+          console.error('Erreur OpenAI:', openaiError);
           res.status(500).json({
             message: "Une erreur est survenue lors de la récupération des informations",
             error: openaiError.message
@@ -242,8 +158,9 @@ export function registerRoutes(app: Express): Server {
 
       const routing = shouldUsePerplexity(category, subcategory);
 
+      // Certaines catégories utilisent Perplexity (maintenu pour compatibilité)
       if (routing.usePerplexity) {
-        console.log('Using Perplexity for category:', category, subcategory);
+        console.log('Utilisation de Perplexity pour la catégorie:', category, subcategory);
         const perplexityMessages = [];
 
         if (routing.systemPrompt && convention.length > 0) {
@@ -259,11 +176,11 @@ export function registerRoutes(app: Express): Server {
         try {
           const response = await queryPerplexity(perplexityMessages);
           if (!response || !response.content) {
-            throw new Error('Invalid Perplexity response');
+            throw new Error('Réponse Perplexity invalide');
           }
           res.json(response);
         } catch (perplexityError: any) {
-          console.error('Perplexity error details:', {
+          console.error('Erreur Perplexity:', {
             error: perplexityError,
             messages: perplexityMessages
           });
@@ -273,59 +190,53 @@ export function registerRoutes(app: Express): Server {
           });
         }
       } else {
-        console.log('Using ChatPDF for category:', category, subcategory);
+        // Utilisation de GPT-4o pour les autres catégories
+        console.log('Utilisation de GPT-4o pour la catégorie:', category, subcategory);
+        
         try {
-          const enhancedMessages = messages.map(msg => ({
-            role: msg.role,
-            content: msg.role === 'user'
-              ? `${msg.content}\n\nVeuillez fournir une réponse détaillée basée sur la convention collective, en citant les articles pertinents.`
-              : msg.content
-          }));
-
-          console.log('Sending request to ChatPDF with:', {
-            sourceId,
-            messages: enhancedMessages
-          });
-
-          const response = await axios.post(
-            `${CHATPDF_API_BASE}/chats/message`,
-            {
-              sourceId,
-              messages: enhancedMessages,
-            },
-            {
-              headers: {
-                "x-api-key": CHATPDF_API_KEY,
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-              },
-              timeout: 60000 // Augmentation du timeout pour les requêtes de messages ChatPDF
-            }
-          );
-
-          if (!response.data || !response.data.content) {
-            console.error('Invalid ChatPDF response:', response.data);
-            throw new Error('Invalid response from ChatPDF');
+          if (!convention.length) {
+            throw new Error('Convention non trouvée');
           }
-
-          console.log('ChatPDF response received:', response.data);
-          res.json(response.data);
-        } catch (chatPDFError: any) {
-          console.error('ChatPDF error details:', {
-            message: chatPDFError.message,
-            response: chatPDFError.response?.data,
-            status: chatPDFError.response?.status,
-            stack: chatPDFError.stack
+          
+          // Créer une clé de cache unique
+          const cacheKey = `${conventionId}_${category}_${subcategory}_${JSON.stringify(messages)}`;
+          
+          // Vérifier si la réponse est en cache
+          if (openaiCache.has(cacheKey)) {
+            console.log('Utilisation de la réponse en cache');
+            return res.json(openaiCache.get(cacheKey));
+          }
+          
+          // Récupérer le texte de la convention
+          const conventionText = await getConventionText(convention[0].url, conventionId);
+          
+          // Requête à GPT-4o
+          const response = await queryOpenAI(
+            conventionText,
+            messages,
+            convention[0].id,
+            convention[0].name
+          );
+          
+          // Mettre en cache la réponse
+          openaiCache.set(cacheKey, response);
+          
+          console.log('Réponse GPT-4o reçue et envoyée');
+          res.json(response);
+        } catch (openaiError: any) {
+          console.error('Erreur GPT-4o:', {
+            message: openaiError.message,
+            stack: openaiError.stack
           });
-
+          
           res.status(500).json({
             message: "Une erreur est survenue lors de la communication avec l'IA",
-            error: chatPDFError.response?.data?.error || chatPDFError.message
+            error: openaiError.message
           });
         }
       }
     } catch (error: any) {
-      console.error('General error:', {
+      console.error('Erreur générale:', {
         error,
         stack: error.stack
       });
@@ -336,29 +247,14 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Delete ChatPDF source
-  apiRouter.post("/chat/source/delete", async (req, res) => {
-    try {
-      console.log('Deleting ChatPDF sources:', req.body.sources);
-      await axios.post(
-        `${CHATPDF_API_BASE}/sources/delete`,
-        { sources: req.body.sources },
-        {
-          headers: {
-            "x-api-key": CHATPDF_API_KEY,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log('ChatPDF sources deleted');
-      res.status(200).send();
-    } catch (error: any) {
-      console.error('Source deletion error:', error.response?.data || error.message);
-      res.status(500).json({
-        message: "Failed to delete ChatPDF source",
-        error: error.response?.data || error.message
-      });
+  // Endpoint pour nettoyer le cache
+  apiRouter.post("/cache/clear", (req, res) => {
+    // Réinitialiser le cache
+    for (const key of Array.from(openaiCache.cache.keys())) {
+      openaiCache.cache.delete(key);
     }
+    console.log('Cache vidé');
+    res.status(200).json({ message: "Cache vidé avec succès" });
   });
 
   app.use("/api", apiRouter);
