@@ -738,7 +738,13 @@ export default function AdminPage() {
                               SECTION_TYPES.forEach(type => {
                                 if (type.subcategories) {
                                   type.subcategories.forEach(subcat => {
-                                    allSubcategoryIds.push(subcat.id);
+                                    // s'assurer que l'ID de la sous-catégorie est déjà préfixé avec l'ID de la catégorie parent
+                                    if (subcat.id.includes('.')) {
+                                      allSubcategoryIds.push(subcat.id);
+                                    } else {
+                                      // ne devrait pas arriver avec la structure actuelle
+                                      console.warn('Sous-catégorie sans préfixe détectée:', subcat.id);
+                                    }
                                   });
                                 }
                               });
