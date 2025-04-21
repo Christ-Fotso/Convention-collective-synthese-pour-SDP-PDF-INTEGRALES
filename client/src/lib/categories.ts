@@ -48,6 +48,26 @@ export const CATEGORIES: Category[] = [
       {
         "id": "forfait-jours",
         "name": "Forfait jours"
+      },
+      {
+        "id": "travail-nuit",
+        "name": "Travail de nuit"
+      },
+      {
+        "id": "astreintes",
+        "name": "Astreintes"
+      },
+      {
+        "id": "jours-feries",
+        "name": "Jours fériés"
+      },
+      {
+        "id": "repos-hebdomadaire",
+        "name": "Repos hebdomadaire"
+      },
+      {
+        "id": "travail-dimanche",
+        "name": "Travail du dimanche"
       }
     ]
   },
@@ -66,6 +86,34 @@ export const CATEGORIES: Category[] = [
       {
         "id": "evenement-familial",
         "name": "Evènement familial"
+      },
+      {
+        "id": "anciennete",
+        "name": "Congés d'ancienneté"
+      },
+      {
+        "id": "conges-exceptionnels",
+        "name": "Congés exceptionnels"
+      },
+      {
+        "id": "jours-supplementaires",
+        "name": "Jours supplémentaires"
+      },
+      {
+        "id": "fractionnement",
+        "name": "Fractionnement des congés"
+      },
+      {
+        "id": "sans-solde",
+        "name": "Congés sans solde"
+      },
+      {
+        "id": "deces",
+        "name": "Congés pour décès"
+      },
+      {
+        "id": "enfant-malade",
+        "name": "Congés enfant malade"
       }
     ]
   },
@@ -76,6 +124,22 @@ export const CATEGORIES: Category[] = [
       {
         "id": "classification",
         "name": "Classification Con + Détails"
+      },
+      {
+        "id": "grille",
+        "name": "Grille de classification"
+      },
+      {
+        "id": "evolution",
+        "name": "Évolution professionnelle"
+      },
+      {
+        "id": "emplois-reperes",
+        "name": "Emplois repères"
+      },
+      {
+        "id": "coefficients",
+        "name": "Coefficients hiérarchiques"
       }
     ]
   },
@@ -138,6 +202,26 @@ export const CATEGORIES: Category[] = [
       {
         "id": "grille",
         "name": "Grille de Rémunération"
+      },
+      {
+        "id": "13eme-mois",
+        "name": "13ème mois"
+      },
+      {
+        "id": "anciennete",
+        "name": "Prime d'ancienneté"
+      },
+      {
+        "id": "transport",
+        "name": "Frais de transport"
+      },
+      {
+        "id": "repas",
+        "name": "Indemnité de repas"
+      },
+      {
+        "id": "astreinte",
+        "name": "Indemnité d'astreinte"
       },
       {
         "id": "majoration-dimanche",

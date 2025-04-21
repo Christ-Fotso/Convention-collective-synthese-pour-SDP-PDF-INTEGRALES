@@ -6,13 +6,58 @@ import { v4 as uuidv4 } from "uuid";
 
 // Constantes pour les types de sections supportées
 export const SECTION_TYPES = {
+  // Classifications
   CLASSIFICATION: 'classification',
-  SALAIRES: 'salaires',
-  CONGES: 'conges',
-  TEMPS_TRAVAIL: 'temps-travail',
-  RUPTURE: 'rupture',
-  EMBAUCHE: 'embauche',
-  INFORMATIONS_GENERALES: 'informations-generales',
+  CLASSIFICATION_GRILLE: 'classification.grille',
+  CLASSIFICATION_EVOLUTION: 'classification.evolution',
+  CLASSIFICATION_EMPLOIS_REPERES: 'classification.emplois-reperes',
+  CLASSIFICATION_COEFFICIENTS: 'classification.coefficients',
+  
+  // Rémunérations
+  SALAIRES: 'remuneration.grille',
+  SALAIRES_13EME_MOIS: 'remuneration.13eme-mois',
+  SALAIRES_ANCIENNETE: 'remuneration.anciennete',
+  SALAIRES_TRANSPORT: 'remuneration.transport',
+  SALAIRES_REPAS: 'remuneration.repas',
+  SALAIRES_ASTREINTE: 'remuneration.astreinte',
+  SALAIRES_PRIME: 'remuneration.prime',
+  
+  // Temps de travail
+  TEMPS_TRAVAIL: 'temps-travail.duree-travail',
+  TEMPS_TRAVAIL_AMENAGEMENT: 'temps-travail.amenagement-temps',
+  TEMPS_TRAVAIL_HEURES_SUP: 'temps-travail.heures-sup',
+  TEMPS_TRAVAIL_TEMPS_PARTIEL: 'temps-travail.temps-partiel',
+  TEMPS_TRAVAIL_FORFAIT_JOURS: 'temps-travail.forfait-jours',
+  TEMPS_TRAVAIL_NUIT: 'temps-travail.travail-nuit',
+  TEMPS_TRAVAIL_ASTREINTES: 'temps-travail.astreintes',
+  TEMPS_TRAVAIL_FERIES: 'temps-travail.jours-feries',
+  TEMPS_TRAVAIL_REPOS: 'temps-travail.repos-hebdomadaire',
+  TEMPS_TRAVAIL_DIMANCHE: 'temps-travail.travail-dimanche',
+  
+  // Congés
+  CONGES: 'conges.conges-payes',
+  CONGES_CET: 'conges.cet',
+  CONGES_EVENEMENT_FAMILIAL: 'conges.evenement-familial',
+  CONGES_ANCIENNETE: 'conges.anciennete',
+  CONGES_EXCEPTIONNELS: 'conges.conges-exceptionnels',
+  CONGES_SUPPLEMENTAIRES: 'conges.jours-supplementaires',
+  CONGES_FRACTIONNEMENT: 'conges.fractionnement',
+  CONGES_SANS_SOLDE: 'conges.sans-solde',
+  CONGES_DECES: 'conges.deces',
+  CONGES_ENFANT_MALADE: 'conges.enfant-malade',
+  
+  // Départ
+  RUPTURE: 'depart.preavis',
+  DEPART_LICENCIEMENT: 'depart.licenciement',
+  DEPART_MISE_RETRAITE: 'depart.mise-retraite',
+  DEPART_RETRAITE: 'depart.depart-retraite',
+  DEPART_RUPTURE_CONVENTIONNELLE: 'depart.rupture-conventionnelle',
+  DEPART_PRECARITE: 'depart.precarite',
+  
+  // Autres
+  EMBAUCHE: 'embauche.periode-essai',
+  EMBAUCHE_DELAI_PREVENANCE: 'embauche.delai-prevenance',
+  INFORMATIONS_GENERALES: 'informations-generales.generale',
 };
 
 // Interface pour les sections de convention
