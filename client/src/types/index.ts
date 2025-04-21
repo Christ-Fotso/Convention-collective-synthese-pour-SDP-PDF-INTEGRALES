@@ -14,6 +14,9 @@ export interface Message {
 export interface ChatResponse {
   content: string;
   references?: Array<{ pageNumber: number }>;
+  inProgress?: boolean;
+  error?: boolean;
+  message?: string;
 }
 
 export interface ChatRequestBody {

@@ -25,8 +25,36 @@ export interface SendChatMessageParams extends ChatRequestBody {
 }
 
 export async function sendChatMessage(params: SendChatMessageParams): Promise<ChatResponse> {
-  const { data } = await axios.post(`${API_BASE}/chat/message`, params);
-  return data;
+  try {
+    const response = await axios.post(`${API_BASE}/chat/message`, params);
+    
+    // Gestion du code 202 (traitement asynchrone en cours)
+    if (response.status === 202 && response.data.inProgress) {
+      // Si la réponse contient un contenu temporaire, on le retourne
+      if (response.data.content) {
+        return {
+          content: response.data.content,
+          inProgress: true
+        };
+      }
+      
+      // Sinon, on retourne un message d'attente par défaut
+      return {
+        content: "⚠️ Cette information est en cours de génération.\n\nVeuillez patienter quelques instants, le traitement est en cours.",
+        inProgress: true
+      };
+    }
+    
+    return response.data;
+  } catch (error) {
+    // Si l'erreur a une réponse et contient un message d'erreur formaté
+    if (axios.isAxiosError(error) && error.response?.data?.content) {
+      return error.response.data;
+    }
+    
+    // Sinon, on relance l'erreur pour la traiter au niveau supérieur
+    throw error;
+  }
 }
 
 export async function deleteChatPDFSource(sourceId: string): Promise<void> {

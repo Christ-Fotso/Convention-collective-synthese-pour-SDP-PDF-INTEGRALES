@@ -137,23 +137,138 @@ export function registerRoutes(app: Express): Server {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
 
-      // Traitement spécial pour la classification, utilise une approche différente
-      if (convention.length > 0 && category === 'classification' && subcategory === 'classification-details') {
+      // Traitement spécial pour la classification
+      if (convention.length > 0 && category === 'classification' && subcategory === 'classification') {
+        console.log('POST: Traitement de la classification pour la convention', conventionId);
+        
+        // Clé de cache
+        const cacheKey = `classification_${conventionId}`;
+        
+        // Clé d'état pour vérifier si le traitement est déjà en cours
+        const processingKey = `processing_classification_${conventionId}`;
+        
+        // Vérifier si la réponse est en cache
+        if (openaiCache.has(cacheKey)) {
+          console.log('Utilisation de la classification en cache');
+          return res.json(openaiCache.get(cacheKey));
+        }
+        
+        // Vérifier si le traitement est déjà en cours
+        if (openaiCache.has(processingKey)) {
+          return res.status(202).json({ 
+            message: "La classification est en cours de génération, veuillez réessayer dans quelques instants",
+            inProgress: true,
+            content: "⚠️ Cette information est en cours de génération.\n\nVeuillez patienter quelques instants, le traitement est en cours."
+          });
+        }
+        
+        // Marquer le traitement comme en cours
+        openaiCache.set(processingKey, { startTime: Date.now() });
+        
         try {
-          const response = await queryOpenAIForLegalData(
-            convention[0].id,
+          // Récupérer la classification via OpenAI
+          const classificationResponse = await queryOpenAIForLegalData(
+            conventionId,
             convention[0].name,
             'classification'
           );
-          res.json(response);
-        } catch (openaiError: any) {
-          console.error('Erreur OpenAI:', openaiError);
-          res.status(500).json({
-            message: "Une erreur est survenue lors de la récupération des informations",
-            error: openaiError.message
+          
+          // Mettre en cache la réponse
+          openaiCache.set(cacheKey, classificationResponse);
+          
+          // Supprimer le marqueur de traitement en cours
+          if (openaiCache.has(processingKey)) {
+            openaiCache.cache.delete(processingKey);
+          }
+          
+          console.log('Classification obtenue et mise en cache avec succès');
+          return res.json(classificationResponse);
+        } catch (error: any) {
+          console.error('Erreur lors de la récupération de la classification:', error);
+          
+          // Supprimer le marqueur de traitement en cours en cas d'erreur
+          if (openaiCache.has(processingKey)) {
+            openaiCache.cache.delete(processingKey);
+          }
+          
+          // Stocker l'erreur dans le cache pour pouvoir l'afficher
+          const errorResponse = { 
+            error: true, 
+            message: "Une erreur est survenue lors de la récupération de la classification",
+            details: error.message,
+            content: "⚠️ Une erreur est survenue lors de la récupération de la classification.\n\nVeuillez réessayer ultérieurement."
+          };
+          openaiCache.set(cacheKey, errorResponse);
+          
+          return res.status(500).json(errorResponse);
+        }
+      }
+      
+      // Traitement spécial pour la grille de rémunération
+      if (convention.length > 0 && category === 'remuneration' && subcategory === 'grille') {
+        console.log('POST: Traitement de la grille de rémunération pour la convention', conventionId);
+        
+        // Clé de cache
+        const cacheKey = `salaires_${conventionId}`;
+        
+        // Clé d'état pour vérifier si le traitement est déjà en cours
+        const processingKey = `processing_salaires_${conventionId}`;
+        
+        // Vérifier si la réponse est en cache
+        if (openaiCache.has(cacheKey)) {
+          console.log('Utilisation des salaires en cache');
+          return res.json(openaiCache.get(cacheKey));
+        }
+        
+        // Vérifier si le traitement est déjà en cours
+        if (openaiCache.has(processingKey)) {
+          return res.status(202).json({ 
+            message: "La grille des salaires est en cours de génération, veuillez réessayer dans quelques instants",
+            inProgress: true,
+            content: "⚠️ Cette information est en cours de génération.\n\nVeuillez patienter quelques instants, le traitement est en cours."
           });
         }
-        return;
+        
+        // Marquer le traitement comme en cours
+        openaiCache.set(processingKey, { startTime: Date.now() });
+        
+        try {
+          // Récupérer les salaires via OpenAI
+          const salairesResponse = await queryOpenAIForLegalData(
+            conventionId,
+            convention[0].name,
+            'salaires'
+          );
+          
+          // Mettre en cache la réponse
+          openaiCache.set(cacheKey, salairesResponse);
+          
+          // Supprimer le marqueur de traitement en cours
+          if (openaiCache.has(processingKey)) {
+            openaiCache.cache.delete(processingKey);
+          }
+          
+          console.log('Grille de salaires obtenue et mise en cache avec succès');
+          return res.json(salairesResponse);
+        } catch (error: any) {
+          console.error('Erreur lors de la récupération des salaires:', error);
+          
+          // Supprimer le marqueur de traitement en cours en cas d'erreur
+          if (openaiCache.has(processingKey)) {
+            openaiCache.cache.delete(processingKey);
+          }
+          
+          // Stocker l'erreur dans le cache pour pouvoir l'afficher
+          const errorResponse = { 
+            error: true, 
+            message: "Une erreur est survenue lors de la récupération de la grille de salaires",
+            details: error.message,
+            content: "⚠️ Une erreur est survenue lors de la récupération de la grille de salaires.\n\nVeuillez réessayer ultérieurement."
+          };
+          openaiCache.set(cacheKey, errorResponse);
+          
+          return res.status(500).json(errorResponse);
+        }
       }
 
       const routing = shouldUsePerplexity(category, subcategory);

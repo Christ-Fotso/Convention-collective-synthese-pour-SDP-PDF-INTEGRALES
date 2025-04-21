@@ -118,17 +118,8 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
-    // Special handling for salary grid
-    if (category.id === 'remuneration' && subcategory.id === 'grille') {
-      setMessages([
-        { role: 'user', content: `${category.name} > ${subcategory.name}` },
-        { 
-          role: 'assistant', 
-          content: `⚠️ Cette information n'est pas disponible pour le moment.\n\nNotre équipe travaille à l'intégration de ces données pour vous fournir une analyse complète prochainement.`
-        }
-      ]);
-      return;
-    }
+    // Plus de traitement spécial pour la grille salariale, on utilise l'API
+    // Tout le traitement est géré côté serveur
 
     const prompt = PREDEFINED_PROMPTS[category.id]?.[subcategory.id] ||
                     PREDEFINED_PROMPTS[category.id]?.['default'];
@@ -157,16 +148,39 @@ export default function Chat({ params }: { params: { id: string } }) {
 
     try {
       const response = await chatMutation.mutateAsync(chatParams);
-      if (!response.content) {
+      
+      // Cas où la réponse n'a pas de contenu
+      if (!response || !response.content) {
         setMessages([]);
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description: "La réponse est invalide. Veuillez réessayer.",
+        });
         return;
       }
+      
+      // Cas où la requête est en cours de traitement (code 202)
+      if (response.inProgress) {
+        console.log("Traitement en cours, affichage du message d'attente...");
+        setMessages([
+          { role: 'user', content: `${category.name} > ${subcategory.name}` },
+          { role: 'assistant', content: response.content }
+        ]);
+        
+        // On pourrait mettre en place une logique de polling ici pour réessayer
+        // la requête après quelques secondes...
+        return;
+      }
+      
+      // Cas où la requête a réussi
       const formattedContent = convertJsonToMarkdown(response.content);
       setMessages([
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { role: 'assistant', content: formattedContent }
       ]);
     } catch (error) {
+      console.error("Erreur lors de la requête:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
