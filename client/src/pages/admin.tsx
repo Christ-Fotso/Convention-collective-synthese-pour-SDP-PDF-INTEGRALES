@@ -18,6 +18,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Convention } from "../types";
+import { CATEGORIES } from '@/lib/categories';
 
 // Types pour l'administration
 interface ConventionSection {
@@ -64,115 +65,16 @@ interface SectionType {
   subcategories?: { id: string; name: string }[];
 }
 
-const SECTION_TYPES: SectionType[] = [
-  { 
-    id: 'informations-generales', 
-    name: 'Informations Générales',
-    subcategories: [
-      { id: 'informations-generales.generale', name: 'Informations Générales' }
-    ] 
-  },
-  { 
-    id: 'embauche', 
-    name: 'Embauche',
-    subcategories: [
-      { id: 'embauche.delai-prevenance', name: 'Délai de prévenance' },
-      { id: 'embauche.periode-essai', name: 'Période d\'essai' }
-    ] 
-  },
-  { 
-    id: 'temps-travail', 
-    name: 'Temps de travail',
-    subcategories: [
-      { id: 'temps-travail.duree-travail', name: 'Durées du travail' },
-      { id: 'temps-travail.amenagement-temps', name: 'Aménagement du temps de travail' },
-      { id: 'temps-travail.heures-sup', name: 'Heures supplémentaires' },
-      { id: 'temps-travail.temps-partiel', name: 'Temps partiel' },
-      { id: 'temps-travail.forfait-jours', name: 'Forfait jours' },
-      { id: 'temps-travail.travail-nuit', name: 'Travail de nuit' },
-      { id: 'temps-travail.astreintes', name: 'Astreintes' },
-      { id: 'temps-travail.jours-feries', name: 'Jours fériés' },
-      { id: 'temps-travail.repos-hebdomadaire', name: 'Repos hebdomadaire' },
-      { id: 'temps-travail.travail-dimanche', name: 'Travail du dimanche' }
-    ] 
-  },
-  { 
-    id: 'conges', 
-    name: 'Congés',
-    subcategories: [
-      { id: 'conges.cet', name: 'CET' },
-      { id: 'conges.conges-payes', name: 'Congés payés' },
-      { id: 'conges.evenement-familial', name: 'Evènement familial' },
-      { id: 'conges.anciennete', name: 'Congés d\'ancienneté' },
-      { id: 'conges.conges-exceptionnels', name: 'Congés exceptionnels' },
-      { id: 'conges.jours-supplementaires', name: 'Jours supplémentaires' },
-      { id: 'conges.fractionnement', name: 'Fractionnement des congés' },
-      { id: 'conges.sans-solde', name: 'Congés sans solde' },
-      { id: 'conges.deces', name: 'Congés pour décès' },
-      { id: 'conges.enfant-malade', name: 'Congés enfant malade' }
-    ] 
-  },
-  { 
-    id: 'classification', 
-    name: 'Classification',
-    subcategories: [
-      { id: 'classification.classification', name: 'Classification Con + Détails' },
-      { id: 'classification.grille', name: 'Grille de classification' },
-      { id: 'classification.evolution', name: 'Évolution professionnelle' },
-      { id: 'classification.emplois-reperes', name: 'Emplois repères' },
-      { id: 'classification.coefficients', name: 'Coefficients hiérarchiques' }
-    ] 
-  },
-  { 
-    id: 'remuneration', 
-    name: 'Rémunération',
-    subcategories: [
-      { id: 'remuneration.apprenti', name: 'Apprenti' },
-      { id: 'remuneration.contrat-pro', name: 'Contrat de professionalisation' },
-      { id: 'remuneration.stagiaire', name: 'Stagiaire' },
-      { id: 'remuneration.prime', name: 'Prime' },
-      { id: 'remuneration.grille', name: 'Grille de Rémunération' },
-      { id: 'remuneration.13eme-mois', name: '13ème mois' },
-      { id: 'remuneration.anciennete', name: 'Prime d\'ancienneté' },
-      { id: 'remuneration.transport', name: 'Frais de transport' },
-      { id: 'remuneration.repas', name: 'Indemnité de repas' },
-      { id: 'remuneration.astreinte', name: 'Indemnité d\'astreinte' },
-      { id: 'remuneration.majoration-dimanche', name: 'Majoration Dimanche' },
-      { id: 'remuneration.majoration-ferie', name: 'Majoration Férié' },
-      { id: 'remuneration.majoration-nuit', name: 'Majoration Nuit' }
-    ] 
-  },
-  { 
-    id: 'depart', 
-    name: 'Départ',
-    subcategories: [
-      { id: 'depart.licenciement', name: 'Indemnité de Licenciement' },
-      { id: 'depart.mise-retraite', name: 'Indemnité de Mise a la Retraite' },
-      { id: 'depart.depart-retraite', name: 'Indemnité de Départ a la Retraite' },
-      { id: 'depart.rupture-conventionnelle', name: 'Indemnité de Rupture conventionnelle' },
-      { id: 'depart.preavis', name: 'Préavis' },
-      { id: 'depart.precarite', name: 'Indemnité de précarité' }
-    ] 
-  },
-  {
-    id: 'cotisations',
-    name: 'Cotisations',
-    subcategories: [
-      { id: 'cotisations.prevoyance', name: 'Cotisation prévoyance' },
-      { id: 'cotisations.retraite', name: 'Cotisation retraite' },
-      { id: 'cotisations.mutuelle', name: 'Cotisation mutuelle' }
-    ]
-  },
-  {
-    id: 'maintien-salaire',
-    name: 'Maintien de salaire',
-    subcategories: [
-      { id: 'maintien-salaire.accident-travail', name: 'Accident de travail' },
-      { id: 'maintien-salaire.maladie', name: 'Maladie' },
-      { id: 'maintien-salaire.maternite-paternite', name: 'Maternité / Paternité' }
-    ]
-  }
-];
+// Définir les différents types de sections disponibles en se basant sur les catégories authentiques
+
+const SECTION_TYPES: SectionType[] = CATEGORIES.map(category => ({
+  id: category.id,
+  name: category.name,
+  subcategories: category.subcategories?.map(subcat => ({
+    id: `${category.id}.${subcat.id}`,
+    name: subcat.name
+  }))
+}));
 
 export default function AdminPage() {
   const { toast } = useToast();
