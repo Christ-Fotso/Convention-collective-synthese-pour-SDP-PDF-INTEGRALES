@@ -1384,6 +1384,55 @@ export default function AdminPage() {
             </CardContent>
           </Card>
         </TabsContent>
+        
+        <TabsContent value="prompts">
+          <Card>
+            <CardHeader>
+              <CardTitle>Gestion des prompts</CardTitle>
+              <p className="text-muted-foreground">
+                Éditez les prompts utilisés pour extraire et générer les réponses pour chaque catégorie et sous-catégorie
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {CATEGORIES.map((category) => (
+                  <div key={category.id} className="border p-4 rounded-md">
+                    <div className="mb-4 flex justify-between items-center">
+                      <h3 className="text-lg font-medium">{category.name}</h3>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleEditPrompt(category.id)}
+                      >
+                        Éditer le prompt général
+                      </Button>
+                    </div>
+                    
+                    {category.subcategories && category.subcategories.length > 0 && (
+                      <div className="mt-4 border-t pt-4">
+                        <h4 className="text-md font-medium mb-2">Sous-catégories:</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {category.subcategories.map((subcategory) => (
+                            <div key={subcategory.id} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                              <span>{subcategory.name}</span>
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                onClick={() => handleEditPrompt(category.id, subcategory.id)}
+                              >
+                                Éditer
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
       
       {/* Dialogue d'édition de section */}
