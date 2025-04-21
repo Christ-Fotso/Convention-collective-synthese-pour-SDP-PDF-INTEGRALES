@@ -15,26 +15,121 @@ const pdfTextCache = new Map<string, string>();
 
 /**
  * Obtient le texte brut d'une convention collective depuis son PDF
+ * avec extraction intelligente basée sur la catégorie demandée
  */
-export async function getConventionText(conventionUrl: string, conventionId: string): Promise<string> {
+export async function getConventionText(
+  conventionUrl: string, 
+  conventionId: string, 
+  category?: string, 
+  subcategory?: string
+): Promise<string> {
+  // Créer une clé de cache qui inclut la catégorie/sous-catégorie
+  const cacheKey = `${conventionId}_${category || 'default'}_${subcategory || 'default'}`;
+  
   // Vérifier si le texte est déjà en cache
-  if (pdfTextCache.has(conventionId)) {
-    console.log(`Utilisation du texte en cache pour la convention ${conventionId}`);
-    const cachedText = pdfTextCache.get(conventionId);
+  if (pdfTextCache.has(cacheKey)) {
+    console.log(`Utilisation du texte en cache pour la convention ${conventionId} (catégorie: ${category})`);
+    const cachedText = pdfTextCache.get(cacheKey);
     if (cachedText) return cachedText;
   }
   
   try {
-    console.log(`Extraction du texte du PDF pour la convention ${conventionId}`);
+    console.log(`Extraction du texte du PDF pour la convention ${conventionId} (catégorie: ${category})`);
     
-    // Extraire le texte
-    const text = await extractTextFromURL(conventionUrl, conventionId);
+    // Déterminer les mots-clés à rechercher en priorité selon la catégorie
+    let priorityKeywords: string[] = [];
+    
+    if (category) {
+      // Mots-clés pour les congés pour événements familiaux
+      if (category === 'conges' && subcategory === 'evenement-familial') {
+        priorityKeywords = [
+          "congés pour événements familiaux",
+          "congé familial",
+          "congé de naissance",
+          "congé de mariage",
+          "congé de décès",
+          "mariage",
+          "PACS",
+          "naissance",
+          "décès",
+          "enfant malade",
+          "événements de famille"
+        ];
+      }
+      // Mots-clés pour la classification
+      else if (category === 'classification') {
+        priorityKeywords = [
+          "classification",
+          "grille de classification",
+          "catégorie professionnelle",
+          "coefficient",
+          "niveau",
+          "échelon",
+          "emploi",
+          "fonction",
+          "position",
+          "qualification"
+        ];
+      }
+      // Mots-clés pour les salaires
+      else if (category === 'remunerations') {
+        priorityKeywords = [
+          "salaire",
+          "rémunération",
+          "prime",
+          "indemnité",
+          "paie",
+          "minima",
+          "augmentation",
+          "grille salariale"
+        ];
+      }
+      // Mots-clés pour la durée du travail
+      else if (category === 'duree-travail') {
+        priorityKeywords = [
+          "durée du travail",
+          "temps de travail",
+          "horaire",
+          "heures supplémentaires",
+          "repos",
+          "pause",
+          "travail de nuit",
+          "temps partiel"
+        ];
+      }
+      // Mots-clés pour les congés payés
+      else if (category === 'conges' && subcategory === 'conges-payes') {
+        priorityKeywords = [
+          "congés payés",
+          "congé annuel",
+          "jours de congé",
+          "période de congé",
+          "fractionnement"
+        ];
+      }
+    }
+    
+    // Si aucune catégorie spécifique n'est identifiée, utiliser des mots-clés génériques
+    if (priorityKeywords.length === 0) {
+      priorityKeywords = [
+        "article",
+        "titre",
+        "chapitre",
+        "section",
+        "convention collective",
+        "accord"
+      ];
+    }
+    
+    // Extraire le texte avec la liste de mots-clés prioritaires
+    const text = await extractTextFromURL(conventionUrl, conventionId, priorityKeywords);
     
     // Ajouter un en-tête
-    const conventionText = `CONVENTION COLLECTIVE NATIONALE IDCC ${conventionId}\nSource: ${conventionUrl}\n\n${text}`;
+    const conventionText = `CONVENTION COLLECTIVE NATIONALE IDCC ${conventionId}\nSource: ${conventionUrl}\n\n` +
+      `CONTEXTE DE RECHERCHE: ${category || 'général'} ${subcategory || ''}\n\n${text}`;
     
     // Mettre en cache
-    pdfTextCache.set(conventionId, conventionText);
+    pdfTextCache.set(cacheKey, conventionText);
     
     return conventionText;
   } catch (error: any) {
@@ -116,10 +211,10 @@ export async function queryOpenAIForLegalData(
     // Récupérer l'URL de la convention
     const conventionUrl = `https://www.legifrance.gouv.fr/conv_coll/id/${conventionId}`;
     
-    // Récupérer le texte de la convention
+    // Récupérer le texte de la convention avec extraction intelligente basée sur le type
     let conventionText: string;
     try {
-      conventionText = await getConventionText(conventionUrl, conventionId);
+      conventionText = await getConventionText(conventionUrl, conventionId, type);
     } catch (err) {
       console.error("Erreur lors de l'extraction du texte:", err);
       throw new Error("Impossible d'extraire le texte de la convention collective");

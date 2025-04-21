@@ -91,24 +91,105 @@ async function extractTextFromPDF(filePath: string): Promise<string> {
 }
 
 /**
+ * Recherche du contenu spécifique dans un grand texte
+ * @param text Texte complet à analyser
+ * @param keywords Mots-clés pour la recherche, en ordre de priorité
+ * @param contextSize Nombre de caractères à extraire autour de chaque occurrence
+ * @returns Un texte contenant les sections pertinentes
+ */
+function extractRelevantSections(text: string, keywords: string[], contextSize: number = 5000): string {
+  // Résultat final
+  let relevantText = "";
+  let totalExtracted = 0;
+  const maxTotalExtract = 90000; // Maximum total à extraire
+  
+  // Pour chaque mot-clé, dans l'ordre de priorité
+  for (const keyword of keywords) {
+    if (totalExtracted >= maxTotalExtract) break; // On a atteint la limite
+    
+    // Convertir en minuscules pour la recherche insensible à la casse
+    const textLower = text.toLowerCase();
+    const keywordLower = keyword.toLowerCase();
+    
+    // Trouver toutes les occurrences du mot-clé
+    let index = textLower.indexOf(keywordLower);
+    while (index !== -1 && totalExtracted < maxTotalExtract) {
+      // Déterminer le début et la fin du contexte
+      const start = Math.max(0, index - contextSize/2);
+      const end = Math.min(text.length, index + keywordLower.length + contextSize/2);
+      
+      // Extraire le contexte
+      const sectionText = text.substring(start, end);
+      
+      // Ajouter au résultat si pas encore extrait
+      if (!relevantText.includes(sectionText)) {
+        relevantText += "\n\n--- SECTION PERTINENTE ---\n" + sectionText;
+        totalExtracted += sectionText.length;
+      }
+      
+      // Passer à l'occurrence suivante
+      index = textLower.indexOf(keywordLower, index + 1);
+    }
+  }
+  
+  // Si rien n'a été trouvé ou trop peu de texte
+  if (totalExtracted < 10000 && text.length > 10000) {
+    // Prendre le début et un peu de la fin
+    relevantText = text.substring(0, 60000) + "\n\n...\n\n" + text.substring(text.length - 30000);
+    totalExtracted = 90000;
+  } else if (relevantText.length === 0) {
+    // Si toujours rien, prendre simplement le début
+    relevantText = text.substring(0, Math.min(text.length, maxTotalExtract));
+    totalExtracted = relevantText.length;
+  }
+  
+  return relevantText + `\n\n[TEXTE EXTRAIT - ${totalExtracted} caractères sur ${text.length} au total]`;
+}
+
+/**
  * Extrait le texte d'un PDF à partir de son URL
  */
-export async function extractTextFromURL(url: string, conventionId: string): Promise<string> {
+export async function extractTextFromURL(url: string, conventionId: string, keywords?: string[]): Promise<string> {
   try {
     // Télécharger le PDF
     const pdfPath = await downloadPDF(url, conventionId);
     
-    // Extraire le texte
-    const text = await extractTextFromPDF(pdfPath);
+    // Extraire le texte complet
+    const fullText = await extractTextFromPDF(pdfPath);
+    console.log(`Texte complet extrait: ${fullText.length} caractères`);
     
-    // Si le texte est trop grand, le tronquer
+    // Mot-clés par défaut pour les recherches pertinentes (à adapter selon les besoins)
+    const defaultKeywords = [
+      "congés pour événements familiaux", 
+      "congé familial", 
+      "mariage", 
+      "pacs", 
+      "naissance", 
+      "décès", 
+      "article", 
+      "titre", 
+      "chapitre",
+      "classification", 
+      "emploi", 
+      "coefficient", 
+      "salaire", 
+      "indemnité",
+      "licenciement", 
+      "préavis", 
+      "durée du travail",
+      "repos",
+      "maladie",
+      "accident"
+    ];
+    
+    // Si le texte est trop grand, extraire les sections pertinentes
     const maxLength = 90000; // Nombre approximatif de caractères pour rester dans les limites de tokens
-    if (text.length > maxLength) {
-      console.log(`Texte tronqué de ${text.length} à ${maxLength} caractères`);
-      return text.substring(0, maxLength) + `\n\n[TEXTE TRONQUÉ - Le document complet contient ${text.length} caractères]`;
+    if (fullText.length > maxLength) {
+      console.log(`Texte trop volumineux (${fullText.length} caractères), extraction des parties pertinentes...`);
+      return extractRelevantSections(fullText, keywords || defaultKeywords);
     }
     
-    return text;
+    return fullText;
   } catch (error: any) {
     console.error('Erreur lors de l\'extraction du texte depuis l\'URL:', error);
     throw error;

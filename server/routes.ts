@@ -207,8 +207,13 @@ export function registerRoutes(app: Express): Server {
             return res.json(openaiCache.get(cacheKey));
           }
           
-          // Récupérer le texte de la convention
-          const conventionText = await getConventionText(convention[0].url, conventionId);
+          // Récupérer le texte de la convention avec extraction intelligente basée sur la catégorie
+          const conventionText = await getConventionText(
+            convention[0].url, 
+            conventionId,
+            category,
+            subcategory
+          );
           
           // Requête à GPT-4o
           const response = await queryOpenAI(
