@@ -543,6 +543,7 @@ export default function AdminPage() {
           <TabsTrigger value="sections">Sections des conventions</TabsTrigger>
           <TabsTrigger value="spreadsheet">Vue Tableur</TabsTrigger>
           <TabsTrigger value="metrics">Métriques d'API</TabsTrigger>
+          <TabsTrigger value="prompts">Prompts</TabsTrigger>
         </TabsList>
         
         <TabsContent value="sections">
