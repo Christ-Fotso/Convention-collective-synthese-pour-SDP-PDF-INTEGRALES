@@ -631,7 +631,14 @@ export default function AdminPage() {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Administration ConventionsAI</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Administration ConventionsAI</h1>
+        <Link href="/">
+          <Button variant="outline">
+            Retour à l'accueil
+          </Button>
+        </Link>
+      </div>
       
       <Tabs defaultValue="sections">
         <TabsList className="mb-4">
