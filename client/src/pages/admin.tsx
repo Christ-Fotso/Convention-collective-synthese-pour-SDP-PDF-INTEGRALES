@@ -560,6 +560,10 @@ export default function AdminPage() {
     setIsPromptDialogOpen(true);
   };
   
+  const handleEditSystemPrompt = () => {
+    setIsSystemPromptDialogOpen(true);
+  };
+  
   const handleSavePrompt = async () => {
     try {
       // Mise à jour locale des prompts
@@ -600,6 +604,37 @@ export default function AdminPage() {
       toast({
         title: "Erreur",
         description: "Impossible de sauvegarder le prompt",
+        variant: "destructive"
+      });
+    }
+  };
+  
+  const handleSaveSystemPrompt = async () => {
+    try {
+      // Appel API pour sauvegarder le prompt système
+      const response = await fetch('/api/admin/prompts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemPrompt: systemPromptData
+        })
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Succès",
+          description: "Prompt système sauvegardé avec succès"
+        });
+        
+        setIsSystemPromptDialogOpen(false);
+      } else {
+        throw new Error("Erreur lors de la sauvegarde du prompt système");
+      }
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde du prompt système:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de sauvegarder le prompt système",
         variant: "destructive"
       });
     }
@@ -1752,6 +1787,40 @@ export default function AdminPage() {
               Annuler
             </Button>
             <Button onClick={handleSavePrompt}>
+              Enregistrer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      {/* Boîte de dialogue d'édition du prompt système */}
+      <Dialog open={isSystemPromptDialogOpen} onOpenChange={setIsSystemPromptDialogOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              Prompt Système Global
+            </DialogTitle>
+            <p className="text-sm text-muted-foreground mt-1">
+              Ce prompt est utilisé comme base pour toutes les interactions avec l'IA
+            </p>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <Label htmlFor="system-prompt-content">Contenu du prompt système</Label>
+            <Textarea
+              id="system-prompt-content"
+              value={systemPromptData.content}
+              onChange={(e) => setSystemPromptData({ content: e.target.value })}
+              rows={20}
+              className="font-mono text-sm"
+            />
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsSystemPromptDialogOpen(false)}>
+              Annuler
+            </Button>
+            <Button onClick={handleSaveSystemPrompt}>
               Enregistrer
             </Button>
           </DialogFooter>
