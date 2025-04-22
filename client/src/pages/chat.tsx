@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { ArrowLeft, Loader, MessageCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
@@ -10,7 +10,7 @@ import { ChatInterface } from '@/components/chat-interface';
 import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
-import { PREDEFINED_PROMPTS } from '@/types';
+import { PREDEFINED_PROMPTS, SYSTEM_PROMPT } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -23,6 +23,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { convertJsonToMarkdown } from '@/lib/markdown-converter';
+import { LoadingAnimation } from '@/components/loading-animation';
 
 interface ChatMessageParams {
   sourceId: string;
