@@ -7,6 +7,9 @@ import {
   saveApiMetric,
   SECTION_TYPES 
 } from "./section-manager";
+import { db } from "../../db";
+import { eq } from "drizzle-orm";
+import { conventions } from "../../db/schema";
 
 // Utilisation du modèle gpt-4.1-2025-04-14 comme demandé explicitement par l'utilisateur
 const MODEL = "gpt-4.1-2025-04-14";
@@ -359,13 +362,19 @@ export async function queryOpenAIForLegalData(
       };
     }
     
-    // Récupérer l'URL de la convention
-    const conventionUrl = `https://www.legifrance.gouv.fr/conv_coll/id/${conventionId}`;
+    // Récupérer la convention depuis la base de données pour obtenir l'URL
+    const conventionData = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+    
+    if (!conventionData || conventionData.length === 0) {
+      throw new Error(`Convention ${conventionId} non trouvée dans la base de données`);
+    }
+    
+    const conventionUrl = conventionData[0].url;
     
     // Récupérer le texte de la convention avec extraction intelligente basée sur le type
     let conventionText: string;
     try {
-      conventionText = await getConventionText(conventionUrl, conventionId, type);
+      conventionText = await getConventionText(conventionId, conventionUrl, type);
     } catch (error: any) {
       console.error("Erreur lors de l'extraction du texte:", error);
       
