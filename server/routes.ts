@@ -1127,7 +1127,7 @@ Format attendu exactement:
       }
       
       // Mise à jour du fichier types/index.ts
-      const typesFilePath = path.resolve(__dirname, '../client/src/types/index.ts');
+      const typesFilePath = path.resolve(process.cwd(), 'client/src/types/index.ts');
       let typesFileContent = await fs.promises.readFile(typesFilePath, 'utf-8');
       
       // Si un nouveau prompt système est fourni, le mettre à jour
