@@ -243,7 +243,7 @@ Si vous ne trouvez pas l'information demandée après une recherche approfondie 
       model: MODEL,
       messages: apiMessages as any,
       temperature: 0.3, // Valeur basse pour des réponses plus précises et cohérentes
-      max_tokens: 4000 // Limite de la taille de la réponse
+      max_tokens: 32000 // Utiliser la capacité maximale de GPT-4.1 en sortie (32K tokens)
     });
     
     const content = completion.choices[0].message.content || '';
@@ -493,7 +493,7 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
         { role: "user", content: userPrompt }
       ],
       temperature: 0.2,
-      max_tokens: 4000
+      max_tokens: 32000 // Utiliser la capacité maximale de GPT-4.1 en sortie (32K tokens)
     });
     
     const content = completion.choices[0].message.content || '';
