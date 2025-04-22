@@ -882,8 +882,9 @@ Format attendu exactement:
             
             // Appel à l'API avec instructions structurées
             const completion = await openai.chat.completions.create({
-              model: "gpt-4o", // Modèle robuste pour la structuration JSON
+              model: "gpt-4.1-2025-04-14", // Modèle robuste pour la structuration JSON
               temperature: 0.2, // Valeur basse pour des réponses plus strictes
+              max_tokens: 32000, // Utiliser la capacité maximale de GPT-4.1 en sortie (32K tokens)
               messages: [
                 {
                   role: "system",
@@ -1015,7 +1016,8 @@ Format attendu exactement:
             
             // Appel à l'API avec instructions structurées
             const completion = await openai.chat.completions.create({
-              model: "gpt-4o", // Modèle robuste pour la structuration JSON
+              model: "gpt-4.1-2025-04-14", // Modèle robuste pour la structuration JSON
+              max_tokens: 32000, // Utiliser la capacité maximale de GPT-4.1 en sortie (32K tokens)
               temperature: 0.2, // Valeur basse pour des réponses plus strictes
               messages: [
                 {
