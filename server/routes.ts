@@ -350,8 +350,8 @@ export function registerRoutes(app: Express): Server {
           
           // Récupérer le texte de la convention avec extraction intelligente basée sur la catégorie
           const conventionText = await getConventionText(
-            convention[0].url, 
             conventionId,
+            convention[0].url,
             category,
             subcategory
           );
