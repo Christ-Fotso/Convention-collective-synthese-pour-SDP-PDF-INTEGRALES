@@ -231,6 +231,11 @@ DIRECTIVES STRICTES:
 8. Si l'information n'est pas dans le document, répondre uniquement: "Information non présente dans la convention IDCC ${conventionId}."
 9. Répondre de façon directe, factuellement, sans bavardage.
 10. NE JAMAIS écrire "D'après la convention collective" ou "Selon le document" - allez directement au contenu.
+11. Pour les tableaux:
+   - Le format est suggéré et adaptable selon les informations disponibles
+   - Ne créez PAS de tableaux vides s'il manque des informations
+   - Si aucune information n'est disponible pour créer un tableau, présentez les informations sous forme de texte ou de liste
+12. N'UTILISEZ PAS de balises HTML comme <br>. Utilisez uniquement la syntaxe Markdown standard.
 
 FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune phrase d'introduction.`
     };
@@ -450,10 +455,12 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
    - Détailler les critères de classification pour chaque niveau
    - Citer les articles précis trouvés dans le texte
 
-3. Format attendu :
+3. Format suggéré (à adapter selon les informations disponibles) :
 | Niveau/Classification | Description et Critères |
 |---------------------|------------------------|
 | Niveau 1 - Coef. XX | - Critères détaillés... |
+
+Si aucune information n'est disponible pour créer un tableau, ne pas inclure de tableau vide.
 
 4. Règles ESSENTIELLES :
    - Basez-vous EXCLUSIVEMENT sur le texte fourni ci-dessus
@@ -493,10 +500,12 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
    - Les modalités particulières (temps de travail associé, etc.)
    - Citer les articles ou accords précis trouvés dans le texte
 
-3. Format attendu :
+3. Format suggéré (à adapter selon les informations disponibles) :
 | Niveau/Coefficient | Salaire minimum | Base de calcul | Date d'application |
 |-------------------|----------------|---------------|-------------------|
 | Niveau 1 - Coef. XX | XXX € | Mensuel/Horaire | JJ/MM/AAAA |
+
+Si aucune information n'est disponible pour créer un tableau, ne pas inclure de tableau vide.
 
 4. Règles ESSENTIELLES :
    - Basez-vous EXCLUSIVEMENT sur le texte fourni ci-dessus
