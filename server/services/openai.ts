@@ -278,11 +278,27 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     if (category && category !== 'chat') {
       const sectionType = subcategory ? `${category}-${subcategory}` : category;
       
+      // Nettoyage du contenu pour enlever les balises HTML indésirables
+      let cleanedContent = content || '';
+      // Remplacer les balises <br> par des retours à la ligne Markdown
+      cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
+      cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
+      cleanedContent = cleanedContent.replace(/<br \/>/g, '  \n');
+      
+      // Nettoyer d'autres balises HTML potentielles
+      cleanedContent = cleanedContent.replace(/<\/?[^>]+(>|$)/g, function(match) {
+        // Ne pas toucher aux balises spéciales utilisées par Markdown comme <http://...>
+        if (match.startsWith('<http') || match.startsWith('<ftp') || match.startsWith('<mailto')) {
+          return match;
+        }
+        return '';
+      });
+      
       try {
         await saveConventionSection({
           conventionId,
           sectionType,
-          content: content || '',
+          content: cleanedContent,
           status: 'complete'
         });
         console.log(`Section ${sectionType} sauvegardée en base de données pour la convention ${conventionId}`);
@@ -445,6 +461,8 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
    - Ne faites JAMAIS appel à des connaissances générales qui ne seraient pas présentes dans ce document spécifique
    - Si une information n'est pas présente dans le texte, indiquez-le clairement: "Cette information n'apparaît pas dans le document de la convention collective IDCC ${conventionId}"
    - N'inventez JAMAIS d'information qui ne serait pas explicitement mentionnée dans le document
+   - N'UTILISEZ PAS de balises HTML comme <br> ou autres. Utilisez uniquement la syntaxe Markdown standard.
+   - Pour les sauts de ligne dans les cellules du tableau, utilisez "\\n" ou des points d'énumération à la place de balises HTML.
 
 5. Après le tableau, ajoutez :
    - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
@@ -486,6 +504,8 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
    - Identifiez l'accord salarial le plus récent mentionné dans le document
    - Ne faites JAMAIS appel à des connaissances générales qui ne seraient pas présentes dans ce document spécifique
    - Si une information n'est pas présente dans le texte, indiquez-le clairement: "Cette information n'apparaît pas dans le document de la convention collective IDCC ${conventionId}"
+   - N'UTILISEZ PAS de balises HTML comme <br> ou autres. Utilisez uniquement la syntaxe Markdown standard.
+   - Pour les sauts de ligne dans les cellules du tableau, utilisez "\\n" ou des points d'énumération à la place de balises HTML.
 
 5. Après le tableau des salaires minima, ajoutez les sections suivantes :
    - "Primes et indemnités" : liste exhaustive des primes prévues par la convention
@@ -529,12 +549,28 @@ DIRECTIVES STRICTES POUR VOTRE ANALYSE:
       console.error('Erreur lors de l\'enregistrement des métriques:', metricError);
     }
     
+    // Nettoyage du contenu pour enlever les balises HTML indésirables
+    let cleanedContent = content || '';
+    // Remplacer les balises <br> par des retours à la ligne Markdown
+    cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
+    cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
+    cleanedContent = cleanedContent.replace(/<br \/>/g, '  \n');
+    
+    // Nettoyer d'autres balises HTML potentielles
+    cleanedContent = cleanedContent.replace(/<\/?[^>]+(>|$)/g, function(match) {
+      // Ne pas toucher aux balises spéciales utilisées par Markdown comme <http://...>
+      if (match.startsWith('<http') || match.startsWith('<ftp') || match.startsWith('<mailto')) {
+        return match;
+      }
+      return '';
+    });
+    
     // Sauvegarde de la section en base de données
     try {
       await saveConventionSection({
         conventionId,
         sectionType,
-        content: content || '',
+        content: cleanedContent,
         status: 'complete'
       });
       console.log(`Section ${sectionType} sauvegardée en base de données pour la convention ${conventionId}`);
