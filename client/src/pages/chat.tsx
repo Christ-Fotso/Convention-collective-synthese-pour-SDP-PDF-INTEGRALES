@@ -290,19 +290,11 @@ export default function Chat({ params }: { params: { id: string } }) {
         <div className="flex-1">
           <Card className="p-6">
             {chatMutation.isPending ? (
-              <div className="space-y-6">
-                <Skeleton className="h-6 w-1/3" />
-                <div className="space-y-4">
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-4 w-5/6" />
-                  <Skeleton className="h-4 w-4/6" />
-                </div>
-                <div className="flex items-center justify-center mt-8">
-                  <div className="flex flex-col items-center gap-3">
-                    <Loader className="h-8 w-8 animate-spin text-primary" />
-                    <p className="text-muted-foreground">Traitement en cours, veuillez patienter...</p>
-                  </div>
-                </div>
+              <div className="py-12">
+                <LoadingAnimation 
+                  message="Analyse juridique en cours..." 
+                  subMessage="Extraction des dispositions de la convention collective" 
+                />
               </div>
             ) : messages.length > 0 ? (
               <div className="space-y-6">

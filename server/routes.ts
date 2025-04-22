@@ -344,31 +344,86 @@ export function registerRoutes(app: Express): Server {
           
           // Vérifier si la réponse est en cache
           if (openaiCache.has(cacheKey)) {
-            console.log('Utilisation de la réponse en cache');
+            console.log('Utilisation de la réponse en cache (mémoire)');
             return res.json(openaiCache.get(cacheKey));
           }
           
-          // Récupérer le texte de la convention avec extraction intelligente basée sur la catégorie
-          const conventionText = await getConventionText(
-            conventionId,
-            convention[0].url,
-            category,
-            subcategory
-          );
+          // Vérifier si la section est déjà stockée en base de données
+          const sectionType = subcategory ? `${category}-${subcategory}` : category;
+          const existingSection = await getConventionSection(conventionId, sectionType);
           
-          // Requête à GPT-4o
-          const response = await queryOpenAI(
-            conventionText,
-            messages,
-            convention[0].id,
-            convention[0].name
-          );
+          if (existingSection && existingSection.status === 'complete') {
+            console.log(`Utilisation de la section ${sectionType} stockée en base de données pour la convention ${conventionId}`);
+            const cachedResponse = {
+              content: existingSection.content,
+              fromCache: true
+            };
+            
+            // Mettre également en cache mémoire pour les requêtes suivantes
+            openaiCache.set(cacheKey, cachedResponse);
+            
+            return res.json(cachedResponse);
+          }
           
-          // Mettre en cache la réponse
-          openaiCache.set(cacheKey, response);
-          
-          console.log('Réponse GPT-4o reçue et envoyée');
-          res.json(response);
+          try {
+            // Si la section n'existe pas, créer une entrée avec statut "pending"
+            if (!existingSection) {
+              await saveConventionSection({
+                conventionId,
+                sectionType,
+                content: "Génération en cours...",
+                status: 'pending'
+              });
+            }
+            
+            // Récupérer le texte de la convention avec extraction intelligente basée sur la catégorie
+            const conventionText = await getConventionText(
+              conventionId,
+              convention[0].url,
+              category,
+              subcategory
+            );
+            
+            // Requête à GPT-4.1 avec contexte complet du document
+            const response = await queryOpenAI(
+              conventionText,
+              messages,
+              convention[0].id,
+              convention[0].name,
+              category,
+              subcategory
+            );
+            
+            // Mettre en cache la réponse
+            openaiCache.set(cacheKey, response);
+            
+            // Sauvegarder la section en base de données
+            await saveConventionSection({
+              conventionId,
+              sectionType,
+              content: response.content,
+              status: 'complete'
+            });
+            
+            console.log(`Section ${sectionType} sauvegardée en base de données pour la convention ${conventionId}`);
+            console.log('Réponse GPT-4.1 reçue et envoyée');
+            
+            res.json(response);
+          } catch (error) {
+            // En cas d'erreur, mettre à jour la section avec statut "error"
+            if (existingSection) {
+              await saveConventionSection({
+                conventionId,
+                sectionType,
+                content: `Erreur lors de la génération: ${error instanceof Error ? error.message : 'Erreur inconnue'}`,
+                status: 'error',
+                errorMessage: error instanceof Error ? error.message : 'Erreur inconnue'
+              });
+            }
+            
+            // Propager l'erreur pour être traitée par le catch général
+            throw error;
+          }
         } catch (openaiError: any) {
           console.error('Erreur GPT-4o:', {
             message: openaiError.message,

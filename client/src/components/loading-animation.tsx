@@ -40,18 +40,16 @@ export function LoadingAnimation({
         ))}
       </div>
       
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @keyframes bounce {
-            0%, 80%, 100% { 
-              transform: scale(0);
-            } 
-            40% { 
-              transform: scale(1.0);
-            }
+      <style>{`
+        @keyframes bounce {
+          0%, 80%, 100% { 
+            transform: scale(0);
+          } 
+          40% { 
+            transform: scale(1.0);
           }
-        `
-      }} />
+        }
+      `}</style>
     </div>
   );
 }

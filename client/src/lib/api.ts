@@ -14,8 +14,10 @@ export interface CreateSourceParams {
 }
 
 export async function createChatPDFSource(params: CreateSourceParams): Promise<string> {
+  // Nous gardons cette fonction mais elle ne crée plus de source ChatPDF
+  // Elle est maintenant utilisée comme initialisation pour la session
   const { data } = await axios.post(`${API_BASE}/chat/source`, params);
-  return data.sourceId;
+  return data.sourceId || 'dummy-source-id'; // Pour compatibilité, au cas où l'API retourne toujours un sourceId
 }
 
 export interface SendChatMessageParams extends ChatRequestBody {
