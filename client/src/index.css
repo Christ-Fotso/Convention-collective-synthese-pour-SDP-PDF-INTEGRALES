@@ -12,4 +12,14 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+
+  /* Masquer les barres de défilement pour toute l'application */
+  ::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  * {
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
