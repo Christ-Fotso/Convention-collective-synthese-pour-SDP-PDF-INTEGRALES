@@ -40,9 +40,14 @@ async function importConventionsFromJson() {
     await db.delete(conventions);
     console.log('Deleted existing conventions');
 
-    // Insert conventions
-    await db.insert(conventions).values(conventionsData);
-    console.log(`Successfully imported ${conventionsData.length} conventions`);
+    // Nettoyer les URLs et insérer les conventions
+    const cleanedConventionsData = conventionsData.map(convention => ({
+      ...convention,
+      url: convention.url.trim() // Éliminer les espaces indésirables
+    }));
+    
+    await db.insert(conventions).values(cleanedConventionsData);
+    console.log(`Successfully imported ${cleanedConventionsData.length} conventions`);
   } catch (error) {
     console.error('Error importing conventions from JSON:', error);
   }
