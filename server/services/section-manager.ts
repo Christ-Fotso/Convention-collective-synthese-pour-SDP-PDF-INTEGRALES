@@ -6,6 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 
 // Constantes pour les types de sections supportées
 export const SECTION_TYPES = {
+  // Texte complet pré-converti
+  FULL_TEXT: 'full-text',
+  
   // Classifications
   CLASSIFICATION: 'classification.classification',
   CLASSIFICATION_GRILLE: 'classification.grille',

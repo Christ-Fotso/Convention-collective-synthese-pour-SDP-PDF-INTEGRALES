@@ -6,6 +6,7 @@ import { db } from "../db";
 import { conventions, conventionSections } from "../db/schema";
 import { eq, and, sql } from 'drizzle-orm';
 import { extractTextFromURL } from './services/pdf-extractor';
+import { SECTION_TYPES } from './services/section-manager';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -103,7 +104,7 @@ async function convertConventionsToMarkdown() {
           const markdownContent = fs.readFileSync(markdownFilePath, 'utf8');
           
           // Enregistrer dans la base de données si ce n'est pas déjà fait
-          await saveConventionSection(conventionId, 'full-text', markdownContent);
+          await saveConventionSection(conventionId, SECTION_TYPES.FULL_TEXT, markdownContent);
           successCount++;
           continue;
         }
@@ -121,7 +122,7 @@ async function convertConventionsToMarkdown() {
         console.log(`Markdown sauvegardé dans ${markdownFilePath}`);
         
         // Sauvegarder dans la base de données
-        await saveConventionSection(conventionId, 'full-text', markdown);
+        await saveConventionSection(conventionId, SECTION_TYPES.FULL_TEXT, markdown);
         
         console.log(`Convention ${conventionId} traitée avec succès`);
         successCount++;

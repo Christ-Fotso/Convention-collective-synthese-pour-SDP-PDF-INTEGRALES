@@ -77,7 +77,7 @@ export async function getConventionText(
   
   try {
     // 2. Vérifier si une version pré-convertie existe dans la base de données
-    const preConvertedSection = await getConventionSection(conventionId, 'full-text');
+    const preConvertedSection = await getConventionSection(conventionId, SECTION_TYPES.FULL_TEXT);
     
     if (preConvertedSection && preConvertedSection.status === 'complete') {
       console.log(`Utilisation de la version pré-convertie (Markdown) pour la convention ${conventionId}`);
