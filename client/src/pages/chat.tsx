@@ -175,7 +175,19 @@ export default function Chat({ params }: { params: { id: string } }) {
       }
       
       // Cas où la requête a réussi
-      const formattedContent = convertJsonToMarkdown(response.content);
+      // Application des améliorations de formatage : 
+      // 1. Convertir en Markdown si c'est du JSON
+      // 2. Supprimer les introductions superflues
+      // 3. Améliorer le formatage Markdown
+      let formattedContent = convertJsonToMarkdown(response.content);
+      
+      // Pour les sections comme classification ou grille salariale, le formatage est crucial
+      const isImportantSection = 
+        (category.id === 'classification' && subcategory.id === 'classification') ||
+        (category.id === 'remuneration' && subcategory.id === 'grille');
+      
+      console.log(`Mise en forme de la réponse pour: ${category.id} > ${subcategory.id}, formatage avancé: ${isImportantSection}`);
+      
       setMessages([
         { role: 'user', content: `${category.name} > ${subcategory.name}` },
         { role: 'assistant', content: formattedContent }

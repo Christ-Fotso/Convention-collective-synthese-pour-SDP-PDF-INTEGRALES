@@ -579,8 +579,31 @@ Si aucune information n'est disponible pour créer un tableau, ne pas inclure de
       console.error('Erreur lors de l\'enregistrement des métriques:', metricError);
     }
     
-    // Nettoyage du contenu pour enlever les balises HTML indésirables
+    // Nettoyage avancé du contenu pour améliorer le formatage et supprimer les introductions
     let cleanedContent = content || '';
+    
+    // Supprimer les phrases d'introduction communes
+    const introPatterns = [
+      /^Voici (la|le|les|une|un|des) .{5,50}( :|:|\n)/i,
+      /^Ci-dessous (figure|se trouve|vous trouverez) .{5,50}( :|:|\n)/i,
+      /^(Je vous présente|Voici|Ci-dessous|D'après la convention|Selon la convention|Sur la base du texte) .{5,100}( :|:|\n)/i,
+      /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse) .{5,100}( :|:|\n)/i,
+      /^Pour la convention collective IDCC \d+ .{5,80}( :|:|\n)/i,
+      /^Basé(e)? sur le texte (fourni|de la convention) .{5,80}( :|:|\n)/i,
+      /^Dans la convention collective (IDCC)? \d+ .{5,80}( :|:|\n)/i,
+      /^La convention collective (IDCC)? \d+ .{5,80}( :|:|\n)/i
+    ];
+    
+    // Supprimer les introductions
+    for (const pattern of introPatterns) {
+      cleanedContent = cleanedContent.replace(pattern, '');
+    }
+    
+    // Supprimer aussi les phrases d'ouverture communes
+    cleanedContent = cleanedContent.replace(/^(Voici|Ci-dessous) :/i, '');
+    cleanedContent = cleanedContent.replace(/^Voici la réponse :/i, '');
+    cleanedContent = cleanedContent.replace(/^Voici les informations demandées :/i, '');
+    
     // Remplacer les balises <br> par des retours à la ligne Markdown
     cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
     cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
@@ -595,6 +618,24 @@ Si aucune information n'est disponible pour créer un tableau, ne pas inclure de
       return '';
     });
     
+    // Améliorer le formatage des tableaux (ajouter espaces pour alignement des colonnes)
+    const tableRowPattern = /\|(.+)\|/g;
+    cleanedContent = cleanedContent.replace(tableRowPattern, (match) => {
+      return match.replace(/\|/g, ' | ').replace(/\s+\|\s+$/, ' |').replace(/^\s+\|\s+/, '| ');
+    });
+    
+    // Assurer que les cellules des tableaux sont bien espacées
+    cleanedContent = cleanedContent.replace(/\|\s*\|/g, '| |');
+    
+    // Amélioration des listes à puces (assurer espace après le tiret)
+    cleanedContent = cleanedContent.replace(/^-([^\s])/gm, '- $1');
+    
+    // Améliorer l'espacement des titres
+    cleanedContent = cleanedContent.replace(/^(#{1,6})([^\s#])/gm, '$1 $2');
+    
+    // Supprimer les espaces vides au début du texte après nettoyage
+    cleanedContent = cleanedContent.trim();
+    
     // Sauvegarde de la section en base de données
     try {
       await saveConventionSection({
@@ -608,7 +649,8 @@ Si aucune information n'est disponible pour créer un tableau, ne pas inclure de
       console.error('Erreur lors de la sauvegarde de la section:', sectionError);
     }
     
-    return { content };
+    // Retourner le contenu nettoyé au lieu du contenu brut
+    return { content: cleanedContent };
   } catch (error: any) {
     console.error('Erreur lors de l\'interrogation d\'OpenAI:', error);
     
