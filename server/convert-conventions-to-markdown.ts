@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { db } from "../db";
 import { conventions, conventionSections } from "../db/schema";
-import { eq, and } from 'drizzle-orm';
+import { eq, and, sql } from 'drizzle-orm';
 import { extractTextFromURL } from './services/pdf-extractor';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -59,14 +59,26 @@ function convertTextToMarkdown(text: string): string {
  */
 async function convertConventionsToMarkdown() {
   try {
-    // Récupérer toutes les conventions
+    // Récupérer toutes les conventions 
     const allConventions = await db.select().from(conventions);
-    console.log(`${allConventions.length} conventions trouvées`);
     
-    // Pour le test, on limite à 5 conventions
-    const TEST_MODE = true;
-    const MAX_CONVENTIONS = 5;
-    const conventionsToProcess = TEST_MODE ? allConventions.slice(0, MAX_CONVENTIONS) : allConventions;
+    // Trier les conventions par source (préférer les URLs Elnet car plus stables)
+    // 1. Les conventions avec URLs Elnet
+    const elnetConventions = allConventions.filter(conv => conv.url.includes('elnet.fr'));
+    // 2. Les conventions avec d'autres URLs
+    const otherConventions = allConventions.filter(conv => !conv.url.includes('elnet.fr'));
+    
+    console.log(`${elnetConventions.length} conventions Elnet trouvées sur ${allConventions.length} conventions au total`);
+    console.log(`${otherConventions.length} conventions avec d'autres URLs (potentiellement instables)`);
+    
+    // Option de test pour limiter le nombre de conventions à traiter
+    const TEST_MODE = false; // Définir à true pour tester avec quelques conventions seulement
+    const MAX_CONVENTIONS = 10;
+    
+    // Traiter en priorité les conventions Elnet, puis les autres
+    const conventionsToProcess = TEST_MODE 
+      ? elnetConventions.slice(0, MAX_CONVENTIONS) 
+      : [...elnetConventions, ...otherConventions];
     console.log(`Mode test: ${TEST_MODE ? 'activé (limité à ' + MAX_CONVENTIONS + ' conventions)' : 'désactivé'}`);
     
     // Traiter chaque convention
