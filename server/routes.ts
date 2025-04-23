@@ -1274,6 +1274,93 @@ Format attendu exactement:
     }
   });
   
+  // Route pour suivre l'état de la pré-conversion des conventions
+  adminRouter.get("/preconversion-status", async (req, res) => {
+    try {
+      // Récupérer le nombre total de conventions
+      const totalConventions = await db.select({ count: sql`count(*)` }).from(conventions);
+      const total = parseInt(totalConventions[0]?.count?.toString() || "0");
+      
+      // Récupérer les conventions pré-converties (full-text)
+      const preConverted = await db.select({ count: sql`count(*)` })
+        .from(conventionSections)
+        .where(eq(conventionSections.sectionType, SECTION_TYPES.FULL_TEXT));
+      const converted = parseInt(preConverted[0]?.count?.toString() || "0");
+      
+      // Récupérer les dernières conventions traitées
+      const recentlyConverted = await db.select({
+        conventionId: conventionSections.conventionId,
+        updatedAt: conventionSections.updatedAt
+      })
+        .from(conventionSections)
+        .where(eq(conventionSections.sectionType, SECTION_TYPES.FULL_TEXT))
+        .orderBy(desc(conventionSections.updatedAt))
+        .limit(10);
+      
+      // Récupérer les dernières tâches d'extraction liées à la pré-conversion
+      const recentBatchTasks = await db.select()
+        .from(extractionTasks)
+        .where(eq(extractionTasks.conventionId, "batch"))
+        .orderBy(desc(extractionTasks.updatedAt))
+        .limit(5);
+      
+      res.json({
+        status: {
+          totalConventions: total,
+          convertedCount: converted,
+          remainingCount: total - converted,
+          percentComplete: total > 0 ? Math.round((converted / total) * 100) : 0
+        },
+        recentlyConverted,
+        recentBatchTasks
+      });
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération du statut de pré-conversion:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération du statut de pré-conversion",
+        error: error.message
+      });
+    }
+  });
+  
+  // Route pour déclencher manuellement un traitement par lots
+  adminRouter.post("/trigger-batch-process", async (req, res) => {
+    try {
+      const { batchSize } = req.body;
+      
+      // Exécuter le script de traitement par lots en arrière-plan
+      const { exec } = require('child_process');
+      const command = `BATCH_SIZE=${batchSize || 10} npx tsx batch-process-conventions.ts`;
+      
+      console.log(`Démarrage du traitement par lots: ${command}`);
+      
+      // Exécuter de façon non-bloquante
+      exec(command, (error: any, stdout: string, stderr: string) => {
+        if (error) {
+          console.error(`Erreur lors de l'exécution du traitement par lots: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`Erreur stderr: ${stderr}`);
+          return;
+        }
+        console.log(`Sortie du traitement par lots: ${stdout}`);
+      });
+      
+      res.json({
+        message: "Traitement par lots démarré en arrière-plan",
+        batchSize: batchSize || 10
+      });
+      
+    } catch (error: any) {
+      console.error("Erreur lors du déclenchement du traitement par lots:", error);
+      res.status(500).json({
+        message: "Erreur lors du déclenchement du traitement par lots",
+        error: error.message
+      });
+    }
+  });
+  
   // Enregistrer les routes
   app.use('/api/admin', adminRouter);
   app.use("/api", apiRouter);

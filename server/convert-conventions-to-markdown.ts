@@ -24,22 +24,44 @@ if (!fs.existsSync(PDF_DIR)) {
 }
 
 /**
- * Convertit un texte brut en Markdown simple
+ * Convertit un texte brut en Markdown structuré et lisible
  */
 function convertTextToMarkdown(text: string): string {
-  // Reconnaissance des titres (texte en majuscules sur une ligne seule)
-  let markdown = text.replace(/^([A-Z][A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸ0-9 \-'".,;:!?)(]+)$/gm, '## $1');
+  // Nettoyer les caractères spéciaux et les codes non désirés
+  let cleanText = text
+    .replace(/\r\n/g, '\n')  // Normaliser les sauts de ligne
+    .replace(/\u0000/g, '') // Supprimer les caractères nuls
+    .replace(/\u000c/g, '\n\n') // Remplacer les sauts de page par des doubles retours
+    .replace(/[\u0001-\u0008\u000b\u000e-\u001f]/g, ''); // Supprimer autres caractères de contrôle
   
-  // Conserver les paragraphes
-  markdown = markdown.replace(/\n{3,}/g, '\n\n');
+  // Reconnaissance des titres principaux (texte en majuscules sur une ligne seule)
+  let markdown = cleanText.replace(/^([A-Z][A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸ0-9 \-'".,;:!?)(]+)$/gm, '## $1');
+  
+  // Reconnaissance des articles
+  markdown = markdown.replace(/\b(Article\s+[0-9.]+(\s*-\s*|\s*:\s*|\s+))([^.\n]+)/gi, '### $1$3');
+  
+  // Structurer les paragraphes (éliminer les sauts de ligne multiples excessifs)
+  markdown = markdown.replace(/\n{4,}/g, '\n\n\n');
   
   // Reconnaissance des listes à puces
-  markdown = markdown.replace(/^[-•]\s+(.+)$/gm, '* $1');
+  markdown = markdown.replace(/^[-•●]\s+(.+)$/gm, '* $1');
   
   // Reconnaissance des listes numérotées
   markdown = markdown.replace(/^(\d+[).:])\s+(.+)$/gm, '1. $2');
   
-  // Mettre en gras les points importants (termes juridiques courants)
+  // Ajouter des séparateurs pour les grandes sections
+  markdown = markdown.replace(/^(TITRE [IVX]+.*|CHAPITRE [IVX]+.*|SECTION [IVX0-9]+.*)$/gm, '\n---\n\n## $1\n');
+  
+  // Mettre en évidence les tableaux potentiels (lignes avec plusieurs séparateurs)
+  const tableRegex = /^.*(\||-{2,}|:{2,}).*$/gm;
+  if (tableRegex.test(markdown)) {
+    // Essayer de convertir les tableaux en format Markdown
+    // Mais c'est complexe et peut nécessiter une logique spécifique
+    // Pour l'instant, juste mettre un séparateur
+    markdown = markdown.replace(/^(.*?\|.*?\|.*?)$/gm, '\n```\n$1\n```\n');
+  }
+  
+  // Mettre en gras les termes juridiques importants
   const importantTerms = [
     "Article", "Convention collective", "Accord", "Avenant", 
     "Contrat de travail", "Licenciement", "Préavis", "Indemnité",
@@ -48,9 +70,12 @@ function convertTextToMarkdown(text: string): string {
   ];
   
   importantTerms.forEach(term => {
-    const regex = new RegExp(`\\b${term}\\b`, 'gi');
+    const regex = new RegExp(`\\b${term}\\b(?![^<]*>)`, 'gi'); // Éviter de mettre en gras ce qui est déjà en titre
     markdown = markdown.replace(regex, '**$&**');
   });
+  
+  // Ajouter un en-tête Markdown
+  markdown = `# Convention Collective\n\n${markdown}`;
   
   return markdown;
 }
@@ -73,8 +98,8 @@ async function convertConventionsToMarkdown() {
     console.log(`${otherConventions.length} conventions avec d'autres URLs (potentiellement instables)`);
     
     // Option de test pour limiter le nombre de conventions à traiter
-    const TEST_MODE = false; // Définir à true pour tester avec quelques conventions seulement
-    const MAX_CONVENTIONS = 10;
+    const TEST_MODE = process.env.TEST_MODE === 'true'; // Utiliser une variable d'environnement pour activer le mode test
+    const MAX_CONVENTIONS = parseInt(process.env.MAX_CONVENTIONS || '10'); // Nombre de conventions à traiter en mode test
     
     // Traiter en priorité les conventions Elnet, puis les autres
     const conventionsToProcess = TEST_MODE 
