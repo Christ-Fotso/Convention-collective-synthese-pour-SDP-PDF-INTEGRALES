@@ -30,6 +30,11 @@ async function fixConventionUrls() {
         fixedUrl = 'https://' + fixedUrl;
       }
       
+      // Ajouter "www." si c'est un domaine elnet.fr sans www
+      if (fixedUrl.includes('https://elnet.fr/') && !fixedUrl.includes('https://www.elnet.fr/')) {
+        fixedUrl = fixedUrl.replace('https://elnet.fr/', 'https://www.elnet.fr/');
+      }
+      
       // Mettre à jour la base de données si l'URL a été modifiée
       if (fixedUrl !== originalUrl) {
         await db.update(conventions)
