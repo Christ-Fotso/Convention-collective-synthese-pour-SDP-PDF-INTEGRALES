@@ -63,17 +63,23 @@ async function convertConventionsToMarkdown() {
     const allConventions = await db.select().from(conventions);
     console.log(`${allConventions.length} conventions trouvées`);
     
+    // Pour le test, on limite à 5 conventions
+    const TEST_MODE = true;
+    const MAX_CONVENTIONS = 5;
+    const conventionsToProcess = TEST_MODE ? allConventions.slice(0, MAX_CONVENTIONS) : allConventions;
+    console.log(`Mode test: ${TEST_MODE ? 'activé (limité à ' + MAX_CONVENTIONS + ' conventions)' : 'désactivé'}`);
+    
     // Traiter chaque convention
     let successCount = 0;
     let errorCount = 0;
     
-    for (let i = 0; i < allConventions.length; i++) {
-      const convention = allConventions[i];
+    for (let i = 0; i < conventionsToProcess.length; i++) {
+      const convention = conventionsToProcess[i];
       const conventionId = convention.id;
       const conventionName = convention.name;
       const url = convention.url;
       
-      console.log(`[${i+1}/${allConventions.length}] Traitement de la convention ${conventionId} (${conventionName})`);
+      console.log(`[${i+1}/${conventionsToProcess.length}] Traitement de la convention ${conventionId} (${conventionName})`);
       
       try {
         // Chemin du fichier Markdown
@@ -133,6 +139,8 @@ async function convertConventionsToMarkdown() {
  */
 async function saveConventionSection(conventionId: string, sectionType: string, content: string): Promise<void> {
   try {
+    console.log(`Début enregistrement section ${sectionType} pour convention ${conventionId}`);
+    
     // Vérifier si la section existe déjà
     const existingSection = await db.select()
       .from(conventionSections)
@@ -141,32 +149,49 @@ async function saveConventionSection(conventionId: string, sectionType: string, 
         eq(conventionSections.sectionType, sectionType)
       ));
     
+    console.log(`Vérification existence: ${existingSection.length > 0 ? 'section existante' : 'nouvelle section'}`);
+    
     if (existingSection.length > 0) {
       // Mettre à jour la section existante
-      await db.update(conventionSections)
-        .set({
-          content,
-          status: 'complete',
-          updatedAt: new Date()
-        })
-        .where(and(
-          eq(conventionSections.conventionId, conventionId),
-          eq(conventionSections.sectionType, sectionType)
-        ));
-      
-      console.log(`Section ${sectionType} mise à jour pour la convention ${conventionId}`);
+      try {
+        await db.update(conventionSections)
+          .set({
+            content,
+            status: 'complete',
+            updatedAt: new Date()
+          })
+          .where(and(
+            eq(conventionSections.conventionId, conventionId),
+            eq(conventionSections.sectionType, sectionType)
+          ));
+        
+        console.log(`Section ${sectionType} mise à jour pour la convention ${conventionId}`);
+      } catch (updateError) {
+        console.error('Erreur lors de la mise à jour:', updateError);
+        throw updateError;
+      }
     } else {
       // Créer une nouvelle section
-      await db.insert(conventionSections).values({
-        conventionId,
-        sectionType,
-        content,
-        status: 'complete',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
-      
-      console.log(`Section ${sectionType} créée pour la convention ${conventionId}`);
+      try {
+        // Générer un UUID v4 manuellement pour contourner le problème
+        const { v4: uuidv4 } = await import('uuid');
+        const id = uuidv4();
+        
+        await db.insert(conventionSections).values({
+          id,
+          conventionId,
+          sectionType,
+          content,
+          status: 'complete',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+        
+        console.log(`Section ${sectionType} créée pour la convention ${conventionId}`);
+      } catch (insertError) {
+        console.error('Erreur lors de l\'insertion:', insertError);
+        throw insertError;
+      }
     }
   } catch (error) {
     console.error(`Erreur lors de l'enregistrement de la section ${sectionType} pour la convention ${conventionId}:`, error);
