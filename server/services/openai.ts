@@ -54,8 +54,10 @@ export function calculateCost(inputTokens: number, outputTokens: number, model: 
 }
 
 /**
- * Obtient le texte brut d'une convention collective depuis son PDF
- * avec extraction intelligente basée sur la catégorie demandée
+ * Obtient le texte d'une convention collective en suivant une stratégie en 3 étapes:
+ * 1. D'abord vérifier le cache mémoire (le plus rapide)
+ * 2. Ensuite vérifier si une version pré-convertie en Markdown existe dans la base de données
+ * 3. En dernier recours, extraire et convertir le PDF à la volée
  */
 export async function getConventionText(
   conventionId: string, 
@@ -66,14 +68,33 @@ export async function getConventionText(
   // Créer une clé de cache qui inclut la catégorie/sous-catégorie
   const cacheKey = `${conventionId}_${category || 'default'}_${subcategory || 'default'}`;
   
-  // Vérifier si le texte est déjà en cache
+  // 1. Vérifier si le texte est déjà en cache mémoire (le plus rapide)
   if (pdfTextCache.has(cacheKey)) {
-    console.log(`Utilisation du texte en cache pour la convention ${conventionId} (catégorie: ${category})`);
+    console.log(`Utilisation du texte en cache mémoire pour la convention ${conventionId} (catégorie: ${category})`);
     const cachedText = pdfTextCache.get(cacheKey);
     if (cachedText) return cachedText;
   }
   
   try {
+    // 2. Vérifier si une version pré-convertie existe dans la base de données
+    const preConvertedSection = await getConventionSection(conventionId, 'full-text');
+    
+    if (preConvertedSection && preConvertedSection.status === 'complete') {
+      console.log(`Utilisation de la version pré-convertie (Markdown) pour la convention ${conventionId}`);
+      
+      // Ajouter un en-tête adapté au format Markdown
+      const conventionText = `# CONVENTION COLLECTIVE NATIONALE IDCC ${conventionId}\n\n` +
+        `**Source:** ${conventionUrl}\n\n` +
+        `**CONTEXTE DE RECHERCHE:** ${category || 'général'} ${subcategory || ''}\n\n` +
+        preConvertedSection.content;
+      
+      // Mettre en cache
+      pdfTextCache.set(cacheKey, conventionText);
+      
+      return conventionText;
+    }
+    
+    // 3. Si aucune version pré-convertie n'existe, extraire le texte du PDF à la volée
     console.log(`Extraction du texte du PDF pour la convention ${conventionId} (catégorie: ${category})`);
     
     // Déterminer les mots-clés à rechercher en priorité selon la catégorie
