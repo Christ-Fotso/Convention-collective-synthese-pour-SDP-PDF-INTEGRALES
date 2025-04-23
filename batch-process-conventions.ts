@@ -45,9 +45,26 @@ async function batchProcessConventions() {
       return;
     }
     
+    // On va utiliser un identifiant de convention réel pour éviter les problèmes de clé étrangère
+    // Récupérer la première convention qui n'a pas encore été convertie
+    const conventionsToConvert = allConventions.filter(conv => {
+      // Si on a déjà converti preConvertedCount conventions, on doit regarder celles qui restent
+      const conventionIndex = allConventions.findIndex(c => c.id === conv.id);
+      return conventionIndex >= preConvertedCount;
+    });
+    
+    if (conventionsToConvert.length === 0) {
+      console.log("Aucune convention à convertir n'a été trouvée");
+      return;
+    }
+    
+    // Utiliser l'ID de la première convention à convertir pour créer la tâche
+    const targetConventionId = conventionsToConvert[0].id;
+    console.log(`Utilisation de la convention ${targetConventionId} comme référence pour la tâche par lots`);
+    
     // Créer une tâche d'extraction pour suivre le traitement par lots
     const batchTask = await createExtractionTask({
-      conventionId: "batch",
+      conventionId: targetConventionId,
       sectionTypes: [SECTION_TYPES.FULL_TEXT],
       status: "processing",
       progress: 0,

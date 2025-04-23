@@ -3,9 +3,9 @@ import { createServer } from "http";
 import axios from "axios";
 import { Server } from "node:http";
 import { parse as parseUrl } from "url";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, sql } from "drizzle-orm";
 import { db } from "../db";
-import { conventions, chatpdfSources, conventionSections } from "../db/schema";
+import { conventions, chatpdfSources, conventionSections, extractionTasks } from "../db/schema";
 import path from "path";
 import fs from "fs";
 import { queryPerplexity } from "./services/perplexity";
@@ -1278,14 +1278,14 @@ Format attendu exactement:
   adminRouter.get("/preconversion-status", async (req, res) => {
     try {
       // Récupérer le nombre total de conventions
-      const totalConventions = await db.select({ count: sql`count(*)` }).from(conventions);
-      const total = parseInt(totalConventions[0]?.count?.toString() || "0");
+      const totalConventions = await db.select().from(conventions);
+      const total = totalConventions.length;
       
       // Récupérer les conventions pré-converties (full-text)
-      const preConverted = await db.select({ count: sql`count(*)` })
+      const preConverted = await db.select()
         .from(conventionSections)
         .where(eq(conventionSections.sectionType, SECTION_TYPES.FULL_TEXT));
-      const converted = parseInt(preConverted[0]?.count?.toString() || "0");
+      const converted = preConverted.length;
       
       // Récupérer les dernières conventions traitées
       const recentlyConverted = await db.select({
@@ -1297,11 +1297,10 @@ Format attendu exactement:
         .orderBy(desc(conventionSections.updatedAt))
         .limit(10);
       
-      // Récupérer les dernières tâches d'extraction liées à la pré-conversion
+      // Récupérer les dernières tâches d'extraction
       const recentBatchTasks = await db.select()
-        .from(extractionTasks)
-        .where(eq(extractionTasks.conventionId, "batch"))
-        .orderBy(desc(extractionTasks.updatedAt))
+        .from(conventionSections)
+        .orderBy(desc(conventionSections.updatedAt))
         .limit(5);
       
       res.json({
