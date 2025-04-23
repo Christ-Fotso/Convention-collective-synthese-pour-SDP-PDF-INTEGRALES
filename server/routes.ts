@@ -75,16 +75,17 @@ export function registerRoutes(app: Express): Server {
   // Route pour récupérer toutes les conventions
   apiRouter.get("/conventions", async (req, res) => {
     try {
-      // Charger les conventions depuis le fichier JSON au lieu de la base de données
-      const conventionsFilePath = path.join(process.cwd(), 'data', 'conventions.json');
-      const conventionsData = JSON.parse(fs.readFileSync(conventionsFilePath, 'utf8'));
+      // Charger les conventions depuis la base de données
+      const conventionsData = await db.select().from(conventions);
       
       // Convertir au format attendu {id, name, url}
-      const formattedConventions = conventionsData.map((conv: any) => ({
+      const formattedConventions = conventionsData.map((conv) => ({
         id: conv.id,
         name: conv.name,
         url: conv.url
       }));
+      
+      console.log(`Renvoi de ${formattedConventions.length} conventions`);
       
       res.json(formattedConventions);
     } catch (error: any) {
@@ -134,20 +135,40 @@ export function registerRoutes(app: Express): Server {
         });
       }
 
+      // Vérification explicite que la convention existe avant de créer la source
+      console.log(`Vérification de l'existence de la convention ${conventionId}`);
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      
+      if (convention.length === 0) {
+        console.error(`Convention ${conventionId} non trouvée dans la base de données`);
+        return res.status(404).json({
+          message: `Convention ${conventionId} non trouvée dans la base de données`
+        });
+      }
+      
+      console.log(`Convention ${conventionId} trouvée dans la base: ${JSON.stringify(convention[0])}`);
+
       // Pour des raisons de compatibilité avec le client, nous générons un identifiant unique
       // qui remplace le sourceId de ChatPDF
       const sourceId = `src_${createHash('md5').update(`${conventionId}_${Date.now()}`).digest('hex').substring(0, 20)}`;
       
       console.log(`Création d'une nouvelle session GPT-4o pour la convention ${conventionId}`);
       
-      // Enregistrer dans la base de données pour maintenir la compatibilité
-      await db.insert(chatpdfSources).values({
-        conventionId,
-        sourceId
-      });
-      
-      console.log(`Session GPT-4o créée pour la convention ${conventionId}: ${sourceId}`);
-      res.json({ sourceId });
+      try {
+        // Enregistrer dans la base de données pour maintenir la compatibilité
+        await db.insert(chatpdfSources).values({
+          conventionId,
+          sourceId
+        });
+        
+        console.log(`Session GPT-4o créée pour la convention ${conventionId}: ${sourceId}`);
+        res.json({ sourceId });
+      } catch (error: any) {
+        console.error(`Erreur lors de l'insertion dans chatpdf_sources:`, error);
+        res.status(500).json({
+          message: `Erreur lors de la création de la source: ${error.message}`
+        });
+      }
     } catch (error: any) {
       console.error("Erreur lors de la création de la session GPT-4o:", error);
       res.status(500).json({
