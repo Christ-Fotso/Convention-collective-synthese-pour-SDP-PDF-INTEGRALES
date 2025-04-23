@@ -124,14 +124,14 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Endpoint pour créer une nouvelle session d'analyse GPT-4o
+  // Endpoint pour initialiser une session d'analyse GPT-4.1
   apiRouter.post("/chat/source", async (req, res) => {
     try {
       const { url, conventionId } = req.body;
       
-      if (!url || !conventionId) {
+      if (!conventionId) {
         return res.status(400).json({
-          message: "URL et conventionId sont requis"
+          message: "conventionId est requis"
         });
       }
 
@@ -149,30 +149,29 @@ export function registerRoutes(app: Express): Server {
       console.log(`Convention ${conventionId} trouvée dans la base: ${JSON.stringify(convention[0])}`);
 
       // Pour des raisons de compatibilité avec le client, nous générons un identifiant unique
-      // qui remplace le sourceId de ChatPDF
       const sourceId = `src_${createHash('md5').update(`${conventionId}_${Date.now()}`).digest('hex').substring(0, 20)}`;
       
-      console.log(`Création d'une nouvelle session GPT-4o pour la convention ${conventionId}`);
+      console.log(`Initialisation de l'accès au PDF pour la convention ${conventionId} (URL: ${convention[0].url})`);
       
       try {
-        // Enregistrer dans la base de données pour maintenir la compatibilité
+        // Enregistrer dans la base de données pour maintenir la compatibilité avec le client
         await db.insert(chatpdfSources).values({
           conventionId,
           sourceId
         });
         
-        console.log(`Session GPT-4o créée pour la convention ${conventionId}: ${sourceId}`);
+        console.log(`Session d'analyse initialisée pour la convention ${conventionId}: ${sourceId}`);
         res.json({ sourceId });
       } catch (error: any) {
-        console.error(`Erreur lors de l'insertion dans chatpdf_sources:`, error);
+        console.error(`Erreur lors de l'initialisation de la source:`, error);
         res.status(500).json({
-          message: `Erreur lors de la création de la source: ${error.message}`
+          message: `Erreur lors de l'initialisation de la source: ${error.message}`
         });
       }
     } catch (error: any) {
-      console.error("Erreur lors de la création de la session GPT-4o:", error);
+      console.error("Erreur lors de l'initialisation de l'analyse GPT-4.1:", error);
       res.status(500).json({
-        message: "Erreur lors de la création de la session GPT-4o",
+        message: "Erreur lors de l'initialisation de l'analyse GPT-4.1",
         error: error.message
       });
     }
@@ -352,8 +351,8 @@ export function registerRoutes(app: Express): Server {
           });
         }
       } else {
-        // Utilisation de GPT-4o pour les autres catégories
-        console.log('Utilisation de GPT-4o pour la catégorie:', category, subcategory);
+        // Utilisation de GPT-4.1 pour les autres catégories
+        console.log('Utilisation de GPT-4.1 pour la catégorie:', category, subcategory);
         
         try {
           if (!convention.length) {
@@ -446,7 +445,7 @@ export function registerRoutes(app: Express): Server {
             throw error;
           }
         } catch (openaiError: any) {
-          console.error('Erreur GPT-4o:', {
+          console.error('Erreur GPT-4.1:', {
             message: openaiError.message,
             stack: openaiError.stack
           });
