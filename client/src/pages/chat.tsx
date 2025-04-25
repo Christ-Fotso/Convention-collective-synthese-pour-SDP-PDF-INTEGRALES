@@ -311,18 +311,34 @@ export default function Chat({ params }: { params: { id: string } }) {
             ) : messages.length > 0 ? (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert">
+                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert prose-table:w-full">
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
                       table: ({ node, ...props }) => (
-                        <div className="overflow-x-auto">
-                          <table className="min-w-full border-collapse border border-border" {...props} />
+                        <div className="overflow-x-auto my-6 rounded-md border">
+                          <table className="w-full border-collapse" {...props} />
                         </div>
                       ),
-                      thead: props => <thead className="bg-muted" {...props} />,
-                      th: props => <th className="border border-border p-2 text-left" {...props} />,
-                      td: props => <td className="border border-border p-2" {...props} />
+                      thead: props => <thead className="bg-muted/50" {...props} />,
+                      th: props => <th className="border-b border-r last:border-r-0 border-border p-3 text-left font-medium text-sm" {...props} />,
+                      td: props => <td className="border-b border-r last:border-r-0 border-border p-3 text-sm align-top whitespace-normal break-words" {...props} />,
+                      tr: props => <tr className="even:bg-muted/20" {...props} />,
+                      code: (props) => {
+                        // Déterminer si c'est un bloc de code ou code inline
+                        const codeContent = String(props.children).replace(/\n$/, '');
+                        // Si le contenu contient des sauts de ligne, c'est un bloc de code
+                        const isCodeBlock = /\n/.test(codeContent) || props.className;
+                        
+                        return isCodeBlock ? (
+                          <code className={props.className} {...props} />
+                        ) : (
+                          <code className="bg-muted/50 px-1 py-0.5 rounded text-xs" {...props} />
+                        );
+                      },
+                      pre: (props) => (
+                        <pre className="bg-muted/20 p-4 rounded-md overflow-x-auto" {...props} />
+                      )
                     }}
                   >
                     {messages[1].content}

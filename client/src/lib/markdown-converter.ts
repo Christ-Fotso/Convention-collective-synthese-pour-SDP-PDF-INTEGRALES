@@ -47,28 +47,57 @@ export function improveMarkdownFormatting(text: string): string {
   
   let formatted = text;
   
-  // Amélioration des tableaux (ajouter espaces pour alignement des colonnes)
-  const tableRowPattern = /\|(.+)\|/g;
-  formatted = formatted.replace(tableRowPattern, (match) => {
-    return match.replace(/\|/g, ' | ').replace(/\s+\|\s+$/, ' |').replace(/^\s+\|\s+/, '| ');
+  // Recherche de tableaux Markdown et amélioration de leur formatage
+  const tablePattern = /(\|.*\|[\s]*\n\|[\s]*[-:]+[-|\s:]*\|[\s]*\n)((.*\|[\s]*\n)*)/g;
+  formatted = formatted.replace(tablePattern, (matchedTable) => {
+    // Séparer l'en-tête, la ligne de délimitation et les données
+    const tableLines = matchedTable.split('\n');
+    const processedLines = tableLines.map((line) => {
+      if (!line.trim()) return line;  // Ignorer les lignes vides
+      
+      // Nettoyer chaque ligne du tableau pour améliorer l'espacement
+      const cells = line.split('|');
+      const processedCells = cells.map(cell => ` ${cell.trim()} `);
+      
+      // Reconstruire la ligne
+      return processedCells.join('|').replace(/\|\s+\|/g, '| |').trim();
+    });
+    
+    return processedLines.join('\n') + '\n\n';
   });
-  
-  // Assurer que les cellules des tableaux sont bien espacées
-  formatted = formatted.replace(/\|\s*\|/g, '| |');
   
   // Amélioration des listes à puces (assurer espace après le tiret)
   formatted = formatted.replace(/^-([^\s])/gm, '- $1');
+  formatted = formatted.replace(/^\*([^\s])/gm, '* $1');
   
   // Améliorer l'espacement des titres
   formatted = formatted.replace(/^(#{1,6})([^\s#])/gm, '$1 $2');
   
   // Assurer des sauts de ligne avant et après les tableaux
-  formatted = formatted.replace(/([^\n])\n\|/g, '$1\n\n|');
-  formatted = formatted.replace(/\|\n([^\n\|])/g, '|\n\n$1');
+  formatted = formatted.replace(/([^\n])\n(\|.*\|)/g, '$1\n\n$2');
+  formatted = formatted.replace(/(\|.*\|)\n([^\|\n])/g, '$1\n\n$2');
   
   // Assurer des sauts de ligne avant et après les titres
-  formatted = formatted.replace(/([^\n])(\n#{1,6} )/g, '$1\n$2');
+  formatted = formatted.replace(/([^\n])(\n#{1,6} )/g, '$1\n\n$2');
   formatted = formatted.replace(/(#{1,6} .+\n)([^\n])/g, '$1\n$2');
+  
+  // Amélioration du formatage des puces imbriquées
+  formatted = formatted.replace(/^(\s*)[-*]([^\s])/gm, '$1- $2');
+  
+  // S'assurer que chaque ligne de tableau se termine par un caractère de tube
+  formatted = formatted.replace(/^((\s*\|.+[^|]))\s*$/gm, '$1 |');
+  
+  // Assurer le formatage correct des délimiteurs de tableaux
+  const delimiterLinePattern = /^\s*\|([\s-:]*\|)+\s*$/gm;
+  formatted = formatted.replace(delimiterLinePattern, (match) => {
+    // Ajouter au moins 3 traits d'union dans chaque cellule du délimiteur
+    return match.replace(/:\s*:/g, ':---:')
+                .replace(/:\s*\|/g, ':---|')
+                .replace(/\|\s*:/g, '|---:')
+                .replace(/\|\s*\|/g, '|---|')
+                .replace(/^\s*\|/g, '|---')
+                .replace(/\|\s*$/g, '---|');
+  });
   
   return formatted;
 }
