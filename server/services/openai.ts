@@ -265,19 +265,24 @@ DIRECTIVES STRICTES:
 8. Si l'information n'est pas dans le document, répondre uniquement: "Information non présente dans la convention IDCC ${conventionId}."
 9. Répondre de façon directe, factuellement, sans bavardage.
 10. NE JAMAIS écrire "D'après la convention collective" ou "Selon le document" - allez directement au contenu.
-11. RÈGLES STRICTES POUR LES TABLEAUX (PARTIE CRUCIALE):
-   - TOUJOURS utiliser la syntaxe Markdown correcte pour les tableaux
-   - TOUJOURS inclure une ligne d'en-tête avec des titres précis pour chaque colonne
-   - TOUJOURS ajouter une ligne de délimitation (---|---|---) après l'en-tête
-   - JAMAIS créer de tableaux vides s'il manque des informations
+11. RÈGLES STRICTES POUR LES TABLEAUX (PARTIE LA PLUS CRUCIALE - À RESPECTER ABSOLUMENT):
+   - TOUJOURS utiliser UNIQUEMENT la syntaxe Markdown standard pour les tableaux
+   - CHAQUE tableau DOIT commencer par une ligne d'en-tête claire et précise
+   - CHAQUE tableau DOIT avoir une ligne de délimitation après l'en-tête avec exactement | --- | --- | --- |
+   - JAMAIS créer de tableaux vides ou avec une seule ligne
    - JAMAIS fusionner plusieurs informations dans une même cellule
-   - JAMAIS omettre les séparateurs | entre les colonnes
-   - TOUJOURS préférer plusieurs tableaux bien structurés plutôt qu'un seul tableau confus
-   - TOUJOURS espacer correctement le contenu avec un espace après chaque | et un espace avant chaque |
-   - Exemple de bon format:
-     | Catégorie | Valeur | Description |
-     | --------- | ------ | ----------- |
-     | Exemple 1 | 100 | Description détaillée |
+   - JAMAIS créer de cellules trop longues (max 100 caractères) - préférer plusieurs lignes
+   - JAMAIS omettre ou doubler les séparateurs | entre colonnes
+   - TOUJOURS espacer correctement avec un espace après chaque | et un espace avant chaque |
+   - TOUJOURS utiliser un nombre cohérent de colonnes dans toutes les lignes d'un même tableau
+   - TOUJOURS préférer plusieurs petits tableaux bien structurés plutôt qu'un grand tableau complexe
+   - JAMAIS utiliser de HTML, ASCII art ou autre formatage non-Markdown pour les tableaux
+   
+   Exemple de format CORRECT à suivre absolument:
+   | Catégorie | Valeur | Description |
+   | --- | --- | --- |
+   | Exemple 1 | 100 | Description détaillée |
+   | Exemple 2 | 200 | Autre description |
 
 12. N'UTILISEZ JAMAIS de balises HTML comme <br>, <div>, <p>, etc. Utilisez UNIQUEMENT la syntaxe Markdown standard.
 
@@ -285,54 +290,76 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
 
     // Instructions supplémentaires spécifiques selon la catégorie
     if (category === 'classification') {
-      systemPromptContent += `\n\nINSTRUCTIONS SPÉCIALES POUR LA CLASSIFICATION:
-1. Pour présenter la classification des emplois, CRÉEZ TOUJOURS UN TABLEAU MARKDOWN avec ces colonnes:
-   | Niveau | Coefficient | Description et critères | Article de référence |
-   | ------ | ----------- | ----------------------- | -------------------- |
-   
-2. Assurez-vous de:
-   - Présenter CHAQUE NIVEAU HIÉRARCHIQUE et COEFFICIENT dans des rangées distinctes
-   - Inclure les critères précis de chaque niveau
-   - Ajouter les références aux articles exacts
-   - Structurer le tableau du niveau le plus bas au plus élevé
-   
-3. Ne fusionnez JAMAIS les informations de plusieurs niveaux dans une même cellule ou ligne
+      systemPromptContent += `\n\nINSTRUCTIONS SPÉCIALES POUR LA CLASSIFICATION (À RESPECTER ABSOLUMENT):
 
-4. Si la classification est organisée par filières ou catégories, créez plusieurs tableaux distincts:
-   ## Classification - Filière Administrative
-   [Tableau pour cette filière]
-   
-   ## Classification - Filière Technique
-   [Tableau pour cette filière]
-   
-5. ÉVITEZ ABSOLUMENT de présenter la classification comme un bloc de texte continue.
-   UTILISEZ EXCLUSIVEMENT LE FORMAT TABLEAU pour une meilleure lisibilité.`;
+1. Utilisez EXCLUSIVEMENT ce format tableau Markdown strict:
+   | Niveau | Coefficient | Description et critères | Article de référence |
+   | --- | --- | --- | --- |
+   | Niveau 1 | 120 | Description exacte | Article X.X |
+
+2. Règles CRUCIALES à suivre:
+   - Un tableau pour CHAQUE filière ou catégorie d'emploi
+   - Une ligne distincte pour CHAQUE niveau ou échelon
+   - Un seul coefficient par ligne (jamais de plages comme "120-140")
+   - Descriptions courtes dans chaque cellule (max 100 caractères) 
+   - JAMAIS de cellules fusionnées ou de lignes sans toutes les colonnes
+   - TOUJOURS citer l'article exact pour chaque niveau
+   - TOUJOURS structurer du niveau le plus bas au plus élevé
+
+3. Si la classification distingue des filières/catégories:
+   ### Classification - Filière Administrative
+   | Niveau | Coefficient | Description et critères | Article de référence |
+   | --- | --- | --- | --- |
+   | Niveau 1 | 120 | Description exacte | Article X.X |
+
+   ### Classification - Filière Technique
+   | Niveau | Coefficient | Description et critères | Article de référence |
+   | --- | --- | --- | --- |
+   | Niveau 1 | 120 | Description exacte | Article X.X |
+
+4. Si des descriptions sont trop longues, fragmentez-les en points principaux.
+
+5. INTERDICTION ABSOLUE de présenter la classification sous forme de texte ou de liste.
+   UTILISEZ EXCLUSIVEMENT LE FORMAT TABLEAU MARKDOWN pour toute la classification.`;
     }
     
     // Instructions supplémentaires pour les grilles de rémunération
     if (category === 'remuneration' && subcategory === 'grille') {
-      systemPromptContent += `\n\nINSTRUCTIONS SPÉCIALES POUR LA GRILLE DE RÉMUNÉRATION:
-1. Créez un tableau Markdown bien structuré avec ces colonnes:
+      systemPromptContent += `\n\nINSTRUCTIONS SPÉCIALES POUR LA GRILLE DE RÉMUNÉRATION (À RESPECTER ABSOLUMENT):
+
+1. Utilisez EXCLUSIVEMENT ce format tableau Markdown strict:
    | Coefficient/Niveau | Salaire minimum | Date d'application | Article de référence |
-   | ------------------ | --------------- | ------------------ | -------------------- |
-   
-2. Si les salaires sont organisés par catégorie ou filière, créez plusieurs tableaux distincts:
-   ## Grille des salaires - Employés
-   [Tableau pour cette catégorie]
-   
-   ## Grille des salaires - Techniciens
-   [Tableau pour cette catégorie]
-   
-3. Incluez toujours:
-   - Le coefficient ou niveau exact
-   - Le montant précis du salaire
-   - La date d'application de la grille (la plus récente disponible)
-   - La référence de l'article ou avenant
-   
-4. Si les salaires minimum sont exprimés en différentes unités (horaire, mensuel, annuel), précisez-le clairement:
+   | --- | --- | --- | --- |
+   | Niveau 1 | 1600,00 € | 01/01/2023 | Article X.X |
+
+2. Règles CRUCIALES à suivre:
+   - Un tableau séparé pour CHAQUE catégorie professionnelle
+   - Une ligne pour CHAQUE coefficient ou niveau
+   - TOUJOURS indiquer les montants avec le symbole € et les virgules correctes
+   - TOUJOURS préciser si le salaire est horaire, mensuel ou annuel
+   - JAMAIS présenter les valeurs dans un format différent du tableau Markdown
+   - TOUJOURS inclure la date d'application exacte au format JJ/MM/AAAA
+   - JAMAIS omettre une colonne ou laisser une cellule vide
+
+3. Si les salaires sont organisés par catégorie, utilisez ce format:
+   ### Grille des salaires - Employés
+   | Coefficient/Niveau | Salaire minimum | Date d'application | Article de référence |
+   | --- | --- | --- | --- |
+   | Niveau 1 | 1600,00 € | 01/01/2023 | Article X.X |
+
+   ### Grille des salaires - Techniciens
+   | Coefficient/Niveau | Salaire minimum | Date d'application | Article de référence |
+   | --- | --- | --- | --- |
+   | Niveau 1 | 1700,00 € | 01/01/2023 | Article X.X |
+
+4. Si différentes unités sont présentes, utilisez ce format exact:
    | Coefficient | Salaire horaire | Salaire mensuel | Date d'application |
-   
-5. N'incluez QUE les données officielles présentes dans la convention collective.`;
+   | --- | --- | --- | --- |
+   | Niveau 1 | 10,57 € | 1600,00 € | 01/01/2023 |
+
+5. UTILISEZ EXCLUSIVEMENT les informations exactes trouvées dans le document, avec une précision absolue sur les montants et les dates.
+
+6. INTERDICTION TOTALE de présenter ces informations sous forme de texte, de liste ou tout autre format que le tableau Markdown standardisé.`;
     }
     
     const systemMessage = {
