@@ -243,9 +243,7 @@ export async function queryOpenAI(
   
   try {
     // Préparation du contexte avec instructions très précises
-    const systemMessage = {
-      role: "system",
-      content: `Vous êtes un extracteur d'informations juridiques précis pour les conventions collectives françaises. 
+    let systemPromptContent = `Vous êtes un extracteur d'informations juridiques précis pour les conventions collectives françaises. 
 
 Vous analysez la convention collective IDCC ${conventionId} - ${conventionName}.
 
@@ -272,7 +270,63 @@ DIRECTIVES STRICTES:
    - Si aucune information n'est disponible pour créer un tableau, présentez les informations sous forme de texte ou de liste
 12. N'UTILISEZ PAS de balises HTML comme <br>. Utilisez uniquement la syntaxe Markdown standard.
 
-FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune phrase d'introduction.`
+FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune phrase d'introduction.`;
+
+    // Instructions supplémentaires spécifiques selon la catégorie
+    if (category === 'classification') {
+      systemPromptContent += `\n\nINSTRUCTIONS SPÉCIALES POUR LA CLASSIFICATION:
+1. Pour présenter la classification des emplois, CRÉEZ TOUJOURS UN TABLEAU MARKDOWN avec ces colonnes:
+   | Niveau | Coefficient | Description et critères | Article de référence |
+   | ------ | ----------- | ----------------------- | -------------------- |
+   
+2. Assurez-vous de:
+   - Présenter CHAQUE NIVEAU HIÉRARCHIQUE et COEFFICIENT dans des rangées distinctes
+   - Inclure les critères précis de chaque niveau
+   - Ajouter les références aux articles exacts
+   - Structurer le tableau du niveau le plus bas au plus élevé
+   
+3. Ne fusionnez JAMAIS les informations de plusieurs niveaux dans une même cellule ou ligne
+
+4. Si la classification est organisée par filières ou catégories, créez plusieurs tableaux distincts:
+   ## Classification - Filière Administrative
+   [Tableau pour cette filière]
+   
+   ## Classification - Filière Technique
+   [Tableau pour cette filière]
+   
+5. ÉVITEZ ABSOLUMENT de présenter la classification comme un bloc de texte continue.
+   UTILISEZ EXCLUSIVEMENT LE FORMAT TABLEAU pour une meilleure lisibilité.`;
+    }
+    
+    // Instructions supplémentaires pour les grilles de rémunération
+    if (category === 'remuneration' && subcategory === 'grille') {
+      systemPromptContent += `\n\nINSTRUCTIONS SPÉCIALES POUR LA GRILLE DE RÉMUNÉRATION:
+1. Créez un tableau Markdown bien structuré avec ces colonnes:
+   | Coefficient/Niveau | Salaire minimum | Date d'application | Article de référence |
+   | ------------------ | --------------- | ------------------ | -------------------- |
+   
+2. Si les salaires sont organisés par catégorie ou filière, créez plusieurs tableaux distincts:
+   ## Grille des salaires - Employés
+   [Tableau pour cette catégorie]
+   
+   ## Grille des salaires - Techniciens
+   [Tableau pour cette catégorie]
+   
+3. Incluez toujours:
+   - Le coefficient ou niveau exact
+   - Le montant précis du salaire
+   - La date d'application de la grille (la plus récente disponible)
+   - La référence de l'article ou avenant
+   
+4. Si les salaires minimum sont exprimés en différentes unités (horaire, mensuel, annuel), précisez-le clairement:
+   | Coefficient | Salaire horaire | Salaire mensuel | Date d'application |
+   
+5. N'incluez QUE les données officielles présentes dans la convention collective.`;
+    }
+    
+    const systemMessage = {
+      role: "system",
+      content: systemPromptContent
     };
     
     // Préparation des messages pour l'API

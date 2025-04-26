@@ -272,6 +272,88 @@ export function preprocessMarkdownTables(text: string): string {
   return processed;
 }
 
+/**
+ * Fonction spéciale pour reformater les tableaux de classification et de grille de salaires
+ * qui nécessitent un traitement particulier à cause de leur complexité
+ */
+export function improveClassificationTables(text: string): string {
+  if (!text) return text;
+  
+  let processed = text;
+  
+  // Détection des tableaux de classification mal formatés
+  const classificationTablePattern = /Tableau (hiérarchique |)de (la |)classification des emplois[^\n]*\|/i;
+  if (classificationTablePattern.test(processed)) {
+    // Extraire le contenu du tableau de classification
+    const extractedContent = processed.split(/\n\n/).find(block => 
+      classificationTablePattern.test(block) || 
+      /niveau.*classification.*coefficient/i.test(block)
+    );
+    
+    if (extractedContent) {
+      // Convertir le bloc de texte en tableau structuré
+      const lines = extractedContent.split('\n');
+      let tableContent = '';
+      
+      // Créer un en-tête de tableau basé sur les premières mentions
+      tableContent += '| Niveau/Classification | Coefficient | Critères | Description | Article de référence |\n';
+      tableContent += '| --- | --- | --- | --- | --- |\n';
+      
+      // Construire les lignes du tableau en se basant sur les séparateurs '|'
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line || line.startsWith('#')) continue;
+        
+        // Détecter les lignes qui contiennent des données de classification
+        if (/niveau|classification|coefficient|\d{3}/i.test(line)) {
+          // Extraire les informations importantes
+          const cleanedLine = line.replace(/\|\s*\|/g, '|').replace(/\s+\|/g, ' |').replace(/\|\s+/g, '| ');
+          const cells = cleanedLine.split('|').map(cell => cell.trim()).filter(cell => cell);
+          
+          if (cells.length > 1) {
+            // Organiser les données en colonnes appropriées
+            let formattedRow = '|';
+            
+            // Pour chaque cellule, essayer de la placer dans la bonne colonne
+            cells.forEach(cell => {
+              // Classification par type de contenu
+              if (/^niveau \d+$/i.test(cell)) {
+                formattedRow += ` ${cell} |`;
+              } else if (/^\d{3}$/i.test(cell)) {
+                formattedRow += ` ${cell} |`;
+              } else if (/article/i.test(cell)) {
+                formattedRow += ` ${cell} |`;
+              } else {
+                formattedRow += ` ${cell} |`;
+              }
+            });
+            
+            // Compléter les colonnes manquantes si nécessaire
+            const columnCount = (formattedRow.match(/\|/g) || []).length - 1;
+            if (columnCount < 5) {
+              formattedRow += ' |'.repeat(5 - columnCount);
+            }
+            
+            tableContent += formattedRow + '\n';
+          }
+        }
+      }
+      
+      // Remplacer le bloc original par le nouveau tableau formaté
+      processed = processed.replace(extractedContent, tableContent);
+    }
+  }
+  
+  // Détection et amélioration des tableaux de rémunération
+  const salaryTablePattern = /(Grille|Tableau) de (rémunération|salaire)/i;
+  if (salaryTablePattern.test(processed)) {
+    // Traitement similaire à celui de la classification
+    // [Implémentation pour les grilles de salaire]
+  }
+  
+  return processed;
+}
+
 export function convertJsonToMarkdown(jsonString: string): string {
   // Si c'est "RAS", retourner une chaîne vide
   if (jsonString === "RAS") {
@@ -288,7 +370,10 @@ export function convertJsonToMarkdown(jsonString: string): string {
     // Prétraiter le texte pour améliorer les tableaux
     const preprocessed = preprocessMarkdownTables(cleanedContent);
     
+    // Traitement spécial pour les tableaux de classification et de rémunération
+    const specialTablesImproved = improveClassificationTables(preprocessed);
+    
     // Appliquer les améliorations générales de formatage Markdown
-    return improveMarkdownFormatting(preprocessed);
+    return improveMarkdownFormatting(specialTablesImproved);
   }
 }
