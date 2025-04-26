@@ -1,5 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
+import { registerRoutes, initCaches } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
@@ -39,6 +39,16 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Initialiser les caches avant de démarrer le serveur
+  try {
+    log("Initialisation des caches persistants...");
+    await initCaches();
+    log("Caches persistants initialisés avec succès");
+  } catch (cacheError) {
+    log(`Erreur lors de l'initialisation des caches: ${cacheError}`, "error");
+    // Continuer malgré l'erreur
+  }
+  
   const server = registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

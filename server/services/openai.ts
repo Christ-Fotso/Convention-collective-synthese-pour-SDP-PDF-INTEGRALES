@@ -37,8 +37,22 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-// Cache pour les PDFs déjà traités
-const pdfTextCache = new Map<string, string>();
+// Import de notre classe de cache persistant
+import { LimitedCache } from "./cache-manager";
+
+// Cache pour les PDFs déjà traités (avec persistance)
+const pdfTextCache = new LimitedCache(20, 'pdf-text', 600000); // 10 minutes d'intervalle
+
+// Fonction d'initialisation exposée pour être appelée au démarrage du serveur
+export async function initPdfTextCache(): Promise<void> {
+  try {
+    await pdfTextCache.initFromDatabase();
+    console.log("Cache de texte des PDFs initialisé avec succès");
+  } catch (error) {
+    console.error("Erreur lors de l'initialisation du cache de texte des PDFs:", error);
+    throw error;
+  }
+}
 
 /**
  * Calcule le coût estimé d'une requête OpenAI

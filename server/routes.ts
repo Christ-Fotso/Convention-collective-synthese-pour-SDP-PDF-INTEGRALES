@@ -27,34 +27,41 @@ import {
   SECTION_TYPES
 } from "./services/section-manager";
 
-// Cache limité pour éviter de refaire les mêmes requêtes coûteuses
-class LimitedCache {
-  public cache = new Map();
-  private maxSize: number;
+// Import de notre cache persistant
+import { LimitedCache } from "./services/cache-manager";
 
-  constructor(maxSize: number) {
-    this.maxSize = maxSize;
-  }
+// Cache pour les réponses OpenAI avec persistance
+const openaiCache = new LimitedCache(50, 'openai', 300000); // 5 minutes d'intervalle de sauvegarde
 
-  has(key: string): boolean {
-    return this.cache.has(key);
-  }
-
-  get(key: string): any {
-    return this.cache.get(key);
-  }
-
-  set(key: string, value: any): void {
-    if (this.cache.size >= this.maxSize) {
-      const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
+// Fonction pour initialiser tous les caches persistants
+export async function initCaches(): Promise<void> {
+  try {
+    // Initialiser le cache OpenAI
+    await openaiCache.initFromDatabase();
+    
+    // Initialiser les autres caches ici quand ils sont créés
+    // Exemple: await pdfTextCache.initFromDatabase();
+    
+    // Initialiser le cache PDF manuellement
+    try {
+      console.log("Initialisation du cache PDF...");
+      // Importation dynamique pour éviter les références circulaires
+      const openaiModule = await import('./services/openai');
+      if (typeof openaiModule.initPdfTextCache === 'function') {
+        await openaiModule.initPdfTextCache();
+      } else {
+        console.log("Fonction initPdfTextCache non disponible, le cache PDF sera initialisé à la demande");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'initialisation du cache PDF:", error);
     }
-    this.cache.set(key, value);
+    
+    console.log('Tous les caches ont été initialisés avec succès');
+  } catch (error) {
+    console.error('Erreur lors de l\'initialisation des caches:', error);
+    throw error;
   }
 }
-
-// Cache pour les réponses OpenAI
-const openaiCache = new LimitedCache(50);
 
 export function registerRoutes(app: Express): Server {
   const apiRouter = Router();
