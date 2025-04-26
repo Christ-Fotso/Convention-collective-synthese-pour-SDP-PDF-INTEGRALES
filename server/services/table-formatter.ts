@@ -144,7 +144,16 @@ function convertTextLinesToTable(text: string): string {
   const tableRowPattern = /^([A-Za-z0-9].+?)(\s{2,}|\t)(.+?)(?:(\s{2,}|\t)(.+?))?(?:(\s{2,}|\t)(.+?))?$/gm;
   
   // Vérifier s'il y a au moins deux lignes qui correspondent au pattern
-  const matches = [...text.matchAll(tableRowPattern)];
+  // Utiliser une approche compatible avec des versions plus anciennes de TypeScript
+  const matches: RegExpExecArray[] = [];
+  let match;
+  while ((match = tableRowPattern.exec(text)) !== null) {
+    matches.push(match);
+    // Pour éviter les boucles infinies avec regex global
+    if (match.index === tableRowPattern.lastIndex) {
+      tableRowPattern.lastIndex++;
+    }
+  }
   
   if (matches.length < 2) return text;
   
