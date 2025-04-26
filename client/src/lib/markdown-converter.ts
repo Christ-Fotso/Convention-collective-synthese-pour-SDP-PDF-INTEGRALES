@@ -281,74 +281,185 @@ export function improveClassificationTables(text: string): string {
   
   let processed = text;
   
-  // Détection des tableaux de classification mal formatés
-  const classificationTablePattern = /Tableau (hiérarchique |)de (la |)classification des emplois[^\n]*\|/i;
-  if (classificationTablePattern.test(processed)) {
-    // Extraire le contenu du tableau de classification
-    const extractedContent = processed.split(/\n\n/).find(block => 
-      classificationTablePattern.test(block) || 
-      /niveau.*classification.*coefficient/i.test(block)
-    );
+  // Détection des contenus de classification mal formatés (plusieurs patterns possibles)
+  const classificationPatterns = [
+    /Tableau (hiérarchique |)de (la |)classification des emplois/i,
+    /classification des emplois.*niveau.*coefficient/i,
+    /niveau.*classification.*coefficient/i,
+    /grille de classification/i
+  ];
+  
+  const isClassificationContent = classificationPatterns.some(pattern => pattern.test(processed));
+  
+  if (isClassificationContent) {
+    console.log("Contenu de classification détecté, restructuration du tableau...");
+
+    // Cas 1: Si le contenu est déjà sous forme de tableau bien structuré, on ne fait rien
+    if (processed.includes("| Niveau") && processed.includes("| ---") && 
+        processed.includes("| Coefficient") && !processed.includes("||")) {
+      console.log("Tableau de classification déjà bien formaté, aucune modification");
+      return processed;
+    }
     
-    if (extractedContent) {
-      // Convertir le bloc de texte en tableau structuré
-      const lines = extractedContent.split('\n');
-      let tableContent = '';
+    // Cas 2: Si le contenu forme un seul bloc continu de texte avec des | comme séparateurs
+    const containsContinuousText = /[^\n\|]{100,}/.test(processed);
+    const containsVerticalSeparators = processed.split('|').length > 5;
+    
+    if (containsContinuousText && containsVerticalSeparators) {
+      console.log("Détection d'un bloc de texte continu avec séparateurs |, restructuration complète");
       
-      // Créer un en-tête de tableau basé sur les premières mentions
-      tableContent += '| Niveau/Classification | Coefficient | Critères | Description | Article de référence |\n';
-      tableContent += '| --- | --- | --- | --- | --- |\n';
+      // Extraction des données par analyse du texte
+      let reformattedContent = "## Classification des emplois\n\n";
+      reformattedContent += "| Niveau | Coefficient | Description | Article de référence |\n";
+      reformattedContent += "| ------ | ----------- | ----------- | ------------------- |\n";
+
+      // Extraction des niveaux, coefficients, descriptions et articles par pattern matching
+      const levelPattern = /niveau\s+(\d+)/gi;
+      const coeffPattern = /(\d{2,3})\s*(-|–)?\s*/g;
+      const articlePattern = /article\s+(\d+(\.\d+)?)/gi;
       
-      // Construire les lignes du tableau en se basant sur les séparateurs '|'
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line || line.startsWith('#')) continue;
+      // Segmentation du texte en sections par niveau
+      const segments = processed
+        .replace(/\|\|+/g, '|') // Remplacer les || multiples par un seul |
+        .split(/niveau\s+\d+/i);
+      
+      // Pour chaque segment (partie correspondant à un niveau), extraire les infos
+      for (let i = 1; i < segments.length; i++) { // Commencer à 1 pour sauter l'en-tête
+        const segment = "niveau " + segments[i]; // Remettre le "niveau" qui a été supprimé lors du split
         
-        // Détecter les lignes qui contiennent des données de classification
-        if (/niveau|classification|coefficient|\d{3}/i.test(line)) {
-          // Extraire les informations importantes
-          const cleanedLine = line.replace(/\|\s*\|/g, '|').replace(/\s+\|/g, ' |').replace(/\|\s+/g, '| ');
-          const cells = cleanedLine.split('|').map(cell => cell.trim()).filter(cell => cell);
-          
-          if (cells.length > 1) {
-            // Organiser les données en colonnes appropriées
-            let formattedRow = '|';
-            
-            // Pour chaque cellule, essayer de la placer dans la bonne colonne
-            cells.forEach(cell => {
-              // Classification par type de contenu
-              if (/^niveau \d+$/i.test(cell)) {
-                formattedRow += ` ${cell} |`;
-              } else if (/^\d{3}$/i.test(cell)) {
-                formattedRow += ` ${cell} |`;
-              } else if (/article/i.test(cell)) {
-                formattedRow += ` ${cell} |`;
-              } else {
-                formattedRow += ` ${cell} |`;
-              }
-            });
-            
-            // Compléter les colonnes manquantes si nécessaire
-            const columnCount = (formattedRow.match(/\|/g) || []).length - 1;
-            if (columnCount < 5) {
-              formattedRow += ' |'.repeat(5 - columnCount);
-            }
-            
-            tableContent += formattedRow + '\n';
-          }
+        // Extraire le numéro de niveau
+        const levelMatch = segment.match(/niveau\s+(\d+)/i);
+        const level = levelMatch ? `Niveau ${levelMatch[1]}` : "Niveau non spécifié";
+        
+        // Extraire le coefficient
+        const coeffMatch = segment.match(/\b(\d{2,3})\b/);
+        const coefficient = coeffMatch ? coeffMatch[1] : "-";
+        
+        // Extraire l'article de référence
+        const articleMatch = segment.match(/article\s+(\d+(\.\d+)?)/i);
+        const article = articleMatch ? `Article ${articleMatch[1]}` : "-";
+        
+        // Extraire la description (tout ce qui n'est pas niveau, coefficient ou article)
+        let description = segment
+          .replace(/niveau\s+\d+/i, "")
+          .replace(/\b\d{2,3}\b/, "")
+          .replace(/article\s+\d+(\.\d+)?/i, "")
+          .replace(/\|/g, "")
+          .trim();
+        
+        // Limiter la description à 100 caractères pour éviter des cellules trop larges
+        if (description.length > 100) {
+          description = description.substring(0, 100) + "...";
         }
+        
+        // Ajouter la ligne au tableau
+        reformattedContent += `| ${level} | ${coefficient} | ${description} | ${article} |\n`;
       }
       
-      // Remplacer le bloc original par le nouveau tableau formaté
-      processed = processed.replace(extractedContent, tableContent);
+      // Remplacement du bloc problématique par le tableau restructuré
+      // Utilisation d'une approche conservative pour ne remplacer que la partie problématique
+      const blockStart = processed.search(classificationPatterns[0]) || 
+                         processed.search(classificationPatterns[1]) || 
+                         processed.search(classificationPatterns[2]) || 
+                         processed.search(classificationPatterns[3]);
+      
+      if (blockStart >= 0) {
+        // Trouver la fin du bloc (prochain titre ou fin du texte)
+        let blockEnd = processed.indexOf("##", blockStart + 10);
+        if (blockEnd === -1) blockEnd = processed.length;
+        
+        // Effectuer le remplacement
+        const originalBlock = processed.substring(blockStart, blockEnd);
+        processed = processed.replace(originalBlock, reformattedContent);
+        
+        console.log("Tableau de classification restructuré avec succès");
+      }
+    }
+    
+    // Cas 3: Contenu déjà sous forme de tableau mais mal aligné
+    else if (processed.includes("|") && processed.includes("\n")) {
+      console.log("Détection d'un tableau mal aligné, amélioration du formatage");
+      
+      // Extraire les lignes du tableau
+      const tableLines = processed.split("\n").filter(line => 
+        line.includes("|") && !line.trim().startsWith("#")
+      );
+      
+      if (tableLines.length > 0) {
+        // Vérifier si l'en-tête du tableau existe
+        const hasHeader = tableLines[0].toLowerCase().includes("niveau") || 
+                          tableLines[0].toLowerCase().includes("classification");
+        
+        // Créer un nouveau tableau bien formaté
+        let newTable = "";
+        
+        // Ajouter l'en-tête s'il n'existe pas
+        if (!hasHeader) {
+          newTable += "| Niveau | Coefficient | Description | Article de référence |\n";
+          newTable += "| ------ | ----------- | ----------- | ------------------- |\n";
+        } else {
+          // Utiliser l'en-tête existant mais le formater correctement
+          const headerCells = tableLines[0].split("|")
+            .map(cell => cell.trim())
+            .filter(cell => cell.length > 0);
+          
+          newTable += "| " + headerCells.join(" | ") + " |\n";
+          newTable += "| " + headerCells.map(() => "---").join(" | ") + " |\n";
+          
+          // Supprimer l'en-tête du tableau original
+          tableLines.shift();
+          
+          // Supprimer aussi la ligne de séparation si elle existe
+          if (tableLines[0] && tableLines[0].includes("---")) {
+            tableLines.shift();
+          }
+        }
+        
+        // Ajouter chaque ligne de données
+        for (const line of tableLines) {
+          if (!line.trim() || line.trim() === "|") continue;
+          
+          // Nettoyer et reformater la ligne
+          const cells = line.split("|")
+            .map(cell => cell.trim())
+            .filter(cell => cell.length > 0);
+          
+          if (cells.length > 0) {
+            newTable += "| " + cells.join(" | ") + " |\n";
+          }
+        }
+        
+        // Remplacer le tableau d'origine par le nouveau tableau
+        // Identification du début et de la fin du tableau original
+        const tableStart = processed.indexOf(tableLines[0]);
+        const tableEnd = processed.indexOf(tableLines[tableLines.length - 1]) + 
+                        tableLines[tableLines.length - 1].length;
+        
+        if (tableStart >= 0 && tableEnd > tableStart) {
+          const originalTable = processed.substring(tableStart, tableEnd);
+          processed = processed.replace(originalTable, newTable);
+          
+          console.log("Formatage du tableau amélioré avec succès");
+        }
+      }
     }
   }
   
   // Détection et amélioration des tableaux de rémunération
-  const salaryTablePattern = /(Grille|Tableau) de (rémunération|salaire)/i;
-  if (salaryTablePattern.test(processed)) {
-    // Traitement similaire à celui de la classification
-    // [Implémentation pour les grilles de salaire]
+  const salaryPatterns = [
+    /(Grille|Tableau) de (rémunération|salaire)/i,
+    /salaires minima/i,
+    /salaires (conventionnels|minimaux)/i
+  ];
+  
+  const isSalaryContent = salaryPatterns.some(pattern => pattern.test(processed));
+  
+  if (isSalaryContent) {
+    // Traitement similaire à celui de la classification pour les grilles de salaire
+    // mais adapté aux spécificités des tableaux de rémunération
+    console.log("Contenu de rémunération détecté, vérification du formatage...");
+    
+    // Implémentation si nécessaire
   }
   
   return processed;

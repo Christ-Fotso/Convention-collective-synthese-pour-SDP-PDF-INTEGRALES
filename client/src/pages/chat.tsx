@@ -119,6 +119,9 @@ export default function Chat({ params }: { params: { id: string } }) {
     setCurrentCategory(category);
     setCurrentSubcategory(subcategory);
 
+    // Log pour aider au débogage
+    console.log(`Mise en forme de la réponse pour: ${category.id} > ${subcategory.id}, formatage avancé: true`);
+
     // Plus de traitement spécial pour la grille salariale, on utilise l'API
     // Tout le traitement est géré côté serveur
 
