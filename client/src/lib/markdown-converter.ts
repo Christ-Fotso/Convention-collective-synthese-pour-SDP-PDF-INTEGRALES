@@ -237,6 +237,184 @@ export function preprocessMarkdownTables(text: string): string {
   
   let processed = text;
   
+  // Étape 1: Détecter et réparer les tableaux sans délimiteur
+  const fixTableWithoutDelimiter = (content: string): string => {
+    // Trouver les lignes qui commencent et se terminent par des pipes
+    const rowPattern = /^(\s*\|.+\|\s*)$/gm;
+    const rows = content.match(rowPattern);
+    
+    if (!rows || rows.length < 2) return content;
+    
+    // Transformer en tableau structuré
+    const lines = content.split('\n');
+    const tableLines: string[] = [];
+    let inTable = false;
+    let headerAdded = false;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // Détection du début d'un potentiel tableau
+      if (line.startsWith('|') && line.endsWith('|') && !inTable) {
+        inTable = true;
+        tableLines.push(line);
+        
+        // Si la ligne suivante n'est pas un délimiteur et qu'on n'a pas encore ajouté d'en-tête
+        if (i + 1 < lines.length && 
+            !lines[i+1].includes('---') && 
+            !headerAdded && 
+            lines[i+1].trim().startsWith('|')) {
+          
+          // Compter le nombre de colonnes
+          const colCount = (line.match(/\|/g) || []).length - 1;
+          tableLines.push('|' + ' --- |'.repeat(colCount));
+          headerAdded = true;
+        }
+      } 
+      // Continuation du tableau
+      else if (inTable && line.startsWith('|') && line.endsWith('|')) {
+        tableLines.push(line);
+      }
+      // Fin du tableau
+      else if (inTable) {
+        inTable = false;
+        headerAdded = false;
+        tableLines.push(''); // Ligne vide après le tableau
+        tableLines.push(line);
+      }
+      else {
+        tableLines.push(line);
+      }
+    }
+    
+    return tableLines.join('\n');
+  };
+  
+  // Étape 2: Réparer les colonnes mal alignées dans les tableaux
+  const fixTableColumnAlignment = (content: string): string => {
+    // Identifier les blocs de tableau complets
+    const tableBlockPattern = /(\|.+\|\n)+/g;
+    return content.replace(tableBlockPattern, (tableBlock) => {
+      const rows = tableBlock.trim().split('\n');
+      if (rows.length < 2) return tableBlock;
+      
+      // Analyser chaque ligne pour extraire ses cellules
+      const processedRows = rows.map(row => {
+        const cells = row.split('|')
+          .map(cell => cell.trim())
+          .filter(cell => cell.length > 0);
+        
+        return '| ' + cells.join(' | ') + ' |';
+      });
+      
+      // Si la deuxième ligne n'est pas un délimiteur, on en ajoute un
+      if (rows.length > 1 && !rows[1].includes('---')) {
+        const cellCount = (processedRows[0].match(/\|/g) || []).length - 1;
+        processedRows.splice(1, 0, '|' + ' --- |'.repeat(cellCount));
+      }
+      
+      return processedRows.join('\n') + '\n';
+    });
+  };
+  
+  // Étape 3: Nettoyer les cellules vides et les pipes inutiles
+  const cleanTableCells = (content: string): string => {
+    return content
+      // Réparer les cellules vides consécutives (|| -> | |)
+      .replace(/\|\|+/g, '| |')
+      // Assurer un espace après chaque pipe de début de cellule
+      .replace(/\|(?!\s)/g, '| ')
+      // Assurer un espace avant chaque pipe de fin de cellule
+      .replace(/(?<!\s)\|/g, ' |')
+      // Éviter les espaces multiples
+      .replace(/\|\s{2,}/g, '| ')
+      .replace(/\s{2,}\|/g, ' |');
+  };
+  
+  // Étape 4: Réparer les délimiteurs de tableau mal formatés
+  const fixTableDelimiters = (content: string): string => {
+    // Trouver les lignes qui ressemblent à des délimiteurs mais sont mal formatées
+    return content.replace(/^\s*\|([\s-:]*\|)+\s*$/gm, (match) => {
+      // Assurer que chaque cellule a au moins 3 tirets
+      return match
+        .replace(/:\s*:/g, ':---:')
+        .replace(/:\s*\|/g, ':---|')
+        .replace(/\|\s*:/g, '|---:')
+        .replace(/\|\s*\|/g, '|---|')
+        .replace(/^\s*\|(?!---)/g, '|---')
+        .replace(/(?<!--)\|\s*$/g, '---|');
+    });
+  };
+
+  // Étape 5: Convertir des blocs de texte avec formatage similaire à un tableau en tableaux
+  const convertTextBlocksToTables = (content: string): string => {
+    // Détecter les blocs qui ressemblent à des données tabulaires mais sans pipes
+    // Par exemple: "Niveau 1    Coefficient 100    Description..."
+    const potentialTableBlocks = content.split(/\n\n+/);
+    
+    return potentialTableBlocks.map(block => {
+      // Vérifier si ce bloc pourrait être un tableau
+      if (block.split('\n').length >= 3 && 
+          !block.includes('|') && 
+          /\b(niveau|coefficient|article|catégorie|échelon|classe|indice)\b/i.test(block)) {
+        
+        // Essayer de détecter des colonnes par les espaces multiples
+        const lines = block.split('\n');
+        const columns: number[] = [];
+        
+        // Détecter les colonnes potentielles en analysant les espaces dans les lignes
+        for (const line of lines) {
+          // Trouver les séquences d'espaces multiples pour détecter les colonnes potentielles
+          const regex = /\s{2,}/g;
+          let match;
+          while ((match = regex.exec(line)) !== null) {
+            if (match.index !== undefined) {
+              columns.push(match.index);
+            }
+          }
+        }
+        
+        // Calculer les positions de colonne les plus fréquentes
+        const columnPositions = columns
+          .sort((a, b) => a - b)
+          .filter((pos, i, arr) => i === 0 || pos - arr[i-1] > 3);
+        
+        // Si on a des colonnes potentielles, convertir en tableau
+        if (columnPositions.length > 0) {
+          let tableRows: string[] = [];
+          
+          // Construire les lignes du tableau
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            let tableRow = '|';
+            let lastPos = 0;
+            
+            for (const pos of columnPositions) {
+              const cellContent = line.substring(lastPos, pos).trim();
+              tableRow += ` ${cellContent} |`;
+              lastPos = pos;
+            }
+            
+            // Ajouter la dernière cellule
+            const lastCell = line.substring(lastPos).trim();
+            tableRow += ` ${lastCell} |`;
+            
+            tableRows.push(tableRow);
+            
+            // Ajouter un délimiteur après la première ligne
+            if (i === 0) {
+              tableRows.push('|' + ' --- |'.repeat(columnPositions.length + 1));
+            }
+          }
+          
+          return tableRows.join('\n');
+        }
+      }
+      
+      return block;
+    }).join('\n\n');
+  };
+  
   // Détection et transformation des lignes de "tableau" avec séparateur | mais sans structure markdown
   // Pattern: | Décès d'un enfant du salarié | 4 jours | | 
   const rowsWithSeparatorsPattern = /^(\s*\|\s*[^|\n]+\|\s*[^|\n]+\|\s*.*)$/gm;
@@ -268,6 +446,13 @@ export function preprocessMarkdownTables(text: string): string {
   // Convertir les lignes avec tirets horizontaux (souvent mal formatées)
   const messyHorizontalLinePattern = /\|[-]{3,}\|/g;
   processed = processed.replace(messyHorizontalLinePattern, '| --- |');
+  
+  // Appliquer toutes nos fonctions de nettoyage
+  processed = fixTableWithoutDelimiter(processed);
+  processed = fixTableColumnAlignment(processed);
+  processed = cleanTableCells(processed);
+  processed = fixTableDelimiters(processed);
+  processed = convertTextBlocksToTables(processed);
   
   return processed;
 }

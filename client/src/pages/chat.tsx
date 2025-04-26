@@ -319,14 +319,14 @@ export default function Chat({ params }: { params: { id: string } }) {
                     remarkPlugins={[remarkGfm]}
                     components={{
                       table: ({ node, ...props }) => (
-                        <div className="overflow-x-auto my-6 rounded-md border">
-                          <table className="w-full border-collapse" {...props} />
+                        <div className="overflow-x-auto my-6 rounded-md border shadow-sm">
+                          <table className="w-full border-collapse table-auto" {...props} />
                         </div>
                       ),
-                      thead: props => <thead className="bg-muted/50" {...props} />,
-                      th: props => <th className="border-b border-r last:border-r-0 border-border p-3 text-left font-medium text-sm" {...props} />,
+                      thead: props => <thead className="bg-primary/10" {...props} />,
+                      th: props => <th className="border-b border-r last:border-r-0 border-border p-3 text-left font-semibold text-sm" {...props} />,
                       td: props => <td className="border-b border-r last:border-r-0 border-border p-3 text-sm align-top whitespace-normal break-words" {...props} />,
-                      tr: props => <tr className="even:bg-muted/20" {...props} />,
+                      tr: props => <tr className="hover:bg-muted/30 even:bg-muted/10" {...props} />,
                       code: (props) => {
                         // Déterminer si c'est un bloc de code ou code inline
                         const codeContent = String(props.children).replace(/\n$/, '');

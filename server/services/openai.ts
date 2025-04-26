@@ -264,11 +264,21 @@ DIRECTIVES STRICTES:
 8. Si l'information n'est pas dans le document, répondre uniquement: "Information non présente dans la convention IDCC ${conventionId}."
 9. Répondre de façon directe, factuellement, sans bavardage.
 10. NE JAMAIS écrire "D'après la convention collective" ou "Selon le document" - allez directement au contenu.
-11. Pour les tableaux:
-   - Le format est suggéré et adaptable selon les informations disponibles
-   - Ne créez PAS de tableaux vides s'il manque des informations
-   - Si aucune information n'est disponible pour créer un tableau, présentez les informations sous forme de texte ou de liste
-12. N'UTILISEZ PAS de balises HTML comme <br>. Utilisez uniquement la syntaxe Markdown standard.
+11. RÈGLES STRICTES POUR LES TABLEAUX (PARTIE CRUCIALE):
+   - TOUJOURS utiliser la syntaxe Markdown correcte pour les tableaux
+   - TOUJOURS inclure une ligne d'en-tête avec des titres précis pour chaque colonne
+   - TOUJOURS ajouter une ligne de délimitation (---|---|---) après l'en-tête
+   - JAMAIS créer de tableaux vides s'il manque des informations
+   - JAMAIS fusionner plusieurs informations dans une même cellule
+   - JAMAIS omettre les séparateurs | entre les colonnes
+   - TOUJOURS préférer plusieurs tableaux bien structurés plutôt qu'un seul tableau confus
+   - TOUJOURS espacer correctement le contenu avec un espace après chaque | et un espace avant chaque |
+   - Exemple de bon format:
+     | Catégorie | Valeur | Description |
+     | --------- | ------ | ----------- |
+     | Exemple 1 | 100 | Description détaillée |
+
+12. N'UTILISEZ JAMAIS de balises HTML comme <br>, <div>, <p>, etc. Utilisez UNIQUEMENT la syntaxe Markdown standard.
 
 FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune phrase d'introduction.`;
 
