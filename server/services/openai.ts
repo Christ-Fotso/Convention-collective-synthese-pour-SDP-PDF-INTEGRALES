@@ -7,6 +7,7 @@ import {
   saveApiMetric,
   SECTION_TYPES 
 } from "./section-manager";
+import { normalizeMarkdownTables, containsTableData } from './table-formatter';
 import { db } from "../../db";
 import { eq } from "drizzle-orm";
 import { conventions } from "../../db/schema";
@@ -384,6 +385,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
       
       // Nettoyage du contenu pour enlever les balises HTML indésirables
       let cleanedContent = content || '';
+      
       // Remplacer les balises <br> par des retours à la ligne Markdown
       cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
       cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
@@ -397,6 +399,13 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
         }
         return '';
       });
+      
+      // Vérifier si le contenu contient des tableaux et appliquer notre formateur
+      if (containsTableData(cleanedContent)) {
+        console.log(`Détection de données tabulaires dans la réponse, application du formateur de tableaux avancé`);
+        cleanedContent = normalizeMarkdownTables(cleanedContent);
+        console.log(`Formatage des tableaux terminé avec succès pour la section ${sectionType}`);
+      }
       
       try {
         await saveConventionSection({
