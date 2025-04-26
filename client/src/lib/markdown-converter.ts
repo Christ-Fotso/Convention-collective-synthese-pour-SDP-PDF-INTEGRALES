@@ -47,6 +47,90 @@ export function improveMarkdownFormatting(text: string): string {
   
   let formatted = text;
   
+  // Convertit les "faux tableaux" (sections avec | sans bon formatage Markdown) en vrais tableaux Markdown
+  const fakeTablePattern = /(\|[\s-]+\|+[\s-]*\n)+/g;
+  formatted = formatted.replace(fakeTablePattern, (match) => {
+    // Nettoyer et formater comme un délimiteur de tableau
+    return '|' + '---|'.repeat(match.split('|').length - 2) + '\n';
+  });
+
+  // Traiter les séparateurs de tableau mal formatés comme "---------------------"
+  const badSeparatorPattern = /\| *[-]+ *\|/g;
+  formatted = formatted.replace(badSeparatorPattern, '| --- |');
+
+  // Détection et correction des faux délimiteurs (lignes avec beaucoup de traits d'union)
+  formatted = formatted.replace(/\n([-]{5,})\n/g, '\n\n$1\n\n');
+
+  // Transformer les lignes qui ressemblent à des tableaux (utilisant un | comme séparateur, mais pas proprement formatées)
+  const messyTableRowPattern = /^([^|]*\|[^|]+\|[^|]*\|.*)/gm;
+  formatted = formatted.replace(messyTableRowPattern, (match) => {
+    // S'assurer que c'est bien un tableau en vérifiant le nombre de |
+    const pipes = match.match(/\|/g);
+    if (pipes && pipes.length >= 3) {
+      // C'est un potentiel tableau, formater la ligne
+      return match.split('|')
+        .map(cell => cell.trim())
+        .join(' | ')
+        .replace(/^\s*\|\s*/, '| ')
+        .replace(/\s*\|\s*$/, ' |');
+    }
+    return match;
+  });
+
+  // Convertir les tableaux horizontaux basés sur des traits d'union en tableaux Markdown
+  formatted = formatted.replace(/(?:^|\n)([^\n]+)\n([-]{5,}[^\n]*)\n/g, (match, headerRow, delimiterRow) => {
+    if (headerRow.includes('|') || !delimiterRow.includes('-')) return match;
+    
+    // Si le séparateur est juste une ligne continue de traits d'union, c'est un titre souligné, pas un tableau
+    const trimmedDelimiter = delimiterRow.trim();
+    let isContinuousDash = true;
+    for (let i = 0; i < trimmedDelimiter.length; i++) {
+      if (trimmedDelimiter[i] !== '-') {
+        isContinuousDash = false;
+        break;
+      }
+    }
+    if (isContinuousDash) {
+      return `\n## ${headerRow.trim()}\n\n`;
+    }
+    
+    // Détecter les colonnes basées sur les groupes de traits d'union
+    const columns = [];
+    let startIndex = 0;
+    let inColumn = false;
+    
+    for (let i = 0; i < delimiterRow.length; i++) {
+      if (delimiterRow[i] === '-' && !inColumn) {
+        startIndex = i;
+        inColumn = true;
+      } else if ((delimiterRow[i] !== '-' || i === delimiterRow.length - 1) && inColumn) {
+        const endIndex = delimiterRow[i] === '-' ? i : i - 1;
+        if (endIndex >= startIndex) {
+          columns.push({ start: startIndex, end: endIndex });
+        }
+        inColumn = false;
+      }
+    }
+    
+    if (columns.length < 2) return match; // Pas assez de colonnes pour un tableau
+    
+    // Créer l'en-tête du tableau
+    let markdownTable = '|';
+    for (const column of columns) {
+      const cellContent = headerRow.substring(column.start, column.end + 1).trim() || ' ';
+      markdownTable += ` ${cellContent} |`;
+    }
+    markdownTable += '\n|';
+    
+    // Créer la ligne de délimitation
+    for (let i = 0; i < columns.length; i++) {
+      markdownTable += ' --- |';
+    }
+    markdownTable += '\n';
+    
+    return markdownTable;
+  });
+
   // Recherche de tableaux Markdown et amélioration de leur formatage
   const tablePattern = /(\|.*\|[\s]*\n\|[\s]*[-:]+[-|\s:]*\|[\s]*\n)((.*\|[\s]*\n)*)/g;
   formatted = formatted.replace(tablePattern, (matchedTable) => {
@@ -144,6 +228,50 @@ function objectToMarkdown(obj: any, level: number = 1): string {
   return markdown;
 }
 
+/**
+ * Fonction pour transformer des lignes spécifiques contenant des patterns de tableaux courants
+ * Cette fonction convertit certains formats non-markdown en tableaux markdown valides
+ */
+export function preprocessMarkdownTables(text: string): string {
+  if (!text) return text;
+  
+  let processed = text;
+  
+  // Détection et transformation des lignes de "tableau" avec séparateur | mais sans structure markdown
+  // Pattern: | Décès d'un enfant du salarié | 4 jours | | 
+  const rowsWithSeparatorsPattern = /^(\s*\|\s*[^|\n]+\|\s*[^|\n]+\|\s*.*)$/gm;
+  processed = processed.replace(rowsWithSeparatorsPattern, (match) => {
+    // Vérifier si cette ligne n'est pas déjà un tableau markdown correctement formaté
+    if (/\|\s*[-:]+\s*\|/.test(match)) return match;
+    
+    // Compter le nombre de cellules pour déterminer si c'est vraiment un tableau
+    const cells = match.split('|').filter(part => part.trim().length > 0);
+    if (cells.length < 2) return match;
+    
+    return match.trim();
+  });
+  
+  // Trouver une séquence de lignes qui ressemblent à un tableau sans en-tête délimiteur
+  const tableRowsPattern = /(\s*\|[^\n]+\|\s*\n)(\s*\|[^\n]+\|\s*\n)+/g;
+  processed = processed.replace(tableRowsPattern, (match) => {
+    const rows = match.trim().split('\n');
+    // Si la deuxième ligne n'est pas un délimiteur, on en ajoute un
+    if (rows.length > 1 && !/\|\s*[-:]+[-:|\s]*\|/.test(rows[1])) {
+      // Compter le nombre de cellules dans la première ligne
+      const cellCount = (rows[0].match(/\|/g) || []).length - 1;
+      // Insérer un délimiteur après la première ligne
+      rows.splice(1, 0, '|' + ' --- |'.repeat(cellCount));
+    }
+    return rows.join('\n') + '\n';
+  });
+  
+  // Convertir les lignes avec tirets horizontaux (souvent mal formatées)
+  const messyHorizontalLinePattern = /\|[-]{3,}\|/g;
+  processed = processed.replace(messyHorizontalLinePattern, '| --- |');
+  
+  return processed;
+}
+
 export function convertJsonToMarkdown(jsonString: string): string {
   // Si c'est "RAS", retourner une chaîne vide
   if (jsonString === "RAS") {
@@ -156,6 +284,11 @@ export function convertJsonToMarkdown(jsonString: string): string {
   } catch (e) {
     // Si ce n'est pas du JSON valide, retourner la chaîne nettoyée et formatée
     const cleanedContent = removeIntroductions(jsonString);
-    return improveMarkdownFormatting(cleanedContent);
+    
+    // Prétraiter le texte pour améliorer les tableaux
+    const preprocessed = preprocessMarkdownTables(cleanedContent);
+    
+    // Appliquer les améliorations générales de formatage Markdown
+    return improveMarkdownFormatting(preprocessed);
   }
 }
