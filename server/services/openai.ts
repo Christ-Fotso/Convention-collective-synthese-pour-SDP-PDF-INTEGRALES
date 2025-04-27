@@ -410,81 +410,81 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
       // On continue malgré l'erreur
     }
     
+    // Nettoyage du contenu pour enlever les balises HTML indésirables
+    let cleanedContent = content || '';
+    
+    // Remplacer les balises <br> par des retours à la ligne Markdown
+    cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
+    cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
+    cleanedContent = cleanedContent.replace(/<br \/>/g, '  \n');
+    
+    // Nettoyer d'autres balises HTML potentielles
+    cleanedContent = cleanedContent.replace(/<\/?[^>]+(>|$)/g, function(match) {
+      // Ne pas toucher aux balises spéciales utilisées par Markdown comme <http://...>
+      if (match.startsWith('<http') || match.startsWith('<ftp') || match.startsWith('<mailto')) {
+        return match;
+      }
+      return '';
+    });
+    
+    // Supprimer les phrases d'introduction communes
+    const introPatterns = [
+      // Introductions simples
+      /^Voici (la|le|les|une|un|des) .{5,100}(\.|\n| :|:)/i,
+      /^Ci-dessous (figure|se trouve|vous trouverez) .{5,100}(\.|\n| :|:)/i,
+      /^(Je vous présente|Voici|Ci-dessous|D'après|Selon|Sur la base) .{5,150}(\.|\n| :|:)/i,
+      
+      // Analyses et examens
+      /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse|L'analyse de) .{5,150}(\.|\n| :|:)/i,
+      /^(En examinant|Après examen|Suite à l'examen|L'examen de) .{5,150}(\.|\n| :|:)/i,
+      
+      // Références à la convention
+      /^(Pour|Concernant|Dans|Sur|À propos de) la convention collective .{5,100}(\.|\n| :|:)/i,
+      /^(Pour|Concernant|Dans|Sur|À propos de) l'IDCC \d+ .{5,100}(\.|\n| :|:)/i,
+      /^Basé(e)? sur (le texte (fourni|de la convention)|la convention|l'analyse) .{5,120}(\.|\n| :|:)/i,
+      /^(Dans|Pour|Selon) la convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+      /^La convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+      
+      // Introductions spécifiques aux informations
+      /^Les informations (suivantes|ci-dessous|extraites) .{5,120}(\.|\n| :|:)/i,
+      /^(Après|Suite à) (recherche|vérification|consultation) .{5,120}(\.|\n| :|:)/i,
+      /^(Conformément à|En vertu de) .{5,120}(\.|\n| :|:)/i
+    ];
+    
+    let introductionRemoved = false;
+    // Supprimer les introductions
+    for (const pattern of introPatterns) {
+      if (pattern.test(cleanedContent)) {
+        console.log(`Détection d'une introduction dans la réponse, suppression automatique`);
+        cleanedContent = cleanedContent.replace(pattern, '');
+        introductionRemoved = true;
+      }
+    }
+    
+    // Supprimer aussi les phrases d'ouverture communes
+    if (/^(Voici|Ci-dessous) :/i.test(cleanedContent) || 
+        /^Voici la réponse :/i.test(cleanedContent) || 
+        /^Voici les informations demandées :/i.test(cleanedContent)) {
+      cleanedContent = cleanedContent.replace(/^(Voici|Ci-dessous) :/i, '');
+      cleanedContent = cleanedContent.replace(/^Voici la réponse :/i, '');
+      cleanedContent = cleanedContent.replace(/^Voici les informations demandées :/i, '');
+      introductionRemoved = true;
+    }
+    
+    if (introductionRemoved) {
+      cleanedContent = cleanedContent.trim();
+    }
+    
+    // Vérifier si le contenu contient des tableaux et appliquer notre formateur
+    if (containsTableData(cleanedContent)) {
+      console.log(`Détection de données tabulaires dans la réponse, application du formateur de tableaux avancé`);
+      cleanedContent = normalizeMarkdownTables(cleanedContent);
+      console.log(`Formatage des tableaux terminé avec succès`);
+    }
+    
     // Sauvegarde de la section en base de données si ce n'est pas une requête de chat
     if (category && category !== 'chat') {
       const sectionType = subcategory ? `${category}-${subcategory}` : category;
-      
-      // Nettoyage du contenu pour enlever les balises HTML indésirables
-      let cleanedContent = content || '';
-      
-      // Remplacer les balises <br> par des retours à la ligne Markdown
-      cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
-      cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
-      cleanedContent = cleanedContent.replace(/<br \/>/g, '  \n');
-      
-      // Nettoyer d'autres balises HTML potentielles
-      cleanedContent = cleanedContent.replace(/<\/?[^>]+(>|$)/g, function(match) {
-        // Ne pas toucher aux balises spéciales utilisées par Markdown comme <http://...>
-        if (match.startsWith('<http') || match.startsWith('<ftp') || match.startsWith('<mailto')) {
-          return match;
-        }
-        return '';
-      });
-      
-      // Supprimer les phrases d'introduction communes
-      const introPatterns = [
-        // Introductions simples
-        /^Voici (la|le|les|une|un|des) .{5,100}(\.|\n| :|:)/i,
-        /^Ci-dessous (figure|se trouve|vous trouverez) .{5,100}(\.|\n| :|:)/i,
-        /^(Je vous présente|Voici|Ci-dessous|D'après|Selon|Sur la base) .{5,150}(\.|\n| :|:)/i,
-        
-        // Analyses et examens
-        /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse|L'analyse de) .{5,150}(\.|\n| :|:)/i,
-        /^(En examinant|Après examen|Suite à l'examen|L'examen de) .{5,150}(\.|\n| :|:)/i,
-        
-        // Références à la convention
-        /^(Pour|Concernant|Dans|Sur|À propos de) la convention collective .{5,100}(\.|\n| :|:)/i,
-        /^(Pour|Concernant|Dans|Sur|À propos de) l'IDCC \d+ .{5,100}(\.|\n| :|:)/i,
-        /^Basé(e)? sur (le texte (fourni|de la convention)|la convention|l'analyse) .{5,120}(\.|\n| :|:)/i,
-        /^(Dans|Pour|Selon) la convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
-        /^La convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
-        
-        // Introductions spécifiques aux informations
-        /^Les informations (suivantes|ci-dessous|extraites) .{5,120}(\.|\n| :|:)/i,
-        /^(Après|Suite à) (recherche|vérification|consultation) .{5,120}(\.|\n| :|:)/i,
-        /^(Conformément à|En vertu de) .{5,120}(\.|\n| :|:)/i
-      ];
-      
-      let introductionRemoved = false;
-      // Supprimer les introductions
-      for (const pattern of introPatterns) {
-        if (pattern.test(cleanedContent)) {
-          console.log(`Détection d'une introduction dans la réponse, suppression automatique`);
-          cleanedContent = cleanedContent.replace(pattern, '');
-          introductionRemoved = true;
-        }
-      }
-      
-      // Supprimer aussi les phrases d'ouverture communes
-      if (/^(Voici|Ci-dessous) :/i.test(cleanedContent) || 
-          /^Voici la réponse :/i.test(cleanedContent) || 
-          /^Voici les informations demandées :/i.test(cleanedContent)) {
-        cleanedContent = cleanedContent.replace(/^(Voici|Ci-dessous) :/i, '');
-        cleanedContent = cleanedContent.replace(/^Voici la réponse :/i, '');
-        cleanedContent = cleanedContent.replace(/^Voici les informations demandées :/i, '');
-        introductionRemoved = true;
-      }
-      
-      if (introductionRemoved) {
-        cleanedContent = cleanedContent.trim();
-      }
-      
-      // Vérifier si le contenu contient des tableaux et appliquer notre formateur
-      if (containsTableData(cleanedContent)) {
-        console.log(`Détection de données tabulaires dans la réponse, application du formateur de tableaux avancé`);
-        cleanedContent = normalizeMarkdownTables(cleanedContent);
-        console.log(`Formatage des tableaux terminé avec succès pour la section ${sectionType}`);
-      }
       
       try {
         await saveConventionSection({
@@ -501,7 +501,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     }
     
     return {
-      content: cleanedContent || content
+      content: cleanedContent
     };
   } catch (error: any) {
     console.error('Erreur lors de l\'interrogation d\'OpenAI:', error);
@@ -828,7 +828,7 @@ Si aucune information n'est disponible pour créer un tableau, ne pas inclure de
     }
     
     // Retourner le contenu nettoyé au lieu du contenu brut
-    return { content: cleanedContent };
+    return { content: cleanedContent || content };
   } catch (error: any) {
     console.error('Erreur lors de l\'interrogation d\'OpenAI:', error);
     
