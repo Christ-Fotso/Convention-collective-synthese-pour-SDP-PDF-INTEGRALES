@@ -8,6 +8,7 @@ import {
   SECTION_TYPES 
 } from "./section-manager";
 import { normalizeMarkdownTables, containsTableData } from './table-formatter';
+import { formatInfoGenerales } from './formatter';
 import { db } from "../../db";
 import { eq } from "drizzle-orm";
 import { conventions } from "../../db/schema";
@@ -679,6 +680,13 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     }
     
     // Utiliser la fonction formatColumnName définie à l'extérieur
+    
+    // Appliquer un formatage spécial pour les informations générales
+    if (category === 'informations-generales') {
+      console.log('Application du formateur spécial pour les informations générales');
+      cleanedContent = formatInfoGenerales(cleanedContent);
+      console.log('Formatage des informations générales terminé');
+    }
     
     // Sauvegarde de la section en base de données si ce n'est pas une requête de chat
     if (category && category !== 'chat') {
