@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft, MessageCircle } from "lucide-react";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
+import { EnhancedMarkdown } from '@/components/enhanced-markdown';
 import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -314,38 +313,8 @@ export default function Chat({ params }: { params: { id: string } }) {
             ) : messages.length > 0 ? (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 prose prose-sm max-w-none dark:prose-invert prose-table:w-full">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      table: ({ node, ...props }) => (
-                        <div className="overflow-x-auto my-6 rounded-md border shadow-sm">
-                          <table className="w-full border-collapse table-auto" {...props} />
-                        </div>
-                      ),
-                      thead: props => <thead className="bg-primary/10" {...props} />,
-                      th: props => <th className="border-b border-r last:border-r-0 border-border p-3 text-left font-semibold text-sm" {...props} />,
-                      td: props => <td className="border-b border-r last:border-r-0 border-border p-3 text-sm align-top whitespace-normal break-words" {...props} />,
-                      tr: props => <tr className="hover:bg-muted/30 even:bg-muted/10" {...props} />,
-                      code: (props) => {
-                        // Déterminer si c'est un bloc de code ou code inline
-                        const codeContent = String(props.children).replace(/\n$/, '');
-                        // Si le contenu contient des sauts de ligne, c'est un bloc de code
-                        const isCodeBlock = /\n/.test(codeContent) || props.className;
-                        
-                        return isCodeBlock ? (
-                          <code className={props.className} {...props} />
-                        ) : (
-                          <code className="bg-muted/50 px-1 py-0.5 rounded text-xs" {...props} />
-                        );
-                      },
-                      pre: (props) => (
-                        <pre className="bg-muted/20 p-4 rounded-md overflow-x-auto" {...props} />
-                      )
-                    }}
-                  >
-                    {messages[1].content}
-                  </ReactMarkdown>
+                <div className="mt-4">
+                  <EnhancedMarkdown content={messages[1].content} />
                 </div>
                 {shouldShowComparison && currentCategory && currentSubcategory && (
                   <LegalComparison
