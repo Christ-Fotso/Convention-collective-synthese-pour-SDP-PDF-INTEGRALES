@@ -379,13 +379,30 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     
     console.log(`Envoi de la requête à OpenAI avec ${apiMessages.length} messages`);
     
-    // Appel à l'API
-    const completion = await openai.chat.completions.create({
+    // Ajout du format JSON pour les catégories spécifiques qui nécessitent une structure stricte
+    let completionOptions: any = {
       model: MODEL,
       messages: apiMessages as any,
       temperature: 0.3, // Valeur basse pour des réponses plus précises et cohérentes
       max_tokens: 32000 // Utiliser la capacité maximale de GPT-4.1 en sortie (32K tokens)
-    });
+    };
+    
+    // Utiliser le format JSON pour certaines catégories spécifiques
+    if (category === 'classification' || 
+        (category === 'remuneration' && subcategory === 'grille') ||
+        category === 'conges') {
+      console.log(`Utilisation du format JSON structuré pour la catégorie: ${category} ${subcategory || ''}`);
+      completionOptions.response_format = { type: "json_object" };
+      
+      // Ajout d'instructions pour le format JSON dans le dernier message
+      const lastUserMessage = apiMessages[apiMessages.length - 1];
+      if (lastUserMessage.role === 'user') {
+        lastUserMessage.content += "\n\nFORMAT REQUIS: Réponds sous forme d'un objet JSON valide avec les propriétés suivantes: 'title' (string), 'data' (array d'objets contenant les données structurées). N'utilise pas de barres verticales comme séparateurs mais structure les données en objets JSON.";
+      }
+    }
+    
+    // Appel à l'API avec les options
+    const completion = await openai.chat.completions.create(completionOptions);
     
     const content = completion.choices[0].message.content || '';
     console.log(`Réponse reçue d'OpenAI: ${content.substring(0, 100)}...`);
@@ -410,76 +427,230 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
       // On continue malgré l'erreur
     }
     
-    // Nettoyage du contenu pour enlever les balises HTML indésirables
+    // Nettoyage du contenu en fonction de sa forme (JSON ou texte normal)
     let cleanedContent = content || '';
     
-    // Remplacer les balises <br> par des retours à la ligne Markdown
-    cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
-    cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
-    cleanedContent = cleanedContent.replace(/<br \/>/g, '  \n');
-    
-    // Nettoyer d'autres balises HTML potentielles
-    cleanedContent = cleanedContent.replace(/<\/?[^>]+(>|$)/g, function(match) {
-      // Ne pas toucher aux balises spéciales utilisées par Markdown comme <http://...>
-      if (match.startsWith('<http') || match.startsWith('<ftp') || match.startsWith('<mailto')) {
-        return match;
+    // Vérifier si la réponse est au format JSON et la traiter si nécessaire
+    if ((category === 'classification' || 
+         (category === 'remuneration' && subcategory === 'grille') ||
+         category === 'conges') && 
+        cleanedContent.trim().startsWith('{')) {
+      
+      try {
+        // Traiter le JSON reçu
+        console.log("Réponse reçue au format JSON, conversion en Markdown structuré");
+        const jsonResponse = JSON.parse(cleanedContent);
+        
+        // Construire un Markdown propre et structuré à partir du JSON
+        let structuredMarkdown = '';
+        
+        // Ajouter le titre s'il existe
+        if (jsonResponse.title) {
+          structuredMarkdown += `## ${jsonResponse.title}\n\n`;
+        }
+        
+        // Traiter les données selon la catégorie
+        if (category === 'classification') {
+          // Pour la classification, créer un tableau Markdown propre
+          if (Array.isArray(jsonResponse.data) && jsonResponse.data.length > 0) {
+            // Déterminer les colonnes du tableau en fonction des propriétés du premier objet
+            const firstItem = jsonResponse.data[0];
+            const columns = Object.keys(firstItem);
+            
+            // Créer l'en-tête du tableau
+            structuredMarkdown += '| ' + columns.map(col => formatColumnName(col)).join(' | ') + ' |\n';
+            // Créer la ligne de séparation
+            structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
+            
+            // Ajouter chaque ligne du tableau
+            jsonResponse.data.forEach(item => {
+              structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
+            });
+            structuredMarkdown += '\n';
+          }
+        } else if (category === 'remuneration' && subcategory === 'grille') {
+          // Pour les grilles de salaire, potentiellement plusieurs tableaux par catégorie
+          if (jsonResponse.categories && Array.isArray(jsonResponse.categories)) {
+            jsonResponse.categories.forEach(category => {
+              if (category.name) {
+                structuredMarkdown += `### ${category.name}\n\n`;
+              }
+              
+              if (Array.isArray(category.data) && category.data.length > 0) {
+                // Créer un tableau pour cette catégorie
+                const columns = Object.keys(category.data[0]);
+                
+                // En-tête
+                structuredMarkdown += '| ' + columns.map(col => formatColumnName(col)).join(' | ') + ' |\n';
+                // Séparation
+                structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
+                
+                // Lignes
+                category.data.forEach(item => {
+                  structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
+                });
+                structuredMarkdown += '\n';
+              }
+            });
+          } else if (Array.isArray(jsonResponse.data)) {
+            // Format alternatif avec un seul tableau
+            // Déterminer les colonnes du tableau en fonction des propriétés du premier objet
+            if (jsonResponse.data.length > 0) {
+              const columns = Object.keys(jsonResponse.data[0]);
+              
+              // Créer l'en-tête du tableau
+              structuredMarkdown += '| ' + columns.map(col => formatColumnName(col)).join(' | ') + ' |\n';
+              // Créer la ligne de séparation
+              structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
+              
+              // Ajouter chaque ligne du tableau
+              jsonResponse.data.forEach(item => {
+                structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
+              });
+              structuredMarkdown += '\n';
+            }
+          }
+        } else if (category === 'conges') {
+          // Pour les congés, format tableau ou liste selon la structure
+          if (Array.isArray(jsonResponse.data) && jsonResponse.data.length > 0) {
+            // Déterminer si on doit faire un tableau ou une liste basée sur la structure
+            const firstItem = jsonResponse.data[0];
+            
+            if (Object.keys(firstItem).length >= 2) {
+              // Assez de colonnes pour un tableau
+              const columns = Object.keys(firstItem);
+              
+              // Créer l'en-tête du tableau
+              structuredMarkdown += '| ' + columns.map(col => formatColumnName(col)).join(' | ') + ' |\n';
+              // Créer la ligne de séparation
+              structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
+              
+              // Ajouter chaque ligne du tableau
+              jsonResponse.data.forEach(item => {
+                structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
+              });
+            } else {
+              // Format liste pour les structures simples
+              jsonResponse.data.forEach(item => {
+                const key = Object.keys(item)[0];
+                structuredMarkdown += `- **${key}**: ${item[key]}\n`;
+              });
+            }
+            structuredMarkdown += '\n';
+          }
+        }
+        
+        // Notes ou informations supplémentaires
+        if (jsonResponse.notes) {
+          structuredMarkdown += '### Notes supplémentaires\n\n';
+          if (Array.isArray(jsonResponse.notes)) {
+            jsonResponse.notes.forEach(note => {
+              structuredMarkdown += `- ${note}\n`;
+            });
+          } else {
+            structuredMarkdown += jsonResponse.notes + '\n';
+          }
+        }
+        
+        // Articles de référence
+        if (jsonResponse.references) {
+          structuredMarkdown += '### Articles de référence\n\n';
+          if (Array.isArray(jsonResponse.references)) {
+            jsonResponse.references.forEach(ref => {
+              structuredMarkdown += `- ${ref}\n`;
+            });
+          } else {
+            structuredMarkdown += jsonResponse.references + '\n';
+          }
+        }
+        
+        // Utiliser le Markdown structuré comme contenu nettoyé
+        cleanedContent = structuredMarkdown.trim();
+        console.log("Conversion JSON → Markdown réussie");
+      } catch (jsonError) {
+        console.error("Erreur lors du parsing du JSON:", jsonError);
+        // En cas d'erreur de parsing, continuer avec le contenu brut
+        console.log("Traitement comme du texte standard suite à l'erreur de parsing JSON");
       }
-      return '';
-    });
-    
-    // Supprimer les phrases d'introduction communes
-    const introPatterns = [
-      // Introductions simples
-      /^Voici (la|le|les|une|un|des) .{5,100}(\.|\n| :|:)/i,
-      /^Ci-dessous (figure|se trouve|vous trouverez) .{5,100}(\.|\n| :|:)/i,
-      /^(Je vous présente|Voici|Ci-dessous|D'après|Selon|Sur la base) .{5,150}(\.|\n| :|:)/i,
+    } else {
+      // Traitement standard pour le texte non-JSON
       
-      // Analyses et examens
-      /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse|L'analyse de) .{5,150}(\.|\n| :|:)/i,
-      /^(En examinant|Après examen|Suite à l'examen|L'examen de) .{5,150}(\.|\n| :|:)/i,
+      // Remplacer les balises <br> par des retours à la ligne Markdown
+      cleanedContent = cleanedContent.replace(/<br>/g, '  \n');
+      cleanedContent = cleanedContent.replace(/<br\/>/g, '  \n');
+      cleanedContent = cleanedContent.replace(/<br \/>/g, '  \n');
       
-      // Références à la convention
-      /^(Pour|Concernant|Dans|Sur|À propos de) la convention collective .{5,100}(\.|\n| :|:)/i,
-      /^(Pour|Concernant|Dans|Sur|À propos de) l'IDCC \d+ .{5,100}(\.|\n| :|:)/i,
-      /^Basé(e)? sur (le texte (fourni|de la convention)|la convention|l'analyse) .{5,120}(\.|\n| :|:)/i,
-      /^(Dans|Pour|Selon) la convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
-      /^La convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+      // Nettoyer d'autres balises HTML potentielles
+      cleanedContent = cleanedContent.replace(/<\/?[^>]+(>|$)/g, function(match) {
+        // Ne pas toucher aux balises spéciales utilisées par Markdown comme <http://...>
+        if (match.startsWith('<http') || match.startsWith('<ftp') || match.startsWith('<mailto')) {
+          return match;
+        }
+        return '';
+      });
       
-      // Introductions spécifiques aux informations
-      /^Les informations (suivantes|ci-dessous|extraites) .{5,120}(\.|\n| :|:)/i,
-      /^(Après|Suite à) (recherche|vérification|consultation) .{5,120}(\.|\n| :|:)/i,
-      /^(Conformément à|En vertu de) .{5,120}(\.|\n| :|:)/i
-    ];
-    
-    let introductionRemoved = false;
-    // Supprimer les introductions
-    for (const pattern of introPatterns) {
-      if (pattern.test(cleanedContent)) {
-        console.log(`Détection d'une introduction dans la réponse, suppression automatique`);
-        cleanedContent = cleanedContent.replace(pattern, '');
+      // Supprimer les phrases d'introduction communes
+      const introPatterns = [
+        // Introductions simples
+        /^Voici (la|le|les|une|un|des) .{5,100}(\.|\n| :|:)/i,
+        /^Ci-dessous (figure|se trouve|vous trouverez) .{5,100}(\.|\n| :|:)/i,
+        /^(Je vous présente|Voici|Ci-dessous|D'après|Selon|Sur la base) .{5,150}(\.|\n| :|:)/i,
+        
+        // Analyses et examens
+        /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse|L'analyse de) .{5,150}(\.|\n| :|:)/i,
+        /^(En examinant|Après examen|Suite à l'examen|L'examen de) .{5,150}(\.|\n| :|:)/i,
+        
+        // Références à la convention
+        /^(Pour|Concernant|Dans|Sur|À propos de) la convention collective .{5,100}(\.|\n| :|:)/i,
+        /^(Pour|Concernant|Dans|Sur|À propos de) l'IDCC \d+ .{5,100}(\.|\n| :|:)/i,
+        /^Basé(e)? sur (le texte (fourni|de la convention)|la convention|l'analyse) .{5,120}(\.|\n| :|:)/i,
+        /^(Dans|Pour|Selon) la convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+        /^La convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+        
+        // Introductions spécifiques aux informations
+        /^Les informations (suivantes|ci-dessous|extraites) .{5,120}(\.|\n| :|:)/i,
+        /^(Après|Suite à) (recherche|vérification|consultation) .{5,120}(\.|\n| :|:)/i,
+        /^(Conformément à|En vertu de) .{5,120}(\.|\n| :|:)/i
+      ];
+      
+      let introductionRemoved = false;
+      // Supprimer les introductions
+      for (const pattern of introPatterns) {
+        if (pattern.test(cleanedContent)) {
+          console.log(`Détection d'une introduction dans la réponse, suppression automatique`);
+          cleanedContent = cleanedContent.replace(pattern, '');
+          introductionRemoved = true;
+        }
+      }
+      
+      // Supprimer aussi les phrases d'ouverture communes
+      if (/^(Voici|Ci-dessous) :/i.test(cleanedContent) || 
+          /^Voici la réponse :/i.test(cleanedContent) || 
+          /^Voici les informations demandées :/i.test(cleanedContent)) {
+        cleanedContent = cleanedContent.replace(/^(Voici|Ci-dessous) :/i, '');
+        cleanedContent = cleanedContent.replace(/^Voici la réponse :/i, '');
+        cleanedContent = cleanedContent.replace(/^Voici les informations demandées :/i, '');
         introductionRemoved = true;
       }
+      
+      if (introductionRemoved) {
+        cleanedContent = cleanedContent.trim();
+      }
+      
+      // Vérifier si le contenu contient des tableaux et appliquer notre formateur
+      if (containsTableData(cleanedContent)) {
+        console.log(`Détection de données tabulaires dans la réponse, application du formateur de tableaux avancé`);
+        cleanedContent = normalizeMarkdownTables(cleanedContent);
+        console.log(`Formatage des tableaux terminé avec succès`);
+      }
     }
     
-    // Supprimer aussi les phrases d'ouverture communes
-    if (/^(Voici|Ci-dessous) :/i.test(cleanedContent) || 
-        /^Voici la réponse :/i.test(cleanedContent) || 
-        /^Voici les informations demandées :/i.test(cleanedContent)) {
-      cleanedContent = cleanedContent.replace(/^(Voici|Ci-dessous) :/i, '');
-      cleanedContent = cleanedContent.replace(/^Voici la réponse :/i, '');
-      cleanedContent = cleanedContent.replace(/^Voici les informations demandées :/i, '');
-      introductionRemoved = true;
-    }
-    
-    if (introductionRemoved) {
-      cleanedContent = cleanedContent.trim();
-    }
-    
-    // Vérifier si le contenu contient des tableaux et appliquer notre formateur
-    if (containsTableData(cleanedContent)) {
-      console.log(`Détection de données tabulaires dans la réponse, application du formateur de tableaux avancé`);
-      cleanedContent = normalizeMarkdownTables(cleanedContent);
-      console.log(`Formatage des tableaux terminé avec succès`);
+    // Fonction auxiliaire pour formater les noms de colonnes
+    function formatColumnName(name: string): string {
+      return name
+        .replace(/([A-Z])/g, ' $1') // Ajouter un espace avant chaque majuscule
+        .replace(/^./, str => str.toUpperCase()) // Majuscule première lettre
+        .replace(/_/g, ' '); // Remplacer les underscores par des espaces
     }
     
     // Sauvegarde de la section en base de données si ce n'est pas une requête de chat
