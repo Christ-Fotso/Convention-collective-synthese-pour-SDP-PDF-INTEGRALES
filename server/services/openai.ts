@@ -44,6 +44,16 @@ import { LimitedCache } from "./cache-manager";
 // Cache pour les PDFs déjà traités (avec persistance)
 const pdfTextCache = new LimitedCache(20, 'pdf-text', 600000); // 10 minutes d'intervalle
 
+/**
+ * Fonction auxiliaire pour formater les noms de colonnes dans les tableaux
+ */
+function formatColumnName(name: string): string {
+  return name
+    .replace(/([A-Z])/g, ' $1') // Ajouter un espace avant chaque majuscule
+    .replace(/^./, str => str.toUpperCase()) // Majuscule première lettre
+    .replace(/_/g, ' '); // Remplacer les underscores par des espaces
+}
+
 // Fonction d'initialisation exposée pour être appelée au démarrage du serveur
 export async function initPdfTextCache(): Promise<void> {
   try {
@@ -390,7 +400,8 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     // Utiliser le format JSON pour certaines catégories spécifiques
     if (category === 'classification' || 
         (category === 'remuneration' && subcategory === 'grille') ||
-        category === 'conges') {
+        category === 'conges' ||
+        category === 'informations-generales') {
       console.log(`Utilisation du format JSON structuré pour la catégorie: ${category} ${subcategory || ''}`);
       completionOptions.response_format = { type: "json_object" };
       
@@ -433,7 +444,8 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     // Vérifier si la réponse est au format JSON et la traiter si nécessaire
     if ((category === 'classification' || 
          (category === 'remuneration' && subcategory === 'grille') ||
-         category === 'conges') && 
+         category === 'conges' ||
+         category === 'informations-generales') && 
         cleanedContent.trim().startsWith('{')) {
       
       try {
@@ -538,6 +550,27 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
             }
             structuredMarkdown += '\n';
           }
+        } else if (category === 'informations-generales') {
+          // Format spécial pour les informations générales
+          // Créer un tableau à deux colonnes Champ | Valeur
+          structuredMarkdown += '| Champ | Valeur |\n';
+          structuredMarkdown += '| --- | --- |\n';
+          
+          if (Array.isArray(jsonResponse.data) && jsonResponse.data.length > 0) {
+            // Si les données sont un tableau d'objets
+            jsonResponse.data.forEach(item => {
+              const field = Object.keys(item)[0];
+              const value = item[field] || '';
+              structuredMarkdown += `| **${field}** | ${value} |\n`;
+            });
+          } else if (typeof jsonResponse.data === 'object' && jsonResponse.data !== null) {
+            // Si les données sont un objet unique
+            Object.entries(jsonResponse.data).forEach(([field, value]) => {
+              structuredMarkdown += `| **${field}** | ${value} |\n`;
+            });
+          }
+          
+          structuredMarkdown += '\n';
         }
         
         // Notes ou informations supplémentaires
@@ -645,13 +678,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
       }
     }
     
-    // Fonction auxiliaire pour formater les noms de colonnes
-    function formatColumnName(name: string): string {
-      return name
-        .replace(/([A-Z])/g, ' $1') // Ajouter un espace avant chaque majuscule
-        .replace(/^./, str => str.toUpperCase()) // Majuscule première lettre
-        .replace(/_/g, ' '); // Remplacer les underscores par des espaces
-    }
+    // Utiliser la fonction formatColumnName définie à l'extérieur
     
     // Sauvegarde de la section en base de données si ce n'est pas une requête de chat
     if (category && category !== 'chat') {
