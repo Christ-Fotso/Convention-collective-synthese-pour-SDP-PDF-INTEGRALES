@@ -5,7 +5,7 @@ import { ArrowLeft, MessageCircle } from "lucide-react";
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
-import { EnhancedMarkdown } from '@/components/enhanced-markdown';
+import { MarkdownRenderer } from '@/components/markdown-renderer';
 import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -314,7 +314,7 @@ export default function Chat({ params }: { params: { id: string } }) {
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
                 <div className="mt-4">
-                  <EnhancedMarkdown content={messages[1].content} />
+                  <MarkdownRenderer content={messages[1].content} />
                 </div>
                 {shouldShowComparison && currentCategory && currentSubcategory && (
                   <LegalComparison
