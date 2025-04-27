@@ -254,17 +254,21 @@ Voici le texte intégral du document:
 ${conventionText}
 ---FIN DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
 
+DIRECTIVE ABSOLUE N°1:
+COMMENCE TOUJOURS TA RÉPONSE DIRECTEMENT PAR UN TITRE, UNE LISTE OU UN TABLEAU.
+N'ÉCRIS JAMAIS DE PHRASE D'INTRODUCTION COMME "Voici", "En analysant", "D'après", "La convention stipule".
+VA DIRECTEMENT AU CONTENU SANS AUCUN PRÉAMBULE OU INTRODUCTION.
+
 DIRECTIVES STRICTES:
-1. NE JAMAIS commencer par "Voici une synthèse..." ou toute autre introduction.
+1. DÉBUTER IMMÉDIATEMENT par l'information demandée, sans aucune phrase introductive.
 2. NE JAMAIS terminer par une conclusion.
 3. NE PAS vous présenter ou expliquer votre rôle.
-4. ALLER DIRECTEMENT à l'information demandée, sans préambule.
-5. Utiliser UNIQUEMENT le document fourni, jamais de connaissances générales.
-6. Citer précisément les articles et sections pertinents.
-7. Structurer avec des titres, listes à puces et tableaux.
-8. Si l'information n'est pas dans le document, répondre uniquement: "Information non présente dans la convention IDCC ${conventionId}."
-9. Répondre de façon directe, factuellement, sans bavardage.
-10. NE JAMAIS écrire "D'après la convention collective" ou "Selon le document" - allez directement au contenu.
+4. Utiliser UNIQUEMENT le document fourni, jamais de connaissances générales.
+5. Citer précisément les articles et sections pertinents.
+6. Structurer avec des titres, listes à puces et tableaux.
+7. Si l'information n'est pas dans le document, répondre uniquement: "Information non présente dans la convention IDCC ${conventionId}."
+8. Répondre de façon directe, factuellement, sans bavardage.
+9. NE JAMAIS écrire "D'après la convention collective" ou "Selon le document" - allez directement au contenu.
 11. RÈGLES STRICTES POUR LES TABLEAUX (PARTIE LA PLUS CRUCIALE - À RESPECTER ABSOLUMENT):
    - TOUJOURS utiliser UNIQUEMENT la syntaxe Markdown standard pour les tableaux
    - CHAQUE tableau DOIT commencer par une ligne d'en-tête claire et précise
@@ -427,6 +431,54 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
         return '';
       });
       
+      // Supprimer les phrases d'introduction communes
+      const introPatterns = [
+        // Introductions simples
+        /^Voici (la|le|les|une|un|des) .{5,100}(\.|\n| :|:)/i,
+        /^Ci-dessous (figure|se trouve|vous trouverez) .{5,100}(\.|\n| :|:)/i,
+        /^(Je vous présente|Voici|Ci-dessous|D'après|Selon|Sur la base) .{5,150}(\.|\n| :|:)/i,
+        
+        // Analyses et examens
+        /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse|L'analyse de) .{5,150}(\.|\n| :|:)/i,
+        /^(En examinant|Après examen|Suite à l'examen|L'examen de) .{5,150}(\.|\n| :|:)/i,
+        
+        // Références à la convention
+        /^(Pour|Concernant|Dans|Sur|À propos de) la convention collective .{5,100}(\.|\n| :|:)/i,
+        /^(Pour|Concernant|Dans|Sur|À propos de) l'IDCC \d+ .{5,100}(\.|\n| :|:)/i,
+        /^Basé(e)? sur (le texte (fourni|de la convention)|la convention|l'analyse) .{5,120}(\.|\n| :|:)/i,
+        /^(Dans|Pour|Selon) la convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+        /^La convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+        
+        // Introductions spécifiques aux informations
+        /^Les informations (suivantes|ci-dessous|extraites) .{5,120}(\.|\n| :|:)/i,
+        /^(Après|Suite à) (recherche|vérification|consultation) .{5,120}(\.|\n| :|:)/i,
+        /^(Conformément à|En vertu de) .{5,120}(\.|\n| :|:)/i
+      ];
+      
+      let introductionRemoved = false;
+      // Supprimer les introductions
+      for (const pattern of introPatterns) {
+        if (pattern.test(cleanedContent)) {
+          console.log(`Détection d'une introduction dans la réponse, suppression automatique`);
+          cleanedContent = cleanedContent.replace(pattern, '');
+          introductionRemoved = true;
+        }
+      }
+      
+      // Supprimer aussi les phrases d'ouverture communes
+      if (/^(Voici|Ci-dessous) :/i.test(cleanedContent) || 
+          /^Voici la réponse :/i.test(cleanedContent) || 
+          /^Voici les informations demandées :/i.test(cleanedContent)) {
+        cleanedContent = cleanedContent.replace(/^(Voici|Ci-dessous) :/i, '');
+        cleanedContent = cleanedContent.replace(/^Voici la réponse :/i, '');
+        cleanedContent = cleanedContent.replace(/^Voici les informations demandées :/i, '');
+        introductionRemoved = true;
+      }
+      
+      if (introductionRemoved) {
+        cleanedContent = cleanedContent.trim();
+      }
+      
       // Vérifier si le contenu contient des tableaux et appliquer notre formateur
       if (containsTableData(cleanedContent)) {
         console.log(`Détection de données tabulaires dans la réponse, application du formateur de tableaux avancé`);
@@ -449,7 +501,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
     }
     
     return {
-      content
+      content: cleanedContent || content
     };
   } catch (error: any) {
     console.error('Erreur lors de l\'interrogation d\'OpenAI:', error);
@@ -698,14 +750,26 @@ Si aucune information n'est disponible pour créer un tableau, ne pas inclure de
     
     // Supprimer les phrases d'introduction communes
     const introPatterns = [
-      /^Voici (la|le|les|une|un|des) .{5,50}( :|:|\n)/i,
-      /^Ci-dessous (figure|se trouve|vous trouverez) .{5,50}( :|:|\n)/i,
-      /^(Je vous présente|Voici|Ci-dessous|D'après la convention|Selon la convention|Sur la base du texte) .{5,100}( :|:|\n)/i,
-      /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse) .{5,100}( :|:|\n)/i,
-      /^Pour la convention collective IDCC \d+ .{5,80}( :|:|\n)/i,
-      /^Basé(e)? sur le texte (fourni|de la convention) .{5,80}( :|:|\n)/i,
-      /^Dans la convention collective (IDCC)? \d+ .{5,80}( :|:|\n)/i,
-      /^La convention collective (IDCC)? \d+ .{5,80}( :|:|\n)/i
+      // Introductions simples
+      /^Voici (la|le|les|une|un|des) .{5,100}(\.|\n| :|:)/i,
+      /^Ci-dessous (figure|se trouve|vous trouverez) .{5,100}(\.|\n| :|:)/i,
+      /^(Je vous présente|Voici|Ci-dessous|D'après|Selon|Sur la base) .{5,150}(\.|\n| :|:)/i,
+      
+      // Analyses et examens
+      /^(En analysant|Après analyse|Suite à l'analyse|Selon l'analyse|L'analyse de) .{5,150}(\.|\n| :|:)/i,
+      /^(En examinant|Après examen|Suite à l'examen|L'examen de) .{5,150}(\.|\n| :|:)/i,
+      
+      // Références à la convention
+      /^(Pour|Concernant|Dans|Sur|À propos de) la convention collective .{5,100}(\.|\n| :|:)/i,
+      /^(Pour|Concernant|Dans|Sur|À propos de) l'IDCC \d+ .{5,100}(\.|\n| :|:)/i,
+      /^Basé(e)? sur (le texte (fourni|de la convention)|la convention|l'analyse) .{5,120}(\.|\n| :|:)/i,
+      /^(Dans|Pour|Selon) la convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+      /^La convention collective (IDCC)? .{5,120}(\.|\n| :|:)/i,
+      
+      // Introductions spécifiques aux informations
+      /^Les informations (suivantes|ci-dessous|extraites) .{5,120}(\.|\n| :|:)/i,
+      /^(Après|Suite à) (recherche|vérification|consultation) .{5,120}(\.|\n| :|:)/i,
+      /^(Conformément à|En vertu de) .{5,120}(\.|\n| :|:)/i
     ];
     
     // Supprimer les introductions
