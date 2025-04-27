@@ -314,8 +314,39 @@ export default function Chat({ params }: { params: { id: string } }) {
             ) : messages.length > 0 ? (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4 markdown-content prose prose-sm max-w-none dark:prose-invert">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <div className="mt-4 markdown-content">
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      // Personnsalisation des tableaux
+                      table: ({ node, ...props }) => (
+                        <div className="overflow-x-auto my-4 rounded-md border shadow-sm">
+                          <table {...props} />
+                        </div>
+                      ),
+                      // Personnalisation des paragraphes pour ajouter des retours à la ligne
+                      p: ({ children }) => {
+                        if (typeof children === 'string') {
+                          // Diviser le texte en fonction des barres verticales (|) 
+                          // pour les listes d'éléments comme dans la classification
+                          if (children.includes(' | ')) {
+                            const parts = children.split(' | ').filter(part => part.trim());
+                            return (
+                              <div className="my-2">
+                                {parts.map((part, index) => (
+                                  <p key={index} className="py-1 pl-2 border-l-2 border-primary/30 mb-2">
+                                    {part.trim()}
+                                  </p>
+                                ))}
+                              </div>
+                            );
+                          }
+                        }
+                        // Rendu par défaut pour les paragraphes normaux
+                        return <p className="my-2">{children}</p>;
+                      }
+                    }}
+                  >
                     {messages[1].content}
                   </ReactMarkdown>
                 </div>
