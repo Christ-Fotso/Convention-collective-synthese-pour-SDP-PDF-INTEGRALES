@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft, MessageCircle } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
-import { MarkdownRenderer } from '@/components/markdown-renderer';
 import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -313,8 +314,10 @@ export default function Chat({ params }: { params: { id: string } }) {
             ) : messages.length > 0 ? (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
-                <div className="mt-4">
-                  <MarkdownRenderer content={messages[1].content} />
+                <div className="mt-4 markdown-content prose prose-sm max-w-none dark:prose-invert">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {messages[1].content}
+                  </ReactMarkdown>
                 </div>
                 {shouldShowComparison && currentCategory && currentSubcategory && (
                   <LegalComparison
