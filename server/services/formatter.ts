@@ -4,113 +4,177 @@
  */
 
 /**
+ * Analyse une chaîne pour déterminer si elle contient probablement des informations générales avec barres verticales
+ */
+function containsVerticalBarPattern(content: string): boolean {
+  // Vérifie les modèles typiques d'informations générales avec barres
+  return /Informations Générales/i.test(content) && 
+         /\|/.test(content) && 
+         (/IDCC \d+/.test(content) || /Convention collective/.test(content));
+}
+
+/**
+ * Extrait les sections d'informations à partir du texte brut avec barres verticales
+ */
+function extractInfoSections(content: string): { title: string, sections: Record<string, string[]> } {
+  // Détecter le titre principal
+  let title = "Informations Générales";
+  const titleMatch = content.match(/##?\s+(.+?)(?:\n|$)/);
+  if (titleMatch) {
+    title = titleMatch[1].trim();
+  }
+  
+  // Identifier les sections principales
+  const sections: Record<string, string[]> = {};
+  
+  // Initialiser les sections standards si aucune n'est trouvée
+  const standardSections = ["Identifiants", "Champ d'application", "Dates clés", "Signataires", "Structure", "Modalités d'application"];
+  standardSections.forEach(section => {
+    sections[section] = [];
+  });
+  
+  // Rechercher manuellement toutes les occurrences de sections
+  const sectionRegex = /\|\s*section\s*\|\s*([^|]+)\s*\|/gi;
+  let match;
+  while ((match = sectionRegex.exec(content)) !== null) {
+    const sectionName = match[1].trim();
+    if (sectionName && !sections[sectionName]) {
+      sections[sectionName] = [];
+    }
+  }
+  
+  // Analyse du contenu pour trouver des lignes qui commencent par des barres verticales
+  const lines = content.split('\n');
+  let currentSection = "Informations générales";
+  
+  for (const line of lines) {
+    // Ignorer les lignes vides ou qui ne commencent pas par des barres
+    if (!line.trim() || !line.includes('|')) continue;
+    
+    // Vérifier si c'est une ligne qui définit une section
+    const sectionMatch = line.match(/\|\s*section\s*\|\s*([^|]+)\s*\|/i);
+    if (sectionMatch) {
+      currentSection = sectionMatch[1].trim();
+      continue;
+    }
+    
+    // Extraire les informations de la ligne (champ | valeur)
+    const parts = line.split('|').map(part => part.trim()).filter(part => part);
+    if (parts.length >= 1) {
+      // Si la section existe, ajouter l'information
+      if (sections[currentSection]) {
+        sections[currentSection].push(parts.join(' - '));
+      } else {
+        // Sinon, l'ajouter à la section générale
+        if (!sections["Informations générales"]) {
+          sections["Informations générales"] = [];
+        }
+        sections["Informations générales"].push(parts.join(' - '));
+      }
+    }
+  }
+  
+  return { title, sections };
+}
+
+/**
  * Convertit les informations générales contenant des barres verticales en tableau Markdown
  */
 export function formatInfoGenerales(content: string): string {
   // Si déjà au format tableau Markdown, ne rien faire
-  if (content.includes('| Champ | Valeur |')) {
+  if (content.includes('| Champ | Valeur |') && !containsVerticalBarPattern(content)) {
     return content;
   }
 
+  // Stratégie 1: Utiliser l'extraction de sections pour les contenus structurés avec des barres verticales
+  if (containsVerticalBarPattern(content)) {
+    console.log("Détection d'informations générales avec barres verticales, application du formateur avancé");
+    const { title, sections } = extractInfoSections(content);
+    
+    let formattedContent = `## ${title}\n\n`;
+    
+    // Créer un tableau pour chaque section qui contient des données
+    for (const [sectionName, items] of Object.entries(sections)) {
+      // Ne pas inclure les sections vides
+      if (items.length === 0) continue;
+      
+      formattedContent += `### ${sectionName}\n\n`;
+      formattedContent += '| Champ | Valeur |\n';
+      formattedContent += '| --- | --- |\n';
+      
+      // Traiter les entrées de chaque section
+      items.forEach(item => {
+        // Si l'item contient un tiret, le considérer comme une paire clé-valeur
+        if (item.includes(' - ')) {
+          const [key, ...valueParts] = item.split(' - ');
+          formattedContent += `| **${key.trim()}** | ${valueParts.join(' - ').trim()} |\n`;
+        } 
+        // Sinon, juste l'afficher comme un élément de liste
+        else {
+          formattedContent += `| **${item.trim()}** | |\n`;
+        }
+      });
+      
+      formattedContent += '\n';
+    }
+    
+    return formattedContent.trim();
+  }
+  
+  // Stratégie 2: Pour les contenus moins structurés, utiliser l'approche ligne par ligne
+  console.log("Pas de structure spécifique d'informations générales détectée, application du formateur standard");
   const lines = content.split('\n');
   let formattedContent = '';
-  let inTableSection = false;
-  let hasCreatedTable = false;
-
-  // Ajouter le titre si présent
+  
+  // Extraire le titre s'il existe
   if (lines[0] && lines[0].startsWith('## ')) {
     formattedContent += lines[0] + '\n\n';
   } else {
     formattedContent += '## Informations Générales\n\n';
   }
-
-  // Créer l'en-tête du tableau
+  
   formattedContent += '| Champ | Valeur |\n';
   formattedContent += '| --- | --- |\n';
-  hasCreatedTable = true;
-
-  // Parcourir chaque ligne pour extraire les informations
-  let skipNextLine = false;
-  for (let i = 0; i < lines.length; i++) {
-    if (skipNextLine) {
-      skipNextLine = false;
-      continue;
-    }
-
-    const line = lines[i].trim();
+  
+  // Récupérer toutes les lignes qui pourraient contenir des informations
+  const infoLines = lines.filter(line => {
+    const trimmed = line.trim();
+    return trimmed && !trimmed.startsWith('#') && 
+           (trimmed.includes(':') || trimmed.includes('|'));
+  });
+  
+  // Si aucune information structurée n'est trouvée, ajouter une ligne par défaut
+  if (infoLines.length === 0) {
+    formattedContent += '| **Convention Collective** | Le contenu n\'est pas structuré |\n';
+    return formattedContent;
+  }
+  
+  // Traiter chaque ligne d'information
+  infoLines.forEach(line => {
+    const trimmed = line.trim();
     
-    // Sauter les lignes vides et les lignes qui sont des titres
-    if (line === '' || line.startsWith('#')) {
-      continue;
+    // Cas 1: Ligne avec deux-points (format clé: valeur)
+    if (trimmed.includes(':') && !trimmed.includes('|')) {
+      const [key, ...valueParts] = trimmed.split(':');
+      formattedContent += `| **${key.trim()}** | ${valueParts.join(':').trim()} |\n`;
     }
-
-    // Vérifier si la ligne contient des barres verticales
-    if (line.includes('|')) {
-      inTableSection = true;
+    // Cas 2: Ligne avec barres verticales
+    else if (trimmed.includes('|')) {
+      // Nettoyer la ligne
+      let parts = trimmed.split('|')
+                          .map(part => part.trim())
+                          .filter(part => part.length > 0);
       
-      // Nettoyer les barres verticales multiples
-      let cleanedLine = line.replace(/\|\s*\|/g, '|').trim();
-      
-      // Enlever les barres au début et à la fin si présentes
-      if (cleanedLine.startsWith('|')) {
-        cleanedLine = cleanedLine.substring(1);
-      }
-      if (cleanedLine.endsWith('|')) {
-        cleanedLine = cleanedLine.substring(0, cleanedLine.length - 1);
-      }
-      
-      // Nettoyer les espaces excessifs
-      cleanedLine = cleanedLine.trim();
-      
-      // Découper par barre verticale
-      const parts = cleanedLine.split('|').map(part => part.trim());
-      
-      // Si assez de parties pour faire une entrée de tableau
-      if (parts.length >= 1) {
-        // Gérer les entrées spéciales avec préfixes communs (ex: "Champ d'application | ...")
-        if (parts[0].toLowerCase().includes('champ') && parts[0].toLowerCase().includes('application')) {
-          formattedContent += `| **Champ d'application** | ${parts.slice(1).join(' ')} |\n`;
-        } 
-        // Gérer les entrées simples avec une seule partie
-        else if (parts.length === 1) {
-          // Vérifier si la ligne suivante pourrait être la valeur
-          if (i + 1 < lines.length && !lines[i + 1].includes('|')) {
-            formattedContent += `| **${parts[0]}** | ${lines[i + 1].trim()} |\n`;
-            skipNextLine = true;
-          } else {
-            formattedContent += `| **${parts[0]}** | |\n`;
-          }
-        } 
-        // Format standard Clé | Valeur
-        else {
-          formattedContent += `| **${parts[0]}** | ${parts.slice(1).join(' ')} |\n`;
-        }
-      }
-    } 
-    // Lignes sans barres verticales - les considérer comme des entrées simples si en mode tableau
-    else if (inTableSection) {
-      // Vérifier s'il s'agit d'une paire clé-valeur avec des deux-points
-      if (line.includes(':')) {
-        const colonParts = line.split(':');
-        formattedContent += `| **${colonParts[0].trim()}** | ${colonParts.slice(1).join(':').trim()} |\n`;
-      } 
-      // Sinon, le considérer comme une continuation de l'entrée précédente
-      else {
-        const lastNewlinePos = formattedContent.lastIndexOf('\n');
-        if (lastNewlinePos > 0) {
-          // Insérer le texte avant le dernier caractère de nouvelle ligne
-          formattedContent = formattedContent.substring(0, lastNewlinePos) + ' ' + line + formattedContent.substring(lastNewlinePos);
-        }
+      if (parts.length > 0) {
+        // Premier élément comme clé, le reste comme valeur
+        formattedContent += `| **${parts[0]}** | ${parts.slice(1).join(' ')} |\n`;
       }
     }
-  }
-
-  // Si aucun tableau n'a été créé, ajouter un tableau par défaut
-  if (!hasCreatedTable) {
-    formattedContent += '| Champ | Valeur |\n';
-    formattedContent += '| --- | --- |\n';
-    formattedContent += '| **Aucune information structurée trouvée** | Veuillez consulter le texte original |\n';
-  }
-
+    // Cas 3: Autre format (juste afficher comme information)
+    else {
+      formattedContent += `| **Information** | ${trimmed} |\n`;
+    }
+  });
+  
   return formattedContent;
 }
