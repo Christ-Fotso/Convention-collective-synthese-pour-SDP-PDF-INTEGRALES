@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, AlertCircle, RefreshCw, Loader } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -86,8 +87,28 @@ export function ChatInterface({
                 {message.role === "user" ? (
                   message.content
                 ) : (
-                  <div className="prose prose-sm dark:prose-invert">
-                    <ReactMarkdown>
+                  <div className="prose prose-sm dark:prose-invert markdown-content">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        // Tableaux
+                        table: ({ node, ...props }) => (
+                          <div className="overflow-x-auto my-2 rounded-md border border-border shadow-sm">
+                            <table className="w-full border-collapse table-auto text-left" {...props} />
+                          </div>
+                        ),
+                        thead: props => <thead className="bg-muted/30" {...props} />,
+                        th: props => <th className="border border-border p-1 text-left font-semibold text-xs" {...props} />,
+                        td: props => <td className="border border-border p-1 text-xs align-top whitespace-normal break-words" {...props} />,
+                        
+                        // Texte formaté
+                        p: props => <p className="my-1 text-sm" {...props} />,
+                        strong: props => <strong className="font-bold" {...props} />,
+                        ul: props => <ul className="list-disc pl-4 my-1 text-sm" {...props} />,
+                        ol: props => <ol className="list-decimal pl-4 my-1 text-sm" {...props} />,
+                        blockquote: props => <blockquote className="border-l-2 border-primary/20 pl-2 py-1 italic" {...props} />
+                      }}
+                    >
                       {message.content}
                     </ReactMarkdown>
                   </div>
