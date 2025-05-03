@@ -8,6 +8,7 @@ import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
 import { SalaryGridFormatter } from '@/components/salary-grid-formatter';
+import { TextTableFormatter } from '@/components/text-table-formatter';
 import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -316,7 +317,7 @@ export default function Chat({ params }: { params: { id: string } }) {
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
                 <div className="mt-4 markdown-content">
-                  {/* Utilisation conditionnelle du SalaryGridFormatter pour les grilles salariales */}
+                  {/* Utilisation conditionnelle des formateurs selon le contenu */}
                   {currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille' ? (
                     <>
                       <p className="text-sm text-muted-foreground mb-4">
@@ -324,7 +325,12 @@ export default function Chat({ params }: { params: { id: string } }) {
                       </p>
                       <SalaryGridFormatter content={messages[1].content} />
                     </>
-                  ) : (
+                  ) : messages[1].content.includes('|') && (
+                    // Pour tout contenu contenant des barres verticales,
+                    // utilisons notre formateur de tableau spécialisé
+                    <TextTableFormatter content={messages[1].content} />
+                  ) || (
+                    // Pour le reste, utilisation du rendu Markdown standard
                     <ReactMarkdown 
                       remarkPlugins={[remarkGfm]}
                       components={{
@@ -339,29 +345,11 @@ export default function Chat({ params }: { params: { id: string } }) {
                         td: props => <td className="border border-border p-2 text-sm align-top whitespace-normal break-words" {...props} />,
                         tr: props => <tr className="hover:bg-muted/20" {...props} />,
                         
-                        // Personnalisation des paragraphes pour ajouter des retours à la ligne
-                        p: ({ children }) => {
-                          if (typeof children === 'string') {
-                            // Diviser le texte en fonction des barres verticales (|) 
-                            // pour les listes d'éléments comme dans la classification
-                            if (children.includes(' | ') && !children.startsWith('|')) {
-                              const parts = children.split(' | ').filter(part => part.trim());
-                              return (
-                                <div className="mb-3">
-                                  {parts.map((part, index) => (
-                                    <p key={index} className="py-1 pl-2 border-l-2 border-primary/30 mb-2">
-                                      {part.trim()}
-                                    </p>
-                                  ))}
-                                </div>
-                              );
-                            }
-                          }
-                          // Rendu par défaut pour les paragraphes normaux
-                          return <p className="my-2 leading-relaxed">{children}</p>;
-                        },
-                        
-                        // Listes et éléments divers
+                        // Formatage de base
+                        h1: props => <h1 className="text-2xl font-bold mt-6 mb-4" {...props} />,
+                        h2: props => <h2 className="text-xl font-bold mt-5 mb-3" {...props} />,
+                        h3: props => <h3 className="text-lg font-bold mt-4 mb-2" {...props} />,
+                        p: props => <p className="my-2 leading-relaxed" {...props} />,
                         ul: props => <ul className="list-disc pl-6 my-2 space-y-1" {...props} />,
                         ol: props => <ol className="list-decimal pl-6 my-2 space-y-1" {...props} />,
                         li: props => <li className="mb-1" {...props} />,
