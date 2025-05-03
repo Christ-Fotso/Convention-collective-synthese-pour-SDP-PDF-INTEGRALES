@@ -13,6 +13,24 @@ export function containsTableData(text: string): boolean {
     const potentialTableLines = lines.filter(l => l.includes('|'));
     return potentialTableLines.length >= 2;
   }
+
+  // Détection de tableaux avec des indicateurs spéciaux comme ##
+  if (text.includes('##') && text.includes('\n')) {
+    const lines = text.split('\n').filter(l => l.trim().length > 0);
+    const potentialTableLines = lines.filter(l => l.includes('##'));
+    if (potentialTableLines.length >= 1) {
+      return true;
+    }
+  }
+  
+  // Détection de tableaux récapitulatifs spécifiques 
+  if (
+    text.includes("Tableau récapitulatif") || 
+    text.includes("Tableau d'identification") || 
+    (text.includes("Tableau") && (text.includes("Durée") || text.includes("Période")))
+  ) {
+    return true;
+  }
   
   // Détection de données qui ressemblent à un tableau
   const tableKeywords = [
@@ -20,7 +38,11 @@ export function containsTableData(text: string): boolean {
     /catégorie.+échelon/i,
     /groupe\s+\d+.+classe\s+\d+/i,
     /\d+\s+jours\s+ouvrables/i,
-    /indemnité\s+de\s+\d+/i
+    /indemnité\s+de\s+\d+/i,
+    /période\s+d['']essai/i,
+    /durée\s+(maximale|minimale|initiale)/i,
+    /renouvellement\s+possible/i,
+    /rupture\s+anticipée/i
   ];
   
   return tableKeywords.some(pattern => pattern.test(text));
@@ -208,6 +230,168 @@ function convertTextLinesToTable(text: string): string {
 }
 
 /**
+ * Détecte et convertit les tableaux avec symboles ## en tableaux Markdown
+ */
+function processSpecialTables(text: string): string {
+  const lines = text.split('\n');
+  let result = [];
+  let inSpecialTable = false;
+  let tableStart = -1;
+  let tableLines = [];
+  let tableTitle = '';
+  
+  // Chercher les lignes avec des patterns ## ou un titre de tableau
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    // Chercher le titre du tableau
+    if (
+      (line.startsWith('##') && line.includes('Tableau')) ||
+      (line.startsWith('Tableau') && (
+        line.includes('récapitulatif') || 
+        line.includes('d\'identification') || 
+        line.includes('des dispositions')
+      ))
+    ) {
+      tableTitle = line;
+      inSpecialTable = true;
+      tableStart = i;
+      tableLines = [];
+      continue;
+    }
+    
+    // Dans un tableau spécial, collecter toutes les lignes pertinentes
+    if (inSpecialTable) {
+      // Si on trouve une ligne qui ressemble à une fin de tableau ou un nouveau titre
+      if (line === '' || line.startsWith('#') || i === lines.length - 1) {
+        inSpecialTable = false;
+        
+        // Si on a collecté suffisamment de lignes
+        if (tableLines.length > 0) {
+          // Déterminer les colonnes basées sur le contenu (analyse de motifs)
+          const colNames = [];
+          
+          // Chercher des mots-clés communs pour déterminer les colonnes
+          const columnKeywords = [
+            'Catégorie', 'Profession', 'Durée', 'Préavis', 'Rupture', 'Renouvellement',
+            'Date', 'Période', 'Convention', 'Conditions', 'Justification', 'Applicabilité'
+          ];
+          
+          tableLines.forEach(tLine => {
+            columnKeywords.forEach(keyword => {
+              if (tLine.includes(keyword) && !colNames.includes(keyword)) {
+                colNames.push(keyword);
+              }
+            });
+          });
+          
+          // Si pas assez de colonnes détectées, utiliser des colonnes génériques
+          if (colNames.length < 2) {
+            colNames.push('Caractéristique');
+            colNames.push('Valeur');
+          }
+          
+          // Formater sous forme de table Markdown
+          let mdTable = '';
+          
+          // Ajouter le titre comme h3
+          if (tableTitle) {
+            mdTable += `### ${tableTitle.replace(/^#+\s*/, '')}\n\n`;
+          }
+          
+          // Créer l'en-tête de la table
+          mdTable += '| ' + colNames.join(' | ') + ' |\n';
+          mdTable += '| ' + colNames.map(() => '---').join(' | ') + ' |\n';
+          
+          // Analyser et ajouter chaque ligne du tableau
+          tableLines.forEach(tLine => {
+            // Diviser la ligne selon des séparateurs heuristiques
+            let cells = [];
+            
+            // Cas 1: Séparation par pipes (si présents)
+            if (tLine.includes('|')) {
+              cells = tLine.split('|').map(c => c.trim()).filter(Boolean);
+            }
+            // Cas 2: Séparation par tirets ou flèches
+            else if (tLine.includes(' - ') || tLine.includes(' → ')) {
+              cells = tLine.split(/\s+-\s+|\s+→\s+/).map(c => c.trim());
+            }
+            // Cas 3: Utiliser des heuristiques pour diviser la ligne
+            else {
+              // Chercher des indices de mots-clés pour diviser
+              let bestSplit = [tLine];
+              
+              for (const keyword of columnKeywords) {
+                if (tLine.includes(keyword) && keyword !== tLine) {
+                  const parts = tLine.split(new RegExp(`(${keyword})`));
+                  // Regrouper les parties pertinentes
+                  if (parts.length > 2) {
+                    let newSplit = [];
+                    let currentPart = '';
+                    for (const part of parts) {
+                      if (columnKeywords.includes(part) || part === '') {
+                        if (currentPart) {
+                          newSplit.push(currentPart.trim());
+                          currentPart = '';
+                        }
+                        if (part) newSplit.push(part);
+                      } else {
+                        currentPart += part;
+                      }
+                    }
+                    if (currentPart) newSplit.push(currentPart.trim());
+                    // Si cette division crée plus de cellules, l'utiliser
+                    if (newSplit.length > bestSplit.length) {
+                      bestSplit = newSplit;
+                    }
+                  }
+                }
+              }
+              
+              cells = bestSplit;
+            }
+            
+            // Si on n'a toujours qu'une seule cellule, la placer dans la première colonne
+            if (cells.length === 1) {
+              cells.push(''); // Ajouter une cellule vide
+            }
+            
+            // Assurer qu'on a le bon nombre de cellules
+            while (cells.length < colNames.length) {
+              cells.push('');
+            }
+            
+            // Créer la ligne markdown
+            mdTable += '| ' + cells.join(' | ') + ' |\n';
+          });
+          
+          // Remplacer les lignes originales par notre nouveau tableau
+          for (let j = tableStart; j < i; j++) {
+            result[j] = '';
+          }
+          result[tableStart] = mdTable;
+        }
+        
+        // Ajouter la ligne courante
+        result[i] = line;
+      } else {
+        // Ignorer les lignes vides ou qui commencent par ##
+        if (line !== '' && !line.startsWith('##')) {
+          tableLines.push(line);
+        }
+        result[i] = ''; // Marquer la ligne comme traitée
+      }
+    } else {
+      // Ligne normale en dehors d'un tableau spécial
+      result[i] = line;
+    }
+  }
+  
+  // Reconstruire le texte en joignant les lignes
+  return result.join('\n');
+}
+
+/**
  * Fonction principale pour transformer et normaliser tous les tableaux dans un texte
  */
 export function normalizeMarkdownTables(text: string): string {
@@ -215,14 +399,20 @@ export function normalizeMarkdownTables(text: string): string {
   
   let result = text;
   
-  // 1. D'abord traiter les tableaux markdown existants
+  // 0. Traiter les tableaux récapitulatifs/spéciaux
+  if (text.includes('Tableau') || text.includes('##')) {
+    result = processSpecialTables(result);
+  }
+  
+  // 1. Traiter les tableaux markdown existants
   result = processMarkdownTables(result);
   
   // 2. Convertir les blocs de texte qui ressemblent à des tableaux
   const paragraphs = result.split('\n\n');
   const processed = paragraphs.map(para => {
-    if (para.split('\n').length >= 3 && !para.includes('|') && 
-        /\b(niveau|coefficient|catégorie|échelon|indemnité|jours)\b/i.test(para)) {
+    if (para.split('\n').length >= 3 && !para.includes('|') && (
+        /\b(niveau|coefficient|catégorie|échelon|indemnité|jours|durée|période)\b/i.test(para)
+    )) {
       return convertTextLinesToTable(para);
     }
     return para;
@@ -239,7 +429,12 @@ export function normalizeMarkdownTables(text: string): string {
     // Assurer un espace avant chaque pipe
     .replace(/(?<!\s)\|/g, ' |')
     // Corriger les délimiteurs mal formatés
-    .replace(/\|[\s-]+\|/g, '| --- |');
+    .replace(/\|[\s-]+\|/g, '| --- |')
+    // Améliorer l'espacement des cellules
+    .replace(/\|\s+/g, '| ')
+    .replace(/\s+\|/g, ' |')
+    // Supprimer les lignes de tableau vides
+    .replace(/\|(\s*\|)+\n/g, '');
   
   return result;
 }
