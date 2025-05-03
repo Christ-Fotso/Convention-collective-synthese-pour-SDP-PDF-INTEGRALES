@@ -2,13 +2,10 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { ArrowLeft, MessageCircle } from "lucide-react";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { CategoryMenu } from '@/components/category-menu';
 import { LegalComparison } from '@/components/legal-comparison';
 import { ChatInterface } from '@/components/chat-interface';
-import { SalaryGridFormatter } from '@/components/salary-grid-formatter';
-import { TextTableFormatter } from '@/components/text-table-formatter';
+import { AdvancedTableRenderer } from '@/components/advanced-table-renderer';
 import { getConventions, createChatPDFSource, sendChatMessage, type CreateSourceParams } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, Message, Category, Subcategory } from '@/types';
@@ -317,48 +314,8 @@ export default function Chat({ params }: { params: { id: string } }) {
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">{messages[0].content}</h3>
                 <div className="mt-4 markdown-content">
-                  {/* Utilisation conditionnelle des formateurs selon le contenu */}
-                  {currentCategory?.id === 'remuneration' && currentSubcategory?.id === 'grille' ? (
-                    <>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        Grille salariale extraite de la convention collective {convention.id} - {convention.name}
-                      </p>
-                      <SalaryGridFormatter content={messages[1].content} />
-                    </>
-                  ) : messages[1].content.includes('|') && (
-                    // Pour tout contenu contenant des barres verticales,
-                    // utilisons notre formateur de tableau spécialisé
-                    <TextTableFormatter content={messages[1].content} />
-                  ) || (
-                    // Pour le reste, utilisation du rendu Markdown standard
-                    <ReactMarkdown 
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        // Rendu des tableaux avec bordures et overflow
-                        table: ({ node, ...props }) => (
-                          <div className="overflow-x-auto my-6 rounded-md border border-border shadow-sm">
-                            <table className="w-full border-collapse table-auto text-left" {...props} />
-                          </div>
-                        ),
-                        thead: props => <thead className="bg-muted/30" {...props} />,
-                        th: props => <th className="border border-border p-2 text-left font-semibold text-sm" {...props} />,
-                        td: props => <td className="border border-border p-2 text-sm align-top whitespace-normal break-words" {...props} />,
-                        tr: props => <tr className="hover:bg-muted/20" {...props} />,
-                        
-                        // Formatage de base
-                        h1: props => <h1 className="text-2xl font-bold mt-6 mb-4" {...props} />,
-                        h2: props => <h2 className="text-xl font-bold mt-5 mb-3" {...props} />,
-                        h3: props => <h3 className="text-lg font-bold mt-4 mb-2" {...props} />,
-                        p: props => <p className="my-2 leading-relaxed" {...props} />,
-                        ul: props => <ul className="list-disc pl-6 my-2 space-y-1" {...props} />,
-                        ol: props => <ol className="list-decimal pl-6 my-2 space-y-1" {...props} />,
-                        li: props => <li className="mb-1" {...props} />,
-                        blockquote: props => <blockquote className="border-l-4 border-primary/20 pl-4 py-2 italic bg-muted/10 rounded-r" {...props} />
-                      }}
-                    >
-                      {messages[1].content}
-                    </ReactMarkdown>
-                  )}
+                  {/* Utilisation universelle de l'AdvancedTableRenderer pour tout contenu */}
+                  <AdvancedTableRenderer content={messages[1].content} />
                 </div>
                 {shouldShowComparison && currentCategory && currentSubcategory && (
                   <LegalComparison
