@@ -95,6 +95,40 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Route pour récupérer les types de sections disponibles pour une convention
+  apiRouter.get("/convention/:conventionId/section-types", async (req, res) => {
+    try {
+      const { conventionId } = req.params;
+      
+      if (!conventionId) {
+        return res.status(400).json({
+          message: "conventionId est requis"
+        });
+      }
+      
+      // Vérifier que la convention existe dans les données JSON
+      const existingConventions = getConventions();
+      const conventionExists = existingConventions.some(conv => conv.id === conventionId);
+      
+      if (!conventionExists) {
+        return res.status(404).json({
+          message: "Convention non trouvée"
+        });
+      }
+      
+      // Récupérer les types de sections depuis les données statiques
+      const sectionTypes = getSectionTypesByConvention(conventionId);
+      
+      res.json(sectionTypes);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des types de sections:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des types de sections",
+        error: error.message
+      });
+    }
+  });
+  
   // Route pour récupérer toutes les conventions
   apiRouter.get("/conventions", async (req, res) => {
     try {
