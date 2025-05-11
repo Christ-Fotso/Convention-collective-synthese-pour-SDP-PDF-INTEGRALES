@@ -74,6 +74,8 @@ export const SECTION_TYPES = {
   COTISATIONS_PREVOYANCE: 'cotisations.prevoyance',
   COTISATIONS_RETRAITE: 'cotisations.retraite',
   COTISATIONS_MUTUELLE: 'cotisations.mutuelle',
+  COTISATIONS_FORMATION: 'cotisations.formation',
+  COTISATIONS_PARITARISME: 'cotisations.paritarisme',
   
   // Maintien de salaire
   MAINTIEN_SALAIRE_ACCIDENT: 'maintien-salaire.accident-travail',

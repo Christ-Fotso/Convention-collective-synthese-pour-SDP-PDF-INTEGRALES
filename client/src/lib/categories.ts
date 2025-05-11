@@ -94,6 +94,14 @@ export const CATEGORIES: Category[] = [
       {
         "id": "mutuelle",
         "name": "Cotisation mutuelle"
+      },
+      {
+        "id": "formation",
+        "name": "Contributions Conventionnelles à la Formation Professionnelle"
+      },
+      {
+        "id": "paritarisme",
+        "name": "Paritarisme (Financement)"
       }
     ]
   },
