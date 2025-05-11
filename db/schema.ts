@@ -23,6 +23,7 @@ export const conventionSections = pgTable("convention_sections", {
   conventionId: text("convention_id").notNull().references(() => conventions.id),
   sectionType: text("section_type").notNull(), // 'classification', 'salaires', etc.
   content: text("content").notNull(), // Contenu markdown ou JSON
+  sourceUrl: text("source_url"), // URL source d'origine (ElNet)
   status: text("status").notNull().default('complete'), // 'pending', 'complete', 'error'
   errorMessage: text("error_message"), // Message d'erreur si applicable
   createdAt: timestamp("created_at").defaultNow().notNull(),

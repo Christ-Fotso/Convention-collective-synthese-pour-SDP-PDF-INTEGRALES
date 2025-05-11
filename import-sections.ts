@@ -23,6 +23,7 @@ interface SectionData {
   conventionId: string;
   sectionType: string;
   content: string;
+  sourceUrl?: string;
 }
 
 /**
@@ -60,6 +61,7 @@ async function importSectionsFromJson(filePath: string) {
           await db.update(conventionSections)
             .set({
               content: section.content,
+              sourceUrl: section.sourceUrl,
               status: 'complete',
               updatedAt: new Date()
             })
@@ -74,13 +76,14 @@ async function importSectionsFromJson(filePath: string) {
           // Insérer une nouvelle section
           await db.insert(conventionSections)
             .values({
-              id: uuidv4(),
+              // l'id sera généré automatiquement avec defaultRandom()
               conventionId: section.conventionId,
               sectionType: section.sectionType,
               content: section.content,
+              sourceUrl: section.sourceUrl,
               status: 'complete',
-              createdAt: new Date(),
               updatedAt: new Date()
+              // createdAt sera défini automatiquement avec defaultNow()
             });
           importedCount++;
         }
