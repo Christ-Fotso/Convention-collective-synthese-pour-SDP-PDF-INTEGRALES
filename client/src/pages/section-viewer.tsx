@@ -32,6 +32,7 @@ function normalizeParams(category?: string, subcategory?: string): string {
 export default function SectionViewer() {
   const params = useParams<{ id: string, category: string, subcategory?: string }>();
   const [, navigate] = useLocation();
+  const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
   const conventionId = params.id;
   const sectionType = normalizeParams(params.category, params.subcategory);
 
@@ -117,6 +118,17 @@ export default function SectionViewer() {
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
+            {hasDispositifLegal(sectionType) && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setIsLegalDialogOpen(true)}
+                className="flex items-center gap-2"
+              >
+                <BookOpen className="h-4 w-4" />
+                Voir le dispositif légal
+              </Button>
+            )}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -139,6 +151,16 @@ export default function SectionViewer() {
           )}
         </CardContent>
       </Card>
+
+      {/* Modale du dispositif légal */}
+      {hasDispositifLegal(sectionType) && (
+        <DispositifLegalDialog
+          isOpen={isLegalDialogOpen}
+          setIsOpen={setIsLegalDialogOpen}
+          title={`Dispositif légal - ${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
+          content={getDispositifLegal(sectionType)}
+        />
+      )}
     </div>
   );
 }

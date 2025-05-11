@@ -12,9 +12,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CATEGORIES } from "@/lib/categories";
-import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
 import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
+import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
 
 // Mapping entre les catégories backend et catégories d'affichage
 const CATEGORY_MAPPING: Record<string, string> = {
