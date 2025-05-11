@@ -126,9 +126,8 @@ export default function Chat() {
     queryFn: async () => {
       if (!id || !selectedSection) return null;
       
-      // On utilise sectionType qui contient le chemin original dans l'API
-      const [backendCategory, backendSubcategory] = selectedSection.sectionType.split(".");
-      const response = await axios.get(`/api/convention/${id}/section/${backendCategory}/${backendSubcategory}`);
+      // L'API attend le sectionType complet, pas séparé par catégorie/sous-catégorie
+      const response = await axios.get(`/api/convention/${id}/section/${selectedSection.sectionType}`);
       return response.data;
     },
     enabled: !!selectedSection,
@@ -283,8 +282,9 @@ export default function Chat() {
                       variant="outline"
                       size="sm"
                       onClick={() => {
-                        const [backendCategory, backendSubcategory] = selectedSection.sectionType.split(".");
-                        navigate(`/convention/${id}/section/${backendCategory}/${backendSubcategory}`);
+                        // Route pour la page complète
+                        const [category, subcategory] = selectedSection.sectionType.split(".");
+                        navigate(`/convention/${id}/section/${category}/${subcategory}`);
                       }}
                     >
                       Voir complet <ChevronRight className="h-4 w-4 ml-2" />
