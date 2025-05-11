@@ -21,12 +21,14 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
           <div 
             className={className} 
             style={{ 
-              overflowX: 'auto', 
-              maxWidth: '100%', 
+              width: '100%',
+              overflowX: 'scroll', 
+              overflowY: 'visible', 
               marginBottom: '1.5rem',
               paddingBottom: '0.5rem',
               display: 'block',
-              clear: 'both'
+              position: 'relative',
+              whiteSpace: 'nowrap',
             }} 
             {...props} 
           />
@@ -40,7 +42,8 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
         <table 
           {...props} 
           style={{ 
-            width: '100%', 
+            width: 'auto', 
+            minWidth: '650px',
             borderCollapse: 'collapse', 
             borderSpacing: 0,
             marginTop: '0.5rem',
@@ -127,20 +130,30 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
 
   return (
     <div 
-      className={`markdown-content ${className}`} 
+      className={`markdown-content-wrapper ${className}`} 
       style={{ 
-        fontSize: '0.8rem', 
         overflowX: 'auto',
+        width: '100%',
         maxWidth: '100%',
-        display: 'block'
+        display: 'block',
+        position: 'relative'
       }}
     >
-      <ReactMarkdown 
-        remarkPlugins={[remarkGfm]}
-        components={components}
+      <div 
+        className="markdown-content" 
+        style={{ 
+          fontSize: '0.8rem',
+          width: '100%', 
+          position: 'relative'
+        }}
       >
-        {processedContent}
-      </ReactMarkdown>
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm]}
+          components={components}
+        >
+          {processedContent}
+        </ReactMarkdown>
+      </div>
     </div>
   );
 };

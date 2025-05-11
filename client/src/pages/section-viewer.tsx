@@ -127,7 +127,7 @@ export default function SectionViewer() {
               </AlertDescription>
             </Alert>
           ) : section ? (
-            <div className="prose prose-sm max-w-none dark:prose-invert" style={{ maxWidth: '100%', overflowX: 'auto', display: 'block' }}>
+            <div className="prose prose-sm max-w-none dark:prose-invert" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
               <MarkdownTableWrapper content={section.content} />
             </div>
           ) : (

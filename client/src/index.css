@@ -60,14 +60,24 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
-  /* Masquer les barres de défilement pour toute l'application */
+  /* Styles pour les barres de défilement */
   ::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    width: 6px;
+    height: 6px;
   }
 
-  * {
-    -ms-overflow-style: none;  /* Internet Explorer and Edge */
-    scrollbar-width: none;  /* Firefox */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
   }
 
   /* Styles spécifiques pour le markdown */
@@ -114,8 +124,8 @@
 
   /* Tableaux - style renforcé */
   .markdown-content table {
-    @apply w-full border-collapse my-6 text-sm rounded-md overflow-hidden border border-border shadow-sm;
-    table-layout: fixed;
+    @apply w-full min-w-[650px] border-collapse my-6 text-sm rounded-md border border-border shadow-sm;
+    table-layout: auto;
   }
 
   .markdown-content thead {
