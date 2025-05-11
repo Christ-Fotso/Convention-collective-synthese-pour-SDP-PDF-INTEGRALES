@@ -79,14 +79,9 @@ const SECTION_TYPE_MAPPING: Record<string, string> = {
 // Fonction pour extraire les informations du nom de fichier
 function extractFileInfo(filename: string): { conventionId: string; sectionType: string; } | null {
   try {
-    // Extraire la partie après le tiret (-) qui contient l'IDCC et le numéro de section
-    const parts = filename.split(' - ');
-    if (parts.length < 2) return null;
-    
-    const idccPart = parts[1];
-    
-    // Format attendu: IDCC_NuméroSection_NomSection.md
-    const idccMatch = idccPart.match(/(\d+)_(\d+)_(.+)\./);
+    // Rechercher directement le motif IDCC_NuméroSection_NomSection.md dans le nom du fichier
+    // Ce motif sera toujours là indépendamment du nom de la convention
+    const idccMatch = filename.match(/(\d+)_(\d+)_(.+)\./);
     if (!idccMatch) return null;
     
     const conventionId = idccMatch[1];
