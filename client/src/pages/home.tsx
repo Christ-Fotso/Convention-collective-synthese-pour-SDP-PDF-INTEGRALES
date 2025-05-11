@@ -21,24 +21,44 @@ export default function Home() {
     queryFn: getConventions,
   });
 
-  // Fonction de filtrage améliorée
+  // Fonction de filtrage avec logs de débogage
   const filteredConventions = (() => {
+    // Log initial
+    console.log("Recherche active:", !!search.trim(), "Terme:", search);
+    console.log("Nombre de conventions disponibles:", conventions.length);
+    
     if (!search.trim()) {
       return conventions;
     }
     
     const searchTerms = search.toLowerCase().trim().split(/\s+/);
+    console.log("Termes de recherche:", searchTerms);
     
-    return conventions.filter(conv => {
+    let matchCount = 0;
+    const results = conventions.filter(conv => {
       if (!conv) return false;
       
       const id = String(conv.id || '').toLowerCase();
       const name = String(conv.name || '').toLowerCase();
       
-      return searchTerms.every(term => 
+      // Test simple: un seul terme doit correspondre (plus permissif)
+      const isMatch = searchTerms.some(term => 
         id.includes(term) || name.includes(term)
       );
+      
+      if (isMatch) {
+        matchCount++;
+        // Log les 5 premiers résultats pour comprendre ce qui se passe
+        if (matchCount <= 5) {
+          console.log(`Match trouvé: ID=${id}, Nom=${name}`);
+        }
+      }
+      
+      return isMatch;
     });
+    
+    console.log(`Total des résultats: ${matchCount} conventions trouvées`);
+    return results;
   })();
 
   return (
