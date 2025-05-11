@@ -24,13 +24,7 @@ import {
   CardDescription,
   CardFooter
 } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 
@@ -60,14 +54,16 @@ export function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Si cette page est directement accédée avec un paramètre d'ID de convention
+  // Récupérer l'ID de la convention depuis les paramètres de l'URL
+  const [params] = useLocation();
+  
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const conventionId = params.get('convention');
-    if (conventionId) {
-      setSelectedConvention(conventionId);
+    // Extraire l'ID de la convention de l'URL
+    const match = /\/convention\/([^/]+)\/chat/.exec(params);
+    if (match && match[1]) {
+      setSelectedConvention(match[1]);
     }
-  }, []);
+  }, [params]);
 
   // Récupération de la liste des conventions
   const { data: conventions, isLoading: isLoadingConventions } = useQuery<Convention[]>({
@@ -190,93 +186,71 @@ export function ChatPage() {
           </CardDescription>
           
           <div className="mt-4">
-            <Select 
-              value={selectedConvention} 
-              onValueChange={setSelectedConvention}
-              disabled={isLoadingConventions || chatMutation.isPending}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Sélectionnez une convention collective" />
-              </SelectTrigger>
-              <SelectContent>
-                {conventions?.map(convention => (
-                  <SelectItem key={convention.id} value={convention.id}>
-                    {convention.name} (IDCC: {convention.id})
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            {conventions && selectedConvention && (
+              <div className="text-sm bg-muted p-3 rounded-md">
+                <span className="font-medium">Convention sélectionnée : </span>
+                {conventions.find(c => c.id === selectedConvention)?.name} (IDCC: {selectedConvention})
+              </div>
+            )}
           </div>
         </CardHeader>
         
         <Separator />
         
         <CardContent className="p-4">
-          {selectedConvention ? (
-            <div className="flex flex-col h-[60vh] overflow-hidden">
-              <div className="flex-1 overflow-y-auto p-2">
-                <div className="flex flex-col">
-                  {messages.map((message, index) => (
-                    <div 
-                      key={index} 
-                      className={message.isUser ? userMessageStyle : aiMessageStyle}
-                    >
-                      <ReactMarkdown 
-                        remarkPlugins={[remarkGfm]} 
-                        className="prose prose-sm max-w-none"
-                      >
-                        {message.content}
-                      </ReactMarkdown>
-                    </div>
-                  ))}
-                  
-                  {chatMutation.isPending && (
-                    <div className={loadingDotsStyle}>
-                      <span className="text-sm text-muted-foreground">L'IA réfléchit</span>
-                      <span className="animate-bounce delay-0">.</span>
-                      <span className="animate-bounce delay-100">.</span>
-                      <span className="animate-bounce delay-200">.</span>
-                    </div>
-                  )}
-                  
-                  <div ref={messagesEndRef} />
-                </div>
-              </div>
-              
-              <div className="p-2">
-                <div className="flex items-center space-x-2">
-                  <Input
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Posez votre question..."
-                    disabled={chatMutation.isPending || !selectedConvention}
-                    className="flex-1"
-                  />
-                  <Button 
-                    onClick={handleSendMessage} 
-                    disabled={!input.trim() || chatMutation.isPending || !selectedConvention}
+          <div className="flex flex-col h-[60vh] overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-2">
+              <div className="flex flex-col">
+                {messages.map((message, index) => (
+                  <div 
+                    key={index} 
+                    className={message.isUser ? userMessageStyle : aiMessageStyle}
                   >
-                    {chatMutation.isPending ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Send className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
+                    <ReactMarkdown 
+                      remarkPlugins={[remarkGfm]} 
+                      className="prose prose-sm max-w-none"
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
+                ))}
+                
+                {chatMutation.isPending && (
+                  <div className={loadingDotsStyle}>
+                    <span className="text-sm text-muted-foreground">L'IA réfléchit</span>
+                    <span className="animate-bounce delay-0">.</span>
+                    <span className="animate-bounce delay-100">.</span>
+                    <span className="animate-bounce delay-200">.</span>
+                  </div>
+                )}
+                
+                <div ref={messagesEndRef} />
               </div>
             </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-[60vh] text-center">
-              <div className="mb-4">
-                <ChevronDown className="h-8 w-8 animate-bounce" />
+            
+            <div className="p-2">
+              <div className="flex items-center space-x-2">
+                <Input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Posez votre question..."
+                  disabled={chatMutation.isPending}
+                  className="flex-1"
+                />
+                <Button 
+                  onClick={handleSendMessage} 
+                  disabled={!input.trim() || chatMutation.isPending}
+                >
+                  {chatMutation.isPending ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                </Button>
               </div>
-              <h3 className="text-lg font-medium">Sélectionnez une convention collective</h3>
-              <p className="text-muted-foreground mt-2">
-                Pour commencer, veuillez sélectionner une convention collective dans le menu déroulant ci-dessus.
-              </p>
             </div>
-          )}
+          </div>
         </CardContent>
         
         <CardFooter className="border-t p-4 text-xs text-muted-foreground">
