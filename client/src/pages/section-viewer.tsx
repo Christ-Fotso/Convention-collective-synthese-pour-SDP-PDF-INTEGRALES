@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'wouter';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen, ExternalLink } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
@@ -131,17 +131,30 @@ export default function SectionViewer() {
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
-            {hasDispositifLegal(sectionType) && (
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setIsLegalDialogOpen(true)}
-                className="flex items-center gap-2"
-              >
-                <BookOpen className="h-4 w-4" />
-                Voir le dispositif légal
-              </Button>
-            )}
+            <div className="flex gap-2">
+              {convention.url && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => window.open(convention.url, '_blank')}
+                  className="flex items-center gap-2"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Consulter sur ElNet
+                </Button>
+              )}
+              {hasDispositifLegal(sectionType) && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setIsLegalDialogOpen(true)}
+                  className="flex items-center gap-2"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Voir le dispositif légal
+                </Button>
+              )}
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent>
