@@ -11,6 +11,7 @@ import fs from "fs";
 import { queryPerplexity } from "./services/perplexity";
 import { getConventionText, queryOpenAI, queryOpenAIForLegalData, calculateCost } from "./services/openai";
 import OpenAI from "openai";
+import adminRoutes from "./api/admin";
 
 // Configuration du client OpenAI
 const openai = new OpenAI({
