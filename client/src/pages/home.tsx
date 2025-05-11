@@ -46,7 +46,7 @@ export default function Home() {
             {filteredConventions.map((convention, index) => (
               <CommandItem
                 key={`${convention.id}-${index}`}
-                onSelect={() => navigate(`/chat/${convention.id}`)}
+                onSelect={() => navigate(`/convention/${convention.id}`)}
                 className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-900/20 p-6 border-b"
               >
                 <div className="flex flex-col gap-2">

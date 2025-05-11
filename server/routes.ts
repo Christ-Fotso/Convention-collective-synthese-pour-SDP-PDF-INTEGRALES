@@ -247,10 +247,8 @@ export function registerRoutes(app: Express): Server {
       try {
         // Enregistrer dans la base de données pour maintenir la compatibilité avec le client
         await db.insert(chatpdfSources).values({
-          id: sourceId,
-          name: `Convention collective ${convention.name} (IDCC ${conventionId})`,
-          url: conventionUrl,
-          convention_id: conventionId
+          conventionId: conventionId,
+          sourceId: sourceId
         });
         
         console.log(`Session d'analyse initialisée pour la convention ${conventionId}: ${sourceId}`);
