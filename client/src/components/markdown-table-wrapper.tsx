@@ -144,7 +144,8 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
         style={{ 
           fontSize: '0.8rem',
           width: '100%', 
-          position: 'relative'
+          position: 'relative',
+          paddingRight: '20px'
         }}
       >
         <ReactMarkdown 
