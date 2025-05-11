@@ -7,7 +7,7 @@ import Chat from "@/pages/chat";
 import NotFound from "@/pages/not-found";
 import AdminPage from "@/pages/admin";
 import SectionViewer from "@/pages/section-viewer";
-import ConventionViewer from "@/pages/convention-viewer";
+
 
 function Router() {
   return (
@@ -15,7 +15,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/chat/:id" component={Chat} />
       <Route path="/admin" component={AdminPage} />
-      <Route path="/convention/:id" component={ConventionViewer} />
+
       <Route path="/convention/:id/section/:category/:subcategory" component={SectionViewer} />
       <Route path="/convention/:id/section/:category" component={SectionViewer} />
       <Route component={NotFound} />
