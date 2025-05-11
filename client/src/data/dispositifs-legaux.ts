@@ -75,7 +75,13 @@ export const SECTION_TYPE_MAPPINGS: Record<string, string> = {
   "travail-dimanche": "temps-travail.travail-dimanche",
   "travail-le-dimanche": "temps-travail.travail-dimanche",
   "jours-feries": "temps-travail.jours-feries",
-  "maladie": "absences.maladie"
+  "maladie": "absences.maladie",
+  "salaire": "remuneration.salaire",
+  "remuneration": "remuneration.salaire",
+  "prime": "remuneration.primes",
+  "primes": "remuneration.primes",
+  "frais": "remuneration.frais-professionnels",
+  "frais-professionnels": "remuneration.frais-professionnels"
 };
 
 /**
@@ -88,6 +94,142 @@ export const getMappedSectionType = (sectionType: string): string => {
 };
 
 export const DISPOSITIFS_LEGAUX: Record<string, string> = {
+  "remuneration.salaire": `# Salaire
+
+## 1. SMIC (Salaire Minimum Interprofessionnel de Croissance)
+
+### Montant du SMIC (au 1er mai 2024)
+- **SMIC Horaire Brut** : 11,65 €
+- **SMIC Mensuel Brut** (base 35h/semaine) : 1 766,92 €
+
+### Revalorisation
+- **Automatique** : Chaque année au 1er janvier
+- **Indexation** :
+  - Sur l'inflation (indice des prix à la consommation)
+  - Sur la moitié du gain de pouvoir d'achat du salaire horaire de base ouvrier (SHBO)
+- **Coup de pouce** : Possible augmentation supplémentaire décidée par le gouvernement
+
+## 2. Paiement du Salaire
+
+### Périodicité
+- **Obligation** : Versement à intervalles réguliers
+- **Fréquence** :
+  - Mensuel pour les salariés mensualisés
+  - Minimum une fois tous les 15 jours pour les autres salariés
+
+### Bulletin de Paie
+- **Obligatoire** à chaque paiement
+- **Mentions obligatoires** :
+  - Identité de l'employeur et du salarié
+  - Convention collective applicable
+  - Période et nombre d'heures de travail
+  - Montant brut et détail des prélèvements
+  - Date de paiement
+
+## 3. Égalité de Rémunération
+
+### Principe
+- **À travail égal, salaire égal**
+- Interdiction des discriminations fondées sur le sexe, l'âge, l'origine, etc.
+
+### Sanctions
+- **Nullité** des dispositions discriminatoires
+- **Dommages et intérêts** pour le salarié discriminé`,
+
+  "remuneration.primes": `# Primes et Gratifications
+
+## 1. Primes Obligatoires
+
+### Prime d'Ancienneté
+- **Principe** : Versée en fonction de l'ancienneté dans l'entreprise
+- **Source** : Fixée par la convention collective ou un accord d'entreprise
+- **Calcul** : Généralement un pourcentage du salaire de base
+
+### 13ème Mois
+- **Principe** : Versement d'un mois de salaire supplémentaire
+- **Source** : Prévu par la convention collective, un accord d'entreprise ou un usage
+- **Conditions** : Souvent liées à une ancienneté minimale
+
+## 2. Primes Conventionnelles ou Contractuelles
+
+### Prime de Vacances
+- **Principe** : Complément de rémunération versé avant les congés annuels
+- **Source** : Convention collective ou accord d'entreprise
+- **Montant** : Variable selon les dispositions conventionnelles
+
+### Prime d'Assiduité
+- **Principe** : Récompense la présence régulière au travail
+- **Conditions** : Absence d'absences (hors congés payés et absences légitimes)
+- **Montant** : Fixé par accord collectif ou usage
+
+### Prime de Performance
+- **Principe** : Liée aux résultats individuels ou collectifs
+- **Calcul** : Basé sur des objectifs préalablement définis
+- **Versement** : Périodique ou annuel selon les accords
+
+## 3. Modification ou Suppression des Primes
+
+### Primes Prévues par le Contrat
+- **Modification** : Nécessite l'accord du salarié
+- **Suppression** : Constitue une modification du contrat de travail
+
+### Primes Issues d'un Usage
+- **Suppression possible** avec :
+  - Information préalable des représentants du personnel
+  - Information individuelle des salariés
+  - Respect d'un préavis suffisant (généralement 3 mois)
+
+### Primes Conventionnelles
+- **Modification** : Uniquement par avenant à l'accord collectif
+- **Suppression** : Possible uniquement par dénonciation de l'accord collectif avec respect des procédures légales`,
+
+  "remuneration.frais-professionnels": `# Frais Professionnels
+
+## 1. Principe de Remboursement
+
+### Obligation Légale
+- L'employeur doit prendre en charge les frais professionnels engagés par le salarié dans le cadre de son activité.
+- Ces frais ne constituent pas un élément de rémunération mais un remboursement.
+
+### Conditions
+- **Frais réels et justifiés** : Dépenses effectivement engagées pour les besoins de l'activité professionnelle.
+- **Justificatifs** : Factures, tickets, notes de frais dûment complétées.
+
+## 2. Principaux Types de Frais Professionnels
+
+### Frais de Transport
+- **Trajet Domicile-Travail** :
+  - Prise en charge obligatoire de 50% des abonnements aux transports publics.
+  - Indemnité kilométrique vélo possible (non obligatoire).
+- **Déplacements Professionnels** :
+  - Remboursement intégral des frais de transport (train, avion, véhicule personnel).
+  - Barème kilométrique pour l'utilisation d'un véhicule personnel.
+
+### Frais de Repas
+- **Déplacement** : Remboursement des repas pris en déplacement.
+- **Sur le Lieu de Travail** : Prise en charge possible via tickets restaurant ou indemnité repas.
+
+### Frais d'Hébergement
+- **Hôtel et petit-déjeuner** lors des déplacements professionnels.
+- **Plafonds** généralement fixés par l'entreprise en fonction des destinations.
+
+## 3. Modalités de Remboursement
+
+### Forfait ou Frais Réels
+- **Forfait** : Montant prédéfini indépendamment des dépenses réelles.
+- **Frais Réels** : Remboursement à l'euro près sur présentation de justificatifs.
+
+### Avance sur Frais
+- Possible avant le déplacement pour éviter que le salarié n'avance les sommes importantes.
+
+## 4. Régime Social et Fiscal
+
+### Exonération de Charges Sociales
+- Sous conditions et dans certaines limites fixées par l'URSSAF.
+- Au-delà des limites d'exonération, les remboursements sont considérés comme un complément de salaire.
+
+### Régime Fiscal
+- Exonération d'impôt sur le revenu dans les mêmes limites que l'exonération de charges sociales.`,
   "embauche.delai-prevenance": `# Délai de Prévenance
 
 | Ancienneté                | Initiateur | Délai    |
@@ -98,6 +240,59 @@ export const DISPOSITIFS_LEGAUX: Record<string, string> = {
 | Plus de 3 mois             | Employeur  | 1 mois   |
 | Moins de 8 jours           | Salarié    | 24 heures|
 | Plus de 8 jours            | Salarié    | 48 heures|`,
+
+  "embauche.clauses-particulieres": `# Clauses Particulières du Contrat de Travail
+
+## 1. Clause de Non-Concurrence
+
+### Définition
+Disposition interdisant au salarié, après la rupture de son contrat, d'exercer une activité professionnelle concurrente à celle de son ancien employeur.
+
+### Conditions de Validité
+- **Limitation dans le temps** : Durée raisonnable, généralement de 1 à 2 ans.
+- **Limitation dans l'espace** : Périmètre géographique délimité et justifié.
+- **Spécificité de l'activité** : Activités précisément définies.
+- **Contrepartie financière** : Indemnité obligatoire, généralement de 30% à 50% du salaire mensuel moyen.
+
+### Protection des Intérêts de l'Entreprise
+La clause doit être justifiée par les intérêts légitimes de l'entreprise et proportionnée au but recherché.
+
+## 2. Clause de Mobilité
+
+### Définition
+Disposition permettant à l'employeur de modifier le lieu de travail du salarié sans son accord.
+
+### Conditions de Validité
+- **Définition précise** : Zone géographique délimitée.
+- **Justification** : Nécessité pour l'entreprise.
+- **Information préalable** : Délai de prévenance raisonnable.
+- **Mise en œuvre de bonne foi** : Prise en compte de la situation personnelle du salarié.
+
+### Limites
+- Ne peut imposer un changement de résidence si cela porte une atteinte excessive au droit du salarié à une vie personnelle et familiale.
+
+## 3. Clause d'Exclusivité
+
+### Définition
+Disposition interdisant au salarié d'exercer une autre activité professionnelle pendant l'exécution de son contrat.
+
+### Conditions de Validité
+- **Justification** : Protection légitime des intérêts de l'entreprise.
+- **Proportionnalité** : Limitation en fonction du temps de travail et de la nature des fonctions exercées.
+
+### Limites
+- Ne peut faire obstacle à l'exercice d'une activité à temps partiel chez un autre employeur, sauf si justifié.
+- Ne peut s'opposer à la création ou reprise d'une entreprise par le salarié.
+
+## 4. Clause de Confidentialité
+
+### Définition
+Disposition imposant au salarié de ne pas divulguer les informations confidentielles de l'entreprise.
+
+### Caractéristiques
+- **Définition précise** : Nature des informations concernées.
+- **Durée** : Pendant et après le contrat de travail.
+- **Sanctions** : Possibilité de dommages et intérêts en cas de violation.`,
 
   "embauche.periode-essai": `# Période d'Essai
 
@@ -611,6 +806,59 @@ Le repos hebdomadaire est en principe accordé le dimanche. Toutefois, des déro
     - **Condition** : Ancienneté d'au moins 3 mois dans l'entreprise ou l'établissement.
     - **Maintien du salaire** : Oui, sans réduction de rémunération.
 - **Référence Légale** : Article L3133-3 du Code du travail.`,
+
+  "temps-travail.amenagement-temps": `# Aménagement du Temps de Travail
+
+## 1. Modulation du Temps de Travail
+
+### Définition
+L'aménagement du temps de travail permet de répartir la durée du travail sur une période supérieure à la semaine et au plus égale à l'année. Ce dispositif permet d'adapter le rythme de travail aux fluctuations d'activité.
+
+### Mise en Place
+- Nécessite un **accord collectif** (entreprise, établissement ou branche).
+- L'accord doit préciser :
+  - La période de référence (maximum 1 an)
+  - Les conditions de changement des horaires
+  - Les limites pour le décompte des heures supplémentaires
+  - Les conditions de prise en compte des absences
+
+### Limites Légales
+- **Durée quotidienne** : Maximum 10 heures (12 heures par dérogation)
+- **Durée hebdomadaire** : 
+  - Maximum 48 heures sur une semaine
+  - 44 heures en moyenne sur 12 semaines consécutives
+
+### Rémunération
+- **Lissage du salaire** : La rémunération est indépendante de l'horaire réel et peut être lissée sur l'année.
+- **Heures supplémentaires** : Décomptées à la fin de la période de référence ou en cas de dépassement des limites fixées par l'accord.
+
+## 2. Cycles de Travail
+
+### Définition
+Organisation de la durée du travail selon un cycle régulier de plusieurs semaines.
+
+### Mise en Place
+- Peut être instauré par accord collectif ou, à défaut, après consultation du CSE.
+- Le cycle peut varier de quelques semaines à plusieurs mois.
+
+### Caractéristiques
+- La durée du travail est répartie de façon fixe et répétitive.
+- Les heures supplémentaires sont décomptées sur la durée totale du cycle.
+
+## 3. Horaires Individualisés
+
+### Définition
+Système permettant aux salariés de choisir leurs horaires d'arrivée et de départ, dans des limites fixées par l'employeur.
+
+### Mise en Place
+- Sur demande des salariés
+- Après consultation du CSE
+- Peut nécessiter l'autorisation de l'inspection du travail dans certains cas
+
+### Caractéristiques
+- **Plages fixes** : Périodes où tous les salariés doivent être présents
+- **Plages variables** : Périodes où les salariés choisissent leurs horaires
+- **Report d'heures** : Possibilité de report limité d'heures d'une période à une autre`,
 
   "temps-travail.travail-nuit": `# Travail de Nuit
 
