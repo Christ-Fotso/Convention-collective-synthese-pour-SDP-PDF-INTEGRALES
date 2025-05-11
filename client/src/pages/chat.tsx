@@ -60,6 +60,7 @@ export default function Chat() {
   const { id } = useParams<{ id: string }>();
   const [_, navigate] = useLocation();
   const [selectedSection, setSelectedSection] = useState<SectionType | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState(false);
   
   // Requête pour obtenir les informations sur la convention
@@ -167,9 +168,23 @@ export default function Chat() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle>Sections disponibles</CardTitle>
-              <CardDescription>
-                Sélectionnez une section pour consulter son contenu
-              </CardDescription>
+              <div className="mt-2 relative">
+                <input
+                  type="text"
+                  placeholder="Rechercher une section..."
+                  className="w-full p-2 pr-8 text-sm border rounded-md"
+                  onChange={(e) => {
+                    // Stocker la valeur de recherche dans un état local
+                    setSearchTerm(e.target.value);
+                  }}
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
               {isLoadingSections ? (
@@ -187,8 +202,25 @@ export default function Chat() {
                         // On regroupe d'abord les sections par catégorie
                         const groupedSections: Record<string, SectionType[]> = {};
                         
-                        // Parcours de toutes les sections pour les regrouper
-                        sectionTypes.forEach((section: SectionType) => {
+                        // Filtrer les sections selon le terme de recherche (si présent)
+                        const filteredSections = searchTerm.trim() !== '' 
+                          ? sectionTypes.filter((section: SectionType) => {
+                              // Trouver le nom de la catégorie et de la sous-catégorie
+                              const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
+                              if (!categoryDef) return false;
+                              
+                              const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
+                              if (!subcategoryDef) return false;
+                              
+                              // Rechercher dans les noms de catégorie et sous-catégorie
+                              const searchLower = searchTerm.toLowerCase();
+                              return categoryDef.name.toLowerCase().includes(searchLower) || 
+                                     subcategoryDef.name.toLowerCase().includes(searchLower);
+                            })
+                          : sectionTypes;
+                        
+                        // Parcours de toutes les sections filtrées pour les regrouper
+                        filteredSections.forEach((section: SectionType) => {
                           if (!groupedSections[section.category]) {
                             groupedSections[section.category] = [];
                           }
