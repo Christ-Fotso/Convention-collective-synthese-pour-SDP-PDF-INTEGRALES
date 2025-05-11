@@ -135,6 +135,11 @@ export async function loadSectionsFromJSON(): Promise<void> {
     sectionsCache = {};
     conventionsCache = [];
     
+    // Collecter des statistiques pour le débogage
+    let unmappedSections: Record<string, number> = {};
+    let totalSectionsInJson = 0;
+    let mappedSections = 0;
+    
     // Parcourir toutes les conventions dans le fichier
     for (const [conventionName, conventionData] of Object.entries(data)) {
       const idcc = conventionData.idcc;
@@ -152,16 +157,97 @@ export async function loadSectionsFromJSON(): Promise<void> {
       
       // Parcourir toutes les sections de cette convention
       for (const [sectionName, sectionData] of Object.entries(conventionData.sections)) {
+        totalSectionsInJson++;
+        
         // Déterminer le type de section dans notre application
         const appSectionType = SECTION_TYPE_MAPPING[sectionName] || `unknown.${sectionName}`;
         
+        // Debug: afficher quelques exemples de mapping
+        if (totalSectionsInJson < 5) {
+          console.log(`Mapping de section: "${sectionName}" -> "${appSectionType}"`);
+        }
+        
+        // Collecter des statistiques sur les sections non mappées
+        if (!SECTION_TYPE_MAPPING[sectionName]) {
+          if (!unmappedSections[sectionName]) {
+            unmappedSections[sectionName] = 0;
+          }
+          unmappedSections[sectionName]++;
+        } else {
+          mappedSections++;
+        }
+        
+        // Générer une clé unique qui préserve le type de section origine
+        // Format: "appSectionType|originalName" pour éviter les collisions
+        // Cela permettra de stocker toutes les sections sans écraser celles qui ont le même type
+        const uniqueKey = `${appSectionType}|${sectionName}`;
+        
         // Ajouter la section au cache
-        sectionsCache[idcc][appSectionType] = {
+        sectionsCache[idcc][uniqueKey] = {
           conventionId: idcc,
           sectionType: appSectionType,
           content: sectionData.contenu
         };
       }
+    }
+    
+    // Afficher les statistiques de mapping
+    console.log(`Total de sections dans le JSON: ${totalSectionsInJson}`);
+    console.log(`Sections correctement mappées: ${mappedSections}`);
+    console.log(`Sections avec mapping par défaut: ${totalSectionsInJson - mappedSections}`);
+    if (Object.keys(unmappedSections).length > 0) {
+      console.log("Sections non mappées:");
+      for (const [name, count] of Object.entries(unmappedSections)) {
+        console.log(`  ${name}: ${count} occurrences`);
+      }
+    }
+    
+    // Compter les occurrences des types de sections dans le cache
+    let sectionTypeCounts: Record<string, number> = {};
+    let conventionSectionCounts: Record<string, number> = {};
+    
+    for (const [conventionId, sections] of Object.entries(sectionsCache)) {
+      conventionSectionCounts[conventionId] = Object.keys(sections).length;
+      
+      for (const sectionType of Object.keys(sections)) {
+        if (!sectionTypeCounts[sectionType]) {
+          sectionTypeCounts[sectionType] = 0;
+        }
+        sectionTypeCounts[sectionType]++;
+      }
+    }
+    
+    // Identifier les conventions avec le plus et le moins de sections
+    let minSections = Number.MAX_SAFE_INTEGER;
+    let maxSections = 0;
+    let conventionWithMin = "";
+    let conventionWithMax = "";
+    
+    for (const [conventionId, count] of Object.entries(conventionSectionCounts)) {
+      if (count < minSections) {
+        minSections = count;
+        conventionWithMin = conventionId;
+      }
+      if (count > maxSections) {
+        maxSections = count;
+        conventionWithMax = conventionId;
+      }
+    }
+    
+    console.log(`Convention avec le moins de sections: ${conventionWithMin} (${minSections} sections)`);
+    console.log(`Convention avec le plus de sections: ${conventionWithMax} (${maxSections} sections)`);
+    
+    // Calculer le nombre total de sections mappées
+    const distinctSectionTypes = Object.keys(sectionTypeCounts).length;
+    console.log(`Types de sections distincts: ${distinctSectionTypes}`);
+    
+    // Vérifier les types de sections les plus fréquents
+    const sortedSectionTypes = Object.entries(sectionTypeCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+    console.log("Types de sections les plus fréquents:");
+    for (const [type, count] of sortedSectionTypes) {
+      console.log(`  ${type}: ${count} occurrences`);
     }
     
     const totalConventions = conventionsCache.length;
@@ -194,12 +280,15 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
     return null;
   }
   
-  // Vérifier si la section existe
-  if (!sectionsCache[conventionId][sectionType]) {
-    return null;
+  // Parcourir toutes les sections et trouver celle qui correspond au type demandé
+  // Comme notre clé est maintenant "appSectionType|originalName", nous devons chercher une correspondance partielle
+  for (const [key, section] of Object.entries(sectionsCache[conventionId])) {
+    if (section.sectionType === sectionType) {
+      return section;
+    }
   }
   
-  return sectionsCache[conventionId][sectionType];
+  return null;
 }
 
 /**
@@ -234,8 +323,13 @@ export function getSectionTypesByConvention(conventionId: string): string[] {
     return [];
   }
   
-  // Récupérer les clés
-  return Object.keys(sectionsCache[conventionId]);
+  // Récupérer les types de sections uniques
+  const uniqueTypes = new Set<string>();
+  for (const section of Object.values(sectionsCache[conventionId])) {
+    uniqueTypes.add(section.sectionType);
+  }
+  
+  return Array.from(uniqueTypes);
 }
 
 /**
