@@ -21,12 +21,39 @@ export default function Home() {
     queryFn: getConventions,
   });
 
+  // Log pour déboguer la recherche
+  console.log("Nombre total de conventions:", conventions.length);
+  if (search) {
+    console.log("Recherche:", search);
+    // Log du premier élément pour voir la structure
+    if (conventions.length > 0) {
+      console.log("Premier élément:", conventions[0]);
+    }
+  }
+
   const filteredConventions = conventions.filter(
     conv => {
       const searchTerm = search.toLowerCase();
-      const idMatch = conv.id && typeof conv.id === 'string' ? conv.id.toLowerCase().includes(searchTerm) : false;
-      const nameMatch = conv.name && typeof conv.name === 'string' ? conv.name.toLowerCase().includes(searchTerm) : false;
-      return idMatch || nameMatch;
+      
+      // Vérifier que conv.id existe et est une chaîne
+      const idMatch = conv.id && typeof conv.id === 'string' 
+        ? conv.id.toLowerCase().includes(searchTerm) 
+        : false;
+      
+      // Vérifier que conv.name existe et est une chaîne
+      const nameMatch = conv.name && typeof conv.name === 'string' 
+        ? conv.name.toLowerCase().includes(searchTerm) 
+        : false;
+      
+      // Résultat du filtre
+      const isMatch = idMatch || nameMatch;
+      
+      // Log détaillé pour les 5 premiers éléments si on a une recherche active
+      if (search && conventions.indexOf(conv) < 5) {
+        console.log(`Convention ${conv.id} - ${conv.name}:`, { idMatch, nameMatch, isMatch });
+      }
+      
+      return isMatch;
     }
   );
 
