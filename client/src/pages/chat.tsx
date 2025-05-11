@@ -292,7 +292,7 @@ export default function Chat() {
                                   )}
                                 </h3>
                                 {isCategoryExpanded && (
-                                  <div className="grid grid-cols-1 gap-2 animate-in fade-in-50 duration-150">
+                                  <div className="grid grid-cols-1 gap-2 animate-in fade-in-50 duration-150 pr-2">
                                     {sectionElements}
                                   </div>
                                 )}
