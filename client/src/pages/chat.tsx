@@ -162,7 +162,7 @@ export default function Chat() {
       )}
       
       {convention && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6">
           {/* Colonne de gauche: Navigation par sections */}
           <Card>
             <CardHeader className="pb-3">
