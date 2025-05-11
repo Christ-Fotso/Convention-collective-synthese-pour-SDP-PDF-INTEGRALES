@@ -151,54 +151,56 @@ export default function Chat() {
                           groupedSections[section.category].push(section);
                         });
                         
-                        // Ensuite, on crée des éléments JSX pour chaque catégorie
+                        // Créer les éléments JSX pour chaque catégorie, dans l'ordre défini par CATEGORIES
                         const categoryElements: JSX.Element[] = [];
                         
-                        Object.keys(groupedSections).forEach((category, categoryIndex) => {
-                          const sections = groupedSections[category];
+                        // Utiliser l'ordre des catégories défini dans CATEGORIES
+                        CATEGORIES.forEach((categoryDefinition, categoryIndex) => {
+                          const category = categoryDefinition.id;
                           
+                          // Vérifier si la catégorie existe dans les données
+                          if (!groupedSections[category]) {
+                            return; // Passer à la catégorie suivante
+                          }
+                          
+                          const sections = groupedSections[category];
                           const sectionElements: JSX.Element[] = [];
-                          sections.forEach((section, sectionIndex) => {
-                            // Récupérer le nom formaté de la sous-catégorie à partir de CATEGORIES
-                            const categoryData = CATEGORIES.find(cat => cat.id === section.category);
-                            let subcategoryName = section.subcategory.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+                          
+                          // Pour chaque sous-catégorie dans l'ordre défini
+                          categoryDefinition.subcategories.forEach((subcategoryDefinition, subcategoryIndex) => {
+                            // Trouver la section correspondante
+                            const section = sections.find(s => s.subcategory === subcategoryDefinition.id);
                             
-                            if (categoryData) {
-                              const subcategoryData = categoryData.subcategories.find(subcat => subcat.id === section.subcategory);
-                              if (subcategoryData) {
-                                subcategoryName = subcategoryData.name;
-                              }
+                            if (section) {
+                              sectionElements.push(
+                                <div
+                                  key={`${categoryIndex}-${subcategoryIndex}`}
+                                  className={`p-3 border rounded-md cursor-pointer ${
+                                    selectedSection?.sectionType === section.sectionType
+                                      ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600"
+                                      : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
+                                  }`}
+                                  onClick={() => setSelectedSection(section)}
+                                >
+                                  {subcategoryDefinition.name}
+                                </div>
+                              );
                             }
-                            
-                            sectionElements.push(
-                              <div
-                                key={`${categoryIndex}-${sectionIndex}`}
-                                className={`p-3 border rounded-md cursor-pointer ${
-                                  selectedSection?.sectionType === section.sectionType
-                                    ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600"
-                                    : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
-                                }`}
-                                onClick={() => setSelectedSection(section)}
-                              >
-                                {subcategoryName}
-                              </div>
-                            );
                           });
                           
-                          // Trouver le nom formaté de la catégorie depuis CATEGORIES
-                          const categoryData = CATEGORIES.find(cat => cat.id === category);
-                          const categoryName = categoryData ? categoryData.name : category.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-                          
-                          categoryElements.push(
-                            <div key={categoryIndex} className="mb-6">
-                              <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400 border-b pb-2">
-                                {categoryName}
-                              </h3>
-                              <div className="grid grid-cols-1 gap-2">
-                                {sectionElements}
+                          // N'ajouter la catégorie que si elle contient des sections
+                          if (sectionElements.length > 0) {
+                            categoryElements.push(
+                              <div key={categoryIndex} className="mb-6">
+                                <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400 border-b pb-2">
+                                  {categoryDefinition.name}
+                                </h3>
+                                <div className="grid grid-cols-1 gap-2">
+                                  {sectionElements}
+                                </div>
                               </div>
-                            </div>
-                          );
+                            );
+                          }
                         });
                         
                         return categoryElements;
