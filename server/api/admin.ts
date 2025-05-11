@@ -60,6 +60,11 @@ router.get('/json-structure', async (req, res) => {
       });
     }
     
+    // Trier les conventions par ordre alphabétique du nom
+    structure.conventions.sort((a, b) => {
+      return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+    });
+    
     res.json(structure);
   } catch (error) {
     console.error("Erreur lors de la lecture du fichier JSON:", error);

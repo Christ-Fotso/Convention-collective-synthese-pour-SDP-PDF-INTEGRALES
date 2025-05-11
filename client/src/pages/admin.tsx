@@ -254,41 +254,64 @@ export default function AdminPage() {
                   message="Erreur lors du chargement des conventions" 
                 />
               ) : (
-                <div className="h-[calc(100vh-350px)] overflow-y-auto pr-2">
-                  <Accordion type="single" collapsible className="w-full">
+                <div className="h-[calc(100vh-350px)] overflow-y-auto pr-2 border rounded-lg bg-white shadow-sm">
+                  {/* Afficher le nombre de conventions trouvées */}
+                  <div className="p-2 border-b bg-gray-50 text-sm text-gray-500">
+                    {filteredConventions.length} conventions trouvées
+                  </div>
+                  
+                  {/* Liste simple pour meilleures performances */}
+                  <div className="divide-y">
                     {filteredConventions.map((convention: Convention) => (
-                      <AccordionItem key={convention.id} value={convention.id}>
-                        <AccordionTrigger
+                      <div key={convention.id} className="hover:bg-gray-50">
+                        <div 
+                          className={`
+                            p-3 cursor-pointer flex justify-between items-center
+                            ${selectedConvention === convention.id ? "bg-blue-50 border-l-4 border-blue-500" : ""}
+                          `}
                           onClick={() => setSelectedConvention(convention.id)}
-                          className={selectedConvention === convention.id ? "font-bold" : ""}
                         >
-                          {convention.name} ({convention.id})
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          {isLoadingConvention && selectedConvention === convention.id ? (
-                            <div className="flex items-center justify-center p-2">
-                              <Loader2 className="h-4 w-4 animate-spin" />
-                            </div>
-                          ) : (
-                            <ul className="ml-2 space-y-1">
-                              {conventionDetail?.sections?.map((section: { name: string, title: string }) => (
-                                <li 
-                                  key={section.name} 
-                                  className={`
-                                    cursor-pointer text-sm py-1 px-2 rounded hover:bg-slate-100
-                                    ${selectedSection === section.name ? 'bg-slate-200' : ''}
-                                  `}
-                                  onClick={() => setSelectedSection(section.name)}
-                                >
-                                  {section.title || section.name}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </AccordionContent>
-                      </AccordionItem>
+                          <div>
+                            <div className="font-medium">{convention.name}</div>
+                            <div className="text-sm text-gray-500">IDCC {convention.id}</div>
+                          </div>
+                          <div className="text-xs bg-gray-100 px-2 py-1 rounded">
+                            {convention.sections.length} sections
+                          </div>
+                        </div>
+                        
+                        {/* Afficher les sections uniquement pour la convention sélectionnée */}
+                        {selectedConvention === convention.id && (
+                          <div className="bg-gray-50 px-3 py-2 border-l-4 border-blue-500">
+                            {isLoadingConvention ? (
+                              <div className="flex items-center justify-center p-2">
+                                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                                <span className="text-sm">Chargement des sections...</span>
+                              </div>
+                            ) : (
+                              <div className="max-h-60 overflow-y-auto">
+                                <div className="text-xs font-medium mb-2 text-gray-500">SECTIONS DISPONIBLES:</div>
+                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                                  {conventionDetail?.sections?.map((section: { name: string, title: string }) => (
+                                    <li 
+                                      key={section.name} 
+                                      className={`
+                                        cursor-pointer text-sm py-1 px-2 rounded hover:bg-blue-100
+                                        ${selectedSection === section.name ? 'bg-blue-200 font-medium' : ''}
+                                      `}
+                                      onClick={() => setSelectedSection(section.name)}
+                                    >
+                                      {section.title || section.name}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     ))}
-                  </Accordion>
+                  </div>
                 </div>
               )}
             </CardContent>
