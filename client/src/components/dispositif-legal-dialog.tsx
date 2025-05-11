@@ -21,17 +21,10 @@ export const DispositifLegalDialog: React.FC<DispositifLegalDialogProps> = ({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <div className="flex items-center justify-between">
-            <DialogTitle className="flex items-center">
-              <BookOpen className="mr-2 h-5 w-5 text-green-600" />
-              <span>Dispositif légal : {title}</span>
-            </DialogTitle>
-            <DialogClose asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <X className="h-4 w-4" />
-              </Button>
-            </DialogClose>
-          </div>
+          <DialogTitle className="flex items-center">
+            <BookOpen className="mr-2 h-5 w-5 text-green-600" />
+            <span>Dispositif légal : {title}</span>
+          </DialogTitle>
           <DialogDescription>
             Comparatif des dispositions légales applicables
           </DialogDescription>
