@@ -3,11 +3,11 @@ import { type Category } from '@/types';
 export const CATEGORIES: Category[] = [
   {
     "id": "informations-generales",
-    "name": "Informations Générales",
+    "name": "Informations générales",
     "subcategories": [
       {
         "id": "generale",
-        "name": "Informations Générales"
+        "name": "Informations générales"
       }
     ]
   },
@@ -65,7 +65,7 @@ export const CATEGORIES: Category[] = [
       },
       {
         "id": "evenement-familial",
-        "name": "Évènement familial"
+        "name": "Evènement familial"
       }
     ]
   },
