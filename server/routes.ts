@@ -432,63 +432,40 @@ export function registerRoutes(app: Express): Server {
           }
           
           try {
-            // Si la section n'existe pas, créer une entrée avec statut "pending"
+            // Si la section n'existe pas, renvoyer un message d'erreur
+            // Ne pas générer de nouvelles sections avec l'IA - utiliser uniquement celles importées
             if (!existingSection) {
-              await saveConventionSection({
-                conventionId,
-                sectionType,
-                content: "Génération en cours...",
-                status: 'pending'
+              return res.status(404).json({
+                message: `Section ${sectionType} non disponible pour la convention ${conventionId}`,
+                content: `La section "${sectionType}" n'est pas disponible pour cette convention collective. Nous sommes en train de compléter notre base de données de sections pré-extraites.`
               });
             }
             
-            // Récupérer le texte de la convention avec extraction intelligente basée sur la catégorie
-            const conventionText = await getConventionText(
-              conventionId,
-              convention[0].url,
-              category,
-              subcategory
-            );
+            // Section existe mais status n'est pas 'complete'
+            if (existingSection.status !== 'complete') {
+              return res.status(202).json({
+                message: `Section ${sectionType} en cours de traitement pour la convention ${conventionId}`,
+                content: `Cette section est en cours de traitement. Veuillez réessayer ultérieurement.`
+              });
+            }
             
-            // Requête à GPT-4.1 avec contexte complet du document
-            const response = await queryOpenAI(
-              conventionText,
-              messages,
-              convention[0].id,
-              convention[0].name,
-              category,
-              subcategory
-            );
-            
-            // Mettre en cache la réponse
-            openaiCache.set(cacheKey, response);
-            
-            // Sauvegarder la section en base de données
-            await saveConventionSection({
-              conventionId,
-              sectionType,
-              content: response.content,
-              status: 'complete'
-            });
-            
-            console.log(`Section ${sectionType} sauvegardée en base de données pour la convention ${conventionId}`);
-            console.log('Réponse GPT-4.1 reçue et envoyée');
+            // Ce code ne devrait jamais être atteint car on retourne avant si !existingSection
+            // Mais on le laisse par sécurité
+            const response = {
+              content: existingSection.content,
+              fromCache: true
+            };
             
             res.json(response);
           } catch (error) {
-            // En cas d'erreur, mettre à jour la section avec statut "error"
-            if (existingSection) {
-              await saveConventionSection({
-                conventionId,
-                sectionType,
-                content: `Erreur lors de la génération: ${error instanceof Error ? error.message : 'Erreur inconnue'}`,
-                status: 'error',
-                errorMessage: error instanceof Error ? error.message : 'Erreur inconnue'
-              });
-            }
+            // Gestion des erreurs
+            console.error(`Erreur lors de l'accès à la section ${sectionType} pour la convention ${conventionId}:`, error);
             
-            // Propager l'erreur pour être traitée par le catch général
-            throw error;
+            // Renvoyer un message d'erreur
+            return res.status(500).json({
+              message: "Une erreur est survenue lors de l'accès à cette section",
+              content: "Une erreur technique est survenue. Veuillez réessayer ultérieurement."
+            });
           }
         } catch (openaiError: any) {
           console.error('Erreur GPT-4.1:', {
