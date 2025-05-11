@@ -65,6 +65,7 @@ export default function Chat() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
@@ -269,14 +270,25 @@ export default function Chat() {
                           
                           // N'ajouter la catégorie que si elle contient des sections
                           if (sectionElements.length > 0) {
+                            const isCategoryExpanded = expandedCategory === category;
                             categoryElements.push(
                               <div key={categoryIndex} className="mb-3">
-                                <h3 className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1">
-                                  {categoryDefinition.name}
+                                <h3 
+                                  className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1 flex justify-between items-center cursor-pointer"
+                                  onClick={() => setExpandedCategory(isCategoryExpanded ? null : category)}
+                                >
+                                  <span>{categoryDefinition.name}</span>
+                                  {isCategoryExpanded ? (
+                                    <ChevronDown className="h-4 w-4" />
+                                  ) : (
+                                    <ChevronRight className="h-4 w-4" />
+                                  )}
                                 </h3>
-                                <div className="grid grid-cols-1 gap-2">
-                                  {sectionElements}
-                                </div>
+                                {isCategoryExpanded && (
+                                  <div className="grid grid-cols-1 gap-2 animate-in fade-in-50 duration-150">
+                                    {sectionElements}
+                                  </div>
+                                )}
                               </div>
                             );
                           }
