@@ -33,24 +33,26 @@ export default function Home() {
 
   const filteredConventions = conventions.filter(
     conv => {
-      const searchTerm = search.toLowerCase();
+      // Si la recherche est vide, on affiche tout
+      if (!search.trim()) {
+        return true;
+      }
       
-      // Vérifier que conv.id existe et est une chaîne
-      const idMatch = conv.id && typeof conv.id === 'string' 
-        ? conv.id.toLowerCase().includes(searchTerm) 
-        : false;
+      const searchTerm = search.toLowerCase().trim();
       
-      // Vérifier que conv.name existe et est une chaîne
-      const nameMatch = conv.name && typeof conv.name === 'string' 
-        ? conv.name.toLowerCase().includes(searchTerm) 
-        : false;
+      // Version simplifiée qui devrait fonctionner avec tous les types de données
+      const id = String(conv.id || '').toLowerCase();
+      const name = String(conv.name || '').toLowerCase();
+      
+      const idMatch = id.includes(searchTerm);
+      const nameMatch = name.includes(searchTerm);
       
       // Résultat du filtre
       const isMatch = idMatch || nameMatch;
       
       // Log détaillé pour les 5 premiers éléments si on a une recherche active
       if (search && conventions.indexOf(conv) < 5) {
-        console.log(`Convention ${conv.id} - ${conv.name}:`, { idMatch, nameMatch, isMatch });
+        console.log(`Convention ${id} - ${name}:`, { idMatch, nameMatch, isMatch });
       }
       
       return isMatch;

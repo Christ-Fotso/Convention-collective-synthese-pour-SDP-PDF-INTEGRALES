@@ -29,6 +29,10 @@ import {
   getConventionsWithSections
 } from "./sections-data";
 
+// Importer les routes d'administration et d'IA
+import adminRoutes from './api/admin';
+import openaiRoutes from './api/openai';
+
 // Configuration du client OpenAI
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -82,10 +86,9 @@ export async function initCaches(): Promise<void> {
 export function registerRoutes(app: Express): Server {
   const apiRouter = Router();
   
-  // Simple middleware - pas de routes admin et openai pour l'instant
-  // On va les ajouter plus tard quand le problème sera résolu
-  // apiRouter.use('/admin', adminRoutes);
-  // apiRouter.use('/openai', openaiRoutes);
+  // Enregistrer les routes d'administration
+  apiRouter.use('/admin', adminRoutes);
+  apiRouter.use('/openai', openaiRoutes);
 
   // Middleware pour la gestion des erreurs
   app.use((req, res, next) => {
