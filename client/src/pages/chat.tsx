@@ -13,6 +13,16 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CATEGORIES } from "@/lib/categories";
 
+// Mapping entre les catégories backend et catégories d'affichage
+const CATEGORY_MAPPING: Record<string, string> = {
+  "protection-sociale": "cotisations",
+  "protection-sociale.prevoyance": "cotisations.prevoyance",
+  "protection-sociale.retraite": "cotisations.retraite", 
+  "protection-sociale.mutuelle": "cotisations.mutuelle",
+  "formation.contributions": "cotisations.formation",
+  "divers.paritarisme": "cotisations.paritarisme"
+};
+
 // Types simplifiés
 interface Convention {
   id: string;
@@ -69,22 +79,56 @@ export default function Chat() {
     queryFn: async () => {
       if (!id) return [];
       const response = await axios.get(`/api/convention/${id}/section-types`);
-      return response.data.map((type: string) => ({
-        sectionType: type,
-        label: getSectionLabel(type),
-        category: type.split(".")[0],
-        subcategory: type.split(".")[1]
-      }));
+      return response.data.map((type: string) => {
+        // Vérifier si on doit remapper cette section
+        let mappedType = type;
+        if (CATEGORY_MAPPING[type]) {
+          mappedType = CATEGORY_MAPPING[type];
+        }
+        
+        const [backendCategory, backendSubcategory] = type.split(".");
+        
+        // Définir la catégorie et sous-catégorie d'affichage
+        let displayCategory = backendCategory;
+        let displaySubcategory = backendSubcategory;
+        
+        // Appliquer le mapping spécifique pour les sections de protection sociale à cotisations
+        if (backendCategory === "protection-sociale" && ["prevoyance", "retraite", "mutuelle"].includes(backendSubcategory)) {
+          displayCategory = "cotisations";
+          displaySubcategory = backendSubcategory;
+        }
+        // Appliquer le mapping pour formation.contributions -> cotisations.formation
+        else if (backendCategory === "formation" && backendSubcategory === "contributions") {
+          displayCategory = "cotisations";
+          displaySubcategory = "formation";
+        }
+        // Appliquer le mapping pour divers.paritarisme -> cotisations.paritarisme
+        else if (backendCategory === "divers" && backendSubcategory === "paritarisme") {
+          displayCategory = "cotisations";
+          displaySubcategory = "paritarisme";
+        }
+        // le reste reste inchangé
+        
+        return {
+          sectionType: type, // Type de section original pour les appels API
+          label: getSectionLabel(type),
+          category: displayCategory,
+          subcategory: displaySubcategory
+        };
+      });
     },
     staleTime: 1000 * 60 * 5 // 5 minutes
   });
   
   // Requête pour obtenir le contenu d'une section
   const { data: sectionContent, isLoading: isLoadingSectionContent } = useQuery({
-    queryKey: ["section-content", id, selectedSection?.category, selectedSection?.subcategory],
+    queryKey: ["section-content", id, selectedSection?.sectionType],
     queryFn: async () => {
       if (!id || !selectedSection) return null;
-      const response = await axios.get(`/api/convention/${id}/section/${selectedSection.category}/${selectedSection.subcategory}`);
+      
+      // On utilise sectionType qui contient le chemin original dans l'API
+      const [backendCategory, backendSubcategory] = selectedSection.sectionType.split(".");
+      const response = await axios.get(`/api/convention/${id}/section/${backendCategory}/${backendSubcategory}`);
       return response.data;
     },
     enabled: !!selectedSection,
@@ -238,7 +282,10 @@ export default function Chat() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => navigate(`/convention/${id}/section/${selectedSection.category}/${selectedSection.subcategory}`)}
+                      onClick={() => {
+                        const [backendCategory, backendSubcategory] = selectedSection.sectionType.split(".");
+                        navigate(`/convention/${id}/section/${backendCategory}/${backendSubcategory}`);
+                      }}
                     >
                       Voir complet <ChevronRight className="h-4 w-4 ml-2" />
                     </Button>
