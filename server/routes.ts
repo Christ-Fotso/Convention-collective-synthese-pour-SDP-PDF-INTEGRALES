@@ -82,6 +82,9 @@ export async function initCaches(): Promise<void> {
 
 export function registerRoutes(app: Express): Server {
   const apiRouter = Router();
+  
+  // Ajouter les routes d'administration pour l'édition des données JSON
+  apiRouter.use('/admin', adminRoutes);
 
   // Middleware pour la gestion des erreurs
   app.use((req, res, next) => {

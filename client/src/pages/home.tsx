@@ -32,6 +32,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <div className="absolute top-4 right-4 z-10">
+        <button 
+          onClick={() => navigate('/admin')} 
+          className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
+        >
+          Administration
+        </button>
+      </div>
       <Command className="rounded-none border-0">
         <CommandInput 
           placeholder="Rechercher par IDCC ou nom..." 
