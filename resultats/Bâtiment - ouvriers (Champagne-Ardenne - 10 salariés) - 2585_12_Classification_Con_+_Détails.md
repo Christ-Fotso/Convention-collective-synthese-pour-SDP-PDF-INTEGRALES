@@ -1,0 +1,3 @@
+La convention collective ne prévoit pas de grille de classification des ouvriers.  Elle mentionne uniquement des coefficients (150, 170, 185, 210, 230, 250 et 270) associés à des salaires minima.  La convention ne précise pas les critères, les fonctions types ou les modalités d'évolution liés à ces coefficients.  Le statut "Ouvrier" est implicite compte tenu du titre de la convention collective, mais n'est jamais explicitement associé aux coefficients mentionnés.
+
+La convention fait référence à la convention collective nationale Bâtiment Ouvriers (Entreprises occupant jusqu'à dix salariés) mais ne précise pas si la classification doit en être extraite.

@@ -1,0 +1,12 @@
+- Durée hebdomadaire de référence : La convention ne prévoit rien à ce sujet.
+- Durée maximale hebdomadaire : La convention ne prévoit rien à ce sujet.
+- Durée maximale quotidienne : La convention ne prévoit rien à ce sujet.
+- Repos quotidien minimum : La convention ne prévoit rien à ce sujet.
+- Repos hebdomadaire minimum :  Non compris le jour de repos hebdomadaire (Article 19 - Congés payés).  L'article 20 mentionne que "Les employés ne travaillant pas dans le cadre du repos hebdomadaire un jour normalement ouvré dans leur entreprise bénéficieront, lorsqu'un jour férié légal se placera à la même date, d'un jour de repos compensateur à prendre dans les six mois suivants".
+- Temps de pause minimum : La convention ne prévoit rien à ce sujet.
+- Dispositions spécifiques par catégorie :
+    - Cadres au forfait : La convention ne prévoit rien à ce sujet.
+    - Temps partiel :  "Pour les employés à temps partiel, le contrat de travail précisera le lieu, les jours et les horaires de travail." (Article 12 - Engagements)
+    - Jeunes travailleurs : La convention ne prévoit rien à ce sujet concernant les durées du travail, mais l'article 25 mentionne l'organisation du travail des jeunes conformément aux dispositions législatives et réglementaires.
+- Dérogations prévues :  "Lorsque des entreprises des commerces de détail non alimentaires travailleront six jours par semaine en dehors de la récupération des fêtes légales, et feront, de ce fait, des heures supplémentaires, ces heures supplémentaires seront payées avec une majoration de 50 %" (Article 26 - Rémunération).
+- Articulation avec des accords d'entreprise : La convention ne prévoit rien à ce sujet.

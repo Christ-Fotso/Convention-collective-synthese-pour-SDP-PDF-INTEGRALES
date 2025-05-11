@@ -1,0 +1,10 @@
+## Congés pour événements familiaux
+
+* **Mariage ou PACS:** 4 jours. La convention ne précise pas le type de jours.  Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Mariage d'un enfant:** 2 jours. La convention ne précise pas le type de jours. Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Mariage d'un petit-enfant:** 1 jour. La convention ne précise pas le type de jours. Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Décès du conjoint (marié ou pacsé):** 3 jours. La convention ne précise pas le type de jours. Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Décès d'un enfant:** 3 jours. La convention ne précise pas le type de jours. Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Décès du père ou de la mère:** 3 jours. La convention ne précise pas le type de jours. Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Décès d'un grand-parent, beau-parent, frère, beau-frère, sœur, belle-sœur, ou petit-enfant:** 1 jour. La convention ne précise pas le type de jours. Conditions d'octroi : La convention ne prévoit rien à ce sujet. Modalités de prise : La convention ne prévoit rien à ce sujet.
+* **Naissance survenue au foyer ou arrivée d'un enfant placé en vue de son adoption:** 3 jours. La convention ne précise pas le type de jours. Conditions d'octroi : Ces jours d'absence ne peuvent se cumuler avec les congés accordés pour ce même enfant dans le cadre du congé de maternité prévu au premier alinéa de l'article L. 1225-8 et s. du code du travail. Modalités de prise : La convention ne prévoit rien à ce sujet.

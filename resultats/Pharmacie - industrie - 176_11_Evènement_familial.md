@@ -1,0 +1,52 @@
+## Congés pour Évènements Familiaux
+
+- **Mariage du salarié ou PACS :**
+    - Durée : 5 jours ouvrés ou 6 jours ouvrables.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : Consécutifs. Possibilité de dérogation pour des dispositions plus favorables en usage dans l'entreprise.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Mariage d'un enfant :**
+    - Durée : 1 jour ouvré.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant :**
+    - Durée : 5 jours ouvrés.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès du conjoint ou partenaire de PACS ou concubin :**
+    - Durée : 5 jours ouvrés.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès du père, de la mère, du beau-père, de la belle-mère, d'un frère ou d'une sœur :**
+    - Durée : 3 jours ouvrés.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès du grand-père ou de la grand-mère :**
+    - Durée : 1 jour ouvré.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Naissance survenue au foyer ou arrivée d'un enfant placé en vue de l'adoption :**
+    - Durée : 3 jours ouvrés.
+    - Conditions : Ne peuvent se cumuler avec les congés accordés pour ce même enfant au titre du congé de maternité.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Annonce de la survenue d'un handicap chez un enfant :**
+    - Durée : 2 jours ouvrés.
+    - Conditions : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Déménagement :**
+    - Durée : 1 jour ouvré par an.
+    - Conditions : Hors cas de changement de domicile prévu par l'article 32-2o.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Maladie ou accident d'un enfant à charge de moins de 16 ans :**
+    - Durée : 1 jour par an et par enfant, limité à 3 jours par an.
+    - Conditions : Non cumulables par les deux parents travaillant dans la même entreprise.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.

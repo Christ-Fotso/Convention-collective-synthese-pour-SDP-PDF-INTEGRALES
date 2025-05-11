@@ -1,0 +1,1 @@
+L'organisme professionnel de prévention du bâtiment et des travaux publics est mentionné à l'article 2.4.1, mais son financement n'est pas détaillé dans la convention collective. La convention ne précise pas le taux ou le forfait de contribution applicable, la cotisation minimale due, l'organisme collecteur, ni les entreprises/salariés concernés.

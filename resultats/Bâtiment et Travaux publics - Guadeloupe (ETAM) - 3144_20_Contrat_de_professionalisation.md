@@ -1,0 +1,3 @@
+**Contrat de professionnalisation**
+
+La convention ne prévoit pas de disposition spécifique concernant la rémunération, la majoration conventionnelle, la durée du contrat, la durée de la formation, la fonction tutorale, les avantages spécifiques, les modalités d'insertion ou des dispositions régionales particulières pour les contrats de professionnalisation.  L'article 2.7 mentionne uniquement que "Les entreprises de Bâtiment et des Travaux-Publics soumises aux dispositions de l'article L. 6331-9 du code du travail sont tenues de respecter les dispositions législatives et réglementaires et les accords professionnels de branche en vigueur et notamment les accords du 13 juillet 2004 et leurs avenants."  La convention ne précise pas le contenu de ces accords.

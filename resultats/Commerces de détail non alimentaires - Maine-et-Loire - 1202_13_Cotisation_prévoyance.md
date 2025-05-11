@@ -1,0 +1,3 @@
+### Cotisations Prévoyance
+
+Les parties signataires engagent les entreprises liées par l'accord à se rapprocher du département prévoyance des caisses de retraite des PME (IRSPME, IRCPME) pour les garanties décès, incapacité de travail et remboursement des frais maladie et chirurgie (Article 46-5).  La convention ne précise pas de taux de cotisation, de répartition employeur/salarié, d'assiette ou de garanties minimales associées. La convention ne prévoit rien concernant la population couverte, les conditions d'affiliation, les cas de dispense, la date d'effet du régime ou la périodicité des cotisations. La portabilité n'est pas mentionnée.

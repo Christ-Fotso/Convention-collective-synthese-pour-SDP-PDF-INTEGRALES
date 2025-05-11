@@ -1,0 +1,11 @@
+**Jours fériés chômés et payés :** Les jours fériés sont ceux prévus par la réglementation en vigueur (Article 67). La convention ne précise pas la liste de ces jours. Le chômage de ces jours fériés n'entraîne pas de diminution de la rémunération dans la mesure où le salarié a travaillé normalement la dernière journée de travail précédant et la première journée de travail suivant ledit jour férié (Article 67). La convention ne prévoit rien concernant l'ajout de jours fériés locaux ou spécifiques.
+
+**Majoration de salaire pour travail effectué un jour férié (hors 1er mai) :** Le taux horaire des heures effectuées un dimanche ou un jour férié, à l'exclusion du 1er mai, est majoré de 100% (Article 44).  La convention ne précise pas les catégories de personnel concernées ou exclues. La Commission Paritaire de Conciliation du 27 juin 2001 précise que ce taux de majoration de 100% inclut toutes les autres majorations, sauf pour les heures supplémentaires (Article 44).  Pour les travaux exceptionnels effectués un dimanche ou jour férié légal (hors 1er mai), la majoration est également de 100%, incluant toutes les autres majorations (Article 47). La convention ne précise pas de conditions particulières de volontariat, de planification ou de nombre maximum.
+
+**Majoration de salaire pour travail effectué le 1er mai :** Le travail du 1er mai sera rémunéré conformément aux articles L. 222-7 et R. 222-1 du code du travail (Article 44).  La rémunération des heures de travail effectuées le 1er mai se fera conformément aux articles L. 222-7 et R. 222-1 du code du travail (Article 48). Pour les travaux exceptionnels effectués le 1er mai, la convention renvoie aux articles L. 222-7 et R. 222-1 du code du travail (Article 48). La convention ne prévoit pas de taux de majoration spécifique.
+
+**Repos compensateur :** La convention ne prévoit rien concernant l'attribution d'un repos compensateur en plus ou en remplacement de la majoration de salaire pour le travail effectué les jours fériés, y compris le 1er mai.
+
+**Récupération des jours fériés chômés tombant un jour de repos habituel :** La convention ne prévoit rien à ce sujet.
+
+**Spécificités départementales ou régionales :** La convention ne prévoit rien à ce sujet.

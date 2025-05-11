@@ -1,0 +1,21 @@
+**Annualisation:**
+
+* **Type d'aménagement et sa dénomination dans la convention:** Annualisation du temps de travail (non explicitement nommée ainsi, mais déduite des articles 7.1.2 et 7.1.3 concernant les durées maximales et les heures supplémentaires).
+* **Période de référence applicable:** 12 semaines consécutives pour le calcul de la durée hebdomadaire moyenne (Article 7.1.2).  L'article 5.1 mentionne une période de référence du 1er juin au 31 mai pour les congés payés, sauf dispositions particulières résultant d'accords d'entreprises.
+* **Catégories de personnel concernées:** La convention ne précise pas de catégories spécifiques.  L'article 7.1 précise que les dispositions relatives à l'organisation individuelle du travail en heures concernent les collaborateurs occupés selon un horaire collectif de travail applicable au sein du service ou de l'équipe auquel ils sont intégrés et pour lesquels la durée de leur temps de travail peut être prédéterminée à l'avance.
+* **Conditions de mise en place:** Accord d'entreprise possible pour déroger au contingent d'heures supplémentaires (Article 7.1.3).  La convention ne précise pas les conditions de mise en place de l'annualisation en elle-même.
+* **Limites de variation des horaires (plancher/plafond) si spécifiées:** Durée hebdomadaire maximale : 48 heures. Durée hebdomadaire moyenne sur 12 semaines : 44 heures maximum. Durée quotidienne maximale : 10 heures, pouvant être portée exceptionnellement à 12 heures, dans la limite de trois fois par période de sept jours (Article 7.1.2).
+* **Délai de prévenance pour changements de planning/horaires:** La convention ne prévoit rien à ce sujet pour l'annualisation. Article 7.6 mentionne un délai de prévenance de 7 jours ouvrés pour la modification de la répartition de la durée du travail pour les salariés à temps partiel, réductible à 3 jours ouvrés avec accord du salarié et contrepartie.
+* **Traitement des heures effectuées au-delà de la durée de référence (paiement, repos):** Heures supplémentaires majorées (25% pour les 8 premières heures au-delà de l'horaire effectif hebdomadaire, 50% au-delà) ou compensées en repos (Article 7.1.3). Contingent d'heures supplémentaires fixé à 220 heures par an et par salarié, sauf accord d'entreprise dérogatoire. Au-delà du contingent, contrepartie obligatoire en repos (50% pour les entreprises de 20 salariés au plus ; 100% au-delà) (Article 7.1.3).
+* **Modalités de lissage de la rémunération si prévues:** La convention ne prévoit rien à ce sujet.
+* **Méthodes de décompte du temps de travail si spécifiées:** La convention ne prévoit rien de spécifique à l'annualisation. L'article 7.1.1 détaille ce qui est considéré comme temps de travail effectif.
+* **Traitement des absences, jours fériés (impact décompte/rémunération) si spécifié:** Article 5.1 liste les périodes considérées comme du travail effectif pour le calcul des congés payés. Article 7.2.4 précise que les jours fériés travaillés donnent lieu à compensation selon des modalités propres à chaque entreprise (à l'exception du 1er mai, majoré de 100%). La convention ne prévoit rien de spécifique concernant l'impact des absences sur le décompte du temps de travail dans le cadre de l'annualisation.
+* **Conditions de rémunération spécifiques liées à l'aménagement:** La convention ne prévoit rien à ce sujet.
+* **Traitement des arrivées/départs en cours de période:** La convention ne prévoit rien à ce sujet.
+* **Contreparties spécifiques si prévues:**  Repos compensateur pour les heures supplémentaires au-delà du contingent (Article 7.1.3).
+* **Particularités régionales/départementales si mentionnées:** La convention ne prévoit rien à ce sujet concernant l'annualisation.
+
+
+**Autres aménagements :**
+
+L'article 7.7 mentionne que compte tenu des discussions en cours au niveau national et des évolutions éventuelles du Code du travail relatives à l'organisation et à l'aménagement du temps de travail (forfait et aménagement du temps de travail), les parties conviennent de se retrouver dans un délai d'un an à compter de la signature de l'accord pour envisager des dispositions au niveau du champ d'application de la convention collective.  Aucune autre forme d'aménagement (cycles, modulation...) n'est mentionnée dans la convention.

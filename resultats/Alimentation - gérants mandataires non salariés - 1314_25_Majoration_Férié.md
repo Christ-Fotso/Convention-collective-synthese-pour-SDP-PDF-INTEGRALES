@@ -1,0 +1,9 @@
+- **Liste des jours fériés :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail un jour férié (hors 1er mai) :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail le 1er mai :** L'article 35 prévoit une indemnité forfaitaire pour le 1er mai égale à 1/300ème des commissions perçues au cours de l'année civile précédente (Avenant n° 64 du 23 janvier 2017, étendu par arrêté du 5 février 2021).
+- **Repos compensateur (hors 1er mai) :** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur pour travail le 1er mai :** La convention ne prévoit rien à ce sujet.
+- **Catégories de personnel concernées/exclues :** La convention ne prévoit rien à ce sujet.
+- **Conditions particulières de travail les jours fériés :** La convention ne prévoit rien à ce sujet.
+- **Récupération des jours fériés chômés tombant un jour de repos habituel :** La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales :** La convention ne prévoit rien à ce sujet.

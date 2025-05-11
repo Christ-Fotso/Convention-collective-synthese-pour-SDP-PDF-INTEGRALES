@@ -1,0 +1,1 @@
+L'indemnité de fin de contrat est due aux ETAM embauchés en contrat à durée déterminée conformément aux dispositions législatives et réglementaires en vigueur (Article 10). La convention ne prévoit pas de dispositions spécifiques concernant le taux, les cas de réduction ou d'exclusion, ni les modalités de versement.

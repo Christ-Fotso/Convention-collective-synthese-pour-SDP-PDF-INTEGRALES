@@ -1,0 +1,16 @@
+## Congés pour événements familiaux
+
+*   **Mariage du salarié :** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Mariage d'un enfant :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **PACS :** Les mêmes droits sont ouverts qu'en cas de mariage.
+*   **Décès du conjoint ou d'un enfant :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Naissance ou accueil au foyer en vue d'adoption :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès du père, de la mère, du beau-père ou de la belle-mère :** 2 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un frère, d'une sœur, des grands-parents ou des petits-enfants :** 2 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un beau-frère ou d'une belle-sœur :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Journée citoyenne :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Maladie ou accident d'un enfant de moins de 16 ans :** Congé non rémunéré de 3 jours par an, ou 5 jours par an si l'enfant a moins de 1 an ou si le salarié a au moins 3 enfants de moins de 16 ans. La convention ne précise pas le type de jours.  Un certificat médical est requis. La convention ne prévoit rien d'autre concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.  Avec l'accord de l'employeur, ces congés peuvent être transformés en travail à temps partiel ou en aménagement du temps de travail.
+* **Maladie grave d'un ascendant, descendant, ou personne partageant le domicile:** Congé de solidarité familiale non rémunéré de 3 mois maximum. Un certificat médical est requis, ainsi qu'une pathologie mettant en jeu le pronostic vital. Avec l'accord de l'employeur, ces congés peuvent être transformés en travail à temps partiel ou en aménagement du temps de travail.
+
+
+**Spécificités :**  Ces absences exceptionnelles (hors maladie enfant et congé de solidarité familiale) n'entraînent pas de réduction de la rémunération mensuelle et sont assimilées à des jours de travail effectif pour la seule détermination de la durée du congé annuel.  Si l'événement familial le nécessite et sur justification, l'employé peut bénéficier d'une absence supplémentaire d'une journée non rémunérée.

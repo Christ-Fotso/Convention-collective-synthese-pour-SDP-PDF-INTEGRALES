@@ -1,0 +1,10 @@
+* **Majoration de salaire :** 50% du salaire horaire (Accord sectoriel Accouvage, article 5.1, étendu par arrêté du 24 février 2022, JO 10 mars).
+* **Repos compensateur :** Le temps de travail du dimanche peut être récupéré sous forme de temps de repos, compte tenu de la majoration de 50% (Accord sectoriel Accouvage, article 5.1, étendu par arrêté du 24 février 2022, JO 10 mars).
+* **Définition travail dimanche :** La convention ne précise pas les heures exactes constituant le travail du dimanche.  Le repos dominical peut être reporté (Accord sectoriel Accouvage, article 5.1, étendu par arrêté du 24 février 2022, JO 10 mars).
+* **Catégories personnel concernées/exclues :** La convention ne prévoit rien à ce sujet.
+* **Conditions particulières :**  En raison des impératifs de la production, des soins et de la surveillance des animaux, des opérations de maintenance urgentes, de la conduite des appareils fonctionnant en continu et des opérations quotidiennes non différables, le repos du dimanche peut être reporté (Accord sectoriel Accouvage, article 5.1, étendu par arrêté du 24 février 2022, JO 10 mars).  Trois modalités de report sont prévues (Accord sectoriel Accouvage, article 5.1, étendu par arrêté du 24 février 2022, JO 10 mars) :
+    * Un autre jour que le dimanche, sous réserve que le jour de repos tombe le dimanche une fois par mois.
+    * Une demi-journée le dimanche avec repos compensateur d'une journée par roulement et par quinzaine.
+    * Par roulement à condition que le jour de repos tombe le dimanche au moins deux fois par mois.
+* **Cumul :** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales :** L'accord sectoriel Accouvage s'applique en Guadeloupe, Guyane, Martinique, Mayotte, La Réunion, Saint-Barthélemy, Saint-Martin et Saint-Pierre-et-Miquelon, dans un délai de six mois à compter de son entrée en vigueur. Ce délai est imparti aux organisations syndicales de salariés et d'employeurs habilitées à négocier dans ces collectivités pour conclure des accords dans le même champ si elles le souhaitent (Accord sectoriel Accouvage, article 2.2, étendu par arrêté du 2 août 2023, JO 8 août).

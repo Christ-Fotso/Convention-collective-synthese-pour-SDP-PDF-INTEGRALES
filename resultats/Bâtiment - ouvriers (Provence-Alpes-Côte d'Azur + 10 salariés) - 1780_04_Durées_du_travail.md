@@ -1,0 +1,4 @@
+Durée du travail : La convention collective régionale des ouvriers du bâtiment de la région PACA (IDCC 1780) ne précise pas de durée hebdomadaire de référence, ni de durées maximales hebdomadaires ou quotidiennes.  Elle renvoie aux titres II à XII de la convention collective nationale des ouvriers du bâtiment du 8 octobre 1990 pour les clauses générales.  Concernant les repos, pauses et dispositions spécifiques par catégories, la convention ne prévoit rien à ce sujet, excepté dans les cas suivants:
+
+* **Travail exceptionnel de nuit (au-delà de l'horaire habituel):** Si la durée excède 4 heures, une pause de 30 minutes rémunérée comme temps de travail est obligatoire, vers le milieu de la période de travail.
+* **Travaux continus par roulement (3x8 ou 2x8):** Une pause de 30 minutes rémunérée comme temps de travail est obligatoire, vers le milieu de la période de travail.

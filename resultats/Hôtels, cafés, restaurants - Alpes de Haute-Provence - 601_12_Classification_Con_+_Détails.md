@@ -1,0 +1,21 @@
+## Classification Con + Détails
+
+**Source :** Annexes de la convention collective départementale des Alpes-de-Haute-Provence (IDCC 601) du 22 décembre 1970, étendue par arrêté du 13 juillet 1973.
+
+| Niveau              | Coefficient(s) | Libellé                                                              | Statut(s)                       | Critères                                                                                                           | Fonctions Types / Emplois Repères                                                                                                                                    |
+| ------------------- | ------------- | -------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1ère Catégorie      | 100 à 110     | Manoeuvre ordinaire                                                   | Ouvrier                         | Travaux très simples ne nécessitant aucune connaissance particulière ni adaptation préalable, ou travaux élémentaires. |  |
+| 2ème Catégorie      | 115 à 125     | Manoeuvre spécialisé                                                  | Ouvrier                         | Travaux simples ne nécessitant qu'une adaptation ou mise au courant très sommaire.                               |  |
+| 3ème Catégorie      | 130 à 145     | Travailleur spécialisé                                                | Ouvrier                         | Travaux nécessitant une certaine formation préalable ou une pratique suffisante du métier, sans apprentissage formel. |  |
+| 4ème Catégorie      | 150 à 165     | Travailleur qualifié                                                  | Ouvrier                         | Connaissance générale du métier, acquise par apprentissage, formation professionnelle (CAP/BEP) ou longue pratique. |  |
+| 5ème Catégorie      | 170 à 185     | Travailleur hautement qualifié                                        | Ouvrier                         | Toutes les connaissances de l'ouvrier, exécution de travaux de haute qualité professionnelle.                       |  |
+| Maîtrise           | 220 à 320     | Agent de maîtrise et assimilé                                         | Maîtrise                        | Responsabilité de commandement ou de surveillance, compétence technique/administrative/commerciale équivalente.     |  |
+| Cadre              | 375 à 650     | Cadre supérieur et cadre                                              | Cadre                           | Formation technique/administrative/juridique/commerciale/financière, commandement sur divers collaborateurs.      | Directeur de restaurant, Chef comptable...                                                                                                                            |
+| Catégories additionnelles (spécifiques à certains services) | Variables      | Employé, commis, serveur, chef de rang, cuisinier, plongeur, etc. | Statut non spécifié (dans l'annexe Classification) | Variables selon la fonction.                                                                                    | Détaillées dans les annexes "Café-bar", "Restaurant", "Cuisine", "Hôtel".                                                                                        |
+
+
+**Modalités d'évolution :** La convention ne prévoit rien à ce sujet.
+
+**Lien avec rémunération :**  Les salaires sont fixés en annexe et liés aux coefficients. Une valeur du point mensuel est mentionnée dans l'annexe "Salaires" (4,55 F).  Les salaires ne peuvent être inférieurs au SMIC.  Des salaires minimums sont fixés par coefficient, avec distinction personnel nourri / non nourri (voir Grille Rémunération).
+
+**Spécificités régionales/départementales :**  L'annexe "Classification des emplois"  présente une classification en trois catégories (1- Exceptionnelle/Luxe, 2-Moyen, 3-Artisanaux/Moins de deux ou trois salariés) pour les services "Café-bar", "Restaurant" et "Cuisine", avec des coefficients associés variables en fonction de la catégorie d'établissement.

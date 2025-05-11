@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable :** 0,1% (entreprises de moins de 11 salariés), 0,30% (entreprises de 11 à 49 salariés) et 0,60% (entreprises de 50 à 299 salariés).  Ces contributions sont explicitement mentionnées comme étant *en supplément* des contributions légales.
+- **Base de calcul spécifique :**  Montant du revenu d'activité retenu pour le calcul des cotisations sociales de l'année de référence.
+- **Cotisation minimale due (conventionnelle)** : Non précisée.
+- **Organisme collecteur DÉSIGNÉ par la convention :**  OPCO des Entreprises de Proximité.
+- **Affectation spécifique des fonds :** Maintien de l'investissement "formation et alternance" dans la branche, lutte contre l'appauvrissement des métiers, développement de la formation professionnelle continue et de l'alternance, et tout autre projet en lien direct avec la formation et l'alternance.  La contribution est mutualisée dans une section comptable distincte au sein de l'OPCO, son usage et sa répartition relevant de la compétence exclusive des partenaires sociaux de la branche.
+- **Entreprises/Salariés concernés :** Entreprises de moins de 11 salariés, entreprises de 11 à 49 salariés, et entreprises de 50 à 299 salariés.
+- **Source de l’information :** Accord du 21 septembre 2016 relatif aux objectifs et moyens de la formation professionnelle, modifié par l'Avenant n°3 du 16 mai 2023 (articles 12 et 13).  La date d'application de ces contributions conventionnelles est le 1er janvier 2024.

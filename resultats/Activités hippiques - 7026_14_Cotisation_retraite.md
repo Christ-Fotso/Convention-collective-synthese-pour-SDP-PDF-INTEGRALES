@@ -1,0 +1,7 @@
+## Cotisations Retraite Complémentaire (AGIRC-ARRCO)
+
+**Dispositions Générales**
+
+La convention collective mentionne l'affiliation obligatoire à l'AGIRC-ARRCO pour tous les salariés (cadres et non-cadres) dès la naissance du contrat de travail (Article 13, Annexe 2 "Etablissements d'entraînement de chevaux de courses et débourrage pré-entraînement au trot" et Article 15, Annexe 3 "Entraînement de chevaux de courses au galop et débourrage pré-entraînement").  Pour les salariés des centres équestres, l'affiliation est également obligatoire (Article 20, Chapitre 5, Annexe 4). L'organisme désigné est Alliance Professionnelle Retraite AGIRC-ARRCO ou toute autre institution (Article 20, Chapitre 5, Annexe 4). Pour les TAM (Techniciens, Agents de Maîtrise) et cadres, l'affiliation se fait selon les modalités de la convention collective nationale du 2 avril 1952, via la caisse de prévoyance des cadres d'exploitations agricoles (Article 4 bis, Annexe 4).
+
+La convention ne prévoit pas de taux de cotisation contractuels spécifiques, ni de répartition employeur/salarié autre que ceux déterminés par l'Accord National Interprofessionnel du 17 novembre 2017 (Article 13, Annexe 2 ; Article 15, Annexe 3 et Article 20, Chapitre 5, Annexe 4). La convention ne précise pas l'assiette de calcul.  Elle ne mentionne pas de taux spécifiques par catégorie au-delà de la distinction cadres/non-cadres pour l'application des dispositions de la convention collective du 2 avril 1952 pour les TAM et cadres.  La convention ne prévoit pas de dates d'application des taux spécifiques.

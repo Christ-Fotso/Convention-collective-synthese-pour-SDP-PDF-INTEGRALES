@@ -1,0 +1,7 @@
+- **Taux ou forfait CONVENTIONNEL applicable :** Non précisé.  L'article 49 mentionne l'application des dispositions légales et réglementaires en vigueur, ainsi qu'un avenant de révision n°1 du 12 octobre 2011 à l'accord sur la formation professionnelle tout au long de la vie dans la coopération agricole du 25 mars 2005 entre Coop de France et les syndicats de salariés. Le contenu de cet avenant n'est pas fourni dans l'extrait de la convention collective.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :**  L'article 49 mentionne l'OPCA 2 (organisme paritaire collecteur agréé des organismes professionnels et des coopératives agricoles), créé par un accord du 5 décembre 1994. Cependant, il n'est pas précisé si cet OPCA collecte des contributions *conventionnelles* supplémentaires ou uniquement la contribution légale.
+- **Affectation spécifique des fonds :** Non précisé.
+- **Entreprises/Salariés concernés :** Salariés relevant de la présente convention (Article 49).
+- **Source de l’information :** Articles 49 et accords cités dans l'annexe "Accords collectifs négociés par la confédération française de la coopération agricole", point III.

@@ -1,0 +1,13 @@
+* **Taux conventionnel applicable:** 0,15 % des salaires pour les entreprises de moins de 10 salariés et 0,25% pour les entreprises de moins de 20 salariés (Accord du 15 décembre 1994 étendu, modifié par avenants). 0,10% des salaires pour les entreprises d'au moins 10 salariés pour le financement du capital de temps de formation (Accord du 15 décembre 1994 étendu, modifié par avenants). 0,40% des salaires pour les entreprises d'au moins 10 salariés affectée aux contrats d'insertion en alternance (Accord du 15 décembre 1994 étendu, modifié par avenants). Au moins 50 % de la participation légale au développement de la formation continue affecté au plan de formation pour les entreprises d'au moins 10 salariés (Accord du 15 décembre 1994 étendu, modifié par avenants).  0.50% des salaires pour les entreprises d'au moins 20 salariés pour le financement des CFA (Accord du 15 avril 2008 non étendu, Accord du 22 avril 2010 non étendu, Accord du 27 avril 2011 non étendu, Accord du 25 avril 2012 non étendu, Accord du 16 avril 2013 non étendu, Accord du 1er avril 2014 non étendu).
+
+* **Base de calcul spécifique:** Non précisé.
+
+* **Cotisation minimale due (conventionnelle):** Non précisé.
+
+* **Organisme collecteur désigné par la convention:** FORCEMAT (Accord du 15 décembre 1994 étendu, modifié par avenants). OPCA 3+ (Accord du 25 avril 2012 non étendu, Accord du 16 avril 2013 non étendu, Accord du 1er avril 2014 non étendu).
+
+* **Affectation spécifique des fonds:** Financement des contrats d'insertion en alternance (Accord du 15 décembre 1994 étendu, modifié par avenants). Financement du plan de formation (Accord du 15 décembre 1994 étendu, modifié par avenants). Financement du capital de temps de formation (Accord du 15 décembre 1994 étendu, modifié par avenants). Financement des CFA (Accord du 15 avril 2008 non étendu, Accord du 22 avril 2010 non étendu, Accord du 27 avril 2011 non étendu, Accord du 25 avril 2012 non étendu, Accord du 16 avril 2013 non étendu, Accord du 1er avril 2014 non étendu).
+
+* **Entreprises/Salariés concernés:** Entreprises de moins de 10 salariés, entreprises de moins de 20 salariés, et entreprises d'au moins 10 salariés des industries céramiques et de la porcelaine. (Accord du 15 décembre 1994 étendu, modifié par avenants). Entreprises d'au moins 20 salariés (Accord du 15 avril 2008 non étendu, Accord du 22 avril 2010 non étendu, Accord du 27 avril 2011 non étendu, Accord du 25 avril 2012 non étendu, Accord du 16 avril 2013 non étendu, Accord du 1er avril 2014 non étendu).
+
+* **Spécificités régionales ou départementales:** RAS.

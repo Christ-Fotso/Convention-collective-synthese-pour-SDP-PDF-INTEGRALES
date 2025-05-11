@@ -1,0 +1,7 @@
+* **Taux ou forfait CONVENTIONNEL applicable:** La convention ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  Elle mentionne une "contribution volontaire" que toute entreprise, quel que soit son effectif, peut verser à l'AFDAS pour le développement de la formation professionnelle continue (Titre 11.4). Le montant de cette contribution volontaire n'est pas précisé.
+* **Base de calcul spécifique:** Non précisé pour la contribution volontaire. Pour les contributions légales, la base est "l'ensemble des rémunérations entrant dans l'assiette des cotisations de sécurité sociale" (Titre 11.2).
+* **Cotisation minimale due (conventionnelle):** Non précisé.
+* **Organisme collecteur DÉSIGNÉ par la convention:** AFDAS pour la contribution volontaire et les contributions légales (Titres 11.1, 11.4).
+* **Affectation spécifique des fonds:** La contribution volontaire est "inscrite au compte de l'entreprise et peut être utilisée en complément des financements obtenus au titre de la contribution légale" (Titre 11.4).  L'affectation précise n'est pas détaillée.
+* **Entreprises/Salariés concernés:** Toutes les entreprises quel que soit l'effectif pour la contribution volontaire (Titre 11.4). Les contributions légales s'appliquent selon les effectifs (Titre 11.3).
+* **Source de l’information:** Titres 11.1, 11.2, 11.3, 11.4 de la convention collective.

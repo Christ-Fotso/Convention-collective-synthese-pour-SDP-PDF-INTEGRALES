@@ -1,0 +1,8 @@
+- Existence indemnité spécifique : La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.
+- Formule calcul spécifique : La convention ne prévoit rien à ce sujet.
+- Comparaison avec indemnité licenciement :  Article 26-4 : "En cas d'engagements antérieurs successifs ayant donné lieu au versement d'une indemnité de licenciement, d'une indemnité de fin de contrat à durée déterminée ou d'une indemnité spécifique de rupture conventionnelle, chaque licenciement ultérieur ouvre droit au versement d'une nouvelle indemnité, même si la durée du contrat en cours est inférieure à un an."
+- Montant minimal conventionnel : La convention ne prévoit rien à ce sujet.
+- Condition ancienneté spécifique : La convention ne prévoit rien à ce sujet.
+- Salaire de référence spécifique : La convention ne prévoit rien à ce sujet.
+- Cas particulier salariés exclus indemnité licenciement : La convention ne prévoit rien à ce sujet.
+- Spécificités régionales/départementales :  La convention ne prévoit rien à ce sujet.

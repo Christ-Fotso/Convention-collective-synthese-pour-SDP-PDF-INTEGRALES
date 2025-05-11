@@ -1,0 +1,25 @@
+## Congés pour Événements Familiaux
+
+- **Mariage (civil ou PACS) du salarié :**
+    - Durée conventionnelle : 4 jours ouvrés.
+    - Conditions spécifiques :  Aucun an d'ancienneté requis.
+    - Délai de prévenance : 15 jours, sauf événement imprévisible. La convention ne prévoit rien concernant les justificatifs. La convention ne prévoit rien concernant les modalités de prise. La convention ne prévoit rien concernant les jours supplémentaires.
+    - Durée conventionnelle : 5 jours ouvrés.
+    - Conditions spécifiques : Après un an de présence.
+    - Délai de prévenance : 15 jours, sauf événement imprévisible. La convention ne prévoit rien concernant les justificatifs. La convention ne prévoit rien concernant les modalités de prise. La convention ne prévoit rien concernant les jours supplémentaires.
+- **Déménagement du salarié :**
+    - Durée conventionnelle : 1 jour ouvré.
+    - Conditions spécifiques : Après un an d'ancienneté, tous les trois ans.
+    - Délai de prévenance : 15 jours, sauf événement imprévisible. La convention ne prévoit rien concernant les justificatifs. La convention ne prévoit rien concernant les modalités de prise. La convention ne prévoit rien concernant les jours supplémentaires.
+- **Mariage (civil) d'un enfant :**
+    - Durée conventionnelle : 1 jour ouvré + 2 jours de délais de route.
+    - Conditions spécifiques :  Distance aller à parcourir supérieure à 100 kilomètres pour les 2 jours de délais de route.
+    - Délai de prévenance : 15 jours, sauf événement imprévisible. La convention ne prévoit rien concernant les justificatifs. La convention ne prévoit rien concernant les modalités de prise.
+- **Décès du conjoint, d'un enfant, du père, de la mère, du beau-père, de la belle-mère, d'un frère ou d'une sœur, d'un grand-parent :**
+    - Durée conventionnelle : 2 jours ouvrés + 2 jours de délais de route.
+    - Conditions spécifiques : Distance aller à parcourir supérieure à 100 kilomètres pour les 2 jours de délais de route.
+    - Délai de prévenance : 15 jours, sauf événement imprévisible. La convention ne prévoit rien concernant les justificatifs. La convention ne prévoit rien concernant les modalités de prise.
+- **Naissance ou arrivée d'un enfant placé en vue de son adoption :**
+    - Durée conventionnelle : 3 jours.
+    - Conditions spécifiques :  Ces jours d'absence ne se cumulent pas avec les congés accordés pour ce même enfant dans le cadre du congé de maternité.
+    - Délai de prévenance : 15 jours, sauf événement imprévisible. La convention ne prévoit rien concernant les justificatifs. La convention ne prévoit rien concernant les modalités de prise. La convention ne prévoit rien concernant les jours supplémentaires.

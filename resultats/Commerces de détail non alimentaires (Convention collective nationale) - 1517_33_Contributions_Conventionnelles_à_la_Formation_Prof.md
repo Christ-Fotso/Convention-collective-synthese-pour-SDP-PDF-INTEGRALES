@@ -1,0 +1,10 @@
+* **Taux CONVENTIONNEL applicable :** 0,07% de la masse salariale brute. Cette contribution est en supplément des obligations légales de financement de la formation professionnelle.  50€ par établissement par an s'ajoutent également.
+* **Plafond de la cotisation par établissement:**  500€ par an pour les établissements de moins de 20 salariés, 1000€ par an pour les établissements de 20 salariés et plus.
+* **Base de calcul spécifique :**  Masse salariale brute.
+* **Organisme collecteur DÉSIGNÉ par la convention :** Association Paritaire des Commerces de Détail Non Alimentaires (APCDNA).
+* **Affectation spécifique des fonds :** Financement du fonctionnement des commissions de négociation, remboursement des frais des représentants (déplacements, repas, hébergement...),  remboursement du maintien de la rémunération des salariés participant aux réunions paritaires, frais de formation des membres des commissions, frais de structure des organisations syndicales, frais de secrétariat de la convention collective, frais d'édition et de diffusion, promotion de la branche et des métiers, frais de structure et de gestion de l'association paritaire.  15% de la contribution est affectée à l'APCDNA pour son fonctionnement et le recouvrement des cotisations.  85% du solde est réparti pour 1/3 aux organisations syndicales de salariés représentatives dans la branche et ayant adhéré à l'association (répartition égalitaire) et pour 2/3 aux organisations professionnelles d'employeurs représentatives, répartis au prorata de leur collecte.
+* **Entreprises/Salariés concernés :** Toutes les entreprises entrant dans le champ d'application de la convention collective.
+* **Source de l’information :** Avenant n°1 du 27 juin 2019 à l'accord du 4 février 2009 relatif au développement du dialogue social et à l'organisation du paritarisme (étendu par arrêté du 6 novembre 2020).  Chapitre XIII, article 20 de la convention collective nationale des commerces de détail non alimentaires.
+
+
+**Spécificités régionales ou départementales:** RAS

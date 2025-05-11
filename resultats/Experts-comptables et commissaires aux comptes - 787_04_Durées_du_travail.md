@@ -1,0 +1,21 @@
+## Durées du Travail (Convention Collective Experts-comptables et commissaires aux comptes - IDCC 787)
+
+* **Durée hebdomadaire de référence:** 35 heures de travail effectif (article 8.1).
+* **Durée maximale hebdomadaire:**
+    * En cas d'horaire collectif répété à l'identique :  48 heures (article 8.1.2.7). Sur 12 semaines consécutives : 44 heures maximum (article 8.1.2.7).
+    * En cas de modulation :  48 heures maximum pour 6 semaines, 44 heures maximum pour 10 semaines (article 8.2.2).
+    * Convention de forfait en jours : La convention ne prévoit plus de 217 jours travaillés (article 8.1.2.5). La charge de travail ne peut obliger le cadre à excéder une limite de 48 heures hebdomadaires (article 8.1.2.5).
+    * Convention de forfait en heures sur l'année :  La durée ne peut excéder la totalité du contingent d'heures supplémentaires applicable (article 8.1.2.7). 
+* **Durée maximale quotidienne:** 10 heures de travail effectif (articles 8.1.2.5, 8.2.1, 8.3.2).
+* **Repos quotidien minimum:** 11 heures consécutives entre deux journées de travail (articles 8.1.2.5, 8.3.2).
+* **Repos hebdomadaire minimum:** En principe le dimanche (article 8.3.3). Durée minimale de 35 heures consécutives (article 8.1.2.5). Lorsque l'horaire collectif est réparti sur 5 jours, le second jour de repos est accolé au dimanche.  Lorsque l'horaire est sur 5 jours et demi, la demi-journée est accolée au dimanche. En cas de modulation avec horaire réparti sur 6 jours, le repos dominical de 24 heures doit être précédé ou suivi d'un repos d'au moins 11 heures (article 8.3.3).
+* **Temps de pause minimum:** 45 minutes pour une journée continue d'au moins 6 heures (article 8.3.1). Le temps de repas, pour un horaire temps plein, ne peut être inférieur à 45 minutes (article 8.3.1).  Les temps de pause peuvent être rémunérés ou assimilés à du travail effectif selon la pratique du cabinet (article 8.1.1).
+* **Dispositions spécifiques par catégorie:**
+    * Cadres au forfait (jours):  voir "Durée maximale hebdomadaire" et "Repos quotidien/hebdomadaire minimum" ci-dessus.  Entretien annuel obligatoire pour discuter de la charge de travail, de son organisation, de l'articulation vie pro/perso et de la rémunération (article 8.1.2.5.1). Relevé mensuel établi par le cadre sous le contrôle de l'employeur pour suivi de la charge de travail (article 8.1.2.5.1).
+    * Cadres au forfait (heures) : voir "Durée maximale hebdomadaire" ci-dessus. Relevé mensuel de la durée du travail (article 8.1.2.7).
+    * Temps partiel : La durée est contractuelle, minimum 16 heures par semaine (article 8.4.1). Possibilité d'heures complémentaires dans la limite du tiers de la durée contractuelle (article 8.4.4).  Possibilité de modulation de la durée hebdomadaire/mensuelle, variation maximale d'un tiers (article 8.4.5).
+    * Jeunes travailleurs : La convention ne prévoit pas de dispositions spécifiques concernant la durée du travail des jeunes travailleurs, autres que celles relatives aux contrats d'apprentissage et de professionnalisation.
+* **Dérogations prévues:** Dérogations possibles pour le passage à l'Euro concernant la durée hebdomadaire maximale et le report des repos compensateurs (Textes complémentaires - Dérogations à la durée du travail en vue du passage à l'Euro).
+* **Articulation avec les accords d'entreprise:** La convention prévoit la possibilité d'accords d'entreprise pour aménager la durée du travail (ex: article 1.3 de l'Accord du 13 janvier 1999 relatif à la création d'emploi). Les accords d'entreprise ne peuvent être moins favorables que la convention collective, sauf dispositions légales contraires (ex: Accord sur l'ordre public conventionnel du 20 avril 2017).  La convention ne prévoit plus de 217 jours de travail pour les cadres au forfait jours (article 8.1.2.5).
+
+**Note:** L'accord du 13 janvier 1999 relatif à la création d'emploi, bien qu'il mentionne des majorations de 25% pour certaines heures supplémentaires, n'est applicable que dans le cadre d'un accord d'entreprise spécifique conclu pour bénéficier des aides de l'État liées à la réduction du temps de travail.  Il ne modifie pas les dispositions de la convention collective elle-même.

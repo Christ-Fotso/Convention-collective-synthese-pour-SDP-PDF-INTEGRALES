@@ -1,0 +1,8 @@
+## Congés pour événements familiaux
+
+* **Mariage du salarié:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+* **Mariage d'un enfant:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+* **Décès du conjoint, d'un enfant, du père, de la mère, d'un frère ou d'une sœur:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+* **Décès d'un grand-parent ou beau-parent, d'un beau-frère ou belle-sœur, d'un petit-enfant:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+* **Naissance ou arrivée d'un enfant placé en vue de son adoption:** 3 jours ouvrables.  Ces trois jours doivent être pris dans les quinze jours qui précèdent ou suivent la naissance ou l'adoption. La convention ne prévoit rien à ce sujet concernant les modalités de prise et les jours supplémentaires.
+* **Jours supplémentaires non payés:** La convention prévoit la possibilité d'accorder des jours supplémentaires non payés pour événements familiaux dans les cas sérieux, sous réserve des nécessités de l'organisation du travail. La convention ne précise pas la durée de ces jours ni le type de jours.

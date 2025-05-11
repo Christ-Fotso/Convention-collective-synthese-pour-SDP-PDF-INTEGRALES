@@ -1,0 +1,22 @@
+## Classification des Emplois
+
+**Source :** Annexe "Classification des emplois" (Avenant du 17 juin 1985, étendu par arrêté du 11 octobre 1985, JO 24 octobre 1985).
+
+
+| Catégorie | Libellé                                                                                                             | Statut(s)          | Critères                                              | Fonctions Types/Emplois Repères                                                                                                                                                      |
+| :-------- | :---------------------------------------------------------------------------------------------------------------- | :----------------- | :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1ère      | Vendeuse ou vendeur (ayant au moins dix-huit ans et moins de trois mois de pratique professionnelle)                 | Statut non spécifié | Pratique professionnelle (< 3 mois)                   | Garçon de magasin uniquement occupé au nettoyage, femme de ménage, veilleur de nuit sans ronde, étiqueteuse, marqueuse, petite main débutante.                               |
+| 2ème      | Vendeuse ou vendeur ordinaire (après trois mois de pratique et jusqu'à un an)                                     | Statut non spécifié | Pratique professionnelle (3 mois à 1 an)               | Sténodactylo débutante (ayant moins de six mois de pratique), employé aux écritures, garçon de manutention, de réception, de réserve (sans aucun travail d'écriture) veilleur de nuit avec ronde, garçon de course et de livraison, garçon de bureau, petite main (après trois mois de pratique et jusqu'à un an). |
+| 3ème      | Vendeuse ou vendeur ordinaire et vendeuse ou vendeur débiteur (après un an et jusqu'à trois ans)                 | Statut non spécifié | Pratique professionnelle (1 an à 3 ans)                | Employé de comptabilité, sténodactylo 1er degré (ayant plus de six mois de pratique), manutentionnaire de force, manutentionnaire chargé des travaux de la cave, téléphoniste et standardiste, chauffeur, livreur, aide étalagiste débutant, petite main qualifiée (après un an de pratique).          |
+| 4ème      | Vendeuse ou vendeur qualifié et vendeuse ou vendeur débiteur qualifié (après trois ans de pratique)                | Statut non spécifié | Pratique professionnelle (> 3 ans)                   | Aide étalagiste, employé aux écritures qualifié, caissier ou caissière ordinaire, encaisseur, sténodactylo 2e degré, aide comptable, teneur de livres (ayant CAP ou connaissances équivalentes), retoucheuses pour travaux simples.                                                                |
+| 5ème      | Vendeuse ou vendeur très qualifié, première vendeuse ou premier vendeur de magasin à "Prisunic" ou bazars          | Statut non spécifié | Haute qualification                                   | Caissière ou caissier de magasin (tenant un livre d'entrées et sorties, responsables de la caisse, ajustant sa caisse chaque soir), étalagiste courant, retoucheuse-coupeuse ayant des connaissances approfondies.                                                                                  |
+| 6ème      | Vendeur effectuant la rotation du stock, achat aux représentants, vendeuse ou vendeur technique dans les magasins spécialisés (hautement qualifié, ayant une spécialité professionnelle bien déterminée) | Statut non spécifié | Spécialité professionnelle bien déterminée, haute qualification | Première vendeuse ou premier vendeur, étalagiste qualifié (faisant régulièrement les étalages courants), secrétaire de direction ou secrétaire sténodactylo, caissier principal, comptable commercial ordinaire.                                                                                     |
+
+
+**Modalités d'évolution :** La convention ne prévoit rien concernant les règles de passage entre les catégories ni les procédures de promotion.
+
+**Lien avec la rémunération :**  Des salaires minima sont liés aux catégories (voir section Grille de Rémunération). La convention ne mentionne pas de valeur de point.
+
+**Spécificités régionales/départementales :** RAS.
+
+**En cas de pluralité permanente d'emplois :** La classification de l'employé sera celle de la catégorie supérieure d'emploi.  Aucune rétrogradation dans la classification ne peut être effectuée du fait de l'accord.

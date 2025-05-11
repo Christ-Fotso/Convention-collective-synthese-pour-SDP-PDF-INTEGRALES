@@ -1,0 +1,8 @@
+- **Définition travail de nuit:** La convention ne prévoit rien à ce sujet.
+- **Définition travailleur de nuit:** La convention ne prévoit rien à ce sujet.
+- **Compensations:**
+    - **Majoration salaire:** La convention ne prévoit rien à ce sujet.
+    - **Repos compensateur:**  La convention prévoit un repos compensateur obligatoire pour les heures supplémentaires au-delà de 42 heures hebdomadaires à compter du 1er juillet 1978, égal à 20% du temps de travail accompli en heures supplémentaires. (Article 26, complété par avenant n°12 du 1er mars 1979, étendu par arrêté du 26 juillet 1979, JO 15 août 1979).  Cependant, aucune mention spécifique n'est faite pour le travail de nuit.
+- **Durées travail spécifiques:** La convention ne prévoit rien à ce sujet.
+- **Contreparties et garanties:** La convention ne prévoit rien à ce sujet concernant les mesures spécifiques au travail de nuit. L'article 30 mentionne des dispositions générales d'hygiène et sécurité, incluant un vestiaire et des sièges pour les femmes, mais sans référence au travail de nuit.
+- **Spécificités départementales/régionales:** RAS.

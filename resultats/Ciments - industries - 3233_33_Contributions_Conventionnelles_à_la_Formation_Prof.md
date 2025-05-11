@@ -1,0 +1,7 @@
+* **Taux CONVENTIONNEL applicable :** Non précisé.  L'article III.7 (modifié par l'Avenant du 11 déc. 2024) mentionne une cotisation minimale pour la prévoyance de 1,2 % de la masse salariale brute, dont 0,8 % à la charge de l'employeur et 0,4 % à la charge du salarié. Il est indiqué que la répartition de cette cotisation entre les risques à couvrir, *dont la formation*, est fixée paritairement à l'intérieur de chaque établissement ou entreprise dans le respect des dispositions légales.  Il n'y a donc pas de taux spécifique à la formation professionnelle continue découlant directement de la convention ou de ses avenants.
+* **Base de calcul spécifique :** Non précisé.
+* **Cotisation minimale due (conventionnelle) :** Non précisé.
+* **Organisme collecteur DÉSIGNÉ par la convention :** Non précisé.
+* **Affectation spécifique des fonds :** Non précisé.
+* **Entreprises/Salariés concernés :**  Concerne tous les salariés. L'Avenant du 11 déc. 2024 exclut les ETDAM assimilés cadres (coefficients 310 et plus ou coefficients 225 à 310 s'ils sont intégrés à la catégorie des cadres pour la protection sociale) *de l'application de cet article III.7 relatif à la prévoyance*.
+* **Source de l’information :** Article III.7 (modifié par Avenant du 11 déc. 2024).  Information complémentaire sur les ETDAM assimilés cadres : Article II.7 (modifié par l'Avenant du 11 déc. 2024) et article 5.2 du Chapitre II.C.2 du Titre II.C.

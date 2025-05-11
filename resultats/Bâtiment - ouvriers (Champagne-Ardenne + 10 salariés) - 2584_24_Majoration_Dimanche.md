@@ -1,0 +1,7 @@
+* **Majoration de salaire:** 100% du salaire de la journée (Article 2-1, b - Convention collective régionale du 14 juin 2006).
+* **Repos compensateur:** Un repos compensateur de remplacement peut être accordé d'un commun accord (Article 2-1, b - Convention collective régionale du 14 juin 2006). La durée du repos n'est pas précisée. Les modalités de prise de ce repos ne sont pas précisées.
+* **Définition travail dimanche:** Travail exceptionnel du dimanche (Article 2-1, b - Convention collective régionale du 14 juin 2006). Les heures exactes ne sont pas précisées.
+* **Catégories personnel concernées/exclues:** Ouvriers à l'exception de ceux travaillant habituellement à des activités de maintenance, entretien, dépannage ou soumis à astreinte (Article 2-1 - Convention collective régionale du 14 juin 2006).  Pour ces derniers, le contrat de travail règle leur situation.
+* **Conditions particulières:** La convention ne prévoit rien à ce sujet.
+* **Cumul:** Les majorations pour travail exceptionnel de nuit, du dimanche et d'un jour férié, ne se cumulent ni entre elles ni avec les majorations légales pour heures supplémentaires.  Lorsqu'un même travail ouvre droit à deux ou à plusieurs de ces majorations, seule est retenue la majoration correspondant au taux le plus élevé (Article 2-1 - Convention collective régionale du 14 juin 2006).
+* **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

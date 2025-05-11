@@ -1,0 +1,10 @@
+## Congés pour événements familiaux
+
+* **Mariage de l'ouvrier:** 4 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Mariage d'un enfant:** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Mariage d'un petit-enfant:** 1 jour. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès du conjoint:** 3 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès d'un enfant:** 3 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès du père ou de la mère:** 3 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès d'un grand-parent, beau-parent, frère, beau-frère, sœur, belle-sœur, ou petit-enfant:** 1 jour. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Naissance ou arrivée d'un enfant placé en vue d'adoption:** 3 jours.  La convention ne prévoit rien à ce sujet concernant le type de jours.  Conditions d'octroi : ces jours ne peuvent se cumuler avec les congés accordés pour ce même enfant en vertu des articles L.1225 et suivants du code du travail. La convention ne prévoit rien à ce sujet concernant les modalités de prise ou les jours supplémentaires. L'article 5.2 précise que les dispositions de l'article 8.16 s'appliquent à la prise de certains de ces jours de congés spéciaux, mais l'article 8.16 n'existe pas dans la convention fournie.

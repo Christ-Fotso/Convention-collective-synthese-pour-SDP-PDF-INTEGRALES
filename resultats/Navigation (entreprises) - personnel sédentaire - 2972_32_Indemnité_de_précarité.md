@@ -1,0 +1,1 @@
+L'indemnité de fin de contrat (précarité) pour les CDD est abordée à l'article 3.2.1 de la convention collective.  La convention ne prévoit pas de dispositions spécifiques concernant le taux, les réductions de taux, les cas d'exclusion ou les modalités de versement de l'indemnité de fin de contrat CDD.

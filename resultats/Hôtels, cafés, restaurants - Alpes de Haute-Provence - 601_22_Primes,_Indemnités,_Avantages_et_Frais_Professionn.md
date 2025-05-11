@@ -1,0 +1,8 @@
+* **Nourriture:** Le personnel figurant au barème des salaires, y compris le personnel servant, payé suivant les différentes formules de service ou pourboire, a droit à la fourniture de la nourriture ou de son équivalence désignée sous la dénomination d'indemnité compensatrice. Le personnel servant ou non servant qui reçoit un salaire supérieur au SMIC doit, lorsqu'il n'est pas nourri, être indemnisé conformément à l'arrêté ministériel du 22 février 1946, modifié par l'arrêté du 1er octobre 1947.  (Article 21)
+* **Logement:**  La valeur du logement sera définie et retenue d’après les règles servant de base aux cotisations de Sécurité sociale. Cette valeur forfaitaire viendra en déduction du salaire en espèces au même titre que la nourriture. Les locaux affectés au personnel (chambre individuelle si possible) devront remplir les conditions d'hygiène imposées par la loi. (Article 21)
+* **Indemnité de nourriture pendant les congés payés:** Pendant toute la durée des congés payés, l'intéressé a droit à l'indemnité de nourriture dont la valeur est fixée par arrêté préfectoral. (Article 15)
+* **Frais de déplacement aller (embauche hors département):** À la charge de l'employeur, même si l'emploi n'est pas accordé en fin de période d'essai. (Article 4)
+* **Frais de déplacement retour (fin de contrat):** Payé par l'employeur dans la limite des frontières de la France métropolitaine au tarif de la SNCF 2e classe, ou du tarif par bateau en 2e classe. (Article 4)
+* **Prime de fin d'année:** Le principe est reconnu. Le taux et les modalités d'application seront définis au cours d'une prochaine réunion paritaire. La convention ne précise pas le montant ou le mode de calcul. (Article 17 bis)
+
+

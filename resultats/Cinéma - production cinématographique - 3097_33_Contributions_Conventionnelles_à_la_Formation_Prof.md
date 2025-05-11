@@ -1,0 +1,7 @@
+- **Taux ou forfait CONVENTIONNEL applicable :** Non précisé. La convention mentionne l'Afdas pour la formation professionnelle continue, mais ne précise pas de contribution conventionnelle spécifique.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** Afdas (pour la formation professionnelle continue). L'APDS est mentionné pour la taxe d'apprentissage et la contribution au développement de l'apprentissage sur les salaires des intermittents sous CDD d'usage.
+- **Affectation spécifique des fonds :** Non précisé.
+- **Entreprises/Salariés concernés :** Entreprises relevant de la convention collective.  L'APDS est mentionné spécifiquement pour la taxe d'apprentissage et la contribution au développement de l'apprentissage concernant les salaires versés aux intermittents du spectacle sous CDD d'usage.
+- **Source de l’information :** Article 29, Titre I.

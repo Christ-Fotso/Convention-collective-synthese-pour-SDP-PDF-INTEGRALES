@@ -1,0 +1,14 @@
+**Congés pour événements familiaux**
+
+*   **Mariage de l'intéressé:** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **PACS de l'intéressé:** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Mariage d'un enfant:** 2 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un enfant:** 5 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès du conjoint, du concubin ou du partenaire lié par un PACS:** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès du père ou de la mère, d'un beau-père, d'une belle-mère, d'un frère, d'une sœur:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Naissance d'un enfant ou arrivée d'un enfant placé en vue de son adoption:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un grand-père, d'une grand-mère, d'un beau-frère ou d'une belle-sœur:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Annonce de la survenance d'un handicap chez l'enfant:** 2 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Examens médicaux obligatoires:** 3 jours maximum pour le conjoint salarié de la femme enceinte ; ou la personne salariée liée à elle par un PACS ; ou vivant maritalement avec elle, et pour le conjoint salarié de la femme bénéficiant d'une assistance médicale à la procréation ou la personne salariée liée à elle par un PACS ou vivant maritalement avec elle. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les modalités de prise ou les jours supplémentaires.
+
+La convention précise que ces jours d'absence n'entraînent pas de réduction de la rémunération et sont assimilés à des jours de travail effectif pour la détermination de la durée du congé annuel.

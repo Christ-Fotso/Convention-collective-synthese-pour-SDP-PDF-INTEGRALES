@@ -1,0 +1,7 @@
+* **Majoration de salaire :** La convention ne prévoit rien à ce sujet.
+* **Repos compensateur :** La convention ne prévoit rien à ce sujet.
+* **Définition travail dimanche :** La convention mentionne le travail du dimanche après-midi (terme exclu de l'extension par arrêté du 5 juin 2007, JO 14 juin) dans le cadre du repos hebdomadaire (Article 13 - Repos hebdomadaire). Si une dérogation préfectorale autorise l'ouverture exceptionnelle un jour de fermeture normale, les heures travaillées ce jour-là donnent lieu à un repos compensateur obligatoire et de durée équivalente dans la même semaine et une majoration de salaire à fixer sur le plan départemental ou régional (Article 13 - Repos hebdomadaire).
+* **Catégories personnel concernées/exclues :** La convention ne précise pas les catégories de personnel concernées ou exclues par le travail du dimanche.
+* **Conditions particulières :** La convention ne prévoit rien à ce sujet, excepté la possibilité de dérogations aux dispositions sur le repos hebdomadaire par des conventions départementales pour les entreprises travaillant en saison (Article 13 - Repos hebdomadaire).
+* **Cumul :** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales :** Des accords sur le repos hebdomadaire, incluant potentiellement le travail du dimanche, sont établis au niveau départemental par les organisations syndicales patronales et ouvrières représentatives au plan national (Article 13 - Repos hebdomadaire).

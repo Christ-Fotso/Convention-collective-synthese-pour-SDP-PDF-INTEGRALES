@@ -1,0 +1,7 @@
+* **Taux CONVENTIONNEL applicable:** Pour les employeurs occupant moins de dix salariés, la contribution est de 0.60% du montant des rémunérations telles que définies par les dispositions légales versées pendant l'année en cours.  Pour les employeurs occupant au moins dix salariés, la convention renvoie au taux minimal défini à l'article L. 951-1 du Code du Travail (1.60% au jour de la signature de l'accord), sans mentionner de contribution supplémentaire.
+* **Base de calcul spécifique:** Non précisé. La convention mentionne des "rémunérations telles que définies par les dispositions légales" sans plus de détails.
+* **Cotisation minimale due (conventionnelle):** Non précisé.
+* **Organisme collecteur DÉSIGNÉ par la convention :** OPCA-PL.
+* **Affectation spécifique des fonds:** Pour les employeurs de moins de 10 salariés, 0.15% de la contribution est destiné aux contrats ou périodes de professionnalisation et au droit individuel à la formation, le solde étant affecté au "plan de formation". Pour les employeurs d'au moins 10 salariés, la convention reprend la répartition légale (0.20% pour le CIF, 0.50% pour les contrats et périodes de professionnalisation et le DIF, et 0.90% pour le plan de formation) sans préciser d'affectations spécifiques.
+* **Entreprises/Salariés concernés :** Tous les laboratoires de biologie médicale extra-hospitaliers.
+* **Source de l’information :** Accord du 23 mai 2006 relatif à la formation professionnelle, étendu par arrêté du 9 février 2007.  Article 5 "Les dispositions financières".

@@ -1,0 +1,17 @@
+## Durées du travail
+
+* **Durée hebdomadaire de référence:** 35 heures (Accord du 28 juin 2023 - Article 1). *Applicable à temps complet, depuis le 1er janvier 2000 pour les entreprises de plus de 20 salariés et depuis le 1er janvier 2001 pour les autres.*
+* **Durée maximale hebdomadaire:**  La convention ne prévoit rien à ce sujet pour le décompte horaire. Pour le forfait jours, 214 jours par an (journée de solidarité incluse), pouvant être portés à 225 jours à la demande du salarié avec accord de l'employeur (Accord du 28 juin 2023 - Article 8-4).
+* **Durée maximale quotidienne:** Pour le décompte horaire, la convention ne prévoit rien à ce sujet. Pour le forfait jours, l'amplitude de la journée de travail ne doit pas excéder 11 heures (Accord 28 juin 2023 - Article 8-8).
+* **Repos quotidien minimum:** Pour le décompte horaire, la convention ne prévoit rien à ce sujet. Pour le forfait jours, 13 heures consécutives (Accord 28 juin 2023 - Article 8-10).
+* **Repos hebdomadaire minimum:** Pour le décompte horaire, la convention ne prévoit rien à ce sujet. Pour le forfait jours, 37 heures consécutives (24 heures + 13 heures de repos quotidien minimum) (Accord 28 juin 2023 - Article 8-10).
+* **Temps de pause minimum:** La convention ne prévoit rien à ce sujet.
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait:**  Voir Accord du 28 juin 2023 - Article 8.  Nombre de jours travaillés, attribution et prise de jours de repos, rémunération, respect de l'équilibre vie professionnelle/vie personnelle, charge de travail, repos quotidien et hebdomadaire, contrôle des jours travaillés, suivi de la charge de travail, entretien individuel (ponctuel et annuel), dispositif de prévention, information des IRP, forfait jours réduit. Les cadres dirigeants ne sont pas concernés par ces dispositions.
+    * **Temps partiel:**  Le nombre d'heures acquises au titre du DIF est calculé au prorata du nombre d'heures travaillées rapporté à un temps plein (Accord du 8 juillet 2005 - Article 3).
+    * **Jeunes travailleurs:**  RAS
+* **Dérogations prévues:**  La durée et les horaires de travail peuvent être adaptés aux spécificités des emplois et aux contraintes des marchés, dans le respect des intérêts des salariés et de l'entreprise (Accord du 28 juin 2023, Article 3).
+* **Articulation avec des accords d'entreprise:** L'aménagement du temps de travail et la fixation des horaires se font au sein de l'entreprise dans le respect des dispositions légales concernant la consultation des représentants du personnel (Accord 28 juin 2023 - Article 4-2).  L'accord du 28 juin 2023 complète les accords d'entreprise relatifs au décompte en jours si ces derniers ne contiennent pas toutes les mesures nécessaires au suivi de la charge de travail et à la protection de la santé (Accord 28 juin 2023 - Article 13).  Pour le DIF, un accord d'entreprise peut prévoir que celui-ci s'exerce en partie pendant le temps de travail (Accord 8 juillet 2005 - Article 4).
+
+
+**Notes:** L'accord du 28 juin 2023 annule et remplace l'accord du 23 décembre 1999 sur la réduction du temps de travail.  La durée annuelle du travail est de 1607 heures de travail effectif, incluant la journée de solidarité (Accord 28 juin 2023 - Article 4-1).  Les absences exceptionnelles et la semaine supplémentaire de congés payés (pour les salariés concernés) n'affectent pas le nombre de jours de travail et de repos des cadres au forfait jours (Accord 28 juin 2023 - Article 12).

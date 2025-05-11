@@ -1,0 +1,1 @@
+La convention collective nationale de la miroiterie, de la transformation et du négoce du verre du 9 mars 1988 (IDCC 1499) ne prévoit rien concernant la cotisation à la mutuelle. Donc la réponse est RAS.

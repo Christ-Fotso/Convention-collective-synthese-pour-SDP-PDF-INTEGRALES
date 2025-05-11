@@ -1,0 +1,11 @@
+* **Gratification:** La convention ne prévoit pas de disposition spécifique.
+
+* **Conditions d'accueil:** La convention ne prévoit pas de disposition spécifique concernant le nombre maximal de stagiaires par tuteur ou la durée maximale des stages.  L'article 3.14 (accord du 30 janvier 2024, non étendu) mentionne des dispositions concernant les offres d'emploi, de stages et d'alternances, stipulant qu'elles ne doivent contenir aucune mention précisant un critère de sexe ou de situation familiale, et que les libellés des offres doivent être appropriés afin de favoriser la mixité des emplois.
+
+* **Avantages et droits spécifiques:** La convention ne prévoit pas de disposition spécifique concernant l'accès au restaurant d'entreprise, les titres-restaurant, le remboursement des transports ou d'autres avantages liés au CSE.
+
+* **Encadrement et suivi:**  L'accord du 14 mai 2014 (étendu) mentionne, en son article 3.1.3, que l'accueil de stagiaires suppose que l'entreprise dispose des moyens d'encadrement nécessaires et que des engagements réciproques soient pris.  L'entreprise s'engage notamment à désigner un responsable de stage chargé de guider et conseiller le stagiaire, et à rédiger une attestation de stage décrivant les missions effectuées.  L'accord du 15 mai 2020 (étendu) relatif au dispositif Pro-A précise, dans son article 2, que l'employeur désigne un tuteur parmi les salariés de l'entreprise pour accompagner chaque bénéficiaire de la période Pro-A, mais cela concerne spécifiquement le dispositif Pro-A et non les stagiaires en général.  L'article 3.1.3 du même accord mentionne également que les stagiaires bénéficient d'un parcours d'accueil, avec la désignation d'un référent, et que le rôle de référent sera assuré par un maître de stage pour les stagiaires, mais cela s'inscrit dans le contexte de l'accueil des alternants et des stagiaires et ne constitue pas une obligation générale pour tous les stagiaires.
+
+* **Dispositions embauche post-stage:** La convention ne prévoit rien à ce sujet concernant une priorité d'embauche, une réduction de la période d'essai ou la prise en compte de la durée du stage dans l'ancienneté.
+
+* **Spécificités régionales:**  La convention ne prévoit pas de spécificités régionales concernant les stagiaires.

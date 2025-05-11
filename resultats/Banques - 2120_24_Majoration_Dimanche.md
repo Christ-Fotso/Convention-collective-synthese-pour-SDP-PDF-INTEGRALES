@@ -1,0 +1,7 @@
+* **Majoration de salaire :** La convention collective des Banques (IDCC 2120) ne prévoit pas de majoration de salaire spécifique pour le travail effectué le dimanche.
+* **Repos compensateur :** La convention ne prévoit pas de repos compensateur spécifique pour le travail effectué le dimanche.
+* **Définition travail dimanche :** La convention ne définit pas d'heures spécifiques pour le travail dominical.
+* **Catégories personnel concernées/exclues :** La convention ne précise pas les catégories de personnel concernées ou exclues du travail du dimanche. L'article 1 exclut du champ de la convention "le personnel de ménage, d’entretien, de gardiennage et de restauration".  Des accords d'entreprise peuvent toutefois prévoir l'application de la convention pour ces catégories (Article 1).
+* **Conditions particulières :** La convention ne prévoit rien concernant le volontariat, la planification, ou le nombre maximum de dimanches travaillés. L'article 68 (Dispositif d'application - Jours fériés), mentionne la possibilité d'exceptions au repos dominical "en raison des spécificités de service ou d’activité" après consultation des instances représentatives du personnel.  
+* **Cumul :** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales :** La convention ne prévoit rien à ce sujet. Toutefois, l’article 1 prévoit la possibilité d'adaptation de la convention aux territoires d'outre-mer "dans un cadre paritaire, sous réserve de la législation en vigueur."

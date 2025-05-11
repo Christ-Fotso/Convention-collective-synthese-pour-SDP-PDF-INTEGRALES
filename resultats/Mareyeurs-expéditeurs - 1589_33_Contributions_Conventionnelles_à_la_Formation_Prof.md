@@ -1,0 +1,7 @@
+- **Taux conventionnel applicable:** 0,10 % de la masse salariale des entreprises. Cette contribution est explicitement mentionnée comme s'ajoutant à la contribution légale.
+- **Base de calcul spécifique:** Non précisée.
+- **Cotisation minimale due (conventionnelle):** Non précisée.
+- **Organisme collecteur désigné par la convention:** AGEFOS-PME.
+- **Affectation spécifique des fonds:** Plan de formation.
+- **Entreprises/Salariés concernés:** Entreprises comptant au moins 11 salariés.
+- **Source de l’information:** Accord du 21 septembre 2016 relatif à la formation professionnelle, Article 15.

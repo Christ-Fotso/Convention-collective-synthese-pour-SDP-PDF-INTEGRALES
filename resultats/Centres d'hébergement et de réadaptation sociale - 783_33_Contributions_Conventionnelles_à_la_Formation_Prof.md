@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable:** 2,3% de la masse salariale brute, réparti comme suit : 1,6% pour le plan de formation, 0,5% pour l'alternance et 0,2% pour le congé individuel de formation (CIF).  Cette contribution est explicitement mentionnée comme un effort supplémentaire pour le développement de la formation professionnelle continue.
+- **Base de calcul spécifique:** Non précisé.
+- **Cotisation minimale due (conventionnelle):** Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention:** Non précisé.
+- **Affectation spécifique des fonds:** L'effort supplémentaire est consacré au développement de la formation professionnelle continue dans le cadre du plan de formation.  Pour les formations d'éducateur spécialisé, d'éducateur technique spécialisé et de moniteur éducateur, la prise en charge doit être supportée en priorité par le budget de l'établissement.
+- **Entreprises/Salariés concernés:**  Non précisé.
+- **Source de l’information:** Article 8.7 (Chapitre 8 - Formation Professionnelle Continue).

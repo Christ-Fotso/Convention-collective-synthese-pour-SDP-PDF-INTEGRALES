@@ -1,0 +1,1 @@
+La convention collective régionale Bâtiment - ouvriers (Aquitaine -10 salariés) - IDCC 2194 ne prévoit rien à ce sujet.  La convention renvoie aux titres II à XIII de la convention collective nationale du 8 octobre 1990 concernant les entreprises du Bâtiments occupant jusqu'à 10 salariés pour les clauses générales, mais le texte de cette convention nationale n'est pas fourni.

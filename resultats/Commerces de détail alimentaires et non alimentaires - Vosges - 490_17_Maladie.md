@@ -1,0 +1,3 @@
+**Maintien de salaire en cas de maladie ordinaire**
+
+La convention collective ne prévoit pas de maintien de salaire par l'employeur en cas de maladie ordinaire.  L'article 53 aborde les absences pour maladie mais uniquement sous l'angle de la justification d'absence et de la durée maximale d'absence avant licenciement. L'article 53 bis institue un régime de prévoyance (avenant n°33 du 12 septembre 1983, étendu par arrêté du 15 juin 1988, JO 26 juin 1988) qui prévoit des indemnités journalières en cas de maladie ou d'accident, mais il s'agit d'un régime de prévoyance et non d'un maintien de salaire à la charge de l'employeur.

@@ -1,0 +1,1 @@
+L'article 14, paragraphe 2 concernant l'indemnité de départ en retraite a été annulé par l'accord du 15 novembre 2004, étendu par arrêté du 15 février 2005, JO 24 février 2005.  Voir cet accord reproduit dans Carrières et matériaux : accords nationaux (non fourni). La convention collective actuelle ne prévoit rien à ce sujet.

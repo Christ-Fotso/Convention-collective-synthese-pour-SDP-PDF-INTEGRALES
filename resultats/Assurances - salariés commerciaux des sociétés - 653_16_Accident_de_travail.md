@@ -1,0 +1,1 @@
+La convention collective IDCC 653 ne prévoit rien concernant le maintien de salaire en cas d'accident de travail ou de maladie professionnelle.  Les articles 18 et 19 traitent de la maladie et de l'inaptitude, mais uniquement dans le contexte d'une absence pour maladie ou accident non professionnel.

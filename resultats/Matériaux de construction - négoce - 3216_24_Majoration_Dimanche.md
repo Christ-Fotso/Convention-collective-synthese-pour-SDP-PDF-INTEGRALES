@@ -1,0 +1,7 @@
+* **Majoration de salaire:** 100% (Article 1-8, Repos hebdomadaire et travail du dimanche). La convention ne précise pas si le taux est différent selon la catégorie ou les circonstances.
+* **Repos compensateur:** La convention prévoit un repos compensateur équivalent en plus de la majoration *si le salarié n'en bénéficie pas*. (Article 1-8, Repos hebdomadaire et travail du dimanche). La convention ne précise pas la durée ni les modalités de prise de ce repos.
+* **Définition travail dimanche:** La convention ne précise pas les heures exactes constituant le travail du dimanche. L'ouverture est autorisée *dans les conditions légales et réglementaires en vigueur*.
+* **Catégories personnel concernées/exclues:** La convention ne prévoit rien à ce sujet.
+* **Conditions particulières:**  La convention mentionne le "travail exceptionnel le dimanche" mais ne détaille pas les conditions précises (volontariat, planification, nombre maximum).  L'ouverture exceptionnelle est autorisée *dans les conditions légales et réglementaires en vigueur* (Article 1-8, Repos hebdomadaire et travail du dimanche).
+* **Cumul:** La convention mentionne la possibilité de cumul avec les majorations pour heures supplémentaires si le salarié ne bénéficie pas d'un temps de repos équivalent, mais certaines parties relatives au cumul ont été exclues de l'extension (Article 1-8, Repos hebdomadaire et travail du dimanche, modifié par Avenant du 7 novembre 2017, étendu par arrêté du 17 février 2020).
+* **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

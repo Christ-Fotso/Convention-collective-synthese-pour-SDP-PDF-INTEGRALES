@@ -1,0 +1,10 @@
+### Congés pour événements familiaux
+
+*   **Mariage de l'intéressé :** 6 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Mariage d'un enfant ou d'un ascendant :** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Naissance d'un enfant :** 3 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Maladie d'un enfant de 12 ans ou moins :** 1 ou 2 jours ouvrables, dans la limite de 6 jours par année civile.  La durée globale du congé est portée à 8 jours, à partir de deux enfants âgés de 12 ans ou moins. Ce congé est accordé à la mère ou au père ayant les enfants à charge. Le congé ne sera accordé que si le certificat médical est suffisamment explicite, faisant ressortir que l'état de santé de l'enfant nécessite la présence de la mère ou du père. La convention ne prévoit rien à ce sujet concernant les modalités de prise ou les jours supplémentaires.
+*   **Décès du conjoint, d'un enfant, du père, de la mère, d'un des grands-parents et beaux-parents :** 4 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un frère, d'une sœur, d'un petit-enfant :** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un beau-frère, d'une belle-sœur :** 1 jour. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Déménagement :** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise ou les jours supplémentaires.

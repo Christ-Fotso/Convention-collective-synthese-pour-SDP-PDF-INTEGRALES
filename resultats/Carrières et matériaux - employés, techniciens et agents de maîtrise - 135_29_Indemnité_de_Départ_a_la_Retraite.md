@@ -1,0 +1,1 @@
+L'article 5, paragraphe 4, alinéa b de la convention collective nationale du 12 juillet 1955 (étendue par arrêté du 13 décembre 1960) concernant l'indemnité de départ en retraite a été annulé par l'accord du 15 novembre 2004, étendu par arrêté du 15 février 2005, JO 24 février 2005.  La convention collective actuelle ne prévoit donc rien à ce sujet.

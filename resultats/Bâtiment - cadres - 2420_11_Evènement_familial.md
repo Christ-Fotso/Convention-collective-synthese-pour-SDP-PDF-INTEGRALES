@@ -1,0 +1,13 @@
+## Congés pour événements familiaux
+
+* **Mariage (du salarié):** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **PACS (du salarié):** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Mariage d'un enfant:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès du conjoint (marié ou pacsé):** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès d'un enfant:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès du père ou de la mère:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Décès d'un grand-parent, beau-parent, frère, beau-frère, sœur, belle-sœur ou petit-enfant:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+* **Naissance ou arrivée d'un enfant placé en vue d'adoption:** 3 jours. La convention ne précise pas le type de jours.  Ces jours d'absence ne peuvent se cumuler avec les congés accordés pour ce même enfant dans le cadre du congé de maternité prévu au premier alinéa de l’article L. 122-26 du Code du Travail. La convention ne prévoit rien à ce sujet concernant les modalités de prise ou les jours supplémentaires.
+* **Congé de paternité:** 11 jours calendaires consécutifs (18 jours calendaires consécutifs en cas de naissances multiples).  Ce congé peut se cumuler avec les 3 jours prévus pour la naissance ou l'arrivée d'un enfant placé.  Le cadre doit formuler sa demande par lettre recommandée un mois au moins avant le début du congé demandé en joignant soit un certificat médical indiquant la date présumée de la naissance, soit l’extrait d’acte de naissance. Le congé doit être pris dans les 4 mois qui suivent la naissance. L'indemnisation a lieu conformément à la législation en vigueur.
+
+

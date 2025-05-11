@@ -1,0 +1,3 @@
+La convention collective régionale des ouvriers du bâtiment de Basse-Normandie (IDCC 1785) a été dénoncée le 8 février 2018.  Les accords de salaire, indemnités de petits déplacements et indemnités pour les maîtres d'apprentissage confirmés restent en vigueur.  Cependant, pour les autres thèmes, il faut se référer aux conventions collectives nationales du bâtiment.  La convention collective ne contenant pas d'informations sur les congés pour événements familiaux, la réponse est donc :
+
+**Se reporter aux conventions collectives nationales "Bâtiment Ouvriers" (Entreprises occupant jusqu’à dix salariés et de plus de dix salariés).**

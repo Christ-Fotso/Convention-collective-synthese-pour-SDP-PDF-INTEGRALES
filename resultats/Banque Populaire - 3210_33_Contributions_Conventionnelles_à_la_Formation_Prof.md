@@ -1,0 +1,10 @@
+- **Taux CONVENTIONNEL applicable :** 0,5% de la masse salariale (année N-1).  Cet accord initial prévoyait un versement à OPCALIA. L'accord a été reconduit pour les exercices 2013, 2014 et 2015 par l'avenant n°2 du 17 décembre 2012.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** Initialement OPCALIA (Avenant n°1 du 11 janvier 2012). L'avenant n°2 du 17 décembre 2012 prévoit un réexamen des modalités de choix de l'OPCA mi-2014, pour les années postérieures à 2015.  
+- **Affectation spécifique des fonds :**  Les fonds collectés par OPCALIA peuvent être utilisés pour le financement des dépenses de fonctionnement des centres de formation d'apprentis (CFA) accueillant des collaborateurs des entreprises de la branche en contrat d'apprentissage. Une proposition d'affectation est faite par la SPP de la Branche Banque Populaire, soumise à la décision du conseil d'administration d'OPCALIA. Cette affectation ne peut excéder 30 % des fonds collectés annuellement, après déduction des prélèvements obligatoires et ajout des produits divers (Avenant n°1 du 11 janvier 2012 et Avenant n°2 du 17 décembre 2012). 
+- **Entreprises/Salariés concernés :** L'ensemble des entreprises de la Branche Banque Populaire, à l'exception du Crédit Coopératif et de la Casden (à titre temporaire, dans la limite de la durée de l'accord initial puis de ses avenants).
+- **Source de l’information :** Accord du 15 décembre 2010, Avenant n°1 du 11 janvier 2012,  Avenant n°2 du 17 décembre 2012.
+
+
+La convention collective mentionne également la contribution des entreprises au Fonds Paritaire de Sécurisation des Parcours Professionnels (FPSPP), versée à OPCALIA, puis reversée au FPSPP. La répartition de cette contribution se fait à parts égales entre le financement du plan de formation et celui de la professionnalisation (Accord du 15 décembre 2010). Cependant, aucun taux spécifique ou disposition allant au-delà de la loi n'est mentionné dans la convention collective à ce sujet.

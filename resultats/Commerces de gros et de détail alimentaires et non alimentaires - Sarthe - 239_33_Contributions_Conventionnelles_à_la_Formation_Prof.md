@@ -1,0 +1,1 @@
+La convention ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  L'article 24 mentionne l'accord collectif national interprofessionnel du 9 juillet 1970 et ses avenants, mais ne détaille pas les contributions.

@@ -1,0 +1,10 @@
+## Congés pour événements familiaux
+
+* **Mariage / PACS du salarié:** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Mariage d'un enfant:** 2 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Mariage d'un petit-enfant:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Décès du conjoint:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Décès d'un enfant:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Décès du père ou de la mère:** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Décès d'un grand-parent, beau-parent, frère, beau-frère, sœur, belle-sœur, petit-enfant:** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou des jours supplémentaires.
+* **Naissance ou arrivée d'un enfant placé en vue d'adoption:** 3 jours. La convention ne précise pas le type de jours.  La convention ne prévoit rien à ce sujet concernant les modalités de prise ou des jours supplémentaires. Condition d'octroi : ces jours ne peuvent se cumuler avec les congés accordés pour ce même enfant dans le cadre du congé de maternité prévu aux articles L. 1225-17 à L.1225-19 du code du travail.

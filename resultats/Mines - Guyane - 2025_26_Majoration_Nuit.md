@@ -1,0 +1,8 @@
+- **Définition travail de nuit:** Travail effectué de 21 heures à 6 heures (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension).
+- **Définition travailleur de nuit:** La convention ne prévoit rien à ce sujet.
+- **Compensations:**
+    - **Majoration salaire:** Minimum de 10% d'accord entre l'employeur et les salariés (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension).  25% pour les heures accomplies au-delà de 8 heures (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension).
+    - **Repos compensateur:**  Oui, d'accord entre employeur et salariés. La durée et les modalités ne sont pas précisées (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension).
+- **Durées travail spécifiques:** Maximum de 10 heures par jour (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension).
+- **Contreparties et garanties:** Installations avec confort nécessaire (local de repos, restauration, détente). Attention accrue aux conditions de travail, sécurité, hygiène et repos (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension). La convention ne prévoit rien concernant le repos obligatoire, l'articulation vie pro/perso, la formation ou le suivi médical.  La convention ne prévoit rien concernant la protection spécifique des femmes enceintes ou des salariés âgés.
+- **Spécificités départementales/régionales:** Application aux salariés sur chantier en Guyane (Avenant n°2 du 8 décembre 2005 - Article 3 - Exclu de l'extension).

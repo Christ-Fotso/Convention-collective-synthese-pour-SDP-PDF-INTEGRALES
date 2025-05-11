@@ -1,0 +1,8 @@
+- **Définition travail de nuit:** Travail effectué entre 23 heures et 7 heures (Article 44).
+- **Définition travailleur de nuit:** La convention ne prévoit rien à ce sujet.
+- **Compensations:**
+    - **Majoration salaire:** 100% (Article 44). La convention ne précise pas si la majoration varie pour travailleur de nuit ou occasionnel.
+    - **Repos compensateur:** La convention ne prévoit rien à ce sujet concernant une attribution spécifique pour travailleur de nuit.
+- **Durées travail spécifiques:** La convention ne prévoit rien à ce sujet.
+- **Contreparties et garanties:**  La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

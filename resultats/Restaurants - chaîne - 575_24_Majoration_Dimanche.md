@@ -1,0 +1,7 @@
+- Majoration de salaire : La convention ne prévoit rien à ce sujet.
+- Repos compensateur : La convention ne prévoit pas de repos compensateur en plus ou en remplacement d'une majoration. L'article 30 (Repos du dimanche) prévoit un roulement pour que chaque employé bénéficie du dimanche au moins une fois toutes les quatre semaines dans les établissements qui n'appliquent pas la fermeture hebdomadaire.
+- Définition travail dimanche : La convention ne précise pas les heures exactes constituant le travail du dimanche.
+- Catégories personnel concernées/exclues : La convention ne précise pas de catégories de personnel concernées ou exclues par le repos tournant du dimanche.
+- Conditions particulières : La convention ne prévoit rien concernant le volontariat, la planification ou le nombre maximum de dimanches travaillés.
+- Cumul : La convention ne prévoit rien à ce sujet.
+- Spécificités départementales/régionales : La convention ne prévoit rien à ce sujet.

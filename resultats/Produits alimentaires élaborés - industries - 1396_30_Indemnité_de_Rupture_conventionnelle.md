@@ -1,0 +1,7 @@
+- La convention collective prévoit une indemnité de rupture conventionnelle. (Article 29 - Dispositions générales, Avenant n°84 du 11/02/2010, étendu)
+- La convention ne prévoit pas de formule de calcul spécifique.
+- La convention indique que "Le montant de cette indemnité ne peut être inférieur à un cinquième de mois par année d'ancienneté auquel s'ajoutent deux quinzièmes de mois par année au-delà de dix ans d'ancienneté.". Ce montant est identique au montant minimal de l'indemnité de licenciement.
+- La convention précise une condition d'ancienneté minimale d'un an pour le versement de l'indemnité.
+- La convention ne prévoit pas de salaire de référence spécifique.
+- La convention ne prévoit rien concernant les salariés exclus de l'indemnité de licenciement.
+- La convention ne prévoit pas de spécificités régionales ou départementales.

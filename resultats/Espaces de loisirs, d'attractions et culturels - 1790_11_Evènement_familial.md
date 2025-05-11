@@ -1,0 +1,12 @@
+## Congés pour événements familiaux
+
+- **Mariage du salarié :** 5 jours (ouvrables). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Naissance ou adoption :** 3 jours (ouvrables). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Mariage d'un enfant :** 2 jours (ouvrables). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Décès du père ou de la mère :** 3 jours (ouvrables). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Décès du conjoint ou d'un enfant :** 4 jours (ouvrables). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Décès du beau-père, de la belle-mère, d'un frère, d'une sœur ou d'un ascendant au second degré :** 1 jour (ouvrable). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Examens prénataux :**  Dans les conditions prévues à l'article L. 1225-16 du Code du travail. La convention ne prévoit rien à ce sujet concernant la durée du congé, les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Rentrée des classes :** 1/2 journée (ouvrable). Concerne les salariés ayant des enfants en âge scolaire (jusqu'à la veille du 12ème anniversaire de l'enfant). La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou les jours supplémentaires.
+- **Présélection militaire :** Dans la limite de 3 jours (ouvrables). Sous réserve de 3 mois d'ancienneté dans l'entreprise ou l'établissement. La convention ne prévoit rien à ce sujet concernant les modalités de prise ou les jours supplémentaires.
+- **Enfants malades :** 2 jours (ouvrables) non consécutifs par an. Sur présentation d'un certificat médical pour enfant malade de moins de 12 ans, quel que soit le nombre d'enfants. Sous réserve de 3 mois d'ancienneté dans l'entreprise ou l'établissement. La convention ne prévoit rien à ce sujet concernant les modalités de prise ou les jours supplémentaires.

@@ -1,0 +1,1 @@
+La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.  L'article 2-6-3 mentionne uniquement que "L'employeur et le salarié peuvent convenir d'un commun accord des conditions de la rupture du contrat de travail qui les lie, dans les conditions et procédures définies par la loi.".

@@ -1,0 +1,1 @@
+La convention ne prévoit pas d'organisme paritaire spécifique avec une contribution dédiée.  Cependant, l'article 5 mentionne le financement des œuvres sociales des comités d'entreprise, en précisant que "les établissements se conformeront à la législation en vigueur".

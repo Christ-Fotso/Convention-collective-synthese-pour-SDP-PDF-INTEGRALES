@@ -1,0 +1,3 @@
+L'article 25 de la convention collective nationale du 27 mars 1972 (Assurances - salariés commerciaux des sociétés - IDCC 653) mentionne que "les salariés commerciaux des sociétés d'assurances bénéficient du régime professionnel de prévoyance (RPP) et du régime de Fonds de pension définis par accord collectif au niveau de la Profession".  La note de bas de page (7) précise : "À la date de signature du présent texte, il s'agit des protocoles d'accord du 24 juin 2013 et leurs avenants".
+
+La convention ne prévoit rien d'autre concernant les cotisations retraite complémentaire, les taux, les organismes désignés, la répartition employeur/salarié ou l'assiette de calcul.

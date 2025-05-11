@@ -1,0 +1,1 @@
+La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.  L'article 3-40 précise que "la rupture conventionnelle est régie par les dispositions légales, réglementaires et les stipulations contractuelles, ces dernières fixant la date indicative de la rupture du contrat de travail ainsi que le montant de l'indemnité de rupture".

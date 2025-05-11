@@ -1,0 +1,7 @@
+* **Majoration de salaire :** Pour le personnel mensuel, en cas de travail un jour férié (dont le dimanche), les heures travaillées sont payées au taux normal, en sus des appointements (Article 25, modifié par l'avenant n°26 du 22 mai 1978, étendu par arrêté du 9 novembre 1978, JO 6 janvier 1979). Pour les salariés rémunérés à l'heure, la majoration est de 100% (Article 25).
+* **Repos compensateur :** La convention ne prévoit rien à ce sujet.
+* **Définition travail dimanche :** La convention ne précise pas les heures exactes de la journée de dimanche prises en compte pour la majoration.
+* **Catégories personnel concernées/exclues :** Article 25 distingue les mensuels et les salariés rémunérés à l'heure. Les autres articles ne précisent pas de catégories spécifiques pour le travail du dimanche.
+* **Conditions particulières :** La convention ne prévoit rien concernant le volontariat, la planification ou le nombre maximum de dimanches travaillés.  L'article 25 précise une condition pour le personnel mensuel afin de ne pas subir de réduction de salaire pour les jours fériés non travaillés (dont dimanche) : avoir au moins trois mois d'ancienneté, avoir accompli au moins 200 heures de travail au cours des deux mois précédents, être présent le dernier jour de travail précédent ou le premier jour suivant, sauf autorisation d'absence.
+* **Cumul :** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales :**  RAS.

@@ -1,0 +1,7 @@
+* **Repos compensateur:** Un temps de récupération d'une durée égale au repos supprimé (Article 55.1, Convention collective nationale du 6 juillet 2023).
+* **Majoration de salaire/repos:**  Majoration de salaire ou majoration du temps de récupération négociée dans l'entreprise, avec un minimum de 25 % (Article 55.1, Convention collective nationale du 6 juillet 2023).
+* **Définition travail dimanche:** La convention ne précise pas les heures exactes constituant le travail du dimanche.  Elle indique que "En règle générale, le repos hebdomadaire est attribué le dimanche"  (Article 55.1, Convention collective nationale du 6 juillet 2023) et précise les modalités de dérogation à ce principe.
+* **Catégories personnel concernées/exclues:** La convention ne prévoit rien à ce sujet. Les dérogations au repos dominical sont encadrées par l'article L. 714-1 du Code rural et de la pêche maritime.
+* **Conditions particulières :** La convention ne prévoit rien à ce sujet, au-delà de la référence à l'article L. 714-1 du Code rural et de la pêche maritime pour les dérogations.
+* **Cumul :** Lorsqu'un jour férié tombe un dimanche, le temps de récupération et la majoration prévus ne se cumulent pas avec le temps de récupération et la majoration prévus pour le travail du dimanche (Article 55.2, Convention collective nationale du 6 juillet 2023).  La convention ne prévoit rien concernant le cumul avec d'autres majorations.
+* **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

@@ -1,0 +1,7 @@
+* **Taux CONVENTIONNEL applicable:** 2% de la masse salariale brute (en plus des obligations légales).  L'accord précise que "le supplément de dépenses qui en résulte est affecté au plan de formation".
+* **Base de calcul spécifique:** La masse salariale brute assise sur les rémunérations des salariés relevant des conventions collectives nationales des 27 mai 1992 et 27 juillet 1992.
+* **Cotisation minimale due (conventionnelle):** Non précisée. L'accord mentionne un versement à Opcassur si l'entreprise n'atteint pas les 2%, calculé sur la différence entre ce que l'entreprise aurait dû dépenser (2%) et ce qu'elle a effectivement dépensé.  Un report sur 3 ans est possible pour les entreprises dépassant les 2% de dépenses.
+* **Organisme collecteur DÉSIGNÉ par la convention:** Opcassur.
+* **Affectation spécifique des fonds:** Plan de formation.
+* **Entreprises/Salariés concernés:** Entreprises et organismes visés à l’article 1er des conventions collectives nationales des 27 mai 1992 et 27 juillet 1992.
+* **Source de l’information:** Accord du 27 janvier 1999 relatif au financement de la formation professionnelle continue (étendu par arrêté du 11 octobre 2000, JO 18 octobre 2000), reconduit jusqu'au 31 décembre 2003 (accord du 14 décembre 2001 non étendu).  L'accord mentionne également l'accord du 20 décembre 1996.  Des accords intersecteurs du 22 décembre 1994 sont également mentionnés concernant Opcassur.

@@ -1,0 +1,1 @@
+La convention ne prévoit pas de dispositions spécifiques concernant l'indemnité de fin de contrat CDD.  Un accord national relatif à l’indemnité de fin de contrat à durée déterminée dans la coopération agricole du 17 octobre 1990 est mentionné mais non reproduit dans la convention.

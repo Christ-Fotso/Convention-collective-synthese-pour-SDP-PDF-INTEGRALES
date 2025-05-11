@@ -1,0 +1,4 @@
+- **Taux conventionnel:** 5% de la rémunération totale brute perçue pendant la durée du contrat (Article 62).
+- **Réduction du taux:** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques:** La convention ne prévoit rien à ce sujet.
+- **Modalités de versement:** La convention ne prévoit rien à ce sujet.

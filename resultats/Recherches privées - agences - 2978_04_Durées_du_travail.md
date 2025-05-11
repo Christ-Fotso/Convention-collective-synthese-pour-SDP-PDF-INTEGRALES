@@ -1,0 +1,12 @@
+* **Durée hebdomadaire de référence:** 35 heures (Article 5-1)
+* **Durée maximale hebdomadaire:** La convention ne prévoit rien à ce sujet.
+* **Durée maximale quotidienne:** La convention ne prévoit rien à ce sujet.
+* **Repos quotidien minimum:** La convention ne prévoit rien à ce sujet.
+* **Repos hebdomadaire minimum:** Deux jours consécutifs par semaine. (Article 5-2)
+* **Temps de pause minimum:** La convention ne prévoit rien à ce sujet.
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait:** Possibilité de conclure une convention individuelle de forfait en heures sur la semaine, sur le mois ou sur l'année, aménageable suivant les besoins des missions confiées aux agents.  La convention est régie par les dispositions des articles L. 3121-38 et suivants du Code du travail. (Article 5-4)
+    * **Temps partiel:** La durée du travail hebdomadaire, mensuelle ou annuelle est inférieure à la durée légale ou à la durée fixée conventionnellement lorsque cette durée est inférieure à la durée légale du travail. Le contrat doit être écrit et définir les modalités de modification de la répartition des horaires. Possibilité de recourir à des heures complémentaires dans la limite du tiers de la durée hebdomadaire ou mensuelle prévue au contrat.  Majoration de 25% pour les heures complémentaires effectuées au-delà du dixième de la durée du travail prévue au contrat.  Les horaires des salariés à temps partiel sont aménagés de manière à limiter les coupures au cours de leur journée de travail. En cas d'interruptions, celle-ci ne peut pas dépasser 2 heures. Une durée de travail de 4 heures travaillées consécutives par jour est garantie. (Article 5-6)
+    * **Jeunes travailleurs:** Les employeurs s'engagent à respecter les dispositions spécifiques relatives à la durée du travail, le travail de nuit et les repos et congés des jeunes travailleurs visés aux articles L. 3161-1 et suivants du Code du travail. (Article 5-5)
+* **Dérogations prévues:**  Répartition de la durée du travail sur une période supérieure à la semaine et au plus égale à un mois possible. (Article 5-3)
+* **Mention de l'articulation avec des accords d'entreprise:**  Tout accord collectif relatif à l'aménagement du temps de travail doit prévoir : conditions et délais de prévenance des changements de durée ou d'horaire de travail, les limites pour le décompte des heures supplémentaires, les conditions de prise en compte pour le calcul de la rémunération des absences, et départs et arrivées en cours de période. (Article 5-3)

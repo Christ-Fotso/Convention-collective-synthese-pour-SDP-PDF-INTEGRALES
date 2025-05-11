@@ -1,0 +1,1 @@
+La convention collective départementale du Cher pour les ouvriers du bâtiment (entreprises jusqu'à 10 salariés) ne prévoit rien concernant les durées du travail, renvoyant aux titres II à XII de la convention collective nationale Bâtiment Ouvriers (Entreprises occupant jusqu'à dix salariés) pour les clauses générales.  La convention ne précise pas le contenu de ces titres.

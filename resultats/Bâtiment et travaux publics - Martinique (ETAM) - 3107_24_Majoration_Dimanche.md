@@ -1,0 +1,7 @@
+* **Majoration de salaire:** 100% (Article 3.2.3 - Convention collective départementale du 31 mai 2012)
+* **Repos compensateur:** La convention ne prévoit rien à ce sujet.
+* **Définition travail dimanche:** La convention ne précise pas les heures exactes. Le terme utilisé est "dimanche".
+* **Catégories personnel concernées/exclues:** La convention ne précise pas de catégories exclues, et s'applique aux ETAM (Article 1.1 - Convention collective départementale du 31 mai 2012).  Elle exclut les VRP et les travailleurs à domicile.
+* **Conditions particulières:** La convention précise que le travail du dimanche doit être dû à des "circonstances exceptionnelles" (Article 3.2.3 - Convention collective départementale du 31 mai 2012). La convention ne prévoit rien concernant le volontariat, la planification, ou le nombre maximum de dimanches travaillés.
+* **Cumul:** "La majoration pour travail exceptionnel, de nuit, du dimanche ou d'un jour férié ne se cumule pas avec les majorations pour heures supplémentaires. Lorsqu'un même travail ouvre droit à plusieurs de ces majorations, seule est retenue la majoration correspondant au taux le plus élevé." (Article 3.2.3 - Convention collective départementale du 31 mai 2012)
+* **Spécificités départementales/régionales:** La convention est départementale et s'applique à la Martinique (Article 1.1 - Convention collective départementale du 31 mai 2012).

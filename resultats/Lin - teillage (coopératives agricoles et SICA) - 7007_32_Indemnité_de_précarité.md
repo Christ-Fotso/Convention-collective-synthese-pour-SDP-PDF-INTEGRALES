@@ -1,0 +1,1 @@
+La convention collective ne prévoit pas de dispositions spécifiques concernant l'indemnité de fin de contrat CDD. L'accord national relatif à l’indemnité de fin de contrat à durée déterminée dans la coopération agricole du 17 octobre 1990 est mentionné dans les textes complémentaires, mais son contenu n'est pas détaillé.

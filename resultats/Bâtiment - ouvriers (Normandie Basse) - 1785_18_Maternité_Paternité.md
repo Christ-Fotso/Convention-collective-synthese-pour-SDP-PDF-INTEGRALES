@@ -1,0 +1,3 @@
+**Maintien de salaire pendant les congés maternité, paternité/accueil de l'enfant et adoption (IDCC 1785)**
+
+La convention collective régionale des ouvriers du bâtiment de Basse-Normandie (IDCC 1785) a été dénoncée le 8 février 2018.  Les accords de salaire restent en vigueur jusqu'à la conclusion de nouvelles conventions collectives nationales.  Pour le maintien de salaire pendant les congés maternité, paternité/accueil de l'enfant et adoption, il faut se reporter aux clauses générales de la convention collective nationale du bâtiment des ouvriers. La convention collective régionale ne prévoit rien à ce sujet.

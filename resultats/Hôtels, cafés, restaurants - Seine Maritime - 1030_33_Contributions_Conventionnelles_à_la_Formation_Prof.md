@@ -1,0 +1,1 @@
+La convention ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  L'article 17 mentionne les lois du 16 juillet 1971 concernant la formation professionnelle continue et l'apprentissage, mais ne détaille pas de contribution conventionnelle.

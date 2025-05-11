@@ -1,0 +1,2 @@
+- La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.
+- Article II.4.2.1.c du Titre IV : L'employeur et le salarié peuvent décider en commun de la rupture du contrat de travail en signant une convention soumise à homologation administrative, ou à autorisation pour les salariés protégés.  (Accord du 29 juillet 2016, étendu)

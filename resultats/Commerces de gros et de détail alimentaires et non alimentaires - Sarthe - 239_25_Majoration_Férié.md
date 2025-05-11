@@ -1,0 +1,9 @@
+- **Jours fériés chômés/payés :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail les jours fériés (hors 1er mai) :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail le 1er mai :** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur (hors 1er mai) :** L'article 20 (Modifié par avenant n°11 du 1er juin 1976, étendu par arrêté du 9 novembre 1976, JO 15 décembre 1976) indique : "Les employés ne travaillant pas dans le cadre du repos hebdomadaire un jour normalement ouvré dans leur entreprise bénéficieront, lorsqu'un jour férié légal se placera à la même date, d'un jour de repos compensateur à prendre dans les six mois suivants. Ces dispositions s'appliquent normalement aux lundis de Pâques et de Pentecôte.".
+- **Repos compensateur pour travail le 1er mai :** La convention ne prévoit rien à ce sujet.
+- **Catégories de personnel concernées/exclues :** La convention ne prévoit rien à ce sujet.
+- **Conditions particulières :** La convention ne prévoit rien à ce sujet.
+- **Récupération des jours fériés chômés tombant un jour de repos habituel :** La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales :** La convention ne prévoit rien à ce sujet.

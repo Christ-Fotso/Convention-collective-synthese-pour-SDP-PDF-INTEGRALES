@@ -1,0 +1,17 @@
+## Congés pour événements familiaux
+
+- **Mariage du salarié :** 5 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Conclusion d'un PACS :** 5 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Congé de naissance ou d'adoption :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Mariage d'un enfant :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Décès d'un enfant :**  7 jours si l'enfant décédé est âgé de moins de 25 ans, ou si quel que soit son âge, l'enfant décédé était lui-même parent, ou s'il s'agit d'une personne décédée de moins de 25 ans dont le salarié avait la charge effective et permanente ; 5 jours dans les autres cas. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les modalités de prise.
+- **Décès du conjoint, du partenaire de PACS, du concubin :** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Décès des parents, des beaux-parents, frère, sœur :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Décès des grands-parents :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Annonce de la survenue d'un handicap chez un enfant :** 2 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières et les modalités de prise.
+- **Hospitalisation d'un enfant de moins de 16 ans :** 1 jour par an et par enfant. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les modalités de prise.
+- **Déménagement :** 1 jour (dans la limite d'une fois tous les 2 ans). La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les modalités de prise.
+
+**Jours supplémentaires :**  1 jour supplémentaire pour délai de route, lorsque le lieu de l'événement se situe à 500 km et plus du lieu de résidence habituel du salarié. Ce jour supplémentaire est accordé forfaitairement pour l'aller-retour.
+
+**Conditions générales :**  Ces jours de congés sont calculés en jours ouvrés.  Ces congés exceptionnels sont à prendre au moment de l'événement. Les absences ainsi autorisées donneront lieu à une indemnité égale au salaire que l'intéressé aurait perçu s'il avait effectivement travaillé. À défaut de prise effective du congé par le salarié due à son propre fait, le paiement du congé non pris ne pourra être réclamé en sus du salaire versé. Les congés spéciaux d'origine conventionnelle ainsi que les indemnités de salaire correspondants ne peuvent se cumuler avec ceux prévus par la législation en vigueur.

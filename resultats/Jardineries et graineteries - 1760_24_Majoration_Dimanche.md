@@ -1,0 +1,7 @@
+* **Majoration de salaire :** 50% du taux horaire de base du salarié concerné (Article 31 - Réglementation des dimanches et repos hebdomadaire, modifié par l'Accord du 20 janvier 2021, étendu par arrêté du 17 septembre 2021). La convention ne prévoit pas de taux différents selon la catégorie ou les circonstances.
+* **Repos compensateur :** Le paiement sous forme de repos compensateur ne peut se faire sans l'accord du salarié (Article 31 - Réglementation des dimanches et repos hebdomadaire). La convention ne précise pas la durée du repos compensateur.
+* **Définition du travail du dimanche :** La convention ne précise pas les heures exactes constituant le travail du dimanche.  L'article 31 mentionne seulement "les heures effectuées le dimanche".
+* **Catégories de personnel concernées/exclues :** La convention ne prévoit rien à ce sujet. L'article 31 s'applique à "chaque salarié".
+* **Conditions particulières :**  Chaque salarié bénéficie du repos du dimanche, au moins 1 dimanche sur 2 en moyenne sur l'année (Article 31 - Réglementation des dimanches et repos hebdomadaire). Les modalités pratiques d'application de la majoration sont définies dans chaque établissement après consultation des institutions représentatives du personnel lorsqu'elles existent (Article 31 - Réglementation des dimanches et repos hebdomadaire). La convention ne mentionne pas le volontariat ou un nombre maximum de dimanches travaillés.
+* **Cumul :** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales :** La convention ne prévoit rien à ce sujet.

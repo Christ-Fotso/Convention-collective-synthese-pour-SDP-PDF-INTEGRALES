@@ -1,0 +1,1 @@
+L'article 5.1 de la convention collective régionale du 5 mai 2014 (étendue par arrêté du 6 février 2018) mentionne l'affiliation obligatoire des ingénieurs et cadres aux régimes obligatoires de retraite complémentaire auprès de la caisse professionnelle instituée à cet effet. La convention ne précise pas le nom de l'organisme ni les taux de cotisation.

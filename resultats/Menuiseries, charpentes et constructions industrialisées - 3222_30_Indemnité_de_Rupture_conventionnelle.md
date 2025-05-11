@@ -1,0 +1,8 @@
+- Existence indemnité spécifique : Non.
+- Formule calcul spécifique : Non.
+- Comparaison avec indemnité licenciement : Oui. L'indemnité spécifique de rupture conventionnelle ne peut être inférieure à l'indemnité légale de licenciement. (Article 53, Convention collective nationale des Menuiseries, Charpentes et constructions industrialisées et portes planes du 19 janvier 2017)
+- Montant minimal conventionnel : Non.
+- Condition ancienneté spécifique : Non.
+- Salaire de référence spécifique : Non.
+- Cas particulier salariés exclus indemnité licenciement : Non.
+- Spécificités régionales/départementales : Non.

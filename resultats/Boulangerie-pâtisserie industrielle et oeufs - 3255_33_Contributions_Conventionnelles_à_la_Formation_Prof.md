@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable :** Non précisé.  L'accord interbranches du 1er décembre 2020 modifié par avenant du 12 juillet 2023 est rappelé, à l'exception de la rémunération des titulaires d'un contrat de professionnalisation.  Le texte ne mentionne pas explicitement d'autres contributions au-delà de ce qui est prévu par cet accord.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** OCAPIAT est mentionné dans l'accord du 5 avril 2022 relatif au fonds de financement du paritarisme, mais pour collecter les contributions à ce fonds, pas pour collecter des contributions conventionnelles à la formation professionnelle. À compter du 1er janvier 2024, OCAPIAT ne pourra plus collecter les contributions au fonds du paritarisme.
+- **Affectation spécifique des fonds :** Non précisé.
+- **Entreprises/Salariés concernés :** Non précisé.
+- **Source de l’information :** Titre VI, Chapitre I de la convention collective, Accord du 5 avril 2022.

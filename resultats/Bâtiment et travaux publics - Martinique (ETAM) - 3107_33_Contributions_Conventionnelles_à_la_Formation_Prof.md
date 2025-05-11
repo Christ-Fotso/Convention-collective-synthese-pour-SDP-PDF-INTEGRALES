@@ -1,0 +1,1 @@
+La convention collective renvoie aux dispositions légales et aux accords professionnels de branche en vigueur pour la participation de l'employeur au financement de la formation professionnelle (article 2.7).  Elle ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.

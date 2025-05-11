@@ -1,0 +1,5 @@
+* Autorisation d'absence pour participation aux réunions de la commission paritaire (article 4.3.1 et 4.3.3).  Bénéficiaires : salariés représentant la profession à la commission paritaire.  Conditions d'attribution : participation aux réunions de la commission paritaire. Considérée comme temps de travail effectif et rémunérée comme tel.
+* 10 heures de délégation mensuelles cumulables dans la limite de 30 heures par trimestre civil pour les représentants salariés de la profession siégeant en commission paritaire (article 4.3.2 et 4.3.3). Considérées comme temps de travail effectif et rémunérées comme tel.
+* Remboursement des frais de déplacement sur la base du barème fiscal, sur production des relevés kilométriques, pour les représentants de la profession (article 4.3.4).  Les modalités de mutualisation du coût du salaire maintenu et des frais de déplacement entre les employeurs de la profession doivent être précisées par accord dès la première réunion de la commission paritaire (article 4.3.3).
+
+RAS concernant les autres primes, indemnités, avantages et frais professionnels.

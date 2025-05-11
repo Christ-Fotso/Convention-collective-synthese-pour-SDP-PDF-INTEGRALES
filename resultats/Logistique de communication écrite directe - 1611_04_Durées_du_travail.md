@@ -1,0 +1,18 @@
+## Durées du Travail (Convention Collective Logistique de communication écrite directe - 1611 - Mise à jour avril 2025)
+
+* **Durée hebdomadaire de référence:** 35 heures (Article 22.1)
+* **Durée maximale hebdomadaire:** 46 heures sur une semaine et 43 heures en moyenne sur une période de 12 semaines consécutives (Article 22.3.2).
+* **Durée maximale quotidienne:** 10 heures (Articles 22.3.2 et 30.3).
+* **Repos quotidien minimum:** La convention ne prévoit rien à ce sujet.
+* **Repos hebdomadaire minimum:** La convention ne prévoit rien à ce sujet, hormis que la semaine peut comporter six journées de vingt-quatre heures considérées comme ouvrables (Article 22.2) sous réserve de l'article L. 212-5 du code du travail.
+* **Temps de pause minimum:** 20 minutes si le temps de travail quotidien atteint six heures (Article 22.4) sauf dispositions d'entreprise ou d'établissement plus favorables.
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait jours sur l'année:** Maximum 218 jours sur la période annuelle de référence.  Dans le cas d'un salarié n'ayant pas acquis un droit complet à congés payés, le plafond légal de 218 jours est majoré des jours ouvrés de congés manquants. Un accord collectif d'entreprise ou d'établissement doit fixer les catégories de salariés susceptibles de conclure une convention de forfait ainsi que la durée annuelle en jours (Article 22.3.4).
+    * **Cadres dirigeants:** Ne sont pas soumis aux dispositions légales sur la durée du travail, seules les dispositions sur les congés payés et le congé maternité leur sont applicables (Article 10.2.1).
+    * **Cadres intégrés:** Soumis aux dispositions relatives à la durée du travail de l'atelier, du service ou de l'équipe auquel il est intégré, ou à une convention individuelle de forfait annuel en heures (Article 10.2.2).
+    * **Autres cadres:** Convention de forfait annuel en jours, maximum 217 jours sur la période annuelle de référence, majoré proportionnellement pour les personnels n'ayant pas acquis la totalité des congés légaux. Un accord d'entreprise doit préciser les modalités (Article 10.2.3).
+    * **Temps partiel:** Contrat de travail écrit mentionnant la qualification, les éléments de rémunération, la durée du travail effectif et sa répartition (Article 11). Possibilité d'effectuer des heures complémentaires au-delà du dixième de la durée fixée au contrat (Article 11).
+    * **Jeunes travailleurs (moins de 18 ans):** La convention renvoie à la législation en vigueur (Article 21).
+    * **Travail de nuit:** Durée maximale quotidienne de 8 heures, pouvant être portée à 9 heures lorsque les contraintes d’organisation l’exigent. Cette heure de dépassement ne bénéficie pas des contreparties définies au chapitre 30-4 (Article 30.3). Durée maximale hebdomadaire de 42 heures calculée sur une période quelconque de 12 semaines consécutives (Article 30.3).
+* **Dérogations prévues:** La convention ne précise pas de dérogations en termes de durée du travail pour des secteurs ou activités spécifiques, hormis celles relatives au travail de nuit.
+* **Articulation avec les accords d'entreprise:** La convention mentionne explicitement la possibilité d'accords d'entreprise pour préciser les modalités de la modulation du temps de travail (Article 22.3.2 et 22.3.4), la durée et la répartition des horaires (Article 22.3.2), la prise des jours de repos supplémentaires (Article 22.3.3), le forfait jours pour les cadres (Article 22.3.4), le temps de pause (Article 22.4), le contingent d'heures supplémentaires (Article 28.6), le repos de compensation pour heures supplémentaires (Article 28.4), le travail du dimanche et jours fériés (pont) (Article 31), et les durées de préavis (Article 45).

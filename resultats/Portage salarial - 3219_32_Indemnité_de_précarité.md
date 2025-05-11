@@ -1,0 +1,4 @@
+- **Taux conventionnel :** 10% (Article 21.3 - Avenant n°12 du 20 décembre 2022, étendu)
+- **Réduction du taux :** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques :** La convention ne prévoit rien à ce sujet.
+- **Modalités de versement :**  Pour les salariés en CDD, l'indemnité sera versée à l'issue du contrat de travail (Article 21.3 - Avenant n°12 du 20 décembre 2022, étendu).  Elle est également mentionnée comme faisant partie des éléments à payer à partir du montant disponible issu du prix de la prestation (Article 21.2 - Avenant n°3 du 2 juillet 2018, étendu) et comme devant être provisionnée sur le compte d'activité (Article 21.4).

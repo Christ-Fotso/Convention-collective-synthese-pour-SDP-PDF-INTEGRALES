@@ -1,0 +1,36 @@
+### Organisation du Temps de Travail dans la Branche Librairie (IDCC 3013)
+
+La convention collective de la librairie (IDCC 3013) prévoit plusieurs modalités d'aménagement du temps de travail.  Le Titre III de la convention aborde la durée du travail, les congés payés et les jours fériés. Il est précisé que ces dispositions ont un caractère subsidiaire par rapport à la négociation d'entreprise (Titre III, introduction).
+
+**Dispositions Générales (Chapitre I, Titre III)**
+
+* **Planning de la durée du travail et délai de prévenance en cas de modification du planning (Article 32):** En cas de variation de la durée du travail, un programme annuel indicatif est établi et soumis pour avis au comité d'entreprise ou, à défaut, aux délégués du personnel.  Le planning est affiché et les salariés sont informés individuellement un mois avant, délai réductible à 15 jours.  Modifications du planning : prévenance de 7 jours ouvrés, réductible à 3 jours en cas d'urgence. Limitation à 2 modifications par an des dates de repos supplémentaires.
+* **Heures supplémentaires (Article 33):**  Majorations légales. Rémunération par paiement, repos compensateur, ou combinaison des deux. Contingent annuel : 220 heures. Au-delà : avis du comité d'entreprise ou des délégués du personnel.
+* **Contrepartie Obligatoire en Repos (Article 34):**  Calcul selon dispositions légales. Prise possible dès 7 heures acquises. Délai d'utilisation : 5 mois. Prise par journée, demi-journée, ou affectation à un compte épargne temps. Demande du salarié 14 jours à l'avance. Réponse de l'employeur sous 7 jours. Possibilité de report une fois par l'employeur pour raisons de service, avec proposition d'une autre date sous un mois.
+* **Lissage de la rémunération (Article 35):** Pour les salariés soumis à variation de durée du travail, le salaire mensuel est lissé sur l'horaire moyen annuel ou infra-annuel, dans la limite de l'horaire contractuel.
+
+**Organisation par Catégories (Chapitre II, Titre III)**
+
+* **Cadres Dirigeants (Article 36):** Exclus du régime légal de la durée du travail.  Rémunération forfaitaire sans référence à un horaire, déterminée par avenant. Responsabilités importantes, grande indépendance, décisions autonomes, rémunération parmi les plus élevées. Classification minimum : niveau 11 (classification conventionnelle du 17 septembre 2009).
+* **Cadres "Autonomes" (Article 37):**
+    * **Forfait en jours (Article 37.1):** Autonomie dans l'organisation du temps de travail.  213 jours travaillés maximum par an (congés payés légaux inclus). Repos quotidien minimal : 13 heures. Avenant au contrat précisant les fonctions, la rémunération annuelle, le nombre de jours travaillés. Classification minimum : niveau 9. Décompte des jours travaillés/repos sur 3 ans. Jours de repos programmés sur l'année civile, moitié au choix de l'employeur, moitié au choix du salarié. Suivi de l'organisation, amplitude et charge de travail par la hiérarchie.
+    * **Forfait en heures (Article 37.2):**  Autonomie dans l'organisation du temps de travail. 1827 heures maximum par an.  Rémunération forfaitaire égale au salaire minimum majoré des heures supplémentaires comprises dans le forfait.  Classification minimum : niveau 9.
+* **Salariés non cadres et cadres non "autonomes" (Article 38):** Cadres intégrés à une équipe, suivant l'horaire collectif. Durée du travail prédéterminée. Employeur détermine l'organisation du temps de travail selon l'activité et les besoins de l'entreprise. Possibilité de travail par équipe avec relais ou roulement.
+* **Organisation sur la semaine civile (Article 39):** Durée légale de 35 heures répartie sur 4 à 5,5 jours (hors heures supplémentaires). Durée constante d'une semaine à l'autre.
+* **Variation hebdomadaire sur l'année ou une partie de l'année (Article 40):** Horaire moyen de 35 heures sur maximum un an, réparti sur 4 à 5,5 jours. Variation : 29 à 43 heures par semaine. Adaptation individuelle pour les temps partiels. Planning indicatif avec périodes de faible/forte activité. Information des salariés un mois avant, après consultation des représentants du personnel. Heures au-delà de 35 heures (jusqu'à 43) non majorées si compensées.  Comptabilisation mensuelle des heures +/- 35 heures sur bulletin de paie. Lissage de la rémunération via compte de compensation. Indemnisation des périodes non travaillées sur la base de la rémunération lissée. Idem pour licenciement et départ en retraite. Régularisation en cas d'arrivée/départ ou si la durée annuelle prévue n'est pas effectuée (sauf si due à l'entreprise).  Chômage partiel possible si baisse d'activité non compensée. Bilan annuel remis aux représentants du personnel.
+* **Variation hebdomadaire sur l'année avec jours de repos (Article 41):** Horaire : 35 à 39 heures par semaine, sur 4 à 5,5 jours. Jours de repos supplémentaires (maximum 23 pour 39h). Moitié fixée par l'employeur (prévenance 7 jours calendaires), moitié à la demande du salarié (hors forte activité, demande 7 jours calendaires avant). Jours de repos assimilés à du travail effectif pour le calcul des congés payés.  Lissage de la rémunération (cf. Article 40).
+* **Variation hebdomadaire et jours de repos sur 4 semaines (Article 42):** Horaire : 35 à 39 heures, sur 4 à 5,5 jours. Jours de repos supplémentaires (maximum 2 par mois pour 39h). Moitié fixée par l'employeur (prévenance 7 jours calendaires), moitié à la demande du salarié (hors forte activité, demande 7 jours calendaires avant ; possibilité de les affecter à un compte épargne temps).  Jours de repos assimilés à du travail effectif pour le calcul des congés payés. Bilan annuel au comité d'entreprise ou délégués du personnel. Arrivée/départ en cours de période : heures au-delà de 35h = supplémentaires. Semaines <35h : salaire maintenu sur 35h. Absence rémunérée non récupérable, valorisée sur le temps de travail théorique (heures supplémentaires comprises).
+* **Cycle de travail (Article 43):** Cycles pluri-hebdomadaires (maximum 4 semaines). Organisation fixe et répétitive. Durée moyenne hebdomadaire  ≤ durée légale. Heures supplémentaires calculées sur l'horaire moyen du cycle (35h), payées à la fin du cycle. Durée maximale hebdomadaire : 48 heures. Horaires tenant compte des contraintes de l'entreprise.
+
+**Temps Partiel (Chapitre III, Titre III)**
+
+* **Temps partiel (Article 44):**  Application selon la loi. Heures complémentaires : maximum 1/3 de la durée contractuelle.  Majoration de 25 % au-delà du 1/10 de la durée contractuelle. Refus des heures complémentaires non considéré comme faute. Durée quotidienne minimale : 3 heures. Durée hebdomadaire minimale : 20 heures. Dérogations possibles sur demande du salarié, si l'emploi ne le permet pas, ou sur proposition acceptée de l'employeur. Non applicable aux contrats antérieurs.
+
+**Compte Épargne Temps (Chapitre IV, Titre III)**
+
+La convention ne prévoit rien concernant l'aménagement du temps de travail via le Compte Épargne Temps.  Les articles 45 à 52 concernent les modalités d'alimentation et d'utilisation du CET.
+
+
+**Congés Payés et Jours Fériés (Chapitre V et VI, Titre III)**
+
+La convention ne prévoit rien concernant l'aménagement du temps de travail via les congés payés ou jours fériés. Les articles 53 à 55 concernent les droits à congés et jours fériés.

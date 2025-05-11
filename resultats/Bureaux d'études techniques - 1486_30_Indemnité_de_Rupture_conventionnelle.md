@@ -1,0 +1,2 @@
+- La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.
+- Article 4.1 (modifié par l'Avenant n°2 du 27 octobre 2022, étendu par arrêté du 5 avril 2023) :  "La rupture conventionnelle est possible sous réserve du respect des conditions et de l'indemnisation minimale prévues par les dispositions légales et/ou conventionnelles."

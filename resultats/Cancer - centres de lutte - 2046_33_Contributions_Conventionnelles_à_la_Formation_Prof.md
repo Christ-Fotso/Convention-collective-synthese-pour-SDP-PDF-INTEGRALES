@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable :** 2,45 % de la masse salariale brute.  Ce montant est mentionné comme le montant minimum que les centres doivent consacrer au financement de la formation professionnelle continue. La convention ne précise pas si cette contribution est en supplément de la contribution légale.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle) :**  Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** Non précisé.
+- **Affectation spécifique des fonds :**  Non précisé.
+- **Entreprises/Salariés concernés :** Tous les salariés des Centres de Lutte Contre le Cancer.
+- **Source de l’information :** Titre 2, Chapitre 9, article 2.9.1.1 -  "Principes généraux" (ajouté par l'Avenant no 2019-04, 5 juill. 2019, non étendu).

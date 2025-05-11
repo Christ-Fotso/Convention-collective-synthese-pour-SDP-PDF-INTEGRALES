@@ -1,0 +1,4 @@
+**Retraite complémentaire**
+
+*   **Employés :** La convention collective (article 27.1) indique que les employés bénéficient d'un régime de retraite complémentaire ARRCO ainsi que d'un régime de prévoyance. L'organisme compétent est à retrouver dans le contrat de travail. La convention ne prévoit rien concernant les taux de cotisation, la répartition employeur/salarié ou l'assiette de calcul.
+*   **Cadres :** La convention collective (article 27.2) indique que les cadres seront obligatoirement affiliés à la Caisse de Retraite et de Prévoyance des cadres relevant du régime de la Convention Nationale du 14 mars 1947 ainsi qu'à la Caisse de Retraite complémentaire pour la tranche A des salaires. L'entreprise adhère à ces caisses. La convention ne prévoit rien concernant les taux de cotisation, la répartition employeur/salarié ou l'assiette de calcul.

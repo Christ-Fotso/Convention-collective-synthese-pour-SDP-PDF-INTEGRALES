@@ -1,0 +1,6 @@
+- **Définition travail de nuit:** La convention ne prévoit rien à ce sujet.
+- **Définition travailleur de nuit:** La convention ne prévoit rien à ce sujet.
+- **Compensations:** La convention ne prévoit rien à ce sujet.
+- **Durée du travail spécifique:** La convention ne prévoit rien à ce sujet.
+- **Contreparties et garanties:** La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

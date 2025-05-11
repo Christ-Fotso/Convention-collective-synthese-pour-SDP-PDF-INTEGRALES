@@ -1,0 +1,7 @@
+* **Majoration de salaire :** 100% du taux horaire de la rémunération de base (Article 2-1-2).
+* **Repos compensateur :**  Par accord écrit entre le salarié et l'employeur, le paiement de la majoration peut être remplacé par un repos de même durée rémunéré au taux horaire de base. Ce repos ne se substitue pas à un repos compensateur légal ou conventionnel qui serait éventuellement dû (Article 2-1-2).
+* **Définition travail dimanche :** La convention ne précise pas les heures exactes constituant le travail du dimanche.
+* **Catégories personnel concernées/exclues :** À l'exception des ouvriers affectés habituellement à l'exécution de tâches et d'activités de maintenance, entretien, dépannage et soumis à astreinte dont le contrat de travail ou un accord collectif traite des conditions d'emploi (Article 2-1-2).
+* **Conditions particulières :** La convention ne prévoit rien à ce sujet.
+* **Cumul :** Les majorations ne se cumulent ni entre elles, ni avec les majorations légales pour heures supplémentaires. Si une même période de travail ouvre droit à plusieurs majorations (par exemple : travail de nuit, dimanche et jour férié), la majoration au taux le plus élevé sera retenue et appliquée, à l'exclusion de toute autre (Article 2-1-2). Les heures effectuées le dimanche ou les jours fériés ne doivent pas avoir pour effet de porter la durée du travail au-delà des limites légales et conventionnelles fixées à l'article III-15 des Conventions Collectives Nationales du 8 octobre 1990 (Article 2-1-2).
+* **Spécificités départementales/régionales :** RAS.

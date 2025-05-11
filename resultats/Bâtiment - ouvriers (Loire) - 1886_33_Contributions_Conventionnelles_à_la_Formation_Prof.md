@@ -1,0 +1,1 @@
+La convention collective départementale des ouvriers du bâtiment de la Loire (IDCC 1886) ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.

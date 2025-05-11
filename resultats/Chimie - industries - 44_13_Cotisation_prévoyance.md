@@ -1,0 +1,5 @@
+## Cotisation Prévoyance
+
+La convention collective nationale de la chimie ne prévoit pas de régime de prévoyance obligatoire en matière de décès, incapacité ou invalidité, au-delà des dispositions légales.  Les informations relatives à la prévoyance, hors frais de santé, ont fait l'objet de négociations (accord du 24 avril 2018) en vue de la mise en place d'un régime conventionnel.
+
+L'accord du 24/04/2018 (non étendu) relatif à la négociation d'un régime de prévoyance, prévoit des garanties décès, incapacité, invalidité pour les entreprises relevant de la CCNIC et dépourvues d'un accord en la matière, ou disposant d'un accord moins favorable. La date de mise en place du dispositif est fixée au début de l'année 2020. Cet accord mentionne qu'un appel d'offres sera organisé et précise les modalités de constitution et de fonctionnement d'un groupe de travail paritaire, ainsi que le recours à un actuaire.  La convention ne précise pas davantage les modalités de cotisation, l'organisme de prévoyance, le taux global ou par garantie, ni la population couverte. 

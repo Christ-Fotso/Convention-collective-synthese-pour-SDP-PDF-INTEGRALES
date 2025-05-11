@@ -1,0 +1,3 @@
+### Indemnité de Mise à la Retraite
+
+La convention collective nationale du notariat ne prévoit pas de formule de calcul spécifique pour l'indemnité de mise à la retraite.  L'article 13.2 (Mise à la retraite), issu de la convention du 8 juin 2001, indique seulement que "La mise à la retraite a lieu dans les conditions prévues à l’article L. 122-14-13 du Code du travail."  La convention ne précise donc pas les modalités de calcul de l'indemnité, ni ne fait référence à une indemnité de licenciement.  Elle ne mentionne aucune condition d'ancienneté minimale, de  majoration, ni de spécificité régionale ou départementale.  De plus, il n'y a pas de calcul spécifique pour le temps partiel mentionné dans cet article.

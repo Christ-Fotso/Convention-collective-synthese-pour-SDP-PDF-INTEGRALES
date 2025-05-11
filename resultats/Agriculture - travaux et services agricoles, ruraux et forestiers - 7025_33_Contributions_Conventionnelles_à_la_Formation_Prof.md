@@ -1,0 +1,7 @@
+- **Taux ou forfait CONVENTIONNEL applicable :** Non précisé.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** OCAPIAT.
+- **Affectation spécifique des fonds :** Non précisé.
+- **Entreprises/Salariés concernés :** Salariés visés par la convention collective.
+- **Source de l’information :** Article 59 - Formation Professionnelle.  La convention mentionne également des accords nationaux sur le financement du congé formation, les certificats de qualification professionnelle et la mutualisation des fonds de la formation professionnelle, mais sans donner de détails sur leur contenu.

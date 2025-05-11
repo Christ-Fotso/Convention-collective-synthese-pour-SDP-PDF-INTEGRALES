@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable :**  0,2 % (en supplément des contributions légales). Ce taux est destiné au financement des œuvres sociales du comité d’entreprise. En l'absence de comité d'entreprise ou de comité interentreprises, l'employeur devra pouvoir justifier de l'emploi d’une somme équivalente à cette contribution, sous forme d'avantages (y compris les avantages en nature) ou de réalisations sociales en faveur de son personnel. Si l'employeur finance déjà de sa propre initiative un programme d'avantages (y compris les avantages en nature) ou de réalisations sociales en faveur de son personnel, ce programme pourra être pris en charge par le comité à concurrence du montant de la contribution indiquée à l'alinéa qui précède.
+- **Base de calcul spécifique :** Masse salariale brute.
+- **Cotisation minimale due (conventionnelle):** Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :**  Non précisé (Comité d'entreprise).
+- **Affectation spécifique des fonds :** Financement des œuvres sociales établies dans l’entreprise au bénéfice des salariés ou de leurs familles. En l’absence de comité d’entreprise, financement des avantages ou réalisations sociales au bénéfice du personnel.
+- **Entreprises/Salariés concernés :** Toutes les entreprises entrant dans le champ d’application de la présente convention.
+- **Source de l’information :** Article 39 (Financement).

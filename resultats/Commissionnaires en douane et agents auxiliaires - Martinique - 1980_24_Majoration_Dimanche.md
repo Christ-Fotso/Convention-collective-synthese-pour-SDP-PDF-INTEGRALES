@@ -1,0 +1,7 @@
+- La convention collective ne prévoit rien concernant la majoration du salaire pour travail effectué le dimanche.
+- La convention collective ne prévoit rien concernant un repos compensateur pour travail effectué le dimanche.
+- La convention collective ne prévoit rien concernant la définition du travail du dimanche.
+- La convention collective ne prévoit rien concernant les catégories de personnel concernées ou exclues par le travail du dimanche.
+- La convention collective ne prévoit rien concernant d'éventuelles conditions particulières pour le travail du dimanche.
+- La convention collective ne prévoit rien concernant le cumul du travail du dimanche avec d'autres majorations.
+- La convention collective ne prévoit pas de spécificités départementales ou régionales concernant le travail du dimanche.

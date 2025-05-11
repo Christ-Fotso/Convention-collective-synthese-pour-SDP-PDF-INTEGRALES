@@ -1,0 +1,15 @@
+- **Taux CONVENTIONNEL applicable :** 0,55 % de la masse salariale brute (entreprises de moins de 10 salariés), 1.6 % de la masse salariale brute (entreprises de 10 salariés et plus). La convention précise que la contribution de 1.6% des entreprises de 10 salariés et plus correspond à l'obligation légale minimale.
+- **Base de calcul spécifique :**  Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** OPCALIM.
+- **Affectation spécifique des fonds :**
+    - Entreprises de moins de 10 salariés :
+        - 0,15 % versé à la section « Professionnalisation » de l’OPCA (actions de formation, accompagnement, évaluation, bilan de compétences, tutorat, apprentissage, financement de l’observatoire des métiers, validation des acquis de l’expérience, droit individuel à la formation).
+        - 0,40 % versé à la section « Plan de formation » de l’OPCA (actions de formation, bilan de compétences, validation des acquis de l’expérience, droit individuel à la formation).
+    - Entreprises de 10 salariés et plus :
+        - 0,5 % versé à la section « Professionnalisation » de l’OPCA (actions de formation, accompagnement, évaluation, bilan de compétences, validation des acquis de l’expérience, actions du DIF relatives aux priorités définies par les branches, formation des tuteurs, apprentissage, observatoire prospectif des qualifications et des métiers) ;
+        - 0,32 % maximum affecté au nom de l'entreprise à la section « Plan de formation » de l’OPCA (actions de formation, bilan de compétences, validation des acquis de l’expérience, droit individuel à la formation) ;
+        - 0,2 % au titre du CIF, versé au FONGECIF.
+        - L'OPCA peut prendre en charge l'investissement nécessaire pour la formation ouverte à distance, les frais d’accompagnement et les frais de jurys liés au CQP (financés sur les 0.32%, dans la limite de 0.02%).
+- **Entreprises/Salariés concernés :**  Toutes les entreprises relevant de la convention collective à l'exception de celles listées à l'article 114.
+- **Source de l’information :** Article 115.

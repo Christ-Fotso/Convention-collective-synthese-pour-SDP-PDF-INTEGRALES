@@ -1,0 +1,7 @@
+- **Taux ou forfait CONVENTIONNEL applicable**: Non précisé. La convention mentionne des cours de perfectionnement sans diminution de salaire si à l'initiative de l'employeur (Article 25.a).
+- **Base de calcul spécifique**: Non précisé.
+- **Cotisation minimale due (conventionnelle)**: Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention**: Fonds d'Assurance Formation de l'Industrie Hôtelière (FAFIH) (Article 25.a).  Il est fait référence à l'accord collectif national étendu du 7 mai 1982 pour plus de détails sur cet organisme.
+- **Affectation spécifique des fonds**: Non précisé.
+- **Entreprises/Salariés concernés**: Salariés de l'industrie hôtelière dans les hôtels de tourisme 3, 4, et 4 étoiles luxe de Paris et des départements 91, 92, 93, 94 et 95 adhérents au Syndicat Général de l'Industrie Hôtelière (Article 1). La convention vise les cours de perfectionnement (Article 25.a).
+- **Source de l’information**: Articles 1, 25.a.  L'accord collectif national étendu du 7 mai 1982 est cité mais non fourni.

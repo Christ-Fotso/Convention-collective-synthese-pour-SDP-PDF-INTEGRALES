@@ -1,0 +1,10 @@
+## Congés pour Événements Familiaux
+
+*   **Mariage :** 4 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Pacs :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Mariage d'un enfant :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès du conjoint marié ou pacsé :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un enfant :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès du père ou de la mère :** 3 jours. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un grand-parent ou beau-parent, d'un frère ou beau-frère, d'une sœur ou belle-sœur, d'un petit-enfant :** 1 jour. La convention ne précise pas le type de jours. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Naissance survenue au foyer ou arrivée d'un enfant placé en vue de son adoption :** 3 jours. La convention ne précise pas le type de jours.  Ces jours d'absence ne peuvent se cumuler avec les congés accordés pour ce même enfant dans le cadre du congé de maternité prévu au premier alinéa de l'article L. 122-26 du Code du Travail. La convention ne prévoit rien d'autre concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.

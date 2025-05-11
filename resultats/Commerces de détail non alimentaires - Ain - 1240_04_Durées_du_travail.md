@@ -1,0 +1,9 @@
+- Durée hebdomadaire de référence : 39 heures (Avenant n°23 du 10 décembre 1990, Article 1er)
+- Durée maximale hebdomadaire : La convention ne prévoit rien à ce sujet.
+- Durée maximale quotidienne : La convention ne prévoit rien à ce sujet.
+- Repos quotidien minimum : La convention ne prévoit rien à ce sujet.
+- Repos hebdomadaire minimum : La convention ne prévoit rien à ce sujet.
+- Temps de pause minimum : La convention ne prévoit rien à ce sujet.
+- Dispositions spécifiques par catégorie : RAS
+- Dérogations prévues :  Article 37 "Non rédigé en attente des nouveaux textes en cours d'élaboration".
+- Articulation avec des accords d'entreprise : RAS.

@@ -1,0 +1,1 @@
+La convention collective IDCC 1001 ne précise pas les congés pour événements familiaux, mais renvoie à l'article 22 de la Convention Collective Nationale (Handicapés I) pour les congés annuels et à l'article 17 de l'annexe 2 (Handicapés I) pour les congés trimestriels. La convention ne fournit pas le texte de ces articles.

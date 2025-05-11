@@ -1,0 +1,1 @@
+La convention collective IDCC 2357 ne détaille pas les cotisations de prévoyance.  Elle renvoie à la convention collective "Assurances : Sociétés" pour les régimes professionnels de retraite et de prévoyance (article 9). La convention ne précise pas s'il s'agit des conventions collectives nationales des 27 mai et 27 juillet 1992 mentionnées à l'article 1.

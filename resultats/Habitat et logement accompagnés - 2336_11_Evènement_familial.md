@@ -1,0 +1,46 @@
+## Congés pour Événements Familiaux
+
+- **Naissance ou adoption d'un enfant :**
+    - Durée conv. :  Dispositions légales
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Mariage ou conclusion du Pacs du salarié :**
+    - Durée conv. : 6 jours
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Mariage ou conclusion du Pacs d'un enfant :**
+    - Durée conv. : 2 jours ouvrables
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Mariage ou conclusion du Pacs d'un frère, d'une sœur ou d'un parent (père ou mère) :**
+    - Durée conv. : 1 jour ouvrable
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant :**
+    - Durée conv. : 12 jours ouvrables
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant de moins de vingt-cinq ans :**
+    - Durée conv. : 14 jours ouvrables
+    - Conditions spéc. :  La convention ne prévoit rien à ce sujet.
+- **Décès d'une personne de moins de vingt-cinq ans à charge effective et permanente :**
+   - Durée conv. : 14 jours ouvrables
+   - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès du conjoint ou concubin ou du partenaire lié par un pacs :**
+    - Durée conv. : 5 jours ouvrables
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès du père, de la mère ou d'un beau-parent y compris du concubin ou du partenaire lié par un pacs :**
+    - Durée conv. : 5 jours ouvrables
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un frère ou d'une sœur :**
+    - Durée conv. : 3 jours ouvrables
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un des petits-enfants ou arrière-petits-enfants :**
+    - Durée conv. : 1 jour ouvrable
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un beau-frère, d'une belle-sœur, d'un grand-père, d'une grand-mère :**
+    - Durée conv. : 1 jour ouvrable
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Déménagement du salarié :**
+    - Durée conv. : 1 jour ouvrable
+    - Conditions spéc. : Limité à 2 fois par période de 5 ans.
+- **Annonce de la survenance d'un handicap, d'un cancer ou d'une pathologie chronique nécessitant un apprentissage thérapeutique chez un enfant :**
+    - Durée conv. : 5 jours ouvrables
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Jours supplémentaires pour décès (toutes les situations listées ci-dessus):** 1 jour.
+  - Conditions spéc. : Distance du lieu de la cérémonie égale ou supérieure à 300 km aller; justificatif peut être demandé.

@@ -1,0 +1,1 @@
+La convention collective ne prévoit rien concernant les cotisations de prévoyance décès, incapacité, invalidité. L'article 25 renvoie à un accord collectif au niveau de la profession pour la prévoyance, mais ne donne pas de détails sur les cotisations.

@@ -1,0 +1,4 @@
+- **Taux conventionnel :** 6% (Article 11 - Contrats à durée déterminée, point 11-4 - Fin de contrat)
+- **Réduction du taux :** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques :** Contrat de vacances pour les étudiants (Article 11 - Contrats à durée déterminée, point 11-4 - Fin de contrat).
+- **Modalités de versement :** La convention ne prévoit rien à ce sujet.

@@ -1,0 +1,1 @@
+L'employeur est tenu d'adhérer à un régime de retraite complémentaire pour ses personnels permanents ou non (Article 7.3). La convention ne précise pas d'organismes désignés ni de taux de cotisation spécifiques.

@@ -1,0 +1,3 @@
+L'article 14 des dispositions cadres mentionne que "La position cadre inclut obligatoirement l’affiliation au régime de retraite complémentaire correspondant".  L'article 12 des dispositions cadres  mentionne le "régime de retraite et de prévoyance des cadres".  Ailleurs dans la convention, il est fait mention de l'accord national interprofessionnel du 10 décembre 1977 (article 18 - Absences - Maladie - Accident du travail) mais sans préciser son contenu.
+
+La convention ne précise pas les taux de cotisation, la répartition employeur/salarié, l'assiette de calcul ni les organismes désignés pour la retraite complémentaire.

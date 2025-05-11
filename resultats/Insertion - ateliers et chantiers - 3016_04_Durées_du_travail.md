@@ -1,0 +1,13 @@
+## Durées du Travail (Convention Collective Insertion - ateliers et chantiers - 3016)
+
+* **Durée hebdomadaire de référence:** 35 heures.
+* **Durée maximale hebdomadaire:** 48 heures (Peut être portée à 12 heures dans le cadre des articles 3121-15 et suivants du code du travail).  En moyenne 44 heures maximum sur 12 semaines consécutives.
+* **Durée maximale quotidienne:** 10 heures (Peut être portée à 12 heures dans le cadre des articles 3121-15 et suivants du code du travail).
+* **Repos quotidien minimum:** 12 heures consécutives dans la semaine de travail.  Hors aménagement du temps de travail 11 heures.
+* **Repos hebdomadaire minimum:** La convention ne précise pas la durée minimale du repos hebdomadaire, mais indique qu'il peut être réparti de manière égale ou inégale jusqu'à 6 jours par semaine.  Hors aménagement du temps de travail, 35 heures (24 heures + 11 heures de repos quotidien).
+* **Temps de pause minimum:** 20 minutes lorsque le temps de travail atteint 6 heures, pauses non comprises. Hors aménagement du temps de travail, 30 minutes minimum.
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait:** Convention de forfait de 218 jours par an possible pour les cadres dont le rythme de travail ne peut être soumis à l'horaire collectif ou dont la durée du temps de travail ne peut être prédéterminée et qui disposent d'une réelle autonomie dans l'organisation de leur emploi du temps.  (Emploi repère "Directeur" et éventuellement "Coordinateur C" avec statut cadre).
+    * **Temps partiel:**  Horaires de travail à préciser dans le contrat. Possibilité de modification des horaires par avenant en cas de remplacement (absence > 7 jours ouvrés), surcroît d'activité temporaire, ou développement d'une nouvelle activité/projet. Heures complémentaires possibles dans la limite du tiers de la durée mensuelle du contrat. Pas d'heures supplémentaires pour les salariés à temps partiel.
+* **Dérogations prévues:** La convention prévoit la possibilité d'aménager la durée du travail sur une période supérieure à la semaine et au plus égale à l'année, par accord d'entreprise ou, en l'absence d'accord, selon les conditions fixées par les articles D. 3122-7-1 à D 3122-7-3 du Code du Travail (période de 4 semaines maximum).  Durée annuelle maximale de 1607 heures dans ce cas.
+* **Articulation avec des accords d'entreprise:** La convention mentionne explicitement la possibilité d'accords d'entreprise pour l'aménagement du temps de travail.  Elle mentionne également que la structure doit soumettre le programme indicatif de la variation de la durée du travail pour avis au CE ou, à défaut, aux délégués du personnel.

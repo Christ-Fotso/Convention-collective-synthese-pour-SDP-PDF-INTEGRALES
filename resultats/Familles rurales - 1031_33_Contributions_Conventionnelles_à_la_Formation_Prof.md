@@ -1,0 +1,7 @@
+* **Taux CONVENTIONNEL applicable:** 2,1% (incluant les contributions légales pour le plan de formation, la professionnalisation et le CIF, à l'exception de celle au titre du CIF pour les contrats à durée déterminée).  La convention précise que le taux légal pour la professionnalisation et le CIF s'applique, et que le solde, correspondant à l'effort conventionnel *au-delà du taux légal*, est affecté au financement du plan de formation.
+* **Base de calcul:** Montant des rémunérations de l'année de référence.
+* **Cotisation minimale due (conventionnelle):** Non précisée.
+* **Organisme collecteur DÉSIGNÉ par la convention :**  Initialement, l'OPCA agréé pour les entreprises relevant du champ d'application de la CCN des personnels Familles Rurales (Article 34).  Un accord ultérieur (24 juin 2015, non étendu) désigne spécifiquement le FAFSEA comme OPACIF de la branche. Un autre accord (24 octobre 2018, non étendu) désigne l'opérateur de compétence Cohésion sociale ; Champ social et insertion, sport.
+* **Affectation spécifique des fonds:**  Plan de formation et de professionnalisation, CIF.  Le DIF et les actions de tutorat peuvent être financés, selon les conditions légales, dans le cadre de tous les dispositifs de prise en charge de la formation (plan, professionnalisation, CIF).
+* **Entreprises/Salariés concernés:** Tous les employeurs, quel que soit le nombre de leurs salariés, sont tenus de verser à l'OPCA 100% de leur contribution.
+* **Source de l’information:** Article 34, Accord du 24 juin 2015 (non étendu), Accord du 24 octobre 2018 (non étendu).

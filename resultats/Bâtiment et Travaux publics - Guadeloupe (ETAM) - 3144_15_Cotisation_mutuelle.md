@@ -1,0 +1,1 @@
+La convention collective ne prévoit rien à ce sujet.  Le texte complémentaire renvoie à la CCN «BTP Guadeloupe : ouvriers» pour la prévoyance (Accord du 13 novembre 2024), mais il n'est pas fourni pour analyse.

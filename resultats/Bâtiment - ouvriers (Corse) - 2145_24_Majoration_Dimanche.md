@@ -1,0 +1,7 @@
+* **Majoration de salaire:** 100% du salaire de la journée (Article 2-1, b) Travail exceptionnel du dimanche et d'un jour férié, Convention Collective Régionale du 3 mars 2000, étendue par arrêté du 22 février 2001).
+* **Repos compensateur:** La convention ne prévoit rien à ce sujet.
+* **Définition travail dimanche:**  Travail exceptionnel du dimanche. La convention ne précise pas les heures exactes.
+* **Catégories personnel concernées/exclues:** Ouvriers de la Région de Corse dont l'activité relève d'une des activités énumérées à l'article I-1, « Champ d'application » alinéa I-12 des Conventions Collectives Nationales du 8 octobre 1990 concernant les ouvriers employés par les entreprises du Bâtiment non visées par le décret du 1er mars 1962 (c'est-à-dire occupant plus de 10 salariés) et les ouvriers employés par les entreprises du Bâtiment visées par le décret du 1er mars 1962 (c'est-à-dire occupant jusqu'à 10 salariés) (Article 1, Champ d'application, Convention Collective Régionale du 3 mars 2000).
+* **Conditions particulières:** Travail exceptionnel. La convention ne précise pas les conditions de mise en place de ce travail exceptionnel.
+* **Cumul:** Les majorations pour travail exceptionnel, de nuit, du dimanche et d'un jour férié, ne se cumulent ni entre elles ni avec les majorations légales pour heures supplémentaires (Article 2-1, Convention Collective Régionale du 3 mars 2000).
+* **Spécificités départementales/régionales:** RAS.

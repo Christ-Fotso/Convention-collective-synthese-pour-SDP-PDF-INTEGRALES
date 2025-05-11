@@ -1,0 +1,14 @@
+**Indemnité de Licenciement (Article 51.1, Convention Collective Régionale des Employés, Techniciens et Agents de Maîtrise du Bâtiment du 19 novembre 2007)**
+
+* **Condition d'ancienneté minimale:** 2 ans d'ancienneté dans l'entreprise.
+* **Modalités de calcul de l'ancienneté:**  Définie à l'article 54 de la convention.  Le temps pendant lequel l'ETAM a été employé en une ou plusieurs fois dans l'entreprise ou dans le groupe, lorsqu'il existe un comité de groupe, y compris le temps correspondant à un emploi dans un établissement de l'entreprise situé hors métropole ou dans tout établissement d'une autre entreprise où il aurait été affecté sur instructions de son entreprise et avec accord de la nouvelle entreprise quels qu'aient été ses emplois successifs, déduction faite toutefois, en cas d'engagements successifs, de la durée des contrats dont la rupture lui est imputable et quelles que puissent être les modifications survenues dans la nature juridique de l'entreprise. Sont également pris en compte : les interruptions pour mobilisation ou fait de guerre, périodes militaires obligatoires, maladies, accidents ou maternités, congés payés annuels ou congés exceptionnels de courte durée. Les fractions d'année d'ancienneté sont prises en compte et arrondies au douzième le plus proche.
+* **Formule de calcul:**
+    * 2,5/10èmes de mois par année d'ancienneté à partir de 2 ans révolus et jusqu'à 15 ans d'ancienneté.
+    * 3,5/10èmes de mois par année d'ancienneté, pour les années au-delà de 15 ans d'ancienneté.
+* **Salaire de référence:** Rémunération du dernier mois précédant la date de notification du licenciement. En cas de rémunération variable, on ajoute 1/12ème du total des sommes ayant constitué cette rémunération variable au titre des douze derniers mois précédant la notification. La rémunération variable s'entend de la différence entre le montant de la rémunération totale de l'ETAM pendant les douze mois considérés et le montant des appointements correspondant à la durée habituelle de travail reçus par l'ETAM au cours de ces douze mois. Le montant des sommes à prendre en compte est la rémunération brute afférente à cette période, figurant sur la Déclaration Annuelle des Données Sociales (feuillet fiscal).
+* **Plafond maximum de l'indemnité:** 10 mois.
+* **Cas particuliers:**
+    * **Inaptitude:** La convention ne prévoit pas de calcul spécifique en cas d'inaptitude.
+    * **Âge:** Majoration de 10% du montant de l'indemnité de licenciement pour les ETAM âgés de plus de 55 ans à la date d'expiration du délai de préavis, effectué ou non.
+    * **Temps partiel:** La convention ne prévoit pas de calcul spécifique pour le temps partiel.
+* **Spécificités régionales:** La convention collective est une convention collective régionale d'Île-de-France (hors Seine et Marne).

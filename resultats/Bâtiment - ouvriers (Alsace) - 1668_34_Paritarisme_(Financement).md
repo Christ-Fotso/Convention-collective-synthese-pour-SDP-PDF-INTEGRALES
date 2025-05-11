@@ -1,0 +1,1 @@
+La convention ne prévoit pas d'organisme paritaire spécifique avec une contribution dédiée.  L'article 11 mentionne des frais de participation aux commissions paritaires régionales, mais il s'agit d'une indemnisation des frais des salariés et non d'une contribution à un organisme paritaire.

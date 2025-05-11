@@ -1,0 +1,1 @@
+La convention collective nationale du 14 septembre 2010 (IDCC 2972) ne prévoit rien concernant les cotisations de retraite complémentaire au-delà de la simple obligation pour les entreprises de se doter d'un régime de couverture des frais de santé (article 6.1.4).  Les taux et assiettes de cotisations ne sont pas abordés dans la convention.

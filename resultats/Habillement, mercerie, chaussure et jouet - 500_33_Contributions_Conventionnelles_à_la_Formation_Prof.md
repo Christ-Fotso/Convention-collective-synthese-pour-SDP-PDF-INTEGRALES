@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable :** 0,17 % de la masse salariale brute pour les entreprises de moins de 10 salariés.  0,05 % du montant des salaires de l'année de référence pour les entreprises d'au moins 10 salariés pour le financement du capital de temps de formation.  Versement du reliquat de l'obligation légale au titre du plan de formation pour les entreprises d'au moins 10 salariés. Versement de 0,2 % de la taxe d'apprentissage aux CFA ou à Intergros.
+- **Base de calcul spécifique :**  Salaires de l'année de référence.
+- **Cotisation minimale due (conventionnelle) :** 200 francs par entreprise de moins de 10 salariés.
+- **Organisme collecteur DÉSIGNÉ par la convention :** Intergros.
+- **Affectation spécifique des fonds :** Contrats d'insertion en alternance, plan de formation, capital de temps de formation, apprentissage, centres de formation d'apprentis.
+- **Entreprises/Salariés concernés :** Entreprises de moins de 10 salariés et entreprises d'au moins 10 salariés.
+- **Source de l’information :** Accord du 19 janvier 1995 étendu (Adhésion à l'OPCA INTERGROS) et Accord du 28 janvier 2016 étendu (Formation professionnelle tout au long de la vie).

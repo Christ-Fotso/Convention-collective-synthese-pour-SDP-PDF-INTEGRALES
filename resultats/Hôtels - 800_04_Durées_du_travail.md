@@ -1,0 +1,11 @@
+* **Durée hebdomadaire de référence:** 42 heures pour les cuisiniers, 43 heures pour les autres personnels, 50 heures pour le personnel de gardiennage de nuit. (Article 29)
+* **Durée maximale hebdomadaire (absolue):**  La convention ne prévoit rien à ce sujet, hors heures supplémentaires.
+* **Durée maximale hebdomadaire (moyenne):** La convention ne prévoit rien à ce sujet, hors heures supplémentaires.
+* **Durée maximale quotidienne:** La convention ne prévoit rien à ce sujet.
+* **Repos quotidien minimum:** La convention ne prévoit rien à ce sujet.
+* **Repos hebdomadaire minimum:** Un jour et demi. (Article 30)  Le repos peut être pris alternativement à raison d'une journée, une semaine et deux jours la semaine suivante. Dans ce dernier cas, les deux jours devront être consécutifs. (Article 30)
+* **Temps de pause minimum:** Si le régime de la journée continue est institué, les employés disposeront de trente minutes pour le repas principal et ce temps sera compté dans le temps de travail. (Article 29) Le temps de travail est compté à l'exclusion de l'habillage, du casse-croûte et des repas. (Article 29)
+* **Dispositions spécifiques par catégorie (cadres au forfait, temps partiel, jeunes travailleurs):**  La convention ne prévoit rien à ce sujet pour les cadres au forfait. Pour les contrats à temps partiel : "Toutes les fois que les exigences de l'emploi le permettront, les salariés qui en feront la demande pourront exercer leurs fonctions à temps partiel selon des modalités à définir dans chaque cas en fonction des nécessités du service." (Article 25). Les contrats à temps partiel seront établis conformément à la législation en vigueur et à l'accord paritaire du 17 septembre 1982. (Article 25).
+* **Dérogations prévues:** Accord de l'inspection du travail pour les exploitations saisonnières concernant les heures supplémentaires. (Article 31)
+* **Mention de l'articulation avec des accords d'entreprise:** La convention ne prévoit rien à ce sujet.
+* **Heures supplémentaires:** Les heures effectuées au-delà de la durée hebdomadaire normale sont considérées comme des heures supplémentaires. Elles ne pourront excéder dix-sept heures par semaine et dix heures calculées sur une période moyenne de douze semaines consécutives. (Article 31)

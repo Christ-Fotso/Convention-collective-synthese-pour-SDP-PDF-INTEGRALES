@@ -1,0 +1,1 @@
+La convention collective prévoit une indemnité de fin de contrat pour les CDD, mais ne précise pas de taux spécifique différent du taux légal.  La convention ne prévoit pas de dispositions spécifiques concernant la réduction du taux, les cas d'exclusion d'indemnité, ni des modalités de versement particulières.

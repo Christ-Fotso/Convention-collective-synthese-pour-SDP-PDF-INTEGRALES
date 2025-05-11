@@ -1,0 +1,4 @@
+* **Taux conventionnel:** 1/10ème du total brut des rémunérations perçues (Article 12 - Travail saisonnier). Ce taux s'applique spécifiquement aux contrats saisonniers. La convention ne précise pas si ce taux s'applique aux autres types de CDD.
+* **Réduction du taux:** La convention ne prévoit rien à ce sujet pour les contrats saisonniers. Pour les autres types de CDD, l'article 12 - Travail à durée déterminée - mentionne que "sauf accord particulier, le salarié saisonnier ne perçoit pas d'indemnité de précarité de fin de contrat", ce qui implique qu'une réduction à zéro est possible pour ce type de contrat sous réserve d'accord.  La convention ne précise pas si une telle réduction est possible pour d'autres CDD.
+* **Cas d'exclusion spécifiques:** La convention ne prévoit rien à ce sujet.
+* **Modalités de versement:** La convention ne prévoit rien à ce sujet.

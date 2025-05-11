@@ -1,0 +1,9 @@
+* **Durée hebdomadaire de référence:** La convention ne prévoit rien à ce sujet.  L'article XIV.1 mentionne que "Les heures de travail sont fixées dans le cadre des textes légaux et conventionnels en vigueur".
+* **Durée maximale hebdomadaire:** La convention ne prévoit rien à ce sujet.
+* **Durée maximale quotidienne:** La convention ne prévoit rien à ce sujet, à l'exception de l'article XIV.3 concernant les travaux occasionnels de marteau-piqueur ou brise-béton d'au moins 20 kg, qui ne peuvent excéder 4 heures par jour et par ouvrier.
+* **Repos quotidien minimum:** La convention ne prévoit rien à ce sujet.
+* **Repos hebdomadaire minimum:** La convention ne prévoit rien à ce sujet pour le cas général.  Pour les travaux par roulement (article XIV.2), le repos hebdomadaire doit être de deux jours consécutifs par semaine.
+* **Temps de pause minimum:** L'article XIV.1 prévoit un arrêt casse-croûte de 30 minutes, compté comme temps de travail, en cas de travail exceptionnel de nuit excédant au moins 3 heures. Le moment de l'arrêt est fixé par le responsable de l'entreprise, sauf cas de force majeure, et est obligatoire après 4 heures de travail effectif.  L'article XIV.2 prévoit, pour les postes de travail par roulement, une interruption rémunérée de 30 minutes en milieu de poste, sauf nécessités de service.  L'article XIV.3 prévoit un quart d'heure d'arrêt toutes les deux heures pour les travaux occasionnels exigeant le port d'un masque.
+* **Dispositions spécifiques par catégorie:** La convention ne prévoit rien à ce sujet.
+* **Dérogations prévues:** L'article XIV.1 mentionne une exception pour les ouvriers travaillant habituellement à des activités de maintenance, entretien, dépannage ou soumis à astreinte, pour lesquels le contrat de travail règle la situation particulière concernant le travail exceptionnel de nuit, du dimanche et d'un jour férié.
+* **Articulation avec des accords d'entreprise:** La convention ne prévoit rien à ce sujet.

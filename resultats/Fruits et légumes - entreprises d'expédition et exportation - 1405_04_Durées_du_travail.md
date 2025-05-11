@@ -1,0 +1,18 @@
+## Durées du travail
+
+* **Durée hebdomadaire de référence:** 39 heures (accord du 27 juillet 1983, mentionné dans le préambule et article 23 à 32 de la présente convention).
+* **Durée maximale hebdomadaire:**
+    * 48 heures (accord RTT du 7 juin 2001, article 6.2), sans pouvoir dépasser 46 heures sur 12 semaines consécutives.
+    * 56 heures maximum pendant 4 semaines par an (article 25), dans le cadre de dérogations pour pointes saisonnières.
+    * Modulation possible avec variation de 5 heures en plus ou en moins de la durée légale hebdomadaire sur une période d'un an, sans excéder la durée légale en moyenne (article 26). Applicable uniquement aux entreprises permanentes. *(1) Sont considérées comme permanentes les entreprises employant du personnel toute l'année dont une partie au moins des effectifs bénéficie de contrats de travail à durée indéterminée et dont la période d'activité commerciale est égale ou supérieure à neuf mois par an.*
+* **Durée maximale quotidienne:** 10 heures (accord RTT du 7 juin 2001, article 6.3). Peut être portée à 12 heures pendant les pointes d'activités saisonnières, après consultation des représentants du personnel (accord RTT du 7 juin 2001, article 6.3).
+* **Repos quotidien minimum:** 11 heures (accord RTT du 7 juin 2001, article 6.4), pouvant être ramené à 9 heures maximum, 5 fois par semaine, exclusivement lors des périodes de pointes, avec récupération obligatoire hors des périodes hautes et de pointes par cumul de demi-journées en accord avec l'employeur (accord RTT du 7 juin 2001, article 6.4).
+* **Repos hebdomadaire minimum:** 1 jour et demi (article 31). Le jour et demi inclut le dimanche et une demi-journée accordée en fonction des usages et de l'activité. Possibilité de remplacer la demi-journée par une journée par deux semaines.
+* **Temps de pause minimum:** La convention ne précise pas la durée des pauses, mais mentionne leur exclusion du temps de travail effectif (article 23). L'accord du 7 février 1995, article 7, concernant le secteur "Légumes Frais Prêts à l'Emploi", prévoit une pause rémunérée de 15 minutes par poste de travail posté, à défaut d'accord plus favorable au niveau de l'établissement ou de l'entreprise.
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait:**  Forfait annuel en jours, maximum 217 jours (accord RTT du 7 juin 2001, article 11). *Exclu de l'extension*.  Congé compensateur trimestriel de 2 jours supprimé par l'accord RTT du 7 juin 2001 (Annexe II, article 6). La rémunération des cadres inclut forfaitairement les dépassements d'horaires (Annexe II, Article 6).
+    * **Temps partiel:**  Pas de durée minimale spécifiée dans la convention (accord du 22 juin 2012, article 7.2 mentionne le principe d'égalité de traitement).  
+    * **Jeunes travailleurs:**  RAS.
+* **Dérogations prévues:** Dérogations aux durées maximales de travail possibles pour les pointes saisonnières (article 25), avec une limite à 56 heures hebdomadaires pendant 4 semaines par an maximum.
+* **Mention de l'articulation avec des accords d'entreprise:** L'accord RTT du 7 juin 2001 est un accord-cadre qui prévoit que des accords d'entreprise peuvent être conclus, notamment pour l'organisation des journées de repos (article 9), le remplacement du paiement des heures supplémentaires par un repos compensateur (article 10), ou le lissage de la rémunération (article 8.1).  La modulation de la durée hebdomadaire du travail est également définie au niveau de l'entreprise (article 26). Le temps de pause des salariés sur des lignes de production dans le secteur "Légumes Frais Prêts à l'Emploi" est négocié au niveau de l'établissement ou de l'entreprise (Annexe, article 7).
+

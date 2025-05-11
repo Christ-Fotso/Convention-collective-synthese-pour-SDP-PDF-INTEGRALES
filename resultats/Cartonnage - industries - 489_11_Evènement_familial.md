@@ -1,0 +1,44 @@
+## Congés Exceptionnels pour Événements Familiaux
+
+- **Mariage ou Pacs de l'intéressé:**
+    - Durée conv.: 4 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Mariage d'un enfant:**
+    - Durée conv.: 1 jour
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Naissance ou adoption d'un enfant:**
+    - Durée conv.: 3 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Décès d'un enfant:**
+    - Durée conv.: 5 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Décès du conjoint, du partenaire de Pacs et du Concubin:**
+    - Durée conv.: 3 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Décès des grands-parents du salarié:**
+    - Durée conv.: 1 jour
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Décès du père ou de la mère du salarié:**
+    - Durée conv.: 3 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Décès du beau-père ou de la belle-mère du salarié:**
+    - Durée conv.: 3 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Décès d'un frère ou d'une sœur du salarié:**
+    - Durée conv.: 3 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: En accord avec l'employeur, le salarié peut obtenir un congé payé ou un congé complémentaire non rémunéré accolé au congé exceptionnel pour déplacement éventuel.
+- **Annonce de la survenance d'un handicap chez un enfant:**
+    - Durée conv.: 2 jours
+    - Conditions spéc.: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+
+**Conditions générales:** Sans condition d'ancienneté, sur justification.  Ces jours d'absence n'entraînent pas de réduction de la rémunération. Ils sont assimilés à des jours de travail effectif pour la détermination de la durée de congé annuel.  Les jours doivent correspondre à des jours où l'intéressé aurait normalement travaillé.

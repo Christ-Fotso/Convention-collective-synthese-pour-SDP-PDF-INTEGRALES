@@ -1,0 +1,4 @@
+- **Taux conventionnel:** La convention ne prévoit pas de taux spécifique pour l'indemnité de fin de contrat CDD.
+- **Réduction du taux:** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques:** La convention ne prévoit pas de cas d'exclusion spécifiques.
+- **Modalités de versement:** La convention ne prévoit pas de modalités de versement particulières.  L'article 32 de la convention mentionne l'article L. 121-4 du code du travail concernant l'indemnité de fin de contrat pour les CDD relevant de l'article L. 122-1.

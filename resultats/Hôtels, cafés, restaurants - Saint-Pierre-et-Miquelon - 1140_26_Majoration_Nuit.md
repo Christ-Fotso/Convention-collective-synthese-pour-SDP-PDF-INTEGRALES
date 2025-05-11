@@ -1,0 +1,8 @@
+- **Définition travail de nuit :** Article 18 :  "Le travail de nuit est celui compris entre 22 heures et 6 heures."
+- **Définition travailleur de nuit :** La convention ne prévoit rien à ce sujet.
+- **Compensations :**
+    - **Majoration salaire :** La convention ne prévoit rien à ce sujet.
+    - **Repos compensateur :** La convention ne prévoit rien à ce sujet.
+- **Durées travail spécifiques :** La convention ne prévoit rien à ce sujet.
+- **Contreparties et garanties :** Article 18 : "Il est interdit aux jeunes de moins de dix-huit ans."  (de travailler la nuit). La convention ne prévoit rien d'autre à ce sujet.
+- **Spécificités départementales/régionales :** RAS.

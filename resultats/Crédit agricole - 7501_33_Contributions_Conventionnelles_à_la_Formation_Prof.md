@@ -1,0 +1,10 @@
+- **Taux CONVENTIONNEL applicable :** 0,50 % du montant des salaires payés pendant l'année de référence.  30 % de cette contribution sont consacrés à la prise en charge des dépenses de fonctionnement des centres de formation d'apprentis du Crédit Agricole conventionnés par l'État ou les régions. (Accord du 29 septembre 1993 modifié et reconduit jusqu'au 31/12/2018, puis Accord du 21 décembre 2018)
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** Groupement pour le Développement de la Formation Professionnelle et de l'Emploi dans les services du monde rural (GDFPE - Crédit et Mutualité Agricoles / Organismes familiaux et services ruraux) pour les contributions versées avant 2020. (Accord du 29 septembre 1993) L'accord du 25 octobre 2018 prévoit l'affectation à l'OPCO FAFSEA à compter de 2020.
+- **Affectation spécifique des fonds :** Financement de l'apprentissage (30% de la contribution), fonctionnement des centres de formation d'apprentis du Crédit Agricole. (Accord du 29 septembre 1993 modifié et reconduit jusqu'au 31/12/2018, puis Accord du 21 décembre 2018)
+- **Entreprises/Salariés concernés :** Caisses régionales et organismes adhérents à la Convention Collective. (Accord du 29 septembre 1993)
+- **Source de l’information :** Accord du 29 septembre 1993 (modifié par ses avenants et reconduit jusqu’au 31/12/2018), Accord du 21 décembre 2018, Accord du 25 octobre 2018.
+
+
+À partir de 2019, la convention collective ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  L'accord du 21 décembre 2018 acte la fin de la contribution conventionnelle de 0,50% à partir de 2020, remplacée par la contribution légale unique de 1%. Le financement de l'apprentissage est maintenu par l'affectation de 30% de la contribution légale "professionnalisation" de 0,4% (Accord du 21 décembre 2018).

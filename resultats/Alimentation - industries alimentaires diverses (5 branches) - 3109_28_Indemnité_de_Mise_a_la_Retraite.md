@@ -1,0 +1,14 @@
+**Indemnité de Mise à la Retraite** (Article 4.13.2.1, Avenant n°4 du 6 juillet 2016, étendu)
+
+* **Condition d'ancienneté minimale:** La convention ne prévoit rien à ce sujet.  Le salarié doit pouvoir prétendre au bénéfice d'une retraite à taux plein du régime général de la Sécurité sociale.
+* **Modalités de calcul de l'ancienneté:**  (Article 4.10, Avenant n°3 du 16 avril 2014, étendu ; Avenant n°4 du 6 juillet 2016, étendu) L'ancienneté se détermine en tenant compte :
+    * De la présence continue dans l'établissement.
+    * De la durée des contrats antérieurs dans l'ensemble des sociétés du groupe, à l'exclusion de ceux qui auraient été rompus pour faute grave et lourde.
+    * De la durée des missions effectuées chez l'employeur au cours des trois mois précédant l'embauche, lorsqu'un salarié est embauché après une mission par une entreprise de travail temporaire. Cette durée est déduite de la période d'essai éventuellement prévue.
+* **Formule de calcul :**  L'indemnité conventionnelle de mise à la retraite est égale à la moitié de l'indemnité conventionnelle de licenciement telle que figurant dans le tableau 4.12.4, à laquelle aurait pu prétendre le salarié en fonction de son ancienneté, majoration d'âge non comprise. En tout état de cause, le salarié mis à la retraite par l'employeur ne pourra recevoir une indemnité inférieure à celle prévue par la loi en cas de licenciement, quelle que soit son ancienneté.
+* **Salaire de référence :** La convention ne précise pas le salaire de référence à utiliser pour le calcul de l'indemnité conventionnelle de mise à la retraite. Le tableau 4.12.4 mentionné pour le calcul de l'indemnité de licenciement précise que "le salaire à prendre en considération pour le calcul de l'indemnité est le douzième de la rémunération des douze derniers mois précédant la résiliation (à l'exclusion des indemnités ayant le caractère de remboursement de frais) ou, selon la formule la plus avantageuse pour l'intéressé, le tiers des trois derniers mois, étant entendu que, dans ce cas, toute prime ou gratification de caractère annuel ou exceptionnel qui aurait été versée au salarié pendant cette période ne serait prise en compte au titre de cette période que prorata temporis".
+* **Plafond éventuel de l'indemnité :** La convention ne prévoit rien à ce sujet, mais précise que l'indemnité ne peut être inférieure à l'indemnité légale de licenciement.
+* **Comparaison avec l'indemnité de licenciement :** L'indemnité de mise à la retraite est prévue comme étant différente de l'indemnité de licenciement (la moitié).
+* **Majorations liées à l'âge ou autres facteurs :** La convention ne prévoit pas de majoration pour l'indemnité conventionnelle de mise à la retraite.
+* **Calcul spécifique pour le temps partiel :** La convention ne prévoit rien à ce sujet.
+* **Spécificités régionales/départementales :** La convention ne prévoit rien à ce sujet.

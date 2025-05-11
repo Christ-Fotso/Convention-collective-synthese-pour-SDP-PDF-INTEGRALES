@@ -1,0 +1,11 @@
+### Majoration Férié
+
+- **Liste jours fériés / Chômés/payés / Jours locaux/spécifiques:** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire (hors 1er mai):** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire (1er mai):** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur (hors 1er mai):** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur (1er mai):** La convention ne prévoit rien à ce sujet.
+- **Catégories personnel concernées/exclues:** La convention ne prévoit rien à ce sujet.
+- **Conditions particulières (Volontariat / Planification / Nombre max):** La convention ne prévoit rien à ce sujet.
+- **Récupération fériés chômés tombant jour repos habituel:** La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

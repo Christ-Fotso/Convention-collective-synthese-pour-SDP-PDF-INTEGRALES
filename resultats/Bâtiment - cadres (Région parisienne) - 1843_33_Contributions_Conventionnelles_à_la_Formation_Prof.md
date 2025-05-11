@@ -1,0 +1,9 @@
+* **Taux conventionnel applicable:** 0,40 % des salaires. La convention ne précise pas si cette contribution est en supplément de la contribution légale.
+* **Base de calcul spécifique:** Salaires.
+* **Cotisation minimale due (conventionnelle):** Non précisée.
+* **Organisme collecteur désigné par la convention:** Association Paritaire d’Action Sociale du Bâtiment et des Travaux Publics de la Région Parisienne (APAS-BTP-RP). La gestion est assurée par deux associations paritaires : l'Association Paritaire pour la Santé des Salariés du Bâtiment et des Travaux Publics de la Région Parisienne (APSS-BTP-RP) et l’Association Paritaire pour les Oeuvres Sociales du Bâtiment et des Travaux Publics de la Région Parisienne (APOS-BTP-RP).
+* **Affectation spécifique des fonds:**  Œuvres sociales.
+* **Entreprises/Salariés concernés:** Ingénieurs, Assimilés et Cadres des entreprises du Bâtiment de la Région Parisienne (hors Seine et Marne). Les entreprises dépendant de la coopération ouvrière de production qui adhèrent aux organismes sociaux de la coopération ne sont pas concernées.
+* **Source de l’information:** Article 4 (Œuvres sociales).
+
+Un accord plus récent datant du 2 juillet 2024 (Œuvres sociales) mentionne une cotisation de 0,35% de la masse salariale brute pour les œuvres sociales, gérée par l'APAS-BTP. Cet accord concerne les ouvriers, ETAM et cadres du Bâtiment de la région d'Ile-de-France (hors Seine-et-Marne) des entreprises relevant de la convention collective nationale des ouvriers du Bâtiment du 8 octobre 1990 (entreprises visées ou non par le décret n° 62-235 du 1er mars 1962 modifié), de la convention collective nationale des ETAM du Bâtiment du 12 juillet 2006, et de la convention collective nationale des cadres du bâtiment du 1er juin 2004. Les sociétés coopératives qui adhèrent aux œuvres sociales du mouvement coopératif ne sont pas concernées. Cet accord n'est pas étendu.

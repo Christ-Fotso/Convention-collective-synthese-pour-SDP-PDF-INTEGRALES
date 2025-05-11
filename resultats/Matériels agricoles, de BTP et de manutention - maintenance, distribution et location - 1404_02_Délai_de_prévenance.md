@@ -1,0 +1,4 @@
+**Fin de période d'essai**
+
+* **À l'initiative du salarié ou de l'employeur :** La convention prévoit que la partie qui souhaite mettre fin au contrat de travail pendant la période d'essai le fait connaître à l'autre partie par lettre recommandée avec accusé de réception ou remise en main propre contre décharge en respectant les délais légaux de prévenance. La convention ne précise pas ces délais légaux.
+* **À l'initiative de l'employeur (cas particulier) :**  Toutes facilités, dans les délais prévus pour la cessation du contrat en période d'essai, sont accordées au salarié dont l'employeur met fin au contrat de travail, au cours ou à la fin de la période d'essai pour lui permettre d'occuper immédiatement le nouvel emploi qu'il aurait pu trouver.  La convention ne précise pas la nature de ces facilités, ni si cela modifie le délai légal de prévenance.

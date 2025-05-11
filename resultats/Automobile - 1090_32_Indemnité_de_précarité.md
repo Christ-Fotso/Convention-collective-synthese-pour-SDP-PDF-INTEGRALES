@@ -1,0 +1,4 @@
+- **Taux conventionnel :** 10 % (Article 1.10, alinéa e, point 2, Avenant n°60 du 5 juillet 2011, étendu)
+- **Réduction du taux :** Non.
+- **Cas d'exclusion spécifiques :**  Oui. Sauf en cas de rupture anticipée à l'initiative du salarié, de poursuite ou de reprise des relations contractuelles pour une durée indéterminée, de faute grave ou de force majeure. (Article 1.10, alinéa e, point 2, Avenant n°60 du 5 juillet 2011, étendu)
+- **Modalités de versement :**  Au terme du contrat à durée déterminée. (Article 1.10, alinéa e, point 2, Avenant n°60 du 5 juillet 2011, étendu)

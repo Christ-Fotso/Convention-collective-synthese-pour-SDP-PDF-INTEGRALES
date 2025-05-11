@@ -1,0 +1,3 @@
+**Maintien de salaire pendant les congés maternité, paternité/accueil de l'enfant et adoption :**
+
+La convention collective du bâtiment - ouvriers (Drôme-Ardèche) - IDCC 2667 ne prévoit rien concernant le maintien de salaire par l'employeur pendant les congés maternité, paternité/accueil de l'enfant et adoption.  Les articles 1-2 et 1-3 précisent que les titres II à XII de la Convention Collective Nationale des ouvriers du bâtiment du 8 octobre 1990 constituent la première partie "Clauses générales" de la convention départementale, et que la deuxième partie "Clauses professionnelles" est constituée par les articles 2-1 à 2-7 de la convention départementale.  Aucun de ces articles ne traite des congés maternité, paternité, accueil de l'enfant ou adoption.

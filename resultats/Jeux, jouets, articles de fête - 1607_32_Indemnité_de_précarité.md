@@ -1,0 +1,4 @@
+- **Taux conventionnel:** 10% (Article IV.13)
+- **Réduction du taux:** Non. La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques:** Non. La convention ne prévoit rien à ce sujet.
+- **Modalités de versement:**  La convention ne prévoit rien à ce sujet.

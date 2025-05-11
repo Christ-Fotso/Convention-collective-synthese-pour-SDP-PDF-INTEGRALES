@@ -1,0 +1,18 @@
+## Congés pour Événements Familiaux
+
+*   **Mariage du salarié :** 8 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Conclusion d'un PACS :** 8 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Naissance ou adoption d'un enfant :** 3 jours ouvrables.  Doivent être pris dans la période de 3 semaines entourant la date de la naissance ou de l'adoption. La convention ne prévoit rien à ce sujet concernant les autres conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Mariage d'un enfant :** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Mariage du père ou de la mère :** 1 jour ouvrable. Doit être pris dans la période de 3 jours encadrant la date de l'évènement. La convention ne prévoit rien à ce sujet concernant les autres conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès du conjoint, du partenaire lié par un PACS, du concubin :** 5 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un enfant :** 5 jours ouvrables. Ce congé se cumule avec le congé de deuil d'une durée de 8 jours calendaires prévu par l'article L. 3142-1-1 du Code du travail. Ces jours sont pris lors de la survenance du décès. La convention ne prévoit rien à ce sujet concernant les autres conditions d'octroi ou les jours supplémentaires.
+*   **Décès d'un ascendant ou descendant (autre que l'enfant) du salarié :** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un ascendant ou descendant de son conjoint, partenaire de PACS ou concubin :** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Décès d'un frère ou d'une sœur du salarié :** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Annonce au salarié de la survenance d'un handicap chez son enfant :** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Annonce au salarié de la survenance d'un handicap chez son conjoint, son partenaire de PACS ou son concubin :** 2 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+*   **Déménagement :** 2 jours ouvrables.  Dans la limite d'une fois tous les deux ans. La convention ne prévoit rien à ce sujet concernant les autres conditions d'octroi, les modalités de prise ou les jours supplémentaires.
+
+
+La convention prévoit également : sur présentation d'un certificat médical, le salarié parent d'un enfant malade de moins de 16 ans bénéficie de 6 jours ouvrables maximum par an, le cas échéant fractionnables d'un commun accord.  Ces jours d'absences sont rémunérés dans la limite de trois jours ouvrables. En cas d'hospitalisation de l'enfant malade, le nombre de jours rémunérés peut être porté à six jours ouvrables, dans la limite de la durée de l'hospitalisation. La convention ne prévoit rien d'autre à ce sujet.

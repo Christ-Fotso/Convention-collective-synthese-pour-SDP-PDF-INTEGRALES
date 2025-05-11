@@ -1,0 +1,3 @@
+**Cotisations Retraite Complémentaire**
+
+La convention collective mentionne l'affiliation obligatoire à un régime de prévoyance adapté garantissant des prestations de retraite complémentaire (Titre IV, Article 4.1, Avenant du 24 avril 2008 - étendu), mais **ne précise pas les taux de cotisation ni l'organisme de gestion pour la retraite complémentaire (AGIRC-ARRCO)**.  La convention ne fait pas mention de tranches T1/T2 pour le calcul des cotisations de retraite. Elle ne mentionne pas non plus de taux ou de régimes spécifiques pour les cadres et les non-cadres concernant la retraite complémentaire.

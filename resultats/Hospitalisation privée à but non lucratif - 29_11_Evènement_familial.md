@@ -1,0 +1,80 @@
+## Congés pour événements familiaux
+
+- **Décès du conjoint:**
+    - Durée du congé: 5 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant du salarié ou de celui de son conjoint:**
+    - Durée du congé: 5 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès du père ou de la mère:**
+    - Durée du congé: 3 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès d'un ascendant, autre que le père ou la mère:**
+    - Durée du congé: 2 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès d'un descendant, autre que l'enfant:**
+    - Durée du congé: 2 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès d'un frère ou d'une sœur:**
+    - Durée du congé: 3 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès d'un gendre ou d'une bru:**
+    - Durée du congé: 2 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès du beau-père ou de la belle-mère:**
+    - Durée du congé: 3 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Décès d'un frère ou d'une sœur du conjoint:**
+    - Durée du congé: 2 jours
+    - Conditions d'octroi particulières: Justification. La convention ne prévoit rien d'autre à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+- **Mariage d'un enfant:**
+    - Durée du congé: 2 jours
+    - Conditions d'octroi particulières: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.
+- **Mariage d'un frère ou d'une sœur:**
+    - Durée du congé: 1 jour
+    - Conditions d'octroi particulières: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.
+- **Mariage du salarié:**
+    - Durée du congé: 5 jours
+    - Conditions d'octroi particulières: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  Un jour supplémentaire ou deux pourront être accordés selon que les cérémonies auront lieu à plus de 300 ou de 600 kilomètres.
+- **Naissance d'un enfant:**
+    - Durée du congé: 3 jours
+    - Conditions d'octroi particulières: Ces trois jours pourront être consécutifs ou non, après entente entre l'employeur ou son représentant et le bénéficiaire, mais devront être inclus dans une période de quinze jours entourant la date de naissance.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.
+- **Arrivée d'un enfant placé en vue d'une adoption:**
+    - Durée du congé: 3 jours
+    - Conditions d'octroi particulières: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.
+- **Annonce de la survenue d'un handicap chez un enfant:**
+    - Durée du congé: 2 jours
+    - Conditions d'octroi particulières: La convention ne prévoit rien à ce sujet.
+    - Modalités de prise: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires:  La convention ne prévoit rien à ce sujet.
+
+
+Pour l'attribution des jours de congés pour décès, mariage et naissance, le concubin est assimilé au conjoint, sous réserve de justifier le concubinage par une déclaration sur l'honneur. Il en est de même pour le salarié qui a conclu un Pacte Civil de Solidarité, sous réserve d'en justifier l'existence.

@@ -1,0 +1,25 @@
+## Durées du Travail - Convention Collective Nationale Pharmacie, Parapharmacie, Produits Vétérinaires - IDCC 1555
+
+* **Durée hebdomadaire de référence:** La convention fixe les salaires en fonction de la durée légale hebdomadaire de travail (Article 14). La convention fait référence à 151,67 heures par mois pour la grille des salaires minima (Accords salariaux).
+
+* **Durée maximale hebdomadaire:** La convention ne précise pas de durée maximale hebdomadaire absolue, mais pour le travail de nuit, elle est de 40 heures (Accord Travail de Nuit, article 8).  Pour les salariés en préretraite progressive, la durée annuelle ne peut être supérieure à 80% de la durée annuelle antérieure à temps plein (Accord Préretraite Progressive, Article 4). La durée moyenne, durant la période de versement de l'allocation, doit être égale à 50% de la durée antérieure du travail à temps plein.
+
+* **Durée maximale quotidienne:** Pour le travail de nuit, la durée maximale est de 8 heures consécutives (Accord Travail de Nuit, article 8). La convention ne prévoit rien à ce sujet pour le travail de jour.
+
+* **Repos quotidien minimum:** La convention ne prévoit rien à ce sujet.
+
+* **Repos hebdomadaire minimum:** La convention ne prévoit rien à ce sujet au-delà de la mention du "jour de repos hebdomadaire convenu dans l'horaire de travail" (Article 13).  L'accord sur le travail de nuit mentionne que les salariés de nuit bénéficient d'un repos compensateur équivalent à 3% des heures travaillées en horaire de nuit, les modalités et la périodicité étant à définir en entreprise (Accord Travail de Nuit, article 7).
+
+* **Temps de pause minimum:** Lorsque la durée effective du travail est supérieure à 6 heures de façon ininterrompue, l'horaire devra comporter une pause d'une demi-heure sans diminution de salaire sauf accord éventuel d'entreprise plus favorable (Article 13). Pour le travail de nuit, la convention rappelle qu'il doit être scrupuleusement respecté un temps de pause de trente minutes par tranche de 6 heures consécutives de travail (Accord Travail de Nuit, article 8).
+
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait:** La convention mentionne que les modalités de la réduction effective de la durée du travail devront être adaptées au personnel d'encadrement (Avenant Personnel d'Encadrement, article 7).
+    * **Temps partiel:** La durée minimale est de 24 heures par semaine, sauf dérogations (Accord Temps Partiel, article 3). Les horaires doivent être réguliers et ne peuvent comporter plus d'une interruption d'activité par jour, laquelle ne doit pas dépasser deux heures, sauf dérogations (Accord Temps Partiel, article 4). Les heures complémentaires sont celles effectuées au-delà de la durée normale du contrat, avec des majorations spécifiques (Accord Temps Partiel, article 5). Un complément temporaire d'heures peut être prévu par avenant (Avenant Temps Partiel, Article 6).  Les salariés à temps partiel ont priorité pour le retour à temps plein (Accord Temps Partiel, article 7). Pour les salariés handicapés, la convention instaure le temps partiel choisi (Accord Emploi Travailleurs Handicapés 2019, Article V).  Pour les salariés en préretraite progressive, la durée de travail est entre 40% et 50% de la durée antérieure à temps plein, modulable selon certaines conditions (Accord préretraite progressive, Article 4).
+    * **Jeunes travailleurs:**  Les jeunes en contrat d'apprentissage ont une durée de formation en centre qui ne peut être inférieure à 25% de la durée totale du contrat (Accord Formation Professionnelle 2020, article 9). Les jeunes en contrat de professionnalisation ou en Pro-A ont des durées minimales de formation (Accord Formation Professionnelle 2020, article 9).
+
+* **Dérogations prévues:** La convention prévoit des dérogations à la durée minimale de 24 heures pour le temps partiel, notamment en cas de contraintes personnelles, de congé parental, ou de cumul d'activités (Accord Temps Partiel, article 3). Des dérogations aux horaires réguliers du temps partiel sont possibles en cas de travaux urgents, de variation temporaire d'activité, ou de départ en formation (Accord Temps Partiel, Article 4).
+
+* **Articulation avec des accords d'entreprise:** La convention mentionne la possibilité d'accords d'entreprise plus favorables pour le temps de pause (Article 13),  la répartition des niveaux de classification par collège électoral (Classification des emplois, Article 6) et les régimes de retraite et de prévoyance (Classification des emplois, article 7).  L’accord sur les durées du travail de nuit ne remet pas en cause les accords d'entreprise plus favorables (Accord Travail de Nuit, Article 1).  Des accords d'entreprise peuvent définir les conditions et les modalités de diffusion des informations syndicales au moyen des outils numériques (Article 5). L'accord sur le temps partiel invite les entreprises à décliner et améliorer les principes et modalités par la négociation (Accord Temps Partiel, Article 1). Pour le CATS, la procédure et les modalités sont définies par accord d'entreprise (Accord CATS, article 4).
+
+
+

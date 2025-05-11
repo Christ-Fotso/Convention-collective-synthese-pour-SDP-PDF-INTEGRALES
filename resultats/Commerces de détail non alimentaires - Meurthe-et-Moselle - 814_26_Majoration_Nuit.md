@@ -1,0 +1,8 @@
+- **Définition du travail de nuit:** Tout travail exécuté entre 21 heures et 6 heures. (Article 27)
+- **Définition du travailleur de nuit:** La convention ne prévoit rien à ce sujet.
+- **Compensations:**
+    - **Majoration de salaire:** 15% de majoration d'incommodité pour les heures effectuées entre 21 heures et 6 heures lorsque l'horaire habituel de travail ne comporte pas de travail de nuit. Cette majoration s'ajoute aux éventuelles majorations pour heures supplémentaires. (Article 27)
+    - **Repos compensateur:** La convention ne prévoit rien à ce sujet.
+- **Durées de travail spécifiques:** La convention ne prévoit rien à ce sujet.
+- **Contreparties et garanties:** La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

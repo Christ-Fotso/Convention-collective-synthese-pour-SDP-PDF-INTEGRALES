@@ -1,0 +1,7 @@
+- La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.
+- La convention (article 42) précise que l'indemnité spécifique de rupture conventionnelle doit être au moins égale à l'indemnité légale ou conventionnelle de licenciement, si elle lui est plus favorable.  Cette indemnité est due quelle que soit l'ancienneté du salarié.
+- La convention fait référence à l'article 38 pour le calcul de l'indemnité de licenciement : égale à 2/10e de mois par année d'ancienneté, majorée de 2/15e de mois par année d'ancienneté au-delà de 10 ans.
+- Le salaire de référence pour le calcul de l'indemnité de licenciement, et donc le plancher de l'indemnité de rupture conventionnelle, est calculé sur la base du 1/12e de la rémunération des 12 derniers mois précédant le licenciement ou, selon la formule la plus avantageuse pour le salarié, du 1/3 des 3 derniers mois.  Dans ce dernier cas, toute prime ou gratification de caractère annuel ou exceptionnel, versée au salarié pendant cette période, n'est prise en compte que dans la limite d'un montant calculé *prorata temporis*.
+- La convention ne précise pas de condition d'ancienneté spécifique pour l'indemnité de rupture conventionnelle, contrairement à l'indemnité de licenciement qui requiert au moins un an d'ancienneté.
+- La convention ne prévoit rien à ce sujet concernant les cas particuliers de salariés exclus de l'indemnité de licenciement.
+- La convention ne prévoit rien concernant des spécificités régionales ou départementales.

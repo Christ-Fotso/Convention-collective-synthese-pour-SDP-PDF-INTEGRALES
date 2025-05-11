@@ -1,0 +1,3 @@
+La convention collective départementale du Bâtiment - ouvriers de l'Isère (IDCC 2033) ne contient pas de grille de classification des ouvriers.  Elle fait référence à la convention collective nationale Bâtiment ouvriers (entreprises occupant plus de 10 salariés) du 8 octobre 1990 pour les clauses générales (Article 1.2).  L'article 1.1 précise que cette convention départementale s'applique aux ouvriers.  Aucune information supplémentaire concernant une classification, des niveaux, échelons, coefficients ou libellés n'est présente dans la convention départementale.
+
+La convention ne prévoit rien concernant les critères classants, les fonctions types, les modalités d'évolution, le lien avec la rémunération, ou des spécificités régionales.

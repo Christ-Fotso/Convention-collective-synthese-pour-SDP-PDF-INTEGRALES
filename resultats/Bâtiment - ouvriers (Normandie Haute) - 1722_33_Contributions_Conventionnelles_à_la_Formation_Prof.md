@@ -1,0 +1,1 @@
+La convention ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  Elle encourage cependant les entreprises et leurs salariés à conclure des accords permettant d’améliorer les conditions de vie des salariés du bâtiment, notamment en ce qui concerne la formation continue (Préambule).

@@ -1,0 +1,1 @@
+La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.  L'article 10.1 précise que "Il est précisé qu'en cas de rupture conventionnelle, les dispositions relatives aux durées de préavis ne s'appliquent pas.".

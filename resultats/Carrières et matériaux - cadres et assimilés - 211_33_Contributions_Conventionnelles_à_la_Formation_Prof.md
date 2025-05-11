@@ -1,0 +1,1 @@
+La convention ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  Elle mentionne l'apprentissage et la formation professionnelle à l'article 20, mais renvoie à des accords nationaux non inclus dans le texte fourni.

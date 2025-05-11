@@ -1,0 +1,1 @@
+La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.  L'article 57 mentionne uniquement que "Les procédures de rupture conventionnelle du contrat de travail sont soumises à la réglementation en vigueur."

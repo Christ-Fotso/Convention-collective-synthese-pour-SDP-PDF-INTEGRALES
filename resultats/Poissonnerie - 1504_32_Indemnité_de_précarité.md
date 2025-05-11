@@ -1,0 +1,4 @@
+- **Taux conventionnel :** 10 % des sommes perçues. (Article 3.3.4 - Contrat à durée déterminée - Indemnité de fin de contrat)
+- **Réduction du taux :** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques :** La convention ne prévoit rien à ce sujet.
+- **Modalités de versement :** La convention ne prévoit rien à ce sujet.

@@ -1,0 +1,1 @@
+L'annexe 1 de la convention collective mentionne un régime de retraites complémentaires des salariés, mais elle est exclue de l'extension par arrêté du 13 juillet 1973 et n'est pas publiée au Journal officiel.  La convention ne précise pas les détails du régime de retraite complémentaire.

@@ -1,0 +1,3 @@
+### Congés pour événements familiaux
+
+La convention collective du bâtiment des ouvriers de la région Provence-Alpes-Côte d'Azur (entreprises occupant jusqu'à dix salariés) - IDCC 1779, renvoie, pour les clauses générales, à la Convention Collective Nationale du 8 octobre 1990 (entreprises occupant jusqu’à 10 salariés), titres II à XII.  La convention collective ne précise pas les articles spécifiques concernant les congés pour événements familiaux.  Il convient donc de se référer à la Convention Collective Nationale du 8 octobre 1990 (entreprises occupant jusqu’à 10 salariés), titres II à XII pour obtenir ces informations.

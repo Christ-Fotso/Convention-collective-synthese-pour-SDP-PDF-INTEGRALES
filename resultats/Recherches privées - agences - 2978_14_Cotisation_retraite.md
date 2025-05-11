@@ -1,0 +1,1 @@
+La convention collective nationale du 4 octobre 2010 (non étendue) des recherches privées - agences (IDCC 2978) ne contient aucune disposition spécifique relative aux cotisations de retraite complémentaire.  RAS.

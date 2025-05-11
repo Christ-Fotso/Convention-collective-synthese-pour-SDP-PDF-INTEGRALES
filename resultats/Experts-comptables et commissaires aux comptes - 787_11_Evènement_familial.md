@@ -1,0 +1,16 @@
+## Congés pour Événements Familiaux
+
+* **Mariage du salarié:** 4 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Pacs du salarié:** 4 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Mariage d'un enfant du salarié:** 1 jour ouvrable. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Décès du conjoint, du concubin ou du pacsé:** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Décès d'un enfant du salarié ou de son conjoint ou de son pacsé:** 5 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Décès d'un petit-enfant du salarié, de son conjoint ou pacsé:** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Décès du grand-père ou de la grand-mère du salarié, de son conjoint ou pacsé:** 1 jour ouvrable. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Décès du père, de la mère, du beau-père, de la belle-mère, d'un frère, d'une sœur:** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Naissance ou adoption d'un enfant:** 3 jours ouvrables. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières, les modalités de prise ou des jours supplémentaires.
+* **Annonce de la survenue d'un handicap ou d'une affection de longue durée chez un enfant ou chez le conjoint, concubin ou pacsé:** 3 jours ouvrables. La convention précise que l'affection de longue durée s'entend au sens de l'article L 324-1 du code de la Sécurité Sociale et que  un justificatif doit être présenté. La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières ou les modalités de prise.
+* **Hospitalisation d'un enfant de moins de 16 ans :** 1 jour ouvrable, une seule fois par année civile. Un bulletin d'hospitalisation indiquant la date d'entrée et la date de sortie permettant de faire apparaître au moins une nuit dans un établissement hospitalier doit être présenté.  La convention ne prévoit rien à ce sujet concernant les conditions d'octroi particulières ou les modalités de prise. En cas d'hospitalisation d'une durée supérieure à 10 jours, la durée de l'absence sans réduction de rémunération est portée à 3 jours.
+
+
+La convention précise que ces congés ne pourront être pris qu'au moment des événements qui leur donnent naissance et que, quand l'autorisation d'absence comprend un jour chômé, ce dernier n'est pas compté dans les jours ouvrables définis ci-dessus.  Les jours d'absence ci-dessus n'entraînent pas de réduction de rémunération.

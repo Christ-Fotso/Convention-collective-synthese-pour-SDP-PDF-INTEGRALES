@@ -1,0 +1,7 @@
+- **Taux ou forfait CONVENTIONNEL applicable:** 0,25 % de la totalité des salaires bruts de l'entreprise.  La convention ne précise pas si cette contribution est en supplément des obligations légales.
+- **Base de calcul spécifique:** Totalité des salaires bruts de l'entreprise.
+- **Cotisation minimale due (conventionnelle):** Non précisée.
+- **Organisme collecteur DÉSIGNÉ par la convention:** FAFIH (Fonds d'Assurance Formation de l'Industrie Hôtelière)
+- **Affectation spécifique des fonds:** Non précisée.
+- **Entreprises/Salariés concernés:** Tous les établissements soumis à l'obligation de contribution.
+- **Source de l’information:** Article 37, en référence à l'accord du 12 janvier 1982 (remplacé par accord du 5 mai 1999 étendu par arrêté du 19 octobre 1999, JO 31 octobre 1999).  L'article mentionne également une contribution à la Commission Paritaire Nationale de l'Emploi dans l'Industrie Hôtelière, financée par une partie de la contribution obligatoire, sans préciser le taux.

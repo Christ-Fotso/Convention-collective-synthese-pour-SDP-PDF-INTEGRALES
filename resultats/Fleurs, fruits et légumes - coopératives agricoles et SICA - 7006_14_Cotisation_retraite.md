@@ -1,0 +1,3 @@
+La convention collective Fleurs, fruits et légumes - coopératives agricoles et SICA - 7006 mentionne l'obligation pour chaque entreprise de mettre en place un régime de prévoyance pour maladies et accidents de la vie privée et professionnelle couvrant les risques lourds : décès-invalidité (Article 33), mais ne précise pas d'organismes désignés, de taux de cotisation, ni d'autres détails sur les cotisations de retraite complémentaire.
+
+La convention ne prévoit rien à ce sujet concernant les taux de cotisation contractuels spécifiques (par tranche T1/T2), la répartition employeur/salarié, l'assiette de calcul, les taux spécifiques par catégorie (Cadres/Non-cadres) et les dates d'application des taux spécifiques conventionnels.

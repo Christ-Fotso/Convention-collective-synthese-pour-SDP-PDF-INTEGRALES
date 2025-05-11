@@ -1,0 +1,1 @@
+La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.  L'article VI, Section 2, Article 2.4 mentionne la rupture conventionnelle homologuée comme un mode de rupture du contrat de travail, mais ne détaille pas d'indemnité spécifique.

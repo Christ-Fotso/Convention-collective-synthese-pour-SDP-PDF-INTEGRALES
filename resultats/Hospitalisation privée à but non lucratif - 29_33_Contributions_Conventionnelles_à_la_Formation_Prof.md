@@ -1,0 +1,5 @@
+- **Taux CONVENTIONNEL applicable :** Non précisé. La convention mentionne que les dispositions relatives au financement de la formation professionnelle sont conformes aux dispositions légales, réglementaires et aux accords négociés dans le secteur des activités sanitaires, sociales et médico-sociales privé à but non lucratif.  Elle ne fixe pas de taux spécifique.
+- **Organisme collecteur DÉSIGNÉ par la convention :** OPCO Santé. La convention indique que l'OPCO Santé assure les missions qui lui incombent en application des dispositions légales et réglementaires en matière de financement de l'alternance, d'aide au développement des compétences dans les petites entreprises, d'appui technique aux branches adhérentes, de service de proximité, de promotion des formations réalisées en tout ou partie à distance ou en situation de travail.  Il n'est pas précisé si l'OPCO Santé collecte une contribution *conventionnelle*.
+- **Affectation spécifique des fonds :** Non précisé.
+- **Entreprises/Salariés concernés :** Non précisé.
+- **Source de l’information :** Articles 07.01 et 07.02.

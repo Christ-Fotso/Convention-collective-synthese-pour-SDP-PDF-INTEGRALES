@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable :** Non précisé.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** AGEFOS-PME. L'accord précise que "Les parties signataires désignent AGEFOS-PME comme Organisme Paritaire Collecteur Agréé (OPCA) de la branche".
+- **Affectation spécifique des fonds :** Non précisé.
+- **Entreprises/Salariés concernés :**  Toutes les entreprises relevant de la Convention collective nationale de la coopération maritime du 7 décembre 2004. Les entreprises qui ne cotisaient pas à AGEFOS-PME à la date de signature de l'accord (29 septembre 2014) avaient jusqu'à la collecte du troisième exercice plein suivant la date d'extension de l'accord pour adhérer.
+- **Source de l’information :** Accord du 29 septembre 2014, étendu par arrêté du 24 mai 2016, JO 11 juin.

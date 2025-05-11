@@ -1,0 +1,8 @@
+- Existence indemnité spécifique : Non.
+- Formule calcul spécifique : Non.
+- Comparaison avec indemnité licenciement : Oui. L'indemnité spécifique de rupture conventionnelle ne peut être inférieure à l'indemnité légale de licenciement ou à l'indemnité conventionnelle de licenciement définie par la convention, si celle-ci est plus favorable (article 27.2).
+- Montant minimal conventionnel : Non, mais ne peut être inférieure à l'indemnité légale ou conventionnelle de licenciement, si plus favorable.
+- Condition ancienneté spécifique : Non.
+- Salaire de référence spécifique : Non.
+- Cas particulier salariés exclus indemnité licenciement : La convention ne prévoit rien à ce sujet.
+- Spécificités régionales/départementales : Non.

@@ -1,0 +1,3 @@
+## Contrat de professionnalisation
+
+La convention ne prévoit rien à ce sujet.

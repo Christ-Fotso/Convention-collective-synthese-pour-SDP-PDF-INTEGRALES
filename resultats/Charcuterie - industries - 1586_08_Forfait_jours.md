@@ -1,0 +1,10 @@
+**Forfait Jours**
+
+La convention collective nationale Charcuterie - industries - 1586 ne contient aucune disposition spécifique relative au forfait jours.  Les seules mentions relatives aux forfaits concernent :
+
+* **Article 5, Dispositions communes :**  "Des avenants pourront adapter la présente convention ou certaines de ses dispositions aux conditions particulières de travail dans la région, la localité ou l’entreprise, conformément aux dispositions des lois des 13 juillet 1971 et 13 novembre 1982."  (Ceci ouvre la possibilité d'instaurer un forfait jours par avenant, mais la convention elle-même n'en prévoit pas.)
+* **Article 5, Annexe V - Ingénieurs et Cadres :** "Les dispositions légales sur la durée du travail s’appliquent aux cadres en tenant compte des caractéristiques de leurs fonctions. En conséquence, leur rémunération comprend forfaitairement les dépassements individuels d’horaire dans la mesure où ils ne sont pas imposés et n’ont pas un caractère systématique." (Il s'agit ici d'une inclusion forfaitaire des dépassements d'horaire dans la rémunération des cadres,  et non d'un forfait jours.)
+* **Article 8, Annexe V - Ingénieurs et Cadres :**  Des conventions individuelles de forfait en heures sur une base hebdomadaire ou mensuelle sont possibles pour certains cadres (ceux intégrés à une équipe ou dont la durée de travail peut être prédéterminée) et une convention individuelle de forfait en heures ou en jours sur une base annuelle est envisageable pour d'autres cadres, selon des modalités légales et un accord d'entreprise. (Il est question ici de forfaits en heures ou en jours sur l'année, potentiellement négociables, mais la convention ne détaille pas les modalités d'un forfait jours.)
+
+
+Pour tous les autres aspects du forfait jours (catégories éligibles, nombre de jours, modalités de décompte, jours fériés, prise de repos, suivi de la charge de travail, droit à la déconnexion, garanties sur les temps de repos, équilibre vie privée/vie pro, rémunération, convention individuelle, renonciation à des jours de repos), la convention ne prévoit rien à ce sujet.

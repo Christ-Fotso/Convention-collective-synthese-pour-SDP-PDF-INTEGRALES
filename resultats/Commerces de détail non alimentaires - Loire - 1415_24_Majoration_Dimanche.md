@@ -1,0 +1,7 @@
+- Majoration de salaire : La convention ne prévoit rien à ce sujet.
+- Repos compensateur : La convention ne prévoit rien à ce sujet.
+- Définition travail dimanche : La convention ne prévoit rien à ce sujet.
+- Catégories personnel concernées/exclues : La convention ne prévoit rien à ce sujet, excepté pour le commerce de détail non sédentaire (article 22 - Jours fériés) pour lequel une négociation complémentaire sur le chômage des jours fériés, donc potentiellement le travail du dimanche,  devra avoir lieu.
+- Conditions particulières : La convention ne prévoit rien à ce sujet.
+- Cumul : La convention ne prévoit rien à ce sujet.
+- Spécificités départementales/régionales :  La convention est d'application départementale (Loire).  

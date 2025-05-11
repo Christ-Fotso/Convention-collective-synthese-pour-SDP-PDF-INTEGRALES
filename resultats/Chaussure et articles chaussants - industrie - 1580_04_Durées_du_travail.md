@@ -1,0 +1,17 @@
+## Durées du Travail - Convention Collective Chaussure (IDCC 1580)
+
+* **Durée hebdomadaire de référence:** 39 heures (Article 3.12 - Payement au mois). La convention précise que d'autres forfaits horaires mensuels peuvent être retenus par l'entreprise.
+* **Durée maximale hebdomadaire:**
+    * **En cas de modulation (Accord du 5 juin 1996) :** 44 heures par semaine, sans pouvoir être maintenu pendant plus de 4 semaines consécutives (Article 6). Possibilité de dépassement par accord d'entreprise (Article 6). Possibilité de dépassement ponctuel à 46 heures, une fois par trimestre, avec avis conforme du Comité d'Entreprise ou d'Établissement, ou, à défaut, des Délégués du Personnel (Accord du 5 juin 1996 - Heures supplémentaires hors aménagement ou modulation du temps de travail, Article 3).
+    * **Hors modulation (Accord du 5 juin 1996 - Heures supplémentaires hors aménagement ou modulation du temps de travail) :** Moyenne de 44 heures sur 12 semaines consécutives (Article 3).
+    * **Avec modulation après réduction du temps de travail (Accord du 21 décembre 1998) :** 42 heures par semaine (Article 6).  Possibilité de déterminer des conditions de modulation différentes par accord d'entreprise (Article 6).
+* **Durée maximale quotidienne:** La convention ne prévoit rien à ce sujet.
+* **Repos quotidien minimum:** La convention ne prévoit rien à ce sujet.  Cependant, pour les jeunes de moins de 18 ans et les femmes, le repos de nuit doit avoir une durée minimale de onze heures consécutives (Article 3.14 - Travail des femmes et des jeunes).
+* **Repos hebdomadaire minimum:** La convention ne prévoit rien à ce sujet.  Sont mentionnés uniquement les jours fériés légaux (Article 3.4). Les jeunes de moins de 18 ans et les femmes ne peuvent pas travailler les jours fériés légaux (Article 3.14).
+* **Temps de pause minimum:** La convention ne prévoit rien à ce sujet.
+* **Dispositions spécifiques par catégorie:**
+    * **Cadres au forfait (Article 5.11):** Doivent effectuer un horaire au moins égal à l’horaire moyen de l’entreprise. Leurs appointements sont forfaitaires et ne varient pas en fonction de l'horaire.
+    * **Temps partiel (Accord du 21 décembre 1998):**  En cas de réduction du temps de travail, des solutions seront recherchées au cas par cas pour les salariés à temps partiel : retour à temps plein, maintien de la durée contractuelle, abaissement de l’horaire contractuel dans les mêmes proportions que les salariés à temps plein (Article 3).
+    * **Jeunes travailleurs (Article 3.14):** Les jeunes de moins de dix-huit ans ne peuvent être employés à aucun travail de nuit (entre 22 heures et 5 heures).
+* **Dérogations prévues:**  La convention ne prévoit pas de dérogations concernant les durées du travail pour des secteurs ou des activités spécifiques, en dehors des dispositions pour les jeunes travailleurs et les femmes.
+* **Mention de l'articulation avec des accords d'entreprise:** Des accords d'entreprise peuvent prévoir des contreparties en repos ou en réduction du temps de travail, notamment en cas de modulation (Accord du 5 juin 1996 - Article 13; Accord du 5 juin 1996 - Heures supplémentaires hors aménagement ou modulation du temps de travail, Article 5; Accord du 21 décembre 1998 - Article 6). Accord du 21 décembre 1998 : prévoit que la réduction du temps de travail doit faire l'objet d'une négociation avec les organisations syndicales ou les salariés mandatés (Article 2).  

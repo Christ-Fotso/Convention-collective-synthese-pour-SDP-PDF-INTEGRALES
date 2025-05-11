@@ -1,0 +1,7 @@
+* **Majoration de salaire :** Accord du 15 juillet 2003 (Astreintes) - Non étendu : 100% pour les dimanches et jours fériés (Article 11).
+* **Repos compensateur :** Accord du 15 juillet 2003 (Astreintes) - Non étendu : Les modalités de repos compensateur sont celles prévues par la Convention Collective (Article 11). La convention ne précise pas les modalités de repos compensateur pour le travail du dimanche.
+* **Définition travail dimanche :** Accord du 15 juillet 2003 (Astreintes) - Non étendu :  Non précisé.
+* **Catégories personnel concernées/exclues :** Accord du 15 juillet 2003 (Astreintes) - Non étendu : Ouvriers Maîtres ou Chefs d'équipe niveau IV position I coefficient 250 et personnels techniques sous statut Etam et Cadre (Article 5).
+* **Conditions particulières :** Accord du 15 juillet 2003 (Astreintes) - Non étendu : L'entreprise prévoit les périodes d'astreintes sur l'année ou par trimestre. Le salarié peut demander par écrit un déplacement de sa période pour des circonstances particulières (Article 4). Un salarié ne pourra pas être d'astreinte plus d’une semaine sur trois, sauf circonstances exceptionnelles et avec accord écrit du salarié (Article 9).
+* **Cumul :** Accord du 15 juillet 2003 (Astreintes) - Non étendu : La majoration pour dimanche et jours fériés est de 100%.  Le paiement des heures d'intervention se cumule avec l’indemnité d’astreinte (Article 11).
+* **Spécificités départementales/régionales :**  La convention ne prévoit rien à ce sujet.

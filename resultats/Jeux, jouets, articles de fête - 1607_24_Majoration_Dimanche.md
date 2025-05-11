@@ -1,0 +1,7 @@
+* **Majoration de salaire:** 33 % du salaire individuel de base (Avenant n°33, 10 juin 2009, étendu).  Cette majoration inclut la majoration pour heure supplémentaire. (Article VI.2)
+* **Repos compensateur:** La convention prévoit la possibilité d'avantages particuliers ou d'un temps de repos compensateur, fixés par accord d'entreprise ou, en l'absence de délégué syndical et d'obligation de négociation annuelle, sur décision de l'employeur avec accord du comité d'entreprise ou des délégués du personnel. (Article VI.2, Avenant n°33, 10 juin 2009, étendu)
+* **Définition travail dimanche:** La convention ne précise pas les heures exactes constituant le travail du dimanche. (Article VI.2, Avenant n°33, 10 juin 2009, étendu)
+* **Catégories personnel concernées/exclues:** La convention ne prévoit rien à ce sujet. L'article VI.2 (Avenant n°33) mentionne que le travail du dimanche peut générer des compensations, sans spécifier de catégories concernées ou exclues.
+* **Conditions particulières :**  La convention ne prévoit rien concernant le volontariat, la planification, ou le nombre maximum de dimanches travaillés. Les accords d'entreprise peuvent fixer les modalités d'application pour le personnel concerné. (Article VI.2, Avenant n°33, 10 juin 2009, étendu)
+* **Cumul :** La majoration de 33% inclut la majoration pour heures supplémentaires. Pour le cumul avec d'autres majorations (nuit, férié), la convention ne prévoit rien de spécifique. (Article VI.2, Avenant n°33, 10 juin 2009, étendu).
+* **Spécificités départementales/régionales :** RAS.

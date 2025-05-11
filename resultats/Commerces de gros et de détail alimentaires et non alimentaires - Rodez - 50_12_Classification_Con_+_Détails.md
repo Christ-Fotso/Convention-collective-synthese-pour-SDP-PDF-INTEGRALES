@@ -1,0 +1,23 @@
+## Classification Con + Détails
+
+La convention collective des commerces de gros et de détail alimentaires et non alimentaires de Rodez (IDCC 50) contient une annexe "classification" (page 8 du document fourni).  Cette annexe liste 7 catégories de personnel avec des fonctions types associées. L'annexe ne mentionne ni les niveaux, ni les échelons, ni les coefficients, ni les statuts, ni les critères classants, ni les modalités d'évolution.  Il n'est pas fait mention de valeur de point.
+
+**Source : Annexe "Classification" de la convention collective.**
+
+| Catégorie | Libellé                                                                                                       | Statut(s)        | Critères Classants | Fonctions Types                                                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------- | --------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 1         | Personnel affecté au nettoyage                                                                                 | Statut non spécifié | RAS              | Personnel affecté au nettoyage                                                                                                       |
+| 2         | Garçon de magasin, livreur (non-encaisseur), manutentionnaire débiteur et manutentionnaire réserviste (3 à 6 mois de pratique), préparateur de commandes (non spécialisé), serveur (assimilé à préparateur et débiteur), employé aux écritures et dactylographe (3 à 6 mois de pratique) | Statut non spécifié | RAS              | Garçon de magasin, livreur (non-encaisseur), manutentionnaire débiteur, manutentionnaire réserviste, préparateur de commandes, serveur, employé aux écritures, dactylographe |
+| 3         | Manutentionnaire réserviste (6 mois à 3 ans de pratique), vérificateur de commandes et marqueur, préparateur de commandes (spécialisé), magasinier et réceptionnaire, vendeur de moins de 20 ans, vendeur et débiteur (6 mois à 3 ans de pratique), chiffreur, chiffreuse (décomptant), teneur de livres (sans opération comptable), dactylo 2e degré, caissier de petite caisse, chauffeur ordinaire | Statut non spécifié | RAS              | Manutentionnaire réserviste, vérificateur de commandes, marqueur, préparateur de commandes, magasinier, réceptionnaire, vendeur, chiffreur, chiffreuse, teneur de livres, dactylographe, caissier, chauffeur |
+| 4         | Manutentionnaire réserviste (après 3 ans), réceptionnaire spécialisé, chauffeur livreur, débiteur et vendeur (après 3 ans non spécialisé) (magasins populaires et assimilés), dactylographe facturière décomptant          | Statut non spécifié | RAS              | Manutentionnaire réserviste, réceptionnaire spécialisé, chauffeur livreur, débiteur, vendeur, dactylographe                             |
+| 5         | Chef d'équipe (manutention, préparation), chauffeur livreur encaisseur, débiteur vendeur (après 5 ans de pratique) (grands magasins et magasins populaires), vendeur, sténodactylographe, caissier et caissier libre-service     | Statut non spécifié | RAS              | Chef d'équipe, chauffeur livreur encaisseur, débiteur vendeur, vendeur, sténodactylographe, caissier                                     |
+| 6         | Vendeur qualifié (vendeur technique, vendeur retoucheur), chef de rayon, chef de file, premier vendeur, première vendeuse, aide-comptable                                                                           | Statut non spécifié | RAS              | Vendeur qualifié, chef de rayon, chef de file, premier vendeur, première vendeuse, aide-comptable                                       |
+| 7         | Vendeur très qualifié (chef de groupe), aide-comptable commercial                                                                                                                             | Statut non spécifié | RAS              | Vendeur très qualifié, aide-comptable commercial                                                                                    |
+
+
+La convention ne prévoit rien concernant les modalités d'évolution.
+
+La convention mentionne des salaires minimaux (article 18), mais ne précise pas leur lien avec la classification.  Les salaires minima n'ont pas été renégociés depuis 1976 (NDLR page 6 du document).
+
+
+La convention ne prévoit pas de spécificités régionales ou départementales concernant la classification.

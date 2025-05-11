@@ -1,0 +1,3 @@
+## Contrat de professionnalisation
+
+La convention collective ne prévoit pas de dispositions spécifiques concernant la rémunération, les majorations, la durée du contrat, la durée de la formation, la fonction tutorale, les avantages spécifiques, les modalités d'insertion ou des dispositions régionales particulières pour les contrats de professionnalisation.  La convention mentionne l'existence des contrats de professionnalisation dans le cadre de la formation professionnelle et précise l'applicabilité de l'accord interbranche du secteur alimentaire du 21 janvier 2020 relatif aux règles et modalités de prise en charge du contrat de professionnalisation et de la Pro A.

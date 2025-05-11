@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable:** 0,2% du montant des salaires servant de base à la taxe sur les salaires.  Ce taux est plafonné, il ne s'agit pas d'un taux "en plus" des obligations légales, mais d'une partie des fonds de la taxe affectée à la formation.
+- **Base de calcul spécifique:**  Montant des salaires servant de base à la taxe sur les salaires.
+- **Cotisation minimale due (conventionnelle):** Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention:** Non précisé.
+- **Affectation spécifique des fonds:** Financement de la formation des représentants du personnel au CHSCT.
+- **Entreprises/Salariés concernés:**  Représentants du personnel au CHSCT dans les établissements de plus de 50 salariés.
+- **Source de l’information:** Article 41 - Hygiène et sécurité.

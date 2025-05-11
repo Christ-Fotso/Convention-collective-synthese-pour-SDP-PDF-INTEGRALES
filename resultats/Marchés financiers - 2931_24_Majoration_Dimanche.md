@@ -1,0 +1,7 @@
+* **Majoration de salaire:** La convention ne prévoit rien à ce sujet.
+* **Repos compensateur:**  L'article 69 (Jours fériés) de la CCN des activités de marchés financiers précise : "sauf si l'Entreprise reste ouverte du fait de l'ouverture des principaux marchés, chambre de compensation ou systèmes de règlement-livraison dont dépend son activité. Dans ce dernier cas, l'employeur prévoit, au minimum, une journée de fermeture de remplacement ou attribue à chacun un congé compensatoire de même durée pris individuellement."  L'accord du 28 juin 2023 (Durée du travail) [étendu par arr. 8 nov. 2024, JO 27 nov.] à l'article 5 (Jours fériés)  précise : "sauf si l'entreprise reste ouverte du fait de l'ouverture des principaux marchés, chambre de compensation ou systèmes de règlement-livraison dont dépend son activité. Dans ce dernier cas, l'employeur doit prévoir, au minimum, une journée de fermeture de remplacement ou attribuer à chacun un congé compensatoire de même durée pris individuellement." Par ailleurs, tout salarié à qui il est demandé de travailler un jour de fermeture de l'entreprise bénéficie au minimum d'un congé compensatoire de même durée pris individuellement.
+* **Définition travail dimanche:** La convention ne prévoit rien à ce sujet.
+* **Catégories personnel concernées/exclues:** La convention ne prévoit rien à ce sujet.
+* **Conditions particulières :** La convention ne prévoit rien à ce sujet.
+* **Cumul :** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.

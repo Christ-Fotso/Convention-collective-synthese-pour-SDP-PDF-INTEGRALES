@@ -1,0 +1,20 @@
+- **Taux CONVENTIONNEL applicable :**
+    - Entreprises de moins de 10 salariés :
+        - 0,10% pour la formation en alternance de jeunes.
+        - 0,15% pour la formation professionnelle continue.
+    - Entreprises de 10 salariés et plus :
+        - 0,40% pour la formation en alternance.
+        - 0,30% pour la formation en alternance (entreprises non assujetties à la taxe d'apprentissage).
+        - 0,90% pour la formation continue (plan de formation).
+- Les taux sont en vigueur à la date de signature de l'accord, et peuvent être modifiés par de nouvelles dispositions légales, réglementaires ou conventionnelles.
+- **Base de calcul spécifique :** Masse salariale brute.
+- **Cotisation minimale due (conventionnelle)** Non précisée.
+- **Organisme collecteur DÉSIGNÉ par la convention :** OPCA AFOS-PME, section professionnelle nationale COPALIBI (Commerces de Papeterie, Librairie, Bureautique et Informatique).
+- **Affectation spécifique des fonds :**
+    - Remboursement des frais engagés par les entreprises (dépenses de fonctionnement, rémunération et charges sociales des stagiaires et tuteurs, frais annexes de transport et d'hébergement).
+    - Financement des frais d'études, d'information, de fonctionnement de la section COPALIBI et de communication sur la formation.
+    - Financement des actions de formation prioritaires en lien avec les emplois des entreprises (liste définie par la CPNEFP).
+    - Financement d'actions collectives de formation pour les PME-TPE.
+    - Financement du fonctionnement de l'observatoire prospectif des métiers et qualifications (dans la limite de 2% des collectes du 0,5% de la professionnalisation pour les entreprises de plus de 10 salariés, et du 0,15% pour les entreprises de moins de 10 salariés).
+- **Entreprises/Salariés concernés :** Entreprises ressortissant du champ d'application de la Convention Collective Nationale des Commerces de détail de Papeterie, Fournitures de Bureau, Bureautique et Informatique et de Librairie du 15 décembre 1988.
+- **Source de l’information :** Accord du 16 décembre 1994 (Formation Professionnelle), articles 1, 2, 3, 4, 5, 6 et annexes I, II, III.

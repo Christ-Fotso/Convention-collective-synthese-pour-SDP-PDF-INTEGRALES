@@ -1,0 +1,3 @@
+**Maintien de salaire en cas de maladie ordinaire**
+
+La convention collective ne prévoit rien concernant le maintien de salaire en cas de maladie ordinaire.  Cependant, elle aborde le maintien de salaire pour les congés de courte durée pour enfant malade ou conjoint gravement malade (Chapitre 5.2).  Elle mentionne également une future discussion concernant un régime de prévoyance obligatoire, incluant potentiellement des dispositions relatives à l'incapacité temporaire de travail (Chapitre 6.3) avant le 31 décembre 2020.  Cette date étant dépassée, il est possible qu'un accord ait été conclu ultérieurement, mais il n'est pas inclus dans le texte fourni.

@@ -1,0 +1,1 @@
+L'OPCA FAFIH est mentionné comme organisme collecteur (Textes complémentaires).  La convention ne précise pas si cette contribution est en supplément, ni le taux applicable, ni la base de calcul, ni une cotisation minimale, ni une affectation spécifique des fonds, ni les entreprises/salariés concernés.

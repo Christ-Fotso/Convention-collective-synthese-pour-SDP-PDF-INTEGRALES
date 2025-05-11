@@ -1,0 +1,4 @@
+- **Taux conventionnel :** 10 % (Article L.124-1-1 du Code du travail). La convention collective ne prévoit pas de taux spécifique.
+- **Réduction du taux :**  Autorisée. La convention collective ne précise pas les conditions de réduction.
+- **Cas d'exclusion spécifiques :** La convention collective ne prévoit pas de cas d'exclusion spécifiques.
+- **Modalités de versement :** La convention collective ne prévoit pas de modalités de versement particulières.

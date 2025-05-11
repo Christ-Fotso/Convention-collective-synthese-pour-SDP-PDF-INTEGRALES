@@ -1,0 +1,7 @@
+- Majoration de salaire : La convention ne prévoit rien à ce sujet.
+- Repos compensateur : La convention ne prévoit rien à ce sujet.
+- Définition travail dimanche : La convention ne prévoit rien à ce sujet.
+- Catégories personnel concernées/exclues : La convention ne prévoit rien à ce sujet.
+- Conditions particulières :  L'accord du 16 mai 1997 (étendu) limite à deux le nombre d'ouvertures des magasins les jours fériés en 1997, soit le 8 mai et le 11 novembre 1997.  L'accord précise également que le samedi 1er novembre 1997, tous les commerces seront impérativement fermés. L'accord du 2 décembre 1997 (étendu) rappelle l'opposition des partenaires sociaux à l'ouverture des magasins les dimanches et jours fériés.
+- Cumul : La convention ne prévoit rien à ce sujet.
+- Spécificités départementales/régionales : L'accord du 16 mai 1997 est élargi à certaines villes des Côtes-d'Armor (Saint-Brieuc, Lannion, Guingamp, Dinan, Paimpol, Lamballe et Loudéac).

@@ -1,0 +1,13 @@
+* **Taux CONVENTIONNEL applicable:** 1% du montant des rémunérations de l'année de référence pour le financement du plan de formation.  La convention ne précise pas si cette contribution est en supplément ou en remplacement de la contribution légale. La contribution légale pour le financement des actions de professionnalisation est également due.
+* **Base de calcul spécifique:** Non précisé.
+* **Cotisation minimale due (conventionnelle):** Non précisé.
+* **Organisme collecteur DÉSIGNÉ par la convention:** Initialement OPCALIA, puis remplacé par FAFSEA suite à l'Avenant du 28 novembre 2013 (non étendu).
+* **Affectation spécifique des fonds:** Non précisé.
+* **Entreprises/Salariés concernés:** L'Union Nationale des Maisons Familiales Rurales d'Éducation et d'Orientation et toutes les associations ou organismes qui lui sont adhérents, dans leurs relations avec l'ensemble de leur personnel.
+* **Source de l’information:** Article XXIX (initialement Article XXX avant l'Avenant du 8 mars 2017).  L'information sur le changement d'OPCO (OPCALIA vers FAFSEA) provient de l'Avenant du 28 novembre 2013 (non étendu).  L'accord du 24 septembre 2013 (non étendu) précise également la désignation de FAFSEA et l'abrogation de l'accord du 7 juin 2011 désignant OPCALIA.  L'accord du 11 décembre 2018 (non étendu) réaffirme l'attachement de la branche au FAFSEA, devenu OPCO.
+
+* **Contribution pour le financement du congé individuel de formation (CIF):**  La convention mentionne une contribution due auprès du FONGECIF pour le financement du CIF pour les associations employant 20 salariés et plus, mais ne précise pas de taux ou montant spécifique.  Il est probable qu'il s'agisse de la contribution légale, mais la convention n'est pas explicite à ce sujet.
+    * **Source de l'information:** Article XXIX (initialement Article XXX avant l'Avenant du 8 mars 2017).
+
+* **Capital de temps de formation:** Une contribution de 0,1% des salaires de l'année de référence, versée au GDFPE, est prévue pour le financement des actions de formation liées à l'obtention du « Certificat de Formation à la Pédagogie d’Alternance » délivré par l’ANFRA. Cette contribution est déduite de la contribution des entreprises au financement du congé individuel de formation.  Elle concerne un public prioritaire : les moniteurs de plus de 25 ans intervenant principalement dans l'apprentissage ou la formation professionnelle continue et ne pouvant bénéficier de la convention État/ANFRA pour le financement de leur formation pédagogique.
+    * **Source de l'information:** Accord du 6 mai 1997 (non étendu), article 5.

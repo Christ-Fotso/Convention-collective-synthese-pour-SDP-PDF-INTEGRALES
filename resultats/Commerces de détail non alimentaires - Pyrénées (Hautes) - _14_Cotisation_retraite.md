@@ -1,0 +1,1 @@
+Article 31 (Dispositions Particulières) : Les salaires visés au présent accord seront obligatoirement affiliés à une caisse complémentaire de retraite du type UNIRS, régime ARRCO, au taux de cotisation minimal obligatoire et selon la répartition prévue par la caisse entre les salariés et l'employeur.

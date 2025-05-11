@@ -1,0 +1,29 @@
+## Congés pour Événements Familiaux
+
+- **Mariage du salarié :**
+    - Durée conv. : une semaine
+    - Conditions spéc. : Après un an de présence. Quatre jours avant un an de présence.
+- **PACS du salarié :**
+    - Durée conv. : une semaine
+    - Conditions spéc. : Après un an de présence. Quatre jours avant un an de présence.
+- **Mariage d'un enfant :**
+    - Durée conv. : 2 jours
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Cérémonie officielle d'un enfant à charge (avant 16 ans) :**
+    - Durée conv. : 1 journée
+    - Conditions spéc. : Une fois avant le 16ème anniversaire, dûment justifiée.
+- **Déménagement du salarié :**
+    - Durée conv. : 1 jour
+    - Conditions spéc. : Par année civile.
+- **Décès du conjoint ou d'un enfant :**
+    - Durée conv. : 3 jours
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un des parents ou beaux-parents :**
+    - Durée conv. : 2 jours
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Décès d'un frère, d'une sœur ou de grands-parents :**
+    - Durée conv. : 1 jour
+    - Conditions spéc. : La convention ne prévoit rien à ce sujet.
+- **Jours supplémentaires pour décès :**
+    - Durée conv. : 1 jour supplémentaire
+    - Conditions spéc. : Déplacement à 300 km au moins du domicile.

@@ -1,0 +1,3 @@
+**Congés pour événements familiaux**
+
+La convention ne prévoit rien à ce sujet pour les congés pour événements familiaux.  Certains articles mentionnent des congés pour événements familiaux comme étant des absences rémunérées, mais sans plus de précisions.  Par exemple, l'annexe II de l'accord du 23 décembre 1981 modifié (Durée et aménagement du temps de travail) cite les "congés pour événements familiaux (mariage, Pacs, naissance…)" comme absences rémunérées, mais sans préciser les durées ni conditions.  De même, l'accord du 2 juin 2004 modifié (Formation professionnelle tout au long de la vie) mentionne dans son annexe II les "congés pour événements familiaux (mariage, Pacs, naissance…)" parmi les absences rémunérées sans en préciser la durée.

@@ -1,0 +1,9 @@
+- **Jours fériés chômés/payés :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail les jours fériés (hors 1er mai) :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail le 1er mai :** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur pour travail les jours fériés (hors 1er mai) :** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur pour travail le 1er mai :** La convention ne prévoit rien à ce sujet.
+- **Catégories de personnel concernées/exclues :** La convention ne prévoit rien à ce sujet.
+- **Conditions particulières (volontariat, planification, nombre max) :** La convention ne prévoit rien à ce sujet.
+- **Récupération des jours fériés chômés tombant un jour de repos habituel :**  Pour les magasins travaillant habituellement par roulement de six jours par semaine, les lundi de Pâques et de Pentecôte seront récupérés. (Article 22 - Congés payés)
+- **Spécificités départementales/régionales :** La convention ne prévoit rien à ce sujet.

@@ -1,0 +1,7 @@
+- **Taux CONVENTIONNEL applicable:** 0,95 % (entreprises de moins de 11 salariés) et 0,5 % (entreprises de 11 salariés et plus). Cette contribution est en supplément de la contribution légale.  Le déploiement de la contribution conventionnelle est progressif sur 4 ans pour les entreprises de moins de 11 salariés : Année 1 : 0,45%, Année 2 : 0,55%, Année 3 : 0,65%, Année 4 : 0,95%. Pour les entreprises de 11 salariés et plus : Année 1 : 0,15%, Année 2 : 0,30%, Année 3 : 0,40%, Année 4 : 0,50%. L’année 1 est l’année suivant l’extension de l’accord.
+- **Base de calcul spécifique:** Revenu d'activité retenu pour le calcul des cotisations sociales mentionnées à l'article L. 242-1 du code de la sécurité sociale.
+- **Cotisation minimale due (conventionnelle):** Non précisée.
+- **Organisme collecteur DÉSIGNÉ par la convention:** OPCO AKTO.
+- **Affectation spécifique des fonds:** Actions de développement des compétences, abondement des CPF, financement des travaux de création de certifications professionnelles, études prospectives sur l'évolution des emplois et des métiers, financement d’actions collectives, financement des travaux et études sur l’innovation pédagogique.
+- **Entreprises/Salariés concernés:** Toutes les entreprises de la branche.
+- **Source de l’information:** Accord du 18 décembre 2020 relatif à la formation professionnelle et au développement des compétences (Article 4.3).  

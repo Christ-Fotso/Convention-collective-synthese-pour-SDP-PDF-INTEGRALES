@@ -1,0 +1,1 @@
+La convention collective nationale du Bricolage (IDCC 1606) ne prévoit rien concernant les cotisations de retraite complémentaire AGIRC-ARRCO en dehors de ce qui est prévu par la loi.  L'accord du 11 décembre 2018 (étendu) institue une prévoyance complémentaire pour les non-cadres, mais ne mentionne pas de cotisation retraite.

@@ -1,0 +1,4 @@
+- **Taux conventionnel:** 10 % de l'ensemble des sommes brutes perçues (Article 3.5 - Emploi à durée déterminée).
+- **Réduction du taux:** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques:** La convention ne prévoit rien à ce sujet.
+- **Modalités de versement:** Versée dans les conditions prévues par la loi (Article 3.5 - Emploi à durée déterminée).

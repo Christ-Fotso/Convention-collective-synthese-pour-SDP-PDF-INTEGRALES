@@ -1,0 +1,1 @@
+La convention collective départementale du Bâtiment - ouvriers (Isère +10 salariés) - IDCC 2033 ne contient aucune disposition spécifique relative au temps partiel.  Par conséquent, pour chaque point demandé : La convention ne prévoit rien à ce sujet.

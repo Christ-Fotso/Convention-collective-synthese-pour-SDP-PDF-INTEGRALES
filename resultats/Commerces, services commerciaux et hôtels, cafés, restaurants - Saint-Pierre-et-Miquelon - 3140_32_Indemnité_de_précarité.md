@@ -1,0 +1,4 @@
+- **Taux conventionnel:** La convention ne prévoit pas de taux spécifique pour l'indemnité de fin de contrat CDD.
+- **Réduction du taux:** La convention ne prévoit pas de réduction du taux de l'indemnité de fin de contrat.
+- **Cas d'exclusion spécifiques:** La convention ne prévoit pas de cas d'exclusion spécifiques.
+- **Modalités de versement:**  L'article 35-6 précise : "Les salariés sous contrat de travail à durée déterminée (CDD) perçoivent une indemnité compensatrice de congés payés, dès lors que le régime de congés payés applicable dans l'entreprise ne leur permet pas une prise effective de ces congés quelle qu'en ait été la durée du contrat. Son montant ne peut être inférieur à 10 % de la rémunération totale brute due au salarié (indemnité de précarité comprise)."

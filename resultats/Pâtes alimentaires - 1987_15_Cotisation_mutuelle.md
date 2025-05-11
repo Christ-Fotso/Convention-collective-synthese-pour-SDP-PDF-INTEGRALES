@@ -1,0 +1,5 @@
+Garanties complémentaires de frais de santé
+
+La convention collective des Pâtes alimentaires (IDCC 1987) ne prévoit pas de régime de complémentaire santé obligatoire.  Elle mentionne cependant l'existence d'un accord sur les garanties complémentaires de frais de santé au sein de la CCN "Alimentation industries agro-alimentaires" (IDCC 3109), à laquelle la CCN Pâtes alimentaires a été rattachée par arrêté du 3 juin 2024 (JO, 19 juin 2024).  Il est donc nécessaire de se référer à la convention collective IDCC 3109 pour obtenir les informations relatives à la complémentaire santé.
+
+L'article 40 des dispositions communes de la convention collective IDCC 1987 aborde l'indemnisation maladie-accident et mentionne la possibilité pour les entreprises soumises à cet avenant de recourir à un régime collectif de prévoyance maladie-accident, tel que celui institué par ISICA Prévoyance, la cotisation afférente étant à la charge exclusive de l'employeur.  Cependant, il ne s'agit pas d'une complémentaire santé mais d'une prévoyance maladie-accident.

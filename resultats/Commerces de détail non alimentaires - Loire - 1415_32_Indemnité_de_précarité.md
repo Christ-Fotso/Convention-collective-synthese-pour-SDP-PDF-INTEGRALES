@@ -1,0 +1,4 @@
+- **Taux conventionnel :** La convention ne prévoit pas de taux spécifique pour l'indemnité de fin de contrat CDD.  Elle mentionne uniquement une prime de précarité "en pourcentage du salaire" conformément à la loi (Article 9).
+- **Réduction du taux :** La convention ne prévoit rien à ce sujet.
+- **Cas d'exclusion spécifiques :** La convention ne prévoit rien à ce sujet.
+- **Modalités de versement :** La convention ne prévoit rien à ce sujet.

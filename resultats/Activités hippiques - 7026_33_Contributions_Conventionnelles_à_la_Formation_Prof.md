@@ -1,0 +1,1 @@
+La convention ne prévoit pas de contribution spécifique ou supplémentaire à la formation professionnelle au-delà des obligations légales.  L'OCAPIAT est mentionné comme l'opérateur de compétences agréé pour les salariés de la branche (Article 4.1), ce qui relève des dispositions légales et non d'une contribution conventionnelle spécifique.

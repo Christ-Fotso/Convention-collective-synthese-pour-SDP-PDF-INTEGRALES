@@ -1,0 +1,7 @@
+- **Taux ou forfait CONVENTIONNEL applicable :** Non précisé. La convention mentionne que l'AGEFOS-PME Guyane est l'organisme désigné pour collecter les contributions des entreprises affectées au développement de la formation professionnelle, mais ne précise pas le taux applicable.
+- **Base de calcul spécifique :** Non précisé.
+- **Cotisation minimale due (conventionnelle)** : Non précisé.
+- **Organisme collecteur DÉSIGNÉ par la convention :** AGEFOS-PME Guyane.
+- **Affectation spécifique des fonds :** Développement de la formation professionnelle au niveau régional, conformément aux orientations et aux priorités définies par la commission visée à l'article 1.06 de la convention.
+- **Entreprises/Salariés concernés :** Toutes les entreprises relevant de la convention collective.
+- **Source de l’information :** Article 1.22.

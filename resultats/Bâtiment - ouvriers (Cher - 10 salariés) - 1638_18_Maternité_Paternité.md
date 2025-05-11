@@ -1,0 +1,3 @@
+**Maintien de salaire pendant les congés maternité, paternité/accueil de l'enfant, et adoption (IDCC 1638)**
+
+La convention collective ne prévoit rien concernant le maintien de salaire par l'employeur pendant les congés maternité, paternité/accueil de l'enfant et adoption.  Les articles 1.2 et 1.3 de la convention précisent que les titres II à XII de la convention collective nationale du 8 octobre 1990 constituent la première partie "Clauses générales", et que la deuxième partie "Clauses professionnelles" de la convention départementale est constituée par les articles 2.1 à 2.7.  Aucun de ces articles n'aborde les congés maternité, paternité, accueil de l'enfant ou adoption.

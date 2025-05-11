@@ -1,0 +1,1 @@
+L'indemnité de fin de contrat (ou indemnité de précarité) pour les CDD est régie par les dispositions légales. La convention ne prévoit pas de dispositions spécifiques concernant l'indemnité de fin de contrat CDD.

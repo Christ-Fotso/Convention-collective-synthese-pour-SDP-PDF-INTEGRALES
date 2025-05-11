@@ -1,0 +1,1 @@
+La convention collective ne prévoit rien à ce sujet concernant les cotisations de retraite complémentaire AGIRC-ARRCO.  L'article 2.8 mentionne la protection sociale, la retraite complémentaire et la prévoyance, recommandant aux entreprises d'adhérer à un régime médical complémentaire, mais sans donner de précisions sur les cotisations retraite.

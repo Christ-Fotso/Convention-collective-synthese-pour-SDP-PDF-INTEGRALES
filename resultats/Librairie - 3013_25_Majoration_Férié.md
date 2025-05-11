@@ -1,0 +1,11 @@
+**Jours fériés et Compensations (Article 55, Convention collective Librairie du 24 mars 2011)**
+
+* **Liste des jours fériés:** Le 1er mai est obligatoirement chômé. À l'initiative de l'employeur, au moins cinq autres jours de fête légale prévus par la loi et les usages locaux doivent être chômés. Ces jours sont communiqués aux salariés dès le premier mois de chaque année. La convention ne précise pas la liste des jours fériés légaux. La convention ne prévoit pas d'autres jours fériés locaux ou spécifiques.
+* **Jours fériés chômés/payés:** Les jours de fête légale sont payés si le salarié est présent le jour précédant et le jour suivant le jour férié, sauf autorisation d'absence préalablement accordée.
+* **Majoration salaire pour travail un jour férié (hors 1er mai):**  50 % (Article 55, alinéa 6). La convention ne prévoit pas de taux de majoration spécifique pour le 1er mai travaillé, mais précise que son traitement est régi par les dispositions légales.
+* **Repos compensateur (hors 1er mai):**  En alternative à la majoration, un repos compensateur de durée équivalente à la journée de travail effectuée le jour férié peut être accordé, si possible accolé à un jour de repos hebdomadaire (uniquement pour les librairies exerçant une activité de distribution de presse les obligeant à ouvrir les jours fériés - Article 55, dernier alinéa). La convention ne précise pas si cette alternative est applicable au 1er mai.
+* **Durée et modalités du repos (hors 1er mai):** Durée équivalente à la journée de travail effectuée, si possible accolé à un jour de repos hebdomadaire (Article 55, dernier alinéa).
+* **Catégories de personnel concernées/exclues:** La convention ne prévoit rien à ce sujet.
+* **Conditions particulières de travail un jour férié:** La convention ne prévoit rien à ce sujet.
+* **Récupération des jours fériés chômés tombant un jour de repos habituel:** Si le jour férié chômé coïncide avec le jour de repos habituel, un jour de compensation est attribué (Article 55, alinéa 5).
+* **Spécificités départementales/régionales:** La convention ne prévoit rien à ce sujet.  Cependant, l'article 55 mentionne "les usages locaux" en plus des jours de fête légale prévus par la loi, ce qui peut potentiellement introduire des variations. La convention ne détaille pas ces usages locaux.

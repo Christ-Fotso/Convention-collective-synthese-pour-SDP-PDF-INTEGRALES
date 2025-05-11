@@ -1,0 +1,46 @@
+## Congés pour événements familiaux
+
+- **Mariage du salarié:**
+    - Durée conventionnelle: 6 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Conclusion d'un Pacte Civil de Solidarité (PACS) par le salarié:**
+    - Durée conventionnelle: 6 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Naissance d'un enfant du salarié ou arrivée d'un enfant placé en vue de son adoption au foyer du salarié:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Annonce de la survenue d'un handicap, ou d'une pathologie chronique nécessitant un apprentissage thérapeutique ou d'un cancer chez l'enfant du salarié:**
+    - Durée conventionnelle: 5 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Mariage d'un enfant du salarié:**
+    - Durée conventionnelle: 1 jour
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Décès d'un enfant du salarié:**
+    - Durée conventionnelle: 4 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Congé de deuil en cas de décès d'un enfant du salarié:**
+    - Durée conventionnelle: 8 jours
+    - Conditions spécifiques: Peut être pris dans le délai d'un an à compter du décès et être fractionné.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.
+- **Décès du conjoint, du partenaire lié par un PACS, du concubin, du père, de la mère, du beau-père, de la belle-mère, d'une sœur ou d'un frère:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Décès d'un grand-parent du salarié:**
+    - Durée conventionnelle: 1 jour
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: 1 jour si l'événement a lieu à au moins 300 km du domicile du salarié.
+- **Présélection militaire:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.
+- **Période en tant que réserviste:**
+    - Durée conventionnelle: La convention ne précise pas la durée.
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires: La convention ne prévoit rien à ce sujet.

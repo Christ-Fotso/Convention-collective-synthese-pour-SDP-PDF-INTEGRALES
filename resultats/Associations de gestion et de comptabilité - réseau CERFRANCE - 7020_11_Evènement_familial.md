@@ -1,0 +1,14 @@
+## Congés pour événements familiaux
+
+- **Naissance ou adoption d'un enfant :** 3 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Mariage ou PACS du salarié :** 4 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Mariage d'un enfant du salarié :** 1 jour ouvré. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Annonce de la survenue d'un handicap chez un enfant du salarié :** 2 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Décès d'un enfant du salarié :** 5 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Décès du conjoint, du concubin, d'un partenaire lié par un PACS du salarié :** 5 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Décès du père, de la mère, du frère ou de la sœur du salarié, ou des parents du conjoint :** 3 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Décès des grands-parents et arrières grands-parents du salarié :** 2 jours ouvrés. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Décès des grands-parents et arrières grands-parents du conjoint du salarié :** 1 jour ouvré. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+- **Décès d'un frère, d'une sœur du conjoint du salarié :** 1 jour ouvré. La convention ne prévoit rien concernant les conditions d'ancienneté, le délai de prise, les justificatifs, les modalités de prise ou les jours supplémentaires.
+
+La convention précise que ces congés devront être pris dans un délai raisonnable, précédant ou suivant l'événement. Les jours d'absence ci-dessus n'entraînent pas de réduction de rémunération.  La convention indique également que les dispositions législatives et réglementaires accordant des jours de congés exceptionnels sont applicables, notamment celles prévues par l'article L. 3142-73 du code du travail.

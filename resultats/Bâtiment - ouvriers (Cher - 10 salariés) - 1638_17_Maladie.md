@@ -1,0 +1,3 @@
+La convention collective départementale du Cher pour les ouvriers du bâtiment (IDCC 1638) ne contient aucune disposition relative au maintien de salaire en cas de maladie ordinaire.  Les articles 1.2 et 1.3 précisent que les titres II à XII de la convention collective nationale du 8 octobre 1990 constituent la première partie "Clauses générales" de la présente convention.  Il est donc possible que les dispositions relatives au maintien de salaire en cas de maladie se trouvent dans cette convention collective nationale.  
+
+**RAS** concernant le maintien de salaire en cas de maladie dans la convention collective départementale.

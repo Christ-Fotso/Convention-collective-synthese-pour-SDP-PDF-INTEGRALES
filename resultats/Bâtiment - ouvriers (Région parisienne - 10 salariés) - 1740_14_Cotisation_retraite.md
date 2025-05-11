@@ -1,0 +1,7 @@
+L'article 1.9.9 mentionne l'obligation pour les employeurs de respecter l'accord du 13 novembre 1959 modifiant et codifiant l'accord du 13 mai 1959 instituant le régime de retraite complémentaire des ouvriers du bâtiment (et des travaux publics) agréé par arrêté ministériel du 2 mars 1960.  Il mentionne également l'accord collectif national du 31 juillet 1968 instituant le régime national de prévoyance des ouvriers du bâtiment (et des travaux publics) étendu par l’arrêté ministériel du 25 janvier 1974.
+
+L'article mentionne la CNRO (Caisse Nationale de Retraite des Ouvriers du bâtiment et des travaux publics) et la CNPO (Caisse Nationale de Prévoyance des Ouvriers du bâtiment et des travaux publics) comme organismes auxquels les entreprises du bâtiment doivent adhérer, en fonction de leur champ d’application professionnel.
+
+La convention ne précise pas les taux de cotisation, la répartition employeur/salarié, ni l'assiette de calcul.  Elle ne mentionne pas de taux spécifiques par catégorie.  La convention ne précise pas les dates d'application des accords mentionnés, au-delà de leurs dates de signature.
+
+Le Titre IV, Chapitre V mentionne, pour les employeurs relevant de la mutualité sociale agricole, l'obligation de respecter la convention collective nationale de retraite du 24 mars 1971 étendue par arrêté du 19 décembre 1975, ainsi que ses annexes et avenants.  La convention ne donne pas plus de détails sur les taux, assiettes ou répartitions pour ce régime spécifique.

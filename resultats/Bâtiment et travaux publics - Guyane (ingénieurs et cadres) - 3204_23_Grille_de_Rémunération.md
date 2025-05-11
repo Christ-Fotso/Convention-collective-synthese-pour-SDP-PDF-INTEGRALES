@@ -1,0 +1,3 @@
+La convention collective ne prévoit pas de grilles de salaires avec des valeurs chiffrées pour les 5 dernières années.  Elle mentionne que les barèmes des minima des ingénieurs et cadres sont fixés après négociation une fois par an (Article 4.1).  La valeur des minima est exprimée par un barème annuel et correspond à une durée de travail de 35 heures par semaine ou 35 heures en moyenne sur l'année.  La valeur des minima annuels est majorée de 15 % pour les ingénieurs et cadres bénéficiant d'une convention de forfait en jours sur l'année (Article 4.2). La convention ne précise pas les montants de ces minima.
+
+RAS

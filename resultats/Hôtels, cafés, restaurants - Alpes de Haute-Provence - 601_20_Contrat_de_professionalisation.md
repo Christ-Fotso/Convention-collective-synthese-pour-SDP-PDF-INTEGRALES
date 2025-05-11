@@ -1,0 +1,3 @@
+## Contrat de professionnalisation
+
+La convention collective ne prévoit pas de dispositions spécifiques aux contrats de professionnalisation.  L'article 18 mentionne les abattements d'âge pour les titulaires d'un CAP ou BEP, mais dans le cadre général des salaires et non spécifiquement pour les contrats de professionnalisation :  "Seize à dix-sept ans : 30 p. 100 ; Dix-sept à dix-huit ans : 20 p. 100. D'autre part, pour les titulaires d'un CAP ou BEP cet abattement ne pourra pas s'appliquer."  La convention indique également : "Les modalités d'organisation et de fonctionnement de l'apprentissage et de la formation professionnelle feront l'objet d'un avenant à la présente convention."  Cependant, cet avenant n'est pas fourni.

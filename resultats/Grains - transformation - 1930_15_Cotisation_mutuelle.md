@@ -1,0 +1,3 @@
+La convention collective des métiers de la transformation des grains (IDCC 1930) ne prévoit pas de régime de complémentaire santé obligatoire, mais mentionne l'existence d'un accord de branche relatif à la mise en place de garanties complémentaires de frais de santé.
+
+La convention fait référence à l'accord du 18 novembre 2014 de la CCN "Alimentation industries agro-alimentaire" pour les garanties complémentaires de frais de santé.  Aucune autre information (montant des cotisations, répartition, organisme, etc.) n'est fournie dans la convention collective des métiers de la transformation des grains.  Il faut donc se reporter au texte de la CCN "Alimentation industries agro-alimentaire" et son accord du 18 novembre 2014 pour obtenir les informations demandées.

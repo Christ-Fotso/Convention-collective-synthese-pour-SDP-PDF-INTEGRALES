@@ -1,0 +1,3 @@
+La convention collective départementale des ouvriers du bâtiment du Tarn (IDCC 1758) ne contient aucune disposition relative au maintien de salaire en cas de maladie.  L'article 1.2 de la convention indique que les titres II à XIII de la convention collective nationale du 8 octobre 1990 constituent la première partie « clauses générales » de la présente convention.  Il faudrait donc se référer à cette convention nationale pour obtenir les informations relatives au maintien de salaire en cas de maladie.  Cependant, le texte de cette convention nationale n'est pas fourni.
+
+Par conséquent, concernant le maintien de salaire en cas de maladie dans la convention collective départementale IDCC 1758 : **RAS**.

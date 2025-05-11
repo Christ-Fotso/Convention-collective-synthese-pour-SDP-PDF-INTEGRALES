@@ -1,0 +1,44 @@
+## Classification des Emplois chez Pôle Emploi (IDCC 2847)
+
+**Source :** Accord du 22 novembre 2017 (Agréé par Arr. 15 janv. 2018, JO 27 janv. et étendu par Arr. 28 déc. 2018, JO 29 déc., applicable à la date d'agrément) modifié par Accord 14 juin 2019, non étendu, applicable à compter de sa date de signature, relatif à la classification des emplois et à la révision de certains articles de la convention collective nationale de Pôle emploi.
+
+| Niveau | Échelon | Coefficient | Libellé | Statut(s) | Critères Classants | Fonctions Types / Emplois Repères |
+|---|---|---|---|---|---|---|
+| A |  | 400 | Assurer un service par la réalisation d'activités relevant de consignes précises, de méthodes ou de procédures simples dans un cadre normé. | Employé | Réalisation de tâches élémentaires; Application de modes opératoires simples; Reproduction d'actes professionnels courants et répétitifs; Échange ponctuel d'informations. | Agent qualifié; Assistant de gestion; Personnel d'entretien.  |
+| B | B1 | 426 | Assurer un service par la réalisation d'actions définies en organisant un ensemble d'activités, dans le cadre de procédures de travail existantes et des moyens mis à disposition. | Employé | Réalisation d'un enchaînement d'activités simples; Mise en œuvre de techniques et méthodes avec adaptation limitée; Choix des modalités d'exécution; Échange d'informations régulier. | Chargé d'accueil et d'information; Gestionnaire appui. |
+|  | B2 | 453 |  | Employé |  |  |
+| C | C1 | 478 | Assurer un service dans le cadre de situations professionnelles variées nécessitant d'adapter et/ou de choisir les moyens d'actions par des méthodes et des outils appropriés et coopérer avec les interlocuteurs internes/externes identifiés. | Employé | Réalisation d'actes professionnels relevant de situations variées; Exploitation des informations pour la prise de décision; Traitement de situations professionnelles variées; Recherche, traitement et échange régulier d'informations; Coopération avec une diversité d'interlocuteurs. | Conseiller à l'emploi; Conseiller adjoint. |
+|  | C2 | 504 |  | Employé |  |  |
+|  | C3 | 528 |  | Employé |  |  |
+| D | D1 | 551 | Assurer un service nécessitant d'analyser de manière complète des situations professionnelles variées et complexes et de choisir parmi les moyens mis à disposition ceux à engager ainsi que les méthodes à mettre en œuvre pour y répondre, et coordonner son action avec les interlocuteurs internes/externes en s'adaptant à la diversité des situations et des personnes. | Technicien | Analyse de situations professionnelles variées et complexes; Choix des moyens et des méthodes à mettre en œuvre; Coordination d'informations; Mobilisation de techniques maîtrisées; Apport de conseils techniques. | Technicien appui et gestion; Technicien informatique. |
+|  | D2 | 576 |  | Technicien |  | Technicien qualifié. |
+|  | D3 | 599 |  | Technicien |  |  |
+|  | D4 | 623 |  | Technicien |  |  |
+| E | E1 | 648 | Conduire et coordonner des activités opérationnelles et/ou encadrer une équipe pour améliorer le service : soit par la maîtrise d'un domaine d'activité permettant de définir les méthodes de travail et les moyens associés; soit par l'encadrement d'une équipe nécessitant l'animation et la gestion des ressources, la coordination et régulation des activités. | Agent de Maîtrise | Contribution à la définition des actions; Réalisation d'actions dans le cadre d'objectifs fixés; Proposition/construction de méthodes d'intervention; Maîtrise de plusieurs compétences; Coordination d'actions; Transmission de savoir-faire; Actions en partenariat; Mise en œuvre de processus. | Responsable d'équipe; Responsable d'accueil; Responsable d'équipe support; Référent métier. |
+|  | E2 | 675 |  | Agent de Maîtrise |  |  |
+|  | E3 | 702 |  | Agent de Maîtrise |  |  |
+|  | E4 | 730 |  | Agent de Maîtrise |  |  |
+| F | F1 | 759 | Conduire et coordonner des plans d'actions/missions, et/ou encadrer le travail d'une entité : soit par la mobilisation d'une expertise dans un domaine d'activité, pour réaliser des études/des analyses approfondies et élaborer des solutions nouvelles influant sur une ou plusieurs entités; soit par le management des ressources et des moyens pour orienter l'action des agents ou des partenaires vers la réalisation des objectifs et l'amélioration de la qualité du service. | Cadre | Élargissement du champ d'intervention; Proposition et mise en œuvre de solutions nouvelles; Définition et organisation des méthodes de travail; Travail en interdisciplinarité; Apport de conseil expert; Développement et animation d'un réseau. | Directeur d'agence; Directeur adjoint d'agence; Responsable de service; Chargé de projet emploi; Cadre opérationnel; Cadre appui et gestion; Ingénieur d'application. |
+|  | F2 | 789 |  | Cadre |  |  |
+|  | F3 | 820 |  | Cadre |  |  |
+|  | F4 | 852 |  | Cadre |  |  |
+| G | G1 | 885 | Définir et mettre en œuvre les actions contribuant à l'atteinte des objectifs stratégiques, en organisant les moyens et les ressources et en mobilisant un réseau d'acteurs/partenaires : soit par le pilotage d'un ensemble d'activités complexes nécessitant une expertise dans un ou plusieurs domaines d'activité; soit par le pilotage d'une ou plusieurs entités. | Cadre | Pilotage de plusieurs expertises; Définition et conduite du déploiement opérationnel de politiques; Choix de l'affectation des ressources; Mise en œuvre d'actions dans le cadre d'objectifs stratégiques; Travail en interdisciplinarité; Négociation avec un réseau d'acteurs; Analyse systémique de l'environnement. |  |
+|  | G2 | 920 |  | Cadre |  |  |
+|  | G3 | 955 |  | Cadre |  |  |
+|  | G4 | 991 |  | Cadre |  |  |
+| H | H1 | 1028 | Mettre en œuvre les objectifs stratégiques, décider de l'organisation, de l'allocation des moyens et des ressources pour déployer la stratégie définie sur son champ de responsabilité, fédérer l'ensemble des acteurs internes/externes autour de l'atteinte des résultats visés, développer et optimiser les réseaux relationnels : soit au niveau d'une fonction, d'un ensemble d'entités, soit au niveau de domaines d'intervention transverses. | Cadre | Analyse approfondie et experte de l'environnement; Anticipation des évolutions; Latitude à proposer et décider de l'organisation générale; Évaluation et pilotage de la maîtrise des risques; Négociation des moyens alloués; Pilotage de projets transverses; Mise en place de stratégies de communication et d'influence; Conception de modèles ou de systèmes. |  |
+|  | H2 | 1066 |  | Cadre |  |  |
+|  | H3 | 1105 |  | Cadre |  |  |
+|  | H4 | 1145 |  | Cadre |  |  |
+| I | I1 | 1186 | Gérer dans sa globalité et de manière prospective un large périmètre géographique ou fonctionnel, nécessitant une participation active à la définition de la stratégie et la prise de décisions impactant significativement ou durablement l'organisation, les moyens et les résultats. | Cadre | Participation à la définition des objectifs stratégiques; Innovation et projection; Évaluation et pilotage de la maîtrise des risques stratégiques et politiques; Animation/coordination de domaines stratégiques; Portage stratégique des politiques. |  |
+|  | I2 | 1227 |  | Cadre |  |  |
+|  | I3 | 1270 |  | Cadre |  |  |
+|  | I4 | 1314 |  | Cadre |  |  |
+
+
+**Modalités d'évolution :**  L'évolution de carrière se fait par changement d'échelon, changement de niveau ou relèvement de traitement (article 19 de la CCN, modifié par l'accord). Le changement d'échelon intervient au sein d'un même niveau (article 20 §3a CCN). Le changement de niveau intervient vers le niveau supérieur dans l'amplitude de l'emploi (article 20 §3b CCN). Le relèvement de traitement est pour les agents au dernier échelon du dernier niveau de leur emploi ou "hors amplitude". L'accord précise des "situations spécifiques" et des "principes pour un déroulement de carrière minimum" (article 20 § 3 et 4 CCN, modifiés). Un processus de promotion annuel est prévu (article 7 de l'accord).
+
+**Lien avec la rémunération :** La rémunération est composée d'une partie fixe, d'une valeur du point et d'un coefficient (article 12 de la CCN, modifié par l'accord). Le salaire de base = Partie Fixe + (Valeur du point x Coefficient). Le salaire minimum garanti est fixé au coefficient 400. La valeur du point et la partie fixe sont fixées par la négociation annuelle obligatoire.
+
+
+**Spécificités régionales/départementales :**  La convention prévoit des adaptations pour les DOM (article 50), mais ne détaille pas de classification spécifique. L'accord de classification ne mentionne pas de spécificités régionales ou départementales pour la classification elle-même, mais indique que le positionnement dans la classification est applicable aux agents des DOM et de Saint-Pierre-et-Miquelon.

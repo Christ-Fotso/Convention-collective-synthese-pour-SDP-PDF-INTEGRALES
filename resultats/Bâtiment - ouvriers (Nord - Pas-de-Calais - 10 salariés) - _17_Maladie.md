@@ -1,0 +1,1 @@
+La convention collective ne prévoit rien concernant le maintien de salaire en cas de maladie ordinaire.  Les titres II à XII de la Convention Collective Nationale du 8 octobre 1990, intégrée dans la convention collective régionale, pourraient contenir des dispositions à ce sujet, mais le texte de la convention collective régionale fournie ne les détaille pas.

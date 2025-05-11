@@ -1,0 +1,1 @@
+La convention ne prévoit pas d'organisme paritaire spécifique avec une contribution dédiée.  Cependant, l'article 26.3 mentionne que les frais de déplacement, de repas et d'hébergement des membres de la Commission Paritaire sont à la charge de la Fédération Nationale des CIVAM.  La convention ne précise pas les modalités de financement de la Fédération Nationale des CIVAM.

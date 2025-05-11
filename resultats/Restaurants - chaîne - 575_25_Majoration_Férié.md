@@ -1,0 +1,6 @@
+- **Jours fériés chômés/payés :** 6 jours fériés payés ou compensés en période de morte-saison, non compris le 1er mai, pour le personnel présent depuis plus d'un an dans l'établissement (Article 17, modifié par avenant du 27 septembre 1978). La convention ne précise pas la liste des jours fériés concernés.
+- **Majoration salaire pour travail les jours fériés (hors 1er mai) :** La convention ne prévoit rien à ce sujet.
+- **Majoration salaire pour travail le 1er mai :** La convention ne prévoit rien à ce sujet.
+- **Repos compensateur :** La convention ne prévoit rien à ce sujet.
+- **Récupération des jours fériés tombant un jour de repos habituel :** La convention ne prévoit rien à ce sujet.
+- **Spécificités départementales/régionales :** RAS.

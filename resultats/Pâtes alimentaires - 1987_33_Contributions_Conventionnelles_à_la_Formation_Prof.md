@@ -1,0 +1,7 @@
+* **Taux CONVENTIONNEL applicable:** Non précisé. La convention mentionne des accords interprofessionnels et de branche relatifs aux objectifs et moyens de la formation, mais ne spécifie pas de taux conventionnel propre.
+* **Base de calcul spécifique:** Non précisé.
+* **Cotisation minimale due (conventionnelle):** Non précisé.
+* **Organisme collecteur DÉSIGNÉ par la convention:** AGEFAFORIA (mentionné dans un avenant datant de 2005 concernant les Certificats de Qualification Professionnelle - CQP).  Un accord ultérieur de 2014 mentionne un organisme paritaire collecteur, mais renvoie à la convention collective "Alimentation : industries agro-alimentaires" pour plus de détails.
+* **Affectation spécifique des fonds:** Pour les CQP, l'avenant de 2005 précise que l'organisme collecteur (à l'époque AGEFAFORIA)  organise la préparation des CQP,  les épreuves d'évaluation,  et délivre les certificats.
+* **Entreprises/Salariés concernés:**  Les salariés des entreprises relevant de la Convention Collective des Pâtes alimentaires sèches et du couscous non préparé signée le 3 juillet 1997.  L'avenant de 2005 sur les CQP vise les mêmes entreprises et salariés.
+* **Source de l’information:** Article 56 (Formation, apprentissage) mentionne des accords interprofessionnels et de branche. Avenant n° 2005-01 du 14 avril 2005 (étendu) relatif aux CQP. Textes complémentaires "Fusion entre la convention collective..." mentionne un accord de 2014 renvoyant à une autre convention collective.

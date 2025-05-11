@@ -1,0 +1,56 @@
+## Congés pour Évènements Familiaux
+
+- **Mariage (du salarié):**
+    - Durée conventionnelle: 4 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Conclusion d'un PACS (du salarié):**
+    - Durée conventionnelle: 4 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Mariage d'un enfant:**
+    - Durée conventionnelle: 1 jour
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Naissance:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: Survenue au foyer du salarié.
+- **Arrivée d'un enfant placé en vue de son adoption:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: Arrivée au foyer du salarié.
+- **Décès d'un enfant:**
+    - Durée conventionnelle: 5 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant de moins de 25 ans (ou parent, ou à charge effective et permanente du salarié):**
+    - Durée conventionnelle: 7 jours ouvrés
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du conjoint:**
+    - Durée conventionnelle: 5 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du partenaire de PACS:**
+    - Durée conventionnelle: 5 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du concubin:**
+    - Durée conventionnelle: 5 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du père, de la mère, du beau-père, de la belle-mère:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès d'un frère ou d'une sœur:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès d'un petit-enfant:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du gendre ou de la belle-fille:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès d'un beau-frère ou d'une belle-sœur:**
+    - Durée conventionnelle: 1 jour
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du grand-père ou de la grand-mère:**
+    - Durée conventionnelle: 1 jour
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.
+- **Décès du grand-père ou de la grand-mère avec déplacement de plus de 300 km:**
+    - Durée conventionnelle: 2 jours
+    - Conditions spécifiques: Déplacement nécessaire.
+- **Annonce de la survenue d'un handicap chez un enfant:**
+    - Durée conventionnelle: 3 jours
+    - Conditions spécifiques: La convention ne prévoit rien à ce sujet.

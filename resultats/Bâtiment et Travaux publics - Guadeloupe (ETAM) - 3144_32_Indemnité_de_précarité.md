@@ -1,0 +1,1 @@
+L'article 2.5 de la convention collective prévoit une indemnité de fin de contrat pour les ETAM embauchés en contrat à durée déterminée conformément aux dispositions législatives et réglementaires en vigueur. La convention ne prévoit pas de dispositions spécifiques concernant le taux, les réductions de taux, les cas d'exclusion ou les modalités de versement de cette indemnité.

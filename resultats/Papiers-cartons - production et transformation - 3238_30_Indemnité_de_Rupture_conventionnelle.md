@@ -1,0 +1,1 @@
+La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.  L'article 84.2 mentionne uniquement que la loi prévoit que l'employeur et le salarié peuvent convenir en commun des conditions de la rupture du contrat de travail qui les lie.

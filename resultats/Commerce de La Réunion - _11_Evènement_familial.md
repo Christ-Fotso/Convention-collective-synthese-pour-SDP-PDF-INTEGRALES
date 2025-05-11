@@ -1,0 +1,12 @@
+## Congés pour événements familiaux
+
+- **Mariage du salarié:** 4 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Mariage d'un enfant:** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Décès du conjoint ou d'un enfant:** 3 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Décès du père ou de la mère:** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Décès de beaux-parents:** 2 jours. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Décès d'un frère, d'une sœur, d'un beau-frère, d'une belle-sœur ou d'un grand-parent:** 1 jour. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Communion solennelle d'un enfant du salarié ou tout autre événement religieux à caractère similaire et non renouvelable:** 1 jour. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Conseil de révision:** 1 jour (mentionné dans l'article 55, renvoyant à l'article 45). La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Présélection militaire:** 3 jours (mentionné dans l'article 55, renvoyant à l'article 45). La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi, les modalités de prise et les jours supplémentaires.
+- **Déménagement (pour changement de domicile):** 1 jour. La convention ne prévoit rien à ce sujet concernant le type de jours, les conditions d'octroi et les modalités de prise. Concernant les jours supplémentaires, la convention mentionne : "Pour tenir compte de l'éloignement du département par rapport aux autres, une autorisation d'absence pourra être accordée pour les délais de transport. L'absence sera, au choix du salarié, soit non rémunérée, soit imputée sur ses droits à congés annuels."

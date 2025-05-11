@@ -1,0 +1,10 @@
+* **Indemnités de frais de déplacement pour les négociateurs de la CPPNI:** Remboursement sur justificatif des frais de transport, de repas et d'hébergement.  Repas : 5 fois la valeur du minimum garanti (la valeur du minimum garanti n'est pas définie dans la convention). Hébergement (journée, repas et hébergement compris) : 20 fois la valeur du minimum garanti (la valeur du minimum garanti n'est pas définie dans la convention). Déplacements : tarif SNCF 2e classe. (Article 5.5 c) de la convention, applicable à compter du 1er jour du mois suivant la publication de l'arrêté d'extension de l'accord du 10 octobre 2022). L'accord du 10 octobre 2022 est étendu par arrêté du 12 février 2024.
+
+* **Prime de panier (Travail de nuit):**  Pour une durée de travail de nuit de plus de 4 heures, prime de panier égale à 1 fois et demi le minimum garanti. (Article 29) (la valeur du minimum garanti n'est pas définie dans la convention).
+
+* **Indemnité pour les saisonniers non reconduits :** Indemnité correspondant à 10 % de l'ensemble des salaires perçus pendant la saison. (Article 18 - Contrats précaires)
+
+* **Indemnité compensatrice de non-concurrence (Cadres):** En cas de démission, le taux de la contrepartie mensuelle est de 10 % du salaire mensuel global moyen des douze mois précédant la rupture, si la durée de l'interdiction est de six mois et de 15 % pour le surplus. En cas de licenciement, ce taux sera de 20 % pour les six premiers mois et de 25 % pour les suivants. (Annexe IV - Avenant cadres, Article 4).
+
+* **Frais de déménagement (Cadres):** En cas de mutation nécessitant un changement de résidence,  remboursement des frais de déménagement et des frais de transfert de l'intéressé et de sa famille, après accord entre l'employeur et le salarié, sur le montant du devis présenté par le salarié. (Annexe IV - Avenant cadres, Article 3)
+* **Frais de voyage (Cadres - Mutation):** En cas de mutation nécessitant un changement de résidence, voyage à la charge de l'employeur, après accord entre ce dernier et l'intéressé, au lieu de l'affectation envisagée pendant le délai de trois semaines de réflexion. (Annexe IV - Avenant cadres, Article 3).

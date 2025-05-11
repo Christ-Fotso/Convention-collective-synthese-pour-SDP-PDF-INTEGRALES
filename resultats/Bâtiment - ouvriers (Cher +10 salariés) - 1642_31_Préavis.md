@@ -1,0 +1,5 @@
+| Catégorie | Ancienneté | Préavis Lic. | Préavis Dém. | Préavis Départ Ret. | Préavis Mise Ret. | Heures Rech. Emploi |
+|---|---|---|---|---|---|---|
+| Ouvriers |  | La convention ne prévoit rien à ce sujet. | La convention ne prévoit rien à ce sujet. | La convention ne prévoit rien à ce sujet. | La convention ne prévoit rien à ce sujet. | La convention ne prévoit rien à ce sujet. |
+
+La convention collective départementale du Cher (IDCC 1642) du 16 décembre 1991, étendue par arrêté du 24 juillet 1992, est dénoncée depuis le 12 février 2018. Les accords de salaire, indemnités de petits déplacements et indemnités pour les maîtres d'apprentissage confirmés restent en vigueur.  La convention indique que les titres II à XII de la convention collective nationale des ouvriers du bâtiment (entreprises de + de 10 salariés) du 8 octobre 1990 constituent la première partie ("Clauses générales") de la convention départementale.  Les informations relatives aux préavis et aux heures de recherche d'emploi devraient donc se trouver dans cette convention nationale si elles existent.  La convention départementale elle-même ne contient aucune information sur ces points.

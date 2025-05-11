@@ -1,0 +1,38 @@
+## Classification Con + Détails
+
+**Source :** Annexe "Classification" - Accord du 10 août 1978 (Modifié par accord du 22 mai 1979, étendu par arrêté du 3 janvier 1992, JO 11 janvier 1992)
+
+| Niveau (Groupe) | Coefficient | Libellé | Statut(s) | Critères | Fonctions Types |
+|---|---|---|---|---|---|
+| I | 130 |  Exécution de travaux ne demandant qu'une mise au courant sommaire. | Ouvrier, Employé, Technicien | Travaux élémentaires, souvent répétitifs, indépendants les uns des autres, effectués suivant des consignes précises, détaillées et contrôlables immédiatement. Connaissances acquises au cours de la scolarité obligatoire.  | Statut non spécifié |
+| I | 140 | Exécution de travaux nécessitant une durée d'adaptation n'excédant pas normalement un mois. | Ouvrier, Employé, Technicien | Idem | Travaux sur machine ou à l'aide d'un outillage approprié. |
+| II | 150 | Exécution de travaux qualifiés courants. | Ouvrier, Employé, Technicien | Exécution de travaux qui constituent une suite ordonnée d'opérations effectuées suivant les instructions. Connaissances sanctionnées par un CAP ou un BEP. | Statut non spécifié |
+| II | 160 | Exécution de travaux qualifiés nécessitant la mise en œuvre d'une bonne connaissance du métier acquise par une expérience suffisante. | Ouvrier, Employé, Technicien | Idem | Statut non spécifié |
+| III | 175 | Mise en œuvre de moyens connus, d'une expérience particulière du métier et de l'esprit d'initiative pour exécuter des travaux comportant des difficultés techniques d'un bon niveau. | Ouvrier, Employé, Technicien | Exécution d'un programme d'opérations complexes du fait de leur technicité ou de leur diversité. Opérations effectuées selon des modalités générales d'utilisation de moyens connus. Connaissances acquises à l'issue de trois années au-delà de la troisième, sanctionnées par le baccalauréat.  | Statut non spécifié |
+| III | 190 | Mise en œuvre de moyens connus et diversifiés pour exécuter des travaux requérant des initiatives et des connaissances professionnelles étendues.  | Ouvrier, Employé, Technicien | Idem | Statut non spécifié |
+| III | 205 | Dans le cadre de consignes générales larges, exécution de travaux comportant des difficultés techniques sérieuses. L'exécution des travaux exige des efforts de réflexion ; le contrôle en est le plus souvent effectué par sondage. | Ouvrier, Employé, Technicien | Idem | Statut non spécifié |
+| IV | 225 | Agent de maîtrise : encadrement permanent d'une équipe d'exécutants classés le plus souvent au groupe I.  Technicien : fonction exigeant des connaissances acquises par une formation pouvant être sanctionnée par un BTS ou un DUT, ou par une expérience pratique équivalente. | Agent de maîtrise, Technicien |  Fonctions avec objectifs à atteindre par l'utilisation de moyens ou méthodes normalement connus. Prise de décisions pouvant avoir des conséquences sur les hommes, les moyens, les matières, les programmes, les coûts. Coordination, gestion et formation du personnel. Connaissances acquises à l'issue de deux années d'études après le baccalauréat, sanctionnées par le BTS, le DUT, ou autre diplôme équivalent. |  Statut non spécifié |
+| IV | 235 | Agent de maîtrise : encadrement d'un groupe pouvant comporter du personnel classé aux groupes I, II et III. Technicien : connaissances générales et techniques du coefficient précédent, avec une expérience pratique suffisante.  | Agent de maîtrise, Technicien | Idem | Assistance à des agents de classification inférieure. |
+| IV | 250 | Agent de maîtrise : encadrement d'un groupe pouvant comporter un ou des agents de maîtrise de classification inférieure. Technicien : connaissances professionnelles et une expérience étendues. | Agent de maîtrise, Technicien | Idem | Assistance technique et contrôle d'agents de classification inférieure. |
+| IV | 275 | Agent de maîtrise : encadrement d'un groupe comportant un ou plusieurs agents de maîtrise de classification inférieure. Technicien : connaissances et une expérience permettant d'adapter ou de transposer à des situations nouvelles des moyens ou des méthodes déjà appliqués. | Agent de maîtrise, Technicien | Idem | Assistance technique et contrôle d'agents de classification inférieure. |
+| IV | 300 | Agent de maîtrise : encadrement d'un groupe comportant plusieurs agents de maîtrise de classification inférieure. Technicien : compétence acquise permettant d'intervenir dans des cas inhabituels ou difficiles. | Agent de maîtrise, Technicien | Idem |  Proposition de modifications des méthodes ou des procédures existantes. |
+| IV | 325 | Agent de maîtrise : animation et coordination des groupes. Technicien : connaissances approfondies et la très large expérience recouvrant plusieurs techniques. | Agent de maîtrise, Technicien | Idem | Statut non spécifié |
+| IV | 360 | Idem | Agent de maîtrise, Technicien | Idem | Statut non spécifié |
+| V | 350 | Ingénieurs et cadres débutants. | Ingénieur, Cadre | Fonctions pour lesquelles sont définis les politiques ou les objectifs généraux. Compétences techniques et aptitudes à participer à la gestion économique. Animation et motivation des collaborateurs. Esprit de créativité et d'innovation. Autonomie et prise d'initiatives.  Connaissances sanctionnées par un diplôme d'ingénieur, HEC, Sciences Po, écoles supérieures de commerce, 2e cycle universitaire, doctorat d'État ou agrégation. | Statut non spécifié |
+| V | 400 | Ingénieurs et cadres agissant à partir de directives. | Ingénieur, Cadre | Idem | Animation et coordination de l'activité des agents de maîtrise et techniciens. Assistance aux ingénieurs et cadres d'un niveau supérieur. Participation à la définition des objectifs de leur secteur. |
+| V | 460 | Ingénieurs et cadres agissant à partir de directives générales.  | Ingénieur, Cadre | Idem | Animation et coordination de l'activité des agents de maîtrise, techniciens ou cadres des coefficients précédents. |
+| V | 550 | Ingénieurs et cadres assumant des responsabilités importantes.  | Ingénieur, Cadre | Idem | Animation et coordination de l'activité des agents de maîtrise, techniciens et cadres des coefficients précédents. |
+| V | 660 | Ingénieurs et cadres assumant la responsabilité d'une unité importante, de plusieurs unités, d'un établissement d'importance moyenne, ou d'un important secteur d'activité. | Ingénieur, Cadre | Idem | Statut non spécifié |
+| V | 770 | Ingénieurs et cadres exerçant des responsabilités importantes nécessitant une compétence étendue et de haut niveau. | Ingénieur, Cadre | Idem | Participation à l'élaboration et à la définition des politiques, des structures et des objectifs. |
+| V | 880 | Ingénieurs et cadres dont la classification se justifie par la haute compétence et les responsabilités étendues. | Ingénieur, Cadre | Idem | Cadres dirigeants. |
+
+
+**Chef d'équipe (Groupes I, II et III):** Ouvrier assurant la conduite d'une équipe sans assumer les responsabilités d'un agent de maîtrise. Majoration de 10% (équipe de 5 personnes ou moins) ou 15% (équipe de plus de 5 personnes).
+
+**Employé principal (Groupes I, II et III):** Employé coordonnant le travail de plus de 5 employés sans assumer les responsabilités d'un agent de maîtrise. Supplément de 20 points.
+
+**Modalités d'évolution:** La convention ne prévoit rien à ce sujet hormis les garanties à l'embauche et en cours de carrière pour les titulaires de diplômes (voir Document III de l'annexe classification).
+
+**Lien avec rémunération:** Les salaires minimums mensuels sont déterminés en fonction du coefficient hiérarchique. (Voir Annexe "Salaires"). La convention utilise la "Valeur du Point" pour certains calculs, notamment les primes.
+
+**Spécificités régionales/départementales:** La convention ne prévoit rien à ce sujet.

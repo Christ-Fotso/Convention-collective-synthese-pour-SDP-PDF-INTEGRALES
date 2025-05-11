@@ -1,0 +1,7 @@
+**Délai de prévenance - Fin de période d'essai :** La convention ne prévoit rien à ce sujet.
+
+**Délais de prévenance - Autres cas :**
+
+* **Travaux de nuit programmés:** 7 jours calendaires pour informer le salarié.  Ceci concerne les travaux de nuit programmés d'une durée supérieure à 3 jours calendaires, effectués entre 21 heures et 6 heures, pour assurer la continuité des activités de l'entreprise ou pour répondre aux exigences de réalisation de marchés.  Le chef d'entreprise ou son représentant doit respecter ce délai après information du comité d'entreprise ou, à défaut, des délégués du personnel s'il en existe dans l'entreprise. (Article 2.1.1)
+* **Travail en équipe:** 7 jours calendaires pour informer le salarié. Ceci concerne l'organisation du travail en deux ou trois équipes successives, ou en équipes chevauchantes, pour des raisons techniques ou de sécurité, ou pour le personnel affecté à des activités de maintenance, d'entretien ou de dépannage. Le chef d'entreprise ou son représentant doit respecter ce délai après consultation du comité d'entreprise ou, à défaut, des délégués du personnel s'il en existe dans l'entreprise. (Article 2.2)
+* **Participation aux commissions paritaires départementales:** 2 jours ouvrés avant la date de la réunion paritaire, sauf cas de force majeure. Ceci concerne les salariés participant aux réunions paritaires convoquées à l'initiative des organisations départementales d'employeurs signataires.  (Article 2.8)

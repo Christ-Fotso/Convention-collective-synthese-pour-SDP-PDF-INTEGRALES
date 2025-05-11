@@ -1,0 +1,3 @@
+### Aménagement du temps de travail
+
+La convention collective du bâtiment - ouvriers (Corse) - IDCC 2145 ne prévoit pas de dispositions spécifiques concernant l'annualisation, les cycles ou la modulation du temps de travail.  Les informations concernant le temps de travail exceptionnel, de nuit, du dimanche et des jours fériés sont précisées dans la section "Majorations pour travail exceptionnel, de nuit, du dimanche et d'un jour férié" (Article 2-1).  Les informations relatives aux travaux continus et par roulement sont traitées dans la section "Travaux continus et par roulement" (Article 2-2).  Au-delà de ces points, la convention est muette sur les dispositifs d'aménagement du temps de travail.

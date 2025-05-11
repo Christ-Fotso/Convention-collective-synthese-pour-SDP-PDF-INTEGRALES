@@ -1,0 +1,44 @@
+## Congés pour événements familiaux (IDCC 1486 - Avril 2025)
+
+- **Mariage (du salarié) ou conclusion d'un PACS (du salarié) :**
+    - Durée conventionnelle : 4 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Naissance ou adoption :**
+    - Durée conventionnelle : 3 jours ouvrés
+    - Conditions spécifiques : Consécutifs ou non, inclus dans une période de 15 jours entourant la date de naissance ou suivant l'arrivée au foyer de l'enfant placé en vue de son adoption.
+- **Décès du conjoint, du partenaire de PACS, ou du concubin :**
+    - Durée conventionnelle : 3 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant  :**
+    - Durée conventionnelle : 5 jours ouvrés si l'enfant est âgé de plus de 25 ans ; 7 jours ouvrés si l'enfant est âgé de moins de 25 ans ou si l'enfant, quel que soit son âge, était lui-même parent.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Décès d'une personne à charge effective et permanente du salarié (moins de 25 ans) :**
+    - Durée conventionnelle : 7 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Mariage d'un enfant :**
+    - Durée conventionnelle : 1 jour ouvré.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Décès du père ou de la mère :**
+    - Durée conventionnelle : 3 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Décès des autres ascendants :**
+    - Durée conventionnelle : 2 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Décès de ses collatéraux (frère ou sœur) :**
+    - Durée conventionnelle : 3 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Décès du beau-père ou de la belle-mère (parents de l'époux ou du partenaire de PACS) :**
+    - Durée conventionnelle : 3 jours ouvrés.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Annonce de la survenue d'un handicap chez un enfant :**
+    - Durée conventionnelle : 2 jours.
+    - Conditions spécifiques : La convention ne prévoit rien à ce sujet.
+- **Congé de deuil (enfant de moins de 25 ans ou personne à charge de moins de 25 ans) :**
+    - Durée conventionnelle : 8 jours (en plus du congé pour assister aux obsèques).
+    - Conditions spécifiques : Peut être fractionné dans les conditions réglementaires ; doit être pris dans un délai d'un an à compter du décès.
+- **Maladie ou accident d'un enfant de moins de 16 ans à charge :**
+    - Durée conventionnelle : 3 jours ouvrés, 5 jours si l'enfant a moins d'un an ou si le salarié a la charge de 3 enfants ou plus de moins de 16 ans.
+    - Conditions spécifiques : Maladie ou accident constatés par certificat médical.
+    -
+
+**Spécificité déplacement :** Si le décès du conjoint ou d'un ascendant ou descendant au 1er degré intervient pendant un déplacement en France ou à l'étranger, l'entreprise prend en charge les frais de déplacement du salarié dans les mêmes conditions que pour un voyage de détente (article 11.4 de la convention collective).

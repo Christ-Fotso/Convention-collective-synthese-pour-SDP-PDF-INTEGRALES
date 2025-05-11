@@ -1,0 +1,7 @@
+* **Taux CONVENTIONNEL applicable:** 0,02 % de la masse salariale (pour 2015 et 2016). La commission paritaire peut décider de porter le taux à 0,03 % pour la troisième année (2017).  Cette contribution est *en supplément* des contributions légales et est nommée "contribution spécifique multibranches".
+* **Base de calcul spécifique:** Non précisée.
+* **Cotisation minimale due (conventionnelle):** Non précisée.
+* **Organisme collecteur DÉSIGNÉ par la convention:** OPCALIM.
+* **Affectation spécifique des fonds:**  Développement de la formation professionnelle continue, en renforçant la mise en œuvre de formations certifiantes, notamment: ingénierie de certification, formations certifiantes par modules, certification des actions de formation transversales, études d'opportunité et de faisabilité de projets certifiants, accompagnement des entreprises et des branches pour le développement de projets certifiants (dont les CQP), frais d'évaluation et de jury.
+* **Entreprises/Salariés concernés:** Entreprises de toutes tailles relevant du champ d'application de l'accord. Pour les entreprises de moins de 300 salariés, les signataires proposent que cette contribution soit imputée sur le versement au titre du plan de formation mutualisé.
+* **Source de l’information:** Accord du 30 octobre 2014 relatif à la formation professionnelle dans diverses branches des industries agro-alimentaires, article 4.2.4, modifié par Avenant n°1 du 13 janvier 2016.

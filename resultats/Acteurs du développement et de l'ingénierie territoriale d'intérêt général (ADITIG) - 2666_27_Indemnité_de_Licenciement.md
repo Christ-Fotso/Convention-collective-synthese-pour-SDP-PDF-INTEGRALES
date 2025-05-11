@@ -1,0 +1,1 @@
+La convention collective ADITIG (IDCC 2666) a été dénoncée le 1er septembre 2022 et a cessé de s'appliquer le 30 novembre 2023.  Par conséquent, les dispositions relatives à l'indemnité de licenciement prévues par cette convention ne sont plus en vigueur.

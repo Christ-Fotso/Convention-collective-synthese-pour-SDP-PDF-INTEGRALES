@@ -1,0 +1,3 @@
+## Cotisations Retraite Complémentaire
+
+La convention collective mentionne l'affiliation obligatoire à un régime de retraite complémentaire, sans préciser de taux spécifiques.  Les entreprises doivent adhérer à une institution de retraite agréée par l'institution AGIRC-ARRCO. Les cotisations sont assises sur la rémunération brute servant de base au calcul des cotisations sociales, selon les tranches de rémunération définies par l'institution AGIRC-ARRCO. Les taux sont fixés par les partenaires sociaux au sein d'un accord national interprofessionnel. (Article 23.1, Avenant du 15 février 2024, étendu)

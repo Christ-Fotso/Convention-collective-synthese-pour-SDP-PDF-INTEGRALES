@@ -1,0 +1,6 @@
+* **Taux CONVENTIONNEL applicable:** 1% des commissions de l'année de référence versées aux gérants mandataires non salariés.  Une partie de cette contribution, correspondant au moins à 0,2 % des commissions de l'année de référence, est consacrée au financement des actions de formation suivies par les gérants mandataires non-salariés dans le cadre du CPF.  Les entreprises peuvent conclure un accord prévoyant le financement du CPF, en vertu duquel elles s'engagent à consacrer à ce dispositif au moins 0,2 % des commissions de l'année de référence. Dans ce cas, la contribution unique est réduite à 0,8 %.
+* **Base de calcul spécifique:** Commissions de l'année de référence versées aux gérants mandataires non salariés.
+* **Organisme collecteur DÉSIGNÉ par la convention:** FORCO.
+* **Affectation spécifique des fonds:** Financement des actions de formation suivies par les gérants mandataires non-salariés dans le cadre du CPF, et abondement du CPF si le nombre d'heures détenues par un gérant est insuffisant pour préparer le CQP de gérant mandataire non salarié de commerce de proximité à prédominance alimentaire.
+* **Entreprises/Salariés concernés:** Entreprises mandantes de gérants mandataires non salariés.
+* **Source de l’information:** Article 3 - Obligation des entreprises en matière de formation, point E - Financement.  Avenant n° 63 du 18 mai 2015, étendu.

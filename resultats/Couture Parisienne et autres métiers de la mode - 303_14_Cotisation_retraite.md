@@ -1,0 +1,3 @@
+### Cotisations Retraite Complémentaire
+
+La convention collective mentionne l'affiliation obligatoire au régime de retraite complémentaire pour les travailleurs à domicile, dans les mêmes conditions que les ouvriers en atelier (Annexe V - Travailleurs à domicile - Article 8).  Elle précise que l'assiette des cotisations est identique à celle retenue pour le calcul du versement forfaitaire sur les salaires. La convention ne précise pas les taux de cotisations, ni l'organisme de retraite complémentaire.  Pour les autres catégories de salariés, la convention ne mentionne que la négociation d'un régime d'intéressement et de participation au niveau de la branche (Article 51), sans plus de précisions sur la retraite complémentaire.

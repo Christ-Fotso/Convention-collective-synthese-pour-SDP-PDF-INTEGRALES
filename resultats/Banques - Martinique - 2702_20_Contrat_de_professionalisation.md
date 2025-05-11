@@ -1,0 +1,6 @@
+## Contrat de Professionnalisation
+
+La convention collective ne prévoit pas de dispositions spécifiques concernant la rémunération, la durée du contrat, la durée de la formation, la fonction tutorale, les avantages spécifiques, les modalités d'insertion ou des dispositions régionales particulières pour les contrats de professionnalisation, à l'exception de ce qui est mentionné ci-dessous :
+
+* **Dialogue social sur la formation (Article 22-4):**  L'Accord national interprofessionnel du 5 décembre 2003 a fusionné les différents contrats en alternance (contrat d'orientation, contrat de qualification, contrat d'adaptation) au profit du Contrat de professionnalisation. Les partenaires sociaux envisageront l'adaptation de cette formule d'alternance au contexte de la profession bancaire dans le département. Dans le cadre du dispositif prévu à l'article 23, chaque année la commission paritaire locale dressera un bilan des contrats de professionnalisation passés l'année précédente et pourra émettre des recommandations et suggestions.
+* **Prime de diplôme (Accord du 25 novembre 2014):**  Mise en place à compter du 1er janvier 2015 de la prime de 1 700 euros correspondant au cycle de professionnalisation certifié «Conseiller Clientèle de Professionnels».

@@ -1,0 +1,5 @@
+**Indemnité de Mise à la Retraite**
+
+La convention collective ne prévoit pas de formule de calcul spécifique pour l'indemnité de mise à la retraite.  L'article 14 du dernier avenant applicable (Avenant Ingénieurs et Cadres du 16 juin 1955, modifié par l'accord du 4 juillet 2024)  abordait la question de l'indemnité de congédiement pour les cadres entre 60 et 65 ans, mais ce paragraphe a été abrogé par l'accord du 15 janvier 1991 (non étendu).  Les articles 29 et 30 des avenants "Ouvriers et Collaborateurs" et "Agents de maîtrise et Techniciens"  abordaient l'indemnité et l'allocation de départ, mais ont été remplacés par l'article 21 bis des clauses communes (Modifié par Accord 6 nov. 2009 étendu par arr. 20 avr. 2010, JO 30 avr., applicable à compter du 1er janv. 2010) qui traite de l'allocation de départ à la retraite à l'initiative du salarié.
+
+L’article 21 bis des clauses communes s'applique à tout salarié quittant l'entreprise **à sa demande** pour prendre sa retraite.  Il ne traite donc pas d'une mise à la retraite par l'employeur.

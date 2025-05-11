@@ -1,0 +1,13 @@
+**Indemnité de Départ à la Retraite** (Article 6.1, Avenant n°34 du 9 novembre 2009, étendu)
+
+* **Condition d'ancienneté minimale:** Plus de 10 ans d'ancienneté dans la profession.
+* **Modalités de calcul de l'ancienneté:**  L'ancienneté dans la profession est la somme, en fin de carrière, des périodes d'activité salariée exercées, à partir du premier jour du mois suivant la date d'embauche, dans toute entreprise relevant du champ d'application de la présente convention (Article 6.4).  Les périodes de suspension du contrat de travail définies à l'article 4.1 sont prises en compte dans le calcul de l’ancienneté de la profession (Article 6.4). L'ancienneté dans la profession est interrompue par période d'activité salariée de plus de 6 mois exercée dans une entreprise étrangère au champ d'application de la présente convention. En cas de retour dans une entreprise relevant du champ d'application de la présente convention, les périodes d'activité salariée exercées antérieurement ne comptent plus dans le calcul (Article 6.4). À titre transitoire, pour tous les salariés déjà dans la profession au jour de l'entrée en vigueur du régime de l'indemnité de fin de carrière, l'ancienneté prise en compte dans la profession remonte à la date d’extension de la Convention collective fixée au 8 avril 1998 (Article 6.5).
+* **Formule de calcul/Montant:**
+    * 1 mois du salaire brut mensuel pour plus de 10 ans d'ancienneté dans la profession.
+    * 2 mois du salaire brut mensuel à partir de 15 ans d'ancienneté dans la profession.
+    * 3 mois du salaire brut mensuel après 20 ans d'ancienneté dans la profession.
+    * 4 mois du salaire brut mensuel après 30 ans d'ancienneté dans la profession.
+* **Salaire de référence:** Douzième de la rémunération brute totale des douze derniers mois, primes ou gratifications à caractère annuel incluses, précédant le départ à la retraite ou, selon la formule la plus avantageuse pour l'intéressé, le tiers des trois derniers mois, étant entendu que, dans ce cas, primes ou gratifications de caractère annuel, qui aurait été versée au salarié pendant cette période serait prise en compte au prorata temporis. Toute prime à caractère exceptionnel est exclue de l'assiette de calcul. Par salaire, il y a lieu d’entendre toutes rémunérations et gratifications ayant le caractère de salaire à l’exclusion des remboursements de frais (Article 6.3).
+* **Plafond de l'indemnité:** 16 000 € (Article 6.1).
+* **Calcul spécifique pour le temps partiel:** La convention ne prévoit rien à ce sujet.
+* **Spécificités régionales/départementales:** La convention ne prévoit rien à ce sujet.

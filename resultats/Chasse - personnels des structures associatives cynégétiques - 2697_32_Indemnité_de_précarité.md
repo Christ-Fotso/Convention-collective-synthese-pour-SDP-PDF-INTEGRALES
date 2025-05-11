@@ -1,0 +1,1 @@
+L'indemnité de précarité est prévue à l'article 5.2.5.  La convention prévoit le versement d'une indemnité de précarité conformément aux dispositions légales. La convention ne prévoit pas de dispositions spécifiques concernant le taux, sa réduction, les cas d'exclusion ou les modalités de versement.

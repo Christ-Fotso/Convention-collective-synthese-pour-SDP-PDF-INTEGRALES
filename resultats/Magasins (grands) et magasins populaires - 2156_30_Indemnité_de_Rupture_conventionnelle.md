@@ -1,0 +1,8 @@
+- Existence indemnité spécifique : La convention ne prévoit pas de montant ou de calcul spécifique pour l'indemnité de rupture conventionnelle.
+- Formule calcul spécifique : La convention ne prévoit pas de formule de calcul spécifique.
+- Comparaison avec indemnité licenciement : Aucun lien ou comparaison n'est établi par la convention.
+- Montant minimal conventionnel : Aucun plancher spécifique n'est fixé.
+- Condition ancienneté spécifique : La convention ne prévoit pas de condition d'ancienneté spécifique.
+- Salaire de référence spécifique : La convention ne prévoit pas de salaire de référence spécifique.
+- Cas particulier salariés exclus indemnité licenciement : La convention ne prévoit rien à ce sujet.
+- Spécificités régionales/départementales : La convention ne prévoit rien à ce sujet.

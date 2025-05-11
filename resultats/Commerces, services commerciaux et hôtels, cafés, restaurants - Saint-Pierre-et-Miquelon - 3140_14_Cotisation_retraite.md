@@ -1,0 +1,1 @@
+La convention collective ne prévoit rien concernant les cotisations de retraite complémentaire AGIRC-ARRCO.  L'article 47 mentionne la nécessité de mettre en place un régime de prévoyance et de retraite complémentaire, mais renvoie la négociation d'un accord collectif à une date ultérieure.

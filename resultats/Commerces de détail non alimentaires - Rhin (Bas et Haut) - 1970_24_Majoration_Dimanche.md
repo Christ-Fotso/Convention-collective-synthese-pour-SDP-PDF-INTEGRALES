@@ -1,0 +1,10 @@
+* **Majoration de salaire:** 100% (Article 24, Convention Collective du 4 février 1997 - étendue).
+* **Repos compensateur:** Oui, en plus de la majoration. Durée équivalente aux heures travaillées, sans perte de salaire. (Article 24, Convention Collective du 4 février 1997 - étendue).  Modalités de prise non précisées.
+* **Définition travail dimanche:** Heures non précisées, sauf mention des "dimanches avant Noël". La convention prévoit une rencontre annuelle des partenaires sociaux pour définir les modalités. (Article 24, Convention Collective du 4 février 1997 - étendue).
+* **Catégories personnel concernées/exclues:** Personnel appelé à travailler le dimanche. La convention ne précise pas de catégories exclues.
+* **Conditions particulières:** La convention ne prévoit rien à ce sujet.
+* **Cumul:** La convention ne prévoit rien à ce sujet.
+* **Spécificités départementales/régionales:**  Dans le Haut-Rhin, le travail du lundi après-midi au samedi soir est possible avec des modalités spécifiques (accord du 4 février 1997 - étendu et modifié par avenant du 17 novembre 1997 - étendu) :
+    * Majoration de 25% pour les heures travaillées le lundi après-midi, quel que soit le nombre d’heures travaillées dans la semaine.
+    * Repos compensateur de 10 jours par an, non cumulable en principe avec les congés annuels. Condition : 15 jours de présence effective minimum dans le mois.  L'employeur doit accorder ce repos de façon à ce que le salarié dispose de deux jours consécutifs par mois.
+    * Accords spécifiques pour l’ouverture des dimanches précédant Noël (avenants de 2002, 2004 et 2005 – certains étendus, d’autres non). Ces accords précisent les dates et horaires d’ouverture pour les années concernées.  L'accord de 2005 prévoit une ouverture le 24 décembre 2006 de 9h à 13h. Pour les magasins alimentaires, une autorisation d’employer du personnel avant l’ouverture au public pour l'achalandage des produits frais est prévue dans les différents avenants, avec une durée de travail maximale de 4h30 incluant ces heures d’achalandage.

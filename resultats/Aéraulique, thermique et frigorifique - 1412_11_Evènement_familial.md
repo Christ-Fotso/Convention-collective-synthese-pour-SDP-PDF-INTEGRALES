@@ -1,0 +1,74 @@
+## Congés pour Événements Familiaux
+
+- **Mariage du salarié :**
+    - Durée du congé : Cinq jours
+    - Type de jours : ouvrables (pour le salarié dont le travail hebdomadaire est habituellement effectué sur cinq jours).  Cinq jours et demi pour ceux qui effectuent cette semaine sur cinq jours et demi de travail.
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : Aucune obligation d'astreinte ne pourra être accolée à ladite période de congé. La convention ne prévoit rien d'autre à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **PACS d'un(e) salarié :**
+    - Durée du congé : Quatre jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Mariage d'un enfant :**
+    - Durée du congé : Un jour
+    - Type de jours : ouvrable
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès du conjoint :**
+    - Durée du congé : Quatre jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès d'un enfant :**
+    - Durée du congé : Cinq jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès d'un descendant (autre que l'enfant) ou d'un ascendant en ligne directe, ainsi que des beaux-parents :**
+    - Durée du congé : Trois jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès d'un frère ou d'une sœur :**
+    - Durée du congé : Trois jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Décès d'un beau-frère ou d'une belle-sœur :**
+    - Durée du congé : Deux jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Stage de présélection militaire :**
+    - Durée du congé : Jusqu'à concurrence de trois jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Congé pour la naissance d'un enfant :**
+    - Durée du congé : Trois jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : Pour chaque naissance survenue au foyer.
+    - Modalités de prise : Ce congé peut être fractionné.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Congé pour l'adoption d'un enfant :**
+    - Durée du congé : Trois jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : Pour l'arrivée au foyer d'un enfant placé en vue de son adoption.
+    - Modalités de prise : Ce congé peut être fractionné.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.
+- **Congé en cas d'annonce de la survenue d'un handicap chez un enfant :**
+    - Durée du congé : Deux jours
+    - Type de jours : ouvrables
+    - Conditions d'octroi particulières : La convention ne prévoit rien à ce sujet.
+    - Modalités de prise : La convention ne prévoit rien à ce sujet.
+    - Jours supplémentaires : La convention ne prévoit rien à ce sujet.

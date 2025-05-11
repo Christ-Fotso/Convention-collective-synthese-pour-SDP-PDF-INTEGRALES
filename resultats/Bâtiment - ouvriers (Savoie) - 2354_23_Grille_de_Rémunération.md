@@ -1,0 +1,1 @@
+La convention collective départementale des ouvriers du bâtiment de la Savoie du 1er décembre 2003 ne comporte pas de grilles de salaires. L'article 1.4 indique que les salaires minimaux sont fixés au niveau régional. La convention ne précise pas davantage à ce sujet.  RAS
