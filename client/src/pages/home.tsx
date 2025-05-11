@@ -1,14 +1,16 @@
 
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useLocation } from 'wouter';
+import { useLocation, Link } from 'wouter';
 import { getConventions } from '@/lib/api';
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { MessageSquare } from 'lucide-react';
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [filteredConventions, setFilteredConventions] = useState([]);
+  const [filteredConventions, setFilteredConventions] = useState<any[]>([]);
   const [, navigate] = useLocation();
 
   const { data: conventions = [] } = useQuery({
@@ -49,9 +51,17 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-center">
-          Conventions Collectives
-        </h1>
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold">
+            Conventions Collectives
+          </h1>
+          <Link href="/chat">
+            <Button variant="outline" className="flex items-center gap-2">
+              <MessageSquare className="h-4 w-4" />
+              Assistant IA
+            </Button>
+          </Link>
+        </div>
         
         <div className="relative mb-6">
           <Input
@@ -89,7 +99,7 @@ export default function Home() {
                   <div
                     key={`${convention.id}-${index}`}
                     className="p-4 hover:bg-gray-50 cursor-pointer"
-                    onClick={() => navigate(`/chat/${convention.id}`)}
+                    onClick={() => navigate(`/chat?convention=${convention.id}`)}
                   >
                     <div className="flex flex-col gap-1">
                       <div className="text-base font-medium text-green-600">
