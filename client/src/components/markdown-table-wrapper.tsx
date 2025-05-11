@@ -43,7 +43,7 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
           style={{ 
             width: '100%', 
             maxWidth: '100%',
-            tableLayout: 'fixed',
+            tableLayout: 'auto',
             borderCollapse: 'collapse', 
             borderSpacing: 0,
             marginTop: '0.5rem',
@@ -65,7 +65,8 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
           borderColor: '#eee',
           whiteSpace: 'normal',
           wordWrap: 'break-word',
-          maxWidth: '200px',
+          wordBreak: 'keep-all',
+          hyphens: 'none',
           verticalAlign: 'top',
           lineHeight: '1.2'
         }} 
@@ -84,7 +85,8 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
           borderColor: '#eee',
           whiteSpace: 'normal',
           wordWrap: 'break-word',
-          maxWidth: '200px',
+          wordBreak: 'keep-all',
+          hyphens: 'none',
           verticalAlign: 'top',
           backgroundColor: '#f9f9f9',
           lineHeight: '1.2'
