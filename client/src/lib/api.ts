@@ -62,3 +62,17 @@ export async function sendChatMessage(params: SendChatMessageParams): Promise<Ch
 export async function deleteChatPDFSource(sourceId: string): Promise<void> {
   await axios.post(`${API_BASE}/chat/source/delete`, { sources: [sourceId] });
 }
+
+export async function getConventionSection(conventionId: string, sectionType: string): Promise<any> {
+  const url = `${API_BASE}/convention/${conventionId}/section/${sectionType}`;
+  console.log(`Envoi de requête API vers: ${url}`);
+  
+  try {
+    const { data } = await axios.get(url);
+    console.log("Données reçues:", data);
+    return data;
+  } catch (error) {
+    console.error("Erreur lors de la récupération de la section:", error);
+    throw error;
+  }
+}

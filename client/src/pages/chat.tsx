@@ -317,9 +317,17 @@ export default function Chat() {
                   </div>
                 ) : (
                   <div className="prose dark:prose-invert max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {sectionContent?.content || "*Aucun contenu disponible pour cette section*"}
-                    </ReactMarkdown>
+                    {/* Afficher la réponse brute en cas de problème */}
+                    {sectionContent ? (
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {sectionContent.content || "*Aucun contenu disponible pour cette section*"}
+                      </ReactMarkdown>
+                    ) : (
+                      <div className="text-red-500">
+                        <p>Aucune donnée reçue de l'API.</p>
+                        <p>Vérifiez les paramètres de la requête ou consultez les logs serveur.</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </ScrollArea>
