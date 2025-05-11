@@ -207,7 +207,31 @@ Les droits accumulés peuvent être utilisés pour :
 | Mariage du salarié ou conclusion d'un PACS                                | 4 jours ouvrables| Maintenue     | Certificat de mariage ou attestation de PACS        |
 | Mariage d'un enfant                                                        | 1 jour ouvrable  | Maintenue     | Certificat de mariage de l'enfant                   |
 | Naissance ou adoption d'un enfant                                          | 3 jours ouvrables| Maintenue     | Acte de naissance ou document d'adoption            |
-| Décès d'un enfant                                                          | 12 jours ouvrables| Maintenue    | Certificat de décès                                 |`
+| Décès d'un enfant                                                          | 7 jours ouvrables (ou 12 jours si enfant < 25 ans)| Maintenue    | Certificat de décès                                 |
+| Décès du conjoint, partenaire PACS ou concubin                            | 3 jours ouvrables| Maintenue     | Certificat de décès                                 |
+| Décès du père ou de la mère                                               | 3 jours ouvrables| Maintenue     | Certificat de décès                                 |
+| Décès d'un frère ou d'une sœur                                            | 3 jours ouvrables| Maintenue     | Certificat de décès                                 |
+| Décès du beau-père ou de la belle-mère                                    | 3 jours ouvrables| Maintenue     | Certificat de décès                                 |
+| Annonce de la survenue d'un handicap chez un enfant                        | 2 jours ouvrables| Maintenue     | Attestation médicale                                |
+
+## 1. Caractéristiques des Congés pour Événements Familiaux
+
+- Ces congés sont **indépendants des congés payés** et ne peuvent être déduits de ceux-ci.
+- Ils sont accordés **au moment de l'événement**.
+- Le salarié doit justifier de l'événement en fournissant le document approprié.
+- La rémunération est intégralement maintenue pendant ces absences.
+
+## 2. Points Importants
+
+- Ces durées sont des **minimums légaux** : les conventions collectives peuvent prévoir des dispositions plus favorables.
+- Ces congés peuvent être pris **consécutivement ou non**, en accord avec l'employeur.
+- Ces jours d'absence peuvent être pris avant ou après l'événement selon les situations.
+
+## 3. Spécificités pour le Décès d'un Enfant
+
+- En cas de décès d'un enfant de moins de 25 ans : **7 jours de congé** + **8 jours** de "congé de deuil"
+- Le congé de deuil peut être fractionné dans les conditions fixées par décret, dans un délai d'un an à compter du décès de l'enfant.
+- Une protection contre le licenciement est prévue pendant 13 semaines suivant le décès d'un enfant de moins de 25 ans.`
 };
 
 export const hasDispositifLegal = (sectionType: string): boolean => {
