@@ -415,7 +415,7 @@ export function registerRoutes(app: Express): Server {
           }
           
           // Vérifier si la section est déjà stockée en base de données
-          const sectionType = subcategory ? `${category}-${subcategory}` : category;
+          const sectionType = subcategory ? `${category}.${subcategory}` : category;
           const existingSection = await getConventionSection(conventionId, sectionType);
           
           if (existingSection && existingSection.status === 'complete') {
