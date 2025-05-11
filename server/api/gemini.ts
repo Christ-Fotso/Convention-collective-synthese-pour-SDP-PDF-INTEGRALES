@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { conventionsData, sectionsData } from "../data";
+import { getConventions, getSectionsByConvention } from "../sections-data";
 
 const router = Router();
 
@@ -18,14 +18,15 @@ router.post("/ask", async (req, res) => {
     }
 
     // Récupérer les informations sur la convention
-    const convention = conventionsData.find(c => c.id === conventionId);
+    const conventions = getConventions();
+    const convention = conventions.find((c: any) => c.id === conventionId);
     if (!convention) {
       return res.status(404).json({ error: "Convention non trouvée" });
     }
 
-    // Filtrer les sections pour cette convention
-    const conventionSections = sectionsData.filter(s => s.conventionId === conventionId);
-    if (conventionSections.length === 0) {
+    // Récupérer les sections pour cette convention
+    const conventionSections = getSectionsByConvention(conventionId);
+    if (!conventionSections || conventionSections.length === 0) {
       return res.status(404).json({ error: "Aucune section trouvée pour cette convention" });
     }
 
