@@ -219,7 +219,7 @@ export default function Chat() {
                               sectionElements.push(
                                 <div
                                   key={`${categoryIndex}-${subcategoryIndex}`}
-                                  className={`p-3 border rounded-md cursor-pointer ${
+                                  className={`p-2 border rounded-md cursor-pointer text-xs ${
                                     selectedSection?.sectionType === section.sectionType
                                       ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600"
                                       : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
@@ -235,8 +235,8 @@ export default function Chat() {
                           // N'ajouter la catégorie que si elle contient des sections
                           if (sectionElements.length > 0) {
                             categoryElements.push(
-                              <div key={categoryIndex} className="mb-6">
-                                <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400 border-b pb-2">
+                              <div key={categoryIndex} className="mb-3">
+                                <h3 className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1">
                                   {categoryDefinition.name}
                                 </h3>
                                 <div className="grid grid-cols-1 gap-2">
