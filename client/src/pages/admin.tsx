@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2, Save, FileText, Search, Edit, Plus, Trash2, AlertCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Loader2, Save, FileText, Search, Edit, Plus, Trash2, AlertCircle, Sparkles } from "lucide-react";
 import axios from 'axios';
 
 interface Convention {
@@ -62,6 +63,10 @@ export default function AdminPage() {
   const [editedContent, setEditedContent] = useState('');
   const [editedTitle, setEditedTitle] = useState('');
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error' | 'info', message: string } | null>(null);
+  const [showAIPrompt, setShowAIPrompt] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [isAIProcessing, setIsAIProcessing] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
   const queryClient = useQueryClient();
 
   // Récupérer la structure JSON
@@ -148,6 +153,49 @@ export default function AdminPage() {
         content: editedContent,
         sectionTitle: editedTitle
       });
+    }
+  };
+  
+  // Mutation pour appeler l'API OpenAI avec GPT-4o-mini
+  const aiMutation = useMutation({
+    mutationFn: async (data: { prompt: string, content: string }) => {
+      setIsAIProcessing(true);
+      try {
+        // Appel à l'API OpenAI via notre backend
+        const response = await axios.post('/api/openai/edit-text', {
+          prompt: data.prompt,
+          content: data.content,
+          model: 'gpt-4o-mini'  // Utiliser spécifiquement gpt-4o-mini
+        });
+        return response.data;
+      } catch (error) {
+        throw error;
+      } finally {
+        setIsAIProcessing(false);
+      }
+    },
+    onSuccess: (data) => {
+      // Mettre à jour le contenu édité avec la suggestion de l'IA
+      if (data.content) {
+        setAiResponse(data.content);
+      }
+    },
+    onError: (error: any) => {
+      setStatusMessage({ 
+        type: 'error', 
+        message: `Erreur lors de l'appel à l'IA: ${error.response?.data?.error || error.message}` 
+      });
+    }
+  });
+  
+  // Fonction pour appliquer les suggestions de l'IA
+  const applyAISuggestion = () => {
+    if (aiResponse) {
+      setEditedContent(aiResponse);
+      setIsEditing(true);
+      setShowAIPrompt(false);
+      setAiResponse('');
+      setAiPrompt('');
     }
   };
 
@@ -265,10 +313,20 @@ export default function AdminPage() {
                   </CardDescription>
                 </div>
                 {sectionDetail && !isEditing && (
-                  <Button variant="outline" onClick={startEditing}>
-                    <Edit className="h-4 w-4 mr-2" />
-                    Modifier
-                  </Button>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" onClick={startEditing}>
+                      <Edit className="h-4 w-4 mr-2" />
+                      Modifier
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setShowAIPrompt(true)}
+                      className="bg-green-50 hover:bg-green-100 border-green-200"
+                    >
+                      <span className="text-xs font-bold mr-1">AI</span>
+                      Aide GPT-4o-mini
+                    </Button>
+                  </div>
                 )}
               </div>
             </CardHeader>
@@ -343,6 +401,100 @@ export default function AdminPage() {
           </Card>
         </div>
       </div>
+      
+      {/* Dialog pour l'assistance IA */}
+      <Dialog open={showAIPrompt} onOpenChange={setShowAIPrompt}>
+        <DialogContent className="max-w-4xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center">
+              <Sparkles className="h-5 w-5 mr-2 text-blue-500" />
+              Assistant IA GPT-4o-mini
+            </DialogTitle>
+            <DialogDescription>
+              Décrivez les modifications que vous souhaitez apporter à cette section 
+              et l'IA vous aidera à améliorer ou reformuler le contenu.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <label htmlFor="ai-prompt" className="text-sm font-medium">
+                Votre instruction pour l'IA
+              </label>
+              <Textarea
+                id="ai-prompt"
+                value={aiPrompt}
+                onChange={(e) => setAiPrompt(e.target.value)}
+                placeholder="Exemple: Reformule ce texte pour le rendre plus clair, corrige les fautes d'orthographe, améliore la structure des phrases..."
+                className="min-h-[100px]"
+              />
+              
+              <div className="text-xs text-muted-foreground mt-1">
+                Soyez aussi précis que possible dans votre demande pour obtenir un meilleur résultat.
+              </div>
+            </div>
+            
+            {aiResponse && (
+              <div className="mt-4">
+                <label className="text-sm font-medium mb-2 block">
+                  Suggestion de l'IA
+                </label>
+                <div className="bg-green-50 border border-green-200 rounded-md p-4 min-h-[200px] max-h-[400px] overflow-y-auto">
+                  <pre className="whitespace-pre-wrap font-mono text-sm">{aiResponse}</pre>
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <DialogFooter className="flex justify-between items-center">
+            <div>
+              {isAIProcessing && (
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Traitement en cours...
+                </div>
+              )}
+            </div>
+            <div className="flex space-x-2">
+              <Button variant="outline" onClick={() => setShowAIPrompt(false)}>
+                Annuler
+              </Button>
+              {!aiResponse ? (
+                <Button 
+                  onClick={() => {
+                    if (sectionDetail && aiPrompt) {
+                      aiMutation.mutate({
+                        prompt: aiPrompt,
+                        content: sectionDetail.content
+                      });
+                    }
+                  }}
+                  disabled={isAIProcessing || !aiPrompt || !sectionDetail}
+                >
+                  {isAIProcessing ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Génération...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Générer
+                    </>
+                  )}
+                </Button>
+              ) : (
+                <Button 
+                  onClick={applyAISuggestion}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  Appliquer la suggestion
+                </Button>
+              )}
+            </div>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

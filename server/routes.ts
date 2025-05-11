@@ -11,12 +11,6 @@ import fs from "fs";
 import { queryPerplexity } from "./services/perplexity";
 import { getConventionText, queryOpenAI, queryOpenAIForLegalData, calculateCost } from "./services/openai";
 import OpenAI from "openai";
-import adminRoutes from "./api/admin";
-
-// Configuration du client OpenAI
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { createHash } from "crypto";
 import {
@@ -34,6 +28,11 @@ import {
   getConventions,
   getConventionsWithSections
 } from "./sections-data";
+
+// Configuration du client OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 // Import de notre cache persistant
 import { LimitedCache } from "./services/cache-manager";
@@ -83,8 +82,10 @@ export async function initCaches(): Promise<void> {
 export function registerRoutes(app: Express): Server {
   const apiRouter = Router();
   
-  // Ajouter les routes d'administration pour l'édition des données JSON
-  apiRouter.use('/admin', adminRoutes);
+  // Simple middleware - pas de routes admin et openai pour l'instant
+  // On va les ajouter plus tard quand le problème sera résolu
+  // apiRouter.use('/admin', adminRoutes);
+  // apiRouter.use('/openai', openaiRoutes);
 
   // Middleware pour la gestion des erreurs
   app.use((req, res, next) => {
