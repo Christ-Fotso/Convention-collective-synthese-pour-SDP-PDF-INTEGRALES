@@ -22,13 +22,12 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
             className={className} 
             style={{ 
               width: '100%',
-              overflowX: 'scroll', 
+              overflowX: 'auto', 
               overflowY: 'visible', 
               marginBottom: '1.5rem',
               paddingBottom: '0.5rem',
               display: 'block',
               position: 'relative',
-              whiteSpace: 'nowrap',
             }} 
             {...props} 
           />
@@ -42,8 +41,9 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
         <table 
           {...props} 
           style={{ 
-            width: 'auto', 
-            minWidth: '650px',
+            width: '100%', 
+            maxWidth: '100%',
+            tableLayout: 'fixed',
             borderCollapse: 'collapse', 
             borderSpacing: 0,
             marginTop: '0.5rem',
@@ -53,7 +53,7 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
         />
       </div>
     ),
-    // Réduire la taille du texte dans les cellules
+    // Réduire la taille du texte dans les cellules et forcer le retour à la ligne
     td: ({ node, ...props }: any) => (
       <td 
         {...props} 
@@ -62,11 +62,16 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
           padding: '0.25rem 0.5rem', 
           borderWidth: '1px',
           borderStyle: 'solid',
-          borderColor: '#eee'
+          borderColor: '#eee',
+          whiteSpace: 'normal',
+          wordWrap: 'break-word',
+          maxWidth: '200px',
+          verticalAlign: 'top',
+          lineHeight: '1.2'
         }} 
       />
     ),
-    // Réduire la taille du texte dans les en-têtes
+    // Réduire la taille du texte dans les en-têtes et forcer le retour à la ligne
     th: ({ node, ...props }: any) => (
       <th 
         {...props} 
@@ -76,7 +81,13 @@ export const MarkdownTableWrapper: React.FC<MarkdownTableWrapperProps> = ({ cont
           fontWeight: 'bold',
           borderWidth: '1px',
           borderStyle: 'solid',
-          borderColor: '#eee'
+          borderColor: '#eee',
+          whiteSpace: 'normal',
+          wordWrap: 'break-word',
+          maxWidth: '200px',
+          verticalAlign: 'top',
+          backgroundColor: '#f9f9f9',
+          lineHeight: '1.2'
         }} 
       />
     ),
