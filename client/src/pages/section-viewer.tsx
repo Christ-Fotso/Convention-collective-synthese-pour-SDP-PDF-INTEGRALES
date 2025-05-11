@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
+import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, ConventionSection, Category, Subcategory } from '@/types';
@@ -127,7 +128,7 @@ export default function SectionViewer() {
             </Alert>
           ) : section ? (
             <div className="prose prose-sm max-w-none dark:prose-invert">
-              <MarkdownTableRenderer content={section.content} />
+              <MarkdownTableWrapper content={section.content} />
             </div>
           ) : (
             <div className="text-center text-muted-foreground">

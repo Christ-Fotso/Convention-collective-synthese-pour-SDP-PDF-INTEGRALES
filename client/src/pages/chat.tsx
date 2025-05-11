@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CATEGORIES } from "@/lib/categories";
+import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
 
 // Mapping entre les catégories backend et catégories d'affichage
 const CATEGORY_MAPPING: Record<string, string> = {
@@ -316,12 +317,12 @@ export default function Chat() {
                     <Skeleton className="h-4 w-full" />
                   </div>
                 ) : (
-                  <div className="prose dark:prose-invert max-w-none">
+                  <div className="prose dark:prose-invert max-w-none prose-sm">
                     {/* Afficher la réponse brute en cas de problème */}
                     {sectionContent ? (
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {sectionContent.content || "*Aucun contenu disponible pour cette section*"}
-                      </ReactMarkdown>
+                      <MarkdownTableWrapper 
+                        content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
+                      />
                     ) : (
                       <div className="text-red-500">
                         <p>Aucune donnée reçue de l'API.</p>
