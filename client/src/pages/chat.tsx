@@ -2,7 +2,7 @@
  * Page de chat avec l'assistant IA pour les conventions collectives
  */
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, Link } from 'wouter';
+import { useLocation, useParams, Link } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
@@ -55,15 +55,15 @@ export function ChatPage() {
   const { toast } = useToast();
 
   // Récupérer l'ID de la convention depuis les paramètres de l'URL
-  const [params] = useLocation();
+  const params = useParams<{ id: string }>();
   
   useEffect(() => {
-    // Extraire l'ID de la convention de l'URL
-    const match = /\/convention\/([^/]+)\/chat/.exec(params);
-    if (match && match[1]) {
-      setSelectedConvention(match[1]);
+    // Si l'ID est disponible dans les paramètres, utilisons-le
+    if (params.id) {
+      setSelectedConvention(params.id);
+      console.log("ID de convention récupéré:", params.id);
     }
-  }, [params]);
+  }, [params.id]);
 
   // Récupération de la liste des conventions
   const { data: conventions, isLoading: isLoadingConventions } = useQuery<Convention[]>({
