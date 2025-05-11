@@ -81,7 +81,7 @@ export default function SectionViewer() {
           <h2 className="text-xl font-semibold mb-4">Convention non trouvée</h2>
           <Button onClick={() => navigate('/')}>
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour à la liste
+            Retour à la liste des conventions
           </Button>
         </Card>
       </div>
@@ -91,7 +91,7 @@ export default function SectionViewer() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
-        <Button variant="outline" onClick={() => navigate(`/convention/${conventionId}`)} className="hover:bg-background">
+        <Button variant="outline" onClick={() => navigate(`/chat/${conventionId}`)} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Retour à la convention
         </Button>

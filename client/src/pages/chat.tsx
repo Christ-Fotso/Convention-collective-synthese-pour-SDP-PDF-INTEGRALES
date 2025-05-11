@@ -93,7 +93,7 @@ export default function Chat() {
   return (
     <div className="container mx-auto py-6 space-y-6">
       <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
+        <Button variant="ghost" size="icon" onClick={() => navigate("/")} title="Retour à la liste des conventions">
           <ChevronLeft className="h-5 w-5" />
         </Button>
         <h1 className="text-2xl font-bold">
