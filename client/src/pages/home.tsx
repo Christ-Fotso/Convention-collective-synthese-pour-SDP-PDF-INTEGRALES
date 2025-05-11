@@ -43,9 +43,9 @@ export default function Home() {
         <ScrollArea className="h-[calc(100vh-4rem)]">
           <CommandEmpty>Aucune convention trouvée.</CommandEmpty>
           <CommandGroup>
-            {filteredConventions.map((convention) => (
+            {filteredConventions.map((convention, index) => (
               <CommandItem
-                key={convention.id}
+                key={`${convention.id}-${index}`}
                 onSelect={() => navigate(`/chat/${convention.id}`)}
                 className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-900/20 p-6 border-b"
               >

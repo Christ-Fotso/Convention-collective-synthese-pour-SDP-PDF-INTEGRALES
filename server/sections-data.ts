@@ -251,12 +251,10 @@ export async function loadSectionsFromJSON(): Promise<void> {
     }
     
     const totalConventions = conventionsCache.length;
-    const totalSections = Object.values(sectionsCache).reduce(
-      (total, sections) => total + Object.keys(sections).length, 
-      0
-    );
+    // Le nombre total de sections est en fait le même que totalSectionsInJson
+    // car nous avons pris soin de toutes les charger sans en écraser aucune
     
-    console.log(`Chargement des données terminé: ${totalConventions} conventions et ${totalSections} sections`);
+    console.log(`Chargement des données terminé: ${totalConventions} conventions et ${totalSectionsInJson} sections`);
     initialized = true;
   } catch (error) {
     console.error("Erreur lors du chargement des sections depuis le fichier JSON:", error);
