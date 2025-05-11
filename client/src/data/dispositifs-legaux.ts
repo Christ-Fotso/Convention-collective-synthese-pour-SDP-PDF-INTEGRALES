@@ -81,7 +81,22 @@ export const SECTION_TYPE_MAPPINGS: Record<string, string> = {
   "prime": "remuneration.primes",
   "primes": "remuneration.primes",
   "frais": "remuneration.frais-professionnels",
-  "frais-professionnels": "remuneration.frais-professionnels"
+  "frais-professionnels": "remuneration.frais-professionnels",
+  
+  // Mappings pour les noms de sections utilisés dans l'application
+  "depart.licenciement": "rupture.licenciement",
+  "depart.mise-retraite": "rupture.mise-retraite",
+  "depart.depart-retraite": "rupture.retraite",
+  "depart.rupture-conventionnelle": "rupture.rupture-conventionnelle",
+  "depart.preavis": "rupture.preavis",
+  "depart.precarite": "rupture.indemnite-precarite",
+  "remuneration.prime": "remuneration.primes",
+  "protection-sociale.accident-travail": "absences.accident-travail",
+  "protection-sociale.maladie": "absences.maladie",
+  "protection-sociale.maternite-paternite": "absences.maternite-paternite",
+  "remuneration.apprenti": "contrats.apprentissage",
+  "remuneration.contrat-pro": "contrats.professionnalisation",
+  "remuneration.stagiaire": "contrats.stage"
 };
 
 /**
