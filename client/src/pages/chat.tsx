@@ -13,6 +13,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CATEGORIES } from "@/lib/categories";
 import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
+import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
+import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 
 // Mapping entre les catégories backend et catégories d'affichage
 const CATEGORY_MAPPING: Record<string, string> = {
@@ -61,6 +63,7 @@ export default function Chat() {
   const [_, navigate] = useLocation();
   const [selectedSection, setSelectedSection] = useState<SectionType | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   
   // Requête pour obtenir les informations sur la convention
@@ -351,9 +354,31 @@ export default function Chat() {
                   <div className="prose dark:prose-invert max-w-none prose-sm" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
                     {/* Afficher la réponse brute en cas de problème */}
                     {sectionContent ? (
-                      <MarkdownTableWrapper 
-                        content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
-                      />
+                      <>
+                        {hasDispositifLegal(selectedSection?.sectionType || "") && (
+                          <div className="mb-4">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="text-xs flex items-center text-green-700 border-green-300 hover:bg-green-50 hover:text-green-800"
+                              onClick={() => setIsLegalDialogOpen(true)}
+                            >
+                              <BookOpen className="h-3.5 w-3.5 mr-1" />
+                              Voir le dispositif légal
+                            </Button>
+                            
+                            <DispositifLegalDialog 
+                              isOpen={isLegalDialogOpen}
+                              setIsOpen={setIsLegalDialogOpen}
+                              title={selectedSection?.label || "Dispositif légal"}
+                              content={getDispositifLegal(selectedSection?.sectionType || "")}
+                            />
+                          </div>
+                        )}
+                        <MarkdownTableWrapper 
+                          content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
+                        />
+                      </>
                     ) : (
                       <div className="text-red-500">
                         <p>Aucune donnée reçue de l'API.</p>
