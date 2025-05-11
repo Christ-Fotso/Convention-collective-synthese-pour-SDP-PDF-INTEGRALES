@@ -103,6 +103,45 @@ export function registerRoutes(app: Express): Server {
       });
     }
   });
+  
+  // Route pour récupérer une section spécifique d'une convention
+  apiRouter.get("/convention/:conventionId/section/:sectionType", async (req, res) => {
+    try {
+      const { conventionId, sectionType } = req.params;
+      
+      if (!conventionId || !sectionType) {
+        return res.status(400).json({
+          message: "conventionId et sectionType sont requis"
+        });
+      }
+      
+      // Vérifier que la convention existe
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      
+      if (convention.length === 0) {
+        return res.status(404).json({
+          message: "Convention non trouvée"
+        });
+      }
+      
+      // Récupérer la section
+      const section = await getConventionSection(conventionId, sectionType);
+      
+      if (!section) {
+        return res.status(404).json({
+          message: "Section non trouvée"
+        });
+      }
+      
+      res.json(section);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération de la section:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération de la section",
+        error: error.message
+      });
+    }
+  });
 
   // Proxy pour accéder aux PDFs (nécessaire pour contourner CORS)
   apiRouter.get("/proxy-pdf", async (req, res) => {
