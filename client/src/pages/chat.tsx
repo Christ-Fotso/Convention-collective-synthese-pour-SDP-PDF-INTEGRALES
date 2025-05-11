@@ -11,6 +11,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { CATEGORIES } from "@/lib/categories";
 
 // Types simplifiés
 interface Convention {
@@ -173,10 +174,14 @@ export default function Chat() {
                             );
                           });
                           
+                          // Trouver le nom formaté de la catégorie depuis CATEGORIES
+                          const categoryData = CATEGORIES.find(cat => cat.id === category);
+                          const categoryName = categoryData ? categoryData.name : category.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+                          
                           categoryElements.push(
                             <div key={categoryIndex} className="mb-6">
                               <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400 border-b pb-2">
-                                {category.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                                {categoryName}
                               </h3>
                               <div className="grid grid-cols-1 gap-2">
                                 {sectionElements}

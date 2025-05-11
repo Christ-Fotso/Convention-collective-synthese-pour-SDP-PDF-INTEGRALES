@@ -65,7 +65,7 @@ export const CATEGORIES: Category[] = [
       },
       {
         "id": "evenement-familial",
-        "name": "Evènement familial"
+        "name": "Évènement familial"
       }
     ]
   },
@@ -141,7 +141,7 @@ export const CATEGORIES: Category[] = [
       },
       {
         "id": "prime",
-        "name": "Prime"
+        "name": "Primes, Indemnités, Avantages et Frais Professionnels"
       },
       {
         "id": "grille",
