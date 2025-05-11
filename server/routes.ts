@@ -18,14 +18,20 @@ const openai = new OpenAI({
 });
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { createHash } from "crypto";
-import { 
-  getAllConventionSections, 
+import {
+  getAllConventionSections,
   getConventionSection,
-  saveConventionSection,
   getApiMetrics,
   saveApiMetric,
   SECTION_TYPES
 } from "./services/section-manager";
+
+// Importer le nouveau provider JSON pour les sections
+import {
+  getConventionSection as getConventionSectionFromJson,
+  getAllConventionSections as getAllConventionSectionsFromJson,
+  initSectionsFromJson
+} from "./services/sections-json-provider";
 
 // Import de notre cache persistant
 import { LimitedCache } from "./services/cache-manager";
