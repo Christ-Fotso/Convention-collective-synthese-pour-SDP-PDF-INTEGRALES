@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
-import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
+import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
@@ -73,6 +73,19 @@ export default function SectionViewer() {
   };
 
   const { category: categoryName, subcategory: subcategoryName } = findCategoryInfo();
+
+  // Logs de débogage pour comprendre pourquoi les dispositifs légaux ne s'affichent pas
+  useEffect(() => {
+    if (sectionType) {
+      console.log('Section type:', sectionType);
+      console.log('Has dispositif legal:', hasDispositifLegal(sectionType));
+      console.log('SECTION_TYPE_MAPPINGS:', SECTION_TYPE_MAPPINGS);
+      
+      if (hasDispositifLegal(sectionType)) {
+        console.log('Dispositif legal content:', getDispositifLegal(sectionType));
+      }
+    }
+  }, [sectionType]);
 
   if (isLoadingConventions || isLoadingSection) {
     return (
