@@ -38,6 +38,17 @@ export interface Category {
   subcategories: Subcategory[];
 }
 
+export interface ConventionSection {
+  id: string;
+  conventionId: string;
+  sectionType: string;
+  content: string;
+  status: 'pending' | 'complete' | 'error';
+  errorMessage?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface SystemPrompt {
   content: string;
 }
