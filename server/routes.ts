@@ -130,8 +130,9 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
-      // Récupérer la section
-      const section = await getConventionSection(conventionId, sectionType);
+      // Récupérer la section depuis les données statiques
+      const { getSection } = await import('./sections-data');
+      const section = getSection(conventionId, sectionType);
       
       if (!section) {
         return res.status(404).json({
@@ -139,7 +140,14 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
-      res.json(section);
+      // Transformer en format compatible avec l'API existante
+      res.json({
+        id: `${conventionId}_${sectionType}`,
+        conventionId: section.conventionId,
+        sectionType: section.sectionType,
+        content: section.content,
+        status: 'complete'
+      });
     } catch (error: any) {
       console.error("Erreur lors de la récupération de la section:", error);
       res.status(500).json({
@@ -242,64 +250,36 @@ export function registerRoutes(app: Express): Server {
         // Clé de cache
         const cacheKey = `classification_${conventionId}`;
         
-        // Clé d'état pour vérifier si le traitement est déjà en cours
-        const processingKey = `processing_classification_${conventionId}`;
-        
         // Vérifier si la réponse est en cache
         if (openaiCache.has(cacheKey)) {
           console.log('Utilisation de la classification en cache');
           return res.json(openaiCache.get(cacheKey));
         }
         
-        // Vérifier si le traitement est déjà en cours
-        if (openaiCache.has(processingKey)) {
-          return res.status(202).json({ 
-            message: "La classification est en cours de génération, veuillez réessayer dans quelques instants",
-            inProgress: true,
-            content: "⚠️ Cette information est en cours de génération.\n\nVeuillez patienter quelques instants, le traitement est en cours."
-          });
-        }
+        // Rechercher la section dans les données statiques
+        const sectionType = `${category}.${subcategory}`;
+        const { getSection } = await import('./sections-data');
+        const section = getSection(conventionId, sectionType);
         
-        // Marquer le traitement comme en cours
-        openaiCache.set(processingKey, { startTime: Date.now() });
-        
-        try {
-          // Récupérer la classification via OpenAI
-          const classificationResponse = await queryOpenAIForLegalData(
-            conventionId,
-            convention[0].name,
-            'classification'
-          );
-          
-          // Mettre en cache la réponse
-          openaiCache.set(cacheKey, classificationResponse);
-          
-          // Supprimer le marqueur de traitement en cours
-          if (openaiCache.has(processingKey)) {
-            openaiCache.cache.delete(processingKey);
-          }
-          
-          console.log('Classification obtenue et mise en cache avec succès');
-          return res.json(classificationResponse);
-        } catch (error: any) {
-          console.error('Erreur lors de la récupération de la classification:', error);
-          
-          // Supprimer le marqueur de traitement en cours en cas d'erreur
-          if (openaiCache.has(processingKey)) {
-            openaiCache.cache.delete(processingKey);
-          }
-          
-          // Stocker l'erreur dans le cache pour pouvoir l'afficher
-          const errorResponse = { 
-            error: true, 
-            message: "Une erreur est survenue lors de la récupération de la classification",
-            details: error.message,
-            content: "⚠️ Une erreur est survenue lors de la récupération de la classification.\n\nVeuillez réessayer ultérieurement."
+        if (section) {
+          console.log(`Utilisation de la section ${sectionType} depuis les données statiques pour la convention ${conventionId}`);
+          const response = {
+            content: section.content,
+            fromCache: true
           };
-          openaiCache.set(cacheKey, errorResponse);
           
-          return res.status(500).json(errorResponse);
+          // Mettre en cache pour les requêtes suivantes
+          openaiCache.set(cacheKey, response);
+          console.log('Classification obtenue et mise en cache avec succès');
+          
+          return res.json(response);
         }
+        
+        // Si la section n'existe pas, renvoyer un message d'erreur
+        return res.status(404).json({
+          message: `Section ${sectionType} non disponible pour la convention ${conventionId}`,
+          content: `La classification n'est pas disponible pour cette convention collective. Nous sommes en train de compléter notre base de données de sections pré-extraites.`
+        });
       }
       
       // Traitement spécial pour la grille de rémunération
@@ -420,49 +400,32 @@ export function registerRoutes(app: Express): Server {
             return res.json(openaiCache.get(cacheKey));
           }
           
-          // Vérifier si la section est déjà stockée en base de données
+          // Rechercher la section dans les données statiques
           const sectionType = subcategory ? `${category}.${subcategory}` : category;
-          const existingSection = await getConventionSection(conventionId, sectionType);
           
-          if (existingSection && existingSection.status === 'complete') {
-            console.log(`Utilisation de la section ${sectionType} stockée en base de données pour la convention ${conventionId}`);
-            const cachedResponse = {
-              content: existingSection.content,
+          // Récupérer la section depuis les données statiques
+          const { getSection } = await import('./sections-data');
+          const section = getSection(conventionId, sectionType);
+          
+          if (section) {
+            console.log(`Utilisation de la section ${sectionType} depuis les données statiques pour la convention ${conventionId}`);
+            const response = {
+              content: section.content,
               fromCache: true
             };
             
-            // Mettre également en cache mémoire pour les requêtes suivantes
-            openaiCache.set(cacheKey, cachedResponse);
+            // Mettre en cache pour les requêtes suivantes
+            openaiCache.set(cacheKey, response);
             
-            return res.json(cachedResponse);
+            return res.json(response);
           }
           
           try {
             // Si la section n'existe pas, renvoyer un message d'erreur
-            // Ne pas générer de nouvelles sections avec l'IA - utiliser uniquement celles importées
-            if (!existingSection) {
-              return res.status(404).json({
-                message: `Section ${sectionType} non disponible pour la convention ${conventionId}`,
-                content: `La section "${sectionType}" n'est pas disponible pour cette convention collective. Nous sommes en train de compléter notre base de données de sections pré-extraites.`
-              });
-            }
-            
-            // Section existe mais status n'est pas 'complete'
-            if (existingSection.status !== 'complete') {
-              return res.status(202).json({
-                message: `Section ${sectionType} en cours de traitement pour la convention ${conventionId}`,
-                content: `Cette section est en cours de traitement. Veuillez réessayer ultérieurement.`
-              });
-            }
-            
-            // Ce code ne devrait jamais être atteint car on retourne avant si !existingSection
-            // Mais on le laisse par sécurité
-            const response = {
-              content: existingSection.content,
-              fromCache: true
-            };
-            
-            res.json(response);
+            return res.status(404).json({
+              message: `Section ${sectionType} non disponible pour la convention ${conventionId}`,
+              content: `La section "${sectionType}" n'est pas disponible pour cette convention collective. Nous sommes en train de compléter notre base de données de sections pré-extraites.`
+            });
           } catch (error) {
             // Gestion des erreurs
             console.error(`Erreur lors de l'accès à la section ${sectionType} pour la convention ${conventionId}:`, error);
