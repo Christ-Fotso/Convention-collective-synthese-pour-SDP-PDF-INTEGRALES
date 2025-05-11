@@ -317,7 +317,7 @@ export default function Chat() {
                     <Skeleton className="h-4 w-full" />
                   </div>
                 ) : (
-                  <div className="prose dark:prose-invert max-w-none prose-sm">
+                  <div className="prose dark:prose-invert max-w-none prose-sm overflow-x-auto" style={{ maxWidth: '100%' }}>
                     {/* Afficher la réponse brute en cas de problème */}
                     {sectionContent ? (
                       <MarkdownTableWrapper 
