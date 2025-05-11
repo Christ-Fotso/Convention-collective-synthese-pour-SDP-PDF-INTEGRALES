@@ -32,7 +32,6 @@ import {
 // Importer les routes d'administration et d'IA
 import adminRoutes from './api/admin';
 import openaiRoutes from './api/openai';
-import geminiRoutes from './api/gemini';
 
 // Configuration du client OpenAI
 const openai = new OpenAI({
@@ -90,7 +89,6 @@ export function registerRoutes(app: Express): Server {
   // Enregistrer les routes d'administration
   apiRouter.use('/admin', adminRoutes);
   apiRouter.use('/openai', openaiRoutes);
-  apiRouter.use('/gemini', geminiRoutes);
 
   // Middleware pour la gestion des erreurs
   app.use((req, res, next) => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'wouter';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, BookOpen, ExternalLink, MessageSquare } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
@@ -118,9 +118,9 @@ export default function SectionViewer() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
-        <Button variant="outline" onClick={() => navigate('/')} className="hover:bg-background">
+        <Button variant="outline" onClick={() => navigate(`/chat/${conventionId}`)} className="hover:bg-background">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Retour à la liste
+          Retour à la convention
         </Button>
         <h1 className="text-2xl font-bold">
           IDCC {convention.id} - {convention.name}
@@ -131,40 +131,17 @@ export default function SectionViewer() {
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
-            <div className="flex gap-2">
-              {convention.url && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => window.open(convention.url, '_blank')}
-                  className="flex items-center gap-2"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Consulter sur ElNet
-                </Button>
-              )}
-              {hasDispositifLegal(sectionType) && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => setIsLegalDialogOpen(true)}
-                  className="flex items-center gap-2"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Voir le dispositif légal
-                </Button>
-              )}
-              
+            {hasDispositifLegal(sectionType) && (
               <Button 
                 variant="outline" 
                 size="sm"
-                onClick={() => window.open(`/chat/${conventionId}`, '_blank')}
-                className="flex items-center gap-2 ml-2"
+                onClick={() => setIsLegalDialogOpen(true)}
+                className="flex items-center gap-2"
               >
-                <MessageSquare className="h-4 w-4" />
-                Assistant IA
+                <BookOpen className="h-4 w-4" />
+                Voir le dispositif légal
               </Button>
-            </div>
+            )}
           </CardTitle>
         </CardHeader>
         <CardContent>

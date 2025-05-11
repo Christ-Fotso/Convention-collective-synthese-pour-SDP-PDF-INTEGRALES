@@ -1,16 +1,14 @@
 
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useLocation, Link } from 'wouter';
+import { useLocation } from 'wouter';
 import { getConventions } from '@/lib/api';
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageSquare } from 'lucide-react';
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [filteredConventions, setFilteredConventions] = useState<any[]>([]);
+  const [filteredConventions, setFilteredConventions] = useState([]);
   const [, navigate] = useLocation();
 
   const { data: conventions = [] } = useQuery({
@@ -91,7 +89,7 @@ export default function Home() {
                   <div
                     key={`${convention.id}-${index}`}
                     className="p-4 hover:bg-gray-50 cursor-pointer"
-                    onClick={() => navigate(`/convention/${convention.id}/section/informations-generales/generale`)}
+                    onClick={() => navigate(`/chat/${convention.id}`)}
                   >
                     <div className="flex flex-col gap-1">
                       <div className="text-base font-medium text-green-600">
