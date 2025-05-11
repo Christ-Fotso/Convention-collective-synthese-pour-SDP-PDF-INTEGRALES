@@ -21,43 +21,25 @@ export default function Home() {
     queryFn: getConventions,
   });
 
-  // Log pour déboguer la recherche
-  console.log("Nombre total de conventions:", conventions.length);
-  if (search) {
-    console.log("Recherche:", search);
-    // Log du premier élément pour voir la structure
-    if (conventions.length > 0) {
-      console.log("Premier élément:", conventions[0]);
+  // Fonction de filtrage améliorée
+  const filteredConventions = (() => {
+    if (!search.trim()) {
+      return conventions;
     }
-  }
-
-  const filteredConventions = conventions.filter(
-    conv => {
-      // Si la recherche est vide, on affiche tout
-      if (!search.trim()) {
-        return true;
-      }
+    
+    const searchTerms = search.toLowerCase().trim().split(/\s+/);
+    
+    return conventions.filter(conv => {
+      if (!conv) return false;
       
-      const searchTerm = search.toLowerCase().trim();
-      
-      // Version simplifiée qui devrait fonctionner avec tous les types de données
       const id = String(conv.id || '').toLowerCase();
       const name = String(conv.name || '').toLowerCase();
       
-      const idMatch = id.includes(searchTerm);
-      const nameMatch = name.includes(searchTerm);
-      
-      // Résultat du filtre
-      const isMatch = idMatch || nameMatch;
-      
-      // Log détaillé pour les 5 premiers éléments si on a une recherche active
-      if (search && conventions.indexOf(conv) < 5) {
-        console.log(`Convention ${id} - ${name}:`, { idMatch, nameMatch, isMatch });
-      }
-      
-      return isMatch;
-    }
-  );
+      return searchTerms.every(term => 
+        id.includes(term) || name.includes(term)
+      );
+    });
+  })();
 
   return (
     <div className="min-h-screen bg-background">
