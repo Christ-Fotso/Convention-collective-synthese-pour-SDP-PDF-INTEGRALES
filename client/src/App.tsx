@@ -13,7 +13,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/convention/:id/chat" component={Chat} />
+      <Route path="/chat/:id" component={Chat} />
       <Route path="/admin" component={AdminPage} />
 
       <Route path="/convention/:id/section/:category/:subcategory" component={SectionViewer} />

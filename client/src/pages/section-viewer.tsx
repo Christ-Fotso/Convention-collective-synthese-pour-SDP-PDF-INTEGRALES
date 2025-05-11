@@ -158,7 +158,7 @@ export default function SectionViewer() {
               <Button 
                 variant="outline" 
                 size="sm"
-                onClick={() => window.open(`/convention/${conventionId}/chat`, '_blank')}
+                onClick={() => window.open(`/chat/${conventionId}`, '_blank')}
                 className="flex items-center gap-2 ml-2"
               >
                 <MessageSquare className="h-4 w-4" />
