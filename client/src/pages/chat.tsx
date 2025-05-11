@@ -327,12 +327,11 @@ export default function Chat() {
                   "Aperçu du contenu"
                 )}
               </CardTitle>
-              <CardDescription>
-                {selectedSection ? 
-                  "Sélectionnez une autre section pour voir son contenu" : 
-                  "Sélectionnez une section pour afficher son contenu"
-                }
-              </CardDescription>
+              {!selectedSection && (
+                <CardDescription>
+                  Sélectionnez une section pour afficher son contenu
+                </CardDescription>
+              )}
             </CardHeader>
             <CardContent>
               <ScrollArea className="h-[calc(100vh-260px)]">
