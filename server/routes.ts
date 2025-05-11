@@ -148,10 +148,11 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
-      // Vérifier que la convention existe
-      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      // Vérifier que la convention existe dans les données JSON
+      const existingConventions = getConventions();
+      const conventionExists = existingConventions.some(conv => conv.id === conventionId);
       
-      if (convention.length === 0) {
+      if (!conventionExists) {
         return res.status(404).json({
           message: "Convention non trouvée"
         });
@@ -222,29 +223,34 @@ export function registerRoutes(app: Express): Server {
         });
       }
 
-      // Vérification explicite que la convention existe avant de créer la source
+      // Vérification explicite que la convention existe dans le JSON avant de créer la source
       console.log(`Vérification de l'existence de la convention ${conventionId}`);
-      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      const existingConventions = getConventions();
+      const convention = existingConventions.find(conv => conv.id === conventionId);
       
-      if (convention.length === 0) {
-        console.error(`Convention ${conventionId} non trouvée dans la base de données`);
+      if (!convention) {
+        console.error(`Convention ${conventionId} non trouvée dans les données JSON`);
         return res.status(404).json({
-          message: `Convention ${conventionId} non trouvée dans la base de données`
+          message: `Convention ${conventionId} non trouvée dans les données`
         });
       }
       
-      console.log(`Convention ${conventionId} trouvée dans la base: ${JSON.stringify(convention[0])}`);
+      console.log(`Convention ${conventionId} trouvée dans le JSON: ${JSON.stringify(convention)}`);
 
       // Pour des raisons de compatibilité avec le client, nous générons un identifiant unique
       const sourceId = `src_${createHash('md5').update(`${conventionId}_${Date.now()}`).digest('hex').substring(0, 20)}`;
       
-      console.log(`Initialisation de l'accès au PDF pour la convention ${conventionId} (URL: ${convention[0].url})`);
+      // Construire l'URL comme nous le faisons dans la route /conventions
+      const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
+      console.log(`Initialisation de l'accès au PDF pour la convention ${conventionId} (URL: ${conventionUrl})`);
       
       try {
         // Enregistrer dans la base de données pour maintenir la compatibilité avec le client
         await db.insert(chatpdfSources).values({
-          conventionId,
-          sourceId
+          id: sourceId,
+          name: `Convention collective ${convention.name} (IDCC ${conventionId})`,
+          url: conventionUrl,
+          convention_id: conventionId
         });
         
         console.log(`Session d'analyse initialisée pour la convention ${conventionId}: ${sourceId}`);
