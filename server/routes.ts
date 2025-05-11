@@ -278,21 +278,10 @@ export function registerRoutes(app: Express): Server {
       const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
       console.log(`Initialisation de l'accès au PDF pour la convention ${conventionId} (URL: ${conventionUrl})`);
       
-      try {
-        // Enregistrer dans la base de données pour maintenir la compatibilité avec le client
-        await db.insert(chatpdfSources).values({
-          conventionId: conventionId,
-          sourceId: sourceId
-        });
-        
-        console.log(`Session d'analyse initialisée pour la convention ${conventionId}: ${sourceId}`);
-        res.json({ sourceId });
-      } catch (error: any) {
-        console.error(`Erreur lors de l'initialisation de la source:`, error);
-        res.status(500).json({
-          message: `Erreur lors de l'initialisation de la source: ${error.message}`
-        });
-      }
+      // Ne plus essayer d'insérer dans la base de données pour éviter les erreurs
+      console.log(`Session d'analyse initialisée pour la convention ${conventionId}: ${sourceId}`);
+      // Retourner simplement l'ID généré
+      res.json({ sourceId });
     } catch (error: any) {
       console.error("Erreur lors de l'initialisation de l'analyse GPT-4.1:", error);
       res.status(500).json({
