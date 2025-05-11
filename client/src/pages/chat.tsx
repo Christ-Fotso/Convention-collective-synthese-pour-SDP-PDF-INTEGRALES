@@ -159,6 +159,17 @@ export default function Chat() {
                           
                           const sectionElements: JSX.Element[] = [];
                           sections.forEach((section, sectionIndex) => {
+                            // Récupérer le nom formaté de la sous-catégorie à partir de CATEGORIES
+                            const categoryData = CATEGORIES.find(cat => cat.id === section.category);
+                            let subcategoryName = section.subcategory.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+                            
+                            if (categoryData) {
+                              const subcategoryData = categoryData.subcategories.find(subcat => subcat.id === section.subcategory);
+                              if (subcategoryData) {
+                                subcategoryName = subcategoryData.name;
+                              }
+                            }
+                            
                             sectionElements.push(
                               <div
                                 key={`${categoryIndex}-${sectionIndex}`}
@@ -169,7 +180,7 @@ export default function Chat() {
                                 }`}
                                 onClick={() => setSelectedSection(section)}
                               >
-                                {section.subcategory.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                                {subcategoryName}
                               </div>
                             );
                           });
@@ -209,7 +220,19 @@ export default function Chat() {
               <CardTitle>
                 {selectedSection ? (
                   <div className="flex justify-between items-center">
-                    <span>{selectedSection.label}</span>
+                    <span>
+                      {(() => {
+                        // Récupérer des noms formatés à partir de CATEGORIES
+                        const categoryData = CATEGORIES.find(cat => cat.id === selectedSection.category);
+                        if (categoryData) {
+                          const subcategoryData = categoryData.subcategories.find(subcat => subcat.id === selectedSection.subcategory);
+                          if (subcategoryData) {
+                            return `${categoryData.name} - ${subcategoryData.name}`;
+                          }
+                        }
+                        return selectedSection.label;
+                      })()}
+                    </span>
                     <Button
                       variant="outline"
                       size="sm"
@@ -224,7 +247,7 @@ export default function Chat() {
               </CardTitle>
               <CardDescription>
                 {selectedSection ? 
-                  `Section: ${selectedSection.label}` : 
+                  "Sélectionnez une autre section pour voir son contenu" : 
                   "Sélectionnez une section pour afficher son contenu"
                 }
               </CardDescription>

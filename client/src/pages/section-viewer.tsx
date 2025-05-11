@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
-import type { Convention, ConventionSection } from '@/types';
+import type { Convention, ConventionSection, Category, Subcategory } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -52,9 +52,19 @@ export default function SectionViewer() {
     const category = CATEGORIES.find(c => c.id === categoryId);
     const subcategory = category?.subcategories?.find(s => s.id === subcategoryId);
     
+    let categoryName = categoryId.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+    let subcategoryName = subcategoryId?.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") || "";
+    
+    if (category) {
+      categoryName = category.name;
+      if (subcategory) {
+        subcategoryName = subcategory.name;
+      }
+    }
+    
     return {
-      category: category?.name || categoryId,
-      subcategory: subcategory?.name || subcategoryId,
+      category: categoryName,
+      subcategory: subcategoryName,
     };
   };
 
