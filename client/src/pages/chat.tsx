@@ -1,446 +1,293 @@
-import { useEffect, useState } from "react";
-import { useParams, useLocation, Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { Loader2, ChevronLeft, ChevronRight, ChevronDown, BookOpen } from "lucide-react";
-import axios from "axios";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { CATEGORIES } from "@/lib/categories";
-import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
-import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
-import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
+/**
+ * Page de chat avec l'assistant IA pour les conventions collectives
+ */
+import { useState, useEffect, useRef } from 'react';
+import { useLocation, Link } from 'wouter';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import {
+  ArrowLeft,
+  Send,
+  Loader2,
+  ChevronDown
+} from 'lucide-react';
 
-// Mapping entre les catégories backend et catégories d'affichage
-const CATEGORY_MAPPING: Record<string, string> = {
-  "protection-sociale": "cotisations",
-  "protection-sociale.prevoyance": "cotisations.prevoyance",
-  "protection-sociale.retraite": "cotisations.retraite", 
-  "protection-sociale.mutuelle": "cotisations.mutuelle",
-  "formation.contributions": "cotisations.formation",
-  "divers.paritarisme": "cotisations.paritarisme"
-};
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { 
+  Card, 
+  CardContent, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription,
+  CardFooter
+} from '@/components/ui/card';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/hooks/use-toast';
 
-// Types simplifiés
+import { generateConventionResponse } from '@/lib/gemini-service';
+
+interface Message {
+  content: string;
+  isUser: boolean;
+  timestamp: Date;
+}
+
 interface Convention {
   id: string;
   name: string;
 }
 
-interface SectionType {
-  sectionType: string;
-  label: string;
-  category: string;
-  subcategory: string;
-}
+// Styles pour les messages
+const userMessageStyle = "bg-primary/10 p-3 rounded-lg self-end max-w-[80%] mb-2";
+const aiMessageStyle = "bg-muted p-3 rounded-lg self-start max-w-[80%] mb-2";
+const loadingDotsStyle = "flex space-x-1 mt-1 items-center self-start max-w-[80%] mb-2 ml-2";
 
-// Fonction utilitaire pour convertir "category.subcategory" en label lisible
-function getSectionLabel(sectionType: string): string {
-  const [category, subcategory] = sectionType.split(".");
-  
-  if (!category || !subcategory) {
-    return sectionType;
-  }
-  
-  // Formatage simple du texte
-  const formatCategory = (text: string) => {
-    return text
-      .split("-")
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+export function ChatPage() {
+  const [location, setLocation] = useLocation();
+  const [selectedConvention, setSelectedConvention] = useState<string>('');
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState<Message[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+
+  // Si cette page est directement accédée avec un paramètre d'ID de convention
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const conventionId = params.get('convention');
+    if (conventionId) {
+      setSelectedConvention(conventionId);
+    }
+  }, []);
+
+  // Récupération de la liste des conventions
+  const { data: conventions, isLoading: isLoadingConventions } = useQuery<Convention[]>({
+    queryKey: ['conventions'],
+    queryFn: async () => {
+      const response = await axios.get('/api/conventions');
+      return response.data;
+    }
+  });
+
+  // Mutation pour envoyer une question à l'IA
+  const chatMutation = useMutation({
+    mutationFn: async ({ conventionId, query }: { conventionId: string; query: string }) => {
+      return await generateConventionResponse(conventionId, query);
+    },
+    onSuccess: (data) => {
+      // Ajouter la réponse de l'IA aux messages
+      setMessages(prev => [
+        ...prev,
+        {
+          content: data.answer,
+          isUser: false,
+          timestamp: new Date()
+        }
+      ]);
+    },
+    onError: (error) => {
+      toast({
+        title: "Erreur",
+        description: error instanceof Error ? error.message : "Une erreur est survenue",
+        variant: "destructive",
+      });
+      
+      // Ajouter un message d'erreur dans la conversation
+      setMessages(prev => [
+        ...prev,
+        {
+          content: "Désolé, je n'ai pas pu générer une réponse. Veuillez réessayer plus tard.",
+          isUser: false,
+          timestamp: new Date()
+        }
+      ]);
+    }
+  });
+
+  // Scroll automatique vers le bas des messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  // Ajout d'un message de bienvenue initial
+  useEffect(() => {
+    if (selectedConvention && conventions) {
+      const convention = conventions.find(c => c.id === selectedConvention);
+      if (convention) {
+        const welcomeMessage = `Bonjour ! Je suis votre assistant IA spécialisé dans la convention collective "${convention.name}" (IDCC: ${selectedConvention}). Comment puis-je vous aider aujourd'hui ?`;
+        
+        // Ne pas ajouter le message si la liste contient déjà des messages
+        if (messages.length === 0) {
+          setMessages([
+            {
+              content: welcomeMessage,
+              isUser: false,
+              timestamp: new Date()
+            }
+          ]);
+        }
+      }
+    }
+  }, [selectedConvention, conventions]);
+
+  const handleSendMessage = () => {
+    if (!input.trim() || !selectedConvention) return;
+    
+    // Ajouter le message de l'utilisateur
+    const userMessage = {
+      content: input,
+      isUser: true,
+      timestamp: new Date()
+    };
+    
+    setMessages(prev => [...prev, userMessage]);
+    
+    // Envoyer la question à l'IA
+    chatMutation.mutate({
+      conventionId: selectedConvention,
+      query: input
+    });
+    
+    // Réinitialiser l'input
+    setInput('');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
   };
   
-  return `${formatCategory(category)} - ${formatCategory(subcategory)}`;
-}
-
-export default function Chat() {
-  const { id } = useParams<{ id: string }>();
-  const [_, navigate] = useLocation();
-  const [selectedSection, setSelectedSection] = useState<SectionType | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
-  const [loading, setLoading] = useState(false);
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  
-  // Requête pour obtenir les informations sur la convention
-  const { data: convention, isLoading: isLoadingConvention } = useQuery({
-    queryKey: ["convention", id],
-    queryFn: async () => {
-      if (!id) return null;
-      const response = await axios.get(`/api/conventions`);
-      const conventions = response.data;
-      return conventions.find((c: Convention) => c.id === id) || null;
-    },
-    staleTime: 1000 * 60 * 5 // 5 minutes
-  });
-  
-  // Requête pour obtenir les types de sections disponibles
-  const { data: sectionTypes, isLoading: isLoadingSections } = useQuery({
-    queryKey: ["section-types", id],
-    queryFn: async () => {
-      if (!id) return [];
-      const response = await axios.get(`/api/convention/${id}/section-types`);
-      return response.data.map((type: string) => {
-        // Vérifier si on doit remapper cette section
-        let mappedType = type;
-        if (CATEGORY_MAPPING[type]) {
-          mappedType = CATEGORY_MAPPING[type];
-        }
-        
-        const [backendCategory, backendSubcategory] = type.split(".");
-        
-        // Définir la catégorie et sous-catégorie d'affichage
-        let displayCategory = backendCategory;
-        let displaySubcategory = backendSubcategory;
-        
-        // Appliquer le mapping spécifique pour les sections de protection sociale à cotisations
-        if (backendCategory === "protection-sociale" && ["prevoyance", "retraite", "mutuelle"].includes(backendSubcategory)) {
-          displayCategory = "cotisations";
-          displaySubcategory = backendSubcategory;
-        }
-        // Appliquer le mapping pour formation.contributions -> cotisations.formation
-        else if (backendCategory === "formation" && backendSubcategory === "contributions") {
-          displayCategory = "cotisations";
-          displaySubcategory = "formation";
-        }
-        // Appliquer le mapping pour divers.paritarisme -> cotisations.paritarisme
-        else if (backendCategory === "divers" && backendSubcategory === "paritarisme") {
-          displayCategory = "cotisations";
-          displaySubcategory = "paritarisme";
-        }
-        // le reste reste inchangé
-        
-        return {
-          sectionType: type, // Type de section original pour les appels API
-          label: getSectionLabel(type),
-          category: displayCategory,
-          subcategory: displaySubcategory
-        };
-      });
-    },
-    staleTime: 1000 * 60 * 5 // 5 minutes
-  });
-  
-  // Requête pour obtenir le contenu d'une section
-  const { data: sectionContent, isLoading: isLoadingSectionContent } = useQuery({
-    queryKey: ["section-content", id, selectedSection?.sectionType],
-    queryFn: async () => {
-      if (!id || !selectedSection) return null;
-      
-      // L'API attend le sectionType complet, pas séparé par catégorie/sous-catégorie
-      const response = await axios.get(`/api/convention/${id}/section/${selectedSection.sectionType}`);
-      return response.data;
-    },
-    enabled: !!selectedSection,
-    staleTime: 1000 * 60 * 5 // 5 minutes
-  });
-  
-  // Effet pour déplier automatiquement la catégorie lorsqu'une section est sélectionnée
-  useEffect(() => {
-    if (selectedSection) {
-      setExpandedCategory(selectedSection.category);
-    }
-  }, [selectedSection]);
-  
   return (
-    <div className="container mx-auto py-6 space-y-6">
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" onClick={() => navigate("/")} title="Retour à la liste des conventions">
-          <ChevronLeft className="h-5 w-5" />
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="flex items-center mb-4">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={() => setLocation('/')} 
+          className="mr-2"
+        >
+          <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h1 className="text-2xl font-bold">
-          {isLoadingConvention ? (
-            <Skeleton className="h-8 w-64" />
-          ) : convention ? (
-            `Convention collective: ${convention.name}`
-          ) : (
-            "Convention non trouvée"
-          )}
-        </h1>
+        <h1 className="text-2xl font-bold">Assistant IA - Conventions Collectives</h1>
       </div>
       
-      {!isLoadingConvention && !convention && (
-        <Alert variant="destructive">
-          <AlertTitle>Erreur</AlertTitle>
-          <AlertDescription>
-            La convention collective demandée n'a pas été trouvée.
-          </AlertDescription>
-        </Alert>
-      )}
-      
-      {convention && (
-        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6">
-          {/* Colonne de gauche: Navigation par sections */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle>Sections disponibles</CardTitle>
-              <div className="mt-2 relative">
-                <input
-                  type="text"
-                  placeholder="Rechercher une section..."
-                  className="w-full p-2 pr-8 text-sm border rounded-md"
-                  onChange={(e) => {
-                    // Stocker la valeur de recherche dans un état local
-                    setSearchTerm(e.target.value);
-                  }}
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {isLoadingSections ? (
-                <div className="space-y-2">
-                  <Skeleton className="h-10 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-              ) : (
-                <ScrollArea className="h-[calc(100vh-260px)]">
-                  {sectionTypes && sectionTypes.length > 0 ? (
-                    <div className="space-y-6">
-                      {/* Créer un objet pour regrouper les sections par catégorie */}
-                      {(() => {
-                        // On regroupe d'abord les sections par catégorie
-                        const groupedSections: Record<string, SectionType[]> = {};
-                        
-                        // Filtrer les sections selon le terme de recherche (si présent)
-                        const filteredSections = searchTerm.trim() !== '' 
-                          ? sectionTypes.filter((section: SectionType) => {
-                              // Trouver le nom de la catégorie et de la sous-catégorie
-                              const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
-                              if (!categoryDef) return false;
-                              
-                              const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
-                              if (!subcategoryDef) return false;
-                              
-                              // Rechercher dans les noms de catégorie et sous-catégorie
-                              const searchLower = searchTerm.toLowerCase();
-                              return categoryDef.name.toLowerCase().includes(searchLower) || 
-                                     subcategoryDef.name.toLowerCase().includes(searchLower);
-                            })
-                          : sectionTypes;
-                        
-                        // Parcours de toutes les sections filtrées pour les regrouper
-                        filteredSections.forEach((section: SectionType) => {
-                          if (!groupedSections[section.category]) {
-                            groupedSections[section.category] = [];
-                          }
-                          groupedSections[section.category].push(section);
-                        });
-                        
-                        // Créer les éléments JSX pour chaque catégorie, dans l'ordre défini par CATEGORIES
-                        const categoryElements: JSX.Element[] = [];
-                        
-                        // Utiliser l'ordre des catégories défini dans CATEGORIES
-                        CATEGORIES.forEach((categoryDefinition, categoryIndex) => {
-                          const category = categoryDefinition.id;
-                          
-                          // Vérifier si la catégorie existe dans les données
-                          if (!groupedSections[category]) {
-                            return; // Passer à la catégorie suivante
-                          }
-                          
-                          const sections = groupedSections[category];
-                          const sectionElements: JSX.Element[] = [];
-                          
-                          // Pour chaque sous-catégorie dans l'ordre défini
-                          categoryDefinition.subcategories.forEach((subcategoryDefinition, subcategoryIndex) => {
-                            // Trouver la section correspondante
-                            const section = sections.find(s => s.subcategory === subcategoryDefinition.id);
-                            
-                            if (section) {
-                              sectionElements.push(
-                                <div
-                                  key={`${categoryIndex}-${subcategoryIndex}`}
-                                  className={`p-2 border rounded-md cursor-pointer text-xs ${
-                                    selectedSection?.sectionType === section.sectionType
-                                      ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600"
-                                      : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
-                                  }`}
-                                  onClick={() => setSelectedSection(section)}
-                                >
-                                  {subcategoryDefinition.name}
-                                </div>
-                              );
-                            }
-                          });
-                          
-                          // N'ajouter la catégorie que si elle contient des sections
-                          if (sectionElements.length > 0) {
-                            const isCategoryExpanded = expandedCategory === category;
-                            categoryElements.push(
-                              <div key={categoryIndex} className="mb-3">
-                                <h3 
-                                  className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1 flex justify-between items-center cursor-pointer"
-                                  onClick={() => setExpandedCategory(isCategoryExpanded ? null : category)}
-                                >
-                                  <span>{categoryDefinition.name}</span>
-                                  {isCategoryExpanded ? (
-                                    <ChevronDown className="h-4 w-4" />
-                                  ) : (
-                                    <ChevronRight className="h-4 w-4" />
-                                  )}
-                                </h3>
-                                {isCategoryExpanded && (
-                                  <div className="grid grid-cols-1 gap-2 animate-in fade-in-50 duration-150">
-                                    {sectionElements}
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          }
-                        });
-                        
-                        return categoryElements;
-                      })()}
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>Chat avec l'IA</CardTitle>
+          <CardDescription>
+            Posez des questions sur votre convention collective et obtenez des réponses précises.
+          </CardDescription>
+          
+          <div className="mt-4">
+            <Select 
+              value={selectedConvention} 
+              onValueChange={setSelectedConvention}
+              disabled={isLoadingConventions || chatMutation.isPending}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Sélectionnez une convention collective" />
+              </SelectTrigger>
+              <SelectContent>
+                {conventions?.map(convention => (
+                  <SelectItem key={convention.id} value={convention.id}>
+                    {convention.name} (IDCC: {convention.id})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </CardHeader>
+        
+        <Separator />
+        
+        <CardContent className="p-4">
+          {selectedConvention ? (
+            <div className="flex flex-col h-[60vh] overflow-hidden">
+              <div className="flex-1 overflow-y-auto p-2">
+                <div className="flex flex-col">
+                  {messages.map((message, index) => (
+                    <div 
+                      key={index} 
+                      className={message.isUser ? userMessageStyle : aiMessageStyle}
+                    >
+                      <ReactMarkdown 
+                        remarkPlugins={[remarkGfm]} 
+                        className="prose prose-sm max-w-none"
+                      >
+                        {message.content}
+                      </ReactMarkdown>
                     </div>
-                  ) : (
-                    <div className="text-center py-6 text-gray-500">
-                      Aucune section disponible
+                  ))}
+                  
+                  {chatMutation.isPending && (
+                    <div className={loadingDotsStyle}>
+                      <span className="text-sm text-muted-foreground">L'IA réfléchit</span>
+                      <span className="animate-bounce delay-0">.</span>
+                      <span className="animate-bounce delay-100">.</span>
+                      <span className="animate-bounce delay-200">.</span>
                     </div>
                   )}
-                </ScrollArea>
-              )}
-            </CardContent>
-          </Card>
-          
-          {/* Colonne de droite: Aperçu du contenu */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle>
-                {selectedSection ? (
-                  <div className="flex justify-between items-center">
-                    <span>
-                      {(() => {
-                        // Récupérer des noms formatés à partir de CATEGORIES
-                        const categoryData = CATEGORIES.find(cat => cat.id === selectedSection.category);
-                        if (categoryData) {
-                          const subcategoryData = categoryData.subcategories.find(subcat => subcat.id === selectedSection.subcategory);
-                          if (subcategoryData) {
-                            return `${categoryData.name} - ${subcategoryData.name}`;
-                          }
-                        }
-                        return selectedSection.label;
-                      })()}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        // Route pour la page complète
-                        const [category, subcategory] = selectedSection.sectionType.split(".");
-                        navigate(`/convention/${id}/section/${category}/${subcategory}`);
-                      }}
-                    >
-                      <span className="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5">
-                          <rect width="18" height="18" x="3" y="3" rx="2" />
-                          <path d="M9 8h7" />
-                          <path d="M8 12h8" />
-                          <path d="M11 16h5" />
-                        </svg>
-                        Affichage plein écran <ChevronRight className="h-4 w-4 ml-1" />
-                      </span>
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                    Aperçu du contenu
-                  </div>
-                )}
-              </CardTitle>
-              {!selectedSection && (
-                <CardDescription className="flex items-center gap-1.5 mt-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-                  Sélectionnez une section dans le menu de gauche
-                </CardDescription>
-              )}
-            </CardHeader>
-            <CardContent>
-              <ScrollArea className="h-[calc(100vh-260px)]">
-                {!selectedSection ? (
-                  <div className="flex flex-col items-center justify-center py-12 text-muted-foreground space-y-4">
-                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-muted/50">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
-                        <line x1="20" x2="10" y1="12" y2="12"></line>
-                        <line x1="20" x2="20" y1="12" y2="20"></line>
-                        <line x1="20" x2="20" y1="12" y2="4"></line>
-                        <polyline points="10 18 4 12 10 6"></polyline>
-                      </svg>
-                    </div>
-                    <div className="font-medium text-lg">Aucune section sélectionnée</div>
-                    <p className="text-sm max-w-md text-center">
-                      Veuillez sélectionner une section dans le menu à gauche pour afficher son contenu
-                    </p>
-                  </div>
-                ) : isLoadingSectionContent ? (
-                  <div className="space-y-4">
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-3/4" />
-                    <Skeleton className="h-4 w-5/6" />
-                    <Skeleton className="h-4 w-2/3" />
-                    <Skeleton className="h-4 w-full" />
-                  </div>
-                ) : (
-                  <div className="prose dark:prose-invert max-w-none prose-sm" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
-                    {/* Afficher la réponse brute en cas de problème */}
-                    {sectionContent ? (
-                      <>
-                        {hasDispositifLegal(selectedSection?.sectionType || "") && (
-                          <div className="mb-4">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="text-xs flex items-center text-green-700 border-green-300 hover:bg-green-50 hover:text-green-800"
-                              onClick={() => setIsLegalDialogOpen(true)}
-                            >
-                              <BookOpen className="h-3.5 w-3.5 mr-1" />
-                              Voir le dispositif légal
-                            </Button>
-                            
-                            <DispositifLegalDialog 
-                              isOpen={isLegalDialogOpen}
-                              setIsOpen={setIsLegalDialogOpen}
-                              title={selectedSection?.label || "Dispositif légal"}
-                              content={getDispositifLegal(selectedSection?.sectionType || "")}
-                            />
-                          </div>
-                        )}
-                        <MarkdownTableWrapper 
-                          content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
-                        />
-                      </>
+                  
+                  <div ref={messagesEndRef} />
+                </div>
+              </div>
+              
+              <div className="p-2">
+                <div className="flex items-center space-x-2">
+                  <Input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Posez votre question..."
+                    disabled={chatMutation.isPending || !selectedConvention}
+                    className="flex-1"
+                  />
+                  <Button 
+                    onClick={handleSendMessage} 
+                    disabled={!input.trim() || chatMutation.isPending || !selectedConvention}
+                  >
+                    {chatMutation.isPending ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
-                      <div className="text-red-500">
-                        <p>Aucune donnée reçue de l'API.</p>
-                        <p>Vérifiez les paramètres de la requête ou consultez les logs serveur.</p>
-                      </div>
+                      <Send className="h-4 w-4" />
                     )}
-                  </div>
-                )}
-              </ScrollArea>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-[60vh] text-center">
+              <div className="mb-4">
+                <ChevronDown className="h-8 w-8 animate-bounce" />
+              </div>
+              <h3 className="text-lg font-medium">Sélectionnez une convention collective</h3>
+              <p className="text-muted-foreground mt-2">
+                Pour commencer, veuillez sélectionner une convention collective dans le menu déroulant ci-dessus.
+              </p>
+            </div>
+          )}
+        </CardContent>
+        
+        <CardFooter className="border-t p-4 text-xs text-muted-foreground">
+          <p>
+            Cet assistant utilise Google Gemini 1.5 Pro pour analyser les conventions collectives.
+            Les réponses se basent uniquement sur le contenu de la convention sélectionnée.
+          </p>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
+
+export default ChatPage;
