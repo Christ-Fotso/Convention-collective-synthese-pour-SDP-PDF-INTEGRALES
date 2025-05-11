@@ -22,9 +22,12 @@ export default function Home() {
   });
 
   const filteredConventions = conventions.filter(
-    conv => 
-      conv.id.toLowerCase().includes(search.toLowerCase()) ||
-      conv.name.toLowerCase().includes(search.toLowerCase())
+    conv => {
+      const searchTerm = search.toLowerCase();
+      const idMatch = conv.id && typeof conv.id === 'string' ? conv.id.toLowerCase().includes(searchTerm) : false;
+      const nameMatch = conv.name && typeof conv.name === 'string' ? conv.name.toLowerCase().includes(searchTerm) : false;
+      return idMatch || nameMatch;
+    }
   );
 
   return (

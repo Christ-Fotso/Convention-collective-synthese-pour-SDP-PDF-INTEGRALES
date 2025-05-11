@@ -19,19 +19,20 @@ const openai = new OpenAI({
 import { shouldUsePerplexity } from "./config/ai-routing";
 import { createHash } from "crypto";
 import {
-  getAllConventionSections,
-  getConventionSection,
   getApiMetrics,
   saveApiMetric,
   SECTION_TYPES
 } from "./services/section-manager";
 
-// Importer le nouveau provider JSON pour les sections
+// Importer le provider JSON pour les sections
 import {
-  getConventionSection as getConventionSectionFromJson,
-  getAllConventionSections as getAllConventionSectionsFromJson,
-  initSectionsFromJson
-} from "./services/sections-json-provider";
+  loadSectionsFromJSON,
+  getSection,
+  getSectionsByConvention,
+  getSectionTypesByConvention,
+  getConventions,
+  getConventionsWithSections
+} from "./sections-data";
 
 // Import de notre cache persistant
 import { LimitedCache } from "./services/cache-manager";
@@ -62,6 +63,15 @@ export async function initCaches(): Promise<void> {
       console.error("Erreur lors de l'initialisation du cache PDF:", error);
     }
     
+    // Charger les données des sections depuis le fichier JSON
+    try {
+      console.log("Chargement des sections depuis le fichier JSON...");
+      await loadSectionsFromJSON();
+      console.log("Sections chargées avec succès");
+    } catch (error) {
+      console.error("Erreur lors du chargement des sections:", error);
+    }
+    
     console.log('Tous les caches ont été initialisés avec succès');
   } catch (error) {
     console.error('Erreur lors de l\'initialisation des caches:', error);
@@ -88,17 +98,34 @@ export function registerRoutes(app: Express): Server {
   // Route pour récupérer toutes les conventions
   apiRouter.get("/conventions", async (req, res) => {
     try {
-      // Charger les conventions depuis la base de données
-      const conventionsData = await db.select().from(conventions);
+      // Utiliser les données du fichier JSON pour récupérer les conventions
+      const conventionsData = getConventions();
       
-      // Convertir au format attendu {id, name, url}
+      // Si on n'a pas de conventions dans le JSON, fallback sur la base de données
+      if (!conventionsData || conventionsData.length === 0) {
+        // Charger les conventions depuis la base de données
+        const dbConventions = await db.select().from(conventions);
+        
+        // Convertir au format attendu {id, name, url}
+        const formattedConventions = dbConventions.map((conv) => ({
+          id: conv.id,
+          name: conv.name,
+          url: conv.url
+        }));
+        
+        console.log(`Renvoi de ${formattedConventions.length} conventions depuis la base de données`);
+        
+        return res.json(formattedConventions);
+      }
+      
+      // Ajouter l'URL en se basant sur l'ID
       const formattedConventions = conventionsData.map((conv) => ({
         id: conv.id,
         name: conv.name,
-        url: conv.url
+        url: `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conv.id}`,
       }));
       
-      console.log(`Renvoi de ${formattedConventions.length} conventions`);
+      console.log(`Renvoi de ${formattedConventions.length} conventions depuis le fichier JSON`);
       
       res.json(formattedConventions);
     } catch (error: any) {
@@ -710,8 +737,18 @@ export function registerRoutes(app: Express): Server {
   adminRouter.get("/sections/:conventionId", async (req, res) => {
     try {
       const { conventionId } = req.params;
-      const sections = await getAllConventionSections(conventionId);
-      res.json(sections);
+      const sections = getSectionsByConvention(conventionId);
+      
+      // Transformer pour garder la compatibilité avec l'API existante
+      const formattedSections = sections.map(section => ({
+        id: `${section.conventionId}_${section.sectionType}`,
+        conventionId: section.conventionId,
+        sectionType: section.sectionType,
+        content: section.content,
+        status: 'complete'
+      }));
+      
+      res.json(formattedSections);
     } catch (error: any) {
       console.error("Erreur lors de la récupération des sections:", error);
       res.status(500).json({
@@ -725,7 +762,7 @@ export function registerRoutes(app: Express): Server {
   adminRouter.get("/sections/:conventionId/:sectionType", async (req, res) => {
     try {
       const { conventionId, sectionType } = req.params;
-      const section = await getConventionSection(conventionId, sectionType);
+      const section = getSection(conventionId, sectionType);
       
       if (!section) {
         return res.status(404).json({
@@ -733,7 +770,16 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
-      res.json(section);
+      // Transformer pour garder la compatibilité avec l'API existante
+      const formattedSection = {
+        id: `${conventionId}_${sectionType}`,
+        conventionId: section.conventionId,
+        sectionType: section.sectionType,
+        content: section.content,
+        status: 'complete'
+      };
+      
+      res.json(formattedSection);
     } catch (error: any) {
       console.error("Erreur lors de la récupération de la section:", error);
       res.status(500).json({

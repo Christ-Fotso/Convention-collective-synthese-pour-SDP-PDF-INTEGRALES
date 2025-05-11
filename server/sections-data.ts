@@ -6,183 +6,258 @@
  * de base de données et d'importation
  */
 
+import fs from 'fs';
+import path from 'path';
+
+// Interface pour les sections de conventions
 export interface SectionData {
   conventionId: string;
   sectionType: string;
   content: string;
 }
 
-/**
- * Tableau contenant toutes les sections disponibles
- * Ce tableau sera rempli avec les données que l'utilisateur fournira
- */
-export const sectionsData: SectionData[] = [
-  // Les données des sections seront ajoutées ici
-  // Format:
-  // {
-  //   conventionId: "1486",
-  //   sectionType: "temps-travail.duree-travail",
-  //   content: "Contenu markdown de la section..."
-  // },
-
-  // Exemple pour la période d'essai dans la boulangerie
-  {
-    conventionId: "843",
-    sectionType: "embauche.periode-essai",
-    content: `Période d'essai
-
-Tableau : Période d'essai – Dispositions conventionnelles
-
-| Catégorie                           | Durée Initiale         | Renouvellement | Durée Renouvellement |
-|--------------------------------------|------------------------|----------------|----------------------|
-| Ouvriers/Employés                   | 30 jours               | Non            | RAS                  |
-| Cadres                              | Non mentionné          | Non mentionné  | Non mentionné        |
-| Personnel d'encadrement (Cadre 1)   | 4 mois maximum         | Oui            | 4 mois maximum       |
-| Personnel d'encadrement (Cadre 2)   | Non mentionné          | Non mentionné  | Non mentionné        |`
-  },
-  
-  // Exemple pour la durée du travail dans la boulangerie
-  {
-    conventionId: "843",
-    sectionType: "temps-travail.duree-travail",
-    content: `**Durées du travail :**
-
-* **Durée hebdomadaire de référence:** La durée du travail est fixée par l'employeur dans le cadre des lois et décrets en vigueur (Article 21).
-
-* **Durée maximale hebdomadaire:**
-    * Travailleurs de nuit : 40 heures sur une période quelconque de 12 semaines, 44 heures en cas de modulation (Article 23).
-    * Temps partiel (entreprises de moins de 10 salariés) : La convention ne prévoit pas de durée maximale hebdomadaire, mais mentionne des durées minimales (6 heures pour le personnel de vente et de service). (Article 21)
-    * Temps partiel (entreprises de 10 à 20 salariés) : 16 heures pour le personnel de vente et de service. (Article 21)
-
-* **Durée maximale quotidienne:**
-    * Travailleurs de nuit : 8 heures, pouvant exceptionnellement atteindre 10 heures  (Article 23).
-    * Temps partiel : 10 heures (Article 21).
-
-
-* **Repos quotidien minimum:** 11 heures entre la fin d'une journée de travail et le commencement d'une autre (Article - Annexe "Statut du personnel d'encadrement", Article 2).
-
-* **Repos hebdomadaire minimum:**
-    * Jeunes travailleurs de 16 ans et plus : deux jours consécutifs (Article 26).
-    * Apprentis de 16 ans et plus : deux jours consécutifs (Article 38).
-    * Général : La convention ne précise pas de durée minimale en dehors des jeunes travailleurs et apprentis.  L'article 1 mentionne une concertation pour l'amélioration de la situation sociale incluant potentiellement ce sujet.
-
-* **Temps de pause minimum:** 20 minutes pour les travailleurs de nuit dont la période de travail effectif atteint 6 heures. Si le salarié n'est pas à disposition de l'employeur pendant cette pause, elle n'est pas considérée comme du travail effectif et n'est pas rémunérée (Article 23).
-
-* **Dispositions spécifiques par catégorie:**
-    * Cadres au forfait (Cadre 1) : 218 jours par an, incluant la journée de solidarité (Article - Annexe "Statut du personnel d'encadrement", Article 2).
-    * Cadres dirigeants (Cadre 2) : Non soumis aux dispositions légales relatives à la durée du travail (Article - Annexe "Statut du personnel d'encadrement", Article 2).
-    * Temps partiel :  Voir "Durée maximale hebdomadaire" et "Durée maximale quotidienne" ci-dessus. Des durées minimales et des dispositions sur les coupures sont prévues. (Article 21)
-    * Jeunes travailleurs de 16 ans et plus : Peuvent travailler les jours fériés et bénéficient d'un repos hebdomadaire de deux jours consécutifs (Article 26).
-
-* **Dérogations prévues:**
-    * Durée minimale de travail à temps partiel (inférieure à 24h) : Possible selon plusieurs conditions, incluant une demande écrite et motivée du salarié, le statut d'étudiant, l'accord des associations intermédiaires ou des entreprises de travail temporaire d'insertion, ou une convention ou un accord de branche étendu (Article 21).
-    * Temps partiel inférieur à 24h (entreprises de moins de 10 salariés et de 10 à 20 salariés): Durées minimales spécifiques, conditions sur la modification de la répartition de la durée du travail et délai de prévenance. (Article 21)
-
-* **Mention de l'articulation avec des accords d'entreprise:** La convention ne mentionne pas l'articulation des durées du travail avec des accords d'entreprise, mais l'article 8.1 prévoit la transmission des accords d'entreprise à la CPPNI sur des sujets comme la durée et l'aménagement du temps de travail.`
-  },
-  
-  // Exemple pour les heures supplémentaires dans la convention des bureaux d'études
-  {
-    conventionId: "1486", 
-    sectionType: "temps-travail.heures-sup",
-    content: `## Heures Supplémentaires
-
-**Taux de Majoration:** La convention ne prévoit pas de taux de majoration spécifiques pour les heures supplémentaires, renvoyant implicitement à l'application des dispositions légales.
-
-**Contingent Annuel:**
-
-* **ETAM:** 130 heures supplémentaires par an. (Article 6.2, Accord de Branche du 22 juin 1999 relatif à la durée du travail, modifié par avenant du 1er avril 2014, étendu).
-* **Ingénieurs et Cadres:** Le contingent réglementaire s'applique. (Article 6.2, Accord de Branche du 22 juin 1999 relatif à la durée du travail, modifié par avenant du 1er avril 2014, étendu).
-
-**Modalités spécifiques liées au contingent:** La convention ne précise pas de modalités spécifiques liées au dépassement du contingent, à l'information du CSE ou autres.
-
-**Repos Compensateur de Remplacement (RCR):**  L'accord de branche du 22 juin 1999 (modifié par avenant du 1er avril 2014, étendu) prévoit la possibilité de remplacer tout ou partie du paiement des heures supplémentaires et des majorations y afférentes par un repos équivalent, sur le fondement d'un accord d'entreprise. En l'absence d'organisations syndicales, le comité d'entreprise ou, à défaut, les délégués du personnel seront consultés, et l'employeur devra solliciter l'accord des salariés concernés. (Article 4.1). Les heures supplémentaires dont le paiement aura été remplacé par un repos équivalent ne s'imputent pas sur le contingent annuel.
-
-**Contrepartie Obligatoire en Repos (COR):** La convention ne prévoit rien à ce sujet.
-
-**Procédures de mise en œuvre:** La convention ne prévoit rien concernant l'information préalable ou un délai de prévenance pour les heures supplémentaires. L'accord de branche du 22 juin 1999 (modifié le 1er avril 2014) précise que les heures supplémentaires sont celles effectuées à la demande de l'employeur ou avec son accord, même implicite, ou lorsqu'il est établi que leur réalisation est rendue nécessaire par les tâches confiées au salarié. (Article 6.2)
-
-**Possibilités de refus par le salarié:** La convention ne prévoit rien à ce sujet.
-
-**Périodes de référence spécifiques:**  Dans le cas d'un aménagement du temps de travail sur l'année, les heures supplémentaires sont les heures effectuées sur l'année, au-delà de la durée du travail annuelle, légale ou conventionnelle, applicable dans l'entreprise. (Article 6.2, Avenant n°2 du 27 octobre 2022, étendu)
-
-**Dispositions spécifiques par catégorie de personnel:**  Voir Contingent Annuel.
-
-**Dispositions spécifiques régionales/départementales:** La convention ne prévoit rien à ce sujet.`
-  },
-  
-  // Exemple pour la grille de rémunération dans la convention des bureaux d'études
-  {
-    conventionId: "1486",
-    sectionType: "remuneration.grille",
-    content: `# Grille des salaires minima hiérarchiques
-
-## Grille applicable à partir du 1er janvier 2023
-
-### ETAM (Employés, Techniciens et Agents de Maîtrise)
-
-| Position | Coefficient | Salaire minimum mensuel (€) |
-|----------|-------------|------------------------------|
-| 1.1 | 220 | 1 682,50 |
-| 1.2 | 230 | 1 696,86 |
-| 1.3 | 240 | 1 725,59 |
-| 2.1 | 250 | 1 754,32 |
-| 2.2 | 275 | 1 811,78 |
-| 2.3 | 310 | 1 969,71 |
-| 3.1 | 355 | 2 127,63 |
-| 3.2 | 400 | 2 285,55 |
-| 3.3 | 450 | 2 443,48 |
-
-### Ingénieurs et Cadres
-
-| Position | Coefficient | Salaire minimum annuel (€) |
-|----------|-------------|----------------------------|
-| 1.1 | 95 | 27 600 |
-| 1.2 | 100 | 31 200 |
-| 2.1 | 105 | 34 800 |
-| 2.2 | 115 | 38 400 |
-| 2.3 | 130 | 42 000 |
-| 3.1 | 150 | 46 800 |
-| 3.2 | 170 | 54 000 |
-| 3.3 | 210 | 64 800 |
-
-## Notes importantes
-
-- Les salaires minimaux sont exprimés pour une durée mensuelle de travail de 151,67 heures.
-- Pour les cadres, les salaires minimaux sont exprimés en brut annuel pour un temps plein.
-- Ces minima s'appliquent aux salariés à temps plein. Pour les salariés à temps partiel, ils sont calculés au prorata de leur temps de travail.`
+// Structure du fichier JSON
+interface ConventionDataJSON {
+  [conventionName: string]: {
+    libelle: string;
+    idcc: string;
+    sections: {
+      [sectionName: string]: {
+        section: string;
+        contenu: string;
+      }
+    }
   }
-];
+}
+
+// Mapping entre les noms de sections dans le JSON et les types de sections dans l'application
+const SECTION_TYPE_MAPPING: Record<string, string> = {
+  // Informations générales
+  "Informations_générales": "informations-generales.generale",
+  
+  // Embauche
+  "Délai_de_prévenance": "embauche.delai-prevenance",
+  "Période_d'essai": "embauche.periode-essai",
+  
+  // Temps de travail
+  "Durées_du_travail": "temps-travail.duree-travail",
+  "Aménagement_du_temps_de_travail": "temps-travail.amenagement-temps",
+  "Heures_supplémentaires": "temps-travail.heures-sup",
+  "Temps_partiel": "temps-travail.temps-partiel",
+  "Forfait_jours": "temps-travail.forfait-jours",
+  "Majoration_Nuit": "temps-travail.travail-nuit",
+  "Astreintes": "temps-travail.astreintes",
+  "Majoration_Férié": "temps-travail.jours-feries",
+  "Repos_hebdomadaire": "temps-travail.repos-hebdomadaire",
+  "Majoration_Dimanche": "temps-travail.travail-dimanche",
+  
+  // Congés
+  "Congés_payés": "conges.conges-payes",
+  "CET": "conges.cet",
+  "Evènement_familial": "conges.evenement-familial",
+  "Congés_d'ancienneté": "conges.anciennete",
+  "Congés_exceptionnels": "conges.conges-exceptionnels",
+  "Jours_supplémentaires": "conges.jours-supplementaires",
+  "Fractionnement": "conges.fractionnement",
+  "Congé_sans_solde": "conges.sans-solde",
+  "Deuil": "conges.deces",
+  "Enfant_malade": "conges.enfant-malade",
+  
+  // Départ
+  "Préavis": "depart.preavis",
+  "Indemnité_de_Licenciement": "depart.licenciement",
+  "Indemnité_de_Mise_a_la_Retraite": "depart.mise-retraite",
+  "Indemnité_de_Départ_a_la_Retraite": "depart.depart-retraite",
+  "Indemnité_de_Rupture_conventionnelle": "depart.rupture-conventionnelle",
+  "Indemnité_de_précarité": "depart.precarite",
+  
+  // Classification
+  "Classification_Con_+_Détails": "classification.classification",
+  "Grille_de_classification": "classification.grille",
+  "Evolution_de_carrière": "classification.evolution",
+  "Emplois_repères": "classification.emplois-reperes",
+  "Coefficients": "classification.coefficients",
+  
+  // Rémunération
+  "Grille_de_Rémunération": "remuneration.grille",
+  "13ème_mois": "remuneration.13eme-mois",
+  "Prime_d'ancienneté": "remuneration.anciennete",
+  "Indemnité_transport": "remuneration.transport",
+  "Indemnité_repas": "remuneration.repas",
+  "Indemnité_astreinte": "remuneration.astreinte",
+  "Primes,_Indemnités,_Avantages_et_Frais_Professionn": "remuneration.prime",
+  "Apprenti": "remuneration.apprenti",
+  "Contrat_de_professionalisation": "remuneration.contrat-pro",
+  "Stagiaire": "remuneration.stagiaire",
+  "Majoration_Dimanche_Rem": "remuneration.majoration-dimanche",
+  "Majoration_Férié_Rem": "remuneration.majoration-ferie",
+  "Majoration_Nuit_Rem": "remuneration.majoration-nuit",
+  
+  // Autres
+  "Accident_de_travail": "protection-sociale.accident-travail",
+  "Maladie": "protection-sociale.maladie",
+  "Maternité_Paternité": "protection-sociale.maternite-paternite",
+  "Cotisation_mutuelle": "protection-sociale.mutuelle",
+  "Cotisation_prévoyance": "protection-sociale.prevoyance",
+  "Cotisation_retraite": "protection-sociale.retraite",
+  "Paritarisme_(Financement)": "divers.paritarisme",
+  "Contributions_Conventionnelles_à_la_Formation_Prof": "formation.contributions"
+};
+
+// Cache des sections
+let sectionsCache: Record<string, Record<string, SectionData>> = {};
+let conventionsCache: { id: string, name: string }[] = [];
+let initialized = false;
+
+/**
+ * Initialise le cache des sections depuis le fichier JSON
+ */
+export async function loadSectionsFromJSON(): Promise<void> {
+  if (initialized) return;
+
+  try {
+    // Chemin du fichier JSON
+    const filePath = path.join(process.cwd(), 'data.json');
+    
+    if (!fs.existsSync(filePath)) {
+      console.warn(`Le fichier data.json n'existe pas à l'emplacement: ${filePath}`);
+      sectionsCache = {};
+      conventionsCache = [];
+      initialized = true;
+      return;
+    }
+    
+    // Lire le fichier et parser son contenu
+    const jsonData = await fs.promises.readFile(filePath, 'utf8');
+    const data = JSON.parse(jsonData) as ConventionDataJSON;
+    
+    // Initialiser les caches
+    sectionsCache = {};
+    conventionsCache = [];
+    
+    // Parcourir toutes les conventions dans le fichier
+    for (const [conventionName, conventionData] of Object.entries(data)) {
+      const idcc = conventionData.idcc;
+      
+      // Ajouter la convention à la liste des conventions
+      conventionsCache.push({
+        id: idcc,
+        name: conventionData.libelle
+      });
+      
+      // Créer une entrée pour cette convention dans le cache des sections
+      if (!sectionsCache[idcc]) {
+        sectionsCache[idcc] = {};
+      }
+      
+      // Parcourir toutes les sections de cette convention
+      for (const [sectionName, sectionData] of Object.entries(conventionData.sections)) {
+        // Déterminer le type de section dans notre application
+        const appSectionType = SECTION_TYPE_MAPPING[sectionName] || `unknown.${sectionName}`;
+        
+        // Ajouter la section au cache
+        sectionsCache[idcc][appSectionType] = {
+          conventionId: idcc,
+          sectionType: appSectionType,
+          content: sectionData.contenu
+        };
+      }
+    }
+    
+    const totalConventions = conventionsCache.length;
+    const totalSections = Object.values(sectionsCache).reduce(
+      (total, sections) => total + Object.keys(sections).length, 
+      0
+    );
+    
+    console.log(`Chargement des données terminé: ${totalConventions} conventions et ${totalSections} sections`);
+    initialized = true;
+  } catch (error) {
+    console.error("Erreur lors du chargement des sections depuis le fichier JSON:", error);
+    sectionsCache = {};
+    conventionsCache = [];
+    initialized = true;
+  }
+}
 
 /**
  * Obtient une section par convention et type
  */
 export function getSection(conventionId: string, sectionType: string): SectionData | null {
-  return sectionsData.find(section => 
-    section.conventionId === conventionId && 
-    section.sectionType === sectionType
-  ) || null;
+  if (!initialized) {
+    console.warn("Le cache des sections n'est pas initialisé. Appelez loadSectionsFromJSON() d'abord.");
+    return null;
+  }
+  
+  // Vérifier si la convention existe
+  if (!sectionsCache[conventionId]) {
+    return null;
+  }
+  
+  // Vérifier si la section existe
+  if (!sectionsCache[conventionId][sectionType]) {
+    return null;
+  }
+  
+  return sectionsCache[conventionId][sectionType];
 }
 
 /**
  * Obtient toutes les sections d'une convention
  */
 export function getSectionsByConvention(conventionId: string): SectionData[] {
-  return sectionsData.filter(section => section.conventionId === conventionId);
+  if (!initialized) {
+    console.warn("Le cache des sections n'est pas initialisé. Appelez loadSectionsFromJSON() d'abord.");
+    return [];
+  }
+  
+  // Vérifier si la convention existe
+  if (!sectionsCache[conventionId]) {
+    return [];
+  }
+  
+  // Convertir l'objet en tableau
+  return Object.values(sectionsCache[conventionId]);
 }
 
 /**
  * Obtient la liste des types de sections disponibles pour une convention
  */
 export function getSectionTypesByConvention(conventionId: string): string[] {
-  return getSectionsByConvention(conventionId).map(section => section.sectionType);
+  if (!initialized) {
+    console.warn("Le cache des sections n'est pas initialisé. Appelez loadSectionsFromJSON() d'abord.");
+    return [];
+  }
+  
+  // Vérifier si la convention existe
+  if (!sectionsCache[conventionId]) {
+    return [];
+  }
+  
+  // Récupérer les clés
+  return Object.keys(sectionsCache[conventionId]);
+}
+
+/**
+ * Obtient la liste des conventions disponibles
+ */
+export function getConventions(): { id: string, name: string }[] {
+  if (!initialized) {
+    console.warn("Le cache des sections n'est pas initialisé. Appelez loadSectionsFromJSON() d'abord.");
+    return [];
+  }
+  
+  return conventionsCache;
 }
 
 /**
  * Obtient la liste des conventions ayant des sections
  */
 export function getConventionsWithSections(): string[] {
-  const conventions = new Set<string>();
-  sectionsData.forEach(section => conventions.add(section.conventionId));
-  return Array.from(conventions);
+  if (!initialized) {
+    console.warn("Le cache des sections n'est pas initialisé. Appelez loadSectionsFromJSON() d'abord.");
+    return [];
+  }
+  
+  return Object.keys(sectionsCache);
 }
