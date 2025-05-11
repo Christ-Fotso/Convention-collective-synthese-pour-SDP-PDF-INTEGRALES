@@ -18,6 +18,8 @@ interface Convention {
 interface SectionType {
   sectionType: string;
   label: string;
+  category: string;
+  subcategory: string;
 }
 
 // Fonction utilitaire pour convertir "category.subcategory" en label lisible
@@ -64,7 +66,9 @@ export default function Chat() {
       const response = await axios.get(`/api/convention/${id}/section-types`);
       return response.data.map((type: string) => ({
         sectionType: type,
-        label: getSectionLabel(type)
+        label: getSectionLabel(type),
+        category: type.split(".")[0],
+        subcategory: type.split(".")[1]
       }));
     },
     staleTime: 1000 * 60 * 5 // 5 minutes
@@ -112,22 +116,43 @@ export default function Chat() {
             </div>
           ) : (
             <ScrollArea className="h-[calc(100vh-220px)]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {sectionTypes?.map((section: SectionType, index: number) => {
-                  // Extraction de la catégorie et sous-catégorie
-                  const [category, subcategory] = section.sectionType.split(".");
-                  return (
-                    <Link
-                      key={index}
-                      href={`/convention/${id}/section/${category}/${subcategory}`}
-                    >
-                      <div className="p-4 border rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
-                        {section.label}
+              {sectionTypes && sectionTypes.length > 0 ? (
+                <div className="space-y-6">
+                  {/* Grouper les sections par catégorie */}
+                  {Object.entries(
+                    // Grouper les sections par catégorie
+                    sectionTypes.reduce((acc: Record<string, SectionType[]>, section: SectionType) => {
+                      if (!acc[section.category]) {
+                        acc[section.category] = [];
+                      }
+                      acc[section.category].push(section);
+                      return acc;
+                    }, {})
+                  ).map(([category, sections]: [string, SectionType[]], categoryIndex: number) => (
+                    <div key={categoryIndex} className="mb-6">
+                      <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400 border-b pb-2">
+                        {category.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {sections.map((section: SectionType, sectionIndex: number) => (
+                          <Link
+                            key={`${categoryIndex}-${sectionIndex}`}
+                            href={`/convention/${id}/section/${section.category}/${section.subcategory}`}
+                          >
+                            <div className="p-4 border rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+                              {section.subcategory.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                            </div>
+                          </Link>
+                        ))}
                       </div>
-                    </Link>
-                  );
-                })}
-              </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-6 text-gray-500">
+                  Aucune section disponible
+                </div>
+              )}
             </ScrollArea>
           )}
         </CardContent>
