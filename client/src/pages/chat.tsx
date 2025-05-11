@@ -327,20 +327,42 @@ export default function Chat() {
                     </Button>
                   </div>
                 ) : (
-                  "Aperçu du contenu"
+                  <div className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    Aperçu du contenu
+                  </div>
                 )}
               </CardTitle>
               {!selectedSection && (
-                <CardDescription>
-                  Sélectionnez une section pour afficher son contenu
+                <CardDescription className="flex items-center gap-1.5 mt-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  Sélectionnez une section dans le menu de gauche
                 </CardDescription>
               )}
             </CardHeader>
             <CardContent>
               <ScrollArea className="h-[calc(100vh-260px)]">
                 {!selectedSection ? (
-                  <div className="text-center py-6 text-gray-500">
-                    Aucune section sélectionnée
+                  <div className="flex flex-col items-center justify-center py-12 text-muted-foreground space-y-4">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-muted/50">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
+                        <line x1="4" x2="14" y1="12" y2="12"></line>
+                        <line x1="4" x2="4" y1="12" y2="20"></line>
+                        <line x1="4" x2="4" y1="12" y2="4"></line>
+                        <polyline points="14 18 20 12 14 6"></polyline>
+                      </svg>
+                    </div>
+                    <div className="font-medium text-lg">Aucune section sélectionnée</div>
+                    <p className="text-sm max-w-md text-center">
+                      Veuillez sélectionner une section dans le menu à gauche pour afficher son contenu
+                    </p>
                   </div>
                 ) : isLoadingSectionContent ? (
                   <div className="space-y-4">
