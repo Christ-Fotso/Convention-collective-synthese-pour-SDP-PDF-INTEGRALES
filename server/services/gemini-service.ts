@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import axios from 'axios';
 import OpenAI from 'openai';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { downloadPDF, extractTextFromPDF as extractPDFText } from './pdf-extractor';
 
 // Répertoire temporaire pour stocker les PDF téléchargés
@@ -10,24 +11,32 @@ if (!fs.existsSync(TEMP_DIR)) {
   fs.mkdirSync(TEMP_DIR, { recursive: true });
 }
 
-// Initialisation de l'API OpenAI
+// Variables pour les APIs d'IA
 let openaiApi: OpenAI | null = null;
+let geminiApi: GoogleGenerativeAI | null = null;
 
 export function initializeGeminiApi() {
-  // Utiliser la clé API OpenAI qui est déjà configurée
-  const apiKey = process.env.OPENAI_API_KEY;
+  // Utiliser la clé API de Google Gemini
+  const apiKey = process.env.XAI_API_KEY;
   if (!apiKey) {
-    console.error("Erreur: Clé API OpenAI manquante dans les variables d'environnement");
+    console.error("Erreur: Clé API Google Gemini manquante dans les variables d'environnement");
     return false;
   }
   
   try {
-    // Configuration de l'API OpenAI avec la clé disponible
-    openaiApi = new OpenAI({ apiKey });
-    console.log("API OpenAI initialisée avec succès (pour le service de chat)");
+    // Configuration de l'API Gemini avec la clé fournie
+    geminiApi = new GoogleGenerativeAI(apiKey);
+    console.log("API Gemini (Google) initialisée avec succès");
+    
+    // Initialisation optionnelle d'OpenAI comme fallback si nécessaire
+    if (process.env.OPENAI_API_KEY) {
+      openaiApi = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      console.log("API OpenAI également initialisée comme fallback");
+    }
+    
     return true;
   } catch (error) {
-    console.error("Erreur lors de l'initialisation de l'API OpenAI:", error);
+    console.error("Erreur lors de l'initialisation de l'API Gemini:", error);
     return false;
   }
 }
@@ -52,7 +61,7 @@ async function getConventionPDF(conventionId: string): Promise<string> {
  * Traite une question avec Gemini en utilisant le contenu du PDF comme contexte
  */
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
-  if (!openaiApi) {
+  if (!geminiApi) {
     if (!initializeGeminiApi()) {
       return "Désolé, le service d'IA n'est pas disponible pour le moment.";
     }
@@ -68,15 +77,15 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
       return "Désolé, je n'ai pas pu extraire le contenu de cette convention collective.";
     }
     
-    // Utiliser OpenAI pour obtenir une réponse
-    if (!openaiApi) {
-      throw new Error("Le service OpenAI n'est pas initialisé");
+    // Utiliser Gemini pour obtenir une réponse
+    if (!geminiApi) {
+      throw new Error("Le service Gemini n'est pas initialisé");
     }
     
-    // Création du prompt
-    const systemPrompt = `Tu es un assistant juridique spécialisé en droit du travail français et conventions collectives.`;
+    // Création du prompt pour Gemini
+    const prompt = `
+    Tu es un assistant juridique spécialisé en droit du travail français et conventions collectives.
     
-    const userPrompt = `
     Utilise les informations suivantes de la convention collective IDCC:${conventionId} pour répondre à ma question.
     
     CONTENU DE LA CONVENTION:
@@ -89,17 +98,13 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     n'est pas présente dans la convention collective consultée.
     `;
     
-    // Appel à l'API OpenAI
-    const result = await openaiApi.chat.completions.create({
-      model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt }
-      ],
-      max_tokens: 1000
-    });
+    // Configuration du modèle Gemini
+    const model = geminiApi.getGenerativeModel({ model: "grok-2-1212" });
     
-    const text = result.choices[0].message.content || "";
+    // Appel à l'API Gemini
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
     
     return text;
   } catch (error: any) {
