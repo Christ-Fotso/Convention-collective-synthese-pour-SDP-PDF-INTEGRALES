@@ -1,7 +1,7 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import * as path from 'path';
 import * as fs from 'fs';
 import axios from 'axios';
+import OpenAI from 'openai';
 import { downloadPDF, extractTextFromPDF as extractPDFText } from './pdf-extractor';
 
 // Répertoire temporaire pour stocker les PDF téléchargés
@@ -10,25 +10,24 @@ if (!fs.existsSync(TEMP_DIR)) {
   fs.mkdirSync(TEMP_DIR, { recursive: true });
 }
 
-// Initialisation de l'API Gemini
-let geminiApi: GoogleGenerativeAI | null = null;
+// Initialisation de l'API OpenAI
+let openaiApi: OpenAI | null = null;
 
 export function initializeGeminiApi() {
-  // Utiliser la clé API OpenAI pour Gemini, car elle est déjà configurée
+  // Utiliser la clé API OpenAI qui est déjà configurée
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    console.error("Erreur: Clé API manquante dans les variables d'environnement");
+    console.error("Erreur: Clé API OpenAI manquante dans les variables d'environnement");
     return false;
   }
   
   try {
-    // Configuration de l'API Gemini avec la clé OpenAI (pour démonstration uniquement)
-    // Dans une implémentation réelle, vous utiliseriez une clé API Google spécifique
-    geminiApi = new GoogleGenerativeAI(apiKey);
-    console.log("API Gemini initialisée avec succès");
+    // Configuration de l'API OpenAI avec la clé disponible
+    openaiApi = new OpenAI({ apiKey });
+    console.log("API OpenAI initialisée avec succès (pour le service de chat)");
     return true;
   } catch (error) {
-    console.error("Erreur lors de l'initialisation de l'API Gemini:", error);
+    console.error("Erreur lors de l'initialisation de l'API OpenAI:", error);
     return false;
   }
 }
@@ -53,7 +52,7 @@ async function getConventionPDF(conventionId: string): Promise<string> {
  * Traite une question avec Gemini en utilisant le contenu du PDF comme contexte
  */
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
-  if (!geminiApi) {
+  if (!openaiApi) {
     if (!initializeGeminiApi()) {
       return "Désolé, le service d'IA n'est pas disponible pour le moment.";
     }
@@ -69,31 +68,38 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
       return "Désolé, je n'ai pas pu extraire le contenu de cette convention collective.";
     }
     
-    // 3. Appeler OpenAI pour obtenir une réponse (en mode simulation de Gemini)
-    if (!geminiApi) {
-      throw new Error("Le service IA n'est pas initialisé");
+    // Utiliser OpenAI pour obtenir une réponse
+    if (!openaiApi) {
+      throw new Error("Le service OpenAI n'est pas initialisé");
     }
     
-    // Note: En réalité, nous utilisons OpenAI ici puisque c'est ce qui est disponible
-    // Cette version simule l'appel à Gemini pour les besoins de la démonstration
-    // Dans une implémentation réelle, vous utiliseriez Gemini avec "model: gemini-1.5-pro"
+    // Création du prompt
+    const systemPrompt = `Tu es un assistant juridique spécialisé en droit du travail français et conventions collectives.`;
     
-    const prompt = `
-    Tu es un assistant juridique spécialisé en droit du travail et conventions collectives.
-    Utilise les informations suivantes de la convention collective IDCC:${conventionId} pour répondre:
+    const userPrompt = `
+    Utilise les informations suivantes de la convention collective IDCC:${conventionId} pour répondre à ma question.
     
+    CONTENU DE LA CONVENTION:
     ${pdfText}
     
-    Question: ${question}
+    MA QUESTION: ${question}
     
     Réponds de façon précise et concise en français. Cite la référence (article ou section) quand possible.
     Si tu ne trouves pas d'information sur le sujet dans le document, indique clairement que cette information
     n'est pas présente dans la convention collective consultée.
     `;
     
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    // Appel à l'API OpenAI
+    const result = await openaiApi.chat.completions.create({
+      model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt }
+      ],
+      max_tokens: 1000
+    });
+    
+    const text = result.choices[0].message.content || "";
     
     return text;
   } catch (error: any) {
