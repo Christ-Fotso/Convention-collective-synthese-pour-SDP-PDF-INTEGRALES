@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import * as path from 'path';
 import * as fs from 'fs';
 import axios from 'axios';
+import { downloadPDF, extractTextFromPDF as extractPDFText } from './pdf-extractor';
 
 // Répertoire temporaire pour stocker les PDF téléchargés
 const TEMP_DIR = path.join(process.cwd(), 'temp');
@@ -32,42 +33,17 @@ export function initializeGeminiApi() {
 /**
  * Télécharge le PDF d'une convention depuis ElNet
  */
-async function downloadConventionPDF(conventionId: string): Promise<string> {
+async function getConventionPDF(conventionId: string): Promise<string> {
   try {
-    const filePath = path.join(TEMP_DIR, `convention_${conventionId}.pdf`);
-    
-    // Vérifier si le fichier existe déjà
-    if (fs.existsSync(filePath)) {
-      console.log(`PDF déjà téléchargé pour la convention ${conventionId}`);
-      return filePath;
-    }
-    
     // Construire l'URL de la convention sur ElNet
     const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
-    console.log(`Téléchargement du PDF pour la convention ${conventionId} depuis ${conventionUrl}`);
     
-    const response = await axios.get(conventionUrl, { responseType: 'arraybuffer' });
-    fs.writeFileSync(filePath, Buffer.from(response.data));
-    console.log(`PDF téléchargé et sauvegardé: ${filePath}`);
-    return filePath;
+    // Utiliser le service d'extraction pour télécharger le PDF
+    return await downloadPDF(conventionUrl, conventionId);
   } catch (error: any) {
     console.error('Erreur lors du téléchargement du PDF:', error);
     throw new Error(`Impossible de télécharger le PDF: ${error.message}`);
   }
-}
-
-/**
- * Extraire le texte du PDF (utiliser un service existant si disponible)
- * Note: Cette fonction est simplifiée et devrait être remplacée par une véritable extraction de texte
- */
-async function extractTextFromPDF(pdfPath: string): Promise<string> {
-  // Idéalement, utiliser pdfjs-dist ou une autre bibliothèque pour l'extraction
-  
-  // Pour cet exemple, nous retournons simplement une chaîne indiquant que le texte serait extrait ici
-  // Dans une implémentation réelle, il faudrait extraire le contenu du PDF
-  return fs.existsSync(pdfPath) 
-    ? "Contenu extrait du PDF de la convention collective" // Simulation
-    : "";
 }
 
 /**
@@ -82,15 +58,19 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   
   try {
     // 1. Télécharger le PDF si nécessaire
-    const pdfPath = await downloadConventionPDF(conventionId);
+    const pdfPath = await getConventionPDF(conventionId);
     
     // 2. Extraire le texte du PDF
-    const pdfText = await extractTextFromPDF(pdfPath);
+    const pdfText = await extractPDFText(pdfPath);
     if (!pdfText) {
       return "Désolé, je n'ai pas pu extraire le contenu de cette convention collective.";
     }
     
     // 3. Appeler Gemini pour obtenir une réponse
+    if (!geminiApi) {
+      throw new Error("Le service Gemini n'est pas initialisé");
+    }
+    
     const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-pro" });
     
     const prompt = `
@@ -102,6 +82,8 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     Question: ${question}
     
     Réponds de façon précise et concise en français. Cite la référence (article ou section) quand possible.
+    Si tu ne trouves pas d'information sur le sujet dans le document, indique clairement que cette information
+    n'est pas présente dans la convention collective consultée.
     `;
     
     const result = await model.generateContent(prompt);

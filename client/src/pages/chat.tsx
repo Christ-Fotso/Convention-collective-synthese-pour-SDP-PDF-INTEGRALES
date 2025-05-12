@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useLocation, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Loader2, ChevronLeft, ChevronRight, ChevronDown, BookOpen } from "lucide-react";
+import { Loader2, ChevronLeft, ChevronRight, ChevronDown, BookOpen, MessageSquare } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,6 +15,7 @@ import { CATEGORIES } from "@/lib/categories";
 import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
+import { ChatConventionDialog } from "@/components/chat-convention-dialog";
 
 // Mapping entre les catégories backend et catégories d'affichage
 const CATEGORY_MAPPING: Record<string, string> = {
@@ -66,6 +67,7 @@ export default function Chat() {
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [isChatDialogOpen, setIsChatDialogOpen] = useState<boolean>(false);
   
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
@@ -149,19 +151,32 @@ export default function Chat() {
   
   return (
     <div className="container mx-auto py-6 space-y-6">
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" onClick={() => navigate("/")} title="Retour à la liste des conventions">
-          <ChevronLeft className="h-5 w-5" />
-        </Button>
-        <h1 className="text-2xl font-bold">
-          {isLoadingConvention ? (
-            <Skeleton className="h-8 w-64" />
-          ) : convention ? (
-            `Convention collective: ${convention.name}`
-          ) : (
-            "Convention non trouvée"
-          )}
-        </h1>
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" onClick={() => navigate("/")} title="Retour à la liste des conventions">
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">
+            {isLoadingConvention ? (
+              <Skeleton className="h-8 w-64" />
+            ) : convention ? (
+              `Convention collective: ${convention.name}`
+            ) : (
+              "Convention non trouvée"
+            )}
+          </h1>
+        </div>
+        
+        {convention && (
+          <Button 
+            variant="outline" 
+            onClick={() => setIsChatDialogOpen(true)}
+            className="flex items-center gap-2"
+          >
+            <MessageSquare className="h-4 w-4" />
+            Poser une question
+          </Button>
+        )}
       </div>
       
       {!isLoadingConvention && !convention && (
@@ -440,6 +455,16 @@ export default function Chat() {
             </CardContent>
           </Card>
         </div>
+      )}
+      
+      {/* Dialog de chat */}
+      {convention && (
+        <ChatConventionDialog
+          open={isChatDialogOpen}
+          onOpenChange={setIsChatDialogOpen}
+          conventionId={id || ""}
+          conventionName={convention.name}
+        />
       )}
     </div>
   );

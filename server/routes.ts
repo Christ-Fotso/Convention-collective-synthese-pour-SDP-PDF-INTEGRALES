@@ -12,6 +12,7 @@ import { queryPerplexity } from "./services/perplexity";
 import { getConventionText, queryOpenAI, queryOpenAIForLegalData, calculateCost } from "./services/openai";
 import OpenAI from "openai";
 import { shouldUsePerplexity } from "./config/ai-routing";
+import { askQuestionWithGemini, initializeGeminiApi } from "./services/gemini-service";
 import { createHash } from "crypto";
 import {
   getApiMetrics,
@@ -1429,6 +1430,42 @@ Format attendu exactement:
       res.status(500).json({
         message: "Erreur lors du déclenchement du traitement par lots",
         error: error.message
+      });
+    }
+  });
+  
+  // Route pour poser une question à propos d'une convention avec Gemini
+  apiRouter.post("/convention/:conventionId/ask", async (req, res) => {
+    try {
+      const conventionId = req.params.conventionId;
+      const { question } = req.body;
+      
+      if (!question) {
+        return res.status(400).json({ error: "La question est requise" });
+      }
+      
+      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
+      if (convention.length === 0) {
+        return res.status(404).json({ error: "Convention non trouvée" });
+      }
+      
+      // Initialiser Gemini si nécessaire
+      initializeGeminiApi();
+      
+      // Traiter la question avec Gemini
+      const response = await askQuestionWithGemini(conventionId, question);
+      
+      res.json({
+        question,
+        response,
+        conventionId
+      });
+      
+    } catch (error: any) {
+      console.error("Erreur lors du traitement de la question:", error);
+      res.status(500).json({
+        error: "Une erreur est survenue lors du traitement de votre question",
+        details: error.message
       });
     }
   });
