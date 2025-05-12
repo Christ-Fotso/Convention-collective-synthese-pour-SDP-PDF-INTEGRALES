@@ -1,0 +1,140 @@
+from pathlib import Path
+import os
+import inquirer
+from rich.console import Console
+from rich.table import Table
+import google.generativeai as genai
+
+# === CONFIGURATION ===
+API_KEY = "AIzaSyDLJjiVnFeXyJtp3upeq7SYp33v9gRG_mk"
+MODEL = "gemini-1.5-pro"
+TEMPERATURE = 0.1
+
+# === CHEMINS ===
+BASE_DIR = Path.cwd()
+INPUT_DIR = BASE_DIR / "conventions"
+PROMPTS_DIR = BASE_DIR / "prompts" / "prompts_sections"
+SYSTEM_PROMPT_FILE = BASE_DIR / "prompts" / "prompt_system.md"
+OUTPUT_DIR = BASE_DIR / "resultats"
+
+# === INITIALISATION ===
+genai.configure(api_key=API_KEY)
+OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
+console = Console()
+
+# === OUTILS ===
+def read_file(path):
+    try:
+        return path.read_text(encoding="utf-8")
+    except Exception as e:
+        console.print(f"[red]Erreur lecture {path.name} : {e}[/red]")
+        return None
+
+def call_gemini(full_prompt):
+    try:
+        model = genai.GenerativeModel(model_name=MODEL)
+        response = model.generate_content([
+            { "role": "user", "parts": [full_prompt] }
+        ])
+        return response.text
+    except Exception as e:
+        console.print(f"[red]Erreur Gemini : {e}[/red]")
+        return None
+
+def afficher_menu_conventions(conventions):
+    table = Table(title="Conventions disponibles")
+    table.add_column("Index", justify="right", style="cyan")
+    table.add_column("Fichier", style="green")
+    table.add_column("Taille (Ko)", justify="right", style="yellow")
+
+    for idx, conv in enumerate(conventions, 1):
+        size_kb = conv.stat().st_size / 1024
+        table.add_row(str(idx), conv.name, f"{size_kb:.1f}")
+
+    console.print(table)
+
+    questions = [
+        inquirer.List('action',
+            message="Que veux-tu faire ?",
+            choices=[
+                'Traiter toutes les conventions',
+                'Sélectionner manuellement',
+                'Quitter'
+            ])
+    ]
+    reponse = inquirer.prompt(questions)
+
+    if reponse["action"] == "Quitter":
+        return []
+
+    elif reponse["action"] == "Traiter toutes les conventions":
+        return conventions
+
+    else:
+        options = [f"{i+1}. {conv.name}" for i, conv in enumerate(conventions)]
+        choix = inquirer.prompt([
+            inquirer.Checkbox('selected',
+                message="Sélectionne les conventions à traiter",
+                choices=options
+            )
+        ])
+        if not choix:
+            return []
+        index_choisis = [int(item.split(".")[0]) - 1 for item in choix['selected']]
+        return [conventions[i] for i in index_choisis]
+
+# === SCRIPT PRINCIPAL ===
+def traiter_conventions_par_section():
+    conventions = list(INPUT_DIR.glob("*.md"))
+    prompts = list(PROMPTS_DIR.glob("*.md"))
+    system_prompt_text = read_file(SYSTEM_PROMPT_FILE)
+
+    if not system_prompt_text:
+        console.print("[red]❌ Le fichier prompt_system.md est introuvable ou vide.[/red]")
+        return
+
+    selection = afficher_menu_conventions(conventions)
+
+    if not selection:
+        console.print("[yellow]Aucune convention sélectionnée.[/yellow]")
+        return
+
+    for conv_path in selection:
+        convention_text = read_file(conv_path)
+        if not convention_text:
+            continue
+
+        conv_name = conv_path.stem
+
+        for prompt_path in prompts:
+            prompt_text = read_file(prompt_path)
+            if not prompt_text:
+                continue
+
+            prompt_section_name = prompt_path.stem
+            console.print(f"[blue]🔍 {conv_name} / {prompt_section_name}[/blue]")
+
+            full_prompt = f"""{system_prompt_text}
+
+Voici le texte de la convention collective à analyser :
+
+---------------------
+{convention_text}
+---------------------
+
+{prompt_text}
+"""
+
+            response = call_gemini(full_prompt)
+
+            if response:
+                output_path = OUTPUT_DIR / f"{conv_name}_{prompt_section_name}.md"
+                with open(output_path, "w", encoding="utf-8") as f:
+                    f.write(response)
+                console.print(f"[green]✅ Enregistré : {output_path.name}[/green]")
+            else:
+                console.print(f"[red]❌ Erreur pour {conv_name} / {prompt_section_name}[/red]")
+
+# === LANCEMENT ===
+if __name__ == "__main__":
+    traiter_conventions_par_section()

@@ -99,7 +99,7 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     `;
     
     // Configuration du modèle Gemini
-    const model = geminiApi.getGenerativeModel({ model: "grok-2-1212" });
+    const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-pro" });
     
     // Appel à l'API Gemini
     const result = await model.generateContent(prompt);
