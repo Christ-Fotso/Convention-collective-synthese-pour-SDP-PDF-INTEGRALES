@@ -424,7 +424,7 @@ export default function Chat() {
                             <Button 
                               variant="outline" 
                               size="sm"
-                              className="text-xs flex items-center text-green-700 border-green-300 hover:bg-green-50 hover:text-green-800"
+                              className="text-xs flex items-center orange-blink hover:bg-orange-100 hover:text-orange-800"
                               onClick={() => setIsLegalDialogOpen(true)}
                             >
                               <BookOpen className="h-3.5 w-3.5 mr-1" />
