@@ -107,10 +107,34 @@ export function ChatConventionDialog({
       }
     } catch (err: any) {
       console.error("Erreur lors de l'envoi de la question:", err);
-      setError(
-        err.response?.data?.error || 
-        "Une erreur est survenue lors du traitement de votre question."
-      );
+      
+      // Message d'erreur plus précis basé sur la réponse du serveur
+      let errorMessage = "Une erreur est survenue lors du traitement de votre question.";
+      
+      if (err.response?.data?.message) {
+        // Utiliser le message d'erreur détaillé du serveur s'il existe
+        errorMessage = err.response.data.message;
+      } else if (err.response?.status === 404) {
+        errorMessage = `Convention collective non trouvée.`;
+      } else if (err.response?.status === 502) {
+        errorMessage = `Impossible d'accéder au document source de cette convention collective.`;
+      } else if (err.response?.status === 503) {
+        errorMessage = `Le service d'intelligence artificielle est temporairement indisponible.`;
+      }
+      
+      setError(errorMessage);
+      
+      // Ajouter un message d'erreur comme "message de l'assistant" pour une meilleure visibilité
+      if (err.response?.status >= 500) {
+        const errorBotMessage: ChatMessage = {
+          id: generateId(),
+          content: `**Erreur**: ${errorMessage}\n\nVeuillez réessayer ultérieurement.`,
+          role: "assistant",
+          timestamp: new Date()
+        };
+        
+        setMessages(messages => [...messages, errorBotMessage]);
+      }
     } finally {
       setIsLoading(false);
     }

@@ -40,6 +40,10 @@ export async function downloadPDF(url: string, conventionId: string): Promise<st
 
 /**
  * Extrait le texte d'un fichier PDF
+ * 
+ * IMPORTANT: Cette fonction doit être remplacée par une véritable extraction de PDF
+ * dans la version de production. Actuellement, elle utilise les données structurées
+ * comme simulation, uniquement pour le développement.
  */
 export async function extractTextFromPDF(pdfPath: string): Promise<string> {
   if (!fs.existsSync(pdfPath)) {
@@ -47,20 +51,34 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
   }
   
   try {
-    // Approche simplifiée pour cette version
     console.log(`[DEBUG] Extraction du PDF: ${pdfPath}`);
-    
-    // Pour cette démonstration, au lieu d'extraire le texte réel du PDF
-    // nous utilisons les sections déjà disponibles dans notre système
     
     const pdfBasename = path.basename(pdfPath);
     const conventionId = pdfBasename.replace('convention_', '').replace('.pdf', '');
     
-    console.log(`[DEBUG] Extraction des données pour la convention ID: ${conventionId}`);
+    console.log(`[DEBUG] Extraction pour IDCC: ${conventionId} - FICHIER PDF: ${pdfPath}`);
     
-    // Récupérer les données de la convention depuis les sectionsData
+    // TODO: Implémenter une véritable extraction de texte du PDF
+    // Exemple avec pdfjs-dist:
+    //
+    // const pdfjsLib = require('pdfjs-dist');
+    // const loadingTask = pdfjsLib.getDocument(pdfPath);
+    // const pdf = await loadingTask.promise;
+    // let fullText = '';
+    // for (let i = 1; i <= pdf.numPages; i++) {
+    //   const page = await pdf.getPage(i);
+    //   const content = await page.getTextContent();
+    //   const strings = content.items.map(item => item.str);
+    //   fullText += strings.join(' ') + '\n';
+    // }
+    // return fullText;
+    
+    // ===== SOLUTION TEMPORAIRE =====
+    // Pour cette phase de développement seulement, on utilise les données structurées
+    // Cette partie doit être remplacée par l'extraction réelle de PDF en production
+    
+    // Option 1: Utiliser les sections structurées (le plus fiable)
     try {
-      // Option 1: Utiliser les sections structurées
       const { getSectionsByConvention } = require('../sections-data');
       const sections = getSectionsByConvention(conventionId);
       
@@ -70,65 +88,27 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
         // Construire un texte complet avec toutes les sections
         let fullText = `Convention collective IDCC: ${conventionId}\n\n`;
         
-        for (const section of sections) {
+        sections.forEach((section: { sectionType: string, content: string }) => {
           fullText += `# ${section.sectionType}\n`;
           fullText += section.content;
           fullText += "\n\n";
-        }
+        });
         
-        console.log(`[DEBUG] Contenu extrait avec succès: ${fullText.length} caractères`);
+        console.log(`[DEBUG] Données extraites: ${fullText.length} caractères`);
         return fullText;
-      } else {
-        console.log(`[DEBUG] Aucune section trouvée pour la convention ${conventionId}`);
       }
     } catch (error) {
-      console.error(`[DEBUG] Erreur lors de l'accès aux sections structurées:`, error);
+      console.error(`[DEBUG] Erreur avec les sections structurées:`, error);
     }
     
-    // Option 2: Utiliser data.json comme fallback
-    try {
-      const dataFilePath = path.join(process.cwd(), 'data.json');
-      if (fs.existsSync(dataFilePath)) {
-        console.log(`[DEBUG] Tentative d'utilisation du fichier data.json`);
-        const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
-        
-        // Parcourir les conventions pour trouver celle qui correspond à l'ID
-        for (const conventionName in data) {
-          const convention = data[conventionName];
-          if (convention.idcc === conventionId) {
-            // Récupérer le contenu des sections disponibles
-            let fullText = `Convention collective: ${conventionName} (IDCC: ${conventionId})\n\n`;
-            
-            for (const sectionName in convention.sections) {
-              fullText += `# ${sectionName.replace('_', ' ')}\n`;
-              fullText += convention.sections[sectionName].contenu;
-              fullText += '\n\n';
-            }
-            
-            console.log(`[DEBUG] Contenu récupéré depuis data.json: ${fullText.length} caractères`);
-            return fullText;
-          }
-        }
-      }
-    } catch (error) {
-      console.error(`[DEBUG] Erreur lors de l'accès au fichier data.json:`, error);
-    }
-    
-    // Créer un texte minimum si rien d'autre n'est disponible
-    const fallbackText = `Convention collective IDCC ${conventionId}.\n
-Cette convention comporte des dispositions sur:
-- Période d'essai
-- Délai de prévenance
-- Durée du travail
-- Congés payés
-- Rupture du contrat de travail\n\n
-Pour plus d'informations, consultez les sections spécifiques de cette convention.`;
-    
-    console.log(`[DEBUG] Utilisation du texte de fallback: ${fallbackText.length} caractères`);
-    return fallbackText;
+    // Si nous arrivons ici, c'est que les sections n'ont pas été trouvées
+    throw new Error(
+      `Échec de l'extraction de texte pour la convention ${conventionId}. ` +
+      `L'extraction réelle de PDF n'est pas encore implémentée et aucune donnée structurée n'est disponible.`
+    );
   } catch (error: any) {
-    console.error(`[DEBUG] Erreur lors de l'extraction du texte du PDF:`, error);
-    throw new Error(`Impossible d'extraire le texte du PDF: ${error.message}`);
+    console.error(`[DEBUG] Erreur critique lors de l'extraction du PDF:`, error);
+    throw new Error(`Impossible d'extraire le texte du PDF pour IDCC ${path.basename(pdfPath).replace('convention_', '').replace('.pdf', '')}: ${error.message}`);
   }
 }
 

@@ -46,7 +46,8 @@ export function initializeGeminiApi() {
  */
 async function getConventionPDF(conventionId: string): Promise<string> {
   try {
-    // Construire l'URL de la convention sur ElNet
+    // Construire l'URL précise de la convention sur ElNet
+    // Format documenté: https://www.elnet-rh.fr/documentation/Document?id=CCNS{conventionId}
     const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
     
     console.log(`[DEBUG] Tentative de téléchargement du PDF depuis ${conventionUrl}`);
@@ -54,8 +55,16 @@ async function getConventionPDF(conventionId: string): Promise<string> {
     // Vérifier d'abord si nous avons déjà le PDF en cache
     const filePath = path.join(TEMP_DIR, `convention_${conventionId}.pdf`);
     if (fs.existsSync(filePath)) {
-      console.log(`[DEBUG] PDF trouvé en cache: ${filePath}`);
-      return filePath;
+      // Vérifier l'âge du fichier - nous ne voulons pas utiliser un cache trop ancien
+      const stats = fs.statSync(filePath);
+      const fileAge = (Date.now() - stats.mtimeMs) / (1000 * 60 * 60 * 24); // en jours
+      
+      if (fileAge < 7) { // Si le fichier a moins de 7 jours
+        console.log(`[DEBUG] PDF trouvé en cache récent (${fileAge.toFixed(1)} jours): ${filePath}`);
+        return filePath;
+      } else {
+        console.log(`[DEBUG] PDF en cache trop ancien (${fileAge.toFixed(1)} jours), téléchargement d'une version fraîche`);
+      }
     }
     
     // Utiliser le service d'extraction pour télécharger le PDF
@@ -63,107 +72,118 @@ async function getConventionPDF(conventionId: string): Promise<string> {
   } catch (error: any) {
     console.error('[DEBUG] Erreur lors du téléchargement du PDF:', error);
     
-    // Simuler un PDF pour les tests si le téléchargement échoue
-    // Nous utilisons les données existantes pour créer une réponse cohérente
-    console.log(`[DEBUG] Création d'un contenu alternatif à partir des données JSON existantes`);
-    
+    // Si le PDF existe déjà dans le cache, on l'utilise même en cas d'erreur de téléchargement
     const filePath = path.join(TEMP_DIR, `convention_${conventionId}.pdf`);
-    
-    // Si nous n'avons pas pu télécharger mais que nous avons déjà un fichier, utilisons-le
     if (fs.existsSync(filePath)) {
-      console.log(`[DEBUG] Utilisation du PDF existant malgré l'erreur de téléchargement`);
+      console.log(`[DEBUG] Utilisation du PDF existant en cache malgré l'erreur de téléchargement`);
       return filePath;
     }
     
-    throw new Error(`Impossible de télécharger le PDF: ${error.message}`);
+    // Sinon, on propage l'erreur pour arrêter le processus
+    throw new Error(`Impossible de télécharger le PDF pour la convention ${conventionId}: ${error.message}`);
   }
 }
 
 /**
  * Traite une question avec Gemini en utilisant le contenu du PDF comme contexte
+ * 
+ * IMPORTANT:
+ * - Les réponses sont basées UNIQUEMENT sur le contenu du PDF
+ * - Si le PDF ne peut pas être téléchargé ou traité, aucune réponse alternative n'est fournie
+ * - L'URL du PDF est spécifique: https://www.elnet-rh.fr/documentation/Document?id=CCNS{conventionId}
  */
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
-  console.log(`[DEBUG] Début du traitement de la question: "${question}" pour la convention ${conventionId}`);
+  console.log(`[DEBUG] Traitement de la question pour convention ${conventionId}: "${question}"`);
   
+  // 1. Vérifier que l'API Gemini est initialisée
   if (!geminiApi) {
     console.log(`[DEBUG] Tentative d'initialisation de l'API Gemini`);
     if (!initializeGeminiApi()) {
-      console.error(`[DEBUG] Échec de l'initialisation de l'API Gemini`);
-      return "Désolé, le service d'IA n'est pas disponible pour le moment. Veuillez vérifier votre clé API.";
+      const errorMsg = "Le service d'IA n'est pas disponible - clé API manquante ou invalide";
+      console.error(`[DEBUG] ${errorMsg}`);
+      throw new Error(errorMsg);
     }
   }
   
   try {
-    // 1. Télécharger le PDF si nécessaire
-    console.log(`[DEBUG] Tentative de récupération du PDF pour la convention ${conventionId}`);
+    // 2. Récupérer le PDF source (téléchargement ou cache)
+    console.log(`[DEBUG] Récupération du PDF pour convention ${conventionId}`);
     const pdfPath = await getConventionPDF(conventionId);
-    console.log(`[DEBUG] PDF récupéré: ${pdfPath}`);
+    console.log(`[DEBUG] PDF obtenu: ${pdfPath}`);
     
-    // 2. Extraire le texte du PDF
-    console.log(`[DEBUG] Tentative d'extraction du texte du PDF`);
+    // 3. Extraire le texte du PDF
+    console.log(`[DEBUG] Extraction du texte du PDF`);
     const pdfText = await extractPDFText(pdfPath);
-    if (!pdfText) {
-      console.error(`[DEBUG] Impossible d'extraire le texte du PDF`);
-      return "Désolé, je n'ai pas pu extraire le contenu de cette convention collective.";
-    }
-    console.log(`[DEBUG] Texte extrait avec succès: ${pdfText.length} caractères`);
     
-    // Vérifier que Gemini est initialisé
+    // Si pas de texte, on arrête immédiatement
+    if (!pdfText || pdfText.trim().length === 0) {
+      const errorMsg = `Impossible d'extraire le texte du PDF pour la convention ${conventionId}`;
+      console.error(`[DEBUG] ${errorMsg}`);
+      throw new Error(errorMsg);
+    }
+    console.log(`[DEBUG] Texte extrait avec succès (${pdfText.length} caractères)`);
+    
+    // Vérification de sécurité - Gemini doit être initialisé
     if (!geminiApi) {
-      console.error(`[DEBUG] API Gemini non initialisée après vérification`);
-      throw new Error("Le service Gemini n'est pas initialisé");
+      throw new Error("API Gemini non initialisée après vérification");
     }
     
-    // Création du prompt pour Gemini avec des instructions plus précises
+    // 4. Préparation du prompt avec instructions strictes
     const prompt = `
     Tu es un assistant juridique spécialisé en droit du travail français et conventions collectives.
     
-    Utilise les informations suivantes de la convention collective IDCC:${conventionId} pour répondre à ma question.
+    INSTRUCTIONS CRITIQUES:
+    - Tu ne dois répondre qu'en utilisant EXCLUSIVEMENT les informations contenues dans le document ci-dessous
+    - Ne fais AUCUNE supposition ou déduction qui ne soit pas explicitement mentionnée dans le document
+    - Si l'information demandée n'est pas dans le document, réponds clairement "Cette information n'est pas présente dans la convention collective consultée"
+    - Ne mens jamais. Si tu n'as pas l'information, dis-le clairement
+    - Cite toujours la section ou l'article exact d'où provient l'information
     
-    CONTENU DE LA CONVENTION:
+    DOCUMENT - Convention collective IDCC:${conventionId}:
     ${pdfText}
     
-    MA QUESTION: ${question}
+    QUESTION: ${question}
     
-    CONSIGNES IMPORTANTES:
-    1. Réponds de façon précise et concise en français.
-    2. Cite la référence (article ou section) quand possible.
-    3. Si l'information demandée n'est pas dans le document, indique clairement qu'elle n'est pas présente.
-    4. Ne fais pas de suppositions sur des articles ou dispositions qui ne sont pas explicitement mentionnés.
-    5. Formatage : Utilise des listes à puces ou numérotées pour les réponses comportant plusieurs points.
-    6. Privilégie une réponse directe à la question, sans introduction inutile.
+    FORMAT DE RÉPONSE:
+    - Réponds de façon précise et concise en français
+    - Utilise des listes à puces quand approprié
+    - Évite les longues introductions
+    - Fournis uniquement des informations provenant du document
     `;
     
     console.log(`[DEBUG] Envoi de la requête à l'API Gemini`);
     
     try {
-      // Configuration du modèle Gemini
+      // 5. Appel à l'API Gemini avec le modèle gemini-1.5-pro
       const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-pro" });
-      
-      // Appel à l'API Gemini
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
       
-      console.log(`[DEBUG] Réponse reçue de Gemini: ${text.length} caractères`);
+      console.log(`[DEBUG] Réponse Gemini obtenue (${text.length} caractères)`);
       return text;
     } catch (geminiError: any) {
-      console.error(`[DEBUG] Erreur Gemini spécifique:`, geminiError);
+      console.error(`[DEBUG] Erreur API Gemini:`, geminiError);
       
-      // Tentative avec un prompt plus court en cas d'erreur
-      if (pdfText.length > 50000) {
-        console.log(`[DEBUG] Texte trop long (${pdfText.length} caractères), tentative avec un texte tronqué`);
-        const shortenedText = pdfText.substring(0, 50000) + "... [texte tronqué pour respecter les limites]";
+      // Gestion spéciale pour les textes trop longs
+      if (pdfText.length > 60000 && geminiError.message.includes("too long")) {
+        console.log(`[DEBUG] Texte trop long (${pdfText.length} caractères), tentative avec texte tronqué`);
+        
+        // Réduire la taille du contexte
+        const shortenedText = pdfText.substring(0, 60000);
         
         const shorterPrompt = `
         Tu es un assistant juridique spécialisé en droit du travail français.
         
-        Voici une partie de la convention collective IDCC:${conventionId}:
+        INSTRUCTIONS CRITIQUES:
+        - Réponds UNIQUEMENT en te basant sur les informations ci-dessous (extrait partiel de convention collective)
+        - Précise que ta réponse est basée sur un extrait partiel si la question semble nécessiter plus de contexte
+        - Si l'information n'est pas présente, indique-le clairement
+        
+        DOCUMENT PARTIEL - Convention collective IDCC:${conventionId} (extrait):
         ${shortenedText}
         
-        MA QUESTION: ${question}
-        
-        Réponds en français en te basant uniquement sur les informations fournies.
+        QUESTION: ${question}
         `;
         
         try {
@@ -172,18 +192,18 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
           const response = await result.response;
           const text = response.text();
           
-          console.log(`[DEBUG] Réponse reçue avec le prompt court: ${text.length} caractères`);
-          return text + "\n\n(Note: Cette réponse est basée sur un extrait de la convention car le document complet était trop volumineux)";
+          return text + "\n\n(Note: Cette réponse est basée sur un extrait partiel de la convention collective)";
         } catch (secondError: any) {
           console.error(`[DEBUG] Seconde erreur Gemini:`, secondError);
-          throw secondError;
+          throw new Error(`Erreur lors de l'analyse de la convention (document trop volumineux): ${secondError.message}`);
         }
-      } else {
-        throw geminiError;
       }
+      
+      // Propager l'erreur originale si ce n'est pas un problème de longueur
+      throw new Error(`Erreur lors de l'analyse par l'IA: ${geminiError.message}`);
     }
   } catch (error: any) {
-    console.error(`[DEBUG] Erreur générale lors du traitement de la question:`, error);
-    return `Désolé, une erreur s'est produite lors du traitement de votre question: ${error.message}`;
+    console.error(`[DEBUG] Erreur critique:`, error);
+    throw error; // On propage l'erreur pour que l'API puisse la traiter correctement
   }
 }

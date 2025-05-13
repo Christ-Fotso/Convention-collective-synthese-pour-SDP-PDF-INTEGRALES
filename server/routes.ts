@@ -1441,31 +1441,61 @@ Format attendu exactement:
       const { question } = req.body;
       
       if (!question) {
-        return res.status(400).json({ error: "La question est requise" });
+        return res.status(400).json({ 
+          error: "La question est requise",
+          message: "Veuillez fournir une question"
+        });
       }
       
+      // Vérifier que la convention existe
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
       if (convention.length === 0) {
-        return res.status(404).json({ error: "Convention non trouvée" });
+        console.error(`[Chat] Convention non trouvée: ${conventionId}`);
+        return res.status(404).json({ 
+          error: "Convention non trouvée", 
+          message: `La convention IDCC ${conventionId} n'a pas été trouvée dans notre base de données.`
+        });
       }
       
-      // Initialiser Gemini si nécessaire
-      initializeGeminiApi();
+      console.log(`[Chat] Question pour la convention ${conventionId}: "${question.substring(0, 100)}${question.length > 100 ? '...' : ''}"`);
       
-      // Traiter la question avec Gemini
-      const response = await askQuestionWithGemini(conventionId, question);
-      
-      res.json({
-        question,
-        response,
-        conventionId
-      });
-      
+      try {
+        // Traiter la question avec Gemini (peut générer des erreurs)
+        const response = await askQuestionWithGemini(conventionId, question);
+        
+        console.log(`[Chat] Réponse générée: ${response.length} caractères`);
+        
+        // Réponse en cas de succès
+        res.json({
+          question,
+          response,
+          conventionId
+        });
+      } catch (aiError: any) {
+        console.error(`[Chat] Erreur IA:`, aiError);
+        
+        // Gestion spécifique des erreurs liées à l'IA
+        if (aiError.message.includes("clé API") || aiError.message.includes("API key")) {
+          return res.status(503).json({
+            error: "Service IA indisponible",
+            message: "Le service d'intelligence artificielle est temporairement indisponible. Veuillez réessayer ultérieurement."
+          });
+        } else if (aiError.message.includes("PDF") || aiError.message.includes("télécharger")) {
+          return res.status(502).json({
+            error: "Source inaccessible",
+            message: "Impossible d'accéder au document source de cette convention collective. Veuillez réessayer ultérieurement."
+          });
+        } else {
+          throw aiError; // Propager l'erreur pour la gestion générique
+        }
+      }
     } catch (error: any) {
-      console.error("Erreur lors du traitement de la question:", error);
+      console.error(`[Chat] Erreur générale:`, error);
+      
+      // Gestion générique des erreurs
       res.status(500).json({
-        error: "Une erreur est survenue lors du traitement de votre question",
-        details: error.message
+        error: "Traitement impossible",
+        message: "Une erreur est survenue lors du traitement de votre question. Veuillez réessayer ultérieurement."
       });
     }
   });
