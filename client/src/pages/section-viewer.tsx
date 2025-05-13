@@ -42,7 +42,24 @@ export default function SectionViewer() {
     queryFn: getConventions,
   });
 
-  const convention = conventions?.find(c => c.id === conventionId);
+  // Trouver la convention soit par ID, soit par nom encodé
+  const convention = conventions?.find(c => {
+    // Si l'ID de la convention correspond directement à l'ID dans l'URL
+    if (c.id === conventionId) return true;
+    
+    // Pour les conventions sans IDCC: vérifier si le nom encodé correspond
+    if (!c.id && conventionId.includes('%')) {
+      try {
+        const decodedName = decodeURIComponent(conventionId);
+        return c.name === decodedName;
+      } catch (e) {
+        console.error('Erreur de décodage du nom de convention:', e);
+        return false;
+      }
+    }
+    
+    return false;
+  });
 
   // Récupération de la section
   const { data: section, isLoading: isLoadingSection, error: sectionError } = useQuery({

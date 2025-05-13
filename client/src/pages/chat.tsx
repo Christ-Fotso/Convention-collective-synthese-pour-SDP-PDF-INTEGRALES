@@ -83,8 +83,18 @@ export default function Chat() {
       
       // Si pas trouvé et que l'id semble être un nom encodé (contient des %)
       if (!foundConvention && id.includes('%')) {
-        const decodedName = decodeURIComponent(id);
-        foundConvention = conventions.find((c: Convention) => c.name === decodedName);
+        try {
+          const decodedName = decodeURIComponent(id);
+          console.log("Recherche par nom décodé:", decodedName);
+          foundConvention = conventions.find((c: Convention) => c.name === decodedName);
+        } catch (e) {
+          console.error("Erreur lors du décodage du nom de convention:", e);
+        }
+      }
+      
+      // Pour les conventions sans IDCC explicite (id="")
+      if (!foundConvention && !id.includes('%')) {
+        foundConvention = conventions.find((c: Convention) => !c.id && c.name === id);
       }
       
       return foundConvention || null;
