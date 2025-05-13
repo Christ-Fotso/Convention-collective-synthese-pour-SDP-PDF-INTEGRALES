@@ -118,15 +118,18 @@ export function registerRoutes(app: Express): Server {
       const existingConventions = getConventions();
       let convention = null;
       
-      // Vérifier si on utilise un nom encodé comme identifiant
-      if (conventionId.includes('%')) {
+      // Vérifier si le conventionId est vide (convention sans IDCC) ou contient des caractères échappés
+      if (conventionId === '' || conventionId.includes('%')) {
         try {
           // Décoder le nom de la convention
           const decodedName = decodeURIComponent(conventionId);
           console.log(`[routes] Recherche de convention par nom: "${decodedName}"`);
           
           // Rechercher la convention par son nom
-          convention = existingConventions.find(conv => conv.name === decodedName);
+          convention = existingConventions.find(conv => 
+            (conventionId === '' && conv.id === '') || // Si l'ID est vide, trouver par ID vide
+            conv.name === decodedName                  // Sinon trouver par nom
+          );
           
           if (convention) {
             console.log(`[routes] Convention trouvée par nom: "${decodedName}"`);
