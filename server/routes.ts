@@ -115,9 +115,32 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
+      let actualId = conventionId;
+      
+      // Vérifier la présence de caractères encodés (signe que c'est un nom et non un IDCC)
+      if (conventionId.includes('%')) {
+        try {
+          // Décoder le nom de la convention
+          const decodedName = decodeURIComponent(conventionId);
+          console.log(`Recherche de sections pour la convention par nom: "${decodedName}"`);
+          
+          // Vérifier que la convention existe dans les données JSON
+          const existingConventions = getConventions();
+          const convention = existingConventions.find(conv => conv.name === decodedName);
+          
+          if (convention && convention.id) {
+            // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+            actualId = convention.id;
+            console.log(`Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+          }
+        } catch (decodeError) {
+          console.error("Erreur de décodage du nom de convention:", decodeError);
+        }
+      }
+      
       // Vérifier que la convention existe dans les données JSON
       const existingConventions = getConventions();
-      const conventionExists = existingConventions.some(conv => conv.id === conventionId);
+      const conventionExists = existingConventions.some(conv => conv.id === actualId);
       
       if (!conventionExists) {
         return res.status(404).json({
@@ -126,7 +149,7 @@ export function registerRoutes(app: Express): Server {
       }
       
       // Récupérer les types de sections depuis les données statiques
-      const sectionTypes = getSectionTypesByConvention(conventionId);
+      const sectionTypes = getSectionTypesByConvention(actualId);
       
       res.json(sectionTypes);
     } catch (error: any) {
@@ -191,9 +214,32 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
+      let actualId = conventionId;
+      
+      // Vérifier la présence de caractères encodés (signe que c'est un nom et non un IDCC)
+      if (conventionId.includes('%')) {
+        try {
+          // Décoder le nom de la convention
+          const decodedName = decodeURIComponent(conventionId);
+          console.log(`Recherche de section ${sectionType} pour la convention par nom: "${decodedName}"`);
+          
+          // Vérifier que la convention existe dans les données JSON
+          const existingConventions = getConventions();
+          const convention = existingConventions.find(conv => conv.name === decodedName);
+          
+          if (convention && convention.id) {
+            // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+            actualId = convention.id;
+            console.log(`Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+          }
+        } catch (decodeError) {
+          console.error("Erreur de décodage du nom de convention:", decodeError);
+        }
+      }
+      
       // Vérifier que la convention existe dans les données JSON
       const existingConventions = getConventions();
-      const conventionExists = existingConventions.some(conv => conv.id === conventionId);
+      const conventionExists = existingConventions.some(conv => conv.id === actualId);
       
       if (!conventionExists) {
         return res.status(404).json({
@@ -203,7 +249,7 @@ export function registerRoutes(app: Express): Server {
       
       // Récupérer la section depuis les données statiques
       const { getSection } = await import('./sections-data');
-      const section = getSection(conventionId, sectionType);
+      const section = getSection(actualId, sectionType);
       
       if (!section) {
         return res.status(404).json({
