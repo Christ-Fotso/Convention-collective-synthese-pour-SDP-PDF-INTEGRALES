@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'wouter';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, BookOpen, Maximize } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
-import { FullscreenDialog } from "@/components/fullscreen-dialog";
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, ConventionSection, Category, Subcategory } from '@/types';
@@ -34,7 +33,6 @@ export default function SectionViewer() {
   const params = useParams<{ id: string, category: string, subcategory?: string }>();
   const [, navigate] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
-  const [isFullscreenOpen, setIsFullscreenOpen] = useState<boolean>(false);
   const conventionId = params.id;
   const sectionType = normalizeParams(params.category, params.subcategory);
 
@@ -133,28 +131,17 @@ export default function SectionViewer() {
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
-            <div className="flex items-center gap-2">
+            {hasDispositifLegal(sectionType) && (
               <Button 
                 variant="outline" 
                 size="sm"
-                onClick={() => setIsFullscreenOpen(true)}
+                onClick={() => setIsLegalDialogOpen(true)}
                 className="flex items-center gap-2 orange-button"
               >
-                <Maximize className="h-4 w-4" />
-                Affichage plein écran
+                <BookOpen className="h-4 w-4" />
+                Voir le dispositif légal
               </Button>
-              {hasDispositifLegal(sectionType) && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => setIsLegalDialogOpen(true)}
-                  className="flex items-center gap-2 orange-button"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Voir le dispositif légal
-                </Button>
-              )}
-            </div>
+            )}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -185,16 +172,6 @@ export default function SectionViewer() {
           setIsOpen={setIsLegalDialogOpen}
           title={`Dispositif légal - ${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
           content={getDispositifLegal(sectionType)}
-        />
-      )}
-
-      {/* Modale d'affichage plein écran */}
-      {section && (
-        <FullscreenDialog 
-          isOpen={isFullscreenOpen} 
-          setIsOpen={setIsFullscreenOpen}
-          title={`${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
-          content={section.content}
         />
       )}
     </div>

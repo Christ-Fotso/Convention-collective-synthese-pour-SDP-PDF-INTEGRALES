@@ -356,6 +356,7 @@ export default function Chat() {
                         const [category, subcategory] = selectedSection.sectionType.split(".");
                         navigate(`/convention/${id}/section/${category}/${subcategory}`);
                       }}
+                      className="orange-button"
                     >
                       <span className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5">
