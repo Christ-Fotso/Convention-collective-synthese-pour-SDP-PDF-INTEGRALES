@@ -142,11 +142,11 @@ export async function loadSectionsFromJSON(): Promise<void> {
     
     // Parcourir toutes les conventions dans le fichier
     for (const [conventionName, conventionData] of Object.entries(data)) {
-      const idcc = conventionData.idcc;
+      const idcc = conventionData.idcc || conventionName; // Utiliser le nom comme identifiant si pas d'IDCC
       
       // Ajouter la convention à la liste des conventions
       conventionsCache.push({
-        id: idcc,
+        id: conventionData.idcc || "", // ID vide si pas d'IDCC
         name: conventionData.libelle
       });
       

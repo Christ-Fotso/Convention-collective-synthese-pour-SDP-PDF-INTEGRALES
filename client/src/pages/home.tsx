@@ -99,16 +99,16 @@ export default function Home() {
               <div className="divide-y">
                 {filteredConventions.map((convention, index) => (
                   <div
-                    key={`${convention.id}-${index}`}
+                    key={`${convention.id || index}-${index}`}
                     className="p-4 hover:bg-gray-50 cursor-pointer"
-                    onClick={() => navigate(`/chat/${convention.id}`)}
+                    onClick={() => convention.id ? navigate(`/chat/${convention.id}`) : alert("Cette convention n'a pas d'IDCC et ne peut pas être consultée pour le moment.")}
                   >
                     <div className="flex flex-col gap-1">
                       <div className="text-base font-medium text-green-600">
                         {convention.name}
                       </div>
                       <div className="text-xs text-gray-500">
-                        IDCC {convention.id}
+                        {convention.id ? `IDCC ${convention.id}` : "Sans IDCC"}
                       </div>
                     </div>
                   </div>
