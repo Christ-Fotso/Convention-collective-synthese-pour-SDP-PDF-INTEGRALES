@@ -226,15 +226,18 @@ export function registerRoutes(app: Express): Server {
       const existingConventions = getConventions();
       let convention = null;
       
-      // Vérifier si on utilise un nom encodé comme identifiant
-      if (conventionId.includes('%')) {
+      // Vérifier si le conventionId est vide (convention sans IDCC) ou contient des caractères échappés
+      if (conventionId === '' || conventionId.includes('%')) {
         try {
           // Décoder le nom de la convention
           const decodedName = decodeURIComponent(conventionId);
           console.log(`[routes] Recherche de section ${sectionType} pour la convention par nom: "${decodedName}"`);
           
-          // Rechercher la convention par son nom
-          convention = existingConventions.find(conv => conv.name === decodedName);
+          // Rechercher la convention par son nom ou par ID vide
+          convention = existingConventions.find(conv => 
+            (conventionId === '' && conv.id === '') || // Si l'ID est vide, trouver par ID vide
+            conv.name === decodedName                  // Sinon trouver par nom
+          );
           
           if (convention) {
             console.log(`[routes] Convention trouvée par nom: "${decodedName}"`);
@@ -1508,8 +1511,8 @@ Format attendu exactement:
         });
       }
       
-      // Vérifier la présence de caractères encodés (signe que c'est un nom et non un IDCC)
-      if (conventionId.includes('%')) {
+      // Vérifier si le conventionId est vide (convention sans IDCC) ou contient des caractères échappés
+      if (conventionId === '' || conventionId.includes('%')) {
         try {
           // Décoder le nom de la convention
           const decodedName = decodeURIComponent(conventionId);
@@ -1517,12 +1520,18 @@ Format attendu exactement:
           
           // Vérifier que la convention existe dans les données JSON
           const existingConventions = getConventions();
-          const convention = existingConventions.find(conv => conv.name === decodedName);
+          const convention = existingConventions.find(conv => 
+            (conventionId === '' && conv.id === '') || // Si l'ID est vide, trouver par ID vide
+            conv.name === decodedName                  // Sinon trouver par nom
+          );
           
           if (convention && convention.id) {
-            // Si la convention est trouvée par nom, utiliser son ID pour la suite
+            // Si la convention est trouvée par nom et a un ID, utiliser son ID pour la suite
             conventionId = convention.id;
             console.log(`[Chat] Convention trouvée par nom, utilisation de l'IDCC: ${conventionId}`);
+          } else if (convention && convention.id === '') {
+            // Si la convention est trouvée mais n'a pas d'ID, garder le nom comme identifiant
+            console.log(`[Chat] Convention sans IDCC trouvée: "${decodedName}"`);
           }
         } catch (decodeError) {
           console.error("[Chat] Erreur de décodage du nom de convention:", decodeError);
@@ -1533,7 +1542,10 @@ Format attendu exactement:
       let convention = null;
       const existingConventions = getConventions();
       
-      if (conventionId.includes('%')) {
+      if (conventionId === '') {
+        // Si l'ID est vide, rechercher par ID vide
+        convention = existingConventions.find(conv => conv.id === '');
+      } else if (conventionId.includes('%')) {
         // Si on a un nom encodé, il faut vérifier directement avec le nom décodé
         try {
           const decodedName = decodeURIComponent(conventionId);
