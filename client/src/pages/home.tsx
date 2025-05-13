@@ -6,12 +6,19 @@ import { getConventions } from '@/lib/api';
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
+// Définition du type Convention
+type Convention = {
+  id: string;
+  name: string;
+  url?: string;
+};
+
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [filteredConventions, setFilteredConventions] = useState([]);
+  const [filteredConventions, setFilteredConventions] = useState<Convention[]>([]);
   const [, navigate] = useLocation();
 
-  const { data: conventions = [] } = useQuery({
+  const { data: conventions = [] as Convention[] } = useQuery<Convention[]>({
     queryKey: ['/api/conventions'],
     queryFn: getConventions,
   });
@@ -23,24 +30,29 @@ export default function Home() {
       return;
     }
 
-    // Si la recherche est vide, on montre tout
-    if (!search.trim()) {
-      setFilteredConventions(conventions);
-      return;
-    }
-
-    const searchTerms = search.toLowerCase().trim().split(/\s+/);
+    // Copier les conventions pour pouvoir les trier sans modifier l'original
+    let results = [...conventions];
     
-    const results = conventions.filter(conv => {
-      if (!conv) return false;
+    // Filtrer si une recherche est active
+    if (search.trim()) {
+      const searchTerms = search.toLowerCase().trim().split(/\s+/);
       
-      const id = String(conv.id || '').toLowerCase();
-      const name = String(conv.name || '').toLowerCase();
-      
-      // Un seul terme doit correspondre pour inclure la convention
-      return searchTerms.some(term => 
-        id.includes(term) || name.includes(term)
-      );
+      results = results.filter(conv => {
+        if (!conv) return false;
+        
+        const id = String(conv.id || '').toLowerCase();
+        const name = String(conv.name || '').toLowerCase();
+        
+        // Un seul terme doit correspondre pour inclure la convention
+        return searchTerms.some(term => 
+          id.includes(term) || name.includes(term)
+        );
+      });
+    }
+    
+    // Toujours trier par ordre alphabétique du nom
+    results.sort((a, b) => {
+      return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
     });
     
     setFilteredConventions(results);
