@@ -345,14 +345,14 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
   
   // Parcourir toutes les sections et trouver celle qui correspond au type demandé
   // Comme notre clé est maintenant "appSectionType|originalName", nous devons chercher une correspondance partielle
-  for (const [key, section] of Object.entries(sectionsCache[actualId])) {
+  for (const [key, section] of Object.entries(sectionsCache[cacheKey])) {
     if (section.sectionType === sectionType) {
-      console.log(`[sections-data] Section ${sectionType} trouvée pour la convention ${actualId}`);
+      console.log(`[sections-data] Section ${sectionType} trouvée pour la convention ${cacheKey}`);
       return section;
     }
   }
   
-  console.log(`[sections-data] La section ${sectionType} n'existe pas pour la convention ${actualId}`);
+  console.log(`[sections-data] La section ${sectionType} n'existe pas pour la convention ${cacheKey}`);
   return null;
 }
 
@@ -398,8 +398,30 @@ export function getSectionsByConvention(conventionId: string): SectionData[] {
   
   // Vérifier si la convention existe dans le cache des sections
   if (!sectionsCache[actualId]) {
-    console.log(`[sections-data] Aucune section trouvée pour la convention: ${actualId}`);
-    return [];
+    console.log(`[sections-data] Pas de données pour la clé ${actualId}, recherche d'alternatives`);
+    
+    // Tenter de trouver une clé qui corresponde au nom décodé (pour les CCN sans IDCC)
+    if (conventionId.includes('%')) {
+      try {
+        const decodedKey = decodeURIComponent(conventionId);
+        // Rechercher une convention dont le nom contient le nom décodé
+        for (const key of Object.keys(sectionsCache)) {
+          if (key === decodedKey || key.includes(decodedKey) || decodedKey.includes(key)) {
+            actualId = key;
+            console.log(`[sections-data] Clé alternative trouvée: "${actualId}"`);
+            break;
+          }
+        }
+      } catch (e) {
+        console.error('[sections-data] Erreur lors de la recherche de clé alternative:', e);
+      }
+    }
+    
+    // Vérifier à nouveau avec la nouvelle clé potentielle
+    if (!sectionsCache[actualId]) {
+      console.log(`[sections-data] Aucune section trouvée pour la convention: ${actualId}`);
+      return [];
+    }
   }
   
   // Convertir l'objet en tableau
