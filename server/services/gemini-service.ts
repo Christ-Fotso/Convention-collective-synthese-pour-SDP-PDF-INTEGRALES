@@ -4,6 +4,7 @@ import axios from 'axios';
 import OpenAI from 'openai';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { downloadPDF, extractTextFromPDF as extractPDFText } from './pdf-extractor';
+import { getSectionsByConvention } from '../sections-data';
 
 // Répertoire temporaire pour stocker les PDF téléchargés
 const TEMP_DIR = path.join(process.cwd(), 'temp');
@@ -164,8 +165,7 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     // Pour le prototype, nous utilisons directement les sections qui sont déjà chargées en mémoire
     console.log(`[INFO] Récupération des données pour convention ${conventionId}`);
     
-    // Importer la fonction pour récupérer les sections
-    const { getSectionsByConvention } = require('../sections-data');
+    // Utiliser la fonction importée en haut du fichier
     const sections = getSectionsByConvention(conventionId);
     
     let conventionText = "";

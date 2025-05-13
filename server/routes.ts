@@ -1542,20 +1542,18 @@ Format attendu exactement:
       let convention = null;
       const existingConventions = getConventions();
       
-      if (conventionId === '') {
-        // Si l'ID est vide, rechercher par ID vide
-        convention = existingConventions.find(conv => conv.id === '');
-      } else if (conventionId.includes('%')) {
+      // Pour le chatbot, nous masquons les conventions sans IDCC comme demandé
+      if (conventionId.includes('%')) {
         // Si on a un nom encodé, il faut vérifier directement avec le nom décodé
         try {
           const decodedName = decodeURIComponent(conventionId);
-          convention = existingConventions.find(conv => conv.name === decodedName);
+          convention = existingConventions.find(conv => conv.name === decodedName && conv.id !== '');
         } catch (e) {
           // En cas d'erreur de décodage, on laissera convention = null
         }
       } else {
-        // Recherche standard par IDCC
-        convention = existingConventions.find(conv => conv.id === conventionId);
+        // Recherche standard par IDCC (les conventions sans IDCC sont ignorées)
+        convention = existingConventions.find(conv => conv.id === conventionId && conv.id !== '');
       }
       
       if (!convention) {
