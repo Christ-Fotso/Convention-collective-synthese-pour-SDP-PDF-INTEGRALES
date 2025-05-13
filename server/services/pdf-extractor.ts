@@ -41,9 +41,8 @@ export async function downloadPDF(url: string, conventionId: string): Promise<st
 /**
  * Extrait le texte d'un fichier PDF
  * 
- * IMPORTANT: Cette fonction doit être remplacée par une véritable extraction de PDF
- * dans la version de production. Actuellement, elle utilise les données structurées
- * comme simulation, uniquement pour le développement.
+ * Utilise pdfjs-dist pour extraire le texte réel d'un fichier PDF,
+ * sans dépendre des données structurées.
  */
 export async function extractTextFromPDF(pdfPath: string): Promise<string> {
   if (!fs.existsSync(pdfPath)) {
@@ -51,64 +50,55 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
   }
   
   try {
-    console.log(`[DEBUG] Extraction du PDF: ${pdfPath}`);
-    
     const pdfBasename = path.basename(pdfPath);
     const conventionId = pdfBasename.replace('convention_', '').replace('.pdf', '');
     
-    console.log(`[DEBUG] Extraction pour IDCC: ${conventionId} - FICHIER PDF: ${pdfPath}`);
+    console.log(`[INFO] Extraction du texte du PDF pour convention ${conventionId}: ${pdfPath}`);
     
-    // TODO: Implémenter une véritable extraction de texte du PDF
-    // Exemple avec pdfjs-dist:
-    //
-    // const pdfjsLib = require('pdfjs-dist');
-    // const loadingTask = pdfjsLib.getDocument(pdfPath);
-    // const pdf = await loadingTask.promise;
-    // let fullText = '';
-    // for (let i = 1; i <= pdf.numPages; i++) {
-    //   const page = await pdf.getPage(i);
-    //   const content = await page.getTextContent();
-    //   const strings = content.items.map(item => item.str);
-    //   fullText += strings.join(' ') + '\n';
-    // }
-    // return fullText;
+    // Extraction réelle du PDF avec pdfjs-dist
+    const pdfjsLib = require('pdfjs-dist');
     
-    // ===== SOLUTION TEMPORAIRE =====
-    // Pour cette phase de développement seulement, on utilise les données structurées
-    // Cette partie doit être remplacée par l'extraction réelle de PDF en production
+    // Désactivation des workers car ils causent des problèmes dans certains environnements
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '';
     
-    // Option 1: Utiliser les sections structurées (le plus fiable)
-    try {
-      const { getSectionsByConvention } = require('../sections-data');
-      const sections = getSectionsByConvention(conventionId);
-      
-      if (sections && sections.length > 0) {
-        console.log(`[DEBUG] ${sections.length} sections trouvées pour la convention ${conventionId}`);
-        
-        // Construire un texte complet avec toutes les sections
-        let fullText = `Convention collective IDCC: ${conventionId}\n\n`;
-        
-        sections.forEach((section: { sectionType: string, content: string }) => {
-          fullText += `# ${section.sectionType}\n`;
-          fullText += section.content;
-          fullText += "\n\n";
-        });
-        
-        console.log(`[DEBUG] Données extraites: ${fullText.length} caractères`);
-        return fullText;
+    console.log(`[INFO] Chargement du PDF...`);
+    const loadingTask = pdfjsLib.getDocument({ url: pdfPath });
+    const pdf = await loadingTask.promise;
+    
+    console.log(`[INFO] PDF chargé: ${pdf.numPages} pages`);
+    
+    let fullText = `Convention collective IDCC: ${conventionId}\n\n`;
+    
+    // Extraction page par page
+    for (let i = 1; i <= pdf.numPages; i++) {
+      if (i % 10 === 0) {
+        console.log(`[INFO] Extraction en cours... page ${i}/${pdf.numPages}`);
       }
-    } catch (error) {
-      console.error(`[DEBUG] Erreur avec les sections structurées:`, error);
+      
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      
+      // Extraire le texte en préservant les sauts de ligne
+      const texts = [];
+      let lastY;
+      
+      for (const item of content.items) {
+        if (lastY !== item.transform[5] && texts.length > 0) {
+          texts.push('\n'); // Ajouter un saut de ligne quand on change de ligne
+        }
+        
+        lastY = item.transform[5];
+        texts.push(item.str);
+      }
+      
+      fullText += texts.join(' ') + '\n\n';
     }
     
-    // Si nous arrivons ici, c'est que les sections n'ont pas été trouvées
-    throw new Error(
-      `Échec de l'extraction de texte pour la convention ${conventionId}. ` +
-      `L'extraction réelle de PDF n'est pas encore implémentée et aucune donnée structurée n'est disponible.`
-    );
+    console.log(`[INFO] Extraction terminée: ${fullText.length} caractères extraits`);
+    return fullText;
   } catch (error: any) {
-    console.error(`[DEBUG] Erreur critique lors de l'extraction du PDF:`, error);
-    throw new Error(`Impossible d'extraire le texte du PDF pour IDCC ${path.basename(pdfPath).replace('convention_', '').replace('.pdf', '')}: ${error.message}`);
+    console.error(`[ERROR] Échec de l'extraction du PDF:`, error);
+    throw new Error(`Impossible d'extraire le texte du PDF: ${error.message}`);
   }
 }
 
