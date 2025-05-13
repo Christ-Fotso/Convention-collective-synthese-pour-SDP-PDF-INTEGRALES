@@ -266,6 +266,8 @@ export async function loadSectionsFromJSON(): Promise<void> {
 
 /**
  * Obtient une section par convention et type
+ * @param conventionId Peut être un IDCC ou un nom de convention encodé
+ * @param sectionType Type de section à récupérer
  */
 export function getSection(conventionId: string, sectionType: string): SectionData | null {
   if (!initialized) {
@@ -273,24 +275,55 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
     return null;
   }
   
+  let actualId = conventionId;
+  
+  // Vérifier si on a fourni un nom plutôt qu'un ID
+  if (conventionId.includes('%')) {
+    try {
+      // Décoder le nom de la convention
+      const decodedName = decodeURIComponent(conventionId);
+      console.log(`[sections-data] Recherche de section ${sectionType} pour la convention par nom: "${decodedName}"`);
+      
+      // Rechercher l'IDCC correspondant au nom
+      const conventions = getConventions();
+      const convention = conventions.find(c => c.name === decodedName);
+      
+      if (convention && convention.id) {
+        // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+        actualId = convention.id;
+        console.log(`[sections-data] Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+      } else {
+        console.log(`[sections-data] Convention non trouvée avec le nom: "${decodedName}"`);
+        return null;
+      }
+    } catch (decodeError) {
+      console.error("[sections-data] Erreur de décodage du nom de convention:", decodeError);
+      return null;
+    }
+  }
+  
   // Vérifier si la convention existe
-  if (!sectionsCache[conventionId]) {
+  if (!sectionsCache[actualId]) {
+    console.log(`[sections-data] La convention ${actualId} n'existe pas dans le cache`);
     return null;
   }
   
   // Parcourir toutes les sections et trouver celle qui correspond au type demandé
   // Comme notre clé est maintenant "appSectionType|originalName", nous devons chercher une correspondance partielle
-  for (const [key, section] of Object.entries(sectionsCache[conventionId])) {
+  for (const [key, section] of Object.entries(sectionsCache[actualId])) {
     if (section.sectionType === sectionType) {
+      console.log(`[sections-data] Section ${sectionType} trouvée pour la convention ${actualId}`);
       return section;
     }
   }
   
+  console.log(`[sections-data] La section ${sectionType} n'existe pas pour la convention ${actualId}`);
   return null;
 }
 
 /**
  * Obtient toutes les sections d'une convention
+ * @param conventionId Peut être un IDCC ou un nom de convention encodé
  */
 export function getSectionsByConvention(conventionId: string): SectionData[] {
   if (!initialized) {
@@ -298,17 +331,48 @@ export function getSectionsByConvention(conventionId: string): SectionData[] {
     return [];
   }
   
+  let actualId = conventionId;
+  
+  // Vérifier si on a fourni un nom plutôt qu'un ID
+  if (conventionId.includes('%')) {
+    try {
+      // Décoder le nom de la convention
+      const decodedName = decodeURIComponent(conventionId);
+      console.log(`[sections-data] Recherche de convention par nom: "${decodedName}"`);
+      
+      // Rechercher l'IDCC correspondant au nom
+      const conventions = getConventions();
+      const convention = conventions.find(c => c.name === decodedName);
+      
+      if (convention && convention.id) {
+        // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+        actualId = convention.id;
+        console.log(`[sections-data] Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+      } else {
+        console.log(`[sections-data] Convention non trouvée avec le nom: "${decodedName}"`);
+        return [];
+      }
+    } catch (decodeError) {
+      console.error("[sections-data] Erreur de décodage du nom de convention:", decodeError);
+      return [];
+    }
+  }
+  
   // Vérifier si la convention existe
-  if (!sectionsCache[conventionId]) {
+  if (!sectionsCache[actualId]) {
+    console.log(`[sections-data] Aucune section trouvée pour la convention: ${actualId}`);
     return [];
   }
   
   // Convertir l'objet en tableau
-  return Object.values(sectionsCache[conventionId]);
+  const sections = Object.values(sectionsCache[actualId]);
+  console.log(`[sections-data] ${sections.length} sections trouvées pour la convention ${actualId}`);
+  return sections;
 }
 
 /**
  * Obtient la liste des types de sections disponibles pour une convention
+ * @param conventionId Peut être un IDCC ou un nom de convention encodé
  */
 export function getSectionTypesByConvention(conventionId: string): string[] {
   if (!initialized) {
@@ -316,18 +380,48 @@ export function getSectionTypesByConvention(conventionId: string): string[] {
     return [];
   }
   
+  let actualId = conventionId;
+  
+  // Vérifier si on a fourni un nom plutôt qu'un ID
+  if (conventionId.includes('%')) {
+    try {
+      // Décoder le nom de la convention
+      const decodedName = decodeURIComponent(conventionId);
+      console.log(`[sections-data] Recherche des types de section pour la convention par nom: "${decodedName}"`);
+      
+      // Rechercher l'IDCC correspondant au nom
+      const conventions = getConventions();
+      const convention = conventions.find(c => c.name === decodedName);
+      
+      if (convention && convention.id) {
+        // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+        actualId = convention.id;
+        console.log(`[sections-data] Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+      } else {
+        console.log(`[sections-data] Convention non trouvée avec le nom: "${decodedName}"`);
+        return [];
+      }
+    } catch (decodeError) {
+      console.error("[sections-data] Erreur de décodage du nom de convention:", decodeError);
+      return [];
+    }
+  }
+  
   // Vérifier si la convention existe
-  if (!sectionsCache[conventionId]) {
+  if (!sectionsCache[actualId]) {
+    console.log(`[sections-data] Aucun type de section trouvé pour la convention: ${actualId}`);
     return [];
   }
   
   // Récupérer les types de sections uniques
   const uniqueTypes = new Set<string>();
-  for (const section of Object.values(sectionsCache[conventionId])) {
+  for (const section of Object.values(sectionsCache[actualId])) {
     uniqueTypes.add(section.sectionType);
   }
   
-  return Array.from(uniqueTypes);
+  const sectionTypes = Array.from(uniqueTypes);
+  console.log(`[sections-data] ${sectionTypes.length} types de sections trouvés pour la convention ${actualId}`);
+  return sectionTypes;
 }
 
 /**

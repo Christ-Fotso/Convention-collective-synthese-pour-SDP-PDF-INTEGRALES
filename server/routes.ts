@@ -1483,7 +1483,7 @@ Format attendu exactement:
   // Route pour poser une question à propos d'une convention avec Gemini
   apiRouter.post("/convention/:conventionId/ask", async (req, res) => {
     try {
-      const conventionId = req.params.conventionId;
+      let conventionId = req.params.conventionId;
       const { question } = req.body;
       
       if (!question) {
@@ -1493,13 +1493,36 @@ Format attendu exactement:
         });
       }
       
+      // Vérifier la présence de caractères encodés (signe que c'est un nom et non un IDCC)
+      if (conventionId.includes('%')) {
+        try {
+          // Décoder le nom de la convention
+          const decodedName = decodeURIComponent(conventionId);
+          console.log(`[Chat] Recherche de convention par nom: "${decodedName}"`);
+          
+          // Vérifier que la convention existe dans les données JSON
+          const existingConventions = getConventions();
+          const convention = existingConventions.find(conv => conv.name === decodedName);
+          
+          if (convention && convention.id) {
+            // Si la convention est trouvée par nom, utiliser son ID pour la suite
+            conventionId = convention.id;
+            console.log(`[Chat] Convention trouvée par nom, utilisation de l'IDCC: ${conventionId}`);
+          }
+        } catch (decodeError) {
+          console.error("[Chat] Erreur de décodage du nom de convention:", decodeError);
+        }
+      }
+      
       // Vérifier que la convention existe
-      const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
-      if (convention.length === 0) {
+      const existingConventions = getConventions();
+      const convention = existingConventions.find(conv => conv.id === conventionId);
+      
+      if (!convention) {
         console.error(`[Chat] Convention non trouvée: ${conventionId}`);
         return res.status(404).json({ 
           error: "Convention non trouvée", 
-          message: `La convention IDCC ${conventionId} n'a pas été trouvée dans notre base de données.`
+          message: `La convention avec l'identifiant ${conventionId} n'a pas été trouvée dans notre base de données.`
         });
       }
       
