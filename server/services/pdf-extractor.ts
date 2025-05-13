@@ -55,8 +55,9 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
     
     console.log(`[INFO] Extraction du texte du PDF pour convention ${conventionId}: ${pdfPath}`);
     
-    // Extraction réelle du PDF avec pdfjs-dist
-    const pdfjsLib = require('pdfjs-dist');
+    // Chargement de pdfjs-dist correctement (sans require)
+    // Importation dynamique (ES modules)
+    const pdfjsLib = await import('pdfjs-dist');
     
     // Désactivation des workers car ils causent des problèmes dans certains environnements
     pdfjsLib.GlobalWorkerOptions.workerSrc = '';
@@ -83,12 +84,15 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
       let lastY;
       
       for (const item of content.items) {
-        if (lastY !== item.transform[5] && texts.length > 0) {
-          texts.push('\n'); // Ajouter un saut de ligne quand on change de ligne
+        if ('transform' in item && 'str' in item) {
+          // Vérification des propriétés pour un TextItem
+          if (lastY !== item.transform[5] && texts.length > 0) {
+            texts.push('\n'); // Ajouter un saut de ligne quand on change de ligne
+          }
+          
+          lastY = item.transform[5];
+          texts.push(item.str);
         }
-        
-        lastY = item.transform[5];
-        texts.push(item.str);
       }
       
       fullText += texts.join(' ') + '\n\n';
