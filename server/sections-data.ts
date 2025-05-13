@@ -142,17 +142,20 @@ export async function loadSectionsFromJSON(): Promise<void> {
     
     // Parcourir toutes les conventions dans le fichier
     for (const [conventionName, conventionData] of Object.entries(data)) {
-      const idcc = conventionData.idcc || conventionName; // Utiliser le nom comme identifiant si pas d'IDCC
+      const idcc = conventionData.idcc || ""; // ID vide si pas d'IDCC
       
       // Ajouter la convention à la liste des conventions
       conventionsCache.push({
-        id: conventionData.idcc || "", // ID vide si pas d'IDCC
+        id: idcc,
         name: conventionData.libelle
       });
       
+      // Utiliser l'IDCC comme clé de cache si disponible, sinon utiliser le nom de la convention
+      const cacheKey = idcc || conventionName;
+      
       // Créer une entrée pour cette convention dans le cache des sections
-      if (!sectionsCache[idcc]) {
-        sectionsCache[idcc] = {};
+      if (!sectionsCache[cacheKey]) {
+        sectionsCache[cacheKey] = {};
       }
       
       // Parcourir toutes les sections de cette convention
@@ -183,7 +186,7 @@ export async function loadSectionsFromJSON(): Promise<void> {
         const uniqueKey = `${appSectionType}|${sectionName}`;
         
         // Ajouter la section au cache
-        sectionsCache[idcc][uniqueKey] = {
+        sectionsCache[cacheKey][uniqueKey] = {
           conventionId: idcc,
           sectionType: appSectionType,
           content: sectionData.contenu
@@ -275,7 +278,7 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
     return null;
   }
   
-  let actualId = conventionId;
+  let cacheKey = conventionId;
   
   // Vérifier si le conventionId est vide (convention sans IDCC) ou si on a fourni un nom plutôt qu'un ID
   if (conventionId === '' || conventionId.includes('%')) {
@@ -292,9 +295,16 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
       );
       
       if (convention) {
-        // Si la convention est trouvée
-        actualId = convention.id;
-        console.log(`[sections-data] Convention trouvée, utilisation de l'ID: "${actualId}" (vide ou non)`);
+        // Si la convention est trouvée et a un ID non vide, utiliser cet ID comme clé
+        if (convention.id) {
+          cacheKey = convention.id;
+          console.log(`[sections-data] Convention trouvée avec ID, utilisation de l'ID: "${cacheKey}"`);
+        } else {
+          // Si la convention n'a pas d'ID (id vide), utiliser le nom de la convention comme clé
+          // Nous savons que le cacheKey a été créé avec le nom de la convention dans loadSectionsFromJSON
+          cacheKey = decodedName;
+          console.log(`[sections-data] Convention trouvée sans ID, utilisation du nom comme clé: "${cacheKey}"`);
+        }
       } else {
         console.log(`[sections-data] Convention non trouvée: "${decodedName}" (ID vide ou nom)`);
         return null;
@@ -305,10 +315,32 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
     }
   }
   
-  // Vérifier si la convention existe
-  if (!sectionsCache[actualId]) {
-    console.log(`[sections-data] La convention ${actualId} n'existe pas dans le cache`);
-    return null;
+  // Vérifier si la clé existe directement dans le cache
+  if (!sectionsCache[cacheKey]) {
+    console.log(`[sections-data] Pas de données pour la clé ${cacheKey}, recherche d'alternatives`);
+    
+    // Tenter de trouver une clé qui corresponde au nom décodé (pour les CCN sans IDCC)
+    if (cacheKey.includes('%')) {
+      try {
+        const decodedKey = decodeURIComponent(cacheKey);
+        // Rechercher une convention dont le nom contient le nom décodé
+        for (const key of Object.keys(sectionsCache)) {
+          if (key === decodedKey || key.includes(decodedKey) || decodedKey.includes(key)) {
+            cacheKey = key;
+            console.log(`[sections-data] Clé alternative trouvée: "${cacheKey}"`);
+            break;
+          }
+        }
+      } catch (e) {
+        console.error('[sections-data] Erreur lors de la recherche de clé alternative:', e);
+      }
+    }
+    
+    // Vérifier à nouveau avec la nouvelle clé potentielle
+    if (!sectionsCache[cacheKey]) {
+      console.log(`[sections-data] Aucune convention trouvée avec la clé: ${cacheKey}`);
+      return null;
+    }
   }
   
   // Parcourir toutes les sections et trouver celle qui correspond au type demandé
