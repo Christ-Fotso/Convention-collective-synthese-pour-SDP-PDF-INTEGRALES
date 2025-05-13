@@ -277,23 +277,26 @@ export function getSection(conventionId: string, sectionType: string): SectionDa
   
   let actualId = conventionId;
   
-  // Vérifier si on a fourni un nom plutôt qu'un ID
-  if (conventionId.includes('%')) {
+  // Vérifier si le conventionId est vide (convention sans IDCC) ou si on a fourni un nom plutôt qu'un ID
+  if (conventionId === '' || conventionId.includes('%')) {
     try {
       // Décoder le nom de la convention
       const decodedName = decodeURIComponent(conventionId);
-      console.log(`[sections-data] Recherche de section ${sectionType} pour la convention par nom: "${decodedName}"`);
+      console.log(`[sections-data] Recherche de section ${sectionType} pour la convention par nom ou ID vide: "${decodedName}"`);
       
-      // Rechercher l'IDCC correspondant au nom
+      // Rechercher la convention correspondante
       const conventions = getConventions();
-      const convention = conventions.find(c => c.name === decodedName);
+      const convention = conventions.find(c => 
+        (conventionId === '' && c.id === '') || // Si l'ID est vide, trouver par ID vide
+        c.name === decodedName                  // Sinon trouver par nom
+      );
       
-      if (convention && convention.id) {
-        // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+      if (convention) {
+        // Si la convention est trouvée
         actualId = convention.id;
-        console.log(`[sections-data] Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+        console.log(`[sections-data] Convention trouvée, utilisation de l'ID: "${actualId}" (vide ou non)`);
       } else {
-        console.log(`[sections-data] Convention non trouvée avec le nom: "${decodedName}"`);
+        console.log(`[sections-data] Convention non trouvée: "${decodedName}" (ID vide ou nom)`);
         return null;
       }
     } catch (decodeError) {
@@ -333,23 +336,26 @@ export function getSectionsByConvention(conventionId: string): SectionData[] {
   
   let actualId = conventionId;
   
-  // Vérifier si on a fourni un nom plutôt qu'un ID
-  if (conventionId.includes('%')) {
+  // Vérifier si le conventionId est vide (convention sans IDCC) ou si on a fourni un nom plutôt qu'un ID
+  if (conventionId === '' || conventionId.includes('%')) {
     try {
       // Décoder le nom de la convention
       const decodedName = decodeURIComponent(conventionId);
-      console.log(`[sections-data] Recherche de convention par nom: "${decodedName}"`);
+      console.log(`[sections-data] Recherche de convention par nom ou ID vide: "${decodedName}"`);
       
-      // Rechercher l'IDCC correspondant au nom
+      // Rechercher la convention correspondante
       const conventions = getConventions();
-      const convention = conventions.find(c => c.name === decodedName);
+      const convention = conventions.find(c => 
+        (conventionId === '' && c.id === '') || // Si l'ID est vide, trouver par ID vide
+        c.name === decodedName                  // Sinon trouver par nom
+      );
       
-      if (convention && convention.id) {
-        // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+      if (convention) {
+        // Si la convention est trouvée
         actualId = convention.id;
-        console.log(`[sections-data] Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+        console.log(`[sections-data] Convention trouvée, utilisation de l'ID: "${actualId}" (vide ou non)`);
       } else {
-        console.log(`[sections-data] Convention non trouvée avec le nom: "${decodedName}"`);
+        console.log(`[sections-data] Convention non trouvée: "${decodedName}" (ID vide ou nom)`);
         return [];
       }
     } catch (decodeError) {
@@ -358,7 +364,7 @@ export function getSectionsByConvention(conventionId: string): SectionData[] {
     }
   }
   
-  // Vérifier si la convention existe
+  // Vérifier si la convention existe dans le cache des sections
   if (!sectionsCache[actualId]) {
     console.log(`[sections-data] Aucune section trouvée pour la convention: ${actualId}`);
     return [];
@@ -382,23 +388,26 @@ export function getSectionTypesByConvention(conventionId: string): string[] {
   
   let actualId = conventionId;
   
-  // Vérifier si on a fourni un nom plutôt qu'un ID
-  if (conventionId.includes('%')) {
+  // Vérifier si le conventionId est vide (convention sans IDCC) ou si on a fourni un nom plutôt qu'un ID
+  if (conventionId === '' || conventionId.includes('%')) {
     try {
       // Décoder le nom de la convention
       const decodedName = decodeURIComponent(conventionId);
-      console.log(`[sections-data] Recherche des types de section pour la convention par nom: "${decodedName}"`);
+      console.log(`[sections-data] Recherche des types de section pour la convention par nom ou ID vide: "${decodedName}"`);
       
-      // Rechercher l'IDCC correspondant au nom
+      // Rechercher la convention correspondante
       const conventions = getConventions();
-      const convention = conventions.find(c => c.name === decodedName);
+      const convention = conventions.find(c => 
+        (conventionId === '' && c.id === '') || // Si l'ID est vide, trouver par ID vide
+        c.name === decodedName                  // Sinon trouver par nom
+      );
       
-      if (convention && convention.id) {
-        // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
+      if (convention) {
+        // Si la convention est trouvée
         actualId = convention.id;
-        console.log(`[sections-data] Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+        console.log(`[sections-data] Convention trouvée, utilisation de l'ID: "${actualId}" (vide ou non) pour les types de sections`);
       } else {
-        console.log(`[sections-data] Convention non trouvée avec le nom: "${decodedName}"`);
+        console.log(`[sections-data] Convention non trouvée: "${decodedName}" (ID vide ou nom)`);
         return [];
       }
     } catch (decodeError) {
