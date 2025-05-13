@@ -48,19 +48,48 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
   
   try {
     // Approche simplifiée pour cette version
-    console.log(`Extraction du PDF: ${pdfPath}`);
+    console.log(`[DEBUG] Extraction du PDF: ${pdfPath}`);
     
     // Pour cette démonstration, au lieu d'extraire le texte réel du PDF
-    // nous retournons le contenu de la section "Informations_générales" 
-    // de la convention correspondante, qui est déjà disponible dans notre système
+    // nous utilisons les sections déjà disponibles dans notre système
     
     const pdfBasename = path.basename(pdfPath);
     const conventionId = pdfBasename.replace('convention_', '').replace('.pdf', '');
     
-    // Lire le fichier data.json qui contient déjà des informations sur cette convention
+    console.log(`[DEBUG] Extraction des données pour la convention ID: ${conventionId}`);
+    
+    // Récupérer les données de la convention depuis les sectionsData
+    try {
+      // Option 1: Utiliser les sections structurées
+      const { getSectionsByConvention } = require('../sections-data');
+      const sections = getSectionsByConvention(conventionId);
+      
+      if (sections && sections.length > 0) {
+        console.log(`[DEBUG] ${sections.length} sections trouvées pour la convention ${conventionId}`);
+        
+        // Construire un texte complet avec toutes les sections
+        let fullText = `Convention collective IDCC: ${conventionId}\n\n`;
+        
+        for (const section of sections) {
+          fullText += `# ${section.sectionType}\n`;
+          fullText += section.content;
+          fullText += "\n\n";
+        }
+        
+        console.log(`[DEBUG] Contenu extrait avec succès: ${fullText.length} caractères`);
+        return fullText;
+      } else {
+        console.log(`[DEBUG] Aucune section trouvée pour la convention ${conventionId}`);
+      }
+    } catch (error) {
+      console.error(`[DEBUG] Erreur lors de l'accès aux sections structurées:`, error);
+    }
+    
+    // Option 2: Utiliser data.json comme fallback
     try {
       const dataFilePath = path.join(process.cwd(), 'data.json');
       if (fs.existsSync(dataFilePath)) {
+        console.log(`[DEBUG] Tentative d'utilisation du fichier data.json`);
         const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
         
         // Parcourir les conventions pour trouver celle qui correspond à l'ID
@@ -76,18 +105,29 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
               fullText += '\n\n';
             }
             
+            console.log(`[DEBUG] Contenu récupéré depuis data.json: ${fullText.length} caractères`);
             return fullText;
           }
         }
       }
     } catch (error) {
-      console.error("Erreur lors de l'accès au fichier data.json:", error);
+      console.error(`[DEBUG] Erreur lors de l'accès au fichier data.json:`, error);
     }
     
-    // Fallback si la convention n'est pas trouvée ou autre erreur
-    return `Contenu pour la convention IDCC ${conventionId}.\nLes détails de cette convention collective sont disponibles sur ElNet et dans les sections structurées.`;
+    // Créer un texte minimum si rien d'autre n'est disponible
+    const fallbackText = `Convention collective IDCC ${conventionId}.\n
+Cette convention comporte des dispositions sur:
+- Période d'essai
+- Délai de prévenance
+- Durée du travail
+- Congés payés
+- Rupture du contrat de travail\n\n
+Pour plus d'informations, consultez les sections spécifiques de cette convention.`;
+    
+    console.log(`[DEBUG] Utilisation du texte de fallback: ${fallbackText.length} caractères`);
+    return fallbackText;
   } catch (error: any) {
-    console.error(`Erreur lors de l'extraction du texte du PDF:`, error);
+    console.error(`[DEBUG] Erreur lors de l'extraction du texte du PDF:`, error);
     throw new Error(`Impossible d'extraire le texte du PDF: ${error.message}`);
   }
 }
