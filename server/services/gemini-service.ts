@@ -50,7 +50,7 @@ async function getConventionPDF(conventionId: string): Promise<string> {
     // Format documenté: https://www.elnet-rh.fr/documentation/Document?id=CCNS{conventionId}
     const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
     
-    console.log(`[DEBUG] Tentative de téléchargement du PDF depuis ${conventionUrl}`);
+    console.log(`[INFO] Tentative de téléchargement du PDF depuis ${conventionUrl}`);
     
     // Vérifier d'abord si nous avons déjà le PDF en cache
     const filePath = path.join(TEMP_DIR, `convention_${conventionId}.pdf`);
@@ -60,22 +60,22 @@ async function getConventionPDF(conventionId: string): Promise<string> {
       const fileAge = (Date.now() - stats.mtimeMs) / (1000 * 60 * 60 * 24); // en jours
       
       if (fileAge < 7) { // Si le fichier a moins de 7 jours
-        console.log(`[DEBUG] PDF trouvé en cache récent (${fileAge.toFixed(1)} jours): ${filePath}`);
+        console.log(`[INFO] PDF trouvé en cache récent (${fileAge.toFixed(1)} jours): ${filePath}`);
         return filePath;
       } else {
-        console.log(`[DEBUG] PDF en cache trop ancien (${fileAge.toFixed(1)} jours), téléchargement d'une version fraîche`);
+        console.log(`[INFO] PDF en cache trop ancien (${fileAge.toFixed(1)} jours), téléchargement d'une version fraîche`);
       }
     }
     
     // Utiliser le service d'extraction pour télécharger le PDF
     return await downloadPDF(conventionUrl, conventionId);
   } catch (error: any) {
-    console.error('[DEBUG] Erreur lors du téléchargement du PDF:', error);
+    console.error('[ERROR] Erreur lors du téléchargement du PDF:', error);
     
     // Si le PDF existe déjà dans le cache, on l'utilise même en cas d'erreur de téléchargement
     const filePath = path.join(TEMP_DIR, `convention_${conventionId}.pdf`);
     if (fs.existsSync(filePath)) {
-      console.log(`[DEBUG] Utilisation du PDF existant en cache malgré l'erreur de téléchargement`);
+      console.log(`[INFO] Utilisation du PDF existant en cache malgré l'erreur de téléchargement`);
       return filePath;
     }
     
