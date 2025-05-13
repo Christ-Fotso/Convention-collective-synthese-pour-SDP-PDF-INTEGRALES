@@ -93,10 +93,10 @@ export default function Home() {
                   >
                     <div className="flex flex-col gap-1">
                       <div className="text-base font-medium text-green-600">
-                        IDCC {convention.id}
-                      </div>
-                      <div className="text-sm text-gray-700">
                         {convention.name}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        IDCC {convention.id}
                       </div>
                     </div>
                   </div>
