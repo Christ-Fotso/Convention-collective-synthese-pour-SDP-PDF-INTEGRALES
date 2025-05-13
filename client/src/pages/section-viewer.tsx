@@ -124,7 +124,8 @@ export default function SectionViewer() {
           Retour à la convention
         </Button>
         <h1 className="text-2xl font-bold">
-          IDCC {convention.id} - {convention.name}
+          {convention.id ? `IDCC ${convention.id} - ` : <span className="text-orange-600">Convention sans IDCC - </span>}
+          {convention.name}
         </h1>
       </div>
 
