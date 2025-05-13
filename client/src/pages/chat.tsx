@@ -15,6 +15,7 @@ import { CATEGORIES } from "@/lib/categories";
 import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
+import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
 import { ChatConventionDialog } from "@/components/chat-convention-dialog";
 
 // Mapping entre les catégories backend et catégories d'affichage
@@ -440,7 +441,7 @@ export default function Chat() {
                             />
                           </div>
                         )}
-                        <MarkdownTableWrapper 
+                        <MarkdownTableRendererEnhanced 
                           content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
                         />
                       </>

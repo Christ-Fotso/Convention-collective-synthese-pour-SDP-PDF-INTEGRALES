@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
+import { MarkdownTableRendererEnhanced } from '@/components/markdown-table-renderer-enhanced';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { getConventions } from '@/lib/api';
@@ -155,7 +156,7 @@ export default function SectionViewer() {
             </Alert>
           ) : section ? (
             <div className="prose prose-sm max-w-none dark:prose-invert" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
-              <MarkdownTableWrapper content={section.content} />
+              <MarkdownTableRendererEnhanced content={section.content} />
             </div>
           ) : (
             <div className="text-center text-muted-foreground">
