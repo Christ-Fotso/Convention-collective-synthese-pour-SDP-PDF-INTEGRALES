@@ -92,36 +92,54 @@ async function getConventionPDF(conventionId: string): Promise<string> {
  * - Si le PDF ne peut pas être téléchargé ou traité, aucune réponse alternative n'est fournie
  * - L'URL du PDF est spécifique: https://www.elnet-rh.fr/documentation/Document?id=CCNS{conventionId}
  */
+/**
+ * Traite une question avec Gemini en utilisant le contenu des sections de la convention
+ * 
+ * Cette version utilise directement les sections existantes au lieu de simuler un téléchargement PDF
+ */
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
-  console.log(`[DEBUG] Traitement de la question pour convention ${conventionId}: "${question}"`);
+  console.log(`[INFO] Traitement de la question pour convention ${conventionId}: "${question}"`);
   
   // 1. Vérifier que l'API Gemini est initialisée
   if (!geminiApi) {
-    console.log(`[DEBUG] Tentative d'initialisation de l'API Gemini`);
+    console.log(`[INFO] Tentative d'initialisation de l'API Gemini`);
     if (!initializeGeminiApi()) {
       const errorMsg = "Le service d'IA n'est pas disponible - clé API manquante ou invalide";
-      console.error(`[DEBUG] ${errorMsg}`);
+      console.error(`[ERROR] ${errorMsg}`);
       throw new Error(errorMsg);
     }
   }
   
   try {
-    // 2. Récupérer le PDF source (téléchargement ou cache)
-    console.log(`[DEBUG] Récupération du PDF pour convention ${conventionId}`);
-    const pdfPath = await getConventionPDF(conventionId);
-    console.log(`[DEBUG] PDF obtenu: ${pdfPath}`);
+    // 2. Récupérer directement le contenu des sections de la convention
+    console.log(`[INFO] Récupération des données pour la convention ${conventionId}`);
     
-    // 3. Extraire le texte du PDF
-    console.log(`[DEBUG] Extraction du texte du PDF`);
-    const pdfText = await extractPDFText(pdfPath);
+    // Importer la fonction pour récupérer les sections
+    const { getSectionsByConvention } = require('../sections-data');
+    const sections = getSectionsByConvention(conventionId);
     
-    // Si pas de texte, on arrête immédiatement
-    if (!pdfText || pdfText.trim().length === 0) {
-      const errorMsg = `Impossible d'extraire le texte du PDF pour la convention ${conventionId}`;
-      console.error(`[DEBUG] ${errorMsg}`);
+    if (!sections || sections.length === 0) {
+      const errorMsg = `Aucune donnée disponible pour la convention ${conventionId}`;
+      console.error(`[ERROR] ${errorMsg}`);
       throw new Error(errorMsg);
     }
-    console.log(`[DEBUG] Texte extrait avec succès (${pdfText.length} caractères)`);
+    
+    // 3. Construire le texte complet à partir des sections
+    let conventionText = `Convention collective IDCC: ${conventionId}\n\n`;
+    sections.forEach((section: { sectionType: string, content: string }) => {
+      conventionText += `# ${section.sectionType}\n`;
+      conventionText += section.content;
+      conventionText += "\n\n";
+    });
+    
+    console.log(`[INFO] Contenu des sections récupéré (${conventionText.length} caractères)`);
+    
+    // Si pas de texte, on arrête immédiatement
+    if (!conventionText || conventionText.trim().length === 0) {
+      const errorMsg = `Impossible de récupérer le contenu pour la convention ${conventionId}`;
+      console.error(`[ERROR] ${errorMsg}`);
+      throw new Error(errorMsg);
+    }
     
     // Vérification de sécurité - Gemini doit être initialisé
     if (!geminiApi) {
