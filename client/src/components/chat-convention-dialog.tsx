@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { X, Send, RotateCcw, Loader2, User, Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
 
 interface ChatConventionDialogProps {
   open: boolean;
@@ -196,9 +197,13 @@ export function ChatConventionDialog({
                     </div>
                     <div className="flex-1">
                       <div className="prose prose-sm max-w-none break-words">
-                        {msg.content.split('\n').map((line, i) => (
-                          <p key={i} className="mb-2">{line || <br />}</p>
-                        ))}
+                        {msg.role === "assistant" ? (
+                          <MarkdownTableRendererEnhanced content={msg.content} />
+                        ) : (
+                          msg.content.split('\n').map((line, i) => (
+                            <p key={i} className="mb-2">{line || <br />}</p>
+                          ))
+                        )}
                       </div>
                     </div>
                   </div>
