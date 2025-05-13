@@ -99,16 +99,21 @@ export default function Home() {
               <div className="divide-y">
                 {filteredConventions.map((convention, index) => (
                   <div
-                    key={`${convention.id || index}-${index}`}
+                    key={`${convention.id || convention.name || index}-${index}`}
                     className="p-4 hover:bg-gray-50 cursor-pointer"
-                    onClick={() => convention.id ? navigate(`/chat/${convention.id}`) : alert("Cette convention n'a pas d'IDCC et ne peut pas être consultée pour le moment.")}
+                    onClick={() => {
+                      // Si la convention a un IDCC, utiliser cet ID
+                      // Sinon, encoder le nom de la convention pour l'utiliser comme identifiant
+                      const conventionId = convention.id || encodeURIComponent(convention.name);
+                      navigate(`/chat/${conventionId}`);
+                    }}
                   >
                     <div className="flex flex-col gap-1">
                       <div className="text-base font-medium text-green-600">
                         {convention.name}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {convention.id ? `IDCC ${convention.id}` : "Sans IDCC"}
+                        {convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}
                       </div>
                     </div>
                   </div>

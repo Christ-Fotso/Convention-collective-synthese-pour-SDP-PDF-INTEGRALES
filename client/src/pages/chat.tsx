@@ -77,7 +77,17 @@ export default function Chat() {
       if (!id) return null;
       const response = await axios.get(`/api/conventions`);
       const conventions = response.data;
-      return conventions.find((c: Convention) => c.id === id) || null;
+      
+      // Chercher d'abord par IDCC
+      let foundConvention = conventions.find((c: Convention) => c.id === id);
+      
+      // Si pas trouvé et que l'id semble être un nom encodé (contient des %)
+      if (!foundConvention && id.includes('%')) {
+        const decodedName = decodeURIComponent(id);
+        foundConvention = conventions.find((c: Convention) => c.name === decodedName);
+      }
+      
+      return foundConvention || null;
     },
     staleTime: 1000 * 60 * 5 // 5 minutes
   });
