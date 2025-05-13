@@ -167,10 +167,10 @@ export function ChatConventionDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-3xl max-h-[85vh] flex flex-col">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col p-6">
+        <DialogHeader className="pb-2">
           <DialogTitle className="flex items-center justify-between">
-            <span>
+            <span className="text-green-600 font-semibold">
               Chat avec la convention "{conventionName}"
             </span>
             <Button
@@ -183,14 +183,14 @@ export function ChatConventionDialog({
             </Button>
           </DialogTitle>
           <DialogDescription>
-            Posez des questions sur cette convention collective.
-            Le système analysera le document complet pour vous répondre.
+            Posez des questions précises sur cette convention collective. 
+            L'assistant analysera le document et vous fournira les informations pertinentes.
           </DialogDescription>
         </DialogHeader>
         
-        <div className="flex-1 flex flex-col min-h-[300px] mt-4 space-y-4">
+        <div className="flex flex-col h-[70vh] mt-4">
           {/* Zone de chat avec les messages */}
-          <ScrollArea className="flex-1 pr-4 min-h-[300px] max-h-[50vh]" ref={scrollAreaRef}>
+          <ScrollArea className="flex-1 pr-4 overflow-y-auto" ref={scrollAreaRef}>
             <div className="space-y-4 py-4">
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground py-8">
@@ -220,7 +220,7 @@ export function ChatConventionDialog({
                       )}
                     </div>
                     <div className="flex-1">
-                      <div className="prose prose-sm max-w-none break-words">
+                      <div className="prose prose-sm max-w-none break-words enhanced-table-container">
                         {msg.role === "assistant" ? (
                           <MarkdownTableRendererEnhanced content={msg.content} />
                         ) : (
@@ -245,26 +245,29 @@ export function ChatConventionDialog({
             </div>
           </ScrollArea>
           
-          {/* Zone d'input pour les questions */}
-          <div className="space-y-4 sticky bottom-0 bg-background pt-2">
-            {error && (
-              <div className="text-red-500 text-sm px-4 py-2 bg-red-50 rounded-md">
-                {error}
+          {/* Barre d'information d'erreur */}
+          {error && (
+            <div className="text-red-500 text-sm px-4 py-2 bg-red-50 rounded-md mb-2">
+              {error}
+            </div>
+          )}
+          
+          {/* Zone d'input pour les questions - fixée en bas */}
+          <div className="border-t pt-3 mt-2 bg-background">
+            <div className="flex gap-2">
+              <div className="flex-1">
+                <Textarea
+                  ref={inputRef}
+                  value={currentQuestion}
+                  onChange={(e) => setCurrentQuestion(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Posez votre question sur la convention..."
+                  className="flex-1 min-h-[60px] max-h-[80px] resize-none"
+                  disabled={isLoading}
+                />
               </div>
-            )}
-            
-            <div className="flex items-end gap-2">
-              <Textarea
-                ref={inputRef}
-                value={currentQuestion}
-                onChange={(e) => setCurrentQuestion(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Posez votre question sur la convention..."
-                className="flex-1 min-h-[80px] resize-none"
-                disabled={isLoading}
-              />
               
-              <div className="flex flex-col gap-2 mb-2">
+              <div className="flex flex-col gap-2 justify-end">
                 <Button
                   onClick={handleSubmit}
                   disabled={!currentQuestion.trim() || isLoading}
