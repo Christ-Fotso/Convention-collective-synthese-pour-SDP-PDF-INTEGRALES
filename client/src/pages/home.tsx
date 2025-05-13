@@ -105,7 +105,7 @@ export default function Home() {
                       // Si la convention a un IDCC, utiliser cet ID
                       // Sinon, encoder le nom de la convention pour l'utiliser comme identifiant
                       const conventionId = convention.id || encodeURIComponent(convention.name);
-                      navigate(`/chat/${conventionId}`);
+                      navigate(`/convention/${conventionId}`);
                     }}
                   >
                     <div className="flex flex-col gap-1">
