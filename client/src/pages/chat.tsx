@@ -417,7 +417,7 @@ export default function Chat() {
                     <Skeleton className="h-4 w-full" />
                   </div>
                 ) : (
-                  <div className="prose dark:prose-invert max-w-none prose-sm" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
+                  <div className="prose dark:prose-invert max-w-none prose-sm enhanced-table-container" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
                     {/* Afficher la réponse brute en cas de problème */}
                     {sectionContent ? (
                       <>
@@ -441,9 +441,12 @@ export default function Chat() {
                             />
                           </div>
                         )}
-                        <MarkdownTableRendererEnhanced 
-                          content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
-                        />
+                        {/* Ajout d'une classe pour le défilement avec barre orange */}
+                        <div className="enhanced-table-container relative">
+                          <MarkdownTableRendererEnhanced 
+                            content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
+                          />
+                        </div>
                       </>
                     ) : (
                       <div className="text-red-500">
