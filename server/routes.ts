@@ -220,42 +220,48 @@ export function registerRoutes(app: Express): Server {
         });
       }
       
-      let actualId = conventionId;
+      const existingConventions = getConventions();
+      let convention = null;
       
-      // Vérifier la présence de caractères encodés (signe que c'est un nom et non un IDCC)
+      // Vérifier si on utilise un nom encodé comme identifiant
       if (conventionId.includes('%')) {
         try {
           // Décoder le nom de la convention
           const decodedName = decodeURIComponent(conventionId);
-          console.log(`Recherche de section ${sectionType} pour la convention par nom: "${decodedName}"`);
+          console.log(`[routes] Recherche de section ${sectionType} pour la convention par nom: "${decodedName}"`);
           
-          // Vérifier que la convention existe dans les données JSON
-          const existingConventions = getConventions();
-          const convention = existingConventions.find(conv => conv.name === decodedName);
+          // Rechercher la convention par son nom
+          convention = existingConventions.find(conv => conv.name === decodedName);
           
-          if (convention && convention.id) {
-            // Si la convention est trouvée par nom, utiliser son ID pour récupérer les sections
-            actualId = convention.id;
-            console.log(`Convention trouvée par nom, utilisation de l'IDCC: ${actualId}`);
+          if (convention) {
+            console.log(`[routes] Convention trouvée par nom: "${decodedName}"`);
+          } else {
+            console.log(`[routes] Convention non trouvée avec le nom: "${decodedName}"`);
+            return res.status(404).json({
+              message: "Convention non trouvée"
+            });
           }
         } catch (decodeError) {
-          console.error("Erreur de décodage du nom de convention:", decodeError);
+          console.error("[routes] Erreur de décodage du nom de convention:", decodeError);
+          return res.status(400).json({
+            message: "Identifiant de convention invalide"
+          });
         }
-      }
-      
-      // Vérifier que la convention existe dans les données JSON
-      const existingConventions = getConventions();
-      const conventionExists = existingConventions.some(conv => conv.id === actualId);
-      
-      if (!conventionExists) {
-        return res.status(404).json({
-          message: "Convention non trouvée"
-        });
+      } else {
+        // Rechercher par IDCC
+        convention = existingConventions.find(conv => conv.id === conventionId);
+        
+        if (!convention) {
+          return res.status(404).json({
+            message: "Convention non trouvée"
+          });
+        }
       }
       
       // Récupérer la section depuis les données statiques
       const { getSection } = await import('./sections-data');
-      const section = getSection(actualId, sectionType);
+      // Utiliser l'ID de la convention ou le conventionId original si l'ID n'est pas défini
+      const section = getSection(convention.id || conventionId, sectionType);
       
       if (!section) {
         return res.status(404).json({
@@ -1521,22 +1527,38 @@ Format attendu exactement:
       }
       
       // Vérifier que la convention existe
+      let convention = null;
       const existingConventions = getConventions();
-      const convention = existingConventions.find(conv => conv.id === conventionId);
+      
+      if (conventionId.includes('%')) {
+        // Si on a un nom encodé, il faut vérifier directement avec le nom décodé
+        try {
+          const decodedName = decodeURIComponent(conventionId);
+          convention = existingConventions.find(conv => conv.name === decodedName);
+        } catch (e) {
+          // En cas d'erreur de décodage, on laissera convention = null
+        }
+      } else {
+        // Recherche standard par IDCC
+        convention = existingConventions.find(conv => conv.id === conventionId);
+      }
       
       if (!convention) {
         console.error(`[Chat] Convention non trouvée: ${conventionId}`);
         return res.status(404).json({ 
           error: "Convention non trouvée", 
-          message: `La convention avec l'identifiant ${conventionId} n'a pas été trouvée dans notre base de données.`
+          message: `La convention demandée n'a pas été trouvée dans notre base de données.`
         });
       }
+      
+      // Utiliser l'ID de la convention pour le traitement avec Gemini, s'il existe
+      const conventionIdForAI = convention.id || conventionId;
       
       console.log(`[Chat] Question pour la convention ${conventionId}: "${question.substring(0, 100)}${question.length > 100 ? '...' : ''}"`);
       
       try {
         // Traiter la question avec Gemini (peut générer des erreurs)
-        const response = await askQuestionWithGemini(conventionId, question);
+        const response = await askQuestionWithGemini(conventionIdForAI, question);
         
         console.log(`[Chat] Réponse générée: ${response.length} caractères`);
         
