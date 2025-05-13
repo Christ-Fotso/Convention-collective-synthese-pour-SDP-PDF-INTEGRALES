@@ -136,7 +136,7 @@ export default function SectionViewer() {
                 variant="outline" 
                 size="sm"
                 onClick={() => setIsLegalDialogOpen(true)}
-                className="flex items-center gap-2 orange-blink"
+                className="flex items-center gap-2 orange-button"
               >
                 <BookOpen className="h-4 w-4" />
                 Voir le dispositif légal
