@@ -383,9 +383,30 @@ export function getSectionsByConvention(conventionId: string): SectionData[] {
       );
       
       if (convention) {
-        // Si la convention est trouvée
-        actualId = convention.id;
-        console.log(`[sections-data] Convention trouvée, utilisation de l'ID: "${actualId}" (vide ou non)`);
+        if (convention.id) {
+          // Si la convention a un ID, utiliser cet ID
+          actualId = convention.id;
+          console.log(`[sections-data] Convention trouvée avec ID, utilisation de l'ID: "${actualId}"`);
+        } else {
+          // Si la convention n'a pas d'ID, utiliser le nom original
+          console.log(`[sections-data] Convention trouvée sans ID, utiliser le nom directement`);
+          
+          // Premièrement, essayer de trouver la clé exacte dans le cache des sections
+          for (const key of Object.keys(sectionsCache)) {
+            // Chercher une correspondance avec le nom dans les clés du cache
+            if (key === decodedName || key.includes(decodedName) || decodedName.includes(key)) {
+              actualId = key;
+              console.log(`[sections-data] Clé de cache trouvée pour le nom: "${actualId}"`);
+              break;
+            }
+          }
+          
+          // Si on ne trouve toujours pas, utiliser le nom décodé tel quel
+          if (actualId !== decodedName && !sectionsCache[actualId]) {
+            actualId = decodedName;
+            console.log(`[sections-data] Utilisation du nom comme clé: "${actualId}"`);
+          }
+        }
       } else {
         console.log(`[sections-data] Convention non trouvée: "${decodedName}" (ID vide ou nom)`);
         return [];
@@ -399,28 +420,43 @@ export function getSectionsByConvention(conventionId: string): SectionData[] {
   // Vérifier si la convention existe dans le cache des sections
   if (!sectionsCache[actualId]) {
     console.log(`[sections-data] Pas de données pour la clé ${actualId}, recherche d'alternatives`);
-    
-    // Tenter de trouver une clé qui corresponde au nom décodé (pour les CCN sans IDCC)
-    if (conventionId.includes('%')) {
-      try {
-        const decodedKey = decodeURIComponent(conventionId);
-        // Rechercher une convention dont le nom contient le nom décodé
-        for (const key of Object.keys(sectionsCache)) {
+
+    // Cas spécial pour les conventions sans IDCC - recherche par nom complet dans les clés du cache
+    // Parcourir toutes les clés du cache et chercher une correspondance approximative
+    const keys = Object.keys(sectionsCache);
+    console.log(`[sections-data] Recherche parmi ${keys.length} clés de cache`);
+
+    for (const key of keys) {
+      if (key === actualId) continue; // Éviter de vérifier la même clé
+      
+      // Pour les conventions sans IDCC, vérifier si le nom est inclus dans la clé ou vice versa
+      if (key.includes(actualId) || actualId.includes(key)) {
+        console.log(`[sections-data] Correspondance trouvée: clé="${key}", recherche="${actualId}"`);
+        actualId = key;
+        break;
+      }
+      
+      // Si le conventionId est encodé, essayer de le décoder et chercher une correspondance
+      if (conventionId.includes('%')) {
+        try {
+          const decodedKey = decodeURIComponent(conventionId);
           if (key === decodedKey || key.includes(decodedKey) || decodedKey.includes(key)) {
             actualId = key;
-            console.log(`[sections-data] Clé alternative trouvée: "${actualId}"`);
+            console.log(`[sections-data] Correspondance avec décodage: clé="${key}", décodé="${decodedKey}"`);
             break;
           }
+        } catch (e) {
+          // Ignorer les erreurs de décodage
         }
-      } catch (e) {
-        console.error('[sections-data] Erreur lors de la recherche de clé alternative:', e);
       }
     }
     
-    // Vérifier à nouveau avec la nouvelle clé potentielle
+    // Vérifier à nouveau avec la nouvelle clé trouvée
     if (!sectionsCache[actualId]) {
       console.log(`[sections-data] Aucune section trouvée pour la convention: ${actualId}`);
       return [];
+    } else {
+      console.log(`[sections-data] Sections trouvées avec la clé alternative: ${actualId}`);
     }
   }
   
