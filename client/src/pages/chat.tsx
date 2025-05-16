@@ -170,6 +170,20 @@ export default function Chat() {
     }
   }, [selectedSection]);
   
+  // Effet pour charger automatiquement la section "informations-generales" lorsque la page est chargée
+  useEffect(() => {
+    if (sectionTypes && sectionTypes.length > 0 && !selectedSection) {
+      // Chercher la section d'informations générales
+      const generalInfoSection = sectionTypes.find((section: SectionType) => 
+        section.sectionType === "informations-generales.generale");
+      
+      if (generalInfoSection) {
+        console.log("Sélection automatique de la section Informations générales");
+        setSelectedSection(generalInfoSection);
+      }
+    }
+  }, [sectionTypes, selectedSection]);
+  
   return (
     <div className="container mx-auto py-6 space-y-6">
       <div className="flex items-center justify-between gap-2">

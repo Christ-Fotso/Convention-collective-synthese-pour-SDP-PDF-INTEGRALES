@@ -7,7 +7,7 @@ export const CATEGORIES: Category[] = [
     "subcategories": [
       {
         "id": "generale",
-        "name": "Informations générales"
+        "name": "Informations générales (Global)"
       }
     ]
   },
