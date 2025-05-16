@@ -258,7 +258,6 @@ export default function Chat() {
                 <ScrollArea className="h-[calc(100vh-260px)]">
                   {sectionTypes && sectionTypes.length > 0 ? (
                     <div className="space-y-6">
-                      {/* Créer un objet pour regrouper les sections par catégorie */}
                       {(() => {
                         // On regroupe d'abord les sections par catégorie
                         const groupedSections: Record<string, SectionType[]> = {};
@@ -291,9 +290,37 @@ export default function Chat() {
                         // Créer les éléments JSX pour chaque catégorie, dans l'ordre défini par CATEGORIES
                         const categoryElements: JSX.Element[] = [];
                         
-                        // Utiliser l'ordre des catégories défini dans CATEGORIES
+                        // D'abord, gérer séparément la section "Informations générales" si elle existe
+                        const infoGenerales = filteredSections.find(section => 
+                          section.category === "informations-generales" && section.subcategory === "generale"
+                        );
+                        
+                        if (infoGenerales) {
+                          // Ajouter directement la section Informations générales sans sous-catégorie
+                          categoryElements.push(
+                            <div key="info-gen" className="mb-3">
+                              <div
+                                className={`p-2 border rounded-md cursor-pointer text-sm mb-3 ${
+                                  selectedSection?.sectionType === infoGenerales.sectionType
+                                    ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600 font-medium"
+                                    : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
+                                }`}
+                                onClick={() => setSelectedSection(infoGenerales)}
+                              >
+                                Informations générales
+                              </div>
+                            </div>
+                          );
+                        }
+                        
+                        // Utiliser l'ordre des catégories défini dans CATEGORIES pour les autres
                         CATEGORIES.forEach((categoryDefinition, categoryIndex) => {
                           const category = categoryDefinition.id;
+                          
+                          // Ignorer la catégorie informations-generales car déjà traitée séparément
+                          if (category === "informations-generales") {
+                            return;
+                          }
                           
                           // Vérifier si la catégorie existe dans les données
                           if (!groupedSections[category]) {
