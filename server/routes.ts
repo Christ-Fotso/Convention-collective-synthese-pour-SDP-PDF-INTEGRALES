@@ -157,8 +157,27 @@ export function registerRoutes(app: Express): Server {
       }
       
       // À ce stade, nous avons trouvé la convention, soit par son nom, soit par son IDCC
-      // Récupérer les types de sections disponibles
-      const sectionTypes = getSectionTypesByConvention(convention.id || conventionId);
+      
+      // Si c'est une convention sans IDCC, utiliser le nom comme identifiant pour chercher
+      let sectionId = convention.id;
+      if (!convention.id || convention.id === '') {
+        // On doit utiliser le nom original comme clé de recherche
+        console.log(`[routes] Convention sans IDCC, utilisation du nom comme clé: "${convention.name}"`);
+        
+        // Pour les conventions sans IDCC, utiliser directement le nom de la convention comme identifiant
+        try {
+          const decodedId = decodeURIComponent(conventionId);
+          sectionId = decodedId;
+          console.log(`[routes] Utilisation du nom décodé comme clé: "${sectionId}"`);
+        } catch (e) {
+          // En cas d'erreur de décodage, utiliser le nom tel quel
+          sectionId = convention.name;
+          console.log(`[routes] Utilisation du nom comme clé (décodage impossible): "${sectionId}"`);
+        }
+      }
+      
+      // Récupérer les types de sections disponibles en utilisant soit l'ID, soit le nom
+      const sectionTypes = getSectionTypesByConvention(sectionId || convention.name);
       
       res.json(sectionTypes);
     } catch (error: any) {
