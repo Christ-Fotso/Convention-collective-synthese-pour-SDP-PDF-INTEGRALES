@@ -236,7 +236,32 @@ export default function Chat() {
                   className="w-full p-2 pr-8 text-sm border rounded-md"
                   onChange={(e) => {
                     // Stocker la valeur de recherche dans un état local
-                    setSearchTerm(e.target.value);
+                    const value = e.target.value;
+                    setSearchTerm(value);
+                    
+                    // Si une recherche est active, déplier toutes les catégories
+                    if (value.trim() !== '') {
+                      // Rechercher les catégories qui contiennent des résultats correspondant à la recherche
+                      const matchingCategories = sectionTypes
+                        .filter((section: SectionType) => {
+                          const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
+                          if (!categoryDef) return false;
+                          
+                          const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
+                          if (!subcategoryDef) return false;
+                          
+                          const searchLower = value.toLowerCase();
+                          return categoryDef.name.toLowerCase().includes(searchLower) || 
+                                 subcategoryDef.name.toLowerCase().includes(searchLower);
+                        })
+                        .map(section => section.category);
+                      
+                      // Si on trouve une correspondance, définir cette catégorie comme dépliée
+                      if (matchingCategories.length > 0) {
+                        // Prendre uniquement la première catégorie trouvée pour ne pas tout déplier
+                        setExpandedCategory(matchingCategories[0]);
+                      }
+                    }
                   }}
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
