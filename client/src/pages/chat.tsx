@@ -322,17 +322,23 @@ export default function Chat() {
                         
                         if (infoGenerales) {
                           // Ajouter directement la section Informations générales sans sous-catégorie
+                          // avec une mise en forme spéciale
                           categoryElements.push(
-                            <div key="info-gen" className="mb-3">
+                            <div key="info-gen" className="mb-6">
                               <div
-                                className={`p-2 border rounded-md cursor-pointer text-sm mb-3 ${
+                                className={`p-3 border-2 rounded-lg cursor-pointer text-base mb-2 shadow-sm ${
                                   selectedSection?.sectionType === infoGenerales.sectionType
-                                    ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600 font-medium"
-                                    : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
+                                    ? "bg-blue-50 border-blue-400 dark:bg-blue-900/20 dark:border-blue-600 font-medium"
+                                    : "hover:bg-blue-50 dark:hover:bg-blue-900/10 border-blue-200"
                                 }`}
                                 onClick={() => setSelectedSection(infoGenerales)}
                               >
-                                Informations générales
+                                <div className="flex items-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  <span>Informations générales</span>
+                                </div>
                               </div>
                             </div>
                           );
