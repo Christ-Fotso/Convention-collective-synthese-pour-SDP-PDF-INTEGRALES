@@ -321,18 +321,23 @@ export default function Chat() {
                         );
                         
                         if (infoGenerales) {
-                          // Ajouter directement la section Informations générales sans sous-catégorie
+                          // Ajouter la section Informations générales avec le même format qu'une catégorie
                           categoryElements.push(
                             <div key="info-gen" className="mb-3">
-                              <div
-                                className={`p-2 border rounded-md cursor-pointer text-sm mb-3 ${
+                              <h3 
+                                className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1 flex justify-between items-center"
+                              >
+                                <span>Informations générales</span>
+                              </h3>
+                              <div 
+                                className={`p-2 border rounded-md cursor-pointer text-sm ${
                                   selectedSection?.sectionType === infoGenerales.sectionType
                                     ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600 font-medium"
                                     : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
                                 }`}
                                 onClick={() => setSelectedSection(infoGenerales)}
                               >
-                                Informations générales
+                                Présentation de la convention
                               </div>
                             </div>
                           );
