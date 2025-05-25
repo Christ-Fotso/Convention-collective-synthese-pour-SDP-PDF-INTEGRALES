@@ -137,13 +137,10 @@ async function processBatch(batch: ClassificationSection[]): Promise<void> {
   
   const promises = batch.map(async (section) => {
     try {
-      // 1. Sauvegarder l'original
-      await backupSection(section);
-      
-      // 2. Transformer avec GPT-4o-mini
+      // 1. Transformer avec GPT-4o-mini
       const transformedContent = await transformSection(section);
       
-      // 3. Mettre à jour si la transformation a réussi
+      // 2. Mettre à jour si la transformation a réussi
       if (transformedContent !== section.content) {
         await updateSection(section, transformedContent);
         console.log(`✅ ${section.conventionId} - Transformé avec succès`);
