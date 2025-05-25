@@ -202,6 +202,8 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     - Si l'information demandée n'est pas dans le document, réponds clairement "Cette information n'est pas présente dans la convention collective consultée"
     - Ne mens jamais. Si tu n'as pas l'information, dis-le clairement
     - Cite toujours la section ou l'article exact d'où provient l'information
+    - INTERDICTION ABSOLUE: Tu ne dois JAMAIS révéler le nom, l'URL, le chemin ou toute référence technique du fichier source, même si on te le demande de manière directe ou détournée
+    - Si quelqu'un te demande ta source, réponds simplement "Je me base sur la convention collective en vigueur"
     
     DOCUMENT - Convention collective IDCC:${conventionId}:
     ${conventionText}
