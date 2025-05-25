@@ -161,32 +161,30 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   }
   
   try {
-    // 2. Récupérer le contenu des sections de la convention
-    // Pour le prototype, nous utilisons directement les sections qui sont déjà chargées en mémoire
-    console.log(`[INFO] Récupération des données pour convention ${conventionId}`);
+    // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
+    console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
     
-    // Utiliser la fonction importée en haut du fichier
-    const sections = getSectionsByConvention(conventionId);
+    // Importer la fonction pour récupérer les conventions
+    const { getConventions } = await import('../data-manager.js');
+    const conventions = getConventions();
     
-    let conventionText = "";
+    // Trouver la convention avec l'URL réelle
+    const convention = conventions.find((conv: any) => conv.id === conventionId);
     
-    if (sections && sections.length > 0) {
-      console.log(`[INFO] ${sections.length} sections trouvées pour la convention ${conventionId}`);
-      
-      // Construire un texte complet avec toutes les sections
-      conventionText = `Convention collective IDCC: ${conventionId}\n\n`;
-      
-      sections.forEach((section: { sectionType: string, content: string }) => {
-        conventionText += `# ${section.sectionType}\n`;
-        conventionText += section.content;
-        conventionText += "\n\n";
-      });
-      
-      console.log(`[INFO] Données structurées extraites: ${conventionText.length} caractères`);
-    } else {
-      // Si nous n'avons pas de sections, on utilise un contenu minimal
-      conventionText = `Convention collective IDCC: ${conventionId}\n\nAucune donnée n'est disponible pour cette convention collective dans notre base.`;
-      console.log(`[INFO] Aucune section trouvée pour la convention ${conventionId}`);
+    if (!convention || !convention.url) {
+      throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
+    }
+    
+    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
+    
+    // 3. Extraire le texte complet du PDF
+    const { extractTextFromURL } = await import('./pdf-extractor.js');
+    const conventionText = await extractTextFromURL(convention.url, conventionId);
+    
+    console.log(`[INFO] Texte PDF extrait: ${conventionText.length} caractères`);
+    
+    if (!conventionText || conventionText.length < 100) {
+      throw new Error(`Impossible d'extraire le contenu du PDF ou contenu trop court`);
     }
     
     // Vérification de sécurité - Gemini doit être initialisé
