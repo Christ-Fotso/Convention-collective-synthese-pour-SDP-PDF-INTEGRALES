@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -48,7 +48,29 @@ function groupSectionTypes(sectionTypes: string[]): SectionType[] {
 
 // Fonction pour obtenir un libellé lisible pour les catégories/sous-catégories
 function getCategoryLabel(category: string, subcategory: string): string {
-  // Transformation de "temps-travail" en "Temps de travail"
+  // Mapping spécialisé pour certaines sections
+  const sectionLabels: { [key: string]: string } = {
+    'embauche.periode-essai': 'Essai et Préavis',
+    'embauche.contrats-alternance': 'Contrats en alternance',
+    'remuneration.maintien-salaire': 'Maintien de salaire',
+    'remuneration.primes': 'Primes',
+    'remuneration.majorations': 'Majorations',
+    'cotisations.taux-cotisation': 'Taux de cotisation',
+    'conges.conge-anciennete': "Congé d'ancienneté",
+    'informations-generales.generale': 'Informations générales',
+    'temps-travail.duree-travail': 'Durées du travail',
+    'temps-travail.amenagement-temps': 'Aménagement du temps de travail',
+    'temps-travail.heures-sup': 'Heures supplémentaires',
+    'conges.conges-payes': 'Congés payés',
+    'conges.cet': 'CET'
+  };
+  
+  const fullKey = `${category}.${subcategory}`;
+  if (sectionLabels[fullKey]) {
+    return sectionLabels[fullKey];
+  }
+  
+  // Transformation par défaut
   const formatLabel = (str: string) => {
     return str
       .split("-")
