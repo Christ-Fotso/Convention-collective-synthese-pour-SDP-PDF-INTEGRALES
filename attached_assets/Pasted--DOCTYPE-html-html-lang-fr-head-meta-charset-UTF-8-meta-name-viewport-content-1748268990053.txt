@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convention Collective - {{libelle}}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .convention-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .header-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .idcc-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .cta-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4a90e2;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .convention-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px; /* Peut être ajusté ou supprimé si header-bottom gère l'espacement */
+        }
+
+        /* Convention subtitle n'est pas utilisé dans le HTML fourni pour le moment, mais si vous l'ajoutez:
+        .convention-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        } */
+
+        .navigation {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navigation.fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            max-width: none;
+            border-radius: 0;
+        }
+
+        .nav-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .sections-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 10px;
+            /* margin-bottom: 15px; /* Pas nécessaire si contenu principal gère son propre padding */
+        }
+
+        .section-button {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            color: #495057;
+            min-width: 160px;
+            flex: 0 0 auto;
+        }
+
+        .section-button:hover {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        .section-button.active {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .version-complete-btn {
+            background: white !important;
+            color: #333 !important;
+            border-color: #42D80F !important;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .version-complete-btn:hover {
+            background: #42D80F !important;
+            color: white !important;
+            border-color: #42D80F !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 216, 15, 0.3);
+        }
+
+        .version-complete-btn img {
+            background: transparent !important;
+            border-radius: 3px !important;
+            padding: 0 !important;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* .section-content et .section-content.active ne sont plus utilisés car toutes les sections sont affichées */
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #4a90e2;
+            /* Ajout pour le défilement d'ancrage, pour compenser l'en-tête */
+            /* scroll-margin-top: 350px; /* Alternative JS, mais JS est plus flexible */
+        }
+
+        .section-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .section-text h3 {
+            color: #2c3e50;
+            margin: 35px 0 20px 0;
+            font-size: 20px;
+        }
+
+        .section-text h4 {
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+            font-size: 18px;
+        }
+
+        .section-text h5 {
+            color: #2c3e50;
+            margin: 25px 0 15px 0;
+            font-size: 16px;
+        }
+
+        .section-text p {
+            margin-bottom: 15px;
+        }
+
+        .section-text ul,
+        .section-text ol {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+
+        .section-text table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .section-text th,
+        .section-text td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .section-text th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .section-text tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .section-text tr:hover {
+            background-color: #e9ecef;
+        }
+
+        .actions {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #357abd;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+        }
+
+        .btn-outline:hover {
+            background: #4a90e2;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .convention-header {
+                padding: 20px;
+            }
+
+            .convention-title {
+                font-size: 22px;
+            }
+
+            /* .convention-subtitle {
+                font-size: 16px;
+            } */
+
+            .sections-grid {
+                /* grid-template-columns: 1fr; /* N'est pas un grid, mais flex */
+                justify-content: flex-start; /* Ou center si vous préférez */
+            }
+
+            .header-bottom {
+                flex-direction: column;
+                align-items: stretch; /* ou flex-start */
+                gap: 10px;
+            }
+
+            .cta-button {
+                align-self: center; /* ou stretch si vous voulez pleine largeur */
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .section-block {
+            margin-bottom: 80px;
+            padding: 40px 0; /* Peut-être réduire le padding-top ici car géré par scroll */
+            border-bottom: 2px solid #e9ecef;
+            min-height: 400px; /* Pour le scroll spy, assurez-vous que les sections sont assez hautes */
+        }
+
+        .section-block:last-child {
+            margin-bottom: 0;
+            padding-bottom: 40px;
+            border-bottom: none;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4a90e2;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #357abd;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête de la convention -->
+        <header class="convention-header">
+            <h1 class="convention-title" id="convention-title">{{libelle}}</h1>
+            <div class="header-bottom">
+                <div class="idcc-info">
+                    Code IDCC: <span id="idcc-code">{{idcc}}</span> | Code Openpaye: <span id="openpaye-code">{{idcc}}</span>
+                    <span style="opacity: 0.7; font-size: 0.9em; margin-left: 15px;"> MAJ : 26 mai 2025</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation par sections -->
+        <nav class="navigation">
+            <h3 class="nav-title"> </h3>
+            <div class="sections-grid" id="sections-grid">
+                <!-- Informations générales -->
+                <button class="section-button" data-section="informations-generales">Informations générales</button>
+
+                <!-- Embauche et contrats -->
+                <button class="section-button" data-section="essai">Essai et Préavis</button>
+                <button class="section-button" data-section="contrats-alternance">Contrats en alternance</button>
+
+                <!-- Rémunération -->
+                <button class="section-button" data-section="maintien-salaire">Maintien de salaire</button>
+                <button class="section-button" data-section="primes">Primes</button>
+                <button class="section-button" data-section="majorations">Majorations</button>
+
+                <!-- Temps de travail et congés -->
+                <button class="section-button" data-section="taux-cotisation">Taux de cotisation</button>
+                <button class="section-button" data-section="conge-anciennete">Congé d'ancienneté</button>
+                
+                <!-- Bouton version complète -->
+                <a href="https://www.smartdatapay.app/assistant-conventions-collectives/integrales" class="section-button version-complete-btn" target="_blank">
+                    <img src="./attached_assets/image_1748266051232.png" alt="Logo" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> Version complète
+                </a>
+            </div>
+        </nav>
+
+        <!-- Zone de contenu - Toutes les sections -->
+        <main class="content-area">
+            <div id="all-sections">
+                <!-- Toutes les sections seront affichées ici -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+        ↑
+    </button>
+
+    <script>
+        // Données de la convention (JSON intégré)
+        const conventionData = {
+  "idcc": "1486",
+  "libelle": "Convention collective nationale : Bureaux d'études techniques - cabinets d'ingénieurs-conseils - sociétés de conseils",
+  "sections": {
+    "informations-generales": {
+      "titre": "Informations générales",
+      "contenu": "# Informations générales (Article 1.1)\n\n## Champ d'application professionnel\nLa présente convention collective s'applique aux salariés des entreprises dont l'activité principale exercée est l'ingénierie, les cabinets d'ingénieurs-conseils, les études et le conseil, les services numériques, l'évènementiel et la traduction et l'interprétation.\n\n## Codes APE (NAF) principaux (valeur indicative) :\n\n- **Numérique** :\n  - 58.12Z : Édition de répertoires et de fichiers d'adresses.\n  - 58.21Z : Édition de jeux électroniques.\n  - 58.29A : Édition de logiciels système et de réseau.\n  - 58.29B : Édition de logiciels outils de développement et de langages.\n  - 58.29C : Édition de logiciels applicatifs.\n  - 62.01Z : Programmation informatique.\n  - 62.02A : Conseil en systèmes et logiciels informatiques.\n  - 62.02B : Tierce maintenance de systèmes et d'applications informatiques.\n  - 62.03Z : Gestion d'installations informatiques.\n  - 62.09Z : Autres activités informatiques.\n  - 63.11Z : Traitement de données, hébergement et activités connexes.\n  - 63.12Z : Portails internet.\n\n- **Ingénierie** :\n  - 71.12B : Ingénierie, études techniques.\n  - 71.20B : Analyses, essais et inspections techniques.\n  - 74.90B : Activités spécialisées, scientifiques et techniques diverses.\n\n- **Conseil** :\n  - 70.21Z : Conseil en relations publiques et communication.\n  - 70.22Z : Conseil pour les affaires et autres conseils de gestion.\n  - 73.20Z : Études de marché et sondages.\n  - 78.10Z : Activités des agences de placement de main-d'œuvre.\n  - 78.30Z : Autre mise à disposition de ressources humaines.\n\n- **Événementiel** :\n  - 25.11Z : Fabrication de structures métalliques et de parties de structures.\n  - 43.32C : Agencement de lieux de vente.\n  - 68.20B : Location de terrains et autres biens immobiliers.\n  - 68.32A : Administration d'immeubles et autres biens immobiliers.\n  - 82.30Z : Organisation de foires, salons professionnels et congrès.\n  - 90.04Z : Gestion de salles de spectacles.\n\n- **Traduction et interprétation** :\n  - 74.30Z : Traduction et interprétation.\n\n## Champ d'application territorial\nLa présente convention collective s'applique aux salariés des entreprises dont le siège social ou les activités se situent en **France métropolitaine** et, conformément à l'article L. 2222-1 du Code du travail, dans les **régions, départements et collectivités d'Outre-mer**.\n\n## Date d'entrée en vigueur\nLa convention collective nationale date du 15 décembre 1987 et a été étendue par arrêté du 13 avril 1988.\n\n## Dernière mise à jour (du document fourni)\nAvril 2025 (indique la date jusqu'à laquelle le document est censé être à jour, mais les avenants ont des dates d'application spécifiques). Le texte intègre des avenants récents, par exemple l'Accord du 26 juin 2024 sur les salaires (applicable à compter du 1er janvier 2025 au plus tôt après extension)."
+    },
+    "essai": {
+      "titre": "Période d'essai et Préavis de rupture du contrat de travail",
+      "contenu": "# Période d'essai (Article 3.4)\n\nLa période d'essai et la possibilité de la renouveler ne se présument pas. Elles sont expressément stipulées dans la proposition d'embauche ou le contrat de travail.\n\n## Durée de la période d'essai et renouvellement\n\n| Catégorie / Coefficient                            | Durée Initiale (max.) | Renouvellement (max.) |\n|----------------------------------------------------|-----------------------|-----------------------|\n| ETAM (coeff. 240 au coeff. 250 inclus)             | 2 mois                | 2 mois                |\n| ETAM (coeff. 275 au coeff. 500 inclus)             | 3 mois                | 3 mois                |\n| Ingénieurs et cadres (coeff. 95 au coeff. 270)     | 4 mois                | 4 mois                |\n\nLe renouvellement de la période d'essai est exceptionnel et doit faire l'objet d'un accord écrit du salarié et de l'employeur.\n\n## Délais de prévenance en cas de rupture de la période d'essai\n\n### À l'initiative de l'employeur :\n| Temps de présence dans l'entreprise        | Délai de prévenance |\n|--------------------------------------------|---------------------|\n| Inférieur à 8 jours                        | 24 heures           |\n| Entre 8 jours et 1 mois                    | 48 heures           |\n| Au-delà d'1 mois et jusqu'à 3 mois         | 2 semaines          |\n| Au-delà de 3 mois et jusqu'à 6 mois         | 1 mois              |\n| Au-delà de 6 mois et jusqu'à 8 mois         | 6 semaines          |\n\n### À l'initiative du salarié :\n| Temps de présence dans l'entreprise        | Délai de prévenance |\n|--------------------------------------------|---------------------|\n| Inférieur à 8 jours                        | 24 heures           |\n| Entre 8 jours et 1 mois                    | 24 heures           |\n| Au-delà d'1 mois (et pour toute durée sup.)| 48 heures           |\n\n**Conditions particulières** :\n- La période d'essai, renouvellement inclus, ne peut être prolongée du fait de la durée du délai de prévenance.\n- Si le délai de prévenance ne peut être respecté par l'employeur, une indemnité compensatrice est due (égale au montant des salaires et avantages que le salarié aurait perçus jusqu'à l'expiration du délai de prévenance, congés payés compris).\n- L'indemnité compensatrice n'est pas due si le salarié demande et obtient une dispense d'exécution du délai de prévenance.\n- Pendant la période d'essai, les absences autorisées pour la recherche d'emploi sont de deux (2) heures pour chaque jour ouvré entre la notification de la rupture et la fin de l'activité. Elles ne sont pas rémunérées si la rupture est à l'initiative du salarié.\n\n# Préavis de rupture du contrat de travail (hors période d'essai - Article 4.2)\n\nApplicable en cas de licenciement (sauf faute grave/lourde, inaptitude d'origine non professionnelle avec impossibilité de reclassement) ou de démission.\n\n## Durées du préavis\n| Catégorie Professionnelle                               | Ancienneté             | Durée du Préavis |\n|---------------------------------------------------------|------------------------|------------------|\n| ETAM                                                    | Moins de 2 ans         | 1 mois           |\n| ETAM                                                    | Plus de 2 ans          | 2 mois           |\n| ETAM (classés aux coefficients 400, 450 et 500)         | Quelle que soit        | 2 mois           |\n| Ingénieurs et cadres                                    | N/A                    | 3 mois           |\n\nUne durée de préavis supérieure ou inférieure peut être définie par accord entre les parties.\n\n## Absences pour recherche d'emploi pendant le préavis (Article 4.3)\n\n- Droit à 6 jours ouvrés par mois, pris en une ou plusieurs fois (en principe par demi-journée).\n- Heures fixées pour moitié par l'employeur, moitié par le salarié (après information préalable réciproque).\n- Rémunérées en cas de licenciement (aucune indemnité n'est due en l'absence d'utilisation de ces heures).\n- Non rémunérées en cas de démission."
+    },
+    "contrats-alternance": {
+      "titre": "Contrats en alternance",
+      "contenu": "# Rémunération des apprentis (Accord du 28 juin 2011)\n\nRémunération minimale en pourcentage du SMIC ou du SMC (Salaire Minimum Conventionnel de la branche, correspondant à la classification de l'apprenti) si ce dernier est supérieur au SMIC.\n\n## Barème de rémunération des apprentis\n\n| Âge de l'apprenti | Année d'exécution | Niveaux Préparés II & III (% SMIC/SMC*) | Niveau Préparé I (% SMIC/SMC*) | Base de calcul si SMC non applicable | \n|-------------------|-------------------|---------------------------------------|--------------------------------|--------------------------------------|\n| Moins de 18 ans   | 1ère année        | 33%                                   | 33%                            | SMIC                                 |\n|                   | 2ème année        | 43%                                   | 43%                            | SMIC                                 |\n|                   | 3ème année        | 58%                                   | 58%                            | SMIC                                 |\n| 18 à < 21 ans     | 1ère année        | 43%                                   | 48%                            | SMIC                                 |\n|                   | 2ème année        | 53%                                   | 58%                            | SMIC                                 |\n|                   | 3ème année        | 68%                                   | 70%                            | SMIC                                 |\n| 21 ans et plus    | 1ère année        | 55%                                   | 65%                            | SMC (ou SMIC si SMC inférieur)       |\n|                   | 2ème année        | 65%                                   | 75%                            | SMC (ou SMIC si SMC inférieur)       |\n|                   | 3ème année        | 80%                                   | 80%                            | SMC (ou SMIC si SMC inférieur)       |\n\n*SMC (Salaire Minimum Conventionnel de la branche, correspondant à la classification de l'apprenti) s'il est supérieur au SMIC.\n\n**Conditions spécifiques / Modalités (Accord du 28 juin 2011)** :\n- Les majorations de salaire prévues en fonction de l'âge s'appliquent le premier jour du mois suivant la date anniversaire de l'apprenti.\n- En cas de redoublement, la rémunération de l'apprenti est maintenue au même niveau que l'année précédente.\n- Lorsque l'apprentissage ne porte que sur la seconde année d'un cycle de formation, l'apprenti est considéré (notamment pour la rémunération) comme ayant déjà effectué une première année.\n- La même règle s'applique aux niveaux I, II et III lorsque l'apprentissage n'a lieu que sur la dernière partie du cursus.\n\n# Contrat de professionnalisation (Article 7 de l'Accord Formation du 31 octobre 2019, modifié par Avenants)\n\n## Objet et durée\nL'objectif est l'acquisition d'une certification inscrite au RNCP, d'un certificat de qualification professionnelle de branche (CQP) ou interbranche (CQPI), ou l'acquisition d'une qualification reconnue dans les classifications d'une convention collective nationale de branche.\nLa durée de l'action de professionnalisation peut être allongée jusqu'à **24 mois** pour certaines qualifications et bénéficiaires prioritaires (personnes de 16 à 25 ans complétant leur formation initiale pour un Diplôme/Titre RNCP ou CQP/CQPI; demandeurs d'emploi de 26 ans et plus pour un Diplôme/Titre RNCP ou CQP/CQPI).\nElle peut être allongée jusqu'à **18 mois** pour les personnes de 16 à 25 ans complétant leur formation initiale pour une qualification reconnue dans les classifications de la CCN.\nLa durée des actions de positionnement, d'évaluation et d'accompagnement, ainsi que des enseignements généraux, technologiques et professionnels peut être augmentée **jusqu'à 50 %** de la durée totale du contrat pour les personnes de 16 à 25 ans et les demandeurs d'emploi de 26 ans et plus visant un Diplôme/Titre RNCP ou CQP/CQPI.\n\n## Classification et rémunération (en % du Salaire Minimum Conventionnel - SMC de la classification d'entrée, le SMC ne pouvant être inférieur au SMIC)\n\n| Niveau Formation Entrée (Éduc. Nat.) | Niveau Formation Entrée (CNC) | Année Exécution | Coeff. Entrée | Coeff. Sortie | Taux Rém. < 26 ans (% SMC) | Taux Rém. >= 26 ans (% SMC) |\n|--------------------------------------|-------------------------------|-----------------|---------------|---------------|----------------------------|-----------------------------|\n| V - IV                               | Niveau 3 - Niveau 4           | 1ère année      | 230           | 240           | 80%                        | 85%                         |\n|                                      |                               | 2ème année      | 230           | 240           | 100%                       | 100%                        |\n| III - Métiers transverses            | Niveau 5 Métiers transverses  | 1ère année      | 240           | 250           | 80%                        | 85%                         |\n|                                      |                               | 2ème année      | 240           | 250           | 90%                        | 100%                        |\n| III - Métiers de la branche          | Niveau 5 Métiers de la branche| 1ère année      | 275           | 310           | 80%                        | 85%                         |\n|                                      |                               | 2ème année      | 275           | 310           | 90%                        | 100%                        |\n| II                                   | Niveau 6                      | 1ère année      | 310           | 355           | 80%                        | 85%                         |\n|                                      |                               | 2ème année      | 310           | 355           | 90%                        | 100%                        |\n| I                                    | Niveau 7                      | 1ère année      | Cadre 95      | Cadre 100     | 80%                        | 85%                         |\n|                                      |                               | 2ème année      | Cadre 95      | Cadre 100     | 100%                       | 100%                        |\n\n**Conditions spécifiques (Article 7.2 de l'Accord Formation du 31/10/2019)** :\n- Le niveau du salaire et le coefficient d'entrée doivent correspondre à l'emploi occupé pendant le contrat.\n- Au terme du contrat (CDD) ou de l'action de professionnalisation (CDI), le niveau de salaire et le coefficient de sortie doivent correspondre à l'emploi qui sera occupé, en respectant le coefficient minimum de sortie du tableau ou celui d'un CQP/CQPI.\n- Pour les contrats ne visant ni diplôme, ni titre, ni CQP/CQPI, la qualification obtenue est reconnue par la position de sortie dans les classifications des emplois."
+    },
+    "maintien-salaire": {
+      "titre": "Maintien de salaire en cas de maladie ou accident",
+      "contenu": "# Maintien de salaire en cas d'incapacité temporaire de travail (Article 9.2)\n\nL'employeur verse des allocations maladie pour compléter les indemnités journalières de Sécurité sociale et, le cas échéant, les allocations d'un régime de prévoyance. Le total ne peut excéder ce que le salarié aurait perçu net en travaillant (hors primes et gratifications).\n\n## Conditions et durée d'indemnisation (Article 9.2.1)\n\n- **Ancienneté minimale requise** :\n  - **En cas d'accident du travail ou de maladie professionnelle** : Aucune, droit acquis dès le premier jour de présence.\n  - **Dans les autres cas de maladie ou d'accident** : Un (1) an d'ancienneté.\n\nL'allocation maladie est due dès le premier jour d'absence pour maladie ou accident dûment constaté par certificat médical.\n\nLa garantie de maintien de salaire par l'employeur est assurée pour toute absence (maladie ou accident, pro ou non pro) d'une durée consécutive ou non de **quatre-vingt-dix (90) jours au maximum, sur une période de douze (12) mois consécutifs**.\n\nAu-delà de quatre-vingt-dix (90) jours consécutifs d'absence(s), le relais des garanties est assuré par le régime de prévoyance de branche (accord du 27 mars 1997 modifié).\n\n## Pourcentages et durée du maintien (calcul du complément employeur - Article 9.2.2)\n\nLe versement de l'allocation maladie par l'employeur ne peut en aucun cas conduire le salarié à recevoir un montant supérieur à la rémunération nette qui aurait été perçue s'il avait travaillé.\n\n### ETAM\n- **Ayant plus d'un (1) an et moins de cinq (5) ans d'ancienneté** :\n  - **100 %** du salaire brut pendant trente (30) jours.\n  - **80 %** du salaire brut pendant les soixante (60) jours suivants.\n- **Ayant plus de cinq (5) ans d'ancienneté** :\n  - **100 %** du salaire brut pendant soixante (60) jours.\n  - **80 %** du salaire brut pendant les trente (30) jours suivants.\n\n### Ingénieurs etCadres\n- **Ayant plus d'un (1) an d'ancienneté** :\n  - **100 %** du salaire brut pendant quatre-vingt-dix (90) jours.\n\n**Conditions d'attribution** :\n- Si l'ancienneté requise est atteinte par le salarié au cours de sa maladie, il reçoit, à partir du moment où cette ancienneté est atteinte, l'allocation ou la fraction d'allocation fixée par la nouvelle ancienneté pour chacun des jours de maladie restant à courir.\n\n# Maintien de salaire en cas de maternité (Article 9.3)\n\nLes salariées ayant plus d'un (1) an d'ancienneté dans l'entreprise à la date de début de leur congé maternité conservent le maintien intégral de leur salaire mensuel pendant la durée du congé légal, sous déduction des indemnités versées par la Sécurité sociale et le régime de prévoyance."
+    },
+"primes": {
+ "titre": "Primes et gratifications",
+ "contenu": "# Prime de vacances (Article 7.3 et Avis CNI du 19 mars 1990)\n\nL'employeur réserve chaque année l'équivalent d'au moins **10 % de la masse globale des indemnités de congés payés acquis** (prévus parla convention collective) pour le paiement d'une prime de vacances à tous les salariés de l'entreprise.\n\n## Modalités de répartition (indicatives, au choix de l'entreprise ou par accord d'entreprise) :\n\n- Soit de façon égalitaire entre les salariés.\n- Soit au prorata du salaire, avec, le cas échéant, une majoration pour enfant à charge.\n- Soit par la majoration de 10 % de l'indemnité de congés payés versée à chaque salarié.\n- Soit, en cas d'embauche ou de départ de l'entreprise en cours d'année ou pour les salariés en contrat de travail à durée déterminée, au prorata du temps de présence dans l'entreprise sur la période de référence.\n\nToutes primes ou gratifications versées à l'ensemble des salariés en cours d'année à divers titres et quelle qu'en soit la nature, peuventent être considérées comme primes de vacances à condition qu'elles soient **au moins égales aux 10 % prévus** et qu'une partie soit versée pendant la période située **entre le 1er mai et le 31 octobre**.\n\nEn revanche, ne peuvent se substituer au paiement de la prime de vacances :\n\n- Un **treizième (13e) mois**.\n- L'indemnité de précarité des enquêteurs vacataires (prévue par l'annexe 4).\n- Une prime d'objectifs prévue par le contrat de travail.\n\nLa période de référence pour l'attribution de cette prime est la période de référence pour l'acquisition des congés payés. La masse salariale retenue est calculée sur la masse globale des indemnités de congés payés **réellement versée** et constatée au 31 mai.\n\n# Primes liées aux inventions et brevets\n\n- **Prime forfaitaire de dépôt de brevet** (Article 8.1) : Accordée au salarié auteur d'une invention brevetable appartenant à l'employeur, si l'entreprise dépose un brevet.\n- **Rémunération supplémentaire pour exploitation commerciale de brevet** (Article 8.1) : Due si, dans les 5 ans suivant le dépôt, le brevet donne lieu à exploitation commerciale. Formes diverses (versement forfaitaire, % salaire, participation aux produits de cession/licence).\n- **Primes pour inventions non brevetables et innovations** (Article 8.1) : Peuvent donner lieu à l'attribution de primes si utilisées par l'entreprise.\n\n## Exclusions des salaires minimaux\n\nL'article 7.1 précise que les salaires minimaux hiérarchiques excluent les primes d'assiduité, de participation, d'intéressement, et les primes et gratifications de caractère exceptionnel."
+},
+    "majorations": {
+      "titre": "Majorations pour Heures Supplémentaires, Travail de Nuit, Dimanche et Jours Fériés",
+      "contenu": "# Majorations heures supplémentaires (Article 6.2 et Chapitre 4 Accord RTT du 22 juin 1999)\n\nLes heures supplémentaires sont les heures de travail accomplies au-delà de la durée légale ou conventionnelle du travail (compte tenu des modalités d'aménagement du temps de travail retenues, notamment en cas de modulation annuelle où seules les heures au-delà de l'horaire annuel normal sont des HS).\nElles sont effectuées à la demande de l'employeur ou avec son accord, même implicite, ou lorsqu'il est établi que leur réalisation est rendue nécessaire par les tâches confiées au salarié.\n\n| Type de Majoration         | Taux / Condition                                                                                                                                                                        |\n|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| **Heures Supplémentaires** | Payées conformément aux majorations prévues par la **loi** (généralement +25% pour les 8 premières heures au-delà de la durée légale/conventionnelle, +50% au-delà, sauf accord d'entreprise). |\n\n- **Contingent annuel d'heures supplémentaires** :\n  - ETAM : **130 heures** (Chapitre 4, Article 2 Accord RTT 1999, et Art 6.2 CCN).\n  - Ingénieurs et cadres : Le contingent réglementaire s'applique (Art 6.2 CCN).\n- **Remplacement par repos équivalent** : Tout ou partie du paiement des heures supplémentaires et majorations peut être remplacé par un repos équivalent, par accord d'entreprise ou, en l'absence de DS, après consultation CSE/DP et accord des salariés. Les HS ainsi compensées ne s'imputent pas sur le contingent (Chapitre 4, Article 1 Accord RTT 1999).\n\n# Majorations heures de Nuit (Article 6.4)\n\nConcerne les **ETAM**.\n\n| Type de Majoration         | Taux / Condition                                                                                                                                                                        |\n|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| **Travail habituel de Nuit** | **+ 25 %** (appliquée sur le taux horaire résultant du salaire minimal hiérarchique). Doit être inclus dans une période de travail d'au moins **6 heures consécutives** entre 21h et 7h. | \n\n- **Définition horaire** : Tout travail ayant lieu entre **21 heures et 7 heures**. Un accord d'entreprise peut définir la période de travail de nuit dans ces limites.\n- **Prise en compte des avantages existants** : Pour apprécier si cette majoration est perçue, il est tenu compte des avantages particuliers déjà accordés au titre du travail de nuit dans l'entreprise et soumis à cotisations sociales.\n\n# Majorations heures de Dimanche et Jours Fériés (Article 6.3, modifié par Avenant n°3 du 13 déc. 2022)\n\nLe travail du dimanche et des jours fériés est subordonné aux dispositions légales. Le dimanche nécessite l'accord préalable de l'employeur.\nLes jours fériés légaux sont : 1er janvier, lundi de Pâques, 1er mai, 8 mai, Ascension, lundi de Pentecôte, 14 juillet, 15 août, 1er novembre, 11 novembre et 25 décembre (Chapitre 2, Article 1 Accord RTT 1999).\nLe travail du dimanche ou des jours fériés devient **habituel à compter du seizième (16e) dimanche ou jour férié travaillé** par le salarié au cours de l'année civile.\nLes heures travaillées un jour férié tombant un dimanche ne donnent pas lieu à un doublement des majorations.\n\n| Type de Majoration                                     | Taux / Condition                                                                                                                                                                                                                                                           |\n|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| **Travail exceptionnel du Dimanche ou Jours Fériés**   | **+ 100 %** (indépendamment des majorations HS). Pour salariés en forfait annuel en jours : Majoration de **100 %** de leur rémunération journalière. (Applicable jusqu'au 15ème dimanche/férié travaillé dans l'année civile).                                               |\n| **Travail habituel du Dimanche ou Jours Fériés**       | **+ 25 %** (indépendamment des majorations HS). Pour salariés en forfait annuel en jours : Majoration de **25 %** de leur rémunération journalière. (Applicable à partir du 16ème dimanche/férié travaillé dans l'année civile).                                                 |\n\n- **Prise en compte des avantages existants** : Pour apprécier si ces majorations sont perçues, il est tenu compte des avantages particuliers déjà accordés au titre du travail du dimanche ou des jours fériés dans l'entreprise et soumis à cotisations sociales.\n\n## Règles sectorielles spécifiques pour Dimanche et Jours Fériés (Art 6.3.3)\n\n- **Numérique** : Des stipulations spécifiques relatives au travail du dimanche et des jours fériés s'appliquent en application de l'accord de branche du 28 avril 2004.\n- **Événementiel** : Des stipulations spécifiques relatives au travail du dimanche et des jours fériés s'appliquent aux entreprises des secteurs de l'événementiel en application de l'accord de branche du 5 juillet 2001. Cet accord prévoit une majoration de **+25%** pour le travail du dimanche (préparation, montage, déroulement, démontage), indépendamment des HS. Rémunération mensuelle brute au moins égale à 1,25% du SMH pour travail dimanche/fériés.\n\n## Repos compensateurs pour travail du Dimanche/Férié\nLa CCN (Article 6.3) ne prévoit pas de repos compensateur systématique en plus de la majoration pour le travail du dimanche ou des jours fériés pour toutes les catégories. Le principe est la majoration de salaire. L'accord RTT (Chap. 2 Art.1) indique que les jours fériés sont non travaillés et payés; si travaillés, ils donnent lieu à **récupération** selon dispositions conventionnelles ou d'entreprise.\n\n# Autres majorations d'heures et Repos Compensateurs\n\n- **Chargés d'enquête (Annexe Enquêteurs - Accord du 16 décembre 1991)** :\n  - **Travail du Dimanche et Jours Fériés (Article 73)** : Si demande expresse de l'employeur pour circonstances exceptionnelles, travaux rémunérés avec majoration de **+50%** par rapport à la grille des rémunérations minimales (Annexe III CCN).\n  - **Travail de Nuit (Article 74)** : Entre 21h et 7h, si demande expresse pour circonstances exceptionnelles, travaux rémunérés avec majoration de **+50%** par rapport à la grille des rémunérations minimales (Annexe III CCN).\n- **Travail du dimanche et jours fériés dans certains secteurs informatiques (Accord du 28 avril 2004 - non étendu)** : Pour Infogérance, TMA, bascules informatiques :\n    - Forfait jours : Journée rémunérée + majoration (choix entre compensation pécuniaire **100%** taux journalier ou repos **100%**).\n    - Autres modalités (standard, réalisation de missions) : Heures rémunérées + majoration (choix entre compensation pécuniaire **100%** taux horaire ou repos **100%**)."
+    },
+    "taux-cotisation": {
+      "titre": "Taux de cotisation",
+      "contenu": "# Taux de cotisation\n\n## Régime de retraite complémentaire (Article 4.7)\n\n- Adhésion obligatoire pour tous les salariés à une caisse de retraite complémentaire affiliée à l'**AGIRC-ARRCO**.\n- La cotisation porte sur la totalité des rémunérations brutes versées dans les conditions et limites prévues par la réglementation AGIRC-ARRCO en vigueur.\n- Le taux contractuel ne pourra être inférieur au taux minimum fixé par l'AGIRC-ARRCO.\n\n## Prévoyance (Accord du 27 mars 1997 et son Annexe, notamment Avenant n°5 du 12 sept. 2012 à l'Annexe, applicable au 1er janv. 2013)\n\n### Assiette des cotisations\n- Salaire brut plafonné à la **Tranche C** (soit 8 fois le Plafond Annuel de la Sécurité Sociale - PASS).\n\n### Taux des cotisations (pour les entreprises adhérentes au régime de branche auprès des organismes désignés - Malakoff Humanis Prévoyance)\n- Sur la **Tranche A** (jusqu'à 1 PASS) : **0,74 %**\n- Sur la **Tranche B** (de 1 PASS à 4 PASS) : **1,13 %**\n- Sur la **Tranche C** (de 4 PASS à 8 PASS) : **1,13 %**\n\n### Répartition des cotisations\n- La part salariale ne peut excéder **50 %** du montant total des cotisations, quel que soit l'organisme assureur.\n- Pour les cadres, la cotisation de 1,5 % sur Tranche A prévue par la CCN Cadres de 1947 est en partie couverte : 0,70 % de la Tranche A de la cotisation prévoyance (article 2 de l'Annexe à l'accord prévoyance) est imputable à cette obligation.\n\n## Complémentaire Santé (Avenant du 7 octobre 2015, modifié par Avenant n°7 du 18 déc. 2024, applicable au 1er avr. 2025)\n\n### Répartition de la cotisation (Article 1-1-5)\n- Cotisations pour la couverture minimum de branche obligatoire : au moins **50 % à la charge de l'employeur**, au plus **50 % à la charge du salarié**.\n\n### Montant des cotisations (Base conventionnelle obligatoire - Annexe III, Avenant n°7 du 18 déc. 2024)\nStructure « Salarié + Enfant(s) » :\n- Régime Général : **59,00 € par mois**\n- Régime Local (Alsace-Moselle) : **39,50 € par mois**\n\nDes options facultatives avec cotisations supplémentaires sont proposées pour le conjoint et pour améliorer les garanties. (Exemple : Conjoint pour base RG : 51,50 €).\nUne part de **2% de la cotisation globale** est affectée à l'action sociale (Article 1-3-5).\n\n## Formation Professionnelle (Accord du 31 octobre 2019, Article 26, modifié par Avenant n°3 du 27 oct. 2022)\n\nContribution conventionnelle en sus de la contribution légale, mutualisée au sein de l'OPCO Atlas :\n- **Entreprises de 50 salariés et plus** : **0,10 %** de la masse salariale annuelle brute.\n- **Entreprises de 1 à 49 salariés** : **0,050 %** de la masse salariale annuelle brute, avec un versement minimum par entreprise de **25 €**.\n(Première collecte au titre de la Masse Salariale Annuelle Brute 2023).\n\n## Financement du Paritarisme (Accord du 25 octobre 2007, Article 3.1, modifié par Accord du 28 avril 2021)\n\n- Contribution conventionnelle annuelle des entreprises relevant de la CCN de **0,02 %** (0,2 pour mille) de la masse salariale brute déclarée en DSN.\n- Collecte selon modalités définies par le conseil d'administration de l'ADESATT.\n\n## Autres cotisations spécifiques\nRAS (La convention ne détaille pas d'autres taux de cotisation spécifiques généralisés au niveau de la branche pour tous les salariés)."
+    },
+    "conge-anciennete": {
+      "titre": "Congés d'ancienneté",
+      "contenu": "# Congés d'ancienneté (Article 5.1, section 2)\n\nDes congés payés supplémentaires sont octroyés aux salariés en fonction de leur ancienneté dans l'entreprise. La durée de ces congés est formulée en jours ouvrés (lundis, mardis, mercredis, jeudis et vendredis non fériés et non chômés).\n\nL'ancienneté est appréciée à la date d'ouverture de la période de prise des congés payés applicable dans l'entreprise (par défaut, le 1er mai).\n\n## Seuils d'ancienneté et nombre de jours par seuil :\n\n- Après une période de **cinq (5) années d'ancienneté** : **un (1) jour ouvré** supplémentaire.\n- Après une période de **dix (10) années d'ancienneté** : **deux (2) jours ouvrés** supplémentaires.\n- Après une période de **quinze (15) années d'ancienneté** : **trois (3) jours ouvrés** supplémentaires.\n- Après une période de **vingt (20) années d'ancienneté** : **quatre (4) jours ouvrés** supplémentaires.\n\n## Conditions d'attribution :\n- Être salarié de l'entreprise.\n- Avoir atteint l'ancienneté requise à la date d'ouverture de la période de prise des congés payés.\n\n## Modalités de prise :\n- Ces congés sont accordés indépendamment de l'application des stipulations relatives aux congés pour évènements familiaux.\n- Les modalités exactes de prise (période, fractionnement) sont à voir au niveau de l'entreprise, en respectant les règles générales sur les congés payés."
+    }
+  }
+};
+
+        // Constantes pour les offsets de défilement (menu fixe)
+        const SCROLL_OFFSET_CLICK = 120; // Hauteur du menu fixe + marge
+        const SCROLL_OFFSET_SPY = 150;   // Offset pour l'activation du bouton
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromJSON(conventionData);
+            displayAllSections();
+            setupScrollNavigation();
+            setupBackToTop();
+        });
+
+        function displayAllSections() {
+            const allSectionsContainer = document.getElementById('all-sections');
+
+            // Ordre d'affichage des sections
+            const sectionOrder = [
+                'informations-generales',
+                'essai',
+                'contrats-alternance',
+                'maintien-salaire',
+                'primes',
+                'majorations',
+                'taux-cotisation',
+                'conge-anciennete'
+            ];
+
+            let html = '';
+
+            sectionOrder.forEach(sectionKey => {
+                if (conventionData.sections && conventionData.sections[sectionKey]) {
+                    const section = conventionData.sections[sectionKey];
+                    html += `
+                        <div class="section-block" id="section-${sectionKey}">
+                            <h2 class="section-title">${section.titre}</h2>
+                            <div class="section-text">
+                                ${convertMarkdownToHTML(section.contenu)}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            allSectionsContainer.innerHTML = html;
+        }
+
+        function setupScrollNavigation() {
+            // Écouter les clics sur les boutons de section pour faire défiler
+            document.querySelectorAll('.section-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionKey = this.getAttribute('data-section');
+                    const sectionElement = document.getElementById(`section-${sectionKey}`);
+
+                    if (sectionElement) {
+                        // Calculer la position avec un offset pour éviter la superposition de l'en-tête et de la navigation
+                        // sectionElement.offsetTop est la distance du haut de l'élément au haut du document
+                        // On soustrait SCROLL_OFFSET_CLICK pour que le haut de la section se place SOUS les éléments fixes
+                        const targetScrollPosition = sectionElement.offsetTop - SCROLL_OFFSET_CLICK;
+                        window.scrollTo({
+                            top: targetScrollPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Mettre à jour l'état actif
+                    document.querySelectorAll('.section-button').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Mettre à jour le bouton actif basé sur la position de défilement
+            window.addEventListener('scroll', function() {
+                let currentSectionId = '';
+                const sections = document.querySelectorAll('.section-block');
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+                sections.forEach(section => {
+                    // Le haut de la section est détecté quand il passe SCROLL_OFFSET_SPY pixels du haut de la fenêtre
+                    const sectionTop = section.offsetTop - SCROLL_OFFSET_SPY;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+                        currentSectionId = section.getAttribute('id').replace('section-', '');
+                    }
+                });
+
+                document.querySelectorAll('.section-button').forEach(button => {
+                    button.classList.remove('active');
+                    if (button.getAttribute('data-section') === currentSectionId) {
+                        button.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        function setupBackToTop() {
+            const backToTopButton = document.getElementById('backToTop');
+
+            // Afficher/masquer le bouton en fonction du défilement
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+
+            // Gérer le clic sur le bouton
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        function convertMarkdownToHTML(markdown) {
+            if (typeof marked !== 'undefined') {
+                return marked.parse(markdown);
+            } else {
+                console.warn("marked.js n'est pas chargé. Utilisation d'un fallback basique pour Markdown.");
+                return markdown
+                    .replace(/^# (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h4>$1</h4>')
+                    .replace(/^### (.*$)/gim, '<h5>$1</h5>')
+                    .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                    .replace(/^- (.*$)/gim, '<li>$1</li>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/(\n(?:[\s\t]*?(?:-|\*|\d\.) .*)+)/g, function(match) {
+                        const listType = match.match(/^\n[\s\t]*?(\*|-)/) ? 'ul' : 'ol';
+                        const items = match.trim().split('\n').map(item => `<li>${item.replace(/^[\s\t]*?(?:-|\*|\d\.) /, '')}</li>`).join('');
+                        return `<${listType}>${items}</${listType}>`;
+                    })
+                    .replace(/\n\n/g, '</p><p>') // Paragraphes
+                    .replace(/^(?!<[houlப்tabletrtd])(.*?)(\n|$)/gim, (match, p1) => p1.trim() === '' ? '' : `<p>${p1.trim()}</p>`) // Encapsuler lignes seules dans <p>
+                    .replace(/<p><\/p>/g, ''); // Nettoyer paragraphes vides
+            }
+        }
+
+        // Fonction pour charger les données depuis un objet JSON
+        function loadFromJSON(jsonData) {
+            document.getElementById('convention-title').textContent = jsonData.libelle;
+            document.getElementById('idcc-code').textContent = jsonData.idcc;
+            document.getElementById('openpaye-code').textContent = jsonData.idcc;
+        }
+
+        // Gestion du défilement pour cacher l'en-tête et gérer le menu
+            let lastScrollTop = 0;
+            const header = document.querySelector('.convention-header');
+            const navigation = document.querySelector('.navigation');
+            const originalNavigationTop = navigation.offsetTop;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Gestion de l'en-tête (se cache quand on scroll vers le bas)
+                if (scrollTop > lastScrollTop && scrollTop > 50) {
+                    // Défilement vers le bas
+                    header.classList.add('hidden');
+                } else {
+                    // Défilement vers le haut
+                    header.classList.remove('hidden');
+                }
+
+                // Gestion du menu : devient fixe quand il sort de la vue
+                if (scrollTop > originalNavigationTop) {
+                    navigation.classList.add('fixed-top');
+                } else {
+                    navigation.classList.remove('fixed-top');
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+    </script>
+</body>
+</html>
