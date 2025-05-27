@@ -1,19 +1,34 @@
 import { useEffect, useState, useRef } from "react";
-import { useParams, useLocation } from "wouter";
+import { useParams, useLocation, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, BookOpen, MessageSquare } from "lucide-react";
+import { Loader2, ChevronLeft, ChevronRight, ChevronDown, BookOpen, MessageSquare } from "lucide-react";
 import axios from "axios";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { CATEGORIES } from "@/lib/categories";
 import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
+import { MarkdownTableWrapper } from "@/components/markdown-table-wrapper";
 import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
 import { ChatConventionDialog } from "@/components/chat-convention-dialog";
 
-// Types
+// Mapping entre les catégories backend et catégories d'affichage
+const CATEGORY_MAPPING: Record<string, string> = {
+  "protection-sociale": "cotisations",
+  "protection-sociale.prevoyance": "cotisations.prevoyance",
+  "protection-sociale.retraite": "cotisations.retraite", 
+  "protection-sociale.mutuelle": "cotisations.mutuelle",
+  "formation.contributions": "cotisations.formation",
+  "divers.paritarisme": "cotisations.paritarisme"
+};
+
+// Types simplifiés
 interface Convention {
   id: string;
   name: string;
@@ -26,6 +41,25 @@ interface SectionType {
   subcategory: string;
 }
 
+// Fonction utilitaire pour convertir "category.subcategory" en label lisible
+function getSectionLabel(sectionType: string): string {
+  const [category, subcategory] = sectionType.split(".");
+  
+  if (!category || !subcategory) {
+    return sectionType;
+  }
+  
+  // Formatage simple du texte
+  const formatCategory = (text: string) => {
+    return text
+      .split("-")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+  
+  return `${formatCategory(category)} - ${formatCategory(subcategory)}`;
+}
+
 // Composant pour afficher une section individuelle
 interface SectionContentProps {
   section: SectionType;
@@ -35,6 +69,7 @@ interface SectionContentProps {
 
 function SectionContent({ section, conventionId, isActive }: SectionContentProps) {
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
   
   // Requête pour obtenir le contenu de cette section
   const { data: sectionContent, isLoading } = useQuery({
@@ -64,6 +99,7 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
 
   return (
     <div 
+      ref={sectionRef}
       id={`section-${section.sectionType}`}
       className={`border rounded-lg p-6 transition-all duration-300 ${
         isActive 
@@ -121,11 +157,15 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
 export default function Chat() {
   const { id } = useParams<{ id: string }>();
   const [_, navigate] = useLocation();
-  const [visibleSection, setVisibleSection] = useState<string | null>(null);
+  const [selectedSection, setSelectedSection] = useState<SectionType | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [isChatDialogOpen, setIsChatDialogOpen] = useState<boolean>(false);
+  const [visibleSection, setVisibleSection] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
+  
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
     queryKey: ["convention", id],
@@ -134,24 +174,28 @@ export default function Chat() {
       const response = await axios.get(`/api/conventions`);
       const conventions = response.data;
       
+      // Chercher d'abord par IDCC
       let foundConvention = conventions.find((c: Convention) => c.id === id);
       
+      // Si pas trouvé et que l'id semble être un nom encodé (contient des %)
       if (!foundConvention && id.includes('%')) {
         try {
           const decodedName = decodeURIComponent(id);
+          console.log("Recherche par nom décodé:", decodedName);
           foundConvention = conventions.find((c: Convention) => c.name === decodedName);
         } catch (e) {
           console.error("Erreur lors du décodage du nom de convention:", e);
         }
       }
       
+      // Pour les conventions sans IDCC explicite (id="")
       if (!foundConvention && !id.includes('%')) {
         foundConvention = conventions.find((c: Convention) => !c.id && c.name === id);
       }
       
       return foundConvention || null;
     },
-    staleTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5 // 5 minutes
   });
   
   // Requête pour obtenir les types de sections disponibles
@@ -161,53 +205,91 @@ export default function Chat() {
       if (!id) return [];
       const response = await axios.get(`/api/convention/${id}/section-types`);
       return response.data.map((type: string) => {
+        // Vérifier si on doit remapper cette section
+        let mappedType = type;
+        if (CATEGORY_MAPPING[type]) {
+          mappedType = CATEGORY_MAPPING[type];
+        }
+        
         const [backendCategory, backendSubcategory] = type.split(".");
         
+        // Définir la catégorie et sous-catégorie d'affichage
         let displayCategory = backendCategory;
         let displaySubcategory = backendSubcategory;
         
+        // Appliquer le mapping spécifique pour les sections de protection sociale à cotisations
         if (backendCategory === "protection-sociale" && ["prevoyance", "retraite", "mutuelle"].includes(backendSubcategory)) {
           displayCategory = "cotisations";
-        } else if (backendCategory === "formation" && backendSubcategory === "contributions") {
+          displaySubcategory = backendSubcategory;
+        }
+        // Appliquer le mapping pour formation.contributions -> cotisations.formation
+        else if (backendCategory === "formation" && backendSubcategory === "contributions") {
           displayCategory = "cotisations";
           displaySubcategory = "formation";
-        } else if (backendCategory === "divers" && backendSubcategory === "paritarisme") {
+        }
+        // Appliquer le mapping pour divers.paritarisme -> cotisations.paritarisme
+        else if (backendCategory === "divers" && backendSubcategory === "paritarisme") {
           displayCategory = "cotisations";
           displaySubcategory = "paritarisme";
         }
+        // le reste reste inchangé
         
         return {
-          sectionType: type,
-          label: type,
+          sectionType: type, // Type de section original pour les appels API
+          label: getSectionLabel(type),
           category: displayCategory,
           subcategory: displaySubcategory
         };
       });
     },
-    staleTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5 // 5 minutes
   });
-
-  // Effet pour charger automatiquement la section "informations-generales"
+  
+  // Requête pour obtenir le contenu d'une section
+  const { data: sectionContent, isLoading: isLoadingSectionContent } = useQuery({
+    queryKey: ["section-content", id, selectedSection?.sectionType],
+    queryFn: async () => {
+      if (!id || !selectedSection) return null;
+      
+      // L'API attend le sectionType complet, pas séparé par catégorie/sous-catégorie
+      const response = await axios.get(`/api/convention/${id}/section/${selectedSection.sectionType}`);
+      return response.data;
+    },
+    enabled: !!selectedSection,
+    staleTime: 1000 * 60 * 5 // 5 minutes
+  });
+  
+  // Effet pour déplier automatiquement la catégorie lorsqu'une section est sélectionnée
   useEffect(() => {
-    if (sectionTypes && sectionTypes.length > 0 && !visibleSection) {
+    if (selectedSection) {
+      setExpandedCategory(selectedSection.category);
+    }
+  }, [selectedSection]);
+  
+  // Effet pour charger automatiquement la section "informations-generales" lorsque la page est chargée
+  useEffect(() => {
+    if (sectionTypes && sectionTypes.length > 0 && !selectedSection) {
+      // Chercher la section d'informations générales
       const generalInfoSection = sectionTypes.find((section: SectionType) => 
         section.sectionType === "informations-generales.generale");
       
       if (generalInfoSection) {
         console.log("Sélection automatique de la section Informations générales");
+        setSelectedSection(generalInfoSection);
         setVisibleSection(generalInfoSection.sectionType);
       }
     }
-  }, [sectionTypes, visibleSection]);
+  }, [sectionTypes, selectedSection]);
 
   // Effet pour détecter la section visible lors du défilement
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionTypes) return;
+      if (!sectionTypes || !contentRef.current) return;
       
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       
+      // Trouver quelle section est actuellement visible
       for (const section of sectionTypes) {
         const element = document.getElementById(`section-${section.sectionType}`);
         if (element) {
@@ -215,9 +297,11 @@ export default function Chat() {
           const elementTop = rect.top + scrollTop;
           const elementBottom = elementTop + rect.height;
           
+          // Une section est considérée comme visible si elle occupe au moins 30% de l'écran
           if (elementTop <= scrollTop + windowHeight * 0.3 && elementBottom >= scrollTop + windowHeight * 0.3) {
             if (visibleSection !== section.sectionType) {
               setVisibleSection(section.sectionType);
+              setSelectedSection(section);
             }
             break;
           }
@@ -289,8 +373,10 @@ export default function Chat() {
                       type="text"
                       placeholder="Rechercher une section..."
                       className="w-full p-2 pr-8 text-sm border rounded-md"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setSearchTerm(value);
+                      }}
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
@@ -371,7 +457,7 @@ export default function Chat() {
               </CardContent>
             </Card>
           </div>
-
+          
           {/* Contenu principal avec défilement continu */}
           <div ref={contentRef} className="space-y-8">
             {sectionTypes && sectionTypes.length > 0 ? (
@@ -439,6 +525,107 @@ export default function Chat() {
               </div>
             )}
           </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    Aperçu du contenu
+                  </div>
+                )}
+              </CardTitle>
+              {!selectedSection && (
+                <CardDescription className="flex items-center gap-1.5 mt-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  Sélectionnez une section dans le menu de gauche
+                </CardDescription>
+              )}
+            </CardHeader>
+            <CardContent>
+              {isLoadingSections ? (
+                <div className="space-y-4">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-5/6" />
+                  <Skeleton className="h-4 w-2/3" />
+                  <Skeleton className="h-4 w-full" />
+                </div>
+              ) : (
+                <div ref={contentRef} className="space-y-8">
+                  {sectionTypes && sectionTypes.length > 0 ? (
+                    <>
+                      {/* Afficher toutes les sections avec leur contenu */}
+                      {/* Commencer par "Informations générales" */}
+                      {(() => {
+                        const infoGenerales = sectionTypes.find((section: SectionType) => 
+                          section.category === "informations-generales" && section.subcategory === "generale"
+                        );
+                        
+                        return infoGenerales ? (
+                          <SectionContent 
+                            key="info-gen"
+                            section={infoGenerales}
+                            conventionId={id || ""}
+                            isActive={visibleSection === infoGenerales.sectionType}
+                          />
+                        ) : null;
+                      })()}
+                      
+                      {/* Afficher les autres sections par catégorie */}
+                      {CATEGORIES.map((categoryDefinition) => {
+                        const category = categoryDefinition.id;
+                        
+                        if (category === "informations-generales") return null;
+                        
+                        const categorySections = sectionTypes.filter((section: SectionType) => 
+                          section.category === category
+                        );
+                        
+                        if (categorySections.length === 0) return null;
+                        
+                        return (
+                          <div key={category}>
+                            {/* Titre de catégorie */}
+                            <div className="border-t pt-6">
+                              <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
+                                {categoryDefinition.name}
+                              </h2>
+                            </div>
+                            
+                            {/* Sous-sections dans l'ordre défini */}
+                            <div className="space-y-6">
+                              {categoryDefinition.subcategories.map((subcategoryDef) => {
+                                const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                                if (!section) return null;
+                                
+                                return (
+                                  <SectionContent 
+                                    key={section.sectionType}
+                                    section={section}
+                                    conventionId={id || ""}
+                                    isActive={visibleSection === section.sectionType}
+                                  />
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    <div className="text-center py-6 text-gray-500">
+                      Aucune section disponible
+                    </div>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
       )}
       
