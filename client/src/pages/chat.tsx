@@ -238,7 +238,7 @@ export default function Chat() {
   const scrollToSection = (sectionType: string) => {
     const element = document.getElementById(`section-${sectionType}`);
     if (element) {
-      const headerHeight = 140; // Hauteur approximative du menu fixe
+      const headerHeight = 200; // Hauteur augmentée pour garder le titre visible
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerHeight;
       
