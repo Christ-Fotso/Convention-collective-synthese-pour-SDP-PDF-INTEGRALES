@@ -400,9 +400,9 @@ export default function Chat() {
                               return (
                                 <Button
                                   key={section.sectionType}
-                                  variant={visibleSection === section.sectionType ? "default" : "secondary"}
+                                  variant={visibleSection === section.sectionType ? "default" : "outline"}
                                   size="sm"
-                                  className="whitespace-nowrap text-xs"
+                                  className="whitespace-nowrap text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-colors duration-200"
                                   onClick={() => scrollToSection(section.sectionType)}
                                 >
                                   {subcategoryDef.name}
