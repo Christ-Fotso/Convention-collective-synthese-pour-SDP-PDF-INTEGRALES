@@ -339,31 +339,10 @@ export default function Chat() {
                   </div>
                 ) : sectionTypes && sectionTypes.length > 0 ? (
                   <div className="space-y-3">
-                    {/* Navigation "Informations générales" */}
-                    {(() => {
-                      const infoGenerales = sectionTypes.find((section: SectionType) => 
-                        section.category === "informations-generales" && section.subcategory === "generale"
-                      );
-                      
-                      return infoGenerales ? (
-                        <Button
-                          key="info-gen"
-                          variant={visibleSection === infoGenerales.sectionType ? "default" : "outline"}
-                          size="sm"
-                          className="whitespace-nowrap"
-                          onClick={() => scrollToSection(infoGenerales.sectionType)}
-                        >
-                          Informations générales
-                        </Button>
-                      ) : null;
-                    })()}
-                    
                     {/* Navigation par catégories principales */}
                     <div className="flex flex-wrap gap-2">
                       {CATEGORIES.map((categoryDefinition, categoryIndex) => {
                         const category = categoryDefinition.id;
-                        
-                        if (category === "informations-generales") return null;
                         
                         const categorySections = sectionTypes.filter((section: SectionType) => 
                           section.category === category
