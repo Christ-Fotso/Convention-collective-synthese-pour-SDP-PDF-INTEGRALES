@@ -121,7 +121,7 @@ export function CategoryMenu({ categories, onSelectSubcategory, isLoading }: Cat
                     <Button
                       key={subcategory.id}
                       variant="ghost"
-                      className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary/10 hover:text-primary whitespace-normal text-left"
+                      className="justify-start h-auto py-2 px-4 text-sm font-normal hover:bg-primary/10 hover:text-primary hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] transition-all duration-200 ease-in-out whitespace-normal text-left group"
                       onClick={() => onSelectSubcategory(category, subcategory)}
                       disabled={isLoading}
                     >
