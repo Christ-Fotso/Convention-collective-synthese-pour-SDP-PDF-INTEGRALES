@@ -67,7 +67,7 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
       id={`section-${section.sectionType}`}
       className={`border rounded-lg p-6 transition-all duration-300 ${
         isActive 
-          ? "border-green-500 bg-green-50 dark:bg-green-900/10 shadow-lg" 
+          ? "border-green-500 border-2 shadow-lg" 
           : "border-gray-200 dark:border-gray-700"
       }`}
     >
