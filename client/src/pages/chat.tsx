@@ -224,65 +224,67 @@ export default function Chat() {
       )}
       
       {convention && (
-        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6">
-          {/* Colonne de gauche: Navigation par sections */}
+        <div className="space-y-6">
+          {/* Navigation horizontale en haut */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle>Sections disponibles</CardTitle>
-              <div className="mt-2 relative">
-                <input
-                  type="text"
-                  placeholder="Rechercher une section..."
-                  className="w-full p-2 pr-8 text-sm border rounded-md"
-                  onChange={(e) => {
-                    // Stocker la valeur de recherche dans un état local
-                    const value = e.target.value;
-                    setSearchTerm(value);
-                    
-                    // Si une recherche est active, déplier toutes les catégories
-                    if (value.trim() !== '') {
-                      // Rechercher les catégories qui contiennent des résultats correspondant à la recherche
-                      const matchingCategories = sectionTypes
-                        .filter((section: SectionType) => {
-                          const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
-                          if (!categoryDef) return false;
-                          
-                          const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
-                          if (!subcategoryDef) return false;
-                          
-                          const searchLower = value.toLowerCase();
-                          return categoryDef.name.toLowerCase().includes(searchLower) || 
-                                 subcategoryDef.name.toLowerCase().includes(searchLower);
-                        })
-                        .map(section => section.category);
+              <div className="flex items-center justify-between">
+                <CardTitle>Sections disponibles</CardTitle>
+                <div className="relative w-64">
+                  <input
+                    type="text"
+                    placeholder="Rechercher une section..."
+                    className="w-full p-2 pr-8 text-sm border rounded-md"
+                    onChange={(e) => {
+                      // Stocker la valeur de recherche dans un état local
+                      const value = e.target.value;
+                      setSearchTerm(value);
                       
-                      // Si on trouve une correspondance, définir cette catégorie comme dépliée
-                      if (matchingCategories.length > 0) {
-                        // Prendre uniquement la première catégorie trouvée pour ne pas tout déplier
-                        setExpandedCategory(matchingCategories[0]);
+                      // Si une recherche est active, déplier toutes les catégories
+                      if (value.trim() !== '') {
+                        // Rechercher les catégories qui contiennent des résultats correspondant à la recherche
+                        const matchingCategories = sectionTypes
+                          .filter((section: SectionType) => {
+                            const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
+                            if (!categoryDef) return false;
+                            
+                            const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
+                            if (!subcategoryDef) return false;
+                            
+                            const searchLower = value.toLowerCase();
+                            return categoryDef.name.toLowerCase().includes(searchLower) || 
+                                   subcategoryDef.name.toLowerCase().includes(searchLower);
+                          })
+                          .map(section => section.category);
+                        
+                        // Si on trouve une correspondance, définir cette catégorie comme dépliée
+                        if (matchingCategories.length > 0) {
+                          // Prendre uniquement la première catégorie trouvée pour ne pas tout déplier
+                          setExpandedCategory(matchingCategories[0]);
+                        }
                       }
-                    }
-                  }}
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
+                    }}
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
               {isLoadingSections ? (
-                <div className="space-y-2">
-                  <Skeleton className="h-10 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                  <Skeleton className="h-10 w-full" />
+                <div className="flex gap-2">
+                  <Skeleton className="h-8 w-32" />
+                  <Skeleton className="h-8 w-32" />
+                  <Skeleton className="h-8 w-32" />
                 </div>
               ) : (
-                <ScrollArea className="h-[calc(100vh-260px)]">
+                <div className="space-y-4">
                   {sectionTypes && sectionTypes.length > 0 ? (
-                    <div className="space-y-6">
+                    <div>
                       {(() => {
                         // On regroupe d'abord les sections par catégorie
                         const groupedSections: Record<string, SectionType[]> = {};
@@ -316,99 +318,108 @@ export default function Chat() {
                         const categoryElements: JSX.Element[] = [];
                         
                         // D'abord, gérer séparément la section "Informations générales" si elle existe
-                        const infoGenerales = filteredSections.find(section => 
+                        const infoGenerales = filteredSections.find((section: SectionType) => 
                           section.category === "informations-generales" && section.subcategory === "generale"
                         );
                         
+                        // First, create horizontal navigation for "Informations générales"
                         if (infoGenerales) {
-                          // Ajouter la section Informations générales avec le même format qu'une catégorie
                           categoryElements.push(
-                            <div key="info-gen" className="mb-3">
-                              <h3 
-                                className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1 flex justify-between items-center"
-                              >
-                                <span>Informations générales</span>
-                              </h3>
-                              <div 
-                                className={`p-2 border rounded-md cursor-pointer text-sm ${
-                                  selectedSection?.sectionType === infoGenerales.sectionType
-                                    ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600 font-medium"
-                                    : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
-                                }`}
-                                onClick={() => setSelectedSection(infoGenerales)}
-                              >
-                                Présentation de la convention
-                              </div>
-                            </div>
+                            <Button
+                              key="info-gen"
+                              variant={selectedSection?.sectionType === infoGenerales.sectionType ? "default" : "outline"}
+                              size="sm"
+                              className="whitespace-nowrap"
+                              onClick={() => setSelectedSection(infoGenerales)}
+                            >
+                              Informations générales
+                            </Button>
                           );
                         }
                         
-                        // Utiliser l'ordre des catégories défini dans CATEGORIES pour les autres
+                        // Create horizontal navigation for categories
                         CATEGORIES.forEach((categoryDefinition, categoryIndex) => {
                           const category = categoryDefinition.id;
                           
-                          // Ignorer la catégorie informations-generales car déjà traitée séparément
-                          if (category === "informations-generales") {
-                            return;
-                          }
+                          // Skip informations-generales as it's handled separately
+                          if (category === "informations-generales") return;
                           
-                          // Vérifier si la catégorie existe dans les données
-                          if (!groupedSections[category]) {
-                            return; // Passer à la catégorie suivante
-                          }
+                          if (!groupedSections[category]) return;
                           
                           const sections = groupedSections[category];
-                          const sectionElements: JSX.Element[] = [];
                           
-                          // Pour chaque sous-catégorie dans l'ordre défini
-                          categoryDefinition.subcategories.forEach((subcategoryDefinition, subcategoryIndex) => {
-                            // Trouver la section correspondante
-                            const section = sections.find(s => s.subcategory === subcategoryDefinition.id);
-                            
-                            if (section) {
-                              sectionElements.push(
-                                <div
-                                  key={`${categoryIndex}-${subcategoryIndex}`}
-                                  className={`p-2 border rounded-md cursor-pointer text-xs ${
-                                    selectedSection?.sectionType === section.sectionType
-                                      ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600"
-                                      : "hover:bg-slate-50 dark:hover:bg-slate-900/20"
-                                  }`}
-                                  onClick={() => setSelectedSection(section)}
-                                >
-                                  {subcategoryDefinition.name}
-                                </div>
-                              );
-                            }
-                          });
+                          // Check if any section in this category is selected
+                          const isCategorySelected = sections.some(section => 
+                            selectedSection?.sectionType === section.sectionType
+                          );
                           
-                          // N'ajouter la catégorie que si elle contient des sections
-                          if (sectionElements.length > 0) {
-                            const isCategoryExpanded = expandedCategory === category;
-                            categoryElements.push(
-                              <div key={categoryIndex} className="mb-3">
-                                <h3 
-                                  className="text-sm font-semibold mb-2 text-green-600 dark:text-green-400 border-b pb-1 flex justify-between items-center cursor-pointer"
-                                  onClick={() => setExpandedCategory(isCategoryExpanded ? null : category)}
-                                >
-                                  <span>{categoryDefinition.name}</span>
-                                  {isCategoryExpanded ? (
-                                    <ChevronDown className="h-4 w-4" />
-                                  ) : (
-                                    <ChevronRight className="h-4 w-4" />
-                                  )}
-                                </h3>
-                                {isCategoryExpanded && (
-                                  <div className="grid grid-cols-1 gap-2 animate-in fade-in-50 duration-150 pr-2">
-                                    {sectionElements}
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          }
+                          categoryElements.push(
+                            <Button
+                              key={categoryIndex}
+                              variant={isCategorySelected ? "default" : "outline"}
+                              size="sm"
+                              className="whitespace-nowrap"
+                              onClick={() => {
+                                // If category is already expanded, collapse it
+                                if (expandedCategory === category) {
+                                  setExpandedCategory(null);
+                                } else {
+                                  setExpandedCategory(category);
+                                }
+                              }}
+                            >
+                              {categoryDefinition.name}
+                              {expandedCategory === category ? (
+                                <ChevronDown className="h-4 w-4 ml-1" />
+                              ) : (
+                                <ChevronRight className="h-4 w-4 ml-1" />
+                              )}
+                            </Button>
+                          );
                         });
                         
-                        return categoryElements;
+                        return (
+                          <div className="space-y-4">
+                            {/* Main category navigation */}
+                            <div className="flex flex-wrap gap-2">
+                              {categoryElements}
+                            </div>
+                            
+                            {/* Expanded subcategory navigation */}
+                            {expandedCategory && groupedSections[expandedCategory] && (
+                              <div className="border-t pt-4">
+                                <div className="flex flex-wrap gap-2">
+                                  {(() => {
+                                    const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
+                                    if (!categoryDef) return null;
+                                    
+                                    const sections = groupedSections[expandedCategory];
+                                    const subcategoryElements: JSX.Element[] = [];
+                                    
+                                    categoryDef.subcategories.forEach((subcategoryDef, index) => {
+                                      const section = sections.find(s => s.subcategory === subcategoryDef.id);
+                                      if (section) {
+                                        subcategoryElements.push(
+                                          <Button
+                                            key={index}
+                                            variant={selectedSection?.sectionType === section.sectionType ? "default" : "secondary"}
+                                            size="sm"
+                                            className="whitespace-nowrap text-xs"
+                                            onClick={() => setSelectedSection(section)}
+                                          >
+                                            {subcategoryDef.name}
+                                          </Button>
+                                        );
+                                      }
+                                    });
+                                    
+                                    return subcategoryElements;
+                                  })()}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
                       })()}
                     </div>
                   ) : (
@@ -416,12 +427,12 @@ export default function Chat() {
                       Aucune section disponible
                     </div>
                   )}
-                </ScrollArea>
+                </div>
               )}
             </CardContent>
           </Card>
           
-          {/* Colonne de droite: Aperçu du contenu */}
+          {/* Contenu principal en pleine largeur */}
           <Card>
             <CardHeader className="pb-3">
               <CardTitle>
