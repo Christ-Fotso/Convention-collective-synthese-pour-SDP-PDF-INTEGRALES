@@ -236,55 +236,51 @@ export default function Chat() {
         </Alert>
       )}
       
+      {/* Navigation par sections avec style moderne */}
       {convention && (
-        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6">
-          {/* Colonne de gauche: Navigation par sections */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle>Sections disponibles</CardTitle>
-              <div className="mt-2 relative">
-                <input
-                  type="text"
-                  placeholder="Rechercher une section..."
-                  className="w-full p-2 pr-8 text-sm border rounded-md"
-                  onChange={(e) => {
-                    // Stocker la valeur de recherche dans un état local
-                    const value = e.target.value;
-                    setSearchTerm(value);
-                    
-                    // Si une recherche est active, déplier toutes les catégories
-                    if (value.trim() !== '') {
-                      // Rechercher les catégories qui contiennent des résultats correspondant à la recherche
-                      const matchingCategories = sectionTypes
-                        .filter((section: SectionType) => {
-                          const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
-                          if (!categoryDef) return false;
-                          
-                          const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
-                          if (!subcategoryDef) return false;
-                          
-                          const searchLower = value.toLowerCase();
-                          return categoryDef.name.toLowerCase().includes(searchLower) || 
-                                 subcategoryDef.name.toLowerCase().includes(searchLower);
-                        })
-                        .map(section => section.category);
-                      
-                      // Si on trouve une correspondance, définir cette catégorie comme dépliée
-                      if (matchingCategories.length > 0) {
-                        // Prendre uniquement la première catégorie trouvée pour ne pas tout déplier
-                        setExpandedCategory(matchingCategories[0]);
-                      }
-                    }
-                  }}
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
+        <nav className="bg-white rounded-xl p-4 mb-5 shadow-md">
+          <h3 className="text-lg font-semibold mb-4 text-center text-slate-700">
+            Sections disponibles
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+            {isLoadingSections ? (
+              <div className="flex gap-3 flex-wrap justify-center">
+                <Skeleton className="h-12 w-40" />
+                <Skeleton className="h-12 w-40" />
+                <Skeleton className="h-12 w-40" />
+                <Skeleton className="h-12 w-40" />
+                <Skeleton className="h-12 w-40" />
+                <Skeleton className="h-12 w-40" />
               </div>
-            </CardHeader>
+            ) : (
+              sectionTypes?.map((section: SectionType, index: number) => {
+                const categoryData = CATEGORIES.find(cat => cat.id === section.category);
+                const subcategoryData = categoryData?.subcategories.find(sub => sub.id === section.subcategory);
+                const displayLabel = subcategoryData ? `${categoryData?.name} - ${subcategoryData.name}` : section.label;
+                
+                return (
+                  <button 
+                    key={index}
+                    onClick={() => setSelectedSection(section)}
+                    className={`px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 text-center text-sm font-medium min-w-40 border-2 ${
+                      selectedSection?.sectionType === section.sectionType
+                        ? 'bg-blue-500 text-white border-blue-500 shadow-lg transform -translate-y-0.5'
+                        : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-blue-500 hover:text-white hover:border-blue-500 hover:-translate-y-0.5 hover:shadow-lg'
+                    }`}
+                  >
+                    {displayLabel}
+                  </button>
+                );
+              })
+            )}
+          </div>
+        </nav>
+      )}
+
+      {convention && (
+        <div className="grid grid-cols-1 gap-6">
+          {/* Zone de contenu principal */}
+          <Card>
             <CardContent>
               {isLoadingSections ? (
                 <div className="space-y-2">
