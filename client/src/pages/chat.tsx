@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useLocation, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -60,6 +60,100 @@ function getSectionLabel(sectionType: string): string {
   return `${formatCategory(category)} - ${formatCategory(subcategory)}`;
 }
 
+// Composant pour afficher une section individuelle
+interface SectionContentProps {
+  section: SectionType;
+  conventionId: string;
+  isActive: boolean;
+}
+
+function SectionContent({ section, conventionId, isActive }: SectionContentProps) {
+  const [isLegalDialogOpen, setIsLegalDialogOpen] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Requête pour obtenir le contenu de cette section
+  const { data: sectionContent, isLoading } = useQuery({
+    queryKey: ["section-content", conventionId, section.sectionType],
+    queryFn: async () => {
+      const response = await axios.get(`/api/convention/${conventionId}/section/${section.sectionType}`);
+      return response.data;
+    },
+    staleTime: 1000 * 60 * 5 // 5 minutes
+  });
+
+  // Trouver le nom de la section depuis CATEGORIES
+  const getSectionName = () => {
+    if (section.category === "informations-generales") {
+      return "Informations générales";
+    }
+    
+    const categoryDef = CATEGORIES.find(cat => cat.id === section.category);
+    if (categoryDef) {
+      const subcategoryDef = categoryDef.subcategories.find(sub => sub.id === section.subcategory);
+      if (subcategoryDef) {
+        return subcategoryDef.name;
+      }
+    }
+    return section.label;
+  };
+
+  return (
+    <div 
+      ref={sectionRef}
+      id={`section-${section.sectionType}`}
+      className={`border rounded-lg p-6 transition-all duration-300 ${
+        isActive 
+          ? "border-green-500 bg-green-50 dark:bg-green-900/10 shadow-lg" 
+          : "border-gray-200 dark:border-gray-700"
+      }`}
+    >
+      <h3 className="text-xl font-semibold mb-4 text-green-600 dark:text-green-400">
+        {getSectionName()}
+      </h3>
+      
+      {isLoading ? (
+        <div className="space-y-4">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-4 w-5/6" />
+        </div>
+      ) : sectionContent ? (
+        <>
+          {hasDispositifLegal(section.sectionType) && (
+            <div className="mb-4">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="text-xs flex items-center orange-button hover:bg-orange-100 hover:text-orange-800"
+                onClick={() => setIsLegalDialogOpen(true)}
+              >
+                <BookOpen className="h-3.5 w-3.5 mr-1" />
+                Voir le dispositif légal
+              </Button>
+              
+              <DispositifLegalDialog 
+                isOpen={isLegalDialogOpen}
+                setIsOpen={setIsLegalDialogOpen}
+                title={getSectionName()}
+                content={getDispositifLegal(section.sectionType)}
+              />
+            </div>
+          )}
+          <div className="prose dark:prose-invert max-w-none prose-sm">
+            <MarkdownTableRendererEnhanced 
+              content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
+            />
+          </div>
+        </>
+      ) : (
+        <div className="text-red-500">
+          <p>Aucune donnée disponible pour cette section.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Chat() {
   const { id } = useParams<{ id: string }>();
   const [_, navigate] = useLocation();
@@ -69,6 +163,8 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [isChatDialogOpen, setIsChatDialogOpen] = useState<boolean>(false);
+  const [visibleSection, setVisibleSection] = useState<string | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
@@ -180,9 +276,50 @@ export default function Chat() {
       if (generalInfoSection) {
         console.log("Sélection automatique de la section Informations générales");
         setSelectedSection(generalInfoSection);
+        setVisibleSection(generalInfoSection.sectionType);
       }
     }
   }, [sectionTypes, selectedSection]);
+
+  // Effet pour détecter la section visible lors du défilement
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionTypes || !contentRef.current) return;
+      
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Trouver quelle section est actuellement visible
+      for (const section of sectionTypes) {
+        const element = document.getElementById(`section-${section.sectionType}`);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top + scrollTop;
+          const elementBottom = elementTop + rect.height;
+          
+          // Une section est considérée comme visible si elle occupe au moins 30% de l'écran
+          if (elementTop <= scrollTop + windowHeight * 0.3 && elementBottom >= scrollTop + windowHeight * 0.3) {
+            if (visibleSection !== section.sectionType) {
+              setVisibleSection(section.sectionType);
+              setSelectedSection(section);
+            }
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sectionTypes, visibleSection]);
+
+  // Fonction pour faire défiler vers une section
+  const scrollToSection = (sectionType: string) => {
+    const element = document.getElementById(`section-${sectionType}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
   
   return (
     <div className="container mx-auto py-6 space-y-6">
@@ -327,10 +464,10 @@ export default function Chat() {
                           categoryElements.push(
                             <Button
                               key="info-gen"
-                              variant={selectedSection?.sectionType === infoGenerales.sectionType ? "default" : "outline"}
+                              variant={visibleSection === infoGenerales.sectionType ? "default" : "outline"}
                               size="sm"
                               className="whitespace-nowrap"
-                              onClick={() => setSelectedSection(infoGenerales)}
+                              onClick={() => scrollToSection(infoGenerales.sectionType)}
                             >
                               Informations générales
                             </Button>
@@ -348,32 +485,26 @@ export default function Chat() {
                           
                           const sections = groupedSections[category];
                           
-                          // Check if any section in this category is selected
-                          const isCategorySelected = sections.some(section => 
-                            selectedSection?.sectionType === section.sectionType
+                          // Check if any section in this category is currently visible
+                          const isCategoryVisible = sections.some((section: SectionType) => 
+                            visibleSection === section.sectionType
                           );
                           
                           categoryElements.push(
                             <Button
                               key={categoryIndex}
-                              variant={isCategorySelected ? "default" : "outline"}
+                              variant={isCategoryVisible ? "default" : "outline"}
                               size="sm"
                               className="whitespace-nowrap"
                               onClick={() => {
-                                // If category is already expanded, collapse it
-                                if (expandedCategory === category) {
-                                  setExpandedCategory(null);
-                                } else {
-                                  setExpandedCategory(category);
+                                // Scroll to first section of this category
+                                const firstSection = sections[0];
+                                if (firstSection) {
+                                  scrollToSection(firstSection.sectionType);
                                 }
                               }}
                             >
                               {categoryDefinition.name}
-                              {expandedCategory === category ? (
-                                <ChevronDown className="h-4 w-4 ml-1" />
-                              ) : (
-                                <ChevronRight className="h-4 w-4 ml-1" />
-                              )}
                             </Button>
                           );
                         });
@@ -385,39 +516,7 @@ export default function Chat() {
                               {categoryElements}
                             </div>
                             
-                            {/* Expanded subcategory navigation */}
-                            {expandedCategory && groupedSections[expandedCategory] && (
-                              <div className="border-t pt-4">
-                                <div className="flex flex-wrap gap-2">
-                                  {(() => {
-                                    const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
-                                    if (!categoryDef) return null;
-                                    
-                                    const sections = groupedSections[expandedCategory];
-                                    const subcategoryElements: JSX.Element[] = [];
-                                    
-                                    categoryDef.subcategories.forEach((subcategoryDef, index) => {
-                                      const section = sections.find(s => s.subcategory === subcategoryDef.id);
-                                      if (section) {
-                                        subcategoryElements.push(
-                                          <Button
-                                            key={index}
-                                            variant={selectedSection?.sectionType === section.sectionType ? "default" : "secondary"}
-                                            size="sm"
-                                            className="whitespace-nowrap text-xs"
-                                            onClick={() => setSelectedSection(section)}
-                                          >
-                                            {subcategoryDef.name}
-                                          </Button>
-                                        );
-                                      }
-                                    });
-                                    
-                                    return subcategoryElements;
-                                  })()}
-                                </div>
-                              </div>
-                            )}
+
                           </div>
                         );
                       })()}
@@ -494,71 +593,83 @@ export default function Chat() {
               )}
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-[calc(100vh-260px)]">
-                {!selectedSection ? (
-                  <div className="flex flex-col items-center justify-center py-12 text-muted-foreground space-y-4">
-                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-muted/50">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
-                        <line x1="20" x2="10" y1="12" y2="12"></line>
-                        <line x1="20" x2="20" y1="12" y2="20"></line>
-                        <line x1="20" x2="20" y1="12" y2="4"></line>
-                        <polyline points="10 18 4 12 10 6"></polyline>
-                      </svg>
-                    </div>
-                    <div className="font-medium text-lg">Aucune section sélectionnée</div>
-                    <p className="text-sm max-w-md text-center">
-                      Veuillez sélectionner une section dans le menu à gauche pour afficher son contenu
-                    </p>
-                  </div>
-                ) : isLoadingSectionContent ? (
-                  <div className="space-y-4">
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-3/4" />
-                    <Skeleton className="h-4 w-5/6" />
-                    <Skeleton className="h-4 w-2/3" />
-                    <Skeleton className="h-4 w-full" />
-                  </div>
-                ) : (
-                  <div className="prose dark:prose-invert max-w-none prose-sm enhanced-table-container" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
-                    {/* Afficher la réponse brute en cas de problème */}
-                    {sectionContent ? (
-                      <>
-                        {hasDispositifLegal(selectedSection?.sectionType || "") && (
-                          <div className="mb-4">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="text-xs flex items-center orange-button hover:bg-orange-100 hover:text-orange-800"
-                              onClick={() => setIsLegalDialogOpen(true)}
-                            >
-                              <BookOpen className="h-3.5 w-3.5 mr-1" />
-                              Voir le dispositif légal
-                            </Button>
-                            
-                            <DispositifLegalDialog 
-                              isOpen={isLegalDialogOpen}
-                              setIsOpen={setIsLegalDialogOpen}
-                              title={selectedSection?.label || "Dispositif légal"}
-                              content={getDispositifLegal(selectedSection?.sectionType || "")}
-                            />
-                          </div>
-                        )}
-                        {/* Ajout d'une classe pour le défilement avec barre orange */}
-                        <div className="enhanced-table-container relative">
-                          <MarkdownTableRendererEnhanced 
-                            content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
+              {isLoadingSections ? (
+                <div className="space-y-4">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-5/6" />
+                  <Skeleton className="h-4 w-2/3" />
+                  <Skeleton className="h-4 w-full" />
+                </div>
+              ) : (
+                <div ref={contentRef} className="space-y-8">
+                  {sectionTypes && sectionTypes.length > 0 ? (
+                    <>
+                      {/* Afficher toutes les sections avec leur contenu */}
+                      {/* Commencer par "Informations générales" */}
+                      {(() => {
+                        const infoGenerales = sectionTypes.find((section: SectionType) => 
+                          section.category === "informations-generales" && section.subcategory === "generale"
+                        );
+                        
+                        return infoGenerales ? (
+                          <SectionContent 
+                            key="info-gen"
+                            section={infoGenerales}
+                            conventionId={id || ""}
+                            isActive={visibleSection === infoGenerales.sectionType}
                           />
-                        </div>
-                      </>
-                    ) : (
-                      <div className="text-red-500">
-                        <p>Aucune donnée reçue de l'API.</p>
-                        <p>Vérifiez les paramètres de la requête ou consultez les logs serveur.</p>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </ScrollArea>
+                        ) : null;
+                      })()}
+                      
+                      {/* Afficher les autres sections par catégorie */}
+                      {CATEGORIES.map((categoryDefinition) => {
+                        const category = categoryDefinition.id;
+                        
+                        if (category === "informations-generales") return null;
+                        
+                        const categorySections = sectionTypes.filter((section: SectionType) => 
+                          section.category === category
+                        );
+                        
+                        if (categorySections.length === 0) return null;
+                        
+                        return (
+                          <div key={category}>
+                            {/* Titre de catégorie */}
+                            <div className="border-t pt-6">
+                              <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
+                                {categoryDefinition.name}
+                              </h2>
+                            </div>
+                            
+                            {/* Sous-sections dans l'ordre défini */}
+                            <div className="space-y-6">
+                              {categoryDefinition.subcategories.map((subcategoryDef) => {
+                                const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                                if (!section) return null;
+                                
+                                return (
+                                  <SectionContent 
+                                    key={section.sectionType}
+                                    section={section}
+                                    conventionId={id || ""}
+                                    isActive={visibleSection === section.sectionType}
+                                  />
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    <div className="text-center py-6 text-gray-500">
+                      Aucune section disponible
+                    </div>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
