@@ -382,7 +382,7 @@ export default function Chat() {
                     </div>
                     
                     {/* Sous-catégories étendues */}
-                    {expandedCategory && (
+                    {expandedCategory && expandedCategory !== "informations-generales" && (
                       <div className="border-t pt-3">
                         <div className="flex flex-wrap gap-2">
                           {(() => {
