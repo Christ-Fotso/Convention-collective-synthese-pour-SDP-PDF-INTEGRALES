@@ -63,21 +63,13 @@ export default function Chat() {
       if (!id) return [];
       const response = await axios.get(`/api/convention/${id}/section-types`);
       return response.data.map((type: string) => {
-        const [backendCategory, backendSubcategory] = type.split(".");
-        
-        let displayCategory = backendCategory;
-        let displaySubcategory = backendSubcategory;
-        
-        if (backendCategory === "protection-sociale" && ["prevoyance", "retraite", "mutuelle"].includes(backendSubcategory)) {
-          displayCategory = "cotisations";
-          displaySubcategory = backendSubcategory;
-        }
+        const [category, subcategory] = type.split(".");
         
         return {
           sectionType: type,
-          category: displayCategory,
-          subcategory: displaySubcategory,
-          label: `${displayCategory}.${displaySubcategory}`
+          category: category,
+          subcategory: subcategory,
+          label: `${category}.${subcategory}`
         };
       });
     },
