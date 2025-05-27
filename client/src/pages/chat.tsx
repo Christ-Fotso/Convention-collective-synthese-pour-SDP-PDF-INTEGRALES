@@ -236,65 +236,95 @@ export default function Chat() {
         </Alert>
       )}
       
-      {/* Navigation par sections avec style moderne */}
+      {/* Navigation hiérarchique par catégories */}
       {convention && (
-        <nav className="bg-white rounded-xl p-4 mb-5 shadow-md">
+        <div className="bg-white rounded-xl p-6 mb-5 shadow-md">
           <h3 className="text-lg font-semibold mb-4 text-center text-slate-700">
             Sections disponibles
           </h3>
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            {isLoadingSections ? (
-              <div className="flex gap-3 flex-wrap justify-center">
-                <Skeleton className="h-12 w-40" />
-                <Skeleton className="h-12 w-40" />
-                <Skeleton className="h-12 w-40" />
-                <Skeleton className="h-12 w-40" />
-                <Skeleton className="h-12 w-40" />
-                <Skeleton className="h-12 w-40" />
-              </div>
-            ) : (
-              sectionTypes?.map((section: SectionType, index: number) => {
-                const categoryData = CATEGORIES.find(cat => cat.id === section.category);
-                const subcategoryData = categoryData?.subcategories.find(sub => sub.id === section.subcategory);
-                const displayLabel = subcategoryData ? `${categoryData?.name} - ${subcategoryData.name}` : section.label;
-                
-                return (
-                  <button 
-                    key={index}
-                    onClick={() => setSelectedSection(section)}
-                    className={`px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 text-center text-sm font-medium min-w-40 border-2 ${
-                      selectedSection?.sectionType === section.sectionType
-                        ? 'bg-blue-500 text-white border-blue-500 shadow-lg transform -translate-y-0.5'
-                        : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-blue-500 hover:text-white hover:border-blue-500 hover:-translate-y-0.5 hover:shadow-lg'
-                    }`}
-                  >
-                    {displayLabel}
-                  </button>
-                );
-              })
-            )}
-          </div>
-        </nav>
+          {isLoadingSections ? (
+            <div className="space-y-2">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {(() => {
+                // Grouper les sections par catégorie
+                const groupedSections: Record<string, SectionType[]> = {};
+                sectionTypes?.forEach((section: SectionType) => {
+                  if (!groupedSections[section.category]) {
+                    groupedSections[section.category] = [];
+                  }
+                  groupedSections[section.category].push(section);
+                });
+
+                return Object.entries(groupedSections).map(([categoryId, sections]) => {
+                  const categoryData = CATEGORIES.find(cat => cat.id === categoryId);
+                  const isExpanded = expandedCategory === categoryId;
+                  
+                  return (
+                    <div key={categoryId} className="border border-gray-200 rounded-lg">
+                      {/* En-tête de catégorie */}
+                      <button
+                        onClick={() => setExpandedCategory(isExpanded ? null : categoryId)}
+                        className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="font-medium text-green-600">
+                          {categoryData?.name || categoryId}
+                        </span>
+                        <ChevronRight 
+                          className={`h-4 w-4 text-gray-400 transition-transform ${
+                            isExpanded ? 'rotate-90' : ''
+                          }`} 
+                        />
+                      </button>
+                      
+                      {/* Sous-sections */}
+                      {isExpanded && (
+                        <div className="border-t border-gray-200 bg-gray-50">
+                          {sections.map((section, index) => {
+                            const subcategoryData = categoryData?.subcategories.find(sub => sub.id === section.subcategory);
+                            
+                            return (
+                              <button
+                                key={index}
+                                onClick={() => setSelectedSection(section)}
+                                className={`w-full text-left px-6 py-2 text-sm hover:bg-gray-100 transition-colors ${
+                                  selectedSection?.sectionType === section.sectionType 
+                                    ? 'bg-blue-100 text-blue-700 font-medium' 
+                                    : 'text-gray-700'
+                                }`}
+                              >
+                                {subcategoryData?.name || section.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+          )}
+        </div>
       )}
 
-      {convention && (
-        <div className="grid grid-cols-1 gap-6">
-          {/* Zone de contenu principal */}
-          <Card>
-            <CardContent>
-              {isLoadingSections ? (
-                <div className="space-y-2">
-                  <Skeleton className="h-10 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-              ) : (
-                <ScrollArea className="h-[calc(100vh-260px)]">
-                  {sectionTypes && sectionTypes.length > 0 ? (
-                    <div className="space-y-6">
-                      {(() => {
-                        // On regroupe d'abord les sections par catégorie
-                        const groupedSections: Record<string, SectionType[]> = {};
+      {/* Affichage du contenu de la section sélectionnée uniquement quand une section est choisie */}
+      {selectedSection && (
+        <div className="bg-white rounded-xl p-8 shadow-md">
+          <div className="text-center">
+            <p className="text-lg text-gray-600">
+              Section sélectionnée : <span className="font-semibold">{selectedSection.label}</span>
+            </p>
+            <p className="text-sm text-gray-500 mt-2">
+              Le contenu de cette section sera affiché ici lors de l'implémentation complète.
+            </p>
+          </div>
+        </div>
+      )}
                         
                         // Filtrer les sections selon le terme de recherche (si présent)
                         const filteredSections = searchTerm.trim() !== '' 
