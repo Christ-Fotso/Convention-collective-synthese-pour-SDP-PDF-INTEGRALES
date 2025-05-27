@@ -402,7 +402,11 @@ export default function Chat() {
                                   key={section.sectionType}
                                   variant={visibleSection === section.sectionType ? "default" : "outline"}
                                   size="sm"
-                                  className="whitespace-nowrap text-xs bg-orange-50 border-orange-200 text-orange-700 hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-colors duration-200"
+                                  className={`whitespace-nowrap text-xs transition-colors duration-200 ${
+                                    visibleSection === section.sectionType 
+                                      ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                                      : "bg-orange-50 border-orange-200 hover:bg-primary/10 hover:text-primary hover:border-primary/50"
+                                  }`}
                                   onClick={() => scrollToSection(section.sectionType)}
                                 >
                                   {subcategoryDef.name}
