@@ -233,7 +233,14 @@ export default function Chat() {
   const scrollToSection = (sectionType: string) => {
     const element = document.getElementById(`section-${sectionType}`);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const headerHeight = 140; // Hauteur approximative du menu fixe
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
   
@@ -373,7 +380,7 @@ export default function Chat() {
           </div>
 
           {/* Contenu principal avec défilement continu */}
-          <div ref={contentRef} className="space-y-8">
+          <div ref={contentRef} className="space-y-8 pt-4">
             {sectionTypes && sectionTypes.length > 0 ? (
               <>
                 {/* Commencer par "Informations générales" */}
