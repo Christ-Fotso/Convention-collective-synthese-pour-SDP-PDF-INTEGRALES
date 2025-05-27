@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, BookOpen, MessageSquare, ChevronUp } from "lucide-react";
+import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, ChevronDown, ChevronRight } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -125,6 +125,7 @@ export default function Chat() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isChatDialogOpen, setIsChatDialogOpen] = useState<boolean>(false);
   const [showScrollToTop, setShowScrollToTop] = useState<boolean>(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Requête pour obtenir les informations sur la convention
@@ -337,7 +338,7 @@ export default function Chat() {
                     <Skeleton className="h-8 w-32" />
                   </div>
                 ) : sectionTypes && sectionTypes.length > 0 ? (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="space-y-3">
                     {/* Navigation "Informations générales" */}
                     {(() => {
                       const infoGenerales = sectionTypes.find((section: SectionType) => 
@@ -357,39 +358,82 @@ export default function Chat() {
                       ) : null;
                     })()}
                     
-                    {/* Navigation par catégories */}
-                    {CATEGORIES.map((categoryDefinition, categoryIndex) => {
-                      const category = categoryDefinition.id;
-                      
-                      if (category === "informations-generales") return null;
-                      
-                      const categorySections = sectionTypes.filter((section: SectionType) => 
-                        section.category === category
-                      );
-                      
-                      if (categorySections.length === 0) return null;
-                      
-                      const isCategoryVisible = categorySections.some((section: SectionType) => 
-                        visibleSection === section.sectionType
-                      );
-                      
-                      return (
-                        <Button
-                          key={categoryIndex}
-                          variant={isCategoryVisible ? "default" : "outline"}
-                          size="sm"
-                          className="whitespace-nowrap"
-                          onClick={() => {
-                            const firstSection = categorySections[0];
-                            if (firstSection) {
-                              scrollToSection(firstSection.sectionType);
-                            }
-                          }}
-                        >
-                          {categoryDefinition.name}
-                        </Button>
-                      );
-                    })}
+                    {/* Navigation par catégories principales */}
+                    <div className="flex flex-wrap gap-2">
+                      {CATEGORIES.map((categoryDefinition, categoryIndex) => {
+                        const category = categoryDefinition.id;
+                        
+                        if (category === "informations-generales") return null;
+                        
+                        const categorySections = sectionTypes.filter((section: SectionType) => 
+                          section.category === category
+                        );
+                        
+                        if (categorySections.length === 0) return null;
+                        
+                        const isCategoryVisible = categorySections.some((section: SectionType) => 
+                          visibleSection === section.sectionType
+                        );
+                        
+                        const isCategoryExpanded = expandedCategory === category;
+                        
+                        return (
+                          <Button
+                            key={categoryIndex}
+                            variant={isCategoryVisible ? "default" : "outline"}
+                            size="sm"
+                            className="whitespace-nowrap flex items-center gap-1"
+                            onClick={() => {
+                              if (isCategoryExpanded) {
+                                setExpandedCategory(null);
+                              } else {
+                                setExpandedCategory(category);
+                              }
+                            }}
+                          >
+                            {categoryDefinition.name}
+                            {isCategoryExpanded ? (
+                              <ChevronDown className="h-3 w-3" />
+                            ) : (
+                              <ChevronRight className="h-3 w-3" />
+                            )}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Sous-catégories étendues */}
+                    {expandedCategory && (
+                      <div className="border-t pt-3">
+                        <div className="flex flex-wrap gap-2">
+                          {(() => {
+                            const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
+                            if (!categoryDef) return null;
+                            
+                            const categorySections = sectionTypes.filter((section: SectionType) => 
+                              section.category === expandedCategory
+                            );
+                            
+                            return categoryDef.subcategories.map((subcategoryDef) => {
+                              const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                              if (!section) return null;
+                              
+                              return (
+                                <Button
+                                  key={section.sectionType}
+                                  variant={visibleSection === section.sectionType ? "default" : "secondary"}
+                                  size="sm"
+                                  className="whitespace-nowrap text-xs"
+                                  onClick={() => scrollToSection(section.sectionType)}
+                                >
+                                  {subcategoryDef.name}
+                                </Button>
+                              );
+                            });
+                          })()}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="text-center py-2 text-gray-500">
