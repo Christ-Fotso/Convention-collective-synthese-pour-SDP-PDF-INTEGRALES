@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, BookOpen, MessageSquare } from "lucide-react";
+import { ChevronLeft, BookOpen, MessageSquare, ChevronUp } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -124,6 +124,7 @@ export default function Chat() {
   const [visibleSection, setVisibleSection] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isChatDialogOpen, setIsChatDialogOpen] = useState<boolean>(false);
+  const [showScrollToTop, setShowScrollToTop] = useState<boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Requête pour obtenir les informations sur la convention
@@ -208,6 +209,9 @@ export default function Chat() {
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       
+      // Afficher/masquer le bouton "Retour en haut"
+      setShowScrollToTop(scrollTop > 300);
+      
       for (const section of sectionTypes) {
         const element = document.getElementById(`section-${section.sectionType}`);
         if (element) {
@@ -242,6 +246,14 @@ export default function Chat() {
         behavior: 'smooth'
       });
     }
+  };
+
+  // Fonction pour retourner en haut de la page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
   
   return (
@@ -447,6 +459,18 @@ export default function Chat() {
             )}
           </div>
         </div>
+      )}
+      
+      {/* Bouton "Retour en haut" fixe */}
+      {showScrollToTop && (
+        <Button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-20 rounded-full w-12 h-12 shadow-lg bg-green-600 hover:bg-green-700 text-white"
+          size="icon"
+          title="Retour en haut"
+        >
+          <ChevronUp className="h-6 w-6" />
+        </Button>
       )}
       
       {/* Dialog de chat */}
