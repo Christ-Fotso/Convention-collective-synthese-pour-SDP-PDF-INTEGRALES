@@ -238,7 +238,10 @@ export default function Chat() {
   const scrollToSection = (sectionType: string) => {
     const element = document.getElementById(`section-${sectionType}`);
     if (element) {
-      const headerHeight = 200; // Hauteur augmentée pour garder le titre visible
+      // Calculer la hauteur réelle de l'en-tête fixe
+      const stickyHeader = document.querySelector('.sticky');
+      const headerHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height + 20 : 160;
+      
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerHeight;
       
