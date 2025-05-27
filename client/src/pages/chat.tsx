@@ -274,16 +274,7 @@ export default function Chat() {
           </h1>
         </div>
         
-        {convention && (
-          <Button 
-            variant="default" 
-            onClick={() => setIsChatDialogOpen(true)}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white"
-          >
-            <MessageSquare className="h-4 w-4" />
-            Poser une question
-          </Button>
-        )}
+
       </div>
       
       {!isLoadingConvention && !convention && (
@@ -303,20 +294,33 @@ export default function Chat() {
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle>Sections disponibles</CardTitle>
-                  <div className="relative w-64">
-                    <input
-                      type="text"
-                      placeholder="Rechercher une section..."
-                      className="w-full p-2 pr-8 text-sm border rounded-md"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-64">
+                      <input
+                        type="text"
+                        placeholder="Rechercher une section..."
+                        className="w-full p-2 pr-8 text-sm border rounded-md"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                      </div>
                     </div>
+                    {convention && (
+                      <Button 
+                        variant="default" 
+                        onClick={() => setIsChatDialogOpen(true)}
+                        className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white whitespace-nowrap"
+                        size="sm"
+                      >
+                        <MessageSquare className="h-4 w-4" />
+                        Poser une question
+                      </Button>
+                    )}
                   </div>
                 </div>
               </CardHeader>
