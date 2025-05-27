@@ -236,6 +236,9 @@ export default function Chat() {
 
   // Fonction pour faire défiler vers une section
   const scrollToSection = (sectionType: string) => {
+    // Définir immédiatement la section visible
+    setVisibleSection(sectionType);
+    
     const element = document.getElementById(`section-${sectionType}`);
     if (element) {
       // Calculer la hauteur réelle de l'en-tête fixe
