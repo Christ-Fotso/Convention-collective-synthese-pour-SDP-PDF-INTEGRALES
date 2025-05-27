@@ -204,34 +204,44 @@ export default function Chat() {
 
   // Effet pour détecter la section visible lors du défilement
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
     const handleScroll = () => {
       if (!sectionTypes) return;
       
       const scrollTop = window.scrollY;
-      const windowHeight = window.innerHeight;
       
       // Afficher/masquer le bouton "Retour en haut"
       setShowScrollToTop(scrollTop > 300);
       
-      for (const section of sectionTypes) {
-        const element = document.getElementById(`section-${section.sectionType}`);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementTop = rect.top + scrollTop;
-          const elementBottom = elementTop + rect.height;
-          
-          if (elementTop <= scrollTop + windowHeight * 0.3 && elementBottom >= scrollTop + windowHeight * 0.3) {
-            if (visibleSection !== section.sectionType) {
-              setVisibleSection(section.sectionType);
+      // Délai pour éviter les conflits avec les clics manuels
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const windowHeight = window.innerHeight;
+        
+        for (const section of sectionTypes) {
+          const element = document.getElementById(`section-${section.sectionType}`);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const elementTop = rect.top + scrollTop;
+            const elementBottom = elementTop + rect.height;
+            
+            if (elementTop <= scrollTop + windowHeight * 0.3 && elementBottom >= scrollTop + windowHeight * 0.3) {
+              if (visibleSection !== section.sectionType) {
+                setVisibleSection(section.sectionType);
+              }
+              break;
             }
-            break;
           }
         }
-      }
+      }, 100); // Délai de 100ms
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
   }, [sectionTypes, visibleSection]);
 
   // Fonction pour faire défiler vers une section
