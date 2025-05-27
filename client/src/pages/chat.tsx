@@ -185,35 +185,48 @@ export default function Chat() {
   }, [sectionTypes, selectedSection]);
   
   return (
-    <div className="container mx-auto py-6 space-y-6">
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/")} title="Retour à la liste des conventions">
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="text-2xl font-bold">
-            {isLoadingConvention ? (
-              <Skeleton className="h-8 w-64" />
-            ) : convention ? (
-              `Convention collective: ${convention.name}`
-            ) : (
-              "Convention non trouvée"
-            )}
-          </h1>
-        </div>
-        
-        {convention && (
-          <Button 
-            variant="default" 
-            onClick={() => setIsChatDialogOpen(true)}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white"
-          >
-            <MessageSquare className="h-4 w-4" />
-            Poser une question
-          </Button>
-        )}
-      </div>
-      
+    <div className="max-w-7xl mx-auto p-5">
+      {/* En-tête de la convention avec style moderne */}
+      {convention && (
+        <header className="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl mb-5 shadow-lg">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => navigate("/")}
+                className="text-white hover:bg-white/20"
+                title="Retour à la liste des conventions"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <h1 className="text-3xl font-semibold">
+                {isLoadingConvention ? (
+                  <Skeleton className="h-8 w-64 bg-white/20" />
+                ) : (
+                  convention.name
+                )}
+              </h1>
+            </div>
+            
+            <Button 
+              variant="outline" 
+              onClick={() => setIsChatDialogOpen(true)}
+              className="bg-white/10 border-white/30 text-white hover:bg-white/20 flex items-center gap-2"
+            >
+              <MessageSquare className="h-4 w-4" />
+              Poser une question
+            </Button>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="bg-white/20 px-4 py-2 rounded-lg text-sm">
+              Code IDCC: <span className="font-medium">{convention.id}</span>
+              <span className="opacity-80 text-xs ml-4">MAJ : 26 mai 2025</span>
+            </div>
+          </div>
+        </header>
+      )}
+
       {!isLoadingConvention && !convention && (
         <Alert variant="destructive">
           <AlertTitle>Erreur</AlertTitle>
