@@ -383,6 +383,13 @@ export default function Chat() {
                                 setExpandedCategory(null);
                               } else {
                                 setExpandedCategory(category);
+                                // Aller automatiquement à la première sous-section
+                                const firstSection = categorySections[0];
+                                if (firstSection) {
+                                  setTimeout(() => {
+                                    scrollToSection(firstSection.sectionType);
+                                  }, 50); // Petit délai pour laisser le temps à l'expansion
+                                }
                               }
                             }}
                           >
