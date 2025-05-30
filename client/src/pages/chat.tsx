@@ -253,7 +253,7 @@ export default function Chat() {
     if (element) {
       // Calculer la hauteur réelle de l'en-tête fixe
       const stickyHeader = document.querySelector('.sticky');
-      const headerHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height + 20 : 160;
+      const headerHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height + 30 : 170;
       
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerHeight;
@@ -262,6 +262,34 @@ export default function Chat() {
         top: offsetPosition,
         behavior: 'smooth'
       });
+    }
+  };
+
+  // Fonction pour faire défiler vers le titre d'une section (pour les catégories principales)
+  const scrollToSectionTitle = (sectionType: string) => {
+    // Définir immédiatement la section visible
+    setVisibleSection(sectionType);
+    
+    const element = document.getElementById(`section-${sectionType}`);
+    if (element) {
+      // Trouver le titre h3 dans la section
+      const titleElement = element.querySelector('h3');
+      if (titleElement) {
+        // Calculer la hauteur réelle de l'en-tête fixe
+        const stickyHeader = document.querySelector('.sticky');
+        const headerHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height + 30 : 170;
+        
+        const titlePosition = titleElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = titlePosition - headerHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      } else {
+        // Fallback vers le début de la section si pas de titre trouvé
+        scrollToSection(sectionType);
+      }
     }
   };
 
@@ -383,11 +411,11 @@ export default function Chat() {
                                 setExpandedCategory(null);
                               } else {
                                 setExpandedCategory(category);
-                                // Aller automatiquement à la première sous-section
+                                // Aller automatiquement au titre de la première sous-section
                                 const firstSection = categorySections[0];
                                 if (firstSection) {
                                   setTimeout(() => {
-                                    scrollToSection(firstSection.sectionType);
+                                    scrollToSectionTitle(firstSection.sectionType);
                                   }, 50); // Petit délai pour laisser le temps à l'expansion
                                 }
                               }
