@@ -272,24 +272,17 @@ export default function Chat() {
     
     const element = document.getElementById(`section-${sectionType}`);
     if (element) {
-      // Trouver le titre h3 dans la section
-      const titleElement = element.querySelector('h3');
-      if (titleElement) {
-        // Calculer la hauteur réelle de l'en-tête fixe
-        const stickyHeader = document.querySelector('.sticky');
-        const headerHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height + 30 : 170;
-        
-        const titlePosition = titleElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = titlePosition - headerHeight;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      } else {
-        // Fallback vers le début de la section si pas de titre trouvé
-        scrollToSection(sectionType);
-      }
+      // Calculer la hauteur réelle de l'en-tête fixe avec plus d'espace
+      const stickyHeader = document.querySelector('.sticky');
+      const headerHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height + 80 : 220;
+      
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
