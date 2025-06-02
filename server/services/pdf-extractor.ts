@@ -112,20 +112,29 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
  */
 export async function extractTextFromURL(url: string): Promise<string> {
   try {
+    console.log(`[PDF] Début de l'extraction pour URL: ${url}`);
+    
     // Créer un hash de l'URL pour le nom du fichier
     const urlHash = createHash('md5').update(url).digest('hex');
     const tempFilePath = path.join(TEMP_DIR, `${urlHash}.pdf`);
     
+    console.log(`[PDF] Téléchargement vers: ${tempFilePath}`);
+    
     // Télécharger le PDF
     const response = await axios.get(url, { responseType: 'arraybuffer' });
+    console.log(`[PDF] PDF téléchargé: ${response.data.byteLength} bytes`);
+    
     fs.writeFileSync(tempFilePath, Buffer.from(response.data));
+    console.log(`[PDF] Fichier sauvegardé, début de l'extraction du texte`);
     
     // Extraire le texte
     const text = await extractTextFromPDF(tempFilePath);
+    console.log(`[PDF] Extraction réussie: ${text.length} caractères`);
     
     return text;
   } catch (error: any) {
-    console.error(`Erreur lors de l'extraction du texte depuis l'URL:`, error);
+    console.error(`[PDF] Erreur lors de l'extraction du texte depuis l'URL:`, error);
+    console.error(`[PDF] Stack trace:`, error.stack);
     throw new Error(`Impossible d'extraire le texte depuis l'URL: ${error.message}`);
   }
 }
