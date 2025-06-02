@@ -233,14 +233,14 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     // Trouver la convention avec l'URL réelle
     const convention = conventions.find((conv: any) => conv.IDCC === conventionId);
     
-    if (!convention || !convention.url) {
+    if (!convention || !convention.Link) {
       throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
     }
     
-    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
+    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.Link}`);
     
     // 3. Extraire le texte complet du PDF
-    const conventionText = await extractTextFromURL(convention.url);
+    const conventionText = await extractTextFromURL(convention.Link);
     
     console.log(`[INFO] Texte PDF extrait: ${conventionText.length} caractères`);
     
