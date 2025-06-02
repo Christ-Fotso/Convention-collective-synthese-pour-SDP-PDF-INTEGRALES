@@ -153,16 +153,16 @@ startxref
 function findRelevantSections(conventionId: string, question: string): Array<{content: string, sectionType: string}> {
   const sections = getSectionsByConvention(conventionId);
   
-  // Mots-clés pour différents types de sections
+  // Mots-clés pour différents types de sections avec plus de variantes
   const sectionKeywords = {
-    'embauche': ['embauche', 'recrutement', 'période essai', 'délai prévenance', 'contrat', 'cdi', 'cdd'],
-    'temps-travail': ['temps travail', 'durée', 'heures', 'horaires', 'forfait', 'temps partiel', 'heures supplémentaires', '35h', 'travail'],
-    'conges': ['congés', 'vacances', 'CET', 'repos', 'événement familial', 'congé', 'absence'],
-    'remuneration': ['salaire', 'rémunération', 'apprenti', 'stagiaire', 'grille', 'prime', 'paye', 'euros'],
-    'depart': ['licenciement', 'démission', 'retraite', 'préavis', 'rupture', 'départ', 'fin contrat'],
-    'protection-sociale': ['mutuelle', 'prévoyance', 'retraite', 'sécurité sociale', 'santé', 'complémentaire'],
-    'classification': ['classification', 'grille', 'catégorie', 'niveau', 'coefficient'],
-    'formation': ['formation', 'apprentissage', 'stage', 'cpf']
+    'embauche': ['embauche', 'recrutement', 'période essai', 'délai prévenance', 'contrat', 'cdi', 'cdd', 'engagement'],
+    'temps-travail': ['temps travail', 'durée', 'heures', 'horaires', 'forfait', 'temps partiel', 'heures supplémentaires', '35h', 'travail', 'dimanche', 'week-end', 'samedi', 'nuit', 'nocturne', 'majoration', 'soir', 'matin', 'amplitude', 'repos dominical', 'jour férié', 'fête', 'aménagement'],
+    'conges': ['congés', 'vacances', 'CET', 'repos', 'événement familial', 'congé', 'absence', 'rtt', 'récupération'],
+    'remuneration': ['salaire', 'rémunération', 'apprenti', 'stagiaire', 'grille', 'prime', 'paye', 'euros', 'majoration', 'supplément', 'indemnité', 'coefficient', 'minimum'],
+    'depart': ['licenciement', 'démission', 'retraite', 'préavis', 'rupture', 'départ', 'fin contrat', 'résiliation'],
+    'protection-sociale': ['mutuelle', 'prévoyance', 'retraite', 'sécurité sociale', 'santé', 'complémentaire', 'assurance'],
+    'classification': ['classification', 'grille', 'catégorie', 'niveau', 'coefficient', 'échelon', 'position'],
+    'formation': ['formation', 'apprentissage', 'stage', 'cpf', 'professionnalisation']
   };
   
   const questionLower = question.toLowerCase();
@@ -179,19 +179,44 @@ function findRelevantSections(conventionId: string, question: string): Array<{co
     }
   }
   
-  // Si aucune section trouvée par mots-clés, inclure les informations générales
-  if (relevantSections.length === 0) {
-    const generalSection = sections.find(s => s.sectionType.includes('informations-generales'));
-    if (generalSection) {
-      relevantSections.push({
-        content: generalSection.content,
-        sectionType: generalSection.sectionType
-      });
+  // Toujours inclure les informations générales comme contexte de base
+  const generalSection = sections.find(s => s.sectionType.includes('informations-generales'));
+  if (generalSection && !relevantSections.some(s => s.sectionType === generalSection.sectionType)) {
+    relevantSections.unshift({
+      content: generalSection.content,
+      sectionType: generalSection.sectionType
+    });
+  }
+
+  // Si peu de sections trouvées, ajouter des sections connexes
+  if (relevantSections.length < 4) {
+    // Ajouter toutes les sections temps-travail pour les questions sur les heures
+    if (questionLower.includes('heure') || questionLower.includes('travail') || questionLower.includes('dimanche')) {
+      const timeWorkSections = sections.filter(s => 
+        s.sectionType.startsWith('temps-travail') && 
+        !relevantSections.some(r => r.sectionType === s.sectionType)
+      );
+      relevantSections.push(...timeWorkSections.map(s => ({
+        content: s.content,
+        sectionType: s.sectionType
+      })));
+    }
+    
+    // Ajouter les sections rémunération pour les questions sur majoration/prime
+    if (questionLower.includes('majoration') || questionLower.includes('prime') || questionLower.includes('supplément')) {
+      const remuSections = sections.filter(s => 
+        s.sectionType.startsWith('remuneration') && 
+        !relevantSections.some(r => r.sectionType === s.sectionType)
+      );
+      relevantSections.push(...remuSections.map(s => ({
+        content: s.content,
+        sectionType: s.sectionType
+      })));
     }
   }
   
-  // Limiter à 3-4 sections pour éviter un contexte trop long
-  return relevantSections.slice(0, 4);
+  // Augmenter à 6-8 sections pour un contexte plus riche
+  return relevantSections.slice(0, 8);
 }
 
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
