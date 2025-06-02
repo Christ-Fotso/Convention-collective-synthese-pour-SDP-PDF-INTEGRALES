@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import axios from 'axios';
 import OpenAI from 'openai';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { downloadPDF, extractTextFromPDF as extractPDFText } from './pdf-extractor';
+import { downloadPDF, extractTextFromPDF as extractPDFText, extractTextFromURL } from './pdf-extractor.js';
 import { getSectionsByConvention } from '../sections-data';
 
 // Répertoire temporaire pour stocker les PDF téléchargés
@@ -225,9 +225,10 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
     console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
     
-    // Importer la fonction pour récupérer les conventions
-    const { getConventions } = await import('../data-manager.js');
-    const conventions = getConventions();
+    // Charger les conventions depuis le fichier JSON
+    const conventionsPath = path.join(process.cwd(), 'all_conventions.json');
+    const conventionsData = fs.readFileSync(conventionsPath, 'utf-8');
+    const conventions = JSON.parse(conventionsData);
     
     // Trouver la convention avec l'URL réelle
     const convention = conventions.find((conv: any) => conv.id === conventionId);
@@ -239,8 +240,7 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
     
     // 3. Extraire le texte complet du PDF
-    const { extractTextFromURL } = await import('./pdf-extractor.js');
-    const conventionText = await extractTextFromURL(convention.url, conventionId);
+    const conventionText = await extractTextFromURL(convention.url);
     
     console.log(`[INFO] Texte PDF extrait: ${conventionText.length} caractères`);
     
