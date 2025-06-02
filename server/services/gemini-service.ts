@@ -225,13 +225,13 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
     console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
     
-    // Charger les conventions depuis le fichier JSON
-    const conventionsPath = path.join(process.cwd(), 'all_conventions.json');
+    // Charger les conventions depuis le fichier original avec les vraies URLs
+    const conventionsPath = path.join(process.cwd(), 'data', 'conventions_original.json');
     const conventionsData = fs.readFileSync(conventionsPath, 'utf-8');
     const conventions = JSON.parse(conventionsData);
     
     // Trouver la convention avec l'URL réelle
-    const convention = conventions.find((conv: any) => conv.id === conventionId);
+    const convention = conventions.find((conv: any) => conv.IDCC === conventionId);
     
     if (!convention || !convention.url) {
       throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
