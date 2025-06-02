@@ -78,43 +78,54 @@ function findRelevantSections(text: string, question: string): string[] {
 }
 
 /**
- * Télécharge un PDF et extrait son contenu textuel de manière simplifiée
+ * Utilise l'API ChatPDF pour extraire le contenu authentique d'un PDF
  */
 async function downloadAndExtractPDFText(url: string, conventionId: string): Promise<string> {
   try {
-    console.log(`[INFO] Téléchargement du PDF depuis: ${url}`);
+    console.log(`[INFO] Ajout du PDF à ChatPDF depuis: ${url}`);
     
-    // Télécharger le PDF
-    const response = await axios.get(url, { 
-      responseType: 'arraybuffer',
-      timeout: 30000,
+    // 1. Ajouter le PDF à ChatPDF via son URL
+    const addUrlResponse = await axios.post('https://api.chatpdf.com/sources/add-url', {
+      url: url
+    }, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        'x-api-key': process.env.CHATPDF_API_KEY,
+        'Content-Type': 'application/json'
       }
     });
     
-    // Sauvegarder temporairement
-    const tempFilePath = path.join(TEMP_DIR, `convention_${conventionId}.pdf`);
-    fs.writeFileSync(tempFilePath, Buffer.from(response.data));
+    const sourceId = addUrlResponse.data.sourceId;
+    console.log(`[INFO] PDF ajouté à ChatPDF avec l'ID: ${sourceId}`);
     
-    console.log(`[INFO] PDF téléchargé: ${tempFilePath}`);
+    // 2. Demander le contenu complet du PDF via ChatPDF
+    const chatResponse = await axios.post('https://api.chatpdf.com/chats/message', {
+      sourceId: sourceId,
+      referenceSources: true,
+      messages: [
+        {
+          role: "user",
+          content: "Peux-tu extraire et me donner le contenu complet de ce document PDF ? Je veux tout le texte, tous les articles, toutes les sections, sans rien omettre. Présente le contenu de manière structurée en gardant la hiérarchie originale."
+        }
+      ]
+    }, {
+      headers: {
+        'x-api-key': process.env.CHATPDF_API_KEY,
+        'Content-Type': 'application/json'
+      }
+    });
     
-    // Pour l'instant, retourner un placeholder pour que Gemini puisse analyser
-    // En production, nous utiliserons un service d'extraction PDF externe
-    const placeholderText = `Convention collective IDCC: ${conventionId}
+    const extractedContent = chatResponse.data.content;
+    console.log(`[INFO] Contenu extrait via ChatPDF: ${extractedContent.length} caractères`);
     
-    [Ce document sera extrait via un service spécialisé]
-    
-    URL source: ${url}
-    Taille du fichier: ${response.data.byteLength} octets
-    
-    Pour analyser ce document, veuillez utiliser les sections pré-extraites disponibles.`;
-    
-    return placeholderText;
+    // 3. Nettoyer et retourner le contenu
+    return `Convention collective IDCC: ${conventionId}
+Source: ${url}
+
+${extractedContent}`;
     
   } catch (error: any) {
-    console.error(`[ERROR] Erreur lors du téléchargement PDF:`, error);
-    throw new Error(`Impossible de télécharger le PDF: ${error.message}`);
+    console.error(`[ERROR] Erreur avec l'API ChatPDF:`, error.response?.data || error.message);
+    throw new Error(`Impossible d'extraire le PDF avec ChatPDF: ${error.response?.data?.error || error.message}`);
   }
 }
 
