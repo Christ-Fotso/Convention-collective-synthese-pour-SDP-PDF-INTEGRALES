@@ -112,39 +112,20 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
  */
 export async function extractTextFromURL(url: string): Promise<string> {
   try {
-    console.log(`[PDF] Début de l'extraction pour URL: ${url}`);
-    
     // Créer un hash de l'URL pour le nom du fichier
     const urlHash = createHash('md5').update(url).digest('hex');
     const tempFilePath = path.join(TEMP_DIR, `${urlHash}.pdf`);
     
-    console.log(`[PDF] Téléchargement vers: ${tempFilePath}`);
-    
-    // Télécharger le PDF avec headers appropriés pour ElNet
-    const response = await axios.get(url, { 
-      responseType: 'arraybuffer',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'Accept': 'application/pdf,application/octet-stream,*/*',
-        'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1'
-      }
-    });
-    console.log(`[PDF] PDF téléchargé: ${response.data.byteLength} bytes`);
-    
+    // Télécharger le PDF
+    const response = await axios.get(url, { responseType: 'arraybuffer' });
     fs.writeFileSync(tempFilePath, Buffer.from(response.data));
-    console.log(`[PDF] Fichier sauvegardé, début de l'extraction du texte`);
     
     // Extraire le texte
     const text = await extractTextFromPDF(tempFilePath);
-    console.log(`[PDF] Extraction réussie: ${text.length} caractères`);
     
     return text;
   } catch (error: any) {
-    console.error(`[PDF] Erreur lors de l'extraction du texte depuis l'URL:`, error);
-    console.error(`[PDF] Stack trace:`, error.stack);
+    console.error(`Erreur lors de l'extraction du texte depuis l'URL:`, error);
     throw new Error(`Impossible d'extraire le texte depuis l'URL: ${error.message}`);
   }
 }
