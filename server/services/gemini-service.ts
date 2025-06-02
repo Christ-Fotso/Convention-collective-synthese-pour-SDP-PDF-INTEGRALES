@@ -272,17 +272,26 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     QUESTION: ${question}
     
     FORMAT DE RÉPONSE:
-    - Réponds de façon précise et concise en français
-    - Utilise des listes à puces quand approprié
-    - Évite les longues introductions
-    - Fournis uniquement des informations provenant du document
+    - Réponds de façon détaillée et complète en français
+    - Fournis toutes les informations pertinentes trouvées dans les sections
+    - Utilise des listes à puces pour structurer les informations
+    - Cite les articles ou dispositions spécifiques quand disponibles
+    - N'hésite pas à donner des exemples concrets ou des calculs si mentionnés
+    - Explique le contexte et les conditions d'application
+    - Fournis une réponse substantielle basée sur les sections ci-dessus
     `;
     
     console.log(`[INFO] Envoi de la requête à l'API Gemini`);
     
     try {
       // 4. Appel à l'API Gemini avec le modèle gemini-1.5-flash (plus économique)
-      const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = geminiApi.getGenerativeModel({ 
+        model: "gemini-1.5-flash",
+        generationConfig: {
+          maxOutputTokens: 2048,  // Augmenter la limite de tokens pour des réponses plus longues
+          temperature: 0.1,       // Garder une température faible pour la précision
+        }
+      });
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
@@ -302,7 +311,13 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
           const reducedPrompt = prompt.replace(contextText, `SECTION ${firstSection.sectionType}:\n${firstSection.content.substring(0, 30000)}`);
           
           try {
-            const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = geminiApi.getGenerativeModel({ 
+              model: "gemini-1.5-flash",
+              generationConfig: {
+                maxOutputTokens: 2048,
+                temperature: 0.1,
+              }
+            });
             const result = await model.generateContent(reducedPrompt);
             const response = await result.response;
             const text = response.text();
