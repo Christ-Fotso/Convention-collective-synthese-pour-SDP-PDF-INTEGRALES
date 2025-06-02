@@ -310,30 +310,27 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   }
   
   try {
-    // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions_original.json
-    console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
+    // 2. Récupérer les sections pré-extraites depuis la base de données
+    console.log(`[INFO] Récupération des sections pour convention ${conventionId}`);
     
-    // Charger les conventions depuis le fichier original avec les vraies URLs
-    const conventionsPath = path.join(process.cwd(), 'data', 'conventions_original.json');
-    const conventionsData = fs.readFileSync(conventionsPath, 'utf-8');
-    const conventions = JSON.parse(conventionsData);
+    const sections = getSectionsByConvention(conventionId);
     
-    // Trouver la convention avec l'URL réelle
-    const convention = conventions.find((conv: any) => conv.IDCC === conventionId);
-    
-    if (!convention || !convention.Link) {
-      throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
+    if (!sections || sections.length === 0) {
+      throw new Error(`Aucune section trouvée pour la convention ${conventionId}`);
     }
     
-    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.Link}`);
+    // 3. Construire le contexte à partir de toutes les sections disponibles
+    let conventionText = `Convention Collective IDCC ${conventionId}\n\n`;
     
-    // 3. Télécharger et extraire le contenu du PDF avec une méthode simplifiée
-    const conventionText = await downloadAndExtractPDFText(convention.Link, conventionId);
+    sections.forEach(section => {
+      conventionText += `=== ${section.sectionType.toUpperCase()} ===\n`;
+      conventionText += section.content + '\n\n';
+    });
     
-    console.log(`[INFO] Texte PDF extrait: ${conventionText.length} caractères`);
+    console.log(`[INFO] Contexte construit: ${conventionText.length} caractères depuis ${sections.length} sections`);
     
     if (!conventionText || conventionText.length < 100) {
-      throw new Error(`Impossible d'extraire le contenu du PDF ou contenu trop court`);
+      throw new Error(`Contenu des sections insuffisant ou manquant`);
     }
     
     // Vérification de sécurité - Gemini doit être initialisé
