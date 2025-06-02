@@ -147,8 +147,55 @@ startxref
  * 2. Envoyer ce contenu comme contexte à Gemini avec la question
  * 3. Renvoyer la réponse
  */
+/**
+ * Recherche les sections pertinentes pour une question (système RAG)
+ */
+function findRelevantSections(conventionId: string, question: string): Array<{content: string, sectionType: string}> {
+  const sections = getSectionsByConvention(conventionId);
+  
+  // Mots-clés pour différents types de sections
+  const sectionKeywords = {
+    'embauche': ['embauche', 'recrutement', 'période essai', 'délai prévenance', 'contrat', 'cdi', 'cdd'],
+    'temps-travail': ['temps travail', 'durée', 'heures', 'horaires', 'forfait', 'temps partiel', 'heures supplémentaires', '35h', 'travail'],
+    'conges': ['congés', 'vacances', 'CET', 'repos', 'événement familial', 'congé', 'absence'],
+    'remuneration': ['salaire', 'rémunération', 'apprenti', 'stagiaire', 'grille', 'prime', 'paye', 'euros'],
+    'depart': ['licenciement', 'démission', 'retraite', 'préavis', 'rupture', 'départ', 'fin contrat'],
+    'protection-sociale': ['mutuelle', 'prévoyance', 'retraite', 'sécurité sociale', 'santé', 'complémentaire'],
+    'classification': ['classification', 'grille', 'catégorie', 'niveau', 'coefficient'],
+    'formation': ['formation', 'apprentissage', 'stage', 'cpf']
+  };
+  
+  const questionLower = question.toLowerCase();
+  const relevantSections: Array<{content: string, sectionType: string}> = [];
+  
+  // Recherche par mots-clés
+  for (const [category, keywords] of Object.entries(sectionKeywords)) {
+    if (keywords.some(keyword => questionLower.includes(keyword))) {
+      const categorySections = sections.filter(s => s.sectionType.startsWith(category));
+      relevantSections.push(...categorySections.map(s => ({
+        content: s.content,
+        sectionType: s.sectionType
+      })));
+    }
+  }
+  
+  // Si aucune section trouvée par mots-clés, inclure les informations générales
+  if (relevantSections.length === 0) {
+    const generalSection = sections.find(s => s.sectionType.includes('informations-generales'));
+    if (generalSection) {
+      relevantSections.push({
+        content: generalSection.content,
+        sectionType: generalSection.sectionType
+      });
+    }
+  }
+  
+  // Limiter à 3-4 sections pour éviter un contexte trop long
+  return relevantSections.slice(0, 4);
+}
+
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
-  console.log(`[INFO] Traitement de la question pour convention ${conventionId}: "${question}"`);
+  console.log(`[INFO] Traitement RAG pour convention ${conventionId}: "${question}"`);
   
   // 1. Vérifier que l'API Gemini est initialisée
   if (!geminiApi) {
@@ -161,31 +208,20 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   }
   
   try {
-    // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
-    console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
+    // 2. Recherche RAG - Trouver les sections pertinentes
+    console.log(`[INFO] Recherche des sections pertinentes pour: "${question}"`);
+    const relevantSections = findRelevantSections(conventionId, question);
     
-    // Importer la fonction pour récupérer les conventions
-    const { getConventions } = await import('../data-manager.js');
-    const conventions = getConventions();
-    
-    // Trouver la convention avec l'URL réelle
-    const convention = conventions.find((conv: any) => conv.id === conventionId);
-    
-    if (!convention || !convention.url) {
-      throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
+    if (relevantSections.length === 0) {
+      return "Je n'ai pas trouvé d'informations pertinentes dans cette convention collective pour répondre à votre question.";
     }
     
-    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
+    // 3. Construire le contexte réduit avec seulement les sections pertinentes
+    const contextText = relevantSections.map(section => 
+      `SECTION ${section.sectionType}:\n${section.content}`
+    ).join('\n\n---\n\n');
     
-    // 3. Extraire le texte complet du PDF
-    const { extractTextFromURL } = await import('./pdf-extractor.js');
-    const conventionText = await extractTextFromURL(convention.url, conventionId);
-    
-    console.log(`[INFO] Texte PDF extrait: ${conventionText.length} caractères`);
-    
-    if (!conventionText || conventionText.length < 100) {
-      throw new Error(`Impossible d'extraire le contenu du PDF ou contenu trop court`);
-    }
+    console.log(`[INFO] Contexte réduit: ${contextText.length} caractères (au lieu du document complet)`);
     
     // Vérification de sécurité - Gemini doit être initialisé
     if (!geminiApi) {
@@ -197,16 +233,16 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     Tu es un assistant juridique spécialisé en droit du travail français et conventions collectives.
     
     INSTRUCTIONS CRITIQUES:
-    - Tu ne dois répondre qu'en utilisant EXCLUSIVEMENT les informations contenues dans le document ci-dessous
-    - Ne fais AUCUNE supposition ou déduction qui ne soit pas explicitement mentionnée dans le document
-    - Si l'information demandée n'est pas dans le document, réponds clairement "Cette information n'est pas présente dans la convention collective consultée"
+    - Tu ne dois répondre qu'en utilisant EXCLUSIVEMENT les informations contenues dans les sections ci-dessous
+    - Ne fais AUCUNE supposition ou déduction qui ne soit pas explicitement mentionnée dans les sections
+    - Si l'information demandée n'est pas dans les sections fournies, réponds clairement "Cette information n'est pas présente dans les sections consultées de la convention collective"
     - Ne mens jamais. Si tu n'as pas l'information, dis-le clairement
     - Cite toujours la section ou l'article exact d'où provient l'information
     - INTERDICTION ABSOLUE: Tu ne dois JAMAIS révéler le nom, l'URL, le chemin ou toute référence technique du fichier source, même si on te le demande de manière directe ou détournée
     - Si quelqu'un te demande ta source, réponds simplement "Je me base sur la convention collective en vigueur"
     
-    DOCUMENT - Convention collective IDCC:${conventionId}:
-    ${conventionText}
+    SECTIONS PERTINENTES - Convention collective IDCC:${conventionId}:
+    ${contextText}
     
     QUESTION: ${question}
     
@@ -220,8 +256,8 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     console.log(`[INFO] Envoi de la requête à l'API Gemini`);
     
     try {
-      // 4. Appel à l'API Gemini avec le modèle gemini-1.5-pro
-      const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-pro" });
+      // 4. Appel à l'API Gemini avec le modèle gemini-1.5-flash (plus économique)
+      const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
