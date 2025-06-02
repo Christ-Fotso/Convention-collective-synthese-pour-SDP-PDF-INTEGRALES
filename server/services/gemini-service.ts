@@ -85,7 +85,9 @@ async function downloadAndExtractPDFText(url: string, conventionId: string): Pro
     console.log(`[INFO] Ajout du PDF à ChatPDF depuis: ${url}`);
     
     // 1. Ajouter le PDF à ChatPDF via son URL
-    const addUrlResponse = await axios.post(`https://api.chatpdf.com/sources/${url}`, {}, {
+    const addUrlResponse = await axios.post('https://api.chatpdf.com/sources/add-url', {
+      url: url
+    }, {
       headers: {
         'x-api-key': process.env.CHATPDF_API_KEY,
         'Content-Type': 'application/json'
