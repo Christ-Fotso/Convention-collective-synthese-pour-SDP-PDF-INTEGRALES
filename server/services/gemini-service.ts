@@ -310,41 +310,21 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     
     console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
     
-    // 3. Essayer d'extraire le texte du PDF, avec fallback sur les sections JSON
-    let contextText: string;
+    // 3. Extraire le texte complet du PDF
+    const { extractTextFromURL } = await import('./pdf-extractor.js');
+    const fullPdfText = await extractTextFromURL(convention.url);
     
-    try {
-      const { extractTextFromURL } = await import('./pdf-extractor.js');
-      const fullPdfText = await extractTextFromURL(convention.url);
-      
-      console.log(`[INFO] Texte PDF extrait: ${fullPdfText.length} caractères`);
-      
-      if (!fullPdfText || fullPdfText.length < 100) {
-        throw new Error('PDF trop court ou vide');
-      }
-      
-      // 4. Utiliser RAG pour identifier les sections pertinentes dans le PDF
-      console.log(`[INFO] Application du RAG pour réduire le contexte PDF`);
-      contextText = extractRelevantSectionsFromPdf(fullPdfText, question);
-      
-      console.log(`[INFO] Contexte réduit PDF: ${contextText.length} caractères (au lieu de ${fullPdfText.length})`);
-      
-    } catch (pdfError: any) {
-      console.log(`[FALLBACK] PDF inaccessible (${pdfError.message}), utilisation des sections JSON pré-extraites`);
-      
-      // Fallback : utiliser les sections JSON pré-extraites
-      const relevantSections = findRelevantSections(conventionId, question);
-      
-      if (relevantSections.length === 0) {
-        return "Je n'ai pas trouvé d'informations pertinentes dans cette convention collective pour répondre à votre question.";
-      }
-      
-      contextText = relevantSections.map(section => 
-        `SECTION ${section.sectionType}:\n${section.content}`
-      ).join('\n\n---\n\n');
-      
-      console.log(`[FALLBACK] Contexte réduit JSON: ${contextText.length} caractères depuis ${relevantSections.length} sections`);
+    console.log(`[INFO] Texte PDF extrait: ${fullPdfText.length} caractères`);
+    
+    if (!fullPdfText || fullPdfText.length < 100) {
+      throw new Error(`Impossible d'extraire le contenu du PDF ou contenu trop court`);
     }
+    
+    // 4. Utiliser RAG pour identifier les sections pertinentes dans le PDF
+    console.log(`[INFO] Application du RAG pour réduire le contexte PDF`);
+    const contextText = extractRelevantSectionsFromPdf(fullPdfText, question);
+    
+    console.log(`[INFO] Contexte réduit: ${contextText.length} caractères (au lieu de ${fullPdfText.length})`);
     
     // Vérification de sécurité - Gemini doit être initialisé
     if (!geminiApi) {
