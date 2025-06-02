@@ -267,37 +267,26 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     } catch (geminiError: any) {
       console.error(`[ERROR] Erreur API Gemini:`, geminiError);
       
-      // Gestion spéciale pour les textes trop longs
-      if (conventionText.length > 60000 && geminiError.message.includes("too long")) {
-        console.log(`[INFO] Texte trop long (${conventionText.length} caractères), tentative avec texte tronqué`);
+      // Avec le système RAG, les contextes sont déjà réduits, donc pas de gestion spéciale nécessaire
+      if (geminiError.message && geminiError.message.includes("too long")) {
+        console.log(`[INFO] Contexte encore trop long même avec RAG (${contextText.length} caractères), réduction supplémentaire`);
         
-        // Réduire la taille du contexte
-        const shortenedText = conventionText.substring(0, 60000);
-        
-        const shorterPrompt = `
-        Tu es un assistant juridique spécialisé en droit du travail français.
-        
-        INSTRUCTIONS CRITIQUES:
-        - Réponds UNIQUEMENT en te basant sur les informations ci-dessous (extrait partiel de convention collective)
-        - Précise que ta réponse est basée sur un extrait partiel si la question semble nécessiter plus de contexte
-        - Si l'information n'est pas présente dans cet extrait, indique-le clairement
-        
-        DOCUMENT PARTIEL - Convention collective IDCC:${conventionId} (extrait):
-        ${shortenedText}
-        
-        QUESTION: ${question}
-        `;
-        
-        try {
-          const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-pro" });
-          const result = await model.generateContent(shorterPrompt);
-          const response = await result.response;
-          const text = response.text();
+        // Prendre seulement la première section si le contexte est encore trop long
+        const firstSection = relevantSections[0];
+        if (firstSection) {
+          const reducedPrompt = prompt.replace(contextText, `SECTION ${firstSection.sectionType}:\n${firstSection.content.substring(0, 30000)}`);
           
-          return text + "\n\n(Note: Cette réponse est basée sur un extrait partiel de la convention collective)";
-        } catch (secondError: any) {
-          console.error(`[ERROR] Seconde erreur Gemini:`, secondError);
-          throw new Error(`Erreur lors de l'analyse de la convention (document trop volumineux): ${secondError.message}`);
+          try {
+            const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const result = await model.generateContent(reducedPrompt);
+            const response = await result.response;
+            const text = response.text();
+            
+            return text + "\n\n(Note: Réponse basée sur un extrait réduit des sections pertinentes)";
+          } catch (secondError: any) {
+            console.error(`[ERROR] Seconde erreur Gemini:`, secondError);
+            throw new Error(`Erreur lors de l'analyse avec contexte réduit: ${secondError.message}`);
+          }
         }
       }
       
