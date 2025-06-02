@@ -55,12 +55,11 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
     
     console.log(`[INFO] Extraction du texte du PDF pour convention ${conventionId}: ${pdfPath}`);
     
-    // Chargement de pdfjs-dist correctement (sans require)
-    // Importation dynamique (ES modules)
-    const pdfjsLib = await import('pdfjs-dist');
+    // Chargement de pdfjs-dist pour environnement Node.js
+    const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
     
-    // Désactivation des workers car ils causent des problèmes dans certains environnements
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+    // Configuration pour Node.js (pas de workers dans cet environnement)
+    pdfjsLib.GlobalWorkerOptions.workerSrc = null;
     
     console.log(`[INFO] Chargement du PDF...`);
     const loadingTask = pdfjsLib.getDocument({ url: pdfPath });
