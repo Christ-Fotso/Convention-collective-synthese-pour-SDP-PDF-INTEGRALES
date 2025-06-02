@@ -148,7 +148,65 @@ startxref
  * 3. Renvoyer la réponse
  */
 /**
- * Recherche les sections pertinentes pour une question (système RAG)
+ * Extrait les sections pertinentes du PDF complet en utilisant le RAG
+ */
+function extractRelevantSectionsFromPdf(fullPdfText: string, question: string): string {
+  const questionLower = question.toLowerCase();
+  
+  // Diviser le PDF en sections/paragraphes
+  const sections = fullPdfText.split(/\n\s*\n|\n(?=Article|ARTICLE|Chapitre|CHAPITRE|\d+\.)/);
+  
+  // Mots-clés pour identifier les sections pertinentes
+  const keywords = [
+    // Temps de travail
+    'temps travail', 'durée', 'heures', 'horaires', 'dimanche', 'week-end', 'samedi', 'nuit', 
+    'nocturne', 'majoration', 'soir', 'matin', 'amplitude', 'repos dominical', 'jour férié',
+    // Rémunération
+    'salaire', 'rémunération', 'prime', 'supplément', 'indemnité', 'paye', 'euros',
+    // Congés
+    'congés', 'vacances', 'repos', 'absence', 'rtt',
+    // Autres
+    'embauche', 'licenciement', 'formation', 'classification'
+  ];
+  
+  const relevantSections: string[] = [];
+  
+  // Rechercher les sections contenant les mots-clés de la question
+  for (const section of sections) {
+    const sectionLower = section.toLowerCase();
+    
+    // Vérifier si la section contient des mots de la question
+    const questionWords = questionLower.split(' ').filter(word => word.length > 2);
+    const hasQuestionWords = questionWords.some(word => sectionLower.includes(word));
+    
+    // Vérifier si la section contient des mots-clés pertinents
+    const hasRelevantKeywords = keywords.some(keyword => sectionLower.includes(keyword));
+    
+    if (hasQuestionWords || hasRelevantKeywords) {
+      relevantSections.push(section.trim());
+    }
+  }
+  
+  // Si aucune section trouvée, prendre les premières sections (informations générales)
+  if (relevantSections.length === 0) {
+    return sections.slice(0, 3).join('\n\n');
+  }
+  
+  // Limiter la taille totale à environ 30-40k caractères
+  let totalLength = 0;
+  const finalSections: string[] = [];
+  
+  for (const section of relevantSections) {
+    if (totalLength + section.length > 40000) break;
+    finalSections.push(section);
+    totalLength += section.length;
+  }
+  
+  return finalSections.join('\n\n---\n\n');
+}
+
+/**
+ * Recherche les sections pertinentes pour une question (système RAG - ANCIEN SYSTÈME JSON)
  */
 function findRelevantSections(conventionId: string, question: string): Array<{content: string, sectionType: string}> {
   const sections = getSectionsByConvention(conventionId);
@@ -220,7 +278,7 @@ function findRelevantSections(conventionId: string, question: string): Array<{co
 }
 
 export async function askQuestionWithGemini(conventionId: string, question: string): Promise<string> {
-  console.log(`[INFO] Traitement RAG pour convention ${conventionId}: "${question}"`);
+  console.log(`[INFO] Traitement RAG + PDF pour convention ${conventionId}: "${question}"`);
   
   // 1. Vérifier que l'API Gemini est initialisée
   if (!geminiApi) {
@@ -233,27 +291,47 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   }
   
   try {
-    // 2. Recherche RAG - Trouver les sections pertinentes
-    console.log(`[INFO] Recherche des sections pertinentes pour: "${question}"`);
-    const relevantSections = findRelevantSections(conventionId, question);
+    // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
+    console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
     
-    if (relevantSections.length === 0) {
-      return "Je n'ai pas trouvé d'informations pertinentes dans cette convention collective pour répondre à votre question.";
+    // Lire le fichier conventions.json directement
+    const fs = await import('fs');
+    const path = await import('path');
+    const conventionsPath = path.join(process.cwd(), 'all_conventions.json');
+    const conventionsData = JSON.parse(fs.readFileSync(conventionsPath, 'utf-8'));
+    const conventions = conventionsData;
+    
+    // Trouver la convention avec l'URL réelle
+    const convention = conventions.find((conv: any) => conv.id === conventionId);
+    
+    if (!convention || !convention.url) {
+      throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
     }
     
-    // 3. Construire le contexte réduit avec seulement les sections pertinentes
-    const contextText = relevantSections.map(section => 
-      `SECTION ${section.sectionType}:\n${section.content}`
-    ).join('\n\n---\n\n');
+    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
     
-    console.log(`[INFO] Contexte réduit: ${contextText.length} caractères (au lieu du document complet)`);
+    // 3. Extraire le texte complet du PDF
+    const { extractTextFromURL } = await import('./pdf-extractor.js');
+    const fullPdfText = await extractTextFromURL(convention.url);
+    
+    console.log(`[INFO] Texte PDF extrait: ${fullPdfText.length} caractères`);
+    
+    if (!fullPdfText || fullPdfText.length < 100) {
+      throw new Error(`Impossible d'extraire le contenu du PDF ou contenu trop court`);
+    }
+    
+    // 4. Utiliser RAG pour identifier les sections pertinentes dans le PDF
+    console.log(`[INFO] Application du RAG pour réduire le contexte PDF`);
+    const contextText = extractRelevantSectionsFromPdf(fullPdfText, question);
+    
+    console.log(`[INFO] Contexte réduit: ${contextText.length} caractères (au lieu de ${fullPdfText.length})`);
     
     // Vérification de sécurité - Gemini doit être initialisé
     if (!geminiApi) {
       throw new Error("API Gemini non initialisée après vérification");
     }
     
-    // 3. Préparation du prompt avec instructions strictes
+    // 5. Préparation du prompt avec instructions strictes
     const prompt = `
     Tu es un assistant juridique spécialisé en droit du travail français et conventions collectives.
     
@@ -305,28 +383,26 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
       if (geminiError.message && geminiError.message.includes("too long")) {
         console.log(`[INFO] Contexte encore trop long même avec RAG (${contextText.length} caractères), réduction supplémentaire`);
         
-        // Prendre seulement la première section si le contexte est encore trop long
-        const firstSection = relevantSections[0];
-        if (firstSection) {
-          const reducedPrompt = prompt.replace(contextText, `SECTION ${firstSection.sectionType}:\n${firstSection.content.substring(0, 30000)}`);
+        // Prendre seulement une partie du contexte si encore trop long
+        const reducedContext = contextText.substring(0, 30000);
+        const reducedPrompt = prompt.replace(contextText, reducedContext);
+        
+        try {
+          const model = geminiApi.getGenerativeModel({ 
+            model: "gemini-1.5-flash",
+            generationConfig: {
+              maxOutputTokens: 2048,
+              temperature: 0.1,
+            }
+          });
+          const result = await model.generateContent(reducedPrompt);
+          const response = await result.response;
+          const text = response.text();
           
-          try {
-            const model = geminiApi.getGenerativeModel({ 
-              model: "gemini-1.5-flash",
-              generationConfig: {
-                maxOutputTokens: 2048,
-                temperature: 0.1,
-              }
-            });
-            const result = await model.generateContent(reducedPrompt);
-            const response = await result.response;
-            const text = response.text();
-            
-            return text + "\n\n(Note: Réponse basée sur un extrait réduit des sections pertinentes)";
-          } catch (secondError: any) {
-            console.error(`[ERROR] Seconde erreur Gemini:`, secondError);
-            throw new Error(`Erreur lors de l'analyse avec contexte réduit: ${secondError.message}`);
-          }
+          return text + "\n\n(Note: Réponse basée sur un extrait réduit des sections pertinentes)";
+        } catch (secondError: any) {
+          console.error(`[ERROR] Seconde erreur Gemini:`, secondError);
+          throw new Error(`Erreur lors de l'analyse avec contexte réduit: ${secondError.message}`);
         }
       }
       
