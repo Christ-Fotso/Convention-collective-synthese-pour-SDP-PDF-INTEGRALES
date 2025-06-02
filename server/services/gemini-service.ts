@@ -222,30 +222,23 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   }
   
   try {
-    // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
-    console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
+    // 2. Utiliser les sections pré-extraites plutôt que d'extraire le PDF en temps réel
+    console.log(`[INFO] Récupération des sections pour convention ${conventionId}`);
     
-    // Charger les conventions depuis le fichier original avec les vraies URLs
-    const conventionsPath = path.join(process.cwd(), 'data', 'conventions_original.json');
-    const conventionsData = fs.readFileSync(conventionsPath, 'utf-8');
-    const conventions = JSON.parse(conventionsData);
-    
-    // Trouver la convention avec l'URL réelle
-    const convention = conventions.find((conv: any) => conv.IDCC === conventionId);
-    
-    if (!convention || !convention.Link) {
-      throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
+    const sections = getSectionsByConvention(conventionId);
+    if (!sections || sections.length === 0) {
+      throw new Error(`Aucune section trouvée pour la convention ${conventionId}`);
     }
     
-    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.Link}`);
+    // 3. Combiner toutes les sections en un seul texte
+    const conventionText = sections.map(section => {
+      return `## ${section.sectionType}\n\n${section.content}\n\n`;
+    }).join('---\n\n');
     
-    // 3. Extraire le texte complet du PDF
-    const conventionText = await extractTextFromURL(convention.Link);
-    
-    console.log(`[INFO] Texte PDF extrait: ${conventionText.length} caractères`);
+    console.log(`[INFO] Contenu assemblé depuis ${sections.length} sections: ${conventionText.length} caractères`);
     
     if (!conventionText || conventionText.length < 100) {
-      throw new Error(`Impossible d'extraire le contenu du PDF ou contenu trop court`);
+      throw new Error(`Contenu des sections trop court ou manquant`);
     }
     
     // Vérification de sécurité - Gemini doit être initialisé
