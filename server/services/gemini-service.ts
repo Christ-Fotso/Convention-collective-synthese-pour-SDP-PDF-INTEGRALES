@@ -16,6 +16,67 @@ if (!fs.existsSync(TEMP_DIR)) {
 let openaiApi: OpenAI | null = null;
 let geminiApi: GoogleGenerativeAI | null = null;
 
+/**
+ * Fonction pour rechercher les sections pertinentes dans le texte
+ */
+function findRelevantSections(text: string, question: string): string[] {
+  // Mots-clés à rechercher dans la question
+  const questionWords = question.toLowerCase()
+    .split(/[\s,\.;:!?]+/)
+    .filter(word => word.length > 3)
+    .filter(word => !['dans', 'avec', 'pour', 'mais', 'donc', 'cette', 'celui', 'celle'].includes(word));
+  
+  // Découper le texte en sections (par titres, articles, etc.)
+  const sections = text.split(/(?=(?:Article|Chapitre|Section|Titre|ARTICLE|CHAPITRE|SECTION|TITRE)\s+[IVX\d]+|(?:\n\s*\d+[\.\)]\s)|(?:\n\s*[A-Z][^\n]{10,50}\s*\n))/);
+  
+  // Scorer chaque section selon sa pertinence
+  const scoredSections = sections.map(section => {
+    let score = 0;
+    const sectionLower = section.toLowerCase();
+    
+    // Points pour chaque mot-clé trouvé
+    questionWords.forEach(word => {
+      const matches = (sectionLower.match(new RegExp(word, 'g')) || []).length;
+      score += matches * 10;
+    });
+    
+    // Bonus pour les sections avec des structures juridiques
+    if (sectionLower.includes('article') || sectionLower.includes('chapitre')) score += 5;
+    if (sectionLower.includes('salaire') || sectionLower.includes('rémunération')) score += 3;
+    if (sectionLower.includes('congé') || sectionLower.includes('absence')) score += 3;
+    if (sectionLower.includes('temps de travail') || sectionLower.includes('durée')) score += 3;
+    
+    return { section, score, length: section.length };
+  });
+  
+  // Trier par score et prendre les meilleures sections
+  const sortedSections = scoredSections
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score);
+  
+  // Prendre les sections les plus pertinentes jusqu'à 400k caractères
+  const selectedSections: string[] = [];
+  let totalLength = 0;
+  
+  for (const item of sortedSections) {
+    if (totalLength + item.length < 400000) {
+      selectedSections.push(item.section);
+      totalLength += item.length;
+    } else {
+      break;
+    }
+  }
+  
+  // Si aucune section pertinente, prendre le début du document
+  if (selectedSections.length === 0) {
+    selectedSections.push(text.substring(0, 400000));
+  }
+  
+  console.log(`[INFO] Recherche intelligente: ${selectedSections.length} sections sélectionnées (${totalLength} caractères)`);
+  
+  return selectedSections;
+}
+
 export function initializeGeminiApi() {
   // Utiliser la clé API de Google Gemini
   const apiKey = process.env.XAI_API_KEY;
@@ -232,22 +293,23 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
       console.error(`[ERROR] Erreur API Gemini:`, geminiError);
       
       // Gestion spéciale pour les textes trop longs
-      if (conventionText.length > 60000 && geminiError.message.includes("too long")) {
-        console.log(`[INFO] Texte trop long (${conventionText.length} caractères), tentative avec texte tronqué`);
+      if (conventionText.length > 500000 && geminiError.message.includes("too long")) {
+        console.log(`[INFO] Texte trop long (${conventionText.length} caractères), tentative avec recherche intelligente`);
         
-        // Réduire la taille du contexte
-        const shortenedText = conventionText.substring(0, 60000);
+        // Recherche sémantique dans le texte
+        const searchResults = findRelevantSections(conventionText, question);
+        const combinedText = searchResults.join('\n\n---\n\n');
         
         const shorterPrompt = `
         Tu es un assistant juridique spécialisé en droit du travail français.
         
         INSTRUCTIONS CRITIQUES:
-        - Réponds UNIQUEMENT en te basant sur les informations ci-dessous (extrait partiel de convention collective)
-        - Précise que ta réponse est basée sur un extrait partiel si la question semble nécessiter plus de contexte
-        - Si l'information n'est pas présente dans cet extrait, indique-le clairement
+        - Réponds UNIQUEMENT en te basant sur les informations ci-dessous (sections pertinentes de la convention collective)
+        - Ces sections ont été sélectionnées automatiquement en fonction de votre question
+        - Si l'information n'est pas présente dans ces sections, indique-le clairement
         
-        DOCUMENT PARTIEL - Convention collective IDCC:${conventionId} (extrait):
-        ${shortenedText}
+        SECTIONS PERTINENTES - Convention collective IDCC:${conventionId}:
+        ${combinedText}
         
         QUESTION: ${question}
         `;
@@ -258,7 +320,7 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
           const response = await result.response;
           const text = response.text();
           
-          return text + "\n\n(Note: Cette réponse est basée sur un extrait partiel de la convention collective)";
+          return `${text}\n\n(Note: Cette réponse est basée sur des sections sélectionnées intelligemment de ${combinedText.length} caractères sur ${conventionText.length} total)`;
         } catch (secondError: any) {
           console.error(`[ERROR] Seconde erreur Gemini:`, secondError);
           throw new Error(`Erreur lors de l'analyse de la convention (document trop volumineux): ${secondError.message}`);
