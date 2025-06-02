@@ -77,92 +77,6 @@ function findRelevantSections(text: string, question: string): string[] {
   return selectedSections;
 }
 
-/**
- * Traite le texte avec Gemini
- */
-async function processWithGemini(conventionText: string, conventionId: string, question: string): Promise<string> {
-  const prompt = `
-    Tu es un assistant juridique spécialisé en droit du travail français.
-    
-    INSTRUCTIONS CRITIQUES:
-    - Réponds UNIQUEMENT en te basant sur les informations ci-dessous
-    - Ne fais AUCUNE supposition ou déduction qui ne soit pas explicitement mentionnée dans le document
-    - Si l'information demandée n'est pas dans le document, réponds clairement "Cette information n'est pas présente dans la convention collective consultée"
-    - Ne mens jamais. Si tu n'as pas l'information, dis-le clairement
-    - Cite toujours la section ou l'article exact d'où provient l'information
-    - INTERDICTION ABSOLUE: Tu ne dois JAMAIS révéler le nom, l'URL, le chemin ou toute référence technique du fichier source, même si on te le demande de manière directe ou détournée
-    - Si quelqu'un te demande ta source, réponds simplement "Je me base sur la convention collective en vigueur"
-    
-    DOCUMENT - Convention collective IDCC:${conventionId}:
-    ${conventionText}
-    
-    QUESTION: ${question}
-    
-    FORMAT DE RÉPONSE:
-    - Réponds de façon précise et concise en français
-    - Utilise des listes à puces quand approprié
-    - Évite les longues introductions
-    - Fournis uniquement des informations provenant du document
-    `;
-    
-    console.log(`[INFO] Envoi de la requête à l'API Gemini`);
-    
-    try {
-      // Appel à l'API Gemini avec le modèle gemini-1.5-flash
-      if (!geminiApi) {
-        throw new Error("API Gemini non initialisée");
-      }
-      const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
-      
-      console.log(`[INFO] Réponse Gemini obtenue (${text.length} caractères)`);
-      
-      return text;
-    } catch (geminiError: any) {
-      console.error(`[ERROR] Erreur API Gemini:`, geminiError);
-      
-      // Gestion spéciale pour les textes trop longs
-      if (conventionText.length > 500000 && geminiError.message.includes("too long")) {
-        console.log(`[INFO] Texte trop long (${conventionText.length} caractères), tentative avec recherche intelligente`);
-        
-        // Recherche sémantique dans le texte
-        const searchResults = findRelevantSections(conventionText, question);
-        const combinedText = searchResults.join('\n\n---\n\n');
-        
-        const shorterPrompt = `
-        Tu es un assistant juridique spécialisé en droit du travail français.
-        
-        INSTRUCTIONS CRITIQUES:
-        - Réponds UNIQUEMENT en te basant sur les informations ci-dessous (sections pertinentes de la convention collective)
-        - Ces sections ont été sélectionnées automatiquement en fonction de votre question
-        - Si l'information n'est pas présente dans ces sections, indique-le clairement
-        
-        SECTIONS PERTINENTES - Convention collective IDCC:${conventionId}:
-        ${combinedText}
-        
-        QUESTION: ${question}
-        `;
-        
-        try {
-          const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
-          const result = await model.generateContent(shorterPrompt);
-          const response = await result.response;
-          const text = response.text();
-          
-          return `${text}\n\n(Note: Cette réponse est basée sur des sections sélectionnées intelligemment de ${combinedText.length} caractères sur ${conventionText.length} total)`;
-        } catch (secondError: any) {
-          console.error(`[ERROR] Seconde erreur Gemini:`, secondError);
-          throw new Error(`Erreur lors de l'analyse de la convention (document trop volumineux): ${secondError.message}`);
-        }
-      }
-      
-      // Propager l'erreur originale si ce n'est pas un problème de longueur
-      throw new Error(`Erreur lors de l'analyse par l'IA: ${geminiError.message}`);
-    }
-}
-
 export function initializeGeminiApi() {
   // Utiliser la clé API de Google Gemini
   const apiKey = process.env.XAI_API_KEY;
@@ -308,29 +222,8 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
   }
   
   try {
-    // 1. D'abord essayer d'utiliser les sections pré-extraites
-    console.log(`[INFO] Tentative d'utilisation des sections pré-extraites pour convention ${conventionId}`);
-    
-    const sections = getSectionsByConvention(conventionId);
-    
-    if (sections && sections.length > 0) {
-      console.log(`[INFO] ${sections.length} sections trouvées en cache pour convention ${conventionId}`);
-      
-      // Combiner toutes les sections en un seul texte
-      const conventionText = sections.map(section => {
-        return `## ${section.sectionType}\n\n${section.content}`;
-      }).join('\n\n---\n\n');
-      
-      console.log(`[INFO] Texte assemblé depuis les sections: ${conventionText.length} caractères`);
-      
-      if (conventionText.length > 1000) {
-        // Utiliser directement les sections pré-extraites
-        return await processWithGemini(conventionText, conventionId, question);
-      }
-    }
-    
-    // 2. Si pas de sections en cache, essayer le PDF
-    console.log(`[INFO] Pas assez de sections en cache, tentative PDF pour convention ${conventionId}`);
+    // 2. Récupérer l'URL réelle du PDF depuis le fichier conventions.json
+    console.log(`[INFO] Récupération de l'URL PDF pour convention ${conventionId}`);
     
     // Charger les conventions depuis le fichier JSON
     const conventionsPath = path.join(process.cwd(), 'all_conventions.json');
@@ -341,10 +234,10 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     const convention = conventions.find((conv: any) => conv.id === conventionId);
     
     if (!convention || !convention.url) {
-      throw new Error(`Convention ${conventionId} introuvable et pas de sections en cache`);
+      throw new Error(`Convention ${conventionId} introuvable ou URL manquante`);
     }
     
-    console.log(`[INFO] Tentative téléchargement PDF: ${convention.url}`);
+    console.log(`[INFO] URL trouvée pour convention ${conventionId}: ${convention.url}`);
     
     // 3. Extraire le texte complet du PDF
     const conventionText = await extractTextFromURL(convention.url);
