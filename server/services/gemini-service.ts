@@ -5,6 +5,9 @@ import OpenAI from 'openai';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { downloadPDF, extractTextFromPDF as extractPDFText, extractTextFromURL } from './pdf-extractor.js';
 import { getSectionsByConvention } from '../sections-data';
+import { db } from "@db";
+import { chatpdfSources } from "@db/schema";
+import { eq } from "drizzle-orm";
 
 // Répertoire temporaire pour stocker les PDF téléchargés
 const TEMP_DIR = path.join(process.cwd(), 'temp');
@@ -79,26 +82,48 @@ function findRelevantSections(text: string, question: string): string[] {
 
 /**
  * Utilise l'API ChatPDF pour extraire le contenu authentique d'un PDF
+ * Avec système de cache pour éviter les appels redondants
  */
 async function downloadAndExtractPDFText(url: string, conventionId: string): Promise<string> {
   try {
-    console.log(`[INFO] Ajout du PDF à ChatPDF depuis: ${url}`);
+    // Vérifier d'abord s'il existe déjà une source ChatPDF pour cette convention
+    const existingSource = await db.select()
+      .from(chatpdfSources)
+      .where(eq(chatpdfSources.conventionId, conventionId))
+      .limit(1);
     
-    // 1. Ajouter le PDF à ChatPDF via son URL
-    const addUrlResponse = await axios.post('https://api.chatpdf.com/sources/add-url', {
-      url: url
-    }, {
-      headers: {
-        'x-api-key': process.env.CHATPDF_API_KEY,
-        'Content-Type': 'application/json'
-      }
-    });
+    let sourceId: string;
     
-    const sourceId = addUrlResponse.data.sourceId;
-    console.log(`[INFO] PDF ajouté à ChatPDF avec l'ID: ${sourceId}`);
+    if (existingSource.length > 0) {
+      // Utiliser la source existante
+      sourceId = existingSource[0].sourceId;
+      console.log(`[INFO] Utilisation de la source ChatPDF existante: ${sourceId}`);
+    } else {
+      // Créer une nouvelle source ChatPDF
+      console.log(`[INFO] Création d'une nouvelle source ChatPDF pour: ${url}`);
+      
+      const addUrlResponse = await axios.post('https://api.chatpdf.com/v1/sources/add-url', {
+        url: url
+      }, {
+        headers: {
+          'x-api-key': process.env.CHATPDF_API_KEY,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      sourceId = addUrlResponse.data.sourceId;
+      console.log(`[INFO] Nouvelle source ChatPDF créée avec l'ID: ${sourceId}`);
+      
+      // Sauvegarder la source en base pour réutilisation future
+      await db.insert(chatpdfSources).values({
+        conventionId: conventionId,
+        sourceId: sourceId
+      });
+      console.log(`[INFO] Source ChatPDF sauvegardée en base de données`);
+    }
     
-    // 2. Demander le contenu complet du PDF via ChatPDF
-    const chatResponse = await axios.post('https://api.chatpdf.com/chats/message', {
+    // Utiliser la source (existante ou nouvelle) pour extraire le contenu
+    const chatResponse = await axios.post('https://api.chatpdf.com/v1/chats/message', {
       sourceId: sourceId,
       referenceSources: true,
       messages: [
@@ -117,7 +142,6 @@ async function downloadAndExtractPDFText(url: string, conventionId: string): Pro
     const extractedContent = chatResponse.data.content;
     console.log(`[INFO] Contenu extrait via ChatPDF: ${extractedContent.length} caractères`);
     
-    // 3. Nettoyer et retourner le contenu
     return `Convention collective IDCC: ${conventionId}
 Source: ${url}
 
@@ -125,6 +149,18 @@ ${extractedContent}`;
     
   } catch (error: any) {
     console.error(`[ERROR] Erreur avec l'API ChatPDF:`, error.response?.data || error.message);
+    
+    // Si l'erreur vient d'une source qui n'existe plus, on peut la supprimer et réessayer
+    if (error.response?.status === 404) {
+      try {
+        await db.delete(chatpdfSources)
+          .where(eq(chatpdfSources.conventionId, conventionId));
+        console.log(`[INFO] Source ChatPDF invalide supprimée pour la convention ${conventionId}`);
+      } catch (cleanupError) {
+        console.error(`[ERROR] Erreur lors du nettoyage:`, cleanupError);
+      }
+    }
+    
     throw new Error(`Impossible d'extraire le PDF avec ChatPDF: ${error.response?.data?.error || error.message}`);
   }
 }
