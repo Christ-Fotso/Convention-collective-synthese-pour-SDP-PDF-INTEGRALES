@@ -295,7 +295,7 @@ export default function Chat() {
   };
   
   return (
-    <div className="container mx-auto py-6 space-y-6">
+    <div className="w-full py-6 space-y-6 px-4 lg:px-0">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-3">
           <Button 
@@ -310,7 +310,7 @@ export default function Chat() {
             {isLoadingConvention ? (
               <Skeleton className="h-8 w-64" />
             ) : convention ? (
-              `Convention collective: ${convention.name}`
+              convention.name
             ) : (
               "Convention non trouvée"
             )}

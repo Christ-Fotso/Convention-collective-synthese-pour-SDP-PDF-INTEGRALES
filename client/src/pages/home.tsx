@@ -59,13 +59,9 @@ export default function Home() {
   }, [search, conventions]);
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-center">
-          Conventions Collectives
-        </h1>
-        
-        <div className="relative mb-6">
+    <div className="min-h-screen bg-background">
+      <div className="w-full">
+        <div className="relative mb-6 p-4">
           <Input
             type="text"
             placeholder="Rechercher par IDCC ou nom de convention..."
@@ -73,7 +69,7 @@ export default function Home() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <div className="absolute right-3 top-3 text-gray-400">
+          <div className="absolute right-7 top-7 text-gray-400">
             {search && (
               <button 
                 onClick={() => setSearch("")}
@@ -85,10 +81,7 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="bg-white rounded-lg shadow-md">
-          <div className="p-3 bg-gray-50 border-b text-sm font-medium">
-            {filteredConventions.length} conventions trouvées
-          </div>
+        <div className="bg-white shadow-md">
           
           <ScrollArea className="h-[calc(100vh-12rem)]">
             {filteredConventions.length === 0 ? (
