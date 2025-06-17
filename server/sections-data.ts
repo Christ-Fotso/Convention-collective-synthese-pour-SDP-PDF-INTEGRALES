@@ -65,6 +65,7 @@ const SECTION_TYPE_MAPPING: Record<string, string> = {
   
   // Départ
   "Préavis": "depart.preavis",
+  "Rupture_du_contrat": "depart.rupture-contrat",
   "Indemnité_de_Licenciement": "depart.licenciement",
   "Indemnité_de_Mise_a_la_Retraite": "depart.mise-retraite",
   "Indemnité_de_Départ_a_la_Retraite": "depart.depart-retraite",
@@ -72,6 +73,7 @@ const SECTION_TYPE_MAPPING: Record<string, string> = {
   "Indemnité_de_précarité": "depart.precarite",
   
   // Classification
+  "Classification": "classification.classification",
   "Classification_Con_+_Détails": "classification.classification",
   "Grille_de_classification": "classification.grille",
   "Evolution_de_carrière": "classification.evolution",
