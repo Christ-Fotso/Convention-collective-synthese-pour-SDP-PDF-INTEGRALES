@@ -50,8 +50,13 @@ export default function Home() {
       });
     }
     
-    // Toujours trier par ordre alphabétique du nom
+    // Trier : Code du travail d'abord, puis par ordre alphabétique
     results.sort((a, b) => {
+      // Le Code du travail (IDCC 9999) toujours en premier
+      if (a.id === '9999') return -1;
+      if (b.id === '9999') return 1;
+      
+      // Sinon, tri alphabétique normal
       return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
     });
     
