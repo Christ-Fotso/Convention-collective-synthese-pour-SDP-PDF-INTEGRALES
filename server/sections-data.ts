@@ -103,7 +103,10 @@ const SECTION_TYPE_MAPPING: Record<string, string> = {
   "Cotisation_prévoyance": "protection-sociale.prevoyance",
   "Cotisation_retraite": "protection-sociale.retraite",
   "Paritarisme_(Financement)": "divers.paritarisme",
-  "Contributions_Conventionnelles_à_la_Formation_Prof": "formation.contributions"
+  "Contributions_Conventionnelles_à_la_Formation_Prof": "formation.contributions",
+  "Formation_professionnelle": "formation.formation-pro",
+  "Santé_et_sécurité": "protection-sociale.sante-securite",
+  "Représentation_du_personnel": "divers.representation-personnel"
 };
 
 // Cache des sections
