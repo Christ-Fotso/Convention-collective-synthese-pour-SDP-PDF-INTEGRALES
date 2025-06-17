@@ -110,6 +110,11 @@ The application serves as a specialized tool for HR professionals, legal experts
 
 ## Changelog
 - June 17, 2025. Initial setup
+- June 17, 2025. Ajout du "Code du travail" (IDCC 9999) comme référence légale de base :
+  - Créé en première position dans la liste des conventions
+  - 4 sections de base : Informations générales, Délai de prévenance, Période d'essai, Durée du travail
+  - Contenu basé sur les dispositions légales du Code du travail français
+  - Intégration complète avec le système de chat IA pour répondre aux questions sur le droit du travail
 
 ## User Preferences
 
