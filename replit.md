@@ -1,0 +1,116 @@
+# Convention Collective Analytics Platform - replit.md
+
+## Overview
+
+This is a comprehensive web application for analyzing and managing French collective bargaining agreements (conventions collectives). The platform provides AI-powered extraction and analysis of legal documents, particularly focused on employment law provisions within collective agreements.
+
+The application serves as a specialized tool for HR professionals, legal experts, and organizations to efficiently navigate and extract specific information from hundreds of collective agreements, using modern AI technologies to parse complex legal documents.
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React with TypeScript
+- **UI Library**: Radix UI components with shadcn/ui design system
+- **Styling**: Tailwind CSS with custom theme configuration
+- **State Management**: TanStack React Query for server state management
+- **Build Tool**: Vite for development and production builds
+
+### Backend Architecture
+- **Runtime**: Node.js with TypeScript (ESM modules)
+- **Framework**: Express.js for REST API
+- **Database**: PostgreSQL with Drizzle ORM
+- **AI Integration**: Multiple AI providers (OpenAI GPT-4, Google Gemini, Perplexity, Anthropic)
+- **PDF Processing**: Custom PDF text extraction using pdf-parse and pdfjs-dist
+
+### Data Processing Pipeline
+- **Document Ingestion**: Automated PDF download and text extraction
+- **AI-Powered Analysis**: Structured extraction of legal provisions using specialized prompts
+- **Caching Strategy**: Multi-tier caching (memory, database, file system) for performance
+- **Batch Processing**: Background jobs for pre-processing documents
+
+## Key Components
+
+### Database Schema
+- **conventions**: Core table storing collective agreement metadata
+- **conventionSections**: Extracted sections with content and status tracking
+- **chatpdfSources**: External document sources integration
+- **apiMetrics**: Usage tracking and cost monitoring
+- **extractionTasks**: Background job management
+
+### AI Service Integration
+- **OpenAI Integration**: Primary AI provider using GPT-4 for legal text analysis
+- **Multi-Provider Support**: Fallback systems with Gemini, Perplexity, and Anthropic
+- **Intelligent Routing**: Context-aware AI provider selection based on query type
+- **Cost Optimization**: Token usage tracking and model selection optimization
+
+### Content Management
+- **Section Types**: 30+ predefined categories (employment, time-work, leave, classification, etc.)
+- **JSON Data Provider**: Static data serving for pre-extracted content
+- **Markdown Processing**: Structured formatting for legal documents
+- **Table Normalization**: Automatic formatting of tabular legal data
+
+### Caching System
+- **LimitedCache Class**: Memory-efficient caching with persistence
+- **PDF Text Cache**: Reduces redundant document processing
+- **API Response Cache**: Minimizes expensive AI API calls
+- **Database Persistence**: Automatic cache backup and restoration
+
+## Data Flow
+
+1. **Document Ingestion**: PDFs are downloaded from official sources and cached locally
+2. **Text Extraction**: Raw text is extracted using specialized PDF parsing
+3. **AI Processing**: Structured prompts extract specific legal provisions
+4. **Content Normalization**: Tables and formatting are standardized
+5. **Database Storage**: Processed content is stored with metadata tracking
+6. **API Serving**: Frontend requests are served from cache or generated on-demand
+
+### Batch Processing Workflow
+- **Convention Import**: Bulk import from JSON data sources
+- **Pre-conversion**: Background markdown conversion of entire documents
+- **Section Extraction**: AI-powered extraction of specific legal provisions
+- **Quality Assurance**: Validation and error handling for processed content
+
+## External Dependencies
+
+### AI Services
+- **OpenAI API**: Primary text analysis and extraction
+- **Google Gemini**: Alternative AI provider for specialized tasks
+- **Perplexity API**: Internet-connected research capabilities
+- **Anthropic Claude**: Additional AI provider for complex legal analysis
+
+### Data Sources
+- **Official Legal Databases**: Elnet.fr and other government sources
+- **PDF Documents**: Direct access to official collective agreement texts
+- **JSON Data Files**: Pre-processed legal information
+
+### Development Tools
+- **Drizzle Kit**: Database migrations and schema management
+- **TypeScript**: Type safety across the full stack
+- **ESBuild**: Production bundling for server code
+- **Vite**: Development server and client-side bundling
+
+## Deployment Strategy
+
+### Platform Configuration
+- **Deployment Target**: Google Cloud Run
+- **Database**: PostgreSQL 16 with automatic provisioning
+- **Environment**: Node.js 20 runtime
+- **Build Process**: Multi-stage build (Vite + ESBuild)
+
+### Performance Optimizations
+- **Static Asset Serving**: Efficient client-side resource delivery
+- **Database Connection Pooling**: Optimized database access
+- **Caching Strategy**: Multi-level caching reduces AI API costs
+- **Batch Processing**: Background jobs prevent UI blocking
+
+### Monitoring and Metrics
+- **API Usage Tracking**: Cost monitoring for AI services
+- **Error Logging**: Comprehensive error tracking and reporting
+- **Performance Metrics**: Response time and throughput monitoring
+
+## Changelog
+- June 17, 2025. Initial setup
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.

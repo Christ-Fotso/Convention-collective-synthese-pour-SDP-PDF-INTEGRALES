@@ -3,11 +3,11 @@ import { type Category } from '@/types';
 export const CATEGORIES: Category[] = [
   {
     "id": "informations-generales",
-    "name": "Informations générales",
+    "name": "Informations Générales",
     "subcategories": [
       {
         "id": "generale",
-        "name": "Informations générales (Global)"
+        "name": "Informations Générales"
       }
     ]
   },
@@ -94,14 +94,6 @@ export const CATEGORIES: Category[] = [
       {
         "id": "mutuelle",
         "name": "Cotisation mutuelle"
-      },
-      {
-        "id": "formation",
-        "name": "Contributions Conventionnelles à la Formation Professionnelle"
-      },
-      {
-        "id": "paritarisme",
-        "name": "Paritarisme (Financement)"
       }
     ]
   },
@@ -141,7 +133,7 @@ export const CATEGORIES: Category[] = [
       },
       {
         "id": "prime",
-        "name": "Primes, Indemnités, Avantages et Frais Professionnels"
+        "name": "Prime"
       },
       {
         "id": "grille",
