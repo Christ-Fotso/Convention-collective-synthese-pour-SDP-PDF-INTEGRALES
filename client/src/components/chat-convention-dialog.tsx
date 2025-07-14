@@ -9,12 +9,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { X, Send, RotateCcw, Loader2, User, Bot, FileText, Database } from "lucide-react";
+import { X, Send, RotateCcw, Loader2, User, Bot, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 
 interface ChatConventionDialogProps {
   open: boolean;
@@ -43,7 +41,7 @@ export function ChatConventionDialog({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [useRAG, setUseRAG] = useState(true); // RAG activé par défaut
+  const useRAG = true; // RAG uniquement
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   
@@ -89,30 +87,20 @@ export function ChatConventionDialog({
     setError("");
     
     try {
-      let data;
-      
-      if (useRAG) {
-        // Utiliser le système RAG
-        const response = await axios.post(`/api/ask-rag`, {
-          question: userMessage.content
-        });
-        data = response.data;
-      } else {
-        // Utiliser le système structuré existant
-        const response = await axios.post(`/api/convention/${conventionId}/ask`, {
-          question: userMessage.content
-        });
-        data = response.data;
-      }
+      // Utiliser uniquement le système RAG
+      const response = await axios.post(`/api/ask-rag`, {
+        question: userMessage.content
+      });
+      const data = response.data;
       
       // Ajouter la réponse du système
       const botMessage: ChatMessage = {
         id: generateId(),
-        content: useRAG ? data.answer : data.response,
+        content: data.answer,
         role: "assistant",
         timestamp: new Date(),
         sources: data.sources || [],
-        method: data.method || (useRAG ? 'RAG' : 'structured')
+        method: 'RAG'
       };
       
       // Mettre à jour la liste des messages
@@ -201,37 +189,14 @@ export function ChatConventionDialog({
               <X className="h-4 w-4" />
             </Button>
           </DialogTitle>
-          <DialogDescription className="space-y-3">
+          <DialogDescription>
             <p>Posez des questions précises sur cette convention collective. 
-            L'assistant analysera le document et vous fournira les informations pertinentes.</p>
+            L'assistant analysera les documents texte complets et vous fournira les informations pertinentes.</p>
             
-            <div className="flex items-center space-x-2">
-              <Switch
-                id="rag-mode"
-                checked={useRAG}
-                onCheckedChange={setUseRAG}
-              />
-              <Label htmlFor="rag-mode" className="text-sm font-medium flex items-center gap-2">
-                {useRAG ? (
-                  <>
-                    <FileText className="h-4 w-4" />
-                    Mode RAG (Documents complets)
-                  </>
-                ) : (
-                  <>
-                    <Database className="h-4 w-4" />
-                    Mode Structuré (Base de données)
-                  </>
-                )}
-              </Label>
+            <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+              <FileText className="h-4 w-4" />
+              <span>Recherche dans l'intégralité des documents texte des conventions collectives</span>
             </div>
-            
-            <p className="text-xs text-muted-foreground">
-              {useRAG 
-                ? "Recherche dans l'intégralité des documents texte des conventions collectives"
-                : "Utilise les sections structurées de la base de données"
-              }
-            </p>
           </DialogDescription>
         </DialogHeader>
         
@@ -296,17 +261,11 @@ export function ChatConventionDialog({
                         </div>
                       )}
                       
-                      {/* Indicator du mode utilisé */}
-                      {msg.role === "assistant" && msg.method && (
+                      {/* Indicator du mode RAG */}
+                      {msg.role === "assistant" && (
                         <div className="mt-2 flex items-center gap-1 text-xs text-gray-500">
-                          {msg.method === 'RAG' ? (
-                            <FileText className="h-3 w-3" />
-                          ) : (
-                            <Database className="h-3 w-3" />
-                          )}
-                          <span>
-                            {msg.method === 'RAG' ? 'Documents complets' : 'Base structurée'}
-                          </span>
+                          <FileText className="h-3 w-3" />
+                          <span>Documents complets</span>
                         </div>
                       )}
                     </div>
