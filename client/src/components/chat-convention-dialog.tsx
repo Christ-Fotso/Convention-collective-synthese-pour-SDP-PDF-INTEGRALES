@@ -190,13 +190,7 @@ export function ChatConventionDialog({
             </Button>
           </DialogTitle>
           <DialogDescription>
-            <p>Posez des questions précises sur cette convention collective. 
-            L'assistant analysera les documents texte complets et vous fournira les informations pertinentes.</p>
-            
-            <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-              <FileText className="h-4 w-4" />
-              <span>Recherche dans l'intégralité des documents texte des conventions collectives</span>
-            </div>
+            Posez des questions précises sur cette convention collective.
           </DialogDescription>
         </DialogHeader>
         
@@ -206,7 +200,7 @@ export function ChatConventionDialog({
             <div className="space-y-4 py-4">
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground py-8">
-                  <p>Posez votre première question sur la convention collective.</p>
+                  <p>Posez votre question sur la convention collective.</p>
                 </div>
               ) : (
                 messages.map((msg) => (
