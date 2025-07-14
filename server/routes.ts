@@ -42,6 +42,9 @@ const openai = new OpenAI({
 // Import de notre cache persistant
 import { LimitedCache } from "./services/cache-manager";
 
+// Import du service RAG
+import { ragService } from "./services/rag-service";
+
 // Cache pour les réponses OpenAI avec persistance
 const openaiCache = new LimitedCache(50, 'openai', 300000); // 5 minutes d'intervalle de sauvegarde
 
@@ -1729,6 +1732,42 @@ Format attendu exactement:
       res.status(500).json({
         error: "Traitement impossible",
         message: "Une erreur est survenue lors du traitement de votre question. Veuillez réessayer ultérieurement."
+      });
+    }
+  });
+  
+  // Route pour poser une question avec le système RAG
+  apiRouter.post("/ask-rag", async (req, res) => {
+    try {
+      const { question } = req.body;
+      
+      if (!question) {
+        return res.status(400).json({ 
+          error: "La question est requise",
+          message: "Veuillez fournir une question"
+        });
+      }
+      
+      console.log(`[RAG] Question reçue: "${question}"`);
+      
+      // Utiliser le service RAG pour rechercher et générer une réponse
+      const result = await ragService.answerQuestion(question);
+      
+      console.log(`[RAG] Réponse générée avec ${result.sources.length} sources`);
+      
+      res.json({
+        question,
+        answer: result.answer,
+        sources: result.sources,
+        method: 'RAG'
+      });
+      
+    } catch (error: any) {
+      console.error(`[RAG] Erreur:`, error);
+      
+      res.status(500).json({
+        error: "Erreur lors du traitement",
+        message: "Une erreur est survenue lors du traitement de votre question avec le système RAG."
       });
     }
   });

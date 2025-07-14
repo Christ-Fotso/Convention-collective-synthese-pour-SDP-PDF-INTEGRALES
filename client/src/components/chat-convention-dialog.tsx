@@ -9,10 +9,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { X, Send, RotateCcw, Loader2, User, Bot } from "lucide-react";
+import { X, Send, RotateCcw, Loader2, User, Bot, FileText, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 interface ChatConventionDialogProps {
   open: boolean;
@@ -27,6 +29,8 @@ interface ChatMessage {
   content: string;
   role: "user" | "assistant";
   timestamp: Date;
+  sources?: Array<{ conventionName: string; idcc: string; filename: string }>;
+  method?: 'RAG' | 'structured';
 }
 
 export function ChatConventionDialog({
@@ -39,6 +43,7 @@ export function ChatConventionDialog({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [useRAG, setUseRAG] = useState(true); // RAG activé par défaut
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   
@@ -84,16 +89,30 @@ export function ChatConventionDialog({
     setError("");
     
     try {
-      const { data } = await axios.post(`/api/convention/${conventionId}/ask`, {
-        question: userMessage.content
-      });
+      let data;
+      
+      if (useRAG) {
+        // Utiliser le système RAG
+        const response = await axios.post(`/api/ask-rag`, {
+          question: userMessage.content
+        });
+        data = response.data;
+      } else {
+        // Utiliser le système structuré existant
+        const response = await axios.post(`/api/convention/${conventionId}/ask`, {
+          question: userMessage.content
+        });
+        data = response.data;
+      }
       
       // Ajouter la réponse du système
       const botMessage: ChatMessage = {
         id: generateId(),
-        content: data.response,
+        content: useRAG ? data.answer : data.response,
         role: "assistant",
-        timestamp: new Date()
+        timestamp: new Date(),
+        sources: data.sources || [],
+        method: data.method || (useRAG ? 'RAG' : 'structured')
       };
       
       // Mettre à jour la liste des messages
@@ -182,9 +201,37 @@ export function ChatConventionDialog({
               <X className="h-4 w-4" />
             </Button>
           </DialogTitle>
-          <DialogDescription>
-            Posez des questions précises sur cette convention collective. 
-            L'assistant analysera le document et vous fournira les informations pertinentes.
+          <DialogDescription className="space-y-3">
+            <p>Posez des questions précises sur cette convention collective. 
+            L'assistant analysera le document et vous fournira les informations pertinentes.</p>
+            
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="rag-mode"
+                checked={useRAG}
+                onCheckedChange={setUseRAG}
+              />
+              <Label htmlFor="rag-mode" className="text-sm font-medium flex items-center gap-2">
+                {useRAG ? (
+                  <>
+                    <FileText className="h-4 w-4" />
+                    Mode RAG (Documents complets)
+                  </>
+                ) : (
+                  <>
+                    <Database className="h-4 w-4" />
+                    Mode Structuré (Base de données)
+                  </>
+                )}
+              </Label>
+            </div>
+            
+            <p className="text-xs text-muted-foreground">
+              {useRAG 
+                ? "Recherche dans l'intégralité des documents texte des conventions collectives"
+                : "Utilise les sections structurées de la base de données"
+              }
+            </p>
           </DialogDescription>
         </DialogHeader>
         
@@ -229,6 +276,39 @@ export function ChatConventionDialog({
                           ))
                         )}
                       </div>
+                      
+                      {/* Afficher les sources si RAG */}
+                      {msg.role === "assistant" && msg.sources && msg.sources.length > 0 && (
+                        <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                          <div className="flex items-center gap-2 mb-2">
+                            <FileText className="h-4 w-4 text-gray-500" />
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                              Sources consultées :
+                            </span>
+                          </div>
+                          <div className="space-y-1">
+                            {msg.sources.map((source, idx) => (
+                              <div key={idx} className="text-xs text-gray-600 dark:text-gray-400">
+                                • {source.conventionName} (IDCC {source.idcc})
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Indicator du mode utilisé */}
+                      {msg.role === "assistant" && msg.method && (
+                        <div className="mt-2 flex items-center gap-1 text-xs text-gray-500">
+                          {msg.method === 'RAG' ? (
+                            <FileText className="h-3 w-3" />
+                          ) : (
+                            <Database className="h-3 w-3" />
+                          )}
+                          <span>
+                            {msg.method === 'RAG' ? 'Documents complets' : 'Base structurée'}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))
