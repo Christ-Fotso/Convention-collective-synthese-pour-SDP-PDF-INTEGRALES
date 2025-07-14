@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, ChevronDown, ChevronRight, Search } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -339,19 +339,14 @@ export default function Chat() {
                   <CardTitle>Sections disponibles</CardTitle>
                   <div className="flex items-center gap-3">
                     <div className="relative w-64">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-500" />
                       <input
                         type="text"
                         placeholder="Rechercher une section..."
-                        className="w-full p-2 pr-8 text-sm border rounded-md"
+                        className="w-full pl-10 pr-4 py-2 text-sm border-2 border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                          <circle cx="11" cy="11" r="8"></circle>
-                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                      </div>
                     </div>
                     {convention && (
                       <Button 
