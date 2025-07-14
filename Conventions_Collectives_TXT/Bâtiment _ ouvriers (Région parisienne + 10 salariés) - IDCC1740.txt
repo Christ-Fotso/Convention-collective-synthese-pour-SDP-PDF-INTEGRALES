@@ -1,0 +1,3 @@
+Bâtiment : ouvriers (Région parisienne + 10 salariés)
+IDCC : 1740
+Lien : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC042/sharp_/ANX/1740_CC042.pdf

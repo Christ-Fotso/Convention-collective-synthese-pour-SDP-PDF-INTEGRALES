@@ -1,0 +1,3 @@
+Bâtiment : ETAM (Région parisienne)
+IDCC : 2707
+Lien : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC060/sharp_/ANX/2707_CC060.pdf
