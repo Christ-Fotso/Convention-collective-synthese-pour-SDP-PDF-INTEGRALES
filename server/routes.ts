@@ -45,6 +45,9 @@ import { LimitedCache } from "./services/cache-manager";
 // Import du service RAG
 import { ragService } from "./services/rag-service";
 
+// Import du service NAF
+import { nafService } from "./services/naf-service";
+
 // Cache pour les réponses OpenAI avec persistance
 const openaiCache = new LimitedCache(50, 'openai', 300000); // 5 minutes d'intervalle de sauvegarde
 
@@ -1772,6 +1775,109 @@ Format attendu exactement:
     }
   });
   
+  // Routes pour la recherche par code NAF
+  apiRouter.get("/naf/search", async (req, res) => {
+    try {
+      const { code, sector, keyword } = req.query;
+
+      let results = [];
+
+      if (code) {
+        results = nafService.searchByNafCode(code as string);
+      } else if (sector) {
+        results = nafService.searchBySector(sector as string);
+      } else if (keyword) {
+        results = nafService.searchByKeyword(keyword as string);
+      } else {
+        return res.status(400).json({
+          message: "Au moins un paramètre de recherche est requis (code, sector, ou keyword)"
+        });
+      }
+
+      res.json({
+        results,
+        count: results.length,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error("Erreur lors de la recherche NAF:", error);
+      res.status(500).json({
+        message: "Erreur lors de la recherche NAF",
+        error: error.message
+      });
+    }
+  });
+
+  // Route pour obtenir tous les codes NAF disponibles
+  apiRouter.get("/naf/codes", async (req, res) => {
+    try {
+      const codes = nafService.getAllNafCodes();
+      res.json({
+        codes,
+        count: codes.length
+      });
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des codes NAF:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des codes NAF",
+        error: error.message
+      });
+    }
+  });
+
+  // Route pour obtenir tous les secteurs disponibles
+  apiRouter.get("/naf/sectors", async (req, res) => {
+    try {
+      const sectors = nafService.getAllSectors();
+      res.json({
+        sectors,
+        count: sectors.length
+      });
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des secteurs:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des secteurs",
+        error: error.message
+      });
+    }
+  });
+
+  // Route pour obtenir les informations d'une convention spécifique
+  apiRouter.get("/naf/convention/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const info = nafService.getConventionInfo(id);
+
+      if (!info) {
+        return res.status(404).json({
+          message: "Convention non trouvée"
+        });
+      }
+
+      res.json(info);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des informations de convention:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des informations",
+        error: error.message
+      });
+    }
+  });
+
+  // Route pour obtenir les statistiques du service NAF
+  apiRouter.get("/naf/stats", async (req, res) => {
+    try {
+      const stats = nafService.getStatistics();
+      res.json(stats);
+    } catch (error: any) {
+      console.error("Erreur lors de la récupération des statistiques NAF:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération des statistiques",
+        error: error.message
+      });
+    }
+  });
+
   // Enregistrer les routes
   app.use('/api/admin', adminRouter);
   app.use("/api", apiRouter);
