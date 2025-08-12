@@ -115,6 +115,15 @@ The application serves as a specialized tool for HR professionals, legal experts
   - 4 sections de base : Informations générales, Délai de prévenance, Période d'essai, Durée du travail
   - Contenu basé sur les dispositions légales du Code du travail français
   - Intégration complète avec le système de chat IA pour répondre aux questions sur le droit du travail
+- August 12, 2025. Système de rendu HTML enrichi pour les documents légaux :
+  - Conversion automatique Markdown vers HTML avec bibliothèque marked
+  - Mise en forme professionnelle avec highlight.js pour la coloration syntaxique
+  - Interface utilisateur avec vue enrichie HTML accessible depuis chaque section
+  - API de conversion HTML (/api/test/html-conversion/:conventionId/:sectionType)
+  - Composant HtmlTestViewer intégré avec onglets (rendu HTML, markdown original, code HTML)
+  - Statistiques automatiques (mots, titres, tableaux, listes)
+  - Routage optimisé pour les pages de sections individuelles
+  - Boutons "Page complète" ajoutés à chaque section pour accès direct
 
 ## User Preferences
 

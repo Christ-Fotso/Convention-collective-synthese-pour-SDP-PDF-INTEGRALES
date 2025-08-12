@@ -36,9 +36,6 @@ export default function SectionViewer() {
   const [, navigate] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
   const { conventionId, sectionType } = params;
-  
-  // Debug pour voir les valeurs des paramètres
-  console.log("SectionViewer params:", { conventionId, sectionType });
 
   const { data: conventions, isLoading: isLoadingConventions } = useQuery({
     queryKey: ['/api/conventions'],
@@ -199,21 +196,12 @@ export default function SectionViewer() {
         </h1>
       </div>
 
-      {/* Test de rendu HTML - uniquement en mode test */}
-      {conventionId && sectionType ? (
-        <div>
-          <p style={{background: 'yellow', padding: '10px', margin: '10px 0'}}>
-            DEBUG: conventionId={conventionId}, sectionType={sectionType}
-          </p>
-          <HtmlTestViewer 
-            conventionId={conventionId} 
-            sectionType={sectionType}
-          />
-        </div>
-      ) : (
-        <p style={{background: 'red', color: 'white', padding: '10px', margin: '10px 0'}}>
-          DEBUG: Pas de conventionId ou sectionType - conventionId={conventionId}, sectionType={sectionType}
-        </p>
+      {/* Système de conversion HTML pour les documents légaux */}
+      {conventionId && sectionType && (
+        <HtmlTestViewer 
+          conventionId={conventionId} 
+          sectionType={sectionType}
+        />
       )}
 
       <Card className="mb-6">

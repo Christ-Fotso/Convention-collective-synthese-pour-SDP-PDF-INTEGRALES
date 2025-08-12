@@ -39,9 +39,6 @@ interface ConversionResult {
 
 export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestViewerProps) {
   const [isTestMode, setIsTestMode] = useState(false);
-  
-  // Debug log pour vérifier que le composant est rendu
-  console.log("HtmlTestViewer rendu avec:", { conventionId, sectionType });
 
   const { data: conversion, isLoading, error, refetch } = useQuery({
     queryKey: ['html-conversion', conventionId, sectionType],
@@ -67,12 +64,12 @@ export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestV
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-blue-800">
             <Eye className="h-5 w-5" />
-            Test de rendu HTML
+            Vue enrichie HTML
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-blue-700 mb-3">
-            Testez le nouveau rendu HTML enrichi pour cette section (mode test seulement).
+            Visualisez cette section avec une mise en forme HTML enrichie pour une meilleure lisibilité.
           </p>
           <Button 
             onClick={handleStartTest} 
@@ -81,7 +78,7 @@ export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestV
             className="border-blue-300 text-blue-700 hover:bg-blue-100"
           >
             <Eye className="h-4 w-4 mr-2" />
-            Activer le test HTML
+            Affichage HTML enrichi
           </Button>
         </CardContent>
       </Card>
@@ -123,7 +120,7 @@ export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestV
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2 text-green-800">
             <Eye className="h-5 w-5" />
-            Test HTML - {conversion.section.title}
+            Vue enrichie - {conversion.section.title}
           </CardTitle>
           <div className="flex gap-2">
             <Button onClick={() => refetch()} size="sm" variant="outline">
@@ -131,7 +128,7 @@ export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestV
               Recharger
             </Button>
             <Button onClick={handleStopTest} size="sm" variant="outline">
-              Fermer le test
+              Fermer la vue
             </Button>
           </div>
         </div>
