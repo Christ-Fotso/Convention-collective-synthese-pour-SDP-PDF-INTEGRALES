@@ -329,38 +329,12 @@ export default function Chat() {
       
       {convention && (
         <div className="space-y-6">
-          {/* Barre de chat IA en haut */}
-          <div className="mb-4">
-            <Card className="border-green-200 bg-gradient-to-r from-green-50 to-emerald-50">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                      <MessageSquare className="h-4 w-4 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-green-800">Assistant IA spécialisé</h3>
-                      <p className="text-sm text-green-600">Posez vos questions sur cette convention collective</p>
-                    </div>
-                  </div>
-                  {convention && (
-                    <Button 
-                      onClick={() => setIsChatDialogOpen(true)}
-                      className="bg-green-600 hover:bg-green-700 text-white"
-                      size="sm"
-                    >
-                      Démarrer une conversation
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+
 
           {/* Barre de navigation avec nom de convention et navigation */}
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b shadow-sm">
             <div className="px-6 py-4 space-y-3">
-              {/* Première ligne: Nom de la convention et recherche */}
+              {/* Première ligne: Nom de la convention et assistant IA */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <h1 className="text-lg font-bold text-gray-800 dark:text-gray-200">
@@ -373,20 +347,19 @@ export default function Chat() {
                     )}
                   </h1>
                 </div>
-                <div className="relative w-80">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Rechercher dans cette convention..."
-                    className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
+                <Button 
+                  onClick={() => setIsChatDialogOpen(true)}
+                  className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
+                  size="default"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  Poser une question à l'assistant IA
+                </Button>
               </div>
               
-              {/* Deuxième ligne: Navigation par onglets */}
-              <div className="flex justify-center">
+              {/* Deuxième ligne: Icône recherche + Navigation par onglets */}
+              <div className="flex items-center justify-center gap-4">
+                <Search className="h-5 w-5 text-gray-400" />
                 <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
                     <>
