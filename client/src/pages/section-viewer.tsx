@@ -8,6 +8,7 @@ import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { MarkdownTableRendererEnhanced } from '@/components/markdown-table-renderer-enhanced';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
+import { HtmlTestViewer } from "@/components/html-test-viewer";
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, ConventionSection, Category, Subcategory } from '@/types';
@@ -194,6 +195,14 @@ export default function SectionViewer() {
           {convention.name}
         </h1>
       </div>
+
+      {/* Test de rendu HTML - uniquement en mode test */}
+      {conventionId && sectionType && (
+        <HtmlTestViewer 
+          conventionId={conventionId} 
+          sectionType={sectionType}
+        />
+      )}
 
       <Card className="mb-6">
         <CardHeader>

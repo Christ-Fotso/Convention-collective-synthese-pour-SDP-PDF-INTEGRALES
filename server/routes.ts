@@ -48,6 +48,9 @@ import { ragService } from "./services/rag-service";
 // Import du service NAF
 import { nafService } from "./services/naf-service";
 
+// Import du convertisseur Markdown vers HTML
+import { markdownHtmlConverter } from "./services/markdown-html-converter.js";
+
 // Cache pour les réponses OpenAI avec persistance
 const openaiCache = new LimitedCache(50, 'openai', 300000); // 5 minutes d'intervalle de sauvegarde
 
@@ -1873,6 +1876,52 @@ Format attendu exactement:
       console.error("Erreur lors de la récupération des statistiques NAF:", error);
       res.status(500).json({
         message: "Erreur lors de la récupération des statistiques",
+        error: error.message
+      });
+    }
+  });
+
+  // Route de test pour la conversion Markdown vers HTML
+  apiRouter.get("/test/html-conversion/:conventionId/:sectionType", async (req, res) => {
+    try {
+      const { conventionId, sectionType } = req.params;
+      
+      // Récupérer le contenu Markdown de la section
+      const section = getSection(conventionId, sectionType);
+      
+      if (!section) {
+        return res.status(404).json({
+          message: "Section non trouvée",
+          conventionId,
+          sectionType
+        });
+      }
+
+      // Convertir en HTML
+      const result = await markdownHtmlConverter.convertToHtml(section.content);
+      
+      // Ajouter les styles CSS
+      const css = markdownHtmlConverter.getEnhancedCss();
+      
+      res.json({
+        success: true,
+        section: {
+          id: section.id,
+          title: section.title || `Section ${sectionType}`,
+          conventionId,
+          sectionType
+        },
+        markdown: section.content,
+        html: result.html,
+        toc: result.toc,
+        css: css,
+        stats: result.stats,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error("Erreur lors de la conversion HTML:", error);
+      res.status(500).json({
+        message: "Erreur lors de la conversion HTML",
         error: error.message
       });
     }
