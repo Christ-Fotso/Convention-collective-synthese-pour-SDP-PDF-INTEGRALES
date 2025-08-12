@@ -71,9 +71,20 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
           : "border-gray-200 dark:border-gray-700"
       }`}
     >
-      <h3 className="text-xl font-semibold mb-4 text-green-600 dark:text-green-400">
-        {getSectionName()}
-      </h3>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-xl font-semibold text-green-600 dark:text-green-400">
+          {getSectionName()}
+        </h3>
+        <Button 
+          variant="outline" 
+          size="sm"
+          className="text-xs flex items-center"
+          onClick={() => window.open(`/convention/${conventionId}/section/${section.sectionType}`, '_blank')}
+        >
+          <BookOpen className="h-3.5 w-3.5 mr-1" />
+          Page complète
+        </Button>
+      </div>
       
       {isLoading ? (
         <div className="space-y-4">

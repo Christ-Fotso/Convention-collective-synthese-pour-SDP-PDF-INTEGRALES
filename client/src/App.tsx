@@ -18,8 +18,7 @@ function Router() {
       <Route path="/convention/:id" component={Chat} />
       <Route path="/admin" component={AdminPage} />
 
-      <Route path="/convention/:id/section/:category/:subcategory" component={SectionViewer} />
-      <Route path="/convention/:id/section/:category" component={SectionViewer} />
+      <Route path="/convention/:conventionId/section/:sectionType" component={SectionViewer} />
       <Route component={NotFound} />
     </Switch>
   );

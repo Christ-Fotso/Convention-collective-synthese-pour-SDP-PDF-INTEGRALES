@@ -32,11 +32,13 @@ function normalizeParams(category?: string, subcategory?: string): string {
 }
 
 export default function SectionViewer() {
-  const params = useParams<{ id: string, category: string, subcategory?: string }>();
+  const params = useParams<{ conventionId: string, sectionType: string }>();
   const [, navigate] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
-  const conventionId = params.id;
-  const sectionType = normalizeParams(params.category, params.subcategory);
+  const { conventionId, sectionType } = params;
+  
+  // Debug pour voir les valeurs des paramètres
+  console.log("SectionViewer params:", { conventionId, sectionType });
 
   const { data: conventions, isLoading: isLoadingConventions } = useQuery({
     queryKey: ['/api/conventions'],
