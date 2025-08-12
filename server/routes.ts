@@ -1972,12 +1972,25 @@ Format attendu exactement:
         if (score > 0) {
           const [category, subcategory] = sectionData.sectionType.split('.');
           
+          // Convertir le contenu Markdown en HTML pour l'aperçu
+          let previewContent = sectionData.content;
+          
+          // Nettoyage basique du Markdown pour l'aperçu
+          previewContent = previewContent
+            .replace(/#{1,6}\s+/g, '') // Supprimer les titres markdown
+            .replace(/\*\*([^*]+)\*\*/g, '$1') // Supprimer le gras markdown
+            .replace(/\*([^*]+)\*/g, '$1') // Supprimer l'italique markdown
+            .replace(/^\s*[-*+]\s+/gm, '• ') // Remplacer les listes markdown par des puces
+            .replace(/^\s*\d+\.\s+/gm, '• ') // Remplacer les listes numérotées
+            .replace(/\n{3,}/g, '\n\n') // Limiter les sauts de ligne multiples
+            .trim();
+          
           results.push({
             sectionType: sectionData.sectionType,
             sectionName: sectionData.sectionType,
             category,
             subcategory,
-            content: sectionData.content.substring(0, 500), // Limiter à 500 caractères
+            content: previewContent.substring(0, 500), // Limiter à 500 caractères
             matches,
             score: score / searchTerms.length // Score normalisé
           });

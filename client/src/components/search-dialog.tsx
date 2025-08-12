@@ -206,17 +206,11 @@ export function SearchDialog({
             </div>
           </div>
           
-          <div 
-            className="text-sm text-gray-700 leading-relaxed"
-            dangerouslySetInnerHTML={{ 
-              __html: highlightMatches(
-                result.content.length > 200 
-                  ? result.content.substring(0, 200) + "..." 
-                  : result.content,
-                result.matches
-              )
-            }}
-          />
+          <div className="text-sm text-gray-700 leading-relaxed">
+            {result.content.length > 200 
+              ? result.content.substring(0, 200) + "..." 
+              : result.content}
+          </div>
           
           {result.score && (
             <div className="mt-2 text-xs text-gray-500">
