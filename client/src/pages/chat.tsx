@@ -11,6 +11,7 @@ import { CATEGORIES } from "@/lib/categories";
 import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
+import { HtmlTestViewer } from "@/components/html-test-viewer";
 import { ChatConventionDialog } from "@/components/chat-convention-dialog";
 
 // Types
@@ -114,11 +115,10 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
               />
             </div>
           )}
-          <div className="prose dark:prose-invert max-w-none prose-sm">
-            <MarkdownTableRendererEnhanced 
-              content={sectionContent.content || "*Aucun contenu disponible pour cette section*"} 
-            />
-          </div>
+          <HtmlTestViewer 
+            conventionId={conventionId}
+            sectionType={section.sectionType}
+          />
         </>
       ) : (
         <div className="text-red-500">

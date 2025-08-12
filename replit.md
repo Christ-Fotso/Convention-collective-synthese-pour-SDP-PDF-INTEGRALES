@@ -124,6 +124,10 @@ The application serves as a specialized tool for HR professionals, legal experts
   - Statistiques automatiques (mots, titres, tableaux, listes)
   - Routage optimisé pour les pages de sections individuelles
   - Boutons "Page complète" ajoutés à chaque section pour accès direct
+  - MISE À JOUR : Affichage HTML automatique par défaut dans la vue principale
+    * Remplacement du rendu Markdown par HTML enrichi automatique
+    * Vue directe sans boutons d'activation ou choix utilisateur
+    * Interface simplifiée et professionnelle pour service commercial
 
 ## User Preferences
 
