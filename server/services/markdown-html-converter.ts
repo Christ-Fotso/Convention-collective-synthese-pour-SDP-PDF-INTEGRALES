@@ -172,16 +172,20 @@ export class MarkdownHtmlConverter {
         // Hide H1 titles that are redundant with section names
         if (parseInt(level) === 1) {
           const normalizedContent = content.toLowerCase().trim();
-          if (normalizedContent.includes('informations générales') || 
-              normalizedContent.includes('information générale') ||
+          // More specific patterns to catch redundant titles
+          if (normalizedContent.includes('informations générales de la convention collective') || 
+              normalizedContent.includes('information générale de la convention') ||
               normalizedContent.includes('délai de prévenance') ||
               normalizedContent.includes('période d\'essai') ||
+              normalizedContent.includes('durées du travail') ||
               normalizedContent.includes('durée du travail') ||
               normalizedContent.includes('classification') ||
+              normalizedContent.includes('grille de rémunération') ||
               normalizedContent.includes('rémunération') ||
-              normalizedContent.includes('grille') ||
+              normalizedContent.includes('congés payés') ||
               normalizedContent.includes('congés') ||
-              normalizedContent.includes('protection sociale')) {
+              normalizedContent.includes('protection sociale') ||
+              (normalizedContent.includes('convention collective') && normalizedContent.includes('idcc'))) {
             return ''; // Hide redundant titles
           }
         }
