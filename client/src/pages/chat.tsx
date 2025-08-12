@@ -342,34 +342,49 @@ export default function Chat() {
       
       {convention && (
         <div className="space-y-6">
-          {/* Navigation horizontale fixe en haut */}
+          {/* Barre de chat IA en haut */}
+          <div className="mb-4">
+            <Card className="border-green-200 bg-gradient-to-r from-green-50 to-emerald-50">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                      <MessageSquare className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-green-800">Assistant IA spécialisé</h3>
+                      <p className="text-sm text-green-600">Posez vos questions sur cette convention collective</p>
+                    </div>
+                  </div>
+                  {convention && (
+                    <Button 
+                      onClick={() => setIsChatDialogOpen(true)}
+                      className="bg-green-600 hover:bg-green-700 text-white"
+                      size="sm"
+                    >
+                      Démarrer une conversation
+                    </Button>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Navigation et recherche */}
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b shadow-sm">
             <Card className="border-l-0 border-r-0 border-t-0 rounded-none">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle>Sections disponibles</CardTitle>
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-64">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-500" />
-                      <input
-                        type="text"
-                        placeholder="Rechercher une section..."
-                        className="w-full pl-10 pr-4 py-2 text-sm border-2 border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                      />
-                    </div>
-                    {convention && (
-                      <Button 
-                        variant="default" 
-                        onClick={() => setIsChatDialogOpen(true)}
-                        className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white whitespace-nowrap"
-                        size="sm"
-                      >
-                        <MessageSquare className="h-4 w-4" />
-                        Poser une question
-                      </Button>
-                    )}
+                  <CardTitle className="text-gray-700">Navigation dans les sections</CardTitle>
+                  <div className="relative w-72">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Filtrer les sections..."
+                      className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                   </div>
                 </div>
               </CardHeader>

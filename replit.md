@@ -133,6 +133,9 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Tableaux avec dégradés verts et effets hover sophistiqués
     * Listes et citations stylées avec indicateurs visuels verts
     * Ombres subtiles et bordures arrondies pour un aspect professionnel
+    * Séparation claire entre la fonction chat IA et la navigation/recherche
+    * Barre dédiée pour l'assistant IA avec design distinctif vert
+    * Zone de recherche repositionnée comme filtre de navigation
 
 ## User Preferences
 
