@@ -123,52 +123,42 @@ export default function Home() {
           </h1>
         </div>
 
-        {/* Moteur de recherche amélioré */}
-        <Card className="mb-8 border-green-200 shadow-lg">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-green-700">
-              <Search className="h-5 w-5" />
-              Rechercher une convention
-            </CardTitle>
-            <CardDescription>
-              Trouvez votre convention par nom, IDCC ou code NAF d'activité
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSearchSubmit} className="relative">
-              <Input
-                type="text"
-                placeholder="Ex: IDCC 1486, Boulangerie, 1071C..."
-                className="h-14 pl-6 pr-24 text-lg w-full border-2 focus:border-green-500 rounded-lg"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <div className="absolute right-3 top-3 flex items-center gap-2">
-                {search && (
-                  <button 
-                    type="button"
-                    onClick={() => {
-                      setSearch("");
-                      clearNafSearch();
-                    }}
-                    className="text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center transition-colors"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                )}
-                <Button
-                  type="submit"
-                  size="sm"
-                  className="h-8 px-3 bg-green-600 hover:bg-green-700 text-white"
-                  disabled={isSearchingNaf}
+        {/* Moteur de recherche simple */}
+        <div className="mb-8">
+          <form onSubmit={handleSearchSubmit} className="relative max-w-2xl mx-auto">
+            <Input
+              type="text"
+              placeholder="Rechercher par IDCC, nom de convention ou code NAF..."
+              className="h-12 pl-4 pr-24 text-lg w-full border-2 focus:border-green-500"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <div className="absolute right-2 top-2 flex items-center gap-1">
+              {search && (
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    clearNafSearch();
+                  }}
+                  className="text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center transition-colors"
                 >
-                  <Building2 className="h-4 w-4 mr-1" />
-                  Recherche NAF
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+                  <X className="h-3 w-3" />
+                </button>
+              )}
+              <Button
+                type="submit"
+                size="sm"
+                variant="outline"
+                className="h-8 px-2 text-xs gap-1"
+                disabled={isSearchingNaf}
+              >
+                <Building2 className="h-3 w-3" />
+                NAF
+              </Button>
+            </div>
+          </form>
+        </div>
 
         {/* Résultats de recherche NAF modernisés */}
         {showNafSearch && (
