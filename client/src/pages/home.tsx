@@ -114,12 +114,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         {/* En-tête avec titre et description */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-green-700 mb-3">
-            Conventions Collectives
+            Recherche de Conventions Collectives
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Explorez et analysez plus de 380 conventions collectives françaises 
@@ -287,8 +287,8 @@ export default function Home() {
             {/* Section Code du travail mise en avant */}
             {filteredConventions.some(c => c.id === '9999') && !search && (
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-green-700 mb-4 flex items-center gap-2">
-                  <Star className="h-6 w-6 text-yellow-500" />
+                <h2 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
+                  <Star className="h-5 w-5 text-yellow-500" />
                   Référence légale
                 </h2>
                 <Card 
@@ -382,16 +382,15 @@ export default function Home() {
                         </div>
                       </CardHeader>
                       <CardContent className="pt-0">
-                        <div className="flex items-center gap-2 text-xs text-gray-600">
-                          <FileText className="h-3 w-3" />
-                          <span>34 sections disponibles</span>
+                        <div className="text-xs text-gray-600 mb-2">
+                          Sections principales : Rémunération, Temps de travail, Congés, Classification
                         </div>
-                        <div className="flex gap-1 mt-2">
-                          <Badge variant="outline" className="text-xs">
-                            Recherche IA
+                        <div className="flex gap-1">
+                          <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                            34 sections
                           </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            Export HTML
+                          <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                            IA intégrée
                           </Badge>
                         </div>
                       </CardContent>
