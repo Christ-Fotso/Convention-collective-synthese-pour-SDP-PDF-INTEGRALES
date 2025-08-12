@@ -136,6 +136,8 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Séparation claire entre la fonction chat IA et la navigation/recherche
     * Barre dédiée pour l'assistant IA avec design distinctif vert
     * Zone de recherche repositionnée comme filtre de navigation
+    * Correction du formatage Markdown : suppression des astérisques parasites
+    * Conversion automatique des éléments **gras** et *italique* en HTML stylé
 
 ## User Preferences
 

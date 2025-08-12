@@ -100,6 +100,16 @@ export class MarkdownHtmlConverter {
     // Add CSS classes to paragraphs based on content
     let enhancedHtml = html;
     
+    // Fix markdown formatting that wasn't properly converted
+    // Convert markdown bold and italic formatting
+    enhancedHtml = enhancedHtml.replace(/\*\*([^*]+)\*\*/g, '<strong class="legal-bold">$1</strong>');
+    enhancedHtml = enhancedHtml.replace(/\*([^*\s][^*]*[^*\s])\*/g, '<em class="legal-italic">$1</em>');
+    
+    // Clean up any remaining standalone asterisks (but be careful not to remove valid ones)
+    enhancedHtml = enhancedHtml.replace(/\*\*\s*:\s*\*\*/g, '');
+    enhancedHtml = enhancedHtml.replace(/^\*\*\s*$/gm, '');
+    enhancedHtml = enhancedHtml.replace(/\*\*([^*]*?)\*\*/g, '<strong class="legal-bold">$1</strong>');
+    
     // Legal articles
     enhancedHtml = enhancedHtml.replace(
       /<p>((Art(icle)?\s*\d+|Article\s*\d+).+?)<\/p>/gi,
@@ -242,6 +252,16 @@ export class MarkdownHtmlConverter {
       .legal-text {
         margin-bottom: 1rem;
         text-align: justify;
+      }
+
+      .legal-bold {
+        font-weight: 700;
+        color: #047857;
+      }
+
+      .legal-italic {
+        font-style: italic;
+        color: #065f46;
       }
 
       .legal-article {
