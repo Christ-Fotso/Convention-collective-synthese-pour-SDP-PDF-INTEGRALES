@@ -165,12 +165,29 @@ export class MarkdownHtmlConverter {
       '<blockquote class="legal-quote">'
     );
     
-    // Add classes to headings
+    // Add classes to headings and filter out redundant titles
     enhancedHtml = enhancedHtml.replace(
-      /<h([1-6])([^>]*)>/gi,
-      (match, level, attrs) => {
-        const classes = this.getLegalHeadingClass('', parseInt(level));
-        return `<h${level}${attrs} class="${classes}">`;
+      /<h([1-6])([^>]*?)>(.*?)<\/h[1-6]>/gi,
+      (match, level, attrs, content) => {
+        // Hide H1 titles that are redundant with section names
+        if (parseInt(level) === 1) {
+          const normalizedContent = content.toLowerCase().trim();
+          if (normalizedContent.includes('informations générales') || 
+              normalizedContent.includes('information générale') ||
+              normalizedContent.includes('délai de prévenance') ||
+              normalizedContent.includes('période d\'essai') ||
+              normalizedContent.includes('durée du travail') ||
+              normalizedContent.includes('classification') ||
+              normalizedContent.includes('rémunération') ||
+              normalizedContent.includes('grille') ||
+              normalizedContent.includes('congés') ||
+              normalizedContent.includes('protection sociale')) {
+            return ''; // Hide redundant titles
+          }
+        }
+        
+        const classes = this.getLegalHeadingClass(content, parseInt(level));
+        return `<h${level}${attrs} class="${classes}">${content}</h${level}>`;
       }
     );
     

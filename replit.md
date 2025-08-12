@@ -140,6 +140,7 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Conversion automatique des éléments **gras** et *italique* en HTML stylé
     * Formatage automatique des grilles de rémunération avec tri et retours à la ligne
     * Références d'avenants organisées par ordre numérique avec design cards élégant
+    * Suppression des titres H1 redondants qui doublonnent avec les noms de sections
 
 ## User Preferences
 
