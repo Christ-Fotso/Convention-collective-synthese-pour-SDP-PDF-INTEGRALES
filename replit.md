@@ -151,6 +151,16 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Transitions fluides et design moderne avec thème vert cohérent
     * Navigation hiérarchique intuitive sans surcharge visuelle (suppression des flèches)
     * Optimisation de l'espace vertical avec positionnement intelligent des éléments
+- August 12, 2025. Recherche avancée par mots-clés avec aperçu HTML :
+    * Moteur de recherche intelligent avec scoring de pertinence automatique
+    * Interface de recherche moderne avec dialog responsive et debounce optimisé
+    * Aperçu HTML enrichi intégré directement dans les résultats de recherche
+    * Bouton œil pour basculer l'affichage entre résumé textuel et rendu HTML complet
+    * API de recherche côté serveur analysant tout le contenu des sections
+    * Mise en évidence des termes recherchés avec score de pertinence affiché
+    * Navigation directe vers les sections depuis les résultats de recherche
+    * Design cohérent avec le thème vert et intégration parfaite à l'interface
+    * Distinction claire entre recherche par mots-clés (loupe) et assistant IA (chat)
 
 ## User Preferences
 

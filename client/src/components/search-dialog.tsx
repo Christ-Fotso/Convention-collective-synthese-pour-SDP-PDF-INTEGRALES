@@ -2,9 +2,11 @@ import { useState, useEffect, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, FileText, ChevronRight } from "lucide-react";
+import { Search, FileText, ChevronRight, Eye, EyeOff } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from "@/components/ui/card";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 // Fonction debounce simple pour éviter la dépendance lodash
 const debounce = (func: Function, wait: number) => {
   let timeout: NodeJS.Timeout;
@@ -145,6 +147,122 @@ export function SearchDialog({
     return `${categoryName} → ${subcategoryName}`;
   };
 
+  // Composant pour les cartes de résultats avec aperçu HTML
+  const SearchResultCard = ({ 
+    result, 
+    onResultClick, 
+    conventionId, 
+    getCategoryName, 
+    highlightMatches 
+  }: {
+    result: SearchResult;
+    onResultClick: (sectionType: string) => void;
+    conventionId: string;
+    getCategoryName: (category: string, subcategory: string) => string;
+    highlightMatches: (text: string, matches: string[]) => string;
+  }) => {
+    const [showPreview, setShowPreview] = useState(false);
+
+    // Requête pour obtenir le contenu HTML de la section
+    const { data: htmlContent, isLoading: isLoadingHtml } = useQuery({
+      queryKey: ["html-preview", conventionId, result.sectionType],
+      queryFn: async () => {
+        if (!showPreview) return null;
+        const response = await axios.get(`/api/test/html-conversion/${conventionId}/${result.sectionType}`);
+        return response.data;
+      },
+      enabled: showPreview,
+      staleTime: 1000 * 60 * 5 // Cache pendant 5 minutes
+    });
+
+    return (
+      <div className="border border-gray-200 rounded-lg overflow-hidden hover:border-green-300 hover:shadow-sm transition-all">
+        {/* En-tête cliquable */}
+        <div
+          className="p-4 cursor-pointer"
+          onClick={() => onResultClick(result.sectionType)}
+        >
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <FileText className="h-4 w-4 text-green-600" />
+              <span className="font-medium text-green-700">
+                {getCategoryName(result.category, result.subcategory)}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-6 w-6 p-0 text-gray-400 hover:text-green-600"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowPreview(!showPreview);
+                }}
+                title={showPreview ? "Masquer l'aperçu" : "Afficher l'aperçu"}
+              >
+                {showPreview ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+              </Button>
+              <ChevronRight className="h-4 w-4 text-gray-400" />
+            </div>
+          </div>
+          
+          <div 
+            className="text-sm text-gray-700 leading-relaxed"
+            dangerouslySetInnerHTML={{ 
+              __html: highlightMatches(
+                result.content.length > 200 
+                  ? result.content.substring(0, 200) + "..." 
+                  : result.content,
+                result.matches
+              )
+            }}
+          />
+          
+          {result.score && (
+            <div className="mt-2 text-xs text-gray-500">
+              Score de pertinence: {Math.round(result.score * 100)}%
+            </div>
+          )}
+        </div>
+
+        {/* Aperçu HTML expansible */}
+        {showPreview && (
+          <div className="border-t border-gray-200 bg-gray-50">
+            {isLoadingHtml ? (
+              <div className="p-4">
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              </div>
+            ) : htmlContent && htmlContent.success ? (
+              <div className="max-h-96 overflow-y-auto">
+                <style dangerouslySetInnerHTML={{ __html: htmlContent.css }} />
+                <div 
+                  className="p-4 legal-document text-sm"
+                  dangerouslySetInnerHTML={{ __html: htmlContent.html }}
+                />
+                {htmlContent.stats && (
+                  <div className="px-4 pb-2 text-xs text-gray-500 border-t border-gray-100 bg-gray-25 flex gap-4">
+                    <span>{htmlContent.stats.wordCount} mots</span>
+                    {htmlContent.stats.headingCount > 0 && <span>{htmlContent.stats.headingCount} titres</span>}
+                    {htmlContent.stats.tableCount > 0 && <span>{htmlContent.stats.tableCount} tableaux</span>}
+                    {htmlContent.stats.listCount > 0 && <span>{htmlContent.stats.listCount} listes</span>}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="p-4 text-sm text-gray-500 text-center">
+                Impossible de charger l'aperçu HTML
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[80vh] p-0">
@@ -201,39 +319,14 @@ export function SearchDialog({
                 </div>
                 
                 {searchResults.map((result, index) => (
-                  <div
+                  <SearchResultCard
                     key={index}
-                    className="border border-gray-200 rounded-lg p-4 hover:border-green-300 hover:shadow-sm transition-all cursor-pointer"
-                    onClick={() => onResultClick(result.sectionType)}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <FileText className="h-4 w-4 text-green-600" />
-                        <span className="font-medium text-green-700">
-                          {getCategoryName(result.category, result.subcategory)}
-                        </span>
-                      </div>
-                      <ChevronRight className="h-4 w-4 text-gray-400" />
-                    </div>
-                    
-                    <div 
-                      className="text-sm text-gray-700 leading-relaxed"
-                      dangerouslySetInnerHTML={{ 
-                        __html: highlightMatches(
-                          result.content.length > 200 
-                            ? result.content.substring(0, 200) + "..." 
-                            : result.content,
-                          result.matches
-                        )
-                      }}
-                    />
-                    
-                    {result.score && (
-                      <div className="mt-2 text-xs text-gray-500">
-                        Score de pertinence: {Math.round(result.score * 100)}%
-                      </div>
-                    )}
-                  </div>
+                    result={result}
+                    onResultClick={onResultClick}
+                    conventionId={conventionId}
+                    getCategoryName={getCategoryName}
+                    highlightMatches={highlightMatches}
+                  />
                 ))}
               </>
             )}
