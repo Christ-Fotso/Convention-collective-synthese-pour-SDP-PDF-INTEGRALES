@@ -198,11 +198,20 @@ export default function SectionViewer() {
       </div>
 
       {/* Test de rendu HTML - uniquement en mode test */}
-      {conventionId && sectionType && (
-        <HtmlTestViewer 
-          conventionId={conventionId} 
-          sectionType={sectionType}
-        />
+      {conventionId && sectionType ? (
+        <div>
+          <p style={{background: 'yellow', padding: '10px', margin: '10px 0'}}>
+            DEBUG: conventionId={conventionId}, sectionType={sectionType}
+          </p>
+          <HtmlTestViewer 
+            conventionId={conventionId} 
+            sectionType={sectionType}
+          />
+        </div>
+      ) : (
+        <p style={{background: 'red', color: 'white', padding: '10px', margin: '10px 0'}}>
+          DEBUG: Pas de conventionId ou sectionType - conventionId={conventionId}, sectionType={sectionType}
+        </p>
       )}
 
       <Card className="mb-6">

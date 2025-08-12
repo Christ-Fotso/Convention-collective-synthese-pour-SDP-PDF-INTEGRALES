@@ -39,6 +39,9 @@ interface ConversionResult {
 
 export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestViewerProps) {
   const [isTestMode, setIsTestMode] = useState(false);
+  
+  // Debug log pour vérifier que le composant est rendu
+  console.log("HtmlTestViewer rendu avec:", { conventionId, sectionType });
 
   const { data: conversion, isLoading, error, refetch } = useQuery({
     queryKey: ['html-conversion', conventionId, sectionType],
