@@ -119,43 +119,12 @@ export default function Home() {
         {/* En-tête avec titre et description */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-green-700 mb-3">
-            Recherche de Conventions Collectives
+            Recherche de Convention Collective
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explorez et analysez plus de 380 conventions collectives françaises 
+            Explorez et analysez les conventions collectives françaises 
             avec notre assistant IA et nos outils de recherche avancés
           </p>
-        </div>
-
-        {/* Statistiques rapides */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Card className="text-center border-green-200">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-center mb-2">
-                <FileText className="h-8 w-8 text-green-600" />
-              </div>
-              <div className="text-2xl font-bold text-green-700">{conventions.length}</div>
-              <p className="text-sm text-gray-600">Conventions disponibles</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-green-200">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-center mb-2">
-                <Users className="h-8 w-8 text-green-600" />
-              </div>
-              <div className="text-2xl font-bold text-green-700">12,917</div>
-              <p className="text-sm text-gray-600">Sections analysées</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-green-200">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-center mb-2">
-                <Building2 className="h-8 w-8 text-green-600" />
-              </div>
-              <div className="text-2xl font-bold text-green-700">1,187</div>
-              <p className="text-sm text-gray-600">Codes NAF référencés</p>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Moteur de recherche amélioré */}
@@ -383,15 +352,45 @@ export default function Home() {
                       </CardHeader>
                       <CardContent className="pt-0">
                         <div className="text-xs text-gray-600 mb-2">
-                          Sections principales : Rémunération, Temps de travail, Congés, Classification
+                          Sections principales :
                         </div>
-                        <div className="flex gap-1">
-                          <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
-                            34 sections
-                          </Badge>
-                          <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
-                            IA intégrée
-                          </Badge>
+                        <div className="flex gap-1 flex-wrap">
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/convention/${convention.id}?section=remuneration.grille`);
+                            }}
+                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
+                          >
+                            Rémunération
+                          </button>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/convention/${convention.id}?section=temps-travail.duree-travail`);
+                            }}
+                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
+                          >
+                            Temps de travail
+                          </button>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/convention/${convention.id}?section=conges.conges-payes`);
+                            }}
+                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
+                          >
+                            Congés
+                          </button>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/convention/${convention.id}?section=classification.classification`);
+                            }}
+                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
+                          >
+                            Classification
+                          </button>
                         </div>
                       </CardContent>
                     </Card>
