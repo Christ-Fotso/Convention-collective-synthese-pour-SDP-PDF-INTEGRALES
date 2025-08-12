@@ -68,11 +68,8 @@ export class MarkdownHtmlConverter {
     // Reset TOC for new conversion
     this.tocItems = [];
     
-    // Améliorer la typographie française avant conversion
-    const enhancedMarkdown = this.enhanceFrenchTypography(markdown);
-    
     // Convert markdown to HTML (marked can return Promise<string> or string)
-    const rawHtml = marked(enhancedMarkdown) as string;
+    const rawHtml = marked(markdown) as string;
     
     // Process HTML for legal formatting
     const html = this.enhanceHtmlForLegalContent(rawHtml);
@@ -93,31 +90,6 @@ export class MarkdownHtmlConverter {
     };
 
     return { html, toc, stats };
-  }
-
-  private enhanceFrenchTypography(markdown: string): string {
-    return markdown
-      // Remplacer les tirets simples en début de ligne par des tirets cadratins
-      .replace(/^- /gm, '— ')
-      .replace(/\n- /g, '\n— ')
-      
-      // Améliorer les espaces avant les signes de ponctuation doubles
-      .replace(/\s*:\s*/g, ' : ')
-      .replace(/\s*;\s*/g, ' ; ')
-      .replace(/\s*\?\s*/g, ' ? ')
-      .replace(/\s*!\s*/g, ' ! ')
-      
-      // Guillemets français (attention à ne pas casser le markdown)
-      .replace(/"([^"]+)"/g, '« $1 »')
-      
-      // Améliorer les listes numérotées
-      .replace(/^(\d+)\./gm, '$1. ')
-      
-      // Espaces insécables pour les unités
-      .replace(/(\d+)\s*(€|%|euros?|ans?|mois|jours?|heures?)/gi, '$1 $2')
-      
-      // Tirets d'incise (entre espaces)
-      .replace(/\s-\s/g, ' — ');
   }
 
   private enhanceHtmlForLegalContent(html: string): string {
@@ -216,11 +188,9 @@ export class MarkdownHtmlConverter {
         font-family: 'Georgia', 'Times New Roman', serif;
         line-height: 1.6;
         color: #2c3e50;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 1rem;
-        box-sizing: border-box;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
       }
 
       /* Headings */
@@ -322,70 +292,20 @@ export class MarkdownHtmlConverter {
       }
 
       /* Lists */
-      /* Listes avec typographie française améliorée */
-      .legal-ordered-list {
+      .legal-ordered-list, .legal-unordered-list {
         margin: 1rem 0;
-        padding-left: 0;
-        counter-reset: list-counter;
-        list-style: none;
+        padding-left: 2rem;
       }
 
       .legal-ordered-list li {
-        counter-increment: list-counter;
-        position: relative;
         margin-bottom: 0.5rem;
-        padding-left: 2rem;
-        line-height: 1.6;
-      }
-
-      .legal-ordered-list li::before {
-        content: counter(list-counter) ".";
-        position: absolute;
-        left: 0;
-        color: #3182ce;
-        font-weight: bold;
-        width: 1.5rem;
-        text-align: left;
-      }
-
-      .legal-unordered-list {
-        margin: 1rem 0;
-        padding-left: 0;
-        list-style: none;
+        padding-left: 0.5rem;
       }
 
       .legal-unordered-list li {
-        position: relative;
         margin-bottom: 0.5rem;
-        padding-left: 2rem;
-        line-height: 1.6;
-      }
-
-      .legal-unordered-list li::before {
-        content: "—";
-        position: absolute;
-        left: 0;
-        color: #3182ce;
-        font-weight: bold;
-        width: 1.5rem;
-      }
-
-      /* Typographie française améliorée */
-      .legal-text {
-        margin-bottom: 1rem;
-        text-align: justify;
-      }
-
-      .legal-text::before {
-        content: "";
-      }
-
-      /* Améliorer les tirets dans le texte */
-      .legal-text,
-      .legal-paragraph,
-      .legal-article {
-        text-rendering: optimizeLegibility;
-        font-feature-settings: "kern" 1, "liga" 1;
+        padding-left: 0.5rem;
+        list-style-type: disc;
       }
 
       /* Quotes */
