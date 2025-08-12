@@ -107,8 +107,9 @@ export default function SectionViewer() {
           conventionId: conventionId,
           sectionType: sectionType,
           content: content,
-          sourceUrl: null,
-          status: 'complete'
+          status: 'complete' as const,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
         };
       }
       
