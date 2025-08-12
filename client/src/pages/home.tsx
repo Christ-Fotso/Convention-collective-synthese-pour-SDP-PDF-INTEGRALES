@@ -116,15 +116,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
-        {/* En-tête avec titre et description */}
+        {/* En-tête avec titre */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-green-700 mb-3">
             Recherche de Convention Collective
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explorez et analysez les conventions collectives françaises 
-            avec notre assistant IA et nos outils de recherche avancés
-          </p>
         </div>
 
         {/* Moteur de recherche amélioré */}
