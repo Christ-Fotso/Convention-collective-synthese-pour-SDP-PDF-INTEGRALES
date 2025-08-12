@@ -161,6 +161,12 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Navigation directe vers les sections depuis les résultats de recherche
     * Design cohérent avec le thème vert et intégration parfaite à l'interface
     * Distinction claire entre recherche par mots-clés (loupe) et assistant IA (chat)
+- August 12, 2025. Amélioration ergonomique du bouton de recherche :
+    * Bouton "Rechercher" avec texte visible sur grands écrans (desktop/tablet)
+    * Transformation automatique en icône loupe seule sur petits écrans (mobile)
+    * Design responsive avec classes Tailwind (hidden sm:inline) pour adaptation fluide
+    * Amélioration de la visibilité et de l'accessibilité de la fonction recherche
+    * Cohérence avec le design général et les interactions utilisateur existantes
 
 ## User Preferences
 

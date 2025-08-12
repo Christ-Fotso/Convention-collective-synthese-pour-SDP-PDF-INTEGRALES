@@ -431,12 +431,16 @@ export default function Chat() {
               
               {/* Deuxième ligne: Recherche + Navigation par onglets */}
               <div className="flex items-center justify-center gap-4">
-                <div className="relative" title="Rechercher par mots-clés">
-                  <Search 
-                    className="h-4 w-4 text-gray-400 cursor-pointer hover:text-green-600 transition-colors" 
-                    onClick={() => setIsSearchOpen(true)}
-                  />
-                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsSearchOpen(true)}
+                  className="flex items-center gap-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-colors px-3 py-2"
+                  title="Rechercher par mots-clés"
+                >
+                  <Search className="h-4 w-4" />
+                  <span className="hidden sm:inline text-sm font-medium">Rechercher</span>
+                </Button>
                 <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
                     <>
