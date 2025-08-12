@@ -357,9 +357,8 @@ export default function Chat() {
                 </Button>
               </div>
               
-              {/* Deuxième ligne: Icône recherche + Navigation par onglets */}
-              <div className="flex items-center justify-center gap-4">
-                <Search className="h-5 w-5 text-gray-400" />
+              {/* Deuxième ligne: Navigation par onglets */}
+              <div className="flex justify-center">
                 <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
                     <>
