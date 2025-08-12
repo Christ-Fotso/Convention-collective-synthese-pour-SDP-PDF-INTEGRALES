@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, ChevronDown, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, Search, X } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -328,8 +328,61 @@ export default function Chat() {
       )}
       
       {convention && (
-        <div className="space-y-6">
-
+        <div className="flex">
+          {/* Sidebar gauche pour les sous-sections */}
+          {expandedCategory && expandedCategory !== "informations-generales" && (
+            <div className="w-56 bg-gray-50 border-r border-gray-200 min-h-screen fixed left-0 top-0 z-20 pt-4">
+              <div className="p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-semibold text-green-700 text-sm">
+                    {CATEGORIES.find(cat => cat.id === expandedCategory)?.name}
+                  </h3>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+                    onClick={() => setExpandedCategory(null)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="space-y-1">
+                  {(() => {
+                    const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
+                    if (!categoryDef) return null;
+                    
+                    const categorySections = sectionTypes.filter((section: SectionType) => 
+                      section.category === expandedCategory
+                    );
+                    
+                    return categoryDef.subcategories.map((subcategoryDef) => {
+                      const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                      if (!section) return null;
+                      
+                      return (
+                        <button
+                          key={section.sectionType}
+                          className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+                            visibleSection === section.sectionType 
+                              ? "bg-green-600 text-white shadow-sm" 
+                              : "text-gray-700 hover:bg-green-50 hover:text-green-700"
+                          }`}
+                          onClick={() => scrollToSectionTitle(section.sectionType)}
+                        >
+                          {subcategoryDef.name}
+                        </button>
+                      );
+                    });
+                  })()}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Contenu principal avec marge gauche conditionnelle */}
+          <div className={`flex-1 space-y-6 transition-all duration-300 ${
+            expandedCategory && expandedCategory !== "informations-generales" ? "ml-56" : ""
+          }`}>
 
           {/* Barre de navigation avec nom de convention et navigation */}
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b shadow-sm">
@@ -359,9 +412,8 @@ export default function Chat() {
               
               {/* Deuxième ligne: Recherche + Navigation par onglets */}
               <div className="flex items-center justify-center gap-4">
-                <div className="relative">
-                  <Search className="h-4 w-4 text-gray-400 cursor-pointer hover:text-green-600 transition-colors" 
-                         title="Rechercher par mots-clés" />
+                <div className="relative" title="Rechercher par mots-clés">
+                  <Search className="h-4 w-4 text-gray-400 cursor-pointer hover:text-green-600 transition-colors" />
                 </div>
                 <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
@@ -422,44 +474,6 @@ export default function Chat() {
                 
               </div>
               
-              {/* Sous-catégories étendues en bas de la barre */}
-              {expandedCategory && expandedCategory !== "informations-generales" && (
-                <div className="border-t pt-3 mt-3 bg-gray-50">
-                  <div className="px-6 pb-3">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {(() => {
-                        const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
-                        if (!categoryDef) return null;
-                        
-                        const categorySections = sectionTypes.filter((section: SectionType) => 
-                          section.category === expandedCategory
-                        );
-                        
-                        return categoryDef.subcategories.map((subcategoryDef) => {
-                          const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
-                          if (!section) return null;
-                          
-                          return (
-                            <Button
-                              key={section.sectionType}
-                              variant={visibleSection === section.sectionType ? "default" : "outline"}
-                              size="sm"
-                              className={`whitespace-nowrap text-xs transition-all duration-200 ${
-                                visibleSection === section.sectionType 
-                                  ? "bg-green-600 text-white hover:bg-green-700 border-green-600" 
-                                  : "bg-white border-green-200 text-green-700 hover:bg-green-50 hover:border-green-400"
-                              }`}
-                              onClick={() => scrollToSectionTitle(section.sectionType)}
-                            >
-                              {subcategoryDef.name}
-                            </Button>
-                          );
-                        });
-                      })()}
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
@@ -529,6 +543,7 @@ export default function Chat() {
                 Aucune section disponible
               </div>
             )}
+          </div>
           </div>
         </div>
       )}
