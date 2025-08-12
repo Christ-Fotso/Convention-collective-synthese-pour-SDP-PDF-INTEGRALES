@@ -392,7 +392,7 @@ export default function Chat() {
                             key={categoryIndex}
                             variant={isCategoryVisible ? "default" : "ghost"}
                             size="sm"
-                            className={`whitespace-nowrap transition-all duration-200 border-0 flex items-center gap-1 ${
+                            className={`whitespace-nowrap transition-all duration-200 border-0 ${
                               isCategoryVisible 
                                 ? "bg-green-600 text-white hover:bg-green-700 shadow-sm" 
                                 : "bg-white text-gray-600 hover:text-green-600 hover:bg-green-50"
@@ -413,11 +413,6 @@ export default function Chat() {
                             }}
                           >
                             {categoryDefinition.name}
-                            {isCategoryExpanded ? (
-                              <ChevronDown className="h-3 w-3" />
-                            ) : (
-                              <ChevronRight className="h-3 w-3" />
-                            )}
                           </Button>
                         );
                       })}
