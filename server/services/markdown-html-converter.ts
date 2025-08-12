@@ -110,6 +110,9 @@ export class MarkdownHtmlConverter {
     enhancedHtml = enhancedHtml.replace(/^\*\*\s*$/gm, '');
     enhancedHtml = enhancedHtml.replace(/\*\*([^*]*?)\*\*/g, '<strong class="legal-bold">$1</strong>');
     
+    // Format salary grids (grilles de rémunération) with proper line breaks and ordering
+    enhancedHtml = this.formatSalaryGridReferences(enhancedHtml);
+    
     // Legal articles
     enhancedHtml = enhancedHtml.replace(
       /<p>((Art(icle)?\s*\d+|Article\s*\d+).+?)<\/p>/gi,
@@ -191,6 +194,57 @@ export class MarkdownHtmlConverter {
     }
   }
 
+  private formatSalaryGridReferences(html: string): string {
+    // Pattern to match salary grid references like "(9) Référence : Avenant n°132..."
+    // More flexible pattern to capture the full reference text until the next reference or end
+    const referencePattern = /\((\d+)\)\s*Référence\s*:\s*([^(]*?)(?=\s*\(\d+\)\s*Référence|$)/g;
+    
+    // Find all paragraphs that contain multiple salary references
+    const paragraphPattern = /<p([^>]*)>(.*?)<\/p>/gs;
+    
+    return html.replace(paragraphPattern, (match, attributes, content) => {
+      // Check if this paragraph contains multiple salary references
+      const referenceMatches = [...content.matchAll(referencePattern)];
+      
+      if (referenceMatches.length > 1) {
+        // Extract and sort references
+        const references = referenceMatches.map((match) => {
+          const number = parseInt(match[1]);
+          const referenceText = match[2].trim();
+          return { number, text: referenceText };
+        });
+        
+        // Sort by reference number
+        references.sort((a, b) => a.number - b.number);
+        
+        // Create formatted reference list
+        const formattedReferences = references.map((ref) => {
+          return `<div class="salary-reference">
+            <span class="reference-number">(${ref.number})</span>
+            <span class="reference-text">Référence : ${ref.text}</span>
+          </div>`;
+        }).join('');
+        
+        // Look for any remaining text that's not part of references
+        let remainingText = content;
+        references.forEach((ref) => {
+          const fullRefPattern = new RegExp(`\\(${ref.number}\\)\\s*Référence\\s*:\\s*${ref.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'g');
+          remainingText = remainingText.replace(fullRefPattern, '');
+        });
+        remainingText = remainingText.trim();
+        
+        return `<div class="salary-grid-container"${attributes}>
+          <div class="salary-references">
+            ${formattedReferences}
+          </div>
+          ${remainingText ? `<div class="additional-info">${remainingText}</div>` : ''}
+        </div>`;
+      }
+      
+      return match; // Return unchanged if no multiple references found
+    });
+  }
+
   public getEnhancedCss(): string {
     return `
       /* Legal Document Styling */
@@ -262,6 +316,70 @@ export class MarkdownHtmlConverter {
       .legal-italic {
         font-style: italic;
         color: #065f46;
+      }
+
+      /* Salary Grid References */
+      .salary-grid-container {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        border: 1px solid #a7f3d0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .salary-references {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .salary-reference {
+        display: flex;
+        align-items: flex-start;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        border-left: 4px solid #10b981;
+        box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+      }
+
+      .reference-number {
+        font-weight: 700;
+        color: #047857;
+        background: #d1fae5;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        margin-right: 1rem;
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+
+      .reference-text {
+        flex: 1;
+        line-height: 1.6;
+        color: #374151;
+        font-size: 14px;
+      }
+
+      .additional-info {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(16, 185, 129, 0.05);
+        border-radius: 8px;
+        font-size: 13px;
+        color: #065f46;
+      }
+
+      @media (max-width: 768px) {
+        .salary-reference {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .reference-number {
+          margin-right: 0;
+          align-self: flex-start;
+        }
       }
 
       .legal-article {
