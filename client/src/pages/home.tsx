@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Building2, Search, X } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Building2, Search, X, FileText, Users, Calendar, ArrowRight, Star } from "lucide-react";
 import axios from "axios";
 
 // Définition du type Convention
@@ -113,129 +114,292 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="w-full">
-        <div className="mb-6 p-4">
-          {/* Moteur de recherche unique */}
-          <form onSubmit={handleSearchSubmit} className="relative mb-4">
-            <Input
-              type="text"
-              placeholder="Rechercher par IDCC, nom de convention ou code NAF..."
-              className="h-12 pl-4 pr-24 text-lg w-full border-2 focus:border-primary"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <div className="absolute right-2 top-2 flex items-center gap-1">
-              {search && (
-                <button 
-                  type="button"
-                  onClick={() => {
-                    setSearch("");
-                    clearNafSearch();
-                  }}
-                  className="text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              )}
-              <Button
-                type="submit"
-                size="sm"
-                variant="outline"
-                className="h-8 px-2 text-xs gap-1"
-                disabled={isSearchingNaf}
-              >
-                <Building2 className="h-3 w-3" />
-                NAF
-              </Button>
-            </div>
-          </form>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+      <div className="container mx-auto px-4 py-8">
+        {/* En-tête avec titre et description */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-green-700 mb-3">
+            Conventions Collectives
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Explorez et analysez plus de 380 conventions collectives françaises 
+            avec notre assistant IA et nos outils de recherche avancés
+          </p>
+        </div>
 
-          {/* Résultats de recherche NAF */}
-          {showNafSearch && (
-            <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-medium text-blue-800 flex items-center gap-2">
-                  <Building2 className="h-4 w-4" />
-                  Résultats NAF ({nafResults.length})
-                </h3>
+        {/* Statistiques rapides */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <Card className="text-center border-green-200">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-center mb-2">
+                <FileText className="h-8 w-8 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-green-700">{conventions.length}</div>
+              <p className="text-sm text-gray-600">Conventions disponibles</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center border-green-200">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-center mb-2">
+                <Users className="h-8 w-8 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-green-700">12,917</div>
+              <p className="text-sm text-gray-600">Sections analysées</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center border-green-200">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-center mb-2">
+                <Building2 className="h-8 w-8 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-green-700">1,187</div>
+              <p className="text-sm text-gray-600">Codes NAF référencés</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Moteur de recherche amélioré */}
+        <Card className="mb-8 border-green-200 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-green-700">
+              <Search className="h-5 w-5" />
+              Rechercher une convention
+            </CardTitle>
+            <CardDescription>
+              Trouvez votre convention par nom, IDCC ou code NAF d'activité
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <Input
+                type="text"
+                placeholder="Ex: IDCC 1486, Boulangerie, 1071C..."
+                className="h-14 pl-6 pr-24 text-lg w-full border-2 focus:border-green-500 rounded-lg"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <div className="absolute right-3 top-3 flex items-center gap-2">
+                {search && (
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      setSearch("");
+                      clearNafSearch();
+                    }}
+                    className="text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center transition-colors"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+                <Button
+                  type="submit"
+                  size="sm"
+                  className="h-8 px-3 bg-green-600 hover:bg-green-700 text-white"
+                  disabled={isSearchingNaf}
+                >
+                  <Building2 className="h-4 w-4 mr-1" />
+                  Recherche NAF
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+
+        {/* Résultats de recherche NAF modernisés */}
+        {showNafSearch && (
+          <Card className="mb-8 border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-blue-800 flex items-center gap-2">
+                  <Building2 className="h-5 w-5" />
+                  Résultats par code NAF ({nafResults.length})
+                </CardTitle>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={clearNafSearch}
-                  className="h-6 w-6 p-0"
+                  className="text-blue-600 hover:text-blue-800"
                 >
-                  <X className="h-3 w-3" />
+                  <X className="h-4 w-4" />
                 </Button>
               </div>
+              <CardDescription className="text-blue-700">
+                Conventions correspondant à votre recherche par secteur d'activité
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
               {nafResults.length === 0 ? (
-                <p className="text-blue-600 text-sm">Aucune convention trouvée pour ce code NAF</p>
+                <div className="text-center py-8">
+                  <Building2 className="h-12 w-12 mx-auto mb-4 text-blue-300" />
+                  <p className="text-blue-700 font-medium">Aucune convention trouvée</p>
+                  <p className="text-blue-600 text-sm">Essayez avec un autre code NAF ou mot-clé</p>
+                </div>
               ) : (
-                <div className="space-y-2 max-h-48 overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {nafResults.map((entry) => (
-                    <div 
+                    <Card 
                       key={entry.conventionId}
-                      className="p-2 bg-white rounded border cursor-pointer hover:bg-blue-50"
+                      className="cursor-pointer hover:shadow-md transition-all bg-white hover:bg-blue-50 border-blue-200"
                       onClick={() => navigate(`/convention/${entry.conventionId}`)}
                     >
-                      <div className="font-medium text-green-600 text-sm">
-                        {entry.conventionName}
-                      </div>
-                      <div className="text-xs text-gray-500">IDCC {entry.idcc}</div>
-                      {entry.nafCodes.length > 0 && (
-                        <div className="flex gap-1 mt-1 flex-wrap">
-                          {entry.nafCodes.slice(0, 3).map((code) => (
-                            <Badge key={code} variant="secondary" className="text-xs">
-                              {code}
-                            </Badge>
-                          ))}
-                          {entry.nafCodes.length > 3 && (
-                            <Badge variant="outline" className="text-xs">
-                              +{entry.nafCodes.length - 3}
-                            </Badge>
-                          )}
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="font-medium text-green-700 text-sm leading-tight">
+                            {entry.conventionName}
+                          </h4>
+                          <ArrowRight className="h-4 w-4 text-blue-500 flex-shrink-0 ml-2" />
                         </div>
-                      )}
-                    </div>
+                        <p className="text-xs text-gray-600 mb-2">IDCC {entry.idcc}</p>
+                        {entry.nafCodes.length > 0 && (
+                          <div className="flex gap-1 flex-wrap">
+                            {entry.nafCodes.slice(0, 4).map((code) => (
+                              <Badge key={code} variant="secondary" className="text-xs bg-blue-100 text-blue-800">
+                                {code}
+                              </Badge>
+                            ))}
+                            {entry.nafCodes.length > 4 && (
+                              <Badge variant="outline" className="text-xs border-blue-300 text-blue-700">
+                                +{entry.nafCodes.length - 4}
+                              </Badge>
+                            )}
+                          </div>
+                        )}
+                        {entry.sectors.length > 0 && (
+                          <div className="mt-2">
+                            <p className="text-xs text-gray-500 truncate">
+                              {entry.sectors.slice(0, 2).join(", ")}
+                              {entry.sectors.length > 2 && "..."}
+                            </p>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               )}
-            </div>
-          )}
-        </div>
+            </CardContent>
+          </Card>
+        )}
         
-        {/* Liste des conventions classique */}
+        {/* Liste des conventions modernisée */}
         {!showNafSearch && (
-          <div className="bg-white shadow-md">
-            <ScrollArea className="h-[calc(100vh-12rem)]">
+          <div className="space-y-6">
+            {/* Section Code du travail mise en avant */}
+            {filteredConventions.some(c => c.id === '9999') && !search && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-green-700 mb-4 flex items-center gap-2">
+                  <Star className="h-6 w-6 text-yellow-500" />
+                  Référence légale
+                </h2>
+                <Card 
+                  className="border-2 border-green-300 bg-gradient-to-r from-green-50 to-green-100 hover:shadow-lg transition-all cursor-pointer group"
+                  onClick={() => navigate(`/convention/9999`)}
+                >
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="text-xl text-green-700 group-hover:text-green-800">
+                          Code du travail
+                        </CardTitle>
+                        <CardDescription className="text-green-600">
+                          IDCC 9999 • Référence légale de base pour tous les salariés français
+                        </CardDescription>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
+                          Référence
+                        </Badge>
+                        <ArrowRight className="h-5 w-5 text-green-600 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-green-700">
+                      Consultez les dispositions légales fondamentales : durée du travail, 
+                      congés payés, période d'essai, délais de prévenance...
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* Section conventions collectives */}
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-green-700">
+                  {search ? `Résultats de recherche (${filteredConventions.filter(c => c.id !== '9999').length})` : 'Conventions collectives'}
+                </h2>
+                {search && (
+                  <Button
+                    variant="outline"
+                    onClick={() => setSearch("")}
+                    className="flex items-center gap-2"
+                  >
+                    <X className="h-4 w-4" />
+                    Effacer la recherche
+                  </Button>
+                )}
+              </div>
+
               {filteredConventions.length === 0 ? (
-                <div className="p-8 text-center text-gray-500">
-                  {search ? `Aucune convention trouvée pour "${search}"` : "Chargement des conventions..."}
-                </div>
+                <Card className="text-center py-12">
+                  <CardContent>
+                    <div className="text-gray-500">
+                      <Search className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                      <p className="text-lg mb-2">
+                        {search ? `Aucune convention trouvée pour "${search}"` : "Chargement des conventions..."}
+                      </p>
+                      <p className="text-sm">
+                        {search && "Essayez avec d'autres termes ou utilisez la recherche NAF"}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               ) : (
-                <div className="divide-y">
-                  {filteredConventions.map((convention, index) => (
-                    <div
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {filteredConventions
+                    .filter(convention => convention.id !== '9999') // Exclure le Code du travail de la liste normale
+                    .map((convention, index) => (
+                    <Card
                       key={`${convention.id || convention.name || index}-${index}`}
-                      className="p-4 hover:bg-gray-50 cursor-pointer"
+                      className="hover:shadow-lg transition-all cursor-pointer group border-green-100 hover:border-green-300"
                       onClick={() => {
                         const conventionId = convention.id || encodeURIComponent(convention.name);
                         navigate(`/convention/${conventionId}`);
                       }}
                     >
-                      <div className="flex flex-col gap-1">
-                        <div className="text-base font-medium text-green-600">
-                          {convention.name}
+                      <CardHeader className="pb-3">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <CardTitle className="text-base text-green-700 group-hover:text-green-800 leading-tight">
+                              {convention.name}
+                            </CardTitle>
+                            <CardDescription className="text-sm mt-1">
+                              {convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}
+                            </CardDescription>
+                          </div>
+                          <ArrowRight className="h-4 w-4 text-green-500 group-hover:translate-x-1 transition-transform flex-shrink-0 mt-1" />
                         </div>
-                        <div className="text-xs text-gray-500">
-                          {convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <FileText className="h-3 w-3" />
+                          <span>34 sections disponibles</span>
                         </div>
-                      </div>
-                    </div>
+                        <div className="flex gap-1 mt-2">
+                          <Badge variant="outline" className="text-xs">
+                            Recherche IA
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            Export HTML
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               )}
-            </ScrollArea>
+            </div>
           </div>
         )}
       </div>

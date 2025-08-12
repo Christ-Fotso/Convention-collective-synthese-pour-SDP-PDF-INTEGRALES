@@ -167,6 +167,16 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Design responsive avec classes Tailwind (hidden sm:inline) pour adaptation fluide
     * Amélioration de la visibilité et de l'accessibilité de la fonction recherche
     * Cohérence avec le design général et les interactions utilisateur existantes
+- August 12, 2025. Refonte complète de l'interface d'accueil des conventions :
+    * Design moderne avec dégradé de couleurs et cartes élégantes
+    * Section statistiques avec chiffres clés (380 conventions, 12,917 sections, 1,187 codes NAF)
+    * Mise en avant spéciale du "Code du travail" comme référence légale
+    * Interface de recherche enrichie avec descriptions et visuels
+    * Grille responsive de cartes pour les conventions avec aperçu des fonctionnalités
+    * Résultats NAF redesignés avec cartes modernes et informations sectorielles
+    * Navigation améliorée avec animations et effets hover sophistiqués
+    * Interface professionnelle adaptée au service commercial B2B
+    * Hiérarchisation visuelle claire entre référence légale et conventions
 
 ## User Preferences
 
