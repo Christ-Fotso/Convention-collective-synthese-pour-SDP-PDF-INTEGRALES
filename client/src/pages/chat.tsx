@@ -306,29 +306,16 @@ export default function Chat() {
   };
   
   return (
-    <div className="w-full py-6 space-y-6 px-4 lg:px-0">
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-3">
-          <Button 
-            variant="outline" 
-            onClick={() => navigate("/")} 
-            className="flex items-center gap-2 text-sm"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Retour aux conventions
-          </Button>
-          <h1 className="text-2xl font-bold">
-            {isLoadingConvention ? (
-              <Skeleton className="h-8 w-64" />
-            ) : convention ? (
-              convention.name
-            ) : (
-              "Convention non trouvée"
-            )}
-          </h1>
-        </div>
-        
-
+    <div className="w-full space-y-6">
+      <div className="px-4 lg:px-0 py-6">
+        <Button 
+          variant="outline" 
+          onClick={() => navigate("/")} 
+          className="flex items-center gap-2 text-sm"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Retour aux conventions
+        </Button>
       </div>
       
       {!isLoadingConvention && !convention && (
@@ -370,10 +357,22 @@ export default function Chat() {
             </Card>
           </div>
 
-          {/* Barre de navigation simplifiée */}
+          {/* Barre de navigation avec nom de convention et navigation */}
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b shadow-sm">
-            <div className="px-6 py-4">
+            <div className="px-6 py-4 space-y-3">
+              {/* Première ligne: Nom de la convention et recherche */}
               <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <h1 className="text-lg font-bold text-gray-800 dark:text-gray-200">
+                    {isLoadingConvention ? (
+                      <Skeleton className="h-6 w-64" />
+                    ) : convention ? (
+                      convention.name
+                    ) : (
+                      "Convention non trouvée"
+                    )}
+                  </h1>
+                </div>
                 <div className="relative w-80">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
@@ -384,15 +383,17 @@ export default function Chat() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                
-                {/* Navigation simplifiée par onglets */}
-                <div className="flex gap-1">
+              </div>
+              
+              {/* Deuxième ligne: Navigation par onglets */}
+              <div className="flex justify-center">
+                <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
-                    <div className="flex gap-2">
-                      <Skeleton className="h-8 w-24" />
-                      <Skeleton className="h-8 w-24" />
-                      <Skeleton className="h-8 w-24" />
-                    </div>
+                    <>
+                      <Skeleton className="h-9 w-24 rounded-md" />
+                      <Skeleton className="h-9 w-24 rounded-md" />
+                      <Skeleton className="h-9 w-24 rounded-md" />
+                    </>
                   ) : sectionTypes && sectionTypes.length > 0 ? (
                     <>
                       {CATEGORIES.map((categoryDefinition, categoryIndex) => {
@@ -413,10 +414,10 @@ export default function Chat() {
                             key={categoryIndex}
                             variant={isCategoryVisible ? "default" : "ghost"}
                             size="sm"
-                            className={`whitespace-nowrap transition-all duration-200 ${
+                            className={`whitespace-nowrap transition-all duration-200 border-0 ${
                               isCategoryVisible 
-                                ? "bg-green-600 text-white hover:bg-green-700" 
-                                : "text-gray-600 hover:text-green-600 hover:bg-green-50"
+                                ? "bg-green-600 text-white hover:bg-green-700 shadow-sm" 
+                                : "bg-white text-gray-600 hover:text-green-600 hover:bg-green-50"
                             }`}
                             onClick={() => {
                               // Aller directement à la première section de cette catégorie
