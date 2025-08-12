@@ -357,8 +357,12 @@ export default function Chat() {
                 </Button>
               </div>
               
-              {/* Deuxième ligne: Navigation par onglets */}
-              <div className="flex justify-center">
+              {/* Deuxième ligne: Recherche + Navigation par onglets */}
+              <div className="flex items-center justify-center gap-4">
+                <div className="relative">
+                  <Search className="h-4 w-4 text-gray-400 cursor-pointer hover:text-green-600 transition-colors" 
+                         title="Rechercher par mots-clés" />
+                </div>
                 <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
                     <>
@@ -444,11 +448,35 @@ export default function Chat() {
                   
                   return (
                     <div key={category}>
-                      {/* Titre de catégorie */}
+                      {/* Titre de catégorie avec sous-sections */}
                       <div className="border-t pt-6">
-                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
-                          {categoryDefinition.name}
-                        </h2>
+                        <div className="flex items-center gap-4 mb-6">
+                          <h2 className="text-2xl font-bold text-green-600 dark:text-green-400">
+                            {categoryDefinition.name}
+                          </h2>
+                          {/* Petits onglets pour les sous-sections */}
+                          <div className="flex gap-1">
+                            {categoryDefinition.subcategories.map((subcategoryDef) => {
+                              const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                              if (!section) return null;
+                              
+                              return (
+                                <button
+                                  key={section.sectionType}
+                                  className={`px-2 py-1 text-xs rounded-md transition-colors duration-200 ${
+                                    visibleSection === section.sectionType 
+                                      ? "bg-green-100 text-green-800 border border-green-200" 
+                                      : "bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-700"
+                                  }`}
+                                  onClick={() => scrollToSectionTitle(section.sectionType)}
+                                  title={`Aller à ${subcategoryDef.name}`}
+                                >
+                                  {subcategoryDef.name}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
                       
                       {/* Sous-sections dans l'ordre défini */}
