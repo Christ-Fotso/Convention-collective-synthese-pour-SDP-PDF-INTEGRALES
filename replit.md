@@ -141,6 +141,16 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Formatage automatique des grilles de rémunération avec tri et retours à la ligne
     * Références d'avenants organisées par ordre numérique avec design cards élégant
     * Suppression des titres H1 redondants qui doublonnent avec les noms de sections
+- August 12, 2025. Navigation latérale moderne pour une meilleure UX :
+    * Implémentation d'une sidebar gauche élégante pour les sous-sections
+    * Interface responsive avec overlay mobile pour une expérience optimale sur tous écrans
+    * Séparation claire entre recherche par mots-clés (icône loupe) et assistant IA conversationnel
+    * Allègement de la barre de navigation principale avec plus d'espace horizontal
+    * Sidebar contextuelle qui n'apparaît que lors de la sélection d'une catégorie principale
+    * Fermeture automatique sur mobile après sélection d'une sous-section
+    * Transitions fluides et design moderne avec thème vert cohérent
+    * Navigation hiérarchique intuitive sans surcharge visuelle (suppression des flèches)
+    * Optimisation de l'espace vertical avec positionnement intelligent des éléments
 
 ## User Preferences
 

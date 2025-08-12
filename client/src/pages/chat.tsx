@@ -329,59 +329,74 @@ export default function Chat() {
       
       {convention && (
         <div className="flex">
-          {/* Sidebar gauche pour les sous-sections */}
+          {/* Sidebar gauche responsive pour les sous-sections */}
           {expandedCategory && expandedCategory !== "informations-generales" && (
-            <div className="w-56 bg-gray-50 border-r border-gray-200 min-h-screen fixed left-0 top-0 z-20 pt-4">
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-green-700 text-sm">
-                    {CATEGORIES.find(cat => cat.id === expandedCategory)?.name}
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
-                    onClick={() => setExpandedCategory(null)}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-                <div className="space-y-1">
-                  {(() => {
-                    const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
-                    if (!categoryDef) return null;
-                    
-                    const categorySections = sectionTypes.filter((section: SectionType) => 
-                      section.category === expandedCategory
-                    );
-                    
-                    return categoryDef.subcategories.map((subcategoryDef) => {
-                      const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
-                      if (!section) return null;
+            <>
+              {/* Overlay pour mobile */}
+              <div 
+                className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+                onClick={() => setExpandedCategory(null)}
+              />
+              
+              {/* Sidebar */}
+              <div className="w-64 md:w-56 bg-gray-50 border-r border-gray-200 min-h-screen fixed left-0 top-0 z-40 md:z-20 pt-4 transform md:transform-none transition-transform duration-300 ease-in-out">
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-semibold text-green-700 text-sm">
+                      {CATEGORIES.find(cat => cat.id === expandedCategory)?.name}
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+                      onClick={() => setExpandedCategory(null)}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="space-y-1 max-h-screen overflow-y-auto pb-20">
+                    {(() => {
+                      const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
+                      if (!categoryDef) return null;
                       
-                      return (
-                        <button
-                          key={section.sectionType}
-                          className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 ${
-                            visibleSection === section.sectionType 
-                              ? "bg-green-600 text-white shadow-sm" 
-                              : "text-gray-700 hover:bg-green-50 hover:text-green-700"
-                          }`}
-                          onClick={() => scrollToSectionTitle(section.sectionType)}
-                        >
-                          {subcategoryDef.name}
-                        </button>
+                      const categorySections = sectionTypes.filter((section: SectionType) => 
+                        section.category === expandedCategory
                       );
-                    });
-                  })()}
+                      
+                      return categoryDef.subcategories.map((subcategoryDef) => {
+                        const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                        if (!section) return null;
+                        
+                        return (
+                          <button
+                            key={section.sectionType}
+                            className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+                              visibleSection === section.sectionType 
+                                ? "bg-green-600 text-white shadow-sm" 
+                                : "text-gray-700 hover:bg-green-50 hover:text-green-700"
+                            }`}
+                            onClick={() => {
+                              scrollToSectionTitle(section.sectionType);
+                              // Fermer la sidebar sur mobile après sélection
+                              if (window.innerWidth < 768) {
+                                setExpandedCategory(null);
+                              }
+                            }}
+                          >
+                            {subcategoryDef.name}
+                          </button>
+                        );
+                      });
+                    })()}
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
           
-          {/* Contenu principal avec marge gauche conditionnelle */}
+          {/* Contenu principal avec marge gauche conditionnelle et responsive */}
           <div className={`flex-1 space-y-6 transition-all duration-300 ${
-            expandedCategory && expandedCategory !== "informations-generales" ? "ml-56" : ""
+            expandedCategory && expandedCategory !== "informations-generales" ? "md:ml-56" : ""
           }`}>
 
           {/* Barre de navigation avec nom de convention et navigation */}
