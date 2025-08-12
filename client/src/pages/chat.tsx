@@ -420,9 +420,12 @@ export default function Chat() {
                   ) : null}
                 </div>
                 
-                {/* Sous-catégories étendues avec design amélioré */}
-                {expandedCategory && expandedCategory !== "informations-generales" && (
-                  <div className="border-t pt-3 mt-3">
+              </div>
+              
+              {/* Sous-catégories étendues en bas de la barre */}
+              {expandedCategory && expandedCategory !== "informations-generales" && (
+                <div className="border-t pt-3 mt-3 bg-gray-50">
+                  <div className="px-6 pb-3">
                     <div className="flex flex-wrap gap-2 justify-center">
                       {(() => {
                         const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
@@ -455,8 +458,8 @@ export default function Chat() {
                       })()}
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
 
