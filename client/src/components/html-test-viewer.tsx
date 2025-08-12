@@ -69,7 +69,7 @@ export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestV
     <div className="mb-6">
       <style dangerouslySetInnerHTML={{ __html: conversion.css }} />
       <div 
-        className="prose prose-lg max-w-none bg-white p-6 rounded-lg border shadow-sm"
+        className="legal-document max-w-none rounded-lg border shadow-sm"
         dangerouslySetInnerHTML={{ __html: conversion.html }} 
       />
     </div>

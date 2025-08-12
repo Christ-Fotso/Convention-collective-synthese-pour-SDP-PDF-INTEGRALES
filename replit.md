@@ -128,6 +128,11 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Remplacement du rendu Markdown par HTML enrichi automatique
     * Vue directe sans boutons d'activation ou choix utilisateur
     * Interface simplifiée et professionnelle pour service commercial
+    * Amélioration du design avec thème vert cohérent et typographie moderne
+    * Police réduite (14px) avec design responsive optimisé
+    * Tableaux avec dégradés verts et effets hover sophistiqués
+    * Listes et citations stylées avec indicateurs visuels verts
+    * Ombres subtiles et bordures arrondies pour un aspect professionnel
 
 ## User Preferences
 
