@@ -173,24 +173,27 @@ export class MarkdownHtmlConverter {
         if (parseInt(level) === 1) {
           const normalizedContent = content.toLowerCase().trim();
           
-          // Start with specific pattern for "Informations générales"
-          if (normalizedContent.includes('informations générales') && 
-              (normalizedContent.includes('convention collective') || normalizedContent.includes('idcc'))) {
-            return ''; // Hide redundant "Informations générales" titles
+          // Suppress ALL titles that contain "Convention Collective" or "IDCC" 
+          // as they are redundant with interface elements
+          if (normalizedContent.includes('convention collective') || 
+              normalizedContent.includes('idcc')) {
+            return ''; // Hide all convention collective titles
           }
           
-          // Other patterns for future sections
-          if (normalizedContent.includes('délai de prévenance') ||
+          // Also hide titles that exactly match section names
+          if (normalizedContent.includes('informations générales') ||
+              normalizedContent.includes('délai de prévenance') ||
               normalizedContent.includes('période d\'essai') ||
               normalizedContent.includes('durées du travail') ||
               normalizedContent.includes('durée du travail') ||
+              normalizedContent.includes('temps partiel') ||
               normalizedContent.includes('classification') ||
               normalizedContent.includes('grille de rémunération') ||
               normalizedContent.includes('rémunération') ||
               normalizedContent.includes('congés payés') ||
               normalizedContent.includes('congés') ||
               normalizedContent.includes('protection sociale')) {
-            return ''; // Hide other redundant titles
+            return ''; // Hide section name titles
           }
         }
         
