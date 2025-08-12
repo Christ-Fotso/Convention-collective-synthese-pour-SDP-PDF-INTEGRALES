@@ -1898,7 +1898,7 @@ Format attendu exactement:
       }
 
       // Convertir en HTML
-      const result = await markdownHtmlConverter.convertToHtml(section.content);
+      const result = markdownHtmlConverter.convertToHtml(section.content);
       
       // Ajouter les styles CSS
       const css = markdownHtmlConverter.getEnhancedCss();

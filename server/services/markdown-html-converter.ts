@@ -1,103 +1,30 @@
-import { marked, Renderer } from 'marked';
-import { markedHighlight } from 'marked-highlight';
-import hljs from 'highlight.js';
+import { marked } from 'marked';
 
 interface ConversionOptions {
   enableTables: boolean;
   enableToc: boolean;
   enableLegalFormatting: boolean;
-  enableCodeHighlight: boolean;
 }
 
 export class MarkdownHtmlConverter {
-  private renderer: Renderer;
   private tocItems: Array<{ level: number; text: string; anchor: string }> = [];
 
   constructor(private options: ConversionOptions = {
     enableTables: true,
     enableToc: true,
-    enableLegalFormatting: true,
-    enableCodeHighlight: true
+    enableLegalFormatting: true
   }) {
-    this.setupRenderer();
     this.setupMarked();
   }
 
-  private setupRenderer() {
-    this.renderer = new Renderer();
-
-    // Custom heading renderer with TOC generation
-    this.renderer.heading = (text: string, level: number) => {
-      const anchor = this.generateAnchor(text);
-      
-      if (this.options.enableToc && level <= 3) {
-        this.tocItems.push({ level, text, anchor });
-      }
-
-      const className = this.getLegalHeadingClass(text, level);
-      return `<h${level} id="${anchor}" class="${className}">${text}</h${level}>`;
-    };
-
-    // Enhanced table rendering
-    this.renderer.table = (header: string, body: string) => {
-      return `
-        <div class="table-container">
-          <table class="legal-table">
-            <thead>${header}</thead>
-            <tbody>${body}</tbody>
-          </table>
-        </div>
-      `;
-    };
-
-    // Enhanced list rendering for legal documents
-    this.renderer.list = (body: string, ordered: boolean) => {
-      const className = ordered ? 'legal-ordered-list' : 'legal-unordered-list';
-      const tag = ordered ? 'ol' : 'ul';
-      return `<${tag} class="${className}">${body}</${tag}>`;
-    };
-
-    // Custom paragraph rendering for legal formatting
-    this.renderer.paragraph = (text: string) => {
-      // Detect legal article patterns
-      if (this.options.enableLegalFormatting) {
-        if (text.match(/^Art(icle)?\s*\d+/i)) {
-          return `<p class="legal-article">${text}</p>`;
-        }
-        if (text.match(/^§\s*\d+/)) {
-          return `<p class="legal-paragraph">${text}</p>`;
-        }
-        if (text.match(/^\d+°\s*/)) {
-          return `<p class="legal-subsection">${text}</p>`;
-        }
-      }
-      
-      return `<p class="legal-text">${text}</p>`;
-    };
-
-    // Enhanced blockquote for legal citations
-    this.renderer.blockquote = (quote: string) => {
-      return `<blockquote class="legal-quote">${quote}</blockquote>`;
-    };
-  }
-
   private setupMarked() {
+    // Configuration de base de marked
     marked.setOptions({
-      renderer: this.renderer,
       gfm: true,
       breaks: false,
-      pedantic: false
+      headerIds: true,
+      headerPrefix: 'heading-'
     });
-
-    if (this.options.enableCodeHighlight) {
-      marked.use(markedHighlight({
-        langPrefix: 'hljs language-',
-        highlight(code, lang) {
-          const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-          return hljs.highlight(code, { language }).value;
-        }
-      }));
-    }
   }
 
   private generateAnchor(text: string): string {
@@ -137,12 +64,18 @@ export class MarkdownHtmlConverter {
     return tocHtml;
   }
 
-  public async convertToHtml(markdown: string): Promise<{ html: string; toc: string; stats: any }> {
+  public convertToHtml(markdown: string): { html: string; toc: string; stats: any } {
     // Reset TOC for new conversion
     this.tocItems = [];
     
-    // Convert markdown to HTML
-    const html = await marked(markdown);
+    // Convert markdown to HTML (marked can return Promise<string> or string)
+    const rawHtml = marked(markdown) as string;
+    
+    // Process HTML for legal formatting
+    const html = this.enhanceHtmlForLegalContent(rawHtml);
+    
+    // Extract headings for TOC
+    this.extractHeadingsForToc(html);
     
     // Generate TOC
     const toc = this.generateToc();
@@ -157,6 +90,95 @@ export class MarkdownHtmlConverter {
     };
 
     return { html, toc, stats };
+  }
+
+  private enhanceHtmlForLegalContent(html: string): string {
+    if (!this.options.enableLegalFormatting) {
+      return html;
+    }
+
+    // Add CSS classes to paragraphs based on content
+    let enhancedHtml = html;
+    
+    // Legal articles
+    enhancedHtml = enhancedHtml.replace(
+      /<p>((Art(icle)?\s*\d+|Article\s*\d+).+?)<\/p>/gi,
+      '<p class="legal-article">$1</p>'
+    );
+    
+    // Legal paragraphs
+    enhancedHtml = enhancedHtml.replace(
+      /<p>(§\s*\d+.+?)<\/p>/gi,
+      '<p class="legal-paragraph">$1</p>'
+    );
+    
+    // Legal subsections
+    enhancedHtml = enhancedHtml.replace(
+      /<p>(\d+°\s*.+?)<\/p>/gi,
+      '<p class="legal-subsection">$1</p>'
+    );
+    
+    // Add classes to regular paragraphs
+    enhancedHtml = enhancedHtml.replace(
+      /<p>(?!class=)/gi,
+      '<p class="legal-text">'
+    );
+    
+    // Add classes to tables
+    if (this.options.enableTables) {
+      enhancedHtml = enhancedHtml.replace(
+        /<table>/gi,
+        '<div class="table-container"><table class="legal-table">'
+      );
+      enhancedHtml = enhancedHtml.replace(
+        /<\/table>/gi,
+        '</table></div>'
+      );
+    }
+    
+    // Add classes to lists
+    enhancedHtml = enhancedHtml.replace(
+      /<ol>/gi,
+      '<ol class="legal-ordered-list">'
+    );
+    enhancedHtml = enhancedHtml.replace(
+      /<ul>/gi,
+      '<ul class="legal-unordered-list">'
+    );
+    
+    // Add classes to blockquotes
+    enhancedHtml = enhancedHtml.replace(
+      /<blockquote>/gi,
+      '<blockquote class="legal-quote">'
+    );
+    
+    // Add classes to headings
+    enhancedHtml = enhancedHtml.replace(
+      /<h([1-6])([^>]*)>/gi,
+      (match, level, attrs) => {
+        const classes = this.getLegalHeadingClass('', parseInt(level));
+        return `<h${level}${attrs} class="${classes}">`;
+      }
+    );
+    
+    return enhancedHtml;
+  }
+
+  private extractHeadingsForToc(html: string): void {
+    if (!this.options.enableToc) return;
+    
+    const headingRegex = /<h([1-6])[^>]*id="([^"]*)"[^>]*>([^<]+)<\/h[1-6]>/gi;
+    let match;
+    
+    while ((match = headingRegex.exec(html)) !== null) {
+      const level = parseInt(match[1]);
+      const id = match[2];
+      const text = match[3];
+      
+      if (level <= 3) {
+        this.tocItems.push({ level, text, anchor: id });
+      }
+    }
   }
 
   public getEnhancedCss(): string {
