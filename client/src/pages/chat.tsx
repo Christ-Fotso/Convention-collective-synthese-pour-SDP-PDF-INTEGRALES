@@ -370,35 +370,31 @@ export default function Chat() {
             </Card>
           </div>
 
-          {/* Navigation et recherche */}
+          {/* Barre de navigation simplifiée */}
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b shadow-sm">
-            <Card className="border-l-0 border-r-0 border-t-0 rounded-none">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-gray-700">Navigation dans les sections</CardTitle>
-                  <div className="relative w-72">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <input
-                      type="text"
-                      placeholder="Filtrer les sections..."
-                      className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                  </div>
+            <div className="px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div className="relative w-80">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Rechercher dans cette convention..."
+                    className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
                 </div>
-              </CardHeader>
-              <CardContent>
-                {isLoadingSections ? (
-                  <div className="flex gap-2">
-                    <Skeleton className="h-8 w-32" />
-                    <Skeleton className="h-8 w-32" />
-                    <Skeleton className="h-8 w-32" />
-                  </div>
-                ) : sectionTypes && sectionTypes.length > 0 ? (
-                  <div className="space-y-3">
-                    {/* Navigation par catégories principales */}
-                    <div className="flex flex-wrap gap-2">
+                
+                {/* Navigation simplifiée par onglets */}
+                <div className="flex gap-1">
+                  {isLoadingSections ? (
+                    <div className="flex gap-2">
+                      <Skeleton className="h-8 w-24" />
+                      <Skeleton className="h-8 w-24" />
+                      <Skeleton className="h-8 w-24" />
+                    </div>
+                  ) : sectionTypes && sectionTypes.length > 0 ? (
+                    <>
                       {CATEGORIES.map((categoryDefinition, categoryIndex) => {
                         const category = categoryDefinition.id;
                         
@@ -412,84 +408,33 @@ export default function Chat() {
                           visibleSection === section.sectionType
                         );
                         
-                        const isCategoryExpanded = expandedCategory === category;
-                        
                         return (
                           <Button
                             key={categoryIndex}
-                            variant={isCategoryVisible ? "default" : "outline"}
+                            variant={isCategoryVisible ? "default" : "ghost"}
                             size="sm"
-                            className="whitespace-nowrap flex items-center gap-1"
+                            className={`whitespace-nowrap transition-all duration-200 ${
+                              isCategoryVisible 
+                                ? "bg-green-600 text-white hover:bg-green-700" 
+                                : "text-gray-600 hover:text-green-600 hover:bg-green-50"
+                            }`}
                             onClick={() => {
-                              if (isCategoryExpanded) {
-                                setExpandedCategory(null);
-                              } else {
-                                setExpandedCategory(category);
-                                // Aller automatiquement au titre de la première sous-section
-                                const firstSection = categorySections[0];
-                                if (firstSection) {
-                                  setTimeout(() => {
-                                    scrollToSectionTitle(firstSection.sectionType);
-                                  }, 50); // Petit délai pour laisser le temps à l'expansion
-                                }
+                              // Aller directement à la première section de cette catégorie
+                              const firstSection = categorySections[0];
+                              if (firstSection) {
+                                scrollToSectionTitle(firstSection.sectionType);
                               }
                             }}
                           >
                             {categoryDefinition.name}
-                            {isCategoryExpanded ? (
-                              <ChevronDown className="h-3 w-3" />
-                            ) : (
-                              <ChevronRight className="h-3 w-3" />
-                            )}
                           </Button>
                         );
                       })}
-                    </div>
-                    
-                    {/* Sous-catégories étendues */}
-                    {expandedCategory && expandedCategory !== "informations-generales" && (
-                      <div className="border-t pt-3">
-                        <div className="flex flex-wrap gap-2">
-                          {(() => {
-                            const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
-                            if (!categoryDef) return null;
-                            
-                            const categorySections = sectionTypes.filter((section: SectionType) => 
-                              section.category === expandedCategory
-                            );
-                            
-                            return categoryDef.subcategories.map((subcategoryDef) => {
-                              const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
-                              if (!section) return null;
-                              
-                              return (
-                                <Button
-                                  key={section.sectionType}
-                                  variant={visibleSection === section.sectionType ? "default" : "outline"}
-                                  size="sm"
-                                  className={`whitespace-nowrap text-xs transition-colors duration-200 ${
-                                    visibleSection === section.sectionType 
-                                      ? "bg-primary text-primary-foreground hover:bg-primary/90" 
-                                      : "bg-orange-50 border-orange-200 hover:bg-primary/10 hover:text-primary hover:border-primary/50"
-                                  }`}
-                                  onClick={() => scrollToSection(section.sectionType)}
-                                >
-                                  {subcategoryDef.name}
-                                </Button>
-                              );
-                            });
-                          })()}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="text-center py-2 text-gray-500">
-                    Aucune section disponible
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                    </>
+                  ) : null}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Contenu principal avec défilement continu */}
