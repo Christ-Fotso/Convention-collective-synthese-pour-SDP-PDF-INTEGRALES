@@ -385,31 +385,82 @@ export default function Chat() {
                           visibleSection === section.sectionType
                         );
                         
+                        const isCategoryExpanded = expandedCategory === category;
+                        
                         return (
                           <Button
                             key={categoryIndex}
                             variant={isCategoryVisible ? "default" : "ghost"}
                             size="sm"
-                            className={`whitespace-nowrap transition-all duration-200 border-0 ${
+                            className={`whitespace-nowrap transition-all duration-200 border-0 flex items-center gap-1 ${
                               isCategoryVisible 
                                 ? "bg-green-600 text-white hover:bg-green-700 shadow-sm" 
                                 : "bg-white text-gray-600 hover:text-green-600 hover:bg-green-50"
                             }`}
                             onClick={() => {
-                              // Aller directement à la première section de cette catégorie
-                              const firstSection = categorySections[0];
-                              if (firstSection) {
-                                scrollToSectionTitle(firstSection.sectionType);
+                              if (isCategoryExpanded) {
+                                setExpandedCategory(null);
+                              } else {
+                                setExpandedCategory(category);
+                                // Aller automatiquement à la première section
+                                const firstSection = categorySections[0];
+                                if (firstSection) {
+                                  setTimeout(() => {
+                                    scrollToSectionTitle(firstSection.sectionType);
+                                  }, 50);
+                                }
                               }
                             }}
                           >
                             {categoryDefinition.name}
+                            {isCategoryExpanded ? (
+                              <ChevronDown className="h-3 w-3" />
+                            ) : (
+                              <ChevronRight className="h-3 w-3" />
+                            )}
                           </Button>
                         );
                       })}
                     </>
                   ) : null}
                 </div>
+                
+                {/* Sous-catégories étendues avec design amélioré */}
+                {expandedCategory && expandedCategory !== "informations-generales" && (
+                  <div className="border-t pt-3 mt-3">
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {(() => {
+                        const categoryDef = CATEGORIES.find(cat => cat.id === expandedCategory);
+                        if (!categoryDef) return null;
+                        
+                        const categorySections = sectionTypes.filter((section: SectionType) => 
+                          section.category === expandedCategory
+                        );
+                        
+                        return categoryDef.subcategories.map((subcategoryDef) => {
+                          const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
+                          if (!section) return null;
+                          
+                          return (
+                            <Button
+                              key={section.sectionType}
+                              variant={visibleSection === section.sectionType ? "default" : "outline"}
+                              size="sm"
+                              className={`whitespace-nowrap text-xs transition-all duration-200 ${
+                                visibleSection === section.sectionType 
+                                  ? "bg-green-600 text-white hover:bg-green-700 border-green-600" 
+                                  : "bg-white border-green-200 text-green-700 hover:bg-green-50 hover:border-green-400"
+                              }`}
+                              onClick={() => scrollToSectionTitle(section.sectionType)}
+                            >
+                              {subcategoryDef.name}
+                            </Button>
+                          );
+                        });
+                      })()}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -448,35 +499,11 @@ export default function Chat() {
                   
                   return (
                     <div key={category}>
-                      {/* Titre de catégorie avec sous-sections */}
+                      {/* Titre de catégorie */}
                       <div className="border-t pt-6">
-                        <div className="flex items-center gap-4 mb-6">
-                          <h2 className="text-2xl font-bold text-green-600 dark:text-green-400">
-                            {categoryDefinition.name}
-                          </h2>
-                          {/* Petits onglets pour les sous-sections */}
-                          <div className="flex gap-1">
-                            {categoryDefinition.subcategories.map((subcategoryDef) => {
-                              const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
-                              if (!section) return null;
-                              
-                              return (
-                                <button
-                                  key={section.sectionType}
-                                  className={`px-2 py-1 text-xs rounded-md transition-colors duration-200 ${
-                                    visibleSection === section.sectionType 
-                                      ? "bg-green-100 text-green-800 border border-green-200" 
-                                      : "bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-700"
-                                  }`}
-                                  onClick={() => scrollToSectionTitle(section.sectionType)}
-                                  title={`Aller à ${subcategoryDef.name}`}
-                                >
-                                  {subcategoryDef.name}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
+                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
+                          {categoryDefinition.name}
+                        </h2>
                       </div>
                       
                       {/* Sous-sections dans l'ordre défini */}
