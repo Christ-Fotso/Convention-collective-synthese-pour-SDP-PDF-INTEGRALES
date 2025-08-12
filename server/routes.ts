@@ -1927,6 +1927,86 @@ Format attendu exactement:
     }
   });
 
+  // Route de recherche par mots-clés
+  apiRouter.post("/search/convention/:conventionId", async (req, res) => {
+    try {
+      const { conventionId } = req.params;
+      const { query, limit = 20 } = req.body;
+
+      if (!query || query.trim().length < 2) {
+        return res.status(400).json({
+          error: "La requête de recherche doit contenir au moins 2 caractères"
+        });
+      }
+
+      console.log(`[Search] Recherche pour convention ${conventionId}: "${query}"`);
+
+      // Obtenir toutes les sections de la convention
+      const sections = getSectionsByConvention(conventionId);
+      if (!sections || sections.length === 0) {
+        return res.json({ results: [] });
+      }
+
+      // Préparer les termes de recherche
+      const searchTerms = query.toLowerCase().split(/\s+/).filter((term: string) => term.length > 1);
+      const results: any[] = [];
+
+      // Rechercher dans chaque section
+      for (const sectionData of sections) {
+        if (!sectionData.content) continue;
+
+        const content = sectionData.content.toLowerCase();
+        let score = 0;
+        const matches: string[] = [];
+
+        // Calculer le score de pertinence
+        for (const term of searchTerms) {
+          const occurrences = (content.match(new RegExp(term, 'g')) || []).length;
+          if (occurrences > 0) {
+            score += occurrences;
+            matches.push(term);
+          }
+        }
+
+        // Si des correspondances sont trouvées
+        if (score > 0) {
+          const [category, subcategory] = sectionData.sectionType.split('.');
+          
+          results.push({
+            sectionType: sectionData.sectionType,
+            sectionName: sectionData.sectionType,
+            category,
+            subcategory,
+            content: sectionData.content.substring(0, 500), // Limiter à 500 caractères
+            matches,
+            score: score / searchTerms.length // Score normalisé
+          });
+        }
+      }
+
+      // Trier par score de pertinence (décroissant)
+      results.sort((a, b) => b.score - a.score);
+
+      // Limiter les résultats
+      const limitedResults = results.slice(0, Math.min(limit, 50));
+
+      console.log(`[Search] ${limitedResults.length} résultats trouvés pour "${query}"`);
+
+      res.json({ 
+        results: limitedResults,
+        total: limitedResults.length,
+        query 
+      });
+
+    } catch (error: any) {
+      console.error("[Search] Erreur:", error);
+      res.status(500).json({
+        error: "Erreur lors de la recherche",
+        message: "Une erreur est survenue lors de la recherche."
+      });
+    }
+  });
+
   // Enregistrer les routes
   app.use('/api/admin', adminRouter);
   app.use("/api", apiRouter);

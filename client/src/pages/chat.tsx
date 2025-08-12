@@ -13,6 +13,7 @@ import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
 import { HtmlTestViewer } from "@/components/html-test-viewer";
 import { ChatConventionDialog } from "@/components/chat-convention-dialog";
+import { SearchDialog } from "@/components/search-dialog";
 
 // Types
 interface Convention {
@@ -137,6 +138,9 @@ export default function Chat() {
   const [isChatDialogOpen, setIsChatDialogOpen] = useState<boolean>(false);
   const [showScrollToTop, setShowScrollToTop] = useState<boolean>(false);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Requête pour obtenir les informations sur la convention
@@ -428,7 +432,10 @@ export default function Chat() {
               {/* Deuxième ligne: Recherche + Navigation par onglets */}
               <div className="flex items-center justify-center gap-4">
                 <div className="relative" title="Rechercher par mots-clés">
-                  <Search className="h-4 w-4 text-gray-400 cursor-pointer hover:text-green-600 transition-colors" />
+                  <Search 
+                    className="h-4 w-4 text-gray-400 cursor-pointer hover:text-green-600 transition-colors" 
+                    onClick={() => setIsSearchOpen(true)}
+                  />
                 </div>
                 <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
                   {isLoadingSections ? (
@@ -582,6 +589,20 @@ export default function Chat() {
           onOpenChange={setIsChatDialogOpen}
           conventionId={id || ""}
           conventionName={convention.name}
+        />
+      )}
+      
+      {/* Dialog de recherche */}
+      {convention && (
+        <SearchDialog
+          open={isSearchOpen}
+          onOpenChange={setIsSearchOpen}
+          conventionId={id || ""}
+          conventionName={convention.name}
+          onResultClick={(sectionType: string) => {
+            scrollToSectionTitle(sectionType);
+            setIsSearchOpen(false);
+          }}
         />
       )}
     </div>
