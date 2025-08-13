@@ -19,7 +19,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations extraites de manière claire et structurée (liste, texte), regroupées logiquement (par identifiants, champ d'application, etc.).
-- Évitez les tableaux sauf si absolument nécessaire pour la clarté.
+- Utilisez un tableau HTML si plusieurs éléments avec caractéristiques distinctes (dates clés, signataires multiples) : <table><tr><th>Type</th><th>Information</th><th>Date/Référence</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td></tr></table>
 - Si une information spécifique est absente de la convention, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient *aucune* information sur une catégorie entière listée ci-dessus, mentionnez "RAS" pour cette catégorie.
 - Ne faites aucune analyse ni projection. Ne mentionnez jamais l'application de règles non écrites dans la convention.
@@ -150,7 +150,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations sous forme de liste structurée ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si plusieurs durées/limites avec catégories différentes sont présentes : <table><tr><th>Type de durée</th><th>Catégorie</th><th>Durée/Limite</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si plusieurs durées/limites avec catégories différentes : <table><tr><th>Type de durée</th><th>Catégorie</th><th>Durée/Limite</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Incluez les particularités et dérogations mentionnées.
 - Si une information (ex: durée max quotidienne) n'est pas définie, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur ce thème, mentionnez "RAS".
@@ -183,7 +183,7 @@ INFORMATIONS À EXTRAIRE (Pour chaque dispositif prévu par la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations par type de dispositif, en utilisant des listes ou texte structuré. Utilisez la terminologie de la convention.
-- Utilisez OBLIGATOIREMENT un tableau HTML si plusieurs dispositifs d'aménagement avec caractéristiques différentes : <table><tr><th>Type d'aménagement</th><th>Période de référence</th><th>Catégories concernées</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si plusieurs dispositifs d'aménagement avec caractéristiques différentes : <table><tr><th>Type d'aménagement</th><th>Période de référence</th><th>Catégories concernées</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Pour chaque disposition importante, indiquez la référence (article, avenant, date, statut étendu/non étendu) si possible.
 - Si un élément n'est pas mentionné pour un dispositif, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur l'aménagement du temps de travail, mentionnez "RAS".
@@ -212,7 +212,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (taux, contingent, repos). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour les taux de majoration si plusieurs paliers ou catégories : <table><tr><th>Tranche d'heures</th><th>Taux de majoration</th><th>Catégorie</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML pour les taux de majoration si plusieurs paliers ou catégories : <table><tr><th>Tranche d'heures</th><th>Taux de majoration</th><th>Catégorie</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les conditions particulières mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition spécifique sur les HS, mentionnez "RAS".
@@ -243,7 +243,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (durée minimum, heures complémentaires, procédures). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si plusieurs seuils, taux ou catégories avec règles différentes : <table><tr><th>Catégorie/Seuil</th><th>Durée minimum</th><th>Taux heures complémentaires</th><th>Contingent</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+- Priorisez un tableau HTML si plusieurs seuils, taux ou catégories avec règles différentes : <table><tr><th>Catégorie/Seuil</th><th>Durée minimum</th><th>Taux heures complémentaires</th><th>Contingent</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Détaillez les procédures et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition spécifique sur le temps partiel, mentionnez "RAS".
@@ -276,7 +276,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (catégories éligibles, nombre de jours, modalités). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si plusieurs catégories de personnel avec forfaits différents : <table><tr><th>Catégorie de personnel</th><th>Nombre de jours forfaitaires</th><th>Conditions d'éligibilité</th><th>Modalités de suivi</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si plusieurs catégories de personnel avec forfaits différents : <table><tr><th>Catégorie de personnel</th><th>Nombre de jours forfaitaires</th><th>Conditions d'éligibilité</th><th>Modalités de suivi</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les conditions et procédures mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur le forfait jours, mentionnez "RAS".
@@ -307,7 +307,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (mise en place, alimentation, utilisation). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si plusieurs types de droits épargnables avec règles différentes : <table><tr><th>Type de droit épargnable</th><th>Plafond</th><th>Modalités d'utilisation</th><th>Valorisation</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si plusieurs types de droits épargnables avec règles différentes : <table><tr><th>Type de droit épargnable</th><th>Plafond</th><th>Modalités d'utilisation</th><th>Valorisation</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les procédures et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur le CET, mentionnez "RAS".
@@ -337,7 +337,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (durée de base, congés supplémentaires, modalités). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si congés supplémentaires par ancienneté ou catégorie : <table><tr><th>Ancienneté/Catégorie</th><th>Congés supplémentaires</th><th>Conditions</th><th>Modalités</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si congés supplémentaires par ancienneté ou catégorie : <table><tr><th>Ancienneté/Catégorie</th><th>Congés supplémentaires</th><th>Conditions</th><th>Modalités</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les conditions et modalités mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient que les dispositions légales, mentionnez "RAS".
@@ -460,7 +460,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (conditions, durée, taux). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si maintien de salaire différent selon ancienneté ou catégorie : <table><tr><th>Ancienneté/Catégorie</th><th>Durée du maintien</th><th>Taux de maintien</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si maintien de salaire différent selon ancienneté ou catégorie : <table><tr><th>Ancienneté/Catégorie</th><th>Durée du maintien</th><th>Taux de maintien</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur l'AT/MP, mentionnez "RAS".
@@ -492,7 +492,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (conditions, durée, taux). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si maintien de salaire différent selon ancienneté ou catégorie : <table><tr><th>Ancienneté/Catégorie</th><th>Durée du maintien</th><th>Taux de maintien</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si maintien de salaire différent selon ancienneté ou catégorie : <table><tr><th>Ancienneté/Catégorie</th><th>Durée du maintien</th><th>Taux de maintien</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la maladie, mentionnez "RAS".
@@ -523,7 +523,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée par type de congé (maternité, paternité). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si maintien différent selon type de congé ou catégorie : <table><tr><th>Type de congé</th><th>Catégorie</th><th>Durée du maintien</th><th>Taux de maintien</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+- Priorisez un tableau HTML si maintien différent selon type de congé ou catégorie : <table><tr><th>Type de congé</th><th>Catégorie</th><th>Durée du maintien</th><th>Taux de maintien</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la maternité/paternité, mentionnez "RAS".
@@ -554,7 +554,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (rémunération, formation, conditions). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour la rémunération si plusieurs niveaux selon âge/année : <table><tr><th>Âge/Année d'apprentissage</th><th>Pourcentage SMIC</th><th>Montant</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML pour la rémunération si plusieurs niveaux selon âge/année : <table><tr><th>Âge/Année d'apprentissage</th><th>Pourcentage SMIC</th><th>Montant</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les apprentis, mentionnez "RAS".
@@ -585,7 +585,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (rémunération, formation, durée). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour la rémunération si plusieurs niveaux selon âge/qualification : <table><tr><th>Âge/Niveau</th><th>Pourcentage SMIC</th><th>Montant</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML pour la rémunération si plusieurs niveaux selon âge/qualification : <table><tr><th>Âge/Niveau</th><th>Pourcentage SMIC</th><th>Montant</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les contrats de professionnalisation, mentionnez "RAS".
@@ -616,7 +616,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (gratification, durée, modalités). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si gratification différente selon durée ou type de stage : <table><tr><th>Type/Durée de stage</th><th>Gratification</th><th>Avantages</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si gratification différente selon durée ou type de stage : <table><tr><th>Type/Durée de stage</th><th>Gratification</th><th>Avantages</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les stagiaires, mentionnez "RAS".
@@ -647,7 +647,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (taux, conditions, modalités). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si majorations différentes selon catégorie ou conditions : <table><tr><th>Catégorie/Conditions</th><th>Taux de majoration</th><th>Modalités de compensation</th><th>Conditions d'application</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si majorations différentes selon catégorie ou conditions : <table><tr><th>Catégorie/Conditions</th><th>Taux de majoration</th><th>Modalités de compensation</th><th>Conditions d'application</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur le travail du dimanche, mentionnez "RAS".
@@ -678,7 +678,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (jours concernés, taux, modalités). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si majorations différentes selon jour férié ou catégorie : <table><tr><th>Jour férié</th><th>Catégorie</th><th>Taux de majoration</th><th>Modalités de compensation</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si majorations différentes selon jour férié ou catégorie : <table><tr><th>Jour férié</th><th>Catégorie</th><th>Taux de majoration</th><th>Modalités de compensation</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les jours fériés, mentionnez "RAS".
@@ -709,7 +709,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (définition, taux, conditions). Listes ou texte.
-- Utilisez OBLIGATOIREMENT un tableau HTML si majorations différentes selon plage horaire ou catégorie : <table><tr><th>Plage horaire</th><th>Catégorie</th><th>Taux de majoration</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si majorations différentes selon plage horaire ou catégorie : <table><tr><th>Plage horaire</th><th>Catégorie</th><th>Taux de majoration</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur le travail de nuit, mentionnez "RAS".
