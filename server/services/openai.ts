@@ -208,8 +208,8 @@ export async function getConventionText(
       ];
     }
     
-    // Extraire le texte avec la liste de mots-clés prioritaires
-    const text = await extractTextFromURL(conventionUrl, conventionId, priorityKeywords);
+    // Extraire le texte du PDF
+    const text = await extractTextFromURL(conventionUrl);
     
     // Ajouter un en-tête
     const conventionText = `CONVENTION COLLECTIVE NATIONALE IDCC ${conventionId}\nSource: ${conventionUrl}\n\n` +
@@ -476,7 +476,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
             structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
             
             // Ajouter chaque ligne du tableau
-            jsonResponse.data.forEach(item => {
+            jsonResponse.data.forEach((item: any) => {
               structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
             });
             structuredMarkdown += '\n';
@@ -484,7 +484,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
         } else if (category === 'remuneration' && subcategory === 'grille') {
           // Pour les grilles de salaire, potentiellement plusieurs tableaux par catégorie
           if (jsonResponse.categories && Array.isArray(jsonResponse.categories)) {
-            jsonResponse.categories.forEach(category => {
+            jsonResponse.categories.forEach((category: any) => {
               if (category.name) {
                 structuredMarkdown += `### ${category.name}\n\n`;
               }
@@ -499,7 +499,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
                 structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
                 
                 // Lignes
-                category.data.forEach(item => {
+                category.data.forEach((item: any) => {
                   structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
                 });
                 structuredMarkdown += '\n';
