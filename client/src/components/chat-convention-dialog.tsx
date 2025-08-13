@@ -264,13 +264,7 @@ export function ChatConventionDialog({
                         </div>
                       )}
                       
-                      {/* Indicator du mode RAG */}
-                      {msg.role === "assistant" && (
-                        <div className="mt-2 flex items-center gap-1 text-xs text-gray-500">
-                          <FileText className="h-3 w-3" />
-                          <span>Documents complets</span>
-                        </div>
-                      )}
+
                     </div>
                   </div>
                 ))

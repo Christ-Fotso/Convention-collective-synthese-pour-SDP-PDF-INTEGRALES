@@ -202,6 +202,9 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Performance optimisée : 12 secondes pour une analyse complète avec recherche sémantique
     * Résolution du problème de qualité : l'IA consulte désormais toute la documentation
     * Test réussi sur prime de fin d'année IDCC 843 : réponse complète avec toutes modalités
+    * Configuration optimisée 20% : 30 sections max × 8k caractères = analyse jusqu'à 240k caractères
+    * Suppression message "Documents complets" pour interface plus propre
+    * Prompt amélioré pour privilégier automatiquement les informations les plus récentes
 
 ## User Preferences
 
