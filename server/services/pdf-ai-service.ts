@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
+import { getSectionsByConvention } from '../sections-data';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,7 +11,7 @@ const openai = new OpenAI({
 const MODEL = "gpt-4o-mini";
 
 export class PDFAnalysisService {
-  private pdfDirectory = 'resultats_telechargements/complet_20250813_102543';
+  private pdfDirectory = './resultats_telechargements/complet_20250813_102543';
 
   /**
    * Trouve le fichier PDF d'une convention par IDCC
@@ -45,15 +46,7 @@ export class PDFAnalysisService {
     cost: number;
   }> {
     try {
-      // Trouver le PDF
-      const pdfPath = this.findPDFByIDCC(idcc);
-      if (!pdfPath) {
-        throw new Error(`PDF introuvable pour IDCC ${idcc}`);
-      }
-
-      // Convertir en base64
-      console.log(`Analyse PDF: ${path.basename(pdfPath)}`);
-      const pdfBase64 = this.pdfToBase64(pdfPath);
+      console.log(`Analyse sections pour IDCC ${idcc}`);
       
       // Préparer le prompt optimisé pour GPT-4o Mini
       const systemPrompt = `Tu es un expert en droit du travail français. Tu analyseras le PDF de convention collective fourni pour répondre précisément aux questions.
@@ -69,12 +62,19 @@ INSTRUCTIONS:
 
 Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
 
-      // GPT-4o Mini ne supporte pas les PDFs directement
-      // On doit d'abord extraire le texte, puis l'envoyer
-      const pdfParse = await import('pdf-parse');
-      const buffer = fs.readFileSync(pdfPath);
-      const pdfData = await pdfParse.default(buffer);
-      const pdfText = pdfData.text;
+      // Utiliser les sections déjà extraites (plus économique et fiable)
+      // Les PDFs téléchargés sont la source de vérité pour les sections JSON
+      const sections = getSectionsByConvention(idcc);
+      if (!sections || sections.length === 0) {
+        throw new Error(`Aucune section trouvée pour IDCC ${idcc}`);
+      }
+      
+      // Concaténer toutes les sections en un texte structuré
+      const sectionsText = sections.map(section => 
+        `=== ${section.sectionType.toUpperCase()} ===\n${section.content || ''}`
+      ).join('\n\n');
+      
+      const pdfText = sectionsText;
 
       if (!pdfText || pdfText.trim().length < 100) {
         throw new Error('PDF vide ou illisible');
@@ -117,7 +117,7 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
 
       return {
         response: answer,
-        source: `Convention collective IDCC ${idcc} - ${path.basename(pdfPath)}`,
+        source: `${sections.length} sections analysées`,
         cost: totalCost
       };
 

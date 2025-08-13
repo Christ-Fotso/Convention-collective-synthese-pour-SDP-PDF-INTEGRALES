@@ -43,6 +43,12 @@ const openai = new OpenAI({
 // Import de notre cache persistant
 import { LimitedCache } from "./services/cache-manager";
 
+// Import du service d'analyse PDF
+import { PDFAnalysisService } from "./services/pdf-ai-service";
+
+// Instance du service d'analyse PDF
+const pdfAnalysisService = new PDFAnalysisService();
+
 // Service RAG supprimé - utilisation directe des PDFs
 
 // Import du service NAF
@@ -51,8 +57,7 @@ import { nafService } from "./services/naf-service";
 // Import du convertisseur Markdown vers HTML
 import { markdownHtmlConverter } from "./services/markdown-html-converter.js";
 
-// Import du service d'analyse PDF avec IA
-import { pdfAnalysisService } from "./services/pdf-ai-service";
+// Service d'analyse PDF déjà importé ci-dessus
 
 // Cache pour les réponses OpenAI avec persistance
 const openaiCache = new LimitedCache(50, 'openai', 300000); // 5 minutes d'intervalle de sauvegarde
