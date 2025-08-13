@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'wouter';
 import { getConventions } from '@/lib/api';
@@ -28,7 +28,6 @@ interface NafEntry {
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [filteredConventions, setFilteredConventions] = useState<Convention[]>([]);
   const [showNafSearch, setShowNafSearch] = useState(false);
   const [nafResults, setNafResults] = useState<NafEntry[]>([]);
   const [isSearchingNaf, setIsSearchingNaf] = useState(false);
@@ -41,11 +40,10 @@ export default function Home() {
     queryFn: getConventions,
   });
 
-  // Effet qui s'exécute à chaque changement de recherche ou de données
-  useEffect(() => {
+  // Calculer les conventions filtrées directement sans useEffect pour éviter les boucles
+  const filteredConventions = useMemo(() => {
     if (!conventions.length) {
-      setFilteredConventions([]);
-      return;
+      return [];
     }
 
     // Copier les conventions pour pouvoir les trier sans modifier l'original
@@ -90,7 +88,7 @@ export default function Home() {
       return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
     });
     
-    setFilteredConventions(results);
+    return results;
   }, [search, conventions]);
 
   const handleNafSearch = async (searchTerm: string) => {
