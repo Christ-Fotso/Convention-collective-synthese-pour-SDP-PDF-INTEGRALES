@@ -303,7 +303,7 @@ export default function Home() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}/section/remuneration/grille`);
+                              navigate(`/convention/${convention.id}/section/remuneration.grille`);
                             }}
                             className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
@@ -312,7 +312,7 @@ export default function Home() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}/section/classification/classification`);
+                              navigate(`/convention/${convention.id}/section/classification.classification`);
                             }}
                             className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
@@ -321,7 +321,7 @@ export default function Home() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}/section/embauche/periode-essai`);
+                              navigate(`/convention/${convention.id}/section/embauche.periode-essai`);
                             }}
                             className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
