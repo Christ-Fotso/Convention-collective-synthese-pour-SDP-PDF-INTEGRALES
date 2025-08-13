@@ -53,9 +53,11 @@ export class PDFAnalysisService {
       // Préparer le prompt optimisé pour GPT-4o Mini
       const systemPrompt = `Tu es un expert en droit du travail français. Tu analyseras le PDF de convention collective fourni pour répondre précisément aux questions.
 
-INSTRUCTIONS:
+INSTRUCTIONS PRIORITAIRES:
 - Réponds uniquement en te basant sur le contenu exact du PDF
-- Cite les articles/paragraphes pertinents
+- PRIVILÉGIE TOUJOURS LES INFORMATIONS LES PLUS RÉCENTES : si plusieurs dispositions/versions/dates existent, présente en priorité les plus récentes
+- Pour les salaires, grilles, montants : donne systématiquement les valeurs les plus récentes en premier
+- Cite les articles/paragraphes pertinents avec leurs dates si disponibles
 - Si l'information n'est pas dans le PDF, dis-le clairement
 - Sois concis et précis
 - Formate ta réponse en markdown`;
@@ -133,7 +135,7 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
 
       return {
         response: answer,
-        source: `PDF complet analysé (${Math.round(pdfText.length/1000)}k caractères)`,
+        source: `Analyse complète (${Math.round(pdfText.length/1000)}k caractères)`,
         cost: totalCost
       };
 
