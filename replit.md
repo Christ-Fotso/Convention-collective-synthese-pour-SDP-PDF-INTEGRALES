@@ -205,6 +205,14 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Configuration optimisée 20% : 30 sections max × 8k caractères = analyse jusqu'à 240k caractères
     * Suppression message "Documents complets" pour interface plus propre
     * Prompt amélioré pour privilégier automatiquement les informations les plus récentes
+- August 13, 2025. Analyse comparative des modèles IA pour extraction juridique :
+    * Recherche approfondie des performances Claude 4 vs GPT-4o vs Gemini 2.5 Pro
+    * Claude 4 Sonnet identifié comme optimal : 72.7% SWE-bench, raisonnement structuré supérieur
+    * Coût-performance : Claude $3-15/M tokens, Gemini $1.25-2.50/M, GPT-4o $2.50-10/M
+    * Recommandation approche hybride : Claude pour sections complexes, Gemini Flash pour simples
+    * Optimisation prompts système avec corrections spécifiques identifiées dans autres conventions
+    * Problèmes résolus : titres redondants, tableaux sous-exploités, répétitions "RAS", colonnes vides
+    * Prompt finalisé pour maximum 2 niveaux indentation, groupement logique, références courtes
 
 ## User Preferences
 
