@@ -328,12 +328,8 @@ export default function Home() {
 
         {/* Modal de recherche NAF */}
         <Dialog open={showNafModal} onOpenChange={setShowNafModal}>
-          <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden">
-            <DialogHeader>
-              <DialogTitle className="text-xl text-orange-700">
-                Recherche par Code NAF
-              </DialogTitle>
-            </DialogHeader>
+          <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden pt-6">
+
             
             <div className="space-y-4">
               {/* Formulaire de recherche NAF */}
