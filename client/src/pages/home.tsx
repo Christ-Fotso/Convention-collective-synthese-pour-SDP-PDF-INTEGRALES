@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'wouter';
 import { getConventions } from '@/lib/api';
@@ -120,6 +120,19 @@ export default function Home() {
     }
   };
 
+  // Recherche automatique NAF avec debounce
+  React.useEffect(() => {
+    if (nafSearchTerm.trim() && nafSearchTerm.length >= 2) {
+      const timer = setTimeout(() => {
+        handleNafSearch(nafSearchTerm);
+      }, 500); // Délai de 500ms après la dernière frappe
+
+      return () => clearTimeout(timer);
+    } else if (!nafSearchTerm.trim()) {
+      setNafResults([]);
+    }
+  }, [nafSearchTerm]);
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Pas besoin de faire une recherche NAF séparée, la recherche se fait automatiquement
@@ -167,7 +180,7 @@ export default function Home() {
             <Button
               type="button"
               onClick={() => setShowNafModal(true)}
-              className="h-12 px-4 bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+              className="h-12 px-4 bg-orange-400 hover:bg-orange-500 text-white flex items-center gap-2"
             >
               <Building2 className="h-4 w-4" />
               Code NAF
@@ -317,7 +330,7 @@ export default function Home() {
         <Dialog open={showNafModal} onOpenChange={setShowNafModal}>
           <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden">
             <DialogHeader>
-              <DialogTitle className="text-xl text-green-700">
+              <DialogTitle className="text-xl text-orange-700">
                 Recherche par Code NAF
               </DialogTitle>
             </DialogHeader>
@@ -328,7 +341,7 @@ export default function Home() {
                 <Input
                   type="text"
                   placeholder="Tapez un code NAF (ex: 4711F) ou un secteur d'activité (ex: commerce, restauration...)..."
-                  className="h-10 pl-4 pr-32 w-full border-2 focus:border-blue-500"
+                  className="h-10 pl-4 pr-32 w-full border-2 focus:border-orange-500"
                   value={nafSearchTerm}
                   onChange={(e) => setNafSearchTerm(e.target.value)}
                 />
@@ -348,7 +361,7 @@ export default function Home() {
                   <Button
                     type="submit"
                     size="sm"
-                    className="h-8 px-3 bg-blue-600 hover:bg-blue-700"
+                    className="h-8 px-3 bg-orange-400 hover:bg-orange-500"
                     disabled={isSearchingNaf}
                   >
                     {isSearchingNaf ? "..." : "Rechercher"}
@@ -375,7 +388,7 @@ export default function Home() {
                     {nafResults.map((result, index) => (
                       <Card 
                         key={`naf-${result.conventionId}-${index}`}
-                        className="hover:shadow-md transition-shadow cursor-pointer border-blue-100 hover:border-blue-300"
+                        className="hover:shadow-md transition-shadow cursor-pointer border-orange-100 hover:border-orange-300"
                         onClick={() => {
                           const conventionId = result.conventionId || result.idcc;
                           navigate(`/convention/${conventionId}`);
@@ -385,14 +398,14 @@ export default function Home() {
                         <CardHeader className="pb-3">
                           <div className="flex justify-between items-start">
                             <div className="flex-1">
-                              <CardTitle className="text-base text-blue-700 leading-tight">
+                              <CardTitle className="text-base text-orange-700 leading-tight">
                                 {result.conventionName}
                               </CardTitle>
                               <CardDescription className="text-sm mt-1">
                                 IDCC {result.idcc}
                               </CardDescription>
                             </div>
-                            <ArrowRight className="h-4 w-4 text-blue-500 flex-shrink-0 mt-1" />
+                            <ArrowRight className="h-4 w-4 text-orange-500 flex-shrink-0 mt-1" />
                           </div>
                         </CardHeader>
                         <CardContent className="pt-0">
