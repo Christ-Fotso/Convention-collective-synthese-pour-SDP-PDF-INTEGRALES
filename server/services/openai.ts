@@ -517,7 +517,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
               structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
               
               // Ajouter chaque ligne du tableau
-              jsonResponse.data.forEach(item => {
+              jsonResponse.data.forEach((item: any) => {
                 structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
               });
               structuredMarkdown += '\n';
@@ -539,12 +539,12 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
               structuredMarkdown += '| ' + columns.map(() => '---').join(' | ') + ' |\n';
               
               // Ajouter chaque ligne du tableau
-              jsonResponse.data.forEach(item => {
+              jsonResponse.data.forEach((item: any) => {
                 structuredMarkdown += '| ' + columns.map(col => item[col] || '').join(' | ') + ' |\n';
               });
             } else {
               // Format liste pour les structures simples
-              jsonResponse.data.forEach(item => {
+              jsonResponse.data.forEach((item: any) => {
                 const key = Object.keys(item)[0];
                 structuredMarkdown += `- **${key}**: ${item[key]}\n`;
               });
@@ -559,7 +559,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
           
           if (Array.isArray(jsonResponse.data) && jsonResponse.data.length > 0) {
             // Si les données sont un tableau d'objets
-            jsonResponse.data.forEach(item => {
+            jsonResponse.data.forEach((item: any) => {
               const field = Object.keys(item)[0];
               const value = item[field] || '';
               structuredMarkdown += `| **${field}** | ${value} |\n`;
@@ -578,7 +578,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
         if (jsonResponse.notes) {
           structuredMarkdown += '### Notes supplémentaires\n\n';
           if (Array.isArray(jsonResponse.notes)) {
-            jsonResponse.notes.forEach(note => {
+            jsonResponse.notes.forEach((note: any) => {
               structuredMarkdown += `- ${note}\n`;
             });
           } else {
@@ -590,7 +590,7 @@ FORMAT DE RÉPONSE: Commencez directement par un titre ou une liste, sans aucune
         if (jsonResponse.references) {
           structuredMarkdown += '### Articles de référence\n\n';
           if (Array.isArray(jsonResponse.references)) {
-            jsonResponse.references.forEach(ref => {
+            jsonResponse.references.forEach((ref: any) => {
               structuredMarkdown += `- ${ref}\n`;
             });
           } else {
