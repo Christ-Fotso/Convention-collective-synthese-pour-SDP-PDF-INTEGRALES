@@ -282,53 +282,14 @@ export default function Home() {
                         navigate(`/convention/${conventionId}`);
                       }}
                     >
-                      <CardHeader className="pb-3">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <CardTitle className="text-base text-green-700 group-hover:text-green-800 leading-tight">
-                              {convention.name}
-                            </CardTitle>
-                            <CardDescription className="text-sm mt-1">
-                              {convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}
-                            </CardDescription>
-                          </div>
-                          <ArrowRight className="h-4 w-4 text-green-500 group-hover:translate-x-1 transition-transform flex-shrink-0 mt-1" />
-                        </div>
+                      <CardHeader>
+                        <CardTitle className="text-base text-green-700 group-hover:text-green-800 leading-tight">
+                          {convention.name}
+                        </CardTitle>
+                        <CardDescription className="text-sm mt-1">
+                          {convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}
+                        </CardDescription>
                       </CardHeader>
-                      <CardContent className="pt-0">
-                        <div className="text-xs text-gray-600 mb-2">
-                          Sections les plus consultées :
-                        </div>
-                        <div className="flex gap-1 flex-wrap">
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/convention/${convention.id}`);
-                            }}
-                            className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
-                          >
-                            Rémunération
-                          </button>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/convention/${convention.id}`);
-                            }}
-                            className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
-                          >
-                            Classification
-                          </button>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/convention/${convention.id}`);
-                            }}
-                            className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
-                          >
-                            Période d'essai
-                          </button>
-                        </div>
-                      </CardContent>
                     </Card>
                   ))}
                 </div>
