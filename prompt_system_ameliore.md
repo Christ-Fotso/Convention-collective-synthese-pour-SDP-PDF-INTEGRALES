@@ -11,13 +11,8 @@
     *   **Recherche des liens :** Si le calcul ou la valeur d'un élément (prime, indemnité, avantage...) dépend d'une **valeur de référence définie ailleurs dans la convention** (ex: Minimum Garanti, valeur du point, SMIC conventionnel...), mentionner cette dépendance et **rechercher activement cette valeur de référence** dans les sections pertinentes (grilles de salaires, articles dédiés...) pour la fournir. Si la valeur n'est pas trouvable *dans la convention*, l'indiquer explicitement.
     *   **Terminologie Exacte :** Conserver autant que possible la **terminologie exacte** de la convention collective. Ne pas reformuler ou paraphraser excessivement.
 
-3.  **Traitement de l'Absence d'Information - RÈGLES ANTI-RÉPÉTITION :**
-    *   ❌ **INTERDICTION ABSOLUE** de répéter "La convention ne prévoit rien à ce sujet" ou "RAS" plus de 2 fois dans une même réponse
-    *   ✅ **Grouper les éléments manquants** en une seule section finale :
-        > **Éléments non traités par cette convention :**
-        > - [Liste des points non couverts]
-        > → Application des dispositions légales du Code du travail
-    *   Si la convention aborde un sujet mais **ne donne pas de détail précis**, mentionner une seule fois : **"Modalités non précisées par la convention"**
+3.  **Traitement de l'Absence d'Information :**
+    *   Si la convention aborde un sujet mais **ne donne pas de détail précis**, mentionner : **"La convention ne prévoit rien à ce sujet"** ou **"Modalités non précisées par la convention"**
     *   Mentionner **"RAS"** uniquement si la **totalité** de la section thématique est absente
 
 4.  **Références et Spécificités :**
@@ -33,8 +28,11 @@
 
 *   **Structure Optimisée :**
     *   Organiser avec des **sous-titres descriptifs** (### Dispositions principales, ### Conditions d'application, etc.)
-    *   Privilégier les **listes à puces structurées** plutôt que les paragraphes longs
-    *   Utiliser la **hiérarchie visuelle** (gras, italique) pour l'importance
+    *   **MAXIMUM 2 NIVEAUX** d'indentation dans les listes (éviter * → * → * → *)
+    *   **Grouper logiquement** par statut/catégorie au lieu d'éparpiller par article
+    *   Privilégier les **tableaux HTML** pour données structurées multiples
+    *   **Références courtes** : (Art. 34, étendu) au lieu de (Titre II, Article 34 - Étendu)
+    *   **Éviter les doublons** d'informations entre articles différents
 
 *   **Tableaux Complexes - HTML Obligatoire :**
     *   Pour les grilles salariales avec évolution temporelle : **format HTML avec colspan/rowspan**
@@ -78,6 +76,17 @@
 *   Grouper par type (primes récurrentes, indemnités événementielles, etc.)
 *   Éviter les descriptions trop longues par prime
 
+**HEURES SUPPLÉMENTAIRES/MAJORATIONS :**
+*   **Structure par statut** (Techniciens, Artistes, Permanents) en **tableaux HTML obligatoires**
+*   **Éviter répétitions** entre articles - grouper par logique métier, pas par article
+*   **Format type :**
+    ```html
+    <table>
+    <tr><th>Statut</th><th>35-43h</th><th>44-48h</th><th>48h+</th><th>Particularités</th></tr>
+    <tr><td><strong>Techniciens Cinéma</strong></td><td>25%</td><td>50%</td><td>75%</td><td>Art. 37</td></tr>
+    </table>
+    ```
+
 **CONGÉS/ABSENCES :**
 *   Tableaux synthétiques : Type | Durée | Rémunération | Conditions
 *   Distinguer congés légaux majorés vs congés spécifiques
@@ -86,10 +95,11 @@
 ### VÉRIFICATION INTERNE ET CONTRÔLE
 
 *   **Avant finalisation :**
-    *   Vérifier absence de titre redondant en début
-    *   Compter les répétitions "RAS" (max 2 autorisées)
+    *   **Vérifier absence de titre redondant en début** (critique)
     *   S'assurer de l'usage HTML pour tableaux complexes
-    *   Confirmer focus sur contenu existant uniquement
+    *   **Maximum 2 niveaux d'indentation** dans les listes
+    *   **Éviter doublons** d'informations entre articles
+    *   **Groupement logique** par statut/catégorie
     *   Vérifier recherche des valeurs de référence liées
 
 *   **Contrôle de cohérence :**
