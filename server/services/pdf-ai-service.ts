@@ -199,14 +199,14 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
       }
     }
     
-    // Trier par score et limiter à 15 sections max pour couvrir ~20% du document
+    // Trier par score et limiter à 30 sections max pour couvrir ~20% du document
     return sections
       .sort((a, b) => {
         const scoreA = parseInt(a.match(/\[Score: (\d+)\]/)?.[1] || '0');
         const scoreB = parseInt(b.match(/\[Score: (\d+)\]/)?.[1] || '0');
         return scoreB - scoreA;
       })
-      .slice(0, 15)
+      .slice(0, 30)
       .map(s => s.replace(/\[Score: \d+\] /, ''));
   }
 
