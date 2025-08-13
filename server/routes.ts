@@ -17,6 +17,7 @@ import { createHash } from "crypto";
 import {
   getApiMetrics,
   saveApiMetric,
+  saveConventionSection,
   SECTION_TYPES
 } from "./services/section-manager";
 
@@ -2022,8 +2023,8 @@ Consignes:
       res.json({
         success: true,
         section: {
-          id: section.id,
-          title: section.title || `Section ${sectionType}`,
+          id: `${conventionId}_${sectionType}`,
+          title: `Section ${sectionType}`,
           conventionId,
           sectionType
         },

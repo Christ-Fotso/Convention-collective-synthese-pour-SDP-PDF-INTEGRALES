@@ -46,6 +46,7 @@
     "@tanstack/react-query": "^5.65.1",
     "@types/lodash": "^4.17.20",
     "@types/marked": "^5.0.2",
+    "@types/pdf-parse": "^1.1.5",
     "@types/uuid": "^10.0.0",
     "axios": "^1.7.9",
     "canvas": "^3.1.0",
