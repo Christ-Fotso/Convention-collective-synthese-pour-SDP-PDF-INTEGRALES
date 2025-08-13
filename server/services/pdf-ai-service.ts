@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
-import { getSectionsByConvention } from '../sections-data';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pdfParse = require('pdf-parse');
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -62,31 +64,45 @@ INSTRUCTIONS:
 
 Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
 
-      // Utiliser les sections déjà extraites (plus économique et fiable)
-      // Les PDFs téléchargés sont la source de vérité pour les sections JSON
-      const sections = getSectionsByConvention(idcc);
-      if (!sections || sections.length === 0) {
-        throw new Error(`Aucune section trouvée pour IDCC ${idcc}`);
+      // Trouver et analyser le PDF complet
+      const pdfPath = this.findPDFByIDCC(idcc);
+      if (!pdfPath) {
+        throw new Error(`PDF introuvable pour IDCC ${idcc}`);
       }
-      
-      // Concaténer toutes les sections en un texte structuré
-      const sectionsText = sections.map(section => 
-        `=== ${section.sectionType.toUpperCase()} ===\n${section.content || ''}`
-      ).join('\n\n');
-      
-      const pdfText = sectionsText;
 
-      if (!pdfText || pdfText.trim().length < 100) {
+      console.log(`Lecture complète du PDF: ${path.basename(pdfPath)}`);
+      
+      // Extraire TOUT le texte du PDF (pas juste les sections)
+      const pdfBuffer = fs.readFileSync(pdfPath);
+      const pdfData = await pdfParse(pdfBuffer);
+      const fullPdfText = pdfData.text;
+      
+      if (!fullPdfText || fullPdfText.trim().length < 100) {
         throw new Error('PDF vide ou illisible');
       }
-
-      // Limiter le texte pour éviter de dépasser les tokens (chunks longs)
-      const maxChars = 50000; // ~15k tokens environ
-      const limitedText = pdfText.length > maxChars 
-        ? pdfText.substring(0, maxChars) + '\n\n[...document tronqué...]'
-        : pdfText;
-
-      console.log(`Texte PDF extrait: ${limitedText.length} caractères`);
+      
+      console.log(`PDF analysé: ${fullPdfText.length} caractères extraits`);
+      
+      // Recherche intelligente dans le PDF complet
+      // Étape 1: Chercher des sections pertinentes basées sur la question
+      const searchTerms = this.extractSearchTerms(question);
+      const relevantSections = this.findRelevantSections(fullPdfText, searchTerms, question);
+      
+      // Étape 2: Si on trouve des sections pertinentes, les utiliser
+      // Sinon, prendre le début du document + résumé
+      let pdfText: string;
+      if (relevantSections.length > 0) {
+        pdfText = `=== SECTIONS PERTINENTES TROUVÉES ===\n\n${relevantSections.join('\n\n=== SECTION SUIVANTE ===\n\n')}`;
+        console.log(`${relevantSections.length} sections pertinentes trouvées (${pdfText.length} caractères)`);
+      } else {
+        // Fallback: premiers 300k caractères + fin du document
+        const startChunk = fullPdfText.substring(0, 250000);
+        const endChunk = fullPdfText.length > 300000 
+          ? fullPdfText.substring(fullPdfText.length - 50000) 
+          : '';
+        pdfText = startChunk + (endChunk ? '\n\n=== FIN DU DOCUMENT ===\n\n' + endChunk : '');
+        console.log(`Analyse par chunks (début + fin): ${pdfText.length} caractères`);
+      }
 
       // Appel à GPT-4o Mini avec le texte extrait
       const response = await openai.chat.completions.create({
@@ -98,7 +114,7 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
           },
           {
             role: "user",
-            content: `${userPrompt}\n\n=== CONTENU DE LA CONVENTION COLLECTIVE ===\n\n${limitedText}`
+            content: `${userPrompt}\n\n=== CONTENU DE LA CONVENTION COLLECTIVE ===\n\n${pdfText}`
           }
         ],
         max_tokens: 2000, // Chunks longs comme demandé
@@ -117,7 +133,7 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
 
       return {
         response: answer,
-        source: `${sections.length} sections analysées`,
+        source: `PDF complet analysé (${Math.round(pdfText.length/1000)}k caractères)`,
         cost: totalCost
       };
 
@@ -126,6 +142,70 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
       const errorMessage = error instanceof Error ? error.message : String(error);
       throw new Error(`Erreur lors de l'analyse: ${errorMessage}`);
     }
+  }
+
+  /**
+   * Extrait les mots-clés de recherche d'une question
+   */
+  private extractSearchTerms(question: string): string[] {
+    const cleanQuestion = question.toLowerCase()
+      .replace(/[^\wàâäéèêëïîôöùûüÿç\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    
+    const stopWords = ['le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'à', 'en', 'pour', 'sur', 'avec', 'par', 'est', 'sont', 'que', 'qui', 'dans', 'ce', 'cette', 'ces', 'son', 'sa', 'ses'];
+    const words = cleanQuestion.split(' ').filter(word => 
+      word.length > 2 && !stopWords.includes(word)
+    );
+    
+    return words;
+  }
+
+  /**
+   * Trouve les sections pertinentes dans le texte complet
+   */
+  private findRelevantSections(fullText: string, searchTerms: string[], question: string): string[] {
+    const sections: string[] = [];
+    const chunkSize = 3000; // Chunks de 3000 caractères
+    const questionLower = question.toLowerCase();
+    
+    // Découper le texte en chunks
+    for (let i = 0; i < fullText.length; i += chunkSize) {
+      const chunk = fullText.substring(i, i + chunkSize);
+      const chunkLower = chunk.toLowerCase();
+      
+      // Calculer un score de pertinence
+      let score = 0;
+      
+      // Points pour les mots-clés exacts de la question
+      for (const term of searchTerms) {
+        const termOccurrences = (chunkLower.match(new RegExp(term, 'g')) || []).length;
+        score += termOccurrences * 10;
+      }
+      
+      // Points bonus pour les mots liés aux conventions collectives
+      const contextWords = ['prime', 'indemnité', 'salaire', 'congé', 'clause', 'article', 'modalité', 'conditions', 'droit', 'obligation'];
+      for (const word of contextWords) {
+        if (chunkLower.includes(word)) {
+          score += 5;
+        }
+      }
+      
+      // Ajouter si score suffisant
+      if (score >= 15) {
+        sections.push(`[Score: ${score}] ${chunk}`);
+      }
+    }
+    
+    // Trier par score et limiter à 8 sections max
+    return sections
+      .sort((a, b) => {
+        const scoreA = parseInt(a.match(/\[Score: (\d+)\]/)?.[1] || '0');
+        const scoreB = parseInt(b.match(/\[Score: (\d+)\]/)?.[1] || '0');
+        return scoreB - scoreA;
+      })
+      .slice(0, 8)
+      .map(s => s.replace(/\[Score: \d+\] /, ''));
   }
 
   /**
