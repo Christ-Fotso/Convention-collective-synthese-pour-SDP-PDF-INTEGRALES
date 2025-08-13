@@ -239,50 +239,11 @@ export default function Home() {
         {/* Liste des conventions modernisée */}
         {!showNafSearch && (
           <div className="space-y-6">
-            {/* Section Code du travail mise en avant */}
-            {filteredConventions.some(c => c.id === '9999') && !search && (
-              <div className="mb-8">
-                <h2 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
-                  <Star className="h-5 w-5 text-yellow-500" />
-                  Référence légale
-                </h2>
-                <Card 
-                  className="border-2 border-green-300 bg-gradient-to-r from-green-50 to-green-100 hover:shadow-lg transition-all cursor-pointer group"
-                  onClick={() => navigate(`/convention/9999`)}
-                >
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <CardTitle className="text-xl text-green-700 group-hover:text-green-800">
-                          Code du travail
-                        </CardTitle>
-                        <CardDescription className="text-green-600">
-                          IDCC 9999 • Référence légale de base pour tous les salariés français
-                        </CardDescription>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
-                          Référence
-                        </Badge>
-                        <ArrowRight className="h-5 w-5 text-green-600 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-green-700">
-                      Consultez les dispositions légales fondamentales : durée du travail, 
-                      congés payés, période d'essai, délais de prévenance...
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-
             {/* Section conventions collectives */}
             <div>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-green-700">
-                  {search ? `Résultats de recherche (${filteredConventions.filter(c => c.id !== '9999').length})` : 'Conventions collectives'}
+                  {search ? `Résultats de recherche (${filteredConventions.length})` : 'Conventions collectives'}
                 </h2>
                 {search && (
                   <Button
@@ -312,9 +273,7 @@ export default function Home() {
                 </Card>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                  {filteredConventions
-                    .filter(convention => convention.id !== '9999') // Exclure le Code du travail de la liste normale
-                    .map((convention, index) => (
+                  {filteredConventions.map((convention, index) => (
                     <Card
                       key={`${convention.id || convention.name || index}-${index}`}
                       className="hover:shadow-lg transition-all cursor-pointer group border-green-100 hover:border-green-300"
@@ -344,7 +303,7 @@ export default function Home() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}?section=remuneration.grille`);
+                              navigate(`/convention/${convention.id}/section/remuneration/grille`);
                             }}
                             className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
@@ -353,7 +312,7 @@ export default function Home() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}?section=classification.classification`);
+                              navigate(`/convention/${convention.id}/section/classification/classification`);
                             }}
                             className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
@@ -362,7 +321,7 @@ export default function Home() {
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}?section=embauche.periode-essai`);
+                              navigate(`/convention/${convention.id}/section/embauche/periode-essai`);
                             }}
                             className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
