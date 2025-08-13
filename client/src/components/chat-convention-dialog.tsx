@@ -28,7 +28,7 @@ interface ChatMessage {
   role: "user" | "assistant";
   timestamp: Date;
   sources?: Array<{ conventionName: string; idcc: string; filename: string }>;
-  method?: 'RAG' | 'structured';
+  method?: 'RAG' | 'structured' | 'PDF';
 }
 
 export function ChatConventionDialog({
@@ -87,8 +87,8 @@ export function ChatConventionDialog({
     setError("");
     
     try {
-      // Utiliser uniquement le système RAG avec l'ID de la convention
-      const response = await axios.post(`/api/ask-rag`, {
+      // Utiliser la nouvelle API PDF avec GPT-4o Mini (économique et rapide)
+      const response = await axios.post("/api/chat-pdf", {
         question: userMessage.content,
         conventionId: conventionId
       });
@@ -97,11 +97,15 @@ export function ChatConventionDialog({
       // Ajouter la réponse du système
       const botMessage: ChatMessage = {
         id: generateId(),
-        content: data.answer,
+        content: data.response,
         role: "assistant",
         timestamp: new Date(),
-        sources: data.sources || [],
-        method: 'RAG'
+        sources: data.source ? [{ 
+          conventionName: conventionName, 
+          idcc: conventionId, 
+          filename: data.source 
+        }] : [],
+        method: 'PDF' as any
       };
       
       // Mettre à jour la liste des messages
@@ -113,6 +117,12 @@ export function ChatConventionDialog({
       } else {
         setMessages(newMessages);
       }
+
+      // Afficher le coût dans la console (pour monitoring)
+      if (data.cost) {
+        console.log(`Coût de la requête: $${data.cost.toFixed(6)}`);
+      }
+
     } catch (err: any) {
       console.error("Erreur lors de l'envoi de la question:", err);
       
@@ -123,11 +133,9 @@ export function ChatConventionDialog({
         // Utiliser le message d'erreur détaillé du serveur s'il existe
         errorMessage = err.response.data.message;
       } else if (err.response?.status === 404) {
-        errorMessage = `Convention collective non trouvée.`;
-      } else if (err.response?.status === 502) {
-        errorMessage = `Impossible d'accéder au document source de cette convention collective.`;
-      } else if (err.response?.status === 503) {
-        errorMessage = `Le service d'intelligence artificielle est temporairement indisponible.`;
+        errorMessage = `Le PDF de cette convention n'est pas disponible.`;
+      } else if (err.response?.status === 500) {
+        errorMessage = `Erreur lors de l'analyse du PDF de la convention.`;
       }
       
       setError(errorMessage);

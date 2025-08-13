@@ -51,6 +51,9 @@ import { nafService } from "./services/naf-service";
 // Import du convertisseur Markdown vers HTML
 import { markdownHtmlConverter } from "./services/markdown-html-converter.js";
 
+// Import du service d'analyse PDF avec IA
+import { pdfAnalysisService } from "./services/pdf-ai-service";
+
 // Cache pour les réponses OpenAI avec persistance
 const openaiCache = new LimitedCache(50, 'openai', 300000); // 5 minutes d'intervalle de sauvegarde
 
@@ -2133,6 +2136,64 @@ Consignes:
       res.status(500).json({
         error: "Erreur lors de la recherche",
         message: "Une erreur est survenue lors de la recherche."
+      });
+    }
+  });
+
+  // Nouvelle route pour analyser avec les vrais PDFs et GPT-4o Mini
+  apiRouter.post("/chat-pdf", async (req, res) => {
+    try {
+      const { question, conventionId } = req.body;
+      
+      if (!question || !conventionId) {
+        return res.status(400).json({ 
+          error: "Question et convention requises" 
+        });
+      }
+      
+      console.log(`[PDF Chat] Question: "${question}" pour IDCC ${conventionId}`);
+      
+      // Utiliser le service d'analyse PDF avec GPT-4o Mini
+      const result = await pdfAnalysisService.analyzeConventionPDF(conventionId, question);
+      
+      res.json({
+        question,
+        response: result.response,
+        source: result.source,
+        cost: result.cost,
+        conventionId
+      });
+      
+    } catch (error: any) {
+      console.error('[PDF Chat] Erreur:', error);
+      
+      if (error.message.includes('introuvable')) {
+        return res.status(404).json({
+          error: "Convention non trouvée",
+          message: "Le PDF de cette convention n'est pas disponible"
+        });
+      }
+      
+      res.status(500).json({
+        error: "Erreur traitement",
+        message: "Une erreur est survenue lors de l'analyse du PDF"
+      });
+    }
+  });
+
+  // Route pour lister les conventions PDF disponibles
+  apiRouter.get("/pdf-conventions", async (req, res) => {
+    try {
+      const conventions = pdfAnalysisService.getAvailableConventions();
+      res.json({
+        total: conventions.length,
+        conventions: conventions.slice(0, 50) // Limiter l'affichage
+      });
+    } catch (error: any) {
+      console.error('[PDF List] Erreur:', error);
+      res.status(500).json({
+        error: "Erreur listage",
+        message: "Impossible de lister les conventions PDF"
       });
     }
   });
