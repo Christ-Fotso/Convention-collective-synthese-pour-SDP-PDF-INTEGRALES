@@ -76,22 +76,38 @@ class NafService {
   private extractNafCodes(content: string): string[] {
     const nafCodes: string[] = [];
     
-    // Patterns pour codes NAF
+    // Patterns plus précis pour codes NAF avec différents formats
     const nafPatterns = [
-      /(?:codes?\s*NAF|NAF\/APE|codes?\s*APE)[:\s]*([0-9A-Z\s,\-\.;]+)/gi,
-      /(\d{2}\.?\d{2}[A-Z]?)/g, // Format standard NAF (ex: 01.11A, 4711F)
-      /(\d{4}[A-Z])/g // Format condensé (ex: 0111A, 4711F)
+      // Pattern pour "Code NAF : XXXX" ou "Code APE : XXXX"
+      /(?:codes?\s*(?:NAF|APE))\s*[:]\s*([0-9A-Z\s,\-\.;]+)/gi,
+      // Pattern pour codes directement mentionnés en format standard
+      /\b(\d{2}\.?\d{2}[A-Z]?)\b/g, // Format standard NAF (ex: 01.11A, 47.11F)
+      // Pattern pour codes anciens formats
+      /\b(\d{3,4}[A-Z]?)\b/g, // Format condensé (ex: 158C, 1071)
+      // Pattern pour listes de codes séparés par virgules/points-virgules
+      /(?:codes?\s*(?:NAF|APE))[:\s]*([0-9A-Z\s,\-\.;\/]+)/gi
     ];
 
     nafPatterns.forEach(pattern => {
       const matches = content.match(pattern);
       if (matches) {
         matches.forEach(match => {
-          // Nettoyer et extraire les codes
-          const codes = match.replace(/(?:codes?\s*NAF|NAF\/APE|codes?\s*APE)[:\s]*/gi, '')
-                            .split(/[,;\s]+/)
-                            .map(code => code.trim())
-                            .filter(code => /^\d{2}\.?\d{2}[A-Z]?$|^\d{4}[A-Z]$/.test(code));
+          // Nettoyer et extraire les codes selon le type de match
+          let codes: string[] = [];
+          
+          if (match.includes(':')) {
+            // Extraire tout ce qui suit le ':'
+            const afterColon = match.split(':')[1];
+            codes = afterColon.split(/[,;\s\/]+/)
+                             .map(code => code.trim())
+                             .filter(code => code.length > 0 && /^[0-9A-Z\.]+$/.test(code));
+          } else {
+            // Code isolé
+            const cleanCode = match.trim().replace(/[^\d\.A-Z]/g, '');
+            if (cleanCode.length >= 3) {
+              codes = [cleanCode];
+            }
+          }
           
           nafCodes.push(...codes);
         });
@@ -99,7 +115,11 @@ class NafService {
     });
 
     // Déduplication et normalisation
-    return Array.from(new Set(nafCodes.map(code => this.normalizeNafCode(code))));
+    const uniqueCodes = Array.from(new Set(nafCodes))
+      .filter(code => code.length >= 3) // Filtrer les codes trop courts
+      .map(code => this.normalizeNafCode(code));
+    
+    return Array.from(new Set(uniqueCodes));
   }
 
   private extractSectors(content: string): string[] {
@@ -136,8 +156,26 @@ class NafService {
   }
 
   private normalizeNafCode(code: string): string {
-    // Normalise les codes NAF au format XX.XXX
-    return code.replace(/(\d{2})\.?(\d{2})([A-Z]?)/, '$1.$2$3');
+    // Supprimer les caractères non alphanumériques sauf le point
+    const cleanCode = code.replace(/[^\d\.A-Z]/g, '');
+    
+    // Différents formats de normalisation
+    if (/^\d{4}[A-Z]?$/.test(cleanCode)) {
+      // Format 1234A -> 12.34A
+      return cleanCode.replace(/(\d{2})(\d{2})([A-Z]?)/, '$1.$2$3');
+    } else if (/^\d{2}\.\d{2}[A-Z]?$/.test(cleanCode)) {
+      // Format déjà correct 12.34A
+      return cleanCode;
+    } else if (/^\d{3}[A-Z]?$/.test(cleanCode)) {
+      // Format ancien 158C -> garder tel quel pour compatibilité
+      return cleanCode;
+    } else if (/^\d{2}\d{2}[A-Z]?$/.test(cleanCode)) {
+      // Format sans point 1234A -> 12.34A
+      return cleanCode.replace(/(\d{2})(\d{2})([A-Z]?)/, '$1.$2$3');
+    }
+    
+    // Retourner le code nettoyé si aucun format ne correspond
+    return cleanCode;
   }
 
   public searchByNafCode(nafCode: string): NafEntry[] {
