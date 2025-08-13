@@ -42,7 +42,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les délais sous forme de liste ou texte structuré par situation.
-- Utilisez OBLIGATOIREMENT un tableau HTML si plusieurs délais avec conditions différentes sont présents : <table><tr><th>Situation</th><th>Délai</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td></tr></table>
+- Priorisez un tableau HTML si plusieurs délais avec conditions différentes : <table><tr><th>Situation</th><th>Délai</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td></tr></table>
 - Pour chaque délai, indiquez la situation et les conditions particulières mentionnées.
 - Si un délai pour une situation donnée n'est pas indiqué, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les délais de prévenance, mentionnez "RAS".
@@ -59,8 +59,8 @@ Très important, ne pas confondre délai de prévenance avec préavis licencieme
 **OBJECTIF**  
 Récupérer et présenter les informations sur la période d'essai en distinguant clairement l'applicabilité des dispositions selon les règles précises d'articulation entre convention collective et loi.
 
-**DIRECTIVES OBLIGATOIRES POUR LA CRÉATION DU TABLEAU HTML**  
-- Créez OBLIGATOIREMENT un tableau HTML structuré : <table><tr><th>Catégorie</th><th>Durée CCN</th><th>Durée applicable</th><th>Justification</th><th>Renouvellement</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+**DIRECTIVES POUR LA CRÉATION DU TABLEAU HTML**  
+- Priorisez un tableau HTML structuré : <table><tr><th>Catégorie</th><th>Durée CCN</th><th>Durée applicable</th><th>Justification</th><th>Renouvellement</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Pour chaque disposition, indiquez explicitement son applicabilité juridique  
 - Présentez séparément les informations sur la durée initiale et sur le renouvellement  
 
@@ -116,7 +116,7 @@ Pour l'analyse du renouvellement dans la convention collective :
 ---
 
 **FORMATAGE OBLIGATOIRE**  
-- Utilisez OBLIGATOIREMENT un tableau HTML avec cette structure :
+- Priorisez un tableau HTML avec cette structure :
 ```html
 <table>
 <tr><th>Catégorie professionnelle</th><th>Durée CCN</th><th>Durée applicable</th><th>Justification</th><th>Renouvellement CCN</th><th>Renouvellement applicable</th><th>Durée maximale totale</th></tr>
@@ -367,7 +367,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée par type d'événement.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour présenter les différents événements et durées : <table><tr><th>Événement familial</th><th>Durée du congé</th><th>Conditions</th><th>Rémunération</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML pour présenter les différents événements et durées : <table><tr><th>Événement familial</th><th>Durée du congé</th><th>Conditions</th><th>Rémunération</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les conditions particulières mentionnées.
 - Si un événement n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les événements familiaux, mentionnez "RAS".
@@ -397,7 +397,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée par type de garantie et catégorie.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour les cotisations et taux : <table><tr><th>Type de garantie</th><th>Catégorie</th><th>Taux total</th><th>Part patronale</th><th>Part salariale</th><th>Assiette</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td><td>Valeur6</td></tr></table>
+- Priorisez un tableau HTML pour les cotisations et taux : <table><tr><th>Type de garantie</th><th>Catégorie</th><th>Taux total</th><th>Part patronale</th><th>Part salariale</th><th>Assiette</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td><td>Valeur6</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la prévoyance, mentionnez "RAS".
@@ -429,7 +429,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée par type de couverture et catégorie.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour les cotisations et garanties : <table><tr><th>Type de couverture</th><th>Catégorie</th><th>Taux total</th><th>Part patronale</th><th>Part salariale</th><th>Garanties</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td><td>Valeur6</td></tr></table>
+- Priorisez un tableau HTML pour les cotisations et garanties : <table><tr><th>Type de couverture</th><th>Catégorie</th><th>Taux total</th><th>Part patronale</th><th>Part salariale</th><th>Garanties</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td><td>Valeur6</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la complémentaire santé, mentionnez "RAS".
@@ -740,7 +740,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (structure, critères, évolution).
-- Utilisez OBLIGATOIREMENT un tableau HTML pour présenter la structure de classification : <table><tr><th>Niveau</th><th>Échelon</th><th>Coefficient</th><th>Définition/Critères</th><th>Exemples de postes</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+- Priorisez un tableau HTML pour présenter la structure de classification : <table><tr><th>Niveau</th><th>Échelon</th><th>Coefficient</th><th>Définition/Critères</th><th>Exemples de postes</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Détaillez les critères et modalités mentionnés.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la classification, mentionnez "RAS".
@@ -770,7 +770,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée.
-- Utilisez OBLIGATOIREMENT un tableau HTML pour présenter les grilles de salaires : <table><tr><th>Niveau/Coefficient</th><th>Échelon</th><th>Salaire minimum mensuel</th><th>Salaire minimum horaire</th><th>Date d'effet</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+- Priorisez un tableau HTML pour présenter les grilles de salaires : <table><tr><th>Niveau/Coefficient</th><th>Échelon</th><th>Salaire minimum mensuel</th><th>Salaire minimum horaire</th><th>Date d'effet</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Détaillez les modalités de revalorisation mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune grille de rémunération, mentionnez "RAS".
@@ -801,7 +801,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (durées, modalités, cas particuliers).
-- Utilisez OBLIGATOIREMENT un tableau HTML pour présenter les durées de préavis : <table><tr><th>Catégorie professionnelle</th><th>Ancienneté</th><th>Préavis licenciement</th><th>Préavis démission</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+- Priorisez un tableau HTML pour présenter les durées de préavis : <table><tr><th>Catégorie professionnelle</th><th>Ancienneté</th><th>Préavis licenciement</th><th>Préavis démission</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur les préavis, mentionnez "RAS".
@@ -831,7 +831,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (formule, conditions, modalités).
-- Utilisez OBLIGATOIREMENT un tableau HTML pour présenter les taux d'indemnisation : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Taux d'indemnisation</th><th>Base de calcul</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
+- Priorisez un tableau HTML pour présenter les taux d'indemnisation : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Taux d'indemnisation</th><th>Base de calcul</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td><td>Valeur5</td></tr></table>
 - Détaillez les modalités de calcul mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur l'indemnité de licenciement, mentionnez "RAS".
@@ -862,7 +862,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (formule, conditions, modalités).
-- Utilisez OBLIGATOIREMENT un tableau HTML si indemnités différentes selon ancienneté ou catégorie : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Indemnité de mise à la retraite</th><th>Conditions d'âge</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si indemnités différentes selon ancienneté ou catégorie : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Indemnité de mise à la retraite</th><th>Conditions d'âge</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la mise à la retraite, mentionnez "RAS".
@@ -893,7 +893,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (formule, conditions, modalités).
-- Utilisez OBLIGATOIREMENT un tableau HTML si indemnités différentes selon ancienneté ou catégorie : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Indemnité de départ retraite</th><th>Conditions d'âge</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si indemnités différentes selon ancienneté ou catégorie : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Indemnité de départ retraite</th><th>Conditions d'âge</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur le départ à la retraite, mentionnez "RAS".
@@ -924,7 +924,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (formule, conditions, modalités).
-- Utilisez OBLIGATOIREMENT un tableau HTML si indemnités différentes selon ancienneté ou catégorie : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Indemnité minimum</th><th>Modalités de calcul</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si indemnités différentes selon ancienneté ou catégorie : <table><tr><th>Ancienneté</th><th>Catégorie</th><th>Indemnité minimum</th><th>Modalités de calcul</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les modalités et conditions mentionnées.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur la rupture conventionnelle, mentionnez "RAS".
@@ -955,7 +955,7 @@ INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
 
 INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
 - Présentez les informations de manière structurée (taux, conditions, modalités).
-- Utilisez OBLIGATOIREMENT un tableau HTML si taux différents selon type de CDD ou catégorie : <table><tr><th>Type de CDD</th><th>Catégorie</th><th>Taux d'indemnité</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
+- Priorisez un tableau HTML si taux différents selon type de CDD ou catégorie : <table><tr><th>Type de CDD</th><th>Catégorie</th><th>Taux d'indemnité</th><th>Conditions</th></tr><tr><td>Valeur1</td><td>Valeur2</td><td>Valeur3</td><td>Valeur4</td></tr></table>
 - Détaillez les conditions et cas d'exonération mentionnés.
 - Si un élément n'est pas mentionné, indiquez "La convention ne prévoit rien à ce sujet".
 - Si la convention ne contient aucune disposition sur l'indemnité de précarité, mentionnez "RAS".
