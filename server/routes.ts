@@ -1742,10 +1742,10 @@ Format attendu exactement:
     }
   });
   
-  // Route pour poser une question avec le système RAG
+  // Route pour poser une question avec le système RAG (avec support convention spécifique)
   apiRouter.post("/ask-rag", async (req, res) => {
     try {
-      const { question } = req.body;
+      const { question, conventionId } = req.body;
       
       if (!question) {
         return res.status(400).json({ 
@@ -1754,9 +1754,91 @@ Format attendu exactement:
         });
       }
       
-      console.log(`[RAG] Question reçue: "${question}"`);
+      console.log(`[RAG] Question reçue: "${question}"${conventionId ? ` pour convention ${conventionId}` : ''}`);
       
-      // Utiliser le service RAG pour rechercher et générer une réponse
+      // Si on a un conventionId, on utilise d'abord les données de cette convention
+      if (conventionId) {
+        try {
+          // Récupérer toutes les sections de cette convention
+          const { getSectionsByConvention } = await import('./sections-data');
+          const sections = getSectionsByConvention(conventionId);
+          
+          if (sections && sections.length > 0) {
+            console.log(`[RAG] Recherche dans ${sections.length} sections de la convention ${conventionId}`);
+            
+            // Chercher dans les sections de cette convention spécifique
+            const relevantSections: any[] = [];
+            
+            for (const section of sections) {
+              const sectionText = section.content.toLowerCase();
+              const questionWords = question.toLowerCase().split(' ').filter(w => w.length > 3);
+              
+              let relevanceScore = 0;
+              for (const word of questionWords) {
+                if (sectionText.includes(word)) {
+                  relevanceScore++;
+                }
+              }
+              
+              if (relevanceScore > 0) {
+                relevantSections.push({
+                  ...section,
+                  relevanceScore
+                });
+              }
+            }
+            
+            // Trier par pertinence et prendre les 3 meilleures sections
+            relevantSections.sort((a, b) => b.relevanceScore - a.relevanceScore);
+            const topSections = relevantSections.slice(0, 3);
+            
+            if (topSections.length > 0) {
+              const relevantContent = topSections.map(s => s.content).join('\n\n');
+              
+              // Utiliser OpenAI pour répondre avec ce contenu spécifique
+              const prompt = `Vous êtes un expert en droit du travail français. Répondez à la question suivante en vous basant UNIQUEMENT sur le contenu de cette convention collective spécifique.
+
+Convention: ${conventionId}
+Question: ${question}
+
+Contenu pertinent de la convention:
+${relevantContent}
+
+Consignes:
+- Répondez de manière précise et professionnelle
+- Citez les articles ou références quand c'est pertinent
+- Si l'information n'est pas présente dans cette convention, dites-le clairement
+- Restez factuel et basé sur le contenu fourni`;
+
+              const completion = await openai.chat.completions.create({
+                model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+                messages: [{ role: "user", content: prompt }],
+                temperature: 0.3,
+                max_tokens: 1000
+              });
+
+              const answer = completion.choices[0].message.content || "Désolé, je n'ai pas pu traiter votre question.";
+              
+              return res.json({
+                question,
+                answer,
+                sources: topSections.map(s => ({
+                  filename: `Convention ${conventionId}`,
+                  conventionName: s.conventionName || `Convention ${conventionId}`,
+                  section: s.sectionType,
+                  content: s.content.substring(0, 200) + '...'
+                })),
+                method: 'Convention spécifique',
+                conventionId
+              });
+            }
+          }
+        } catch (error) {
+          console.log(`[RAG] Erreur lors de la recherche dans la convention ${conventionId}, utilisation du RAG global:`, error);
+        }
+      }
+      
+      // Fallback vers le RAG global si pas de convention spécifique ou pas de résultats
       const result = await ragService.answerQuestion(question);
       
       console.log(`[RAG] Réponse générée avec ${result.sources.length} sources`);
@@ -1765,7 +1847,7 @@ Format attendu exactement:
         question,
         answer: result.answer,
         sources: result.sources,
-        method: 'RAG'
+        method: conventionId ? 'RAG global (fallback)' : 'RAG global'
       });
       
     } catch (error: any) {
@@ -1773,7 +1855,7 @@ Format attendu exactement:
       
       res.status(500).json({
         error: "Erreur lors du traitement",
-        message: "Une erreur est survenue lors du traitement de votre question avec le système RAG."
+        message: "Une erreur est survenue lors du traitement de votre question."
       });
     }
   });

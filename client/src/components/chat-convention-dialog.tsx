@@ -87,9 +87,10 @@ export function ChatConventionDialog({
     setError("");
     
     try {
-      // Utiliser uniquement le système RAG
+      // Utiliser uniquement le système RAG avec l'ID de la convention
       const response = await axios.post(`/api/ask-rag`, {
-        question: userMessage.content
+        question: userMessage.content,
+        conventionId: conventionId
       });
       const data = response.data;
       
