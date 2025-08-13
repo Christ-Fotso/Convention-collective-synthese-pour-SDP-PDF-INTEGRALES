@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes, initCaches } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { ragService } from "./services/rag-service";
 
 const app = express();
 // Augmenter la limite de taille des requêtes et réponses JSON à 50 MB
@@ -46,6 +47,16 @@ app.use((req, res, next) => {
     log("Caches persistants initialisés avec succès");
   } catch (cacheError) {
     log(`Erreur lors de l'initialisation des caches: ${cacheError}`, "error");
+    // Continuer malgré l'erreur
+  }
+
+  // Initialiser le service RAG pour accélérer les réponses
+  try {
+    log("Initialisation du service RAG...");
+    await ragService.initialize();
+    log("Service RAG initialisé avec succès");
+  } catch (ragError) {
+    log(`Erreur lors de l'initialisation du service RAG: ${ragError}`, "error");
     // Continuer malgré l'erreur
   }
   
