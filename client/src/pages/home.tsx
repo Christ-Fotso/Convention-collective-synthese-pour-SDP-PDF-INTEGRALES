@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Search, X, FileText, Users, Calendar, ArrowRight, Star } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import axios from "axios";
 
 // Définition du type Convention
@@ -31,6 +32,8 @@ export default function Home() {
   const [showNafSearch, setShowNafSearch] = useState(false);
   const [nafResults, setNafResults] = useState<NafEntry[]>([]);
   const [isSearchingNaf, setIsSearchingNaf] = useState(false);
+  const [showNafModal, setShowNafModal] = useState(false);
+  const [nafSearchTerm, setNafSearchTerm] = useState("");
   const [, navigate] = useLocation();
 
   const { data: conventions = [] as Convention[] } = useQuery<Convention[]>({
@@ -104,12 +107,18 @@ export default function Home() {
       }
       
       setNafResults(response.data.results);
-      setShowNafSearch(true);
     } catch (error) {
       console.error('Erreur lors de la recherche NAF:', error);
       setNafResults([]);
     } finally {
       setIsSearchingNaf(false);
+    }
+  };
+
+  const handleNafModalSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (nafSearchTerm.trim()) {
+      handleNafSearch(nafSearchTerm);
     }
   };
 
@@ -135,27 +144,37 @@ export default function Home() {
 
         {/* Moteur de recherche simple */}
         <div className="mb-8">
-          <form onSubmit={handleSearchSubmit} className="relative max-w-2xl mx-auto">
-            <Input
-              type="text"
-              placeholder="Tapez le nom de la convention ou l'IDCC (ex: 1486, boulangerie...)..."
-              className="h-12 pl-4 pr-12 text-lg w-full border-2 focus:border-green-500"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            {search && (
-              <button 
-                type="button"
-                onClick={() => {
-                  setSearch("");
-                  clearNafSearch();
-                }}
-                className="absolute right-3 top-3 text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-6 w-6 flex items-center justify-center transition-colors"
-              >
-                <X className="h-3 w-3" />
-              </button>
-            )}
-          </form>
+          <div className="flex gap-4 max-w-2xl mx-auto">
+            <form onSubmit={handleSearchSubmit} className="relative flex-1">
+              <Input
+                type="text"
+                placeholder="Tapez le nom de la convention ou l'IDCC (ex: 1486, boulangerie...)..."
+                className="h-12 pl-4 pr-12 text-lg w-full border-2 focus:border-green-500"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {search && (
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    clearNafSearch();
+                  }}
+                  className="absolute right-3 top-3 text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-6 w-6 flex items-center justify-center transition-colors"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              )}
+            </form>
+            <Button
+              type="button"
+              onClick={() => setShowNafModal(true)}
+              className="h-12 px-4 bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+            >
+              <Building2 className="h-4 w-4" />
+              Code NAF
+            </Button>
+          </div>
         </div>
 
         {/* Résultats de recherche NAF modernisés */}
@@ -295,6 +314,145 @@ export default function Home() {
             </div>
           </div>
         )}
+
+        {/* Modal de recherche NAF */}
+        <Dialog open={showNafModal} onOpenChange={setShowNafModal}>
+          <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden">
+            <DialogHeader>
+              <DialogTitle className="text-xl text-green-700">
+                Recherche par Code NAF
+              </DialogTitle>
+            </DialogHeader>
+            
+            <div className="space-y-4">
+              {/* Formulaire de recherche NAF */}
+              <form onSubmit={handleNafModalSearch} className="relative">
+                <Input
+                  type="text"
+                  placeholder="Tapez un code NAF (ex: 4711F) ou un secteur d'activité (ex: commerce, restauration...)..."
+                  className="h-10 pl-4 pr-32 w-full border-2 focus:border-blue-500"
+                  value={nafSearchTerm}
+                  onChange={(e) => setNafSearchTerm(e.target.value)}
+                />
+                <div className="absolute right-2 top-1 flex items-center gap-1">
+                  {nafSearchTerm && (
+                    <button 
+                      type="button"
+                      onClick={() => {
+                        setNafSearchTerm("");
+                        setNafResults([]);
+                      }}
+                      className="text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center transition-colors"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  )}
+                  <Button
+                    type="submit"
+                    size="sm"
+                    className="h-8 px-3 bg-blue-600 hover:bg-blue-700"
+                    disabled={isSearchingNaf}
+                  >
+                    {isSearchingNaf ? "..." : "Rechercher"}
+                  </Button>
+                </div>
+              </form>
+
+              {/* Résultats NAF */}
+              <ScrollArea className="h-96">
+                {nafResults.length === 0 && !isSearchingNaf && nafSearchTerm ? (
+                  <Card className="text-center py-8">
+                    <CardContent>
+                      <div className="text-gray-500">
+                        <Building2 className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                        <p className="text-lg mb-2">Aucun résultat trouvé</p>
+                        <p className="text-sm">
+                          Essayez avec un autre code NAF ou secteur d'activité
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ) : nafResults.length > 0 ? (
+                  <div className="space-y-3">
+                    {nafResults.map((result, index) => (
+                      <Card 
+                        key={`naf-${result.conventionId}-${index}`}
+                        className="hover:shadow-md transition-shadow cursor-pointer border-blue-100 hover:border-blue-300"
+                        onClick={() => {
+                          const conventionId = result.conventionId || result.idcc;
+                          navigate(`/convention/${conventionId}`);
+                          setShowNafModal(false);
+                        }}
+                      >
+                        <CardHeader className="pb-3">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <CardTitle className="text-base text-blue-700 leading-tight">
+                                {result.conventionName}
+                              </CardTitle>
+                              <CardDescription className="text-sm mt-1">
+                                IDCC {result.idcc}
+                              </CardDescription>
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-blue-500 flex-shrink-0 mt-1" />
+                          </div>
+                        </CardHeader>
+                        <CardContent className="pt-0">
+                          <div className="space-y-2">
+                            <div>
+                              <div className="text-xs text-gray-600 mb-1">Codes NAF :</div>
+                              <div className="flex flex-wrap gap-1">
+                                {result.nafCodes.slice(0, 6).map((code, i) => (
+                                  <Badge key={i} variant="outline" className="text-xs">
+                                    {code}
+                                  </Badge>
+                                ))}
+                                {result.nafCodes.length > 6 && (
+                                  <Badge variant="outline" className="text-xs">
+                                    +{result.nafCodes.length - 6} autres
+                                  </Badge>
+                                )}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-gray-600 mb-1">Secteurs :</div>
+                              <div className="flex flex-wrap gap-1">
+                                {result.sectors.slice(0, 3).map((sector, i) => (
+                                  <Badge key={i} variant="secondary" className="text-xs">
+                                    {sector}
+                                  </Badge>
+                                ))}
+                                {result.sectors.length > 3 && (
+                                  <Badge variant="secondary" className="text-xs">
+                                    +{result.sectors.length - 3} autres
+                                  </Badge>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  !isSearchingNaf && (
+                    <Card className="text-center py-8">
+                      <CardContent>
+                        <div className="text-gray-500">
+                          <Search className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                          <p className="text-lg mb-2">Recherche par Code NAF</p>
+                          <p className="text-sm">
+                            Tapez un code NAF ou un secteur d'activité pour trouver les conventions correspondantes
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )
+                )}
+              </ScrollArea>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
