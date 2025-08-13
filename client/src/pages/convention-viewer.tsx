@@ -104,17 +104,25 @@ export default function ConventionViewer() {
   return (
     <div className="container mx-auto py-6 px-4 md:px-6">
       <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" onClick={() => setLocation("/")}>
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="text-2xl font-bold">
-            {isLoadingConvention ? (
-              <Skeleton className="h-8 w-64" />
-            ) : (
-              convention ? `Convention collective: ${convention.name}` : "Convention non trouvée"
-            )}
-          </h1>
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" onClick={() => setLocation("/")}>
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <h1 className="text-2xl font-bold">
+              {isLoadingConvention ? (
+                <Skeleton className="h-8 w-64" />
+              ) : (
+                convention ? `Convention collective: ${convention.name}` : "Convention non trouvée"
+              )}
+            </h1>
+          </div>
+          {convention && (
+            <div className="ml-12 flex items-center gap-2 text-sm text-muted-foreground bg-green-50 px-3 py-2 rounded-md border border-green-200">
+              <Calendar className="h-4 w-4 text-green-600" />
+              <span className="text-green-700 font-medium">Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+            </div>
+          )}
         </div>
         
         {!isLoadingConvention && !convention && (

@@ -197,9 +197,9 @@ export default function SectionViewer() {
             {convention.name}
           </h1>
         </div>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Calendar className="h-4 w-4" />
-          <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+        <div className="flex items-center gap-2 text-sm bg-green-50 px-3 py-2 rounded-md border border-green-200">
+          <Calendar className="h-4 w-4 text-green-600" />
+          <span className="text-green-700 font-medium">Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
         </div>
       </div>
 
