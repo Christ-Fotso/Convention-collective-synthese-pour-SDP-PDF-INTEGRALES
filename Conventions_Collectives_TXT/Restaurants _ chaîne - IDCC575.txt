@@ -1,3 +1,0 @@
-Restaurants : chaîne
-IDCC : 575
-Lien : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC447/sharp_/ANX/575_CC447.pdf
