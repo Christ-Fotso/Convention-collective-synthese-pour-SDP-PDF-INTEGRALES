@@ -168,7 +168,7 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
    */
   private findRelevantSections(fullText: string, searchTerms: string[], question: string): string[] {
     const sections: string[] = [];
-    const chunkSize = 3000; // Chunks de 3000 caractères
+    const chunkSize = 8000; // Chunks de 8000 caractères pour plus de contexte
     const questionLower = question.toLowerCase();
     
     // Découper le texte en chunks
@@ -193,20 +193,20 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
         }
       }
       
-      // Ajouter si score suffisant
-      if (score >= 15) {
+      // Ajouter si score suffisant (seuil réduit pour capturer plus de contenu)
+      if (score >= 10) {
         sections.push(`[Score: ${score}] ${chunk}`);
       }
     }
     
-    // Trier par score et limiter à 8 sections max
+    // Trier par score et limiter à 15 sections max pour couvrir ~20% du document
     return sections
       .sort((a, b) => {
         const scoreA = parseInt(a.match(/\[Score: (\d+)\]/)?.[1] || '0');
         const scoreB = parseInt(b.match(/\[Score: (\d+)\]/)?.[1] || '0');
         return scoreB - scoreA;
       })
-      .slice(0, 8)
+      .slice(0, 15)
       .map(s => s.replace(/\[Score: \d+\] /, ''));
   }
 
