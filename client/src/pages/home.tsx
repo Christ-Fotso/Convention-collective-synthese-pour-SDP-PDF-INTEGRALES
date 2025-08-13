@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Building2, Search, X, FileText, Users, Calendar, ArrowRight, Star } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import axios from "axios";
+import { GLOBAL_CONFIG } from "@/lib/constants";
 
 // Définition du type Convention
 type Convention = {
@@ -146,7 +147,16 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
-
+        {/* En-tête avec date de mise à jour */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-green-700 mb-4">
+            Conventions Collectives
+          </h1>
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <Calendar className="h-4 w-4" />
+            <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+          </div>
+        </div>
 
         {/* Moteur de recherche simple */}
         <div className="mb-8">

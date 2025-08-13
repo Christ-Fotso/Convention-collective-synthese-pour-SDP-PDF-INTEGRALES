@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { GLOBAL_CONFIG } from "@/lib/constants";
 
 interface Convention {
   id: string;
@@ -129,8 +130,12 @@ export default function ConventionViewer() {
           <Card>
             <CardHeader>
               <CardTitle>IDCC {convention.id}</CardTitle>
-              <CardDescription>
-                Sélectionnez une section à consulter
+              <CardDescription className="flex flex-col gap-2">
+                <span>Sélectionnez une section à consulter</span>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+                </div>
               </CardDescription>
             </CardHeader>
             <CardContent>

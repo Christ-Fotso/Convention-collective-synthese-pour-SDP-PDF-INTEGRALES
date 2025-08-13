@@ -177,6 +177,13 @@ The application serves as a specialized tool for HR professionals, legal experts
     * Navigation améliorée avec animations et effets hover sophistiqués
     * Interface professionnelle adaptée au service commercial B2B
     * Hiérarchisation visuelle claire entre référence légale et conventions
+- August 13, 2025. Ajout de la date de mise à jour globale des conventions :
+    * Création d'un fichier constants.ts pour centraliser la configuration globale
+    * Date de mise à jour définie au 15 août 2025 pour toutes les conventions
+    * Affichage de la date sur la page d'accueil avec icône calendrier
+    * Information visible sur chaque page de convention individuelle
+    * Date également affichée dans la vue des sections de convention
+    * Interface cohérente avec icône calendrier sur toutes les pages
 
 ## User Preferences
 

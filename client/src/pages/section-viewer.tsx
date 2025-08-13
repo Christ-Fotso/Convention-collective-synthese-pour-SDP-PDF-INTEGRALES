@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'wouter';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen, Calendar } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { MarkdownTableRendererEnhanced } from '@/components/markdown-table-renderer-enhanced';
@@ -17,6 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { GLOBAL_CONFIG } from "@/lib/constants";
 
 // Fonction pour récupérer une section spécifique
 async function getConventionSection(conventionId: string, sectionType: string): Promise<ConventionSection> {
@@ -185,15 +186,21 @@ export default function SectionViewer() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex items-center gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
-        <Button variant="outline" onClick={() => navigate(`/chat/${conventionId}`)} className="hover:bg-background">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Retour à la convention
-        </Button>
-        <h1 className="text-2xl font-bold">
-          {convention.id ? `IDCC ${convention.id} - ` : <span className="text-orange-600">Convention sans IDCC - </span>}
-          {convention.name}
-        </h1>
+      <div className="flex flex-col gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
+        <div className="flex items-center gap-4">
+          <Button variant="outline" onClick={() => navigate(`/chat/${conventionId}`)} className="hover:bg-background">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Retour à la convention
+          </Button>
+          <h1 className="text-2xl font-bold">
+            {convention.id ? `IDCC ${convention.id} - ` : <span className="text-orange-600">Convention sans IDCC - </span>}
+            {convention.name}
+          </h1>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Calendar className="h-4 w-4" />
+          <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+        </div>
       </div>
 
       {/* Système de conversion HTML pour les documents légaux */}
