@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, Search, X } from "lucide-react";
+import { ChevronLeft, BookOpen, MessageSquare, ChevronUp, Search, X, Calendar } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -14,6 +14,7 @@ import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-rende
 import { HtmlTestViewer } from "@/components/html-test-viewer";
 import { ChatConventionDialog } from "@/components/chat-convention-dialog";
 import { SearchDialog } from "@/components/search-dialog";
+import { GLOBAL_CONFIG } from "@/lib/constants";
 
 // Types
 interface Convention {
@@ -380,7 +381,7 @@ export default function Chat() {
             <div className="px-6 py-4 space-y-3">
               {/* Première ligne: Nom de la convention et assistant IA */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col gap-2">
                   <h1 className="text-lg font-bold text-gray-800 dark:text-gray-200">
                     {isLoadingConvention ? (
                       <Skeleton className="h-6 w-64" />
@@ -390,6 +391,12 @@ export default function Chat() {
                       "Convention non trouvée"
                     )}
                   </h1>
+                  {convention && (
+                    <div className="flex items-center gap-2 text-sm bg-green-50 px-3 py-2 rounded-md border border-green-200">
+                      <Calendar className="h-4 w-4 text-green-600" />
+                      <span className="text-green-700 font-medium">Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+                    </div>
+                  )}
                 </div>
                 <Button 
                   onClick={() => setIsChatDialogOpen(true)}
