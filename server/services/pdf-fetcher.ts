@@ -1,7 +1,8 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
-import pdfParse from 'pdf-parse';
+// Import pdf-parse with proper module handling
+const pdfParse = require('pdf-parse');
 
 interface ConventionData {
   id: string;
