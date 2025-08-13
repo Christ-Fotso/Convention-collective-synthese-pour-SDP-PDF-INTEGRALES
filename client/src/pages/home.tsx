@@ -147,25 +147,16 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
-        {/* En-tête avec date de mise à jour */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-green-700 mb-4">
-            Conventions Collectives
-          </h1>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <Calendar className="h-4 w-4" />
-            <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-          </div>
-        </div>
+
 
         {/* Moteur de recherche simple */}
         <div className="mb-8">
-          <div className="flex gap-4 max-w-2xl mx-auto">
+          <div className="flex gap-3 max-w-4xl mx-auto">
             <form onSubmit={handleSearchSubmit} className="relative flex-1">
               <Input
                 type="text"
                 placeholder="Tapez le nom de la convention ou l'IDCC (ex: 1486, boulangerie...)..."
-                className="h-12 pl-4 pr-12 text-lg w-full border-2 focus:border-green-500"
+                className="h-10 pl-4 pr-12 text-sm w-full border focus:border-green-500"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -176,7 +167,7 @@ export default function Home() {
                     setSearch("");
                     clearNafSearch();
                   }}
-                  className="absolute right-3 top-3 text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-6 w-6 flex items-center justify-center transition-colors"
+                  className="absolute right-3 top-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-full h-6 w-6 flex items-center justify-center transition-colors"
                 >
                   <X className="h-3 w-3" />
                 </button>
@@ -185,7 +176,7 @@ export default function Home() {
             <Button
               type="button"
               onClick={() => setShowNafModal(true)}
-              className="h-12 px-4 bg-orange-400 hover:bg-orange-500 text-white flex items-center gap-2"
+              className="h-10 px-4 bg-gray-500 hover:bg-gray-600 text-white flex items-center gap-2"
             >
               <Building2 className="h-4 w-4" />
               Code NAF
