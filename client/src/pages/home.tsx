@@ -146,12 +146,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
-        {/* En-tête avec titre */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-green-700 mb-3">
-            Recherche de Convention Collective
-          </h1>
-        </div>
+
 
         {/* Moteur de recherche simple */}
         <div className="mb-8">
@@ -329,8 +324,9 @@ export default function Home() {
         {/* Modal de recherche NAF */}
         <Dialog open={showNafModal} onOpenChange={setShowNafModal}>
           <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden pt-6">
-
-            
+            <DialogHeader className="sr-only">
+              <DialogTitle>Recherche NAF</DialogTitle>
+            </DialogHeader>
             <div className="space-y-4">
               {/* Formulaire de recherche NAF */}
               <form onSubmit={handleNafModalSearch} className="relative">
