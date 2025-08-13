@@ -50,15 +50,7 @@ app.use((req, res, next) => {
     // Continuer malgré l'erreur
   }
 
-  // Initialiser le service RAG pour accélérer les réponses
-  try {
-    log("Initialisation du service RAG...");
-    await ragService.initialize();
-    log("Service RAG initialisé avec succès");
-  } catch (ragError) {
-    log(`Erreur lors de l'initialisation du service RAG: ${ragError}`, "error");
-    // Continuer malgré l'erreur
-  }
+  // Ne plus initialiser le service RAG (supprimé)
   
   const server = registerRoutes(app);
 

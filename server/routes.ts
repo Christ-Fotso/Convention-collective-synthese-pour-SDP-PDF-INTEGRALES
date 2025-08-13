@@ -42,8 +42,7 @@ const openai = new OpenAI({
 // Import de notre cache persistant
 import { LimitedCache } from "./services/cache-manager";
 
-// Import du service RAG
-import { ragService } from "./services/rag-service";
+// Service RAG supprimé - utilisation directe des PDFs
 
 // Import du service NAF
 import { nafService } from "./services/naf-service";
@@ -1742,61 +1741,55 @@ Format attendu exactement:
     }
   });
   
-  // Route pour poser une question (source unique : sections structurées)
+  // Route pour poser une question (source unique : PDF téléchargé et extrait)
   apiRouter.post("/ask-rag", async (req, res) => {
     try {
       const { question, conventionId } = req.body;
       
-      if (!question) {
+      if (!question || !conventionId) {
         return res.status(400).json({ 
-          error: "La question est requise",
-          message: "Veuillez fournir une question"
+          error: "Question et convention requises",
+          message: "Veuillez fournir une question et spécifier une convention"
         });
       }
       
-      console.log(`[Assistant] Question reçue: "${question}"${conventionId ? ` pour convention ${conventionId}` : ''}`);
+      console.log(`[Assistant] Question reçue: "${question}" pour convention ${conventionId}`);
       
-      // Utiliser UNIQUEMENT les sections structurées de notre base de données
-      const { getSectionsByConvention } = await import('./sections-data');
+      // Importer le service de récupération PDF
+      const { pdfFetcher } = await import('./services/pdf-fetcher');
       
-      if (conventionId) {
-        // Recherche dans la convention spécifique
-        const sections = getSectionsByConvention(conventionId);
+      try {
+        // Récupérer le texte complet de la convention depuis le PDF
+        console.log(`[Assistant] Récupération du texte PDF pour convention ${conventionId}`);
+        const conventionText = await pdfFetcher.getConventionText(conventionId);
         
-        if (sections && sections.length > 0) {
-          console.log(`[Assistant] Recherche dans ${sections.length} sections de la convention ${conventionId}`);
-          
-          // Chercher dans les sections de cette convention spécifique
-          const relevantSections: any[] = [];
-          
-          for (const section of sections) {
-            const sectionText = section.content.toLowerCase();
-            const questionWords = question.toLowerCase().split(' ').filter(w => w.length > 3);
-            
-            let relevanceScore = 0;
-            for (const word of questionWords) {
-              if (sectionText.includes(word)) {
-                relevanceScore++;
-              }
-            }
-            
-            if (relevanceScore > 0) {
-              relevantSections.push({
-                ...section,
-                relevanceScore
-              });
-            }
-          }
-          
-          // Trier par pertinence et prendre les 3 meilleures sections
-          relevantSections.sort((a, b) => b.relevanceScore - a.relevanceScore);
-          const topSections = relevantSections.slice(0, 3);
-          
-          if (topSections.length > 0) {
-            const relevantContent = topSections.map(s => s.content).join('\n\n');
-            
-            // Utiliser OpenAI pour répondre avec ce contenu spécifique
-            const prompt = `Vous êtes un expert en droit du travail français. Répondez à la question suivante en vous basant UNIQUEMENT sur le contenu de cette convention collective spécifique.
+        if (!conventionText || conventionText.trim().length === 0) {
+          throw new Error('Texte vide ou non récupéré');
+        }
+        
+        console.log(`[Assistant] Texte récupéré: ${conventionText.length} caractères`);
+        
+        // Diviser le texte en sections plus petites pour l'analyse
+        const chunks = splitTextIntoChunks(conventionText, 3000);
+        console.log(`[Assistant] Texte divisé en ${chunks.length} sections`);
+        
+        // Rechercher les sections pertinentes
+        const relevantChunks = findRelevantChunks(chunks, question, 3);
+        
+        if (relevantChunks.length === 0) {
+          return res.json({
+            question,
+            answer: `Je n'ai pas trouvé d'informations pertinentes dans cette convention collective (${conventionId}) pour répondre à votre question : "${question}".`,
+            sources: [],
+            method: 'PDF direct (aucun résultat)',
+            conventionId
+          });
+        }
+        
+        const relevantContent = relevantChunks.map(chunk => chunk.text).join('\n\n');
+        
+        // Utiliser OpenAI pour répondre avec ce contenu spécifique
+        const prompt = `Vous êtes un expert en droit du travail français. Répondez à la question suivante en vous basant UNIQUEMENT sur le contenu de cette convention collective.
 
 Convention: ${conventionId}
 Question: ${question}
@@ -1810,51 +1803,40 @@ Consignes:
 - Si l'information n'est pas présente dans cette convention, dites-le clairement
 - Restez factuel et basé sur le contenu fourni`;
 
-            const completion = await openai.chat.completions.create({
-              model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-              messages: [{ role: "user", content: prompt }],
-              temperature: 0.3,
-              max_tokens: 1000
-            });
+        const completion = await openai.chat.completions.create({
+          model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.3,
+          max_tokens: 1000
+        });
 
-            const answer = completion.choices[0].message.content || "Désolé, je n'ai pas pu traiter votre question.";
-            
-            return res.json({
-              question,
-              answer,
-              sources: topSections.map(s => ({
-                conventionId,
-                conventionName: s.conventionName || `Convention ${conventionId}`,
-                section: s.sectionType,
-                content: s.content.substring(0, 200) + '...'
-              })),
-              method: 'Convention spécifique (sections structurées)',
-              conventionId
-            });
-          } else {
-            return res.json({
-              question,
-              answer: `Je n'ai pas trouvé d'informations pertinentes dans cette convention collective (${conventionId}) pour répondre à votre question : "${question}". Les sections disponibles ne contiennent pas les mots-clés recherchés.`,
-              sources: [],
-              method: 'Convention spécifique (aucun résultat)',
-              conventionId
-            });
-          }
-        } else {
-          return res.status(404).json({
-            error: "Convention non trouvée",
-            message: `Aucune section trouvée pour la convention ${conventionId}`
-          });
-        }
-      } else {
-        return res.status(400).json({
-          error: "Convention requise",
-          message: "Veuillez spécifier une convention pour poser votre question"
+        const answer = completion.choices[0].message.content || "Désolé, je n'ai pas pu traiter votre question.";
+        
+        return res.json({
+          question,
+          answer,
+          sources: relevantChunks.map((chunk, index) => ({
+            conventionId,
+            section: `Section ${index + 1}`,
+            content: chunk.text.substring(0, 200) + '...',
+            relevanceScore: chunk.relevanceScore
+          })),
+          method: 'PDF direct',
+          conventionId,
+          textLength: conventionText.length
+        });
+        
+      } catch (pdfError: any) {
+        console.error(`[Assistant] Erreur PDF:`, pdfError);
+        
+        return res.status(500).json({
+          error: "Erreur d'accès au document",
+          message: `Impossible d'accéder au document de la convention ${conventionId}: ${pdfError.message}`
         });
       }
       
     } catch (error: any) {
-      console.error(`[Assistant] Erreur:`, error);
+      console.error(`[Assistant] Erreur générale:`, error);
       
       res.status(500).json({
         error: "Erreur lors du traitement",
@@ -1862,6 +1844,55 @@ Consignes:
       });
     }
   });
+
+  // Méthodes utilitaires pour le traitement du texte
+  function splitTextIntoChunks(text: string, maxLength: number): string[] {
+    const chunks: string[] = [];
+    const paragraphs = text.split('\n\n');
+    
+    let currentChunk = '';
+    
+    for (const paragraph of paragraphs) {
+      if (currentChunk.length + paragraph.length > maxLength && currentChunk) {
+        chunks.push(currentChunk.trim());
+        currentChunk = paragraph;
+      } else {
+        currentChunk += (currentChunk ? '\n\n' : '') + paragraph;
+      }
+    }
+    
+    if (currentChunk) {
+      chunks.push(currentChunk.trim());
+    }
+    
+    return chunks;
+  }
+
+  function findRelevantChunks(chunks: string[], question: string, limit: number): Array<{text: string, relevanceScore: number}> {
+    const questionWords = question.toLowerCase().split(' ').filter(w => w.length > 3);
+    const relevantChunks: Array<{text: string, relevanceScore: number}> = [];
+    
+    for (const chunk of chunks) {
+      const chunkText = chunk.toLowerCase();
+      let relevanceScore = 0;
+      
+      for (const word of questionWords) {
+        const occurrences = (chunkText.match(new RegExp(word, 'g')) || []).length;
+        relevanceScore += occurrences;
+      }
+      
+      if (relevanceScore > 0) {
+        relevantChunks.push({
+          text: chunk,
+          relevanceScore
+        });
+      }
+    }
+    
+    // Trier par pertinence et retourner les meilleurs résultats
+    relevantChunks.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    return relevantChunks.slice(0, limit);
+  }
   
   // Routes pour la recherche par code NAF
   apiRouter.get("/naf/search", async (req, res) => {
