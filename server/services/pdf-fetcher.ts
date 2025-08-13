@@ -25,39 +25,39 @@ class PDFFetcher {
 
   async getConventionText(conventionId: string): Promise<string> {
     try {
-      // Vérifier si le texte est déjà en cache
-      const textCachePath = path.join(this.textCacheDir, `${conventionId}.txt`);
-      if (fs.existsSync(textCachePath)) {
-        console.log(`[PDF] Utilisation du cache texte pour convention ${conventionId}`);
-        return fs.readFileSync(textCachePath, 'utf-8');
-      }
-
-      // Récupérer l'URL depuis les fichiers TXT
+      // Récupérer le fichier TXT local directement
       const txtFilePath = this.findTxtFile(conventionId);
       if (!txtFilePath) {
         throw new Error(`Fichier TXT non trouvé pour la convention ${conventionId}`);
       }
 
+      console.log(`[TXT] Lecture directe du fichier TXT pour convention ${conventionId}`);
       const txtContent = fs.readFileSync(txtFilePath, 'utf-8');
+      
+      // Nettoyer le contenu en gardant seulement le texte utile
       const lines = txtContent.split('\n');
-      const urlLine = lines.find(line => line.startsWith('Lien :'));
+      const contentLines = lines.filter(line => {
+        // Filtrer les lignes vides et les métadonnées
+        const trimmed = line.trim();
+        return trimmed.length > 0 && 
+               !trimmed.startsWith('Convention collective nationale') &&
+               !trimmed.startsWith('IDCC :') &&
+               !trimmed.startsWith('Brochure :') &&
+               !trimmed.startsWith('Lien :') &&
+               !trimmed.startsWith('Date de consolidation :') &&
+               !trimmed.startsWith('Texte de base :');
+      });
       
-      if (!urlLine) {
-        throw new Error(`URL non trouvée dans le fichier TXT pour la convention ${conventionId}`);
+      const cleanedContent = contentLines.join('\n').trim();
+      
+      if (!cleanedContent || cleanedContent.length < 100) {
+        throw new Error(`Contenu insuffisant dans le fichier TXT pour la convention ${conventionId}`);
       }
-
-      const pdfUrl = urlLine.replace('Lien :', '').trim();
-      console.log(`[PDF] Téléchargement du PDF depuis: ${pdfUrl}`);
-
-      // Télécharger et extraire le texte du PDF
-      const text = await this.downloadAndExtractPDF(pdfUrl, conventionId);
       
-      // Sauvegarder en cache
-      fs.writeFileSync(textCachePath, text, 'utf-8');
-      
-      return text;
+      console.log(`[TXT] Texte lu avec succès: ${cleanedContent.length} caractères`);
+      return cleanedContent;
     } catch (error) {
-      console.error(`[PDF] Erreur lors de la récupération du texte pour ${conventionId}:`, error);
+      console.error(`[TXT] Erreur lors de la lecture du fichier pour ${conventionId}:`, error);
       throw error;
     }
   }
