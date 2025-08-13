@@ -88,9 +88,17 @@
     ```
 
 **CONGÉS/ABSENCES :**
-*   Tableaux synthétiques : Type | Durée | Rémunération | Conditions
+*   **Tableaux synthétiques obligatoires** : Type | Durée | Rémunération | Conditions
 *   Distinguer congés légaux majorés vs congés spécifiques
 *   Mentionner les cumuls possibles/interdits
+*   **BANNIR** : "La convention ne prévoit rien à ce sujet" (répété 6 fois)
+*   **Privilégier** : Vue synthétique "Convention standard" vs "Améliorations"
+
+**GRILLES DE SALAIRES - OPTIMISATION TABLEAUX :**
+*   **Supprimer colonnes vides** dans les tableaux HTML
+*   **Format optimal :** Classification | Salaire Actuel | Référence | (seulement colonnes utiles)
+*   **Éviter duplications** de dates dans chaque ligne du tableau
+*   **Grouper par secteurs** distincts si plusieurs grilles
 
 ### VÉRIFICATION INTERNE ET CONTRÔLE
 
@@ -107,6 +115,8 @@
     *   Dates et montants au format convention
     *   Structure hiérarchisée claire
     *   Pas d'interprétation personnelle
+    *   **Éliminer répétitions** "La convention ne prévoit rien" (max 1 occurrence)
+    *   **Vérifier colonnes utiles** dans tous les tableaux HTML
 
 ⚠️ **RAPPEL CRITIQUE :** Commencer directement par le contenu substantiel, JAMAIS par un titre de section !
 
