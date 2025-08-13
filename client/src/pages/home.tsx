@@ -319,12 +319,8 @@ export default function Home() {
                         <CardTitle className="text-base text-green-700 group-hover:text-green-800 leading-tight">
                           {convention.name}
                         </CardTitle>
-                        <CardDescription className="text-sm mt-1 space-y-2">
-                          <div>{convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}</div>
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <Calendar className="h-3 w-3 text-green-600" />
-                            <span>Mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-                          </div>
+                        <CardDescription className="text-sm mt-1">
+                          {convention.id ? `IDCC ${convention.id}` : "Convention sans IDCC"}
                         </CardDescription>
                       </CardHeader>
                     </Card>
