@@ -73,19 +73,10 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
           : "border-gray-200 dark:border-gray-700"
       }`}
     >
-      <div className="flex justify-between items-center mb-4">
+      <div className="mb-4">
         <h3 className="text-xl font-semibold text-green-600 dark:text-green-400">
           {getSectionName()}
         </h3>
-        <Button 
-          variant="outline" 
-          size="sm"
-          className="text-xs flex items-center"
-          onClick={() => window.open(`/convention/${conventionId}/section/${section.sectionType}`, '_blank')}
-        >
-          <BookOpen className="h-3.5 w-3.5 mr-1" />
-          Page complète
-        </Button>
       </div>
       
       {isLoading ? (
@@ -96,26 +87,7 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
         </div>
       ) : sectionContent ? (
         <>
-          {hasDispositifLegal(section.sectionType) && (
-            <div className="mb-4">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="text-xs flex items-center orange-button hover:bg-orange-100 hover:text-orange-800"
-                onClick={() => setIsLegalDialogOpen(true)}
-              >
-                <BookOpen className="h-3.5 w-3.5 mr-1" />
-                Voir le dispositif légal
-              </Button>
-              
-              <DispositifLegalDialog 
-                isOpen={isLegalDialogOpen}
-                setIsOpen={setIsLegalDialogOpen}
-                title={getSectionName()}
-                content={getDispositifLegal(section.sectionType)}
-              />
-            </div>
-          )}
+
           <HtmlTestViewer 
             conventionId={conventionId}
             sectionType={section.sectionType}
