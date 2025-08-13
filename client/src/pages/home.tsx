@@ -338,7 +338,7 @@ export default function Home() {
                       </CardHeader>
                       <CardContent className="pt-0">
                         <div className="text-xs text-gray-600 mb-2">
-                          Sections principales :
+                          Sections les plus consultées :
                         </div>
                         <div className="flex gap-1 flex-wrap">
                           <button 
@@ -346,36 +346,27 @@ export default function Home() {
                               e.stopPropagation();
                               navigate(`/convention/${convention.id}?section=remuneration.grille`);
                             }}
-                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
+                            className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
                             Rémunération
                           </button>
                           <button 
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/convention/${convention.id}?section=temps-travail.duree-travail`);
-                            }}
-                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
-                          >
-                            Temps de travail
-                          </button>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/convention/${convention.id}?section=conges.conges-payes`);
-                            }}
-                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
-                          >
-                            Congés
-                          </button>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
                               navigate(`/convention/${convention.id}?section=classification.classification`);
                             }}
-                            className="text-xs bg-green-50 text-green-700 border border-green-200 rounded px-2 py-1 hover:bg-green-100 transition-colors"
+                            className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
                           >
                             Classification
+                          </button>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/convention/${convention.id}?section=embauche.periode-essai`);
+                            }}
+                            className="text-xs bg-gray-100 text-gray-700 border border-gray-300 rounded px-2 py-1 hover:bg-gray-200 transition-colors"
+                          >
+                            Période d'essai
                           </button>
                         </div>
                       </CardContent>
