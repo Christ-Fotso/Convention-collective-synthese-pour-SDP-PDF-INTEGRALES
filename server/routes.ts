@@ -1742,7 +1742,7 @@ Format attendu exactement:
     }
   });
   
-  // Route pour poser une question avec le système RAG (avec support convention spécifique)
+  // Route pour poser une question (source unique : sections structurées)
   apiRouter.post("/ask-rag", async (req, res) => {
     try {
       const { question, conventionId } = req.body;
@@ -1754,49 +1754,49 @@ Format attendu exactement:
         });
       }
       
-      console.log(`[RAG] Question reçue: "${question}"${conventionId ? ` pour convention ${conventionId}` : ''}`);
+      console.log(`[Assistant] Question reçue: "${question}"${conventionId ? ` pour convention ${conventionId}` : ''}`);
       
-      // Si on a un conventionId, on utilise d'abord les données de cette convention
+      // Utiliser UNIQUEMENT les sections structurées de notre base de données
+      const { getSectionsByConvention } = await import('./sections-data');
+      
       if (conventionId) {
-        try {
-          // Récupérer toutes les sections de cette convention
-          const { getSectionsByConvention } = await import('./sections-data');
-          const sections = getSectionsByConvention(conventionId);
+        // Recherche dans la convention spécifique
+        const sections = getSectionsByConvention(conventionId);
+        
+        if (sections && sections.length > 0) {
+          console.log(`[Assistant] Recherche dans ${sections.length} sections de la convention ${conventionId}`);
           
-          if (sections && sections.length > 0) {
-            console.log(`[RAG] Recherche dans ${sections.length} sections de la convention ${conventionId}`);
+          // Chercher dans les sections de cette convention spécifique
+          const relevantSections: any[] = [];
+          
+          for (const section of sections) {
+            const sectionText = section.content.toLowerCase();
+            const questionWords = question.toLowerCase().split(' ').filter(w => w.length > 3);
             
-            // Chercher dans les sections de cette convention spécifique
-            const relevantSections: any[] = [];
-            
-            for (const section of sections) {
-              const sectionText = section.content.toLowerCase();
-              const questionWords = question.toLowerCase().split(' ').filter(w => w.length > 3);
-              
-              let relevanceScore = 0;
-              for (const word of questionWords) {
-                if (sectionText.includes(word)) {
-                  relevanceScore++;
-                }
-              }
-              
-              if (relevanceScore > 0) {
-                relevantSections.push({
-                  ...section,
-                  relevanceScore
-                });
+            let relevanceScore = 0;
+            for (const word of questionWords) {
+              if (sectionText.includes(word)) {
+                relevanceScore++;
               }
             }
             
-            // Trier par pertinence et prendre les 3 meilleures sections
-            relevantSections.sort((a, b) => b.relevanceScore - a.relevanceScore);
-            const topSections = relevantSections.slice(0, 3);
+            if (relevanceScore > 0) {
+              relevantSections.push({
+                ...section,
+                relevanceScore
+              });
+            }
+          }
+          
+          // Trier par pertinence et prendre les 3 meilleures sections
+          relevantSections.sort((a, b) => b.relevanceScore - a.relevanceScore);
+          const topSections = relevantSections.slice(0, 3);
+          
+          if (topSections.length > 0) {
+            const relevantContent = topSections.map(s => s.content).join('\n\n');
             
-            if (topSections.length > 0) {
-              const relevantContent = topSections.map(s => s.content).join('\n\n');
-              
-              // Utiliser OpenAI pour répondre avec ce contenu spécifique
-              const prompt = `Vous êtes un expert en droit du travail français. Répondez à la question suivante en vous basant UNIQUEMENT sur le contenu de cette convention collective spécifique.
+            // Utiliser OpenAI pour répondre avec ce contenu spécifique
+            const prompt = `Vous êtes un expert en droit du travail français. Répondez à la question suivante en vous basant UNIQUEMENT sur le contenu de cette convention collective spécifique.
 
 Convention: ${conventionId}
 Question: ${question}
@@ -1810,48 +1810,51 @@ Consignes:
 - Si l'information n'est pas présente dans cette convention, dites-le clairement
 - Restez factuel et basé sur le contenu fourni`;
 
-              const completion = await openai.chat.completions.create({
-                model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-                messages: [{ role: "user", content: prompt }],
-                temperature: 0.3,
-                max_tokens: 1000
-              });
+            const completion = await openai.chat.completions.create({
+              model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+              messages: [{ role: "user", content: prompt }],
+              temperature: 0.3,
+              max_tokens: 1000
+            });
 
-              const answer = completion.choices[0].message.content || "Désolé, je n'ai pas pu traiter votre question.";
-              
-              return res.json({
-                question,
-                answer,
-                sources: topSections.map(s => ({
-                  filename: `Convention ${conventionId}`,
-                  conventionName: s.conventionName || `Convention ${conventionId}`,
-                  section: s.sectionType,
-                  content: s.content.substring(0, 200) + '...'
-                })),
-                method: 'Convention spécifique',
-                conventionId
-              });
-            }
+            const answer = completion.choices[0].message.content || "Désolé, je n'ai pas pu traiter votre question.";
+            
+            return res.json({
+              question,
+              answer,
+              sources: topSections.map(s => ({
+                conventionId,
+                conventionName: s.conventionName || `Convention ${conventionId}`,
+                section: s.sectionType,
+                content: s.content.substring(0, 200) + '...'
+              })),
+              method: 'Convention spécifique (sections structurées)',
+              conventionId
+            });
+          } else {
+            return res.json({
+              question,
+              answer: `Je n'ai pas trouvé d'informations pertinentes dans cette convention collective (${conventionId}) pour répondre à votre question : "${question}". Les sections disponibles ne contiennent pas les mots-clés recherchés.`,
+              sources: [],
+              method: 'Convention spécifique (aucun résultat)',
+              conventionId
+            });
           }
-        } catch (error) {
-          console.log(`[RAG] Erreur lors de la recherche dans la convention ${conventionId}, utilisation du RAG global:`, error);
+        } else {
+          return res.status(404).json({
+            error: "Convention non trouvée",
+            message: `Aucune section trouvée pour la convention ${conventionId}`
+          });
         }
+      } else {
+        return res.status(400).json({
+          error: "Convention requise",
+          message: "Veuillez spécifier une convention pour poser votre question"
+        });
       }
       
-      // Fallback vers le RAG global si pas de convention spécifique ou pas de résultats
-      const result = await ragService.answerQuestion(question);
-      
-      console.log(`[RAG] Réponse générée avec ${result.sources.length} sources`);
-      
-      res.json({
-        question,
-        answer: result.answer,
-        sources: result.sources,
-        method: conventionId ? 'RAG global (fallback)' : 'RAG global'
-      });
-      
     } catch (error: any) {
-      console.error(`[RAG] Erreur:`, error);
+      console.error(`[Assistant] Erreur:`, error);
       
       res.status(500).json({
         error: "Erreur lors du traitement",
