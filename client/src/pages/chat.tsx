@@ -515,27 +515,28 @@ export default function Chat() {
                   if (categorySections.length === 0) return null;
                   
                   return (
-                    <div key={category} className="section-with-border">
+                    <div key={category}>
                       {/* Titre de catégorie */}
-                      <div className="mb-6">
+                      <div className="mb-6 mt-8">
                         <h2 className="text-2xl font-bold text-green-600 dark:text-green-400">
                           {categoryDefinition.name}
                         </h2>
                       </div>
                       
-                      {/* Sous-sections dans l'ordre défini */}
-                      <div className="space-y-6">
+                      {/* Sous-sections dans l'ordre défini avec bordures individuelles */}
+                      <div className="space-y-4">
                         {categoryDefinition.subcategories.map((subcategoryDef) => {
                           const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
                           if (!section) return null;
                           
                           return (
-                            <SectionContent 
-                              key={section.sectionType}
-                              section={section}
-                              conventionId={id || ""}
-                              isActive={visibleSection === section.sectionType}
-                            />
+                            <div key={section.sectionType} className="individual-section-border">
+                              <SectionContent 
+                                section={section}
+                                conventionId={id || ""}
+                                isActive={visibleSection === section.sectionType}
+                              />
+                            </div>
                           );
                         })}
                       </div>
