@@ -248,45 +248,43 @@
     @apply pl-4 mb-3;
   }
 
-  /* Séparateur décoratif entre les sections */
-  .section-separator {
-    width: 4px;
-    height: 80px;
-    background: linear-gradient(to bottom, 
-      transparent 0%, 
-      #10b981 15%, 
-      #10b981 85%, 
-      transparent 100%
-    );
-    border-radius: 2px;
-    margin: 2rem auto;
-    opacity: 0.6;
-  }
-
-  .section-separator.with-curve {
+  /* Bordure décorative gauche pour les sections */
+  .section-with-border {
     position: relative;
+    border-left: 4px solid #10b981;
+    padding-left: 2rem;
+    margin-left: 0;
+    background: #f8fafc;
+    border-radius: 0 8px 8px 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
-  .section-separator.with-curve::before,
-  .section-separator.with-curve::after {
+  .section-with-border::before {
     content: '';
     position: absolute;
     left: -6px;
+    top: -10px;
     width: 16px;
     height: 20px;
-    border: 2px solid #10b981;
-    border-radius: 50%;
-    background: transparent;
-    opacity: 0.4;
-  }
-
-  .section-separator.with-curve::before {
-    top: -10px;
+    border: 4px solid #10b981;
     border-bottom: none;
+    border-radius: 16px 16px 0 0;
+    background: #f8fafc;
   }
 
-  .section-separator.with-curve::after {
+  .section-with-border::after {
+    content: '';
+    position: absolute;
+    left: -6px;
     bottom: -10px;
+    width: 16px;
+    height: 20px;
+    border: 4px solid #10b981;
     border-top: none;
+    border-radius: 0 0 16px 16px;
+    background: #f8fafc;
   }
 }

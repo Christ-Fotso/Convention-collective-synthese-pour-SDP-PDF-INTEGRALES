@@ -515,13 +515,10 @@ export default function Chat() {
                   if (categorySections.length === 0) return null;
                   
                   return (
-                    <div key={category}>
-                      {/* Séparateur décoratif */}
-                      <div className="section-separator with-curve"></div>
-                      
+                    <div key={category} className="section-with-border">
                       {/* Titre de catégorie */}
-                      <div className="pt-6">
-                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
+                      <div className="mb-6">
+                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400">
                           {categoryDefinition.name}
                         </h2>
                       </div>
