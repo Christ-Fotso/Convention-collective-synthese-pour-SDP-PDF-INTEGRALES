@@ -176,7 +176,7 @@ export default function Home() {
             <Button
               type="button"
               onClick={() => setShowNafModal(true)}
-              className="h-10 px-4 bg-orange-400 hover:bg-orange-500 text-white flex items-center gap-2"
+              className="h-10 px-4 bg-orange-300 hover:bg-orange-400 text-white flex items-center gap-2"
             >
               <Building2 className="h-4 w-4" />
               Code NAF
