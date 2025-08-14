@@ -357,8 +357,8 @@
     <div class="container">
         <!-- En-tête principal -->
         <header class="main-header">
-            <h1 class="main-title">Conventions Collectives</h1>
-            <p class="main-subtitle">Base de données complète des conventions collectives françaises</p>
+            <h1 class="main-title">Synthèse de Conventions Collectives</h1>
+            <p class="main-subtitle">Analyses et extraits structurés des conventions collectives françaises</p>
         </header>
         
         <!-- Zone de recherche -->
@@ -384,7 +384,7 @@
         <!-- Section principale -->
         <main>
             <div class="section-header">
-                <h2 class="section-title">Conventions collectives <span id="countBadge">(380)</span></h2>
+                <h2 class="section-title">Synthèses disponibles <span id="countBadge">(380)</span></h2>
                 <button class="clear-search-button" onclick="clearSearch()" style="display: none;" id="clearButton">
                     <span class="icon icon-close"></span>
                     Effacer la recherche
@@ -401,7 +401,7 @@
                 <div class="empty-icon">
                     <span class="icon icon-search" style="font-size: 48px; opacity: 0.3;">🔍</span>
                 </div>
-                <h3 class="empty-title">Aucune convention trouvée</h3>
+                <h3 class="empty-title">Aucune synthèse trouvée</h3>
                 <p class="empty-description">Essayez avec d'autres termes ou utilisez la recherche NAF</p>
             </div>
         </main>
@@ -503,7 +503,7 @@
                 sectionTitle.innerHTML = `Résultats de recherche <span id="countBadge">(${filteredConventions.length})</span>`;
                 clearButton.style.display = 'flex';
             } else {
-                sectionTitle.innerHTML = `Conventions collectives <span id="countBadge">(${conventions.length})</span>`;
+                sectionTitle.innerHTML = `Synthèses disponibles <span id="countBadge">(${conventions.length})</span>`;
                 clearButton.style.display = 'none';
             }
         }
@@ -550,11 +550,11 @@
             return text.replace(regex, '<span class="search-highlight">$1</span>');
         }
         
-        // Ouvrir une convention (remplacez par votre logique)
+        // Ouvrir une synthèse de convention (remplacez par votre logique)
         function openConvention(conventionId) {
-            alert(`Ouverture de la convention IDCC ${conventionId}`);
-            // Ici vous pouvez rediriger vers votre page de convention
-            // window.location.href = `/convention/${conventionId}`;
+            alert(`Ouverture de la synthèse IDCC ${conventionId}`);
+            // Ici vous pouvez rediriger vers votre page de synthèse
+            // window.location.href = `/synthese/${conventionId}`;
         }
         
         // Ouvrir la recherche NAF (remplacez par votre logique)
