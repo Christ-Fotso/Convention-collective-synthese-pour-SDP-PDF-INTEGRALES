@@ -27,7 +27,8 @@ export const MarkdownTableRendererEnhanced: React.FC<MarkdownTableRendererEnhanc
             borderSpacing: 0,
             marginTop: '0.5rem',
             marginBottom: '0.5rem',
-            fontSize: '0.8rem'
+            fontSize: '0.8rem',
+            fontFamily: 'Inter, system-ui, sans-serif'
           }} 
         />
       </EnhancedTableWrapper>
@@ -47,6 +48,7 @@ export const MarkdownTableRendererEnhanced: React.FC<MarkdownTableRendererEnhanc
           wordWrap: 'break-word',
           wordBreak: 'keep-all',
           hyphens: 'none',
+          fontFamily: 'Inter, system-ui, sans-serif'
         }} 
       />
     ),
@@ -67,6 +69,7 @@ export const MarkdownTableRendererEnhanced: React.FC<MarkdownTableRendererEnhanc
           wordWrap: 'break-word',
           wordBreak: 'keep-all',
           hyphens: 'none',
+          fontFamily: 'Inter, system-ui, sans-serif'
         }} 
       />
     )
