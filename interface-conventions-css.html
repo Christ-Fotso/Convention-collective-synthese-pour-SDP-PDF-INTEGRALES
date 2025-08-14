@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Conventions Collectives</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================================
+           INTERFACE CSS CONVENTIONS COLLECTIVES
+           Reproduction exacte de l'interface existante
+           =========================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* En-tête principal */
+        .main-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+        
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 16px;
+        }
+        
+        .main-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            font-weight: 400;
+        }
+        
+        /* Zone de recherche */
+        .search-section {
+            margin-bottom: 32px;
+        }
+        
+        .search-container {
+            display: flex;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            flex: 1;
+            height: 40px;
+            padding: 0 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+        
+        .search-button {
+            height: 40px;
+            padding: 0 20px;
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .search-button:hover {
+            background-color: #15803d;
+        }
+        
+        .naf-button {
+            height: 40px;
+            padding: 0 16px;
+            background-color: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .naf-button:hover {
+            background-color: #4b5563;
+        }
+        
+        /* Section titre avec compteur */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #16a34a;
+        }
+        
+        .clear-search-button {
+            padding: 8px 16px;
+            background-color: transparent;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .clear-search-button:hover {
+            background-color: #f9fafb;
+            border-color: #9ca3af;
+        }
+        
+        /* Grille des conventions */
+        .conventions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 16px;
+        }
+        
+        @media (min-width: 768px) {
+            .conventions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .conventions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Cartes de convention */
+        .convention-card {
+            background-color: #ffffff;
+            border: 1px solid #dcfce7;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .convention-card:hover {
+            border-color: #bbf7d0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .convention-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #16a34a;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+        
+        .convention-card:hover .convention-title {
+            color: #15803d;
+        }
+        
+        .convention-idcc {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 400;
+        }
+        
+        /* État vide */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            opacity: 0.3;
+        }
+        
+        .empty-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .empty-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        /* Icônes (utilisation de caractères Unicode simples) */
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        .icon-search::before { content: "🔍"; }
+        .icon-building::before { content: "🏢"; }
+        .icon-close::before { content: "✕"; }
+        .icon-document::before { content: "📄"; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .main-subtitle {
+                font-size: 1rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .conventions-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+        }
+        
+        /* Animation de chargement */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #16a34a;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Mise en évidence des résultats de recherche */
+        .search-highlight {
+            background-color: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        /* Badge pour les résultats de recherche NAF */
+        .naf-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background-color: #eff6ff;
+            color: #1e40af;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 12px;
+            margin: 2px;
+        }
+        
+        /* Styles pour les conventions spéciales */
+        .convention-code-travail {
+            border-color: #fbbf24;
+            background-color: #fffbeb;
+        }
+        
+        .convention-code-travail:hover {
+            border-color: #f59e0b;
+        }
+        
+        .convention-code-travail .convention-title {
+            color: #d97706;
+        }
+        
+        /* Accessibilité */
+        .convention-card:focus {
+            outline: 2px solid #16a34a;
+            outline-offset: 2px;
+        }
+        
+        .search-input:focus,
+        .search-button:focus,
+        .naf-button:focus,
+        .clear-search-button:focus {
+            outline: 2px solid #16a34a;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête principal -->
+        <header class="main-header">
+            <h1 class="main-title">Conventions Collectives</h1>
+            <p class="main-subtitle">Base de données complète des conventions collectives françaises</p>
+        </header>
+        
+        <!-- Zone de recherche -->
+        <section class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Rechercher une convention (nom, IDCC, secteur...)"
+                    id="searchInput"
+                >
+                <button class="search-button" onclick="performSearch()">
+                    <span class="icon icon-search"></span>
+                    Rechercher
+                </button>
+                <button class="naf-button" onclick="openNafSearch()">
+                    <span class="icon icon-building"></span>
+                    Code NAF
+                </button>
+            </div>
+        </section>
+        
+        <!-- Section principale -->
+        <main>
+            <div class="section-header">
+                <h2 class="section-title">Conventions collectives <span id="countBadge">(380)</span></h2>
+                <button class="clear-search-button" onclick="clearSearch()" style="display: none;" id="clearButton">
+                    <span class="icon icon-close"></span>
+                    Effacer la recherche
+                </button>
+            </div>
+            
+            <!-- Grille des conventions -->
+            <div class="conventions-grid" id="conventionsGrid">
+                <!-- Les conventions seront générées ici par JavaScript -->
+            </div>
+            
+            <!-- État vide -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">
+                    <span class="icon icon-search" style="font-size: 48px; opacity: 0.3;">🔍</span>
+                </div>
+                <h3 class="empty-title">Aucune convention trouvée</h3>
+                <p class="empty-description">Essayez avec d'autres termes ou utilisez la recherche NAF</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ===========================================
+        // JAVASCRIPT POUR L'INTERFACE INTERACTIVE
+        // ===========================================
+        
+        // Données d'exemple des conventions (remplacez par vos données)
+        const conventions = [
+            { id: "9999", name: "Code du travail", special: true },
+            { id: "16", name: "Transports routiers et activités auxiliaires du transport" },
+            { id: "66", name: "Spectacle vivant" },
+            { id: "158", name: "Travail temporaire" },
+            { id: "176", name: "Industrie pharmaceutique" },
+            { id: "573", name: "Commerces de gros" },
+            { id: "1147", name: "Personnel des cabinets médicaux" },
+            { id: "1351", name: "Hospitalisation privée" },
+            { id: "1486", name: "Bureaux d'études techniques" },
+            { id: "1596", name: "Radiodiffusion" },
+            { id: "1702", name: "Ouvriers des travaux publics" },
+            { id: "1996", name: "Pharmacie d'officine" },
+            { id: "2098", name: "Prestataires de services" },
+            { id: "2264", name: "Hospitalisation privée à but lucratif" },
+            { id: "2596", name: "Coiffure et professions connexes" }
+        ];
+        
+        let currentSearch = "";
+        let filteredConventions = [...conventions];
+        
+        // Initialiser l'interface
+        function init() {
+            renderConventions(conventions);
+            setupEventListeners();
+        }
+        
+        // Configuration des événements
+        function setupEventListeners() {
+            const searchInput = document.getElementById('searchInput');
+            
+            // Recherche en temps réel avec debounce
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    performSearch(e.target.value);
+                }, 300);
+            });
+            
+            // Recherche à la validation
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(e.target.value);
+                }
+            });
+        }
+        
+        // Effectuer une recherche
+        function performSearch(searchTerm = null) {
+            const searchInput = document.getElementById('searchInput');
+            const search = searchTerm !== null ? searchTerm : searchInput.value;
+            currentSearch = search.trim().toLowerCase();
+            
+            if (!currentSearch) {
+                filteredConventions = [...conventions];
+            } else {
+                filteredConventions = conventions.filter(conv => {
+                    const name = conv.name.toLowerCase();
+                    const id = conv.id.toLowerCase();
+                    
+                    return name.includes(currentSearch) || 
+                           id === currentSearch ||
+                           (currentSearch.startsWith('idcc') && id === currentSearch.replace('idcc', '').trim());
+                });
+            }
+            
+            renderConventions(filteredConventions);
+            updateUI();
+        }
+        
+        // Effacer la recherche
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            currentSearch = "";
+            filteredConventions = [...conventions];
+            renderConventions(filteredConventions);
+            updateUI();
+        }
+        
+        // Mettre à jour l'interface utilisateur
+        function updateUI() {
+            const countBadge = document.getElementById('countBadge');
+            const clearButton = document.getElementById('clearButton');
+            const sectionTitle = document.querySelector('.section-title');
+            
+            if (currentSearch) {
+                sectionTitle.innerHTML = `Résultats de recherche <span id="countBadge">(${filteredConventions.length})</span>`;
+                clearButton.style.display = 'flex';
+            } else {
+                sectionTitle.innerHTML = `Conventions collectives <span id="countBadge">(${conventions.length})</span>`;
+                clearButton.style.display = 'none';
+            }
+        }
+        
+        // Afficher les conventions
+        function renderConventions(conventionsList) {
+            const grid = document.getElementById('conventionsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (conventionsList.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            // Trier les conventions : Code du travail en premier, puis alphabétique
+            const sortedConventions = [...conventionsList].sort((a, b) => {
+                if (a.id === '9999') return -1;
+                if (b.id === '9999') return 1;
+                return a.name.localeCompare(b.name, 'fr');
+            });
+            
+            grid.innerHTML = sortedConventions.map(conv => {
+                const isSpecial = conv.id === '9999';
+                const cardClass = isSpecial ? 'convention-card convention-code-travail' : 'convention-card';
+                
+                return `
+                    <div class="${cardClass}" onclick="openConvention('${conv.id}')">
+                        <h3 class="convention-title">${highlightSearch(conv.name)}</h3>
+                        <p class="convention-idcc">${conv.id === '9999' ? 'Référence légale' : 'IDCC ' + conv.id}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Mettre en évidence les termes de recherche
+        function highlightSearch(text) {
+            if (!currentSearch || currentSearch.length < 2) return text;
+            
+            const regex = new RegExp(`(${currentSearch})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+        
+        // Ouvrir une convention (remplacez par votre logique)
+        function openConvention(conventionId) {
+            alert(`Ouverture de la convention IDCC ${conventionId}`);
+            // Ici vous pouvez rediriger vers votre page de convention
+            // window.location.href = `/convention/${conventionId}`;
+        }
+        
+        // Ouvrir la recherche NAF (remplacez par votre logique)
+        function openNafSearch() {
+            alert("Ouverture de la recherche par code NAF");
+            // Ici vous pouvez ouvrir votre modal de recherche NAF
+        }
+        
+        // Initialiser l'application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
