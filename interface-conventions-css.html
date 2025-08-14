@@ -41,7 +41,7 @@
         .main-title {
             font-size: 3rem;
             font-weight: 700;
-            color: #16a34a;
+            color: #0369a1;
             margin-bottom: 16px;
         }
         
@@ -76,14 +76,14 @@
         
         .search-input:focus {
             outline: none;
-            border-color: #16a34a;
-            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+            border-color: #0369a1;
+            box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.1);
         }
         
         .search-button {
             height: 40px;
             padding: 0 20px;
-            background-color: #16a34a;
+            background-color: #0369a1;
             color: white;
             border: none;
             border-radius: 8px;
@@ -96,13 +96,13 @@
         }
         
         .search-button:hover {
-            background-color: #15803d;
+            background-color: #0284c7;
         }
         
         .naf-button {
             height: 40px;
             padding: 0 16px;
-            background-color: #6b7280;
+            background-color: #7c3aed;
             color: white;
             border: none;
             border-radius: 8px;
@@ -115,7 +115,7 @@
         }
         
         .naf-button:hover {
-            background-color: #4b5563;
+            background-color: #6d28d9;
         }
         
         /* Section titre avec compteur */
@@ -129,7 +129,7 @@
         .section-title {
             font-size: 2rem;
             font-weight: 700;
-            color: #16a34a;
+            color: #0369a1;
         }
         
         .clear-search-button {
@@ -173,7 +173,7 @@
         /* Cartes de convention */
         .convention-card {
             background-color: #ffffff;
-            border: 1px solid #dcfce7;
+            border: 1px solid #dbeafe;
             border-radius: 12px;
             padding: 24px;
             cursor: pointer;
@@ -182,7 +182,7 @@
         }
         
         .convention-card:hover {
-            border-color: #bbf7d0;
+            border-color: #93c5fd;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
         }
@@ -190,14 +190,14 @@
         .convention-title {
             font-size: 1rem;
             font-weight: 500;
-            color: #16a34a;
+            color: #0369a1;
             line-height: 1.4;
             margin-bottom: 8px;
             transition: color 0.2s ease;
         }
         
         .convention-card:hover .convention-title {
-            color: #15803d;
+            color: #0284c7;
         }
         
         .convention-idcc {
@@ -384,7 +384,7 @@
         <!-- Section principale -->
         <main>
             <div class="section-header">
-                <h2 class="section-title">Synthèses disponibles <span id="countBadge">(380)</span></h2>
+                <h2 class="section-title">Synthèses disponibles</h2>
                 <button class="clear-search-button" onclick="clearSearch()" style="display: none;" id="clearButton">
                     <span class="icon icon-close"></span>
                     Effacer la recherche
@@ -500,10 +500,10 @@
             const sectionTitle = document.querySelector('.section-title');
             
             if (currentSearch) {
-                sectionTitle.innerHTML = `Résultats de recherche <span id="countBadge">(${filteredConventions.length})</span>`;
+                sectionTitle.innerHTML = `Résultats de recherche (${filteredConventions.length})`;
                 clearButton.style.display = 'flex';
             } else {
-                sectionTitle.innerHTML = `Synthèses disponibles <span id="countBadge">(${conventions.length})</span>`;
+                sectionTitle.innerHTML = `Synthèses disponibles`;
                 clearButton.style.display = 'none';
             }
         }
