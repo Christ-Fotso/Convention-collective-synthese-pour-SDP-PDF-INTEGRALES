@@ -247,42 +247,4 @@
   .markdown-content dd {
     @apply pl-4 mb-3;
   }
-
-  /* Bordure décorative gauche pour chaque section individuelle */
-  .individual-section-border {
-    position: relative;
-    border-left: 3px solid #10b981;
-    padding-left: 1.5rem;
-    margin-left: 0;
-    background: #f9fafb;
-    margin-bottom: 1.5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .individual-section-border::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: -8px;
-    width: 12px;
-    height: 16px;
-    border: 3px solid #10b981;
-    border-bottom: none;
-    border-radius: 12px 12px 0 0;
-    background: #f9fafb;
-  }
-
-  .individual-section-border::after {
-    content: '';
-    position: absolute;
-    left: -4px;
-    bottom: -8px;
-    width: 12px;
-    height: 16px;
-    border: 3px solid #10b981;
-    border-top: none;
-    border-radius: 0 0 12px 12px;
-    background: #f9fafb;
-  }
 }

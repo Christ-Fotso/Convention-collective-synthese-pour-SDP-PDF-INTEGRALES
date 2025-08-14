@@ -373,7 +373,7 @@ export default function Chat() {
           
           {/* Contenu principal avec marge gauche conditionnelle et responsive */}
           <div className={`flex-1 space-y-6 transition-all duration-300 ${
-            expandedCategory && expandedCategory !== "informations-generales" ? "md:ml-56" : "px-8"
+            expandedCategory && expandedCategory !== "informations-generales" ? "md:ml-56" : ""
           }`}>
 
           {/* Barre de navigation avec nom de convention et navigation */}
@@ -517,26 +517,25 @@ export default function Chat() {
                   return (
                     <div key={category}>
                       {/* Titre de catégorie */}
-                      <div className="mb-6 mt-8">
-                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400">
+                      <div className="border-t pt-6">
+                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
                           {categoryDefinition.name}
                         </h2>
                       </div>
                       
-                      {/* Sous-sections dans l'ordre défini avec bordures individuelles */}
-                      <div className="space-y-4">
+                      {/* Sous-sections dans l'ordre défini */}
+                      <div className="space-y-6">
                         {categoryDefinition.subcategories.map((subcategoryDef) => {
                           const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
                           if (!section) return null;
                           
                           return (
-                            <div key={section.sectionType} className="individual-section-border">
-                              <SectionContent 
-                                section={section}
-                                conventionId={id || ""}
-                                isActive={visibleSection === section.sectionType}
-                              />
-                            </div>
+                            <SectionContent 
+                              key={section.sectionType}
+                              section={section}
+                              conventionId={id || ""}
+                              isActive={visibleSection === section.sectionType}
+                            />
                           );
                         })}
                       </div>
