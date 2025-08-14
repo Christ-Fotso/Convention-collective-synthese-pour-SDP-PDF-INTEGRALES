@@ -235,6 +235,39 @@
     @apply mb-3 border-l-2 border-primary/50 pl-3 py-1;
   }
 
+  /* Style de bordure en L arrondi pour les sections */
+  .markdown-content > div,
+  .markdown-content section {
+    position: relative;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background: white;
+  }
+
+  .markdown-content > div::before,
+  .markdown-content section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #22c55e;
+    border-radius: 0 0 8px 0;
+  }
+
+  .markdown-content > div::after,
+  .markdown-content section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 2rem;
+    height: 2px;
+    background: #22c55e;
+    border-radius: 0 8px 0 0;
+  }
+
   /* Amélioration des listes de définition */
   .markdown-content dl {
     @apply my-4;
