@@ -176,7 +176,7 @@ export default function Home() {
             <Button
               type="button"
               onClick={() => setShowNafModal(true)}
-              className="h-10 px-4 bg-gray-500 hover:bg-gray-600 text-white flex items-center gap-2"
+              className="h-10 px-4 bg-purple-400 hover:bg-purple-500 text-white flex items-center gap-2"
             >
               <Building2 className="h-4 w-4" />
               Code NAF
@@ -267,7 +267,7 @@ export default function Home() {
             <div>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-green-700">
-                  {search ? `Résultats de recherche (${filteredConventions.length})` : 'Conventions collectives'}
+                  {search ? `Résultats de recherche (${filteredConventions.length})` : 'Synthèse conventions collectives'}
                 </h2>
                 {search && (
                   <Button
