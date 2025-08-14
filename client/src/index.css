@@ -247,4 +247,46 @@
   .markdown-content dd {
     @apply pl-4 mb-3;
   }
+
+  /* Séparateur décoratif entre les sections */
+  .section-separator {
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+      transparent 0%, 
+      #10b981 15%, 
+      #10b981 85%, 
+      transparent 100%
+    );
+    border-radius: 2px;
+    margin: 2rem auto;
+    opacity: 0.6;
+  }
+
+  .section-separator.with-curve {
+    position: relative;
+  }
+
+  .section-separator.with-curve::before,
+  .section-separator.with-curve::after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    width: 16px;
+    height: 20px;
+    border: 2px solid #10b981;
+    border-radius: 50%;
+    background: transparent;
+    opacity: 0.4;
+  }
+
+  .section-separator.with-curve::before {
+    top: -10px;
+    border-bottom: none;
+  }
+
+  .section-separator.with-curve::after {
+    bottom: -10px;
+    border-top: none;
+  }
 }

@@ -373,7 +373,7 @@ export default function Chat() {
           
           {/* Contenu principal avec marge gauche conditionnelle et responsive */}
           <div className={`flex-1 space-y-6 transition-all duration-300 ${
-            expandedCategory && expandedCategory !== "informations-generales" ? "md:ml-56" : ""
+            expandedCategory && expandedCategory !== "informations-generales" ? "md:ml-56" : "px-8"
           }`}>
 
           {/* Barre de navigation avec nom de convention et navigation */}
@@ -516,8 +516,11 @@ export default function Chat() {
                   
                   return (
                     <div key={category}>
+                      {/* Séparateur décoratif */}
+                      <div className="section-separator with-curve"></div>
+                      
                       {/* Titre de catégorie */}
-                      <div className="border-t pt-6">
+                      <div className="pt-6">
                         <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
                           {categoryDefinition.name}
                         </h2>
