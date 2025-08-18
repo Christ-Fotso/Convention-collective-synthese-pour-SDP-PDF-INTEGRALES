@@ -5,7 +5,7 @@ This platform is a web application designed for analyzing and managing French co
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
-Content editing: User adds specific corrections/annotations to individual conventions (e.g., IDCC 0843 trial period correction: 30 days inapplicable, should be two months without renewal).
+Content editing: User adds specific corrections/annotations to individual conventions (e.g., IDCC 0843 and 575 trial period corrections: durations mentioned in conventions are inapplicable, should be two months without renewal).
 
 ## System Architecture
 ### Frontend
