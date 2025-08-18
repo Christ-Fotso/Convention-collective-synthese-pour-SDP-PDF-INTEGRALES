@@ -1,7 +1,7 @@
 /**
  * Convertisseur Markdown vers HTML autonome
  * Pour projets externes - Convention Collective Analytics Platform
- * 
+ *
  * Usage:
  * const converter = new MarkdownHtmlConverter();
  * const result = converter.convertToHtml(markdownContent);
@@ -15,7 +15,7 @@ class MarkdownHtmlConverter {
       enableTables: true,
       enableToc: true,
       enableLegalFormatting: true,
-      ...options
+      ...options,
     };
     this.tocItems = [];
   }
@@ -28,33 +28,33 @@ class MarkdownHtmlConverter {
   convertToHtml(markdown) {
     // Reset TOC for new conversion
     this.tocItems = [];
-    
+
     // Conversion Markdown basique
     const rawHtml = this.parseMarkdown(markdown);
-    
+
     // Amélioration pour le contenu légal
     const html = this.enhanceHtmlForLegalContent(rawHtml);
-    
+
     // Extraction des titres pour TOC
     this.extractHeadingsForToc(html);
-    
+
     // Génération TOC
     const toc = this.generateToc();
-    
+
     // Génération des statistiques
     const stats = {
       characters: markdown.length,
       words: markdown.split(/\s+/).length,
       headings: this.tocItems.length,
       tables: (html.match(/<table/g) || []).length,
-      lists: (html.match(/<[ou]l/g) || []).length
+      lists: (html.match(/<[ou]l/g) || []).length,
     };
 
-    return { 
-      html, 
-      css: this.getEnhancedCss(), 
-      toc, 
-      stats 
+    return {
+      html,
+      css: this.getEnhancedCss(),
+      toc,
+      stats,
     };
   }
 
@@ -70,24 +70,27 @@ class MarkdownHtmlConverter {
     html = html.replace(/^# (.*$)/gm, '<h1 id="heading-$1">$1</h1>');
 
     // Conversion des listes
-    html = html.replace(/^\* (.+$)/gm, '<li>$1</li>');
-    html = html.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
-    
+    html = html.replace(/^\* (.+$)/gm, "<li>$1</li>");
+    html = html.replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>");
+
     // Nettoyage des listes imbriquées mal formées
-    html = html.replace(/<\/ul>\s*<ul>/g, '');
+    html = html.replace(/<\/ul>\s*<ul>/g, "");
 
     // Conversion du texte en gras et italique
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/\*([^*\s][^*]*[^*\s])\*/g, '<em>$1</em>');
+    html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    html = html.replace(/\*([^*\s][^*]*[^*\s])\*/g, "<em>$1</em>");
 
     // Conversion des paragraphes
-    html = html.split('\n\n').map(paragraph => {
-      paragraph = paragraph.trim();
-      if (paragraph && !paragraph.match(/^<[h1-6ul]/)) {
-        return `<p>${paragraph}</p>`;
-      }
-      return paragraph;
-    }).join('\n');
+    html = html
+      .split("\n\n")
+      .map((paragraph) => {
+        paragraph = paragraph.trim();
+        if (paragraph && !paragraph.match(/^<[h1-6ul]/)) {
+          return `<p>${paragraph}</p>`;
+        }
+        return paragraph;
+      })
+      .join("\n");
 
     return html;
   }
@@ -101,62 +104,59 @@ class MarkdownHtmlConverter {
     }
 
     let enhancedHtml = html;
-    
+
     // Formatage des références de grilles salariales
     enhancedHtml = this.formatSalaryGridReferences(enhancedHtml);
-    
+
     // Articles légaux
     enhancedHtml = enhancedHtml.replace(
       /<p>((Art(icle)?\s*\d+|Article\s*\d+).+?)<\/p>/gi,
-      '<p class="legal-article">$1</p>'
+      '<p class="legal-article">$1</p>',
     );
-    
+
     // Paragraphes légaux
     enhancedHtml = enhancedHtml.replace(
       /<p>(§\s*\d+.+?)<\/p>/gi,
-      '<p class="legal-paragraph">$1</p>'
+      '<p class="legal-paragraph">$1</p>',
     );
-    
+
     // Sous-sections légales
     enhancedHtml = enhancedHtml.replace(
       /<p>(\d+°\s*.+?)<\/p>/gi,
-      '<p class="legal-subsection">$1</p>'
+      '<p class="legal-subsection">$1</p>',
     );
-    
+
     // Ajout de classes aux paragraphes réguliers
     enhancedHtml = enhancedHtml.replace(
       /<p>(?!class=)/gi,
-      '<p class="legal-text">'
+      '<p class="legal-text">',
     );
-    
+
     // Ajout de classes aux tableaux
     if (this.options.enableTables) {
       enhancedHtml = enhancedHtml.replace(
         /<table>/gi,
-        '<div class="table-container"><table class="legal-table">'
+        '<div class="table-container"><table class="legal-table">',
       );
-      enhancedHtml = enhancedHtml.replace(
-        /<\/table>/gi,
-        '</table></div>'
-      );
+      enhancedHtml = enhancedHtml.replace(/<\/table>/gi, "</table></div>");
     }
-    
+
     // Ajout de classes aux listes
     enhancedHtml = enhancedHtml.replace(
       /<ol>/gi,
-      '<ol class="legal-ordered-list">'
+      '<ol class="legal-ordered-list">',
     );
     enhancedHtml = enhancedHtml.replace(
       /<ul>/gi,
-      '<ul class="legal-unordered-list">'
+      '<ul class="legal-unordered-list">',
     );
-    
+
     // Ajout de classes aux citations
     enhancedHtml = enhancedHtml.replace(
       /<blockquote>/gi,
-      '<blockquote class="legal-quote">'
+      '<blockquote class="legal-quote">',
     );
-    
+
     // Traitement des titres avec classes légales
     enhancedHtml = enhancedHtml.replace(
       /<h([1-6])([^>]*?)>(.*?)<\/h[1-6]>/gi,
@@ -164,33 +164,37 @@ class MarkdownHtmlConverter {
         // Masquer les titres redondants
         if (parseInt(level) === 1) {
           const normalizedContent = content.toLowerCase().trim();
-          
-          if (normalizedContent.includes('convention collective') || 
-              normalizedContent.includes('idcc')) {
-            return '';
+
+          if (
+            normalizedContent.includes("convention collective") ||
+            normalizedContent.includes("idcc")
+          ) {
+            return "";
           }
-          
-          if (normalizedContent.includes('informations générales') ||
-              normalizedContent.includes('délai de prévenance') ||
-              normalizedContent.includes('période d\'essai') ||
-              normalizedContent.includes('durées du travail') ||
-              normalizedContent.includes('durée du travail') ||
-              normalizedContent.includes('temps partiel') ||
-              normalizedContent.includes('classification') ||
-              normalizedContent.includes('grille de rémunération') ||
-              normalizedContent.includes('rémunération') ||
-              normalizedContent.includes('congés payés') ||
-              normalizedContent.includes('congés') ||
-              normalizedContent.includes('protection sociale')) {
-            return '';
+
+          if (
+            normalizedContent.includes("informations générales") ||
+            normalizedContent.includes("délai de prévenance") ||
+            normalizedContent.includes("période d'essai") ||
+            normalizedContent.includes("durées du travail") ||
+            normalizedContent.includes("durée du travail") ||
+            normalizedContent.includes("temps partiel") ||
+            normalizedContent.includes("classification") ||
+            normalizedContent.includes("grille de rémunération") ||
+            normalizedContent.includes("rémunération") ||
+            normalizedContent.includes("congés payés") ||
+            normalizedContent.includes("congés") ||
+            normalizedContent.includes("protection sociale")
+          ) {
+            return "";
           }
         }
-        
+
         const classes = this.getLegalHeadingClass(content, parseInt(level));
         return `<h${level}${attrs} class="${classes}">${content}</h${level}>`;
-      }
+      },
     );
-    
+
     return enhancedHtml;
   }
 
@@ -199,14 +203,14 @@ class MarkdownHtmlConverter {
    */
   getLegalHeadingClass(text, level) {
     const baseClass = `legal-heading level-${level}`;
-    
+
     if (text.match(/^(TITRE|CHAPITRE|SECTION)/i)) {
       return `${baseClass} legal-title`;
     }
     if (text.match(/^Art(icle)?/i)) {
       return `${baseClass} legal-article-title`;
     }
-    
+
     return baseClass;
   }
 
@@ -214,43 +218,49 @@ class MarkdownHtmlConverter {
    * Formate les références de grilles salariales
    */
   formatSalaryGridReferences(html) {
-    const referencePattern = /\((\d+)\)\s*Référence\s*:\s*([^(]*?)(?=\s*\(\d+\)\s*Référence|$)/g;
+    const referencePattern =
+      /\((\d+)\)\s*Référence\s*:\s*([^(]*?)(?=\s*\(\d+\)\s*Référence|$)/g;
     const paragraphPattern = /<p([^>]*)>(.*?)<\/p>/gs;
-    
+
     return html.replace(paragraphPattern, (match, attributes, content) => {
       const referenceMatches = [...content.matchAll(referencePattern)];
-      
+
       if (referenceMatches.length > 1) {
         const references = referenceMatches.map((match) => {
           const number = parseInt(match[1]);
           const referenceText = match[2].trim();
           return { number, text: referenceText };
         });
-        
+
         references.sort((a, b) => a.number - b.number);
-        
-        const formattedReferences = references.map((ref) => {
-          return `<div class="salary-reference">
+
+        const formattedReferences = references
+          .map((ref) => {
+            return `<div class="salary-reference">
             <span class="reference-number">(${ref.number})</span>
             <span class="reference-text">Référence : ${ref.text}</span>
           </div>`;
-        }).join('');
-        
+          })
+          .join("");
+
         let remainingText = content;
         references.forEach((ref) => {
-          const fullRefPattern = new RegExp(`\\(${ref.number}\\)\\s*Référence\\s*:\\s*${ref.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'g');
-          remainingText = remainingText.replace(fullRefPattern, '');
+          const fullRefPattern = new RegExp(
+            `\\(${ref.number}\\)\\s*Référence\\s*:\\s*${ref.text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`,
+            "g",
+          );
+          remainingText = remainingText.replace(fullRefPattern, "");
         });
         remainingText = remainingText.trim();
-        
+
         return `<div class="salary-grid-container"${attributes}>
           <div class="salary-references">
             ${formattedReferences}
           </div>
-          ${remainingText ? `<div class="additional-info">${remainingText}</div>` : ''}
+          ${remainingText ? `<div class="additional-info">${remainingText}</div>` : ""}
         </div>`;
       }
-      
+
       return match;
     });
   }
@@ -260,15 +270,15 @@ class MarkdownHtmlConverter {
    */
   extractHeadingsForToc(html) {
     if (!this.options.enableToc) return;
-    
+
     const headingRegex = /<h([1-6])[^>]*id="([^"]*)"[^>]*>([^<]+)<\/h[1-6]>/gi;
     let match;
-    
+
     while ((match = headingRegex.exec(html)) !== null) {
       const level = parseInt(match[1]);
       const id = match[2];
       const text = match[3];
-      
+
       if (level <= 3) {
         this.tocItems.push({ level, text, anchor: id });
       }
@@ -280,17 +290,18 @@ class MarkdownHtmlConverter {
    */
   generateToc() {
     if (!this.options.enableToc || this.tocItems.length === 0) {
-      return '';
+      return "";
     }
 
-    let tocHtml = '<div class="table-of-contents"><h3>Sommaire</h3><ul class="toc-list">';
-    
+    let tocHtml =
+      '<div class="table-of-contents"><h3>Sommaire</h3><ul class="toc-list">';
+
     for (const item of this.tocItems) {
-      const indent = 'toc-level-' + item.level;
+      const indent = "toc-level-" + item.level;
       tocHtml += `<li class="${indent}"><a href="#${item.anchor}">${item.text}</a></li>`;
     }
-    
-    tocHtml += '</ul></div>';
+
+    tocHtml += "</ul></div>";
     return tocHtml;
   }
 
@@ -652,7 +663,7 @@ class MarkdownHtmlConverter {
 }
 
 // Export pour Node.js
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = MarkdownHtmlConverter;
 }
 
