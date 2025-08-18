@@ -504,7 +504,7 @@ export class MarkdownHtmlConverter {
       }
 
       .legal-unordered-list li::before {
-        content: "▸";
+        content: "◆";
         color: #10b981;
         font-weight: bold;
         position: absolute;
