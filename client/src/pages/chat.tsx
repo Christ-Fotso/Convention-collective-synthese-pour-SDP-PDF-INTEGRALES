@@ -408,8 +408,18 @@ export default function Chat() {
                 </Button>
               </div>
               
-              {/* Deuxième ligne: Recherche + Navigation par onglets */}
+              {/* Deuxième ligne: Retour + Recherche + Navigation par onglets */}
               <div className="flex items-center justify-center gap-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => navigate("/")}
+                  className="flex items-center gap-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-colors px-3 py-2 border-gray-300"
+                  title="Retour à la liste des conventions"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  <span className="hidden sm:inline text-sm font-medium">Retour conv.</span>
+                </Button>
                 <Button
                   variant="ghost"
                   size="sm"
