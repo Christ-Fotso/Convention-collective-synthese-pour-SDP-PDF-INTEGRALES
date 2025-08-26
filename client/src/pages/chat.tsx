@@ -284,16 +284,7 @@ export default function Chat() {
   
   return (
     <div className="w-full space-y-6">
-      <div className="px-4 lg:px-0 py-6">
-        <Button 
-          variant="outline" 
-          onClick={() => navigate("/")} 
-          className="flex items-center gap-2 text-sm"
-        >
-          <ChevronLeft className="h-4 w-4" />
-          Retour aux conventions
-        </Button>
-      </div>
+
       
       {!isLoadingConvention && !convention && (
         <Alert variant="destructive">
@@ -414,7 +405,7 @@ export default function Chat() {
                   variant="outline"
                   size="sm"
                   onClick={() => navigate("/")}
-                  className="flex items-center gap-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-colors px-3 py-2 border-gray-300"
+                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors px-3 py-2 border-blue-300 bg-blue-50/50"
                   title="Retour à la liste des conventions"
                 >
                   <ChevronLeft className="h-4 w-4" />
