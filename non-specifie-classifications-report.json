@@ -1,0 +1,3001 @@
+{
+  "generatedAt": "2025-08-26T10:28:37.042Z",
+  "totalConventions": 90,
+  "totalOccurrences": 1277,
+  "conventions": [
+    {
+      "convention": "Alimentation : industries agroalimentaires de la Réunion",
+      "idcc": "1341",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC012/sharp_/ANX/1341_CC012.pdf",
+      "totalMatches": 88,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 44,
+      "examples": [
+        [
+          "Niveau I",
+          "55",
+          "Concierge seul",
+          "Exécute des travaux élémentaires, dispose librement de son temps, lui permettant notamment un travail à l'extérieur ou dans l'établissement.",
+          "Statut non spécifié."
+        ],
+        [
+          "Niveau I",
+          "200",
+          "Dessinateur d'exécution",
+          "Sort le détail de toutes les pièces d'un ensemble ; connaît les possibilités de fabrication et vérifie la possibilité de montage d'un ensemble par reconstruction.",
+          "Statut non spécifié."
+        ],
+        [
+          "Niveau II",
+          "225",
+          "Dessinateur de petites études 1er échelon",
+          "Mène à bonne fin une étude simple dont le thème lui a été proposé par écrit comportant des dessins ou croquis représentant l'organe tel qu'il est défini ou avec les améliorations qu'il lui est demandé d'y apporter.",
+          "Statut non spécifié."
+        ],
+        [
+          "240",
+          "Dessinateur d'études 1er échelon",
+          "Exécute des études d'organes (mécanique), d'installations électriques (électricité), ou faisant partie d'un projet d'ensemble de bâtiment (bâtiment). Possède les connaissances de base de sa spécialité et effectue les calculs s'y rapportant.",
+          "Statut non spécifié."
+        ],
+        [
+          "Niveau III",
+          "260",
+          "Dessinateur d'études 2e échelon",
+          "Exerce les fonctions d'un dessinateur d'étude 1er échelon dans sa spécialité, mais est, en outre, appelé à utiliser certaines connaissances relevant d'au moins l'une des deux autres spécialités mentionnées.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Ameublement : fabrication",
+      "idcc": "1411",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC015/sharp_/ANX/1411_CC015.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 10,
+      "examples": [
+        [
+          "Agents de production",
+          "Niveau I (AP 11)",
+          "Non spécifié",
+          "Exécute des tâches élémentaires simples et précises, n'exigeant pas de connaissances particulières. Nécessite une rapide mise au courant.",
+          "RAS"
+        ],
+        [
+          "Niveau II (1er échelon AP 21)",
+          "Non spécifié",
+          "Exécute des tâches répétitives ou analogues (à la main, avec outils, ou sur machine) conformément à des procédures indiquées, sans formation ni connaissance préalables. Tâches simples consistant en l'approvisionnement ou l'évacuation des postes de travail. Consignes orales ou démonstratives. Temps d'adaptation inférieur à une semaine.",
+          "RAS"
+        ],
+        [
+          "Niveau II (2ème échelon AP 22)",
+          "Non spécifié",
+          "Exécute des tâches répétitives ou analogues (à la main, avec outils, ou sur machine) conformément à des procédures indiquées, sans formation ni connaissance préalables. Tâches simples consistant en l'alimentation de machines, de postes de travail et/ou en la réalisation de tris simples. Consignes orales ou démonstratives. Temps d'adaptation de l'ordre d'une semaine.",
+          "RAS"
+        ],
+        [
+          "Niveau III (1er échelon AP 31)",
+          "Non spécifié",
+          "Exécute des travaux répétitifs ou analogues demandant une certaine connaissance et pratique. Peut aider à des travaux de niveau supérieur. Travaux demandant des connaissances de base dans une même spécialité, nécessitant de l'attention. Instructions orales ou par fiches/documents techniques simples.",
+          "CQP Garnisseur en sièges contemporains garantit un positionnement minimum à l'AP 31."
+        ],
+        [
+          "Niveau III (2ème échelon AP 32)",
+          "Non spécifié",
+          "Exécute un ensemble de travaux dans une même spécialité nécessitant des connaissances de base et un entraînement aux modes opératoires. Assure le pointage sur machine simple. Instructions orales ou par fiches/documents techniques simples.",
+          "CQP Conducteur de matériels automatisés pour la fabrication de l'ameublement garantit un positionnement minimum à l'AP 32."
+        ]
+      ]
+    },
+    {
+      "convention": "Architecture : entreprises",
+      "idcc": "2332",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC018/sharp_/ANX/2332_CC018.pdf",
+      "totalMatches": 26,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 13,
+      "examples": [
+        [
+          "1. Conception en Architecture",
+          "1",
+          "I",
+          "200",
+          "Position d'accueil",
+          "Statut non spécifié"
+        ],
+        [
+          "220",
+          "Dessinateur 1",
+          "Statut non spécifié"
+        ],
+        [
+          "240",
+          "La convention ne précise pas de libellé",
+          "Statut non spécifié"
+        ],
+        [
+          "2",
+          "I",
+          "260",
+          "Dessinateur 2 Assistant de projet 1",
+          "Statut non spécifié"
+        ],
+        [
+          "280",
+          "La convention ne précise pas de libellé",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Artistique : entreprises artistiques et culturelles",
+      "idcc": "1285",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC020/sharp_/ANX/1734_CC020.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 0,
+      "examples": []
+    },
+    {
+      "convention": "Auto moto de la Réunion",
+      "idcc": "1247",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC032/sharp_/ANX/1247_CC032.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "2",
+          "145",
+          "Personnel de magasin",
+          "Statut non spécifié"
+        ],
+        [
+          "1",
+          "140",
+          "Personnel de magasin",
+          "Statut non spécifié"
+        ],
+        [
+          "I",
+          "3",
+          "155",
+          "Personnel des ventes",
+          "Statut non spécifié"
+        ],
+        [
+          "2",
+          "145",
+          "Personnel des ventes",
+          "Statut non spécifié"
+        ],
+        [
+          "1",
+          "140",
+          "Personnel des ventes",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Automobile",
+      "idcc": "1090",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC033/sharp_/ANX/1090_CC033.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "Ouvriers-Employés",
+          "1",
+          "1",
+          "Statut non spécifié",
+          "Exécution de travaux élémentaires comparables à ceux de la vie courante, sans techniques ou équipements professionnels spécifiques.",
+          "Promotions possibles en cas de vacance ou création de poste, priorité donnée au personnel interne compétent (Article 1.07). Promotions accélérées possibles pour les ouvriers et employés les plus qualifiés (Article 3.02). Passage possible à la catégorie \"Maîtrise\" à partir de l'échelon 12 (Article 3.02). Rémunération au moins égale au minimum garanti de l'échelon (Article 1.16 a). Prime de formation-qualification pour actions de formation continue (Article 2.05). Ancienneté prise en compte pour indemnités de licenciement et de départ en retraite (Articles 2.13, 1.24).",
+          "La convention ne précise pas de spécificités régionales ou départementales pour la classification."
+        ],
+        [
+          "Maîtrise",
+          "1",
+          "17",
+          "Statut non spécifié",
+          "Responsabilité de coordination et de contrôle d'une équipe de salariés des échelons 1 ou 2.",
+          "Promotions possibles en cas de vacance ou création de poste, priorité donnée au personnel interne compétent (Article 1.07). Promotions accélérées possibles pour la maîtrise la plus qualifiée (Article 3B.02). Passage possible à la catégorie \"Cadres\" à partir de l'échelon 25 (Article 3B.02). Rémunération au moins égale au minimum garanti de l'échelon (Article 1.16 a). Ancienneté prise en compte pour indemnités de licenciement et de départ en retraite (Articles 4.11, 1.24).",
+          "La convention ne précise pas de spécificités régionales ou départementales pour la classification."
+        ]
+      ]
+    },
+    {
+      "convention": "Bâtiment : cadres (Région parisienne)",
+      "idcc": "1843",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC053/sharp_/ANX/1843_CC053.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "2e échelon - Catégorie I",
+          "108",
+          "Au moins six ans de pratique de la profession en qualité d’ingénieur ou assimilé et en pleine possession de son métier. Partant des directives données par son supérieur, doit couramment prendre des initiatives et assumer des responsabilités : pour diriger les travaux des techniciens, agents de maîtrise, dessinateurs, employés ou ingénieurs travaillant aux mêmes tâches ; pour représenter avec compétence l’entreprise auprès de toute personne ou service extérieur. Exemples : Ingénieur projeteur, Conducteur de travaux 2e échelon, Commis principal, Chef métreur, Chef comptable.",
+          "Statut non spécifié."
+        ],
+        [
+          "2e échelon - Catégorie II",
+          "120",
+          "Répond à toutes les conditions exigées de l’ingénieur ou assimilé, 2e échelon, catégorie 1, et, en outre, soit connaît à fond et se tient au courant des derniers progrès des techniques nouvelles de sa profession pour les appliquer correctement à tous les travaux de sa spécialité ; soit a fréquemment à prendre des initiatives avec la collaboration d’autres ingénieurs ou assimilés. Exemple : Ingénieur projeteur principal.",
+          "Statut non spécifié."
+        ],
+        [
+          "C",
+          "1er échelon",
+          "130",
+          "Cadres techniques, administratifs ou commerciaux placés généralement sous les ordres d’un cadre supérieur ou, dans les entreprises à structure simple, de l’employeur. Ont à diriger ou à coordonner les travaux des ouvriers, employés, techniciens, agents de maîtrise, ingénieurs ou assimilés des positions précédentes placés sous leur autorité ; ou ont des responsabilités équivalentes. Assument la pleine responsabilité de la conception, de l’organisation et du commandement du travail effectué par leur service. Dans les entreprises à structure simple, ont reçu du chef d’entreprise une délégation permanente pour un ou plusieurs objets spéciaux et limités. Exemples : Ingénieur chef de bureau d’études, Premier commis, Chef de bureau de métré, Chef du service de la comptabilité.",
+          "Statut non spécifié."
+        ],
+        [
+          "2e échelon",
+          "162",
+          "Cadres techniques ou administratifs dont les fonctions impliquent un commandement sur un nombre important de collaborateurs ingénieurs ou assimilés et cadres de toute nature, ou qui ont une compétence et des responsabilités équivalentes. Cette position comporte des responsabilités excédant notablement celles qui se présentent généralement dans les entreprises à structure simple. Exemple : Cadre qui assure entièrement l’exécution d’un grand chantier de travaux publics (tel que barrage), ou celle d’un ensemble de travaux moins importants groupés dans une région déterminée.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Bâtiment : ouvriers (Languedoc-Roussillon - 10 salariés)",
+      "idcc": "2267",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC635/sharp_/ANX/2267_CC635.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Ouvrier professionnel",
+          "Niveau II",
+          "Statut non spécifié",
+          "185"
+        ]
+      ]
+    },
+    {
+      "convention": "Bâtiment : ouvriers (Nationale > 10 salariés)(ancienne CCN)",
+      "idcc": "1597",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC040/sharp_/ANX/1597_CC040.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Niveau II : Ouvriers professionnels",
+          "Statut non spécifié",
+          "185",
+          "Exécutent les travaux courants de leur spécialité, à partir de directives générales.",
+          "Sous contrôle ponctuel. Initiative dans le choix des moyens leur permettant d’accomplir ces travaux.",
+          "Connaissances techniques de base de leur métier. Respect des règles professionnelles.",
+          "Connaissances acquises par formation professionnelle (initiale ou continue) ou expérience équivalente. Diplôme bâtiment de niveau V de l’éducation nationale."
+        ]
+      ]
+    },
+    {
+      "convention": "Bâtiment : ouvriers (Nationale ? 10 salariés)(ancienne CCN)",
+      "idcc": "1596",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC045/sharp_/ANX/1596_CC045.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "II : Ouvriers professionnels",
+          "Statut non spécifié",
+          "185",
+          "Exécutent les travaux courants de leur spécialité, à partir de directives générales.",
+          "Sous contrôle ponctuel. Ont une certaine initiative dans le choix des moyens. Peuvent assurer ponctuellement, sur instructions précises, des fonctions de représentation simple liées à l'exécution du travail quotidien.",
+          "Possèdent les connaissances techniques de base de leur métier et une qualification leur permettant de respecter les règles professionnelles.",
+          "Mettent en œuvre des connaissances acquises par formation professionnelle (initiale ou continue) ou expérience équivalente."
+        ]
+      ]
+    },
+    {
+      "convention": "Bâtiment : ouvriers (Pays de la Loire)",
+      "idcc": "2625",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC668/sharp_/ANX/2625_CC668.pdf",
+      "totalMatches": 1,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Niveau II - Ouvriers professionnels",
+          "Non spécifié",
+          "185"
+        ]
+      ]
+    },
+    {
+      "convention": "Bâtiment et Travaux publics : la Réunion",
+      "idcc": "771",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC056/sharp_/ANX/771_CC056.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "A. Ingénieur ou assimilé débutant",
+          "Moins de 24 ans",
+          "Titulaire d'un diplôme d'ingénieur reconnu par la loi ou formation équivalente, débutant dans la profession.",
+          "Statut non spécifié"
+        ],
+        [
+          "De 24 à 26 ans",
+          "Titulaire d'un diplôme d'ingénieur reconnu par la loi ou formation équivalente, débutant dans la profession. Ou, si plus de 26 ans, pendant les deux premières années d'exercice de la profession comme ingénieur ou assimilé.",
+          "Statut non spécifié"
+        ],
+        [
+          "De 26 à 28 ans",
+          "Titulaire d'un diplôme d'ingénieur reconnu par la loi ou formation équivalente, débutant dans la profession. Ou, si plus de 28 ans, pendant les troisième et quatrième années d'exercice de la profession comme ingénieur ou assimilé. À l'expiration de cette période de deux ans, bénéficie de la qualification d'ingénieur ou assimilé (Position B).",
+          "Statut non spécifié"
+        ],
+        [
+          "C. Cadres",
+          "1er échelon",
+          "Statut non spécifié",
+          "Cadres techniques, administratifs ou commerciaux, placés sous les ordres d'un cadre supérieur ou de l'employeur (entreprises à structure simple). Dirigent ou coordonnent les travaux d'ouvriers, employés, techniciens, agents de maîtrise, ingénieurs ou assimilés des positions précédentes, ou ont des responsabilités équivalentes. Assument la pleine responsabilité de la conception, de l'organisation et du commandement du travail. Peuvent avoir une délégation permanente dans les entreprises à structure simple.",
+          "Ingénieur chef de bureau d'études, Premier commis, Chef de bureau de métré, Chef du service de comptabilité"
+        ],
+        [
+          "2e échelon",
+          "Statut non spécifié",
+          "Cadres techniques ou administratifs dont les fonctions impliquent un commandement sur un nombre important de collaborateurs (ingénieurs ou assimilés et cadres de toute nature) ou qui ont une compétence et des responsabilités équivalentes. Responsabilités excédant notablement celles des entreprises à structure simple.",
+          "Cadre qui assume entièrement l'exécution d'un grand chantier de travaux publics"
+        ]
+      ]
+    },
+    {
+      "convention": "Bois d'oeuvre et produits dérivés",
+      "idcc": "1947",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC575/sharp_/ANX/1947_CC575.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "ACT 1",
+          "Statut non spécifié",
+          "100",
+          "Personnel effectuant des tâches d’exécution élémentaire sans mise en jeu de connaissances particulières, conformément à des procédures indiquées, sans initiative de la part de l’intéressé."
+        ],
+        [
+          "ACT 4",
+          "Statut non spécifié",
+          "170",
+          "Personnel effectuant ou pouvant être amené à effectuer des tâches complexes spécifiques pour lesquelles - en fonction de connaissances professionnelles acquises liées à l’utilisation de procédures, méthodes ou techniques - il analyse et interprète les données ou informations transmises pour adapter le mode de réalisation."
+        ],
+        [
+          "AM I",
+          "Statut non spécifié",
+          "190",
+          "Agent de maîtrise veillant à l’exécution des tâches dans le respect des directives. Il s’assure du respect des consignes de sécurité et a autorité pour faire appliquer les règles d’organisation interne."
+        ],
+        [
+          "À l'entrée en formation",
+          "Statut non spécifié",
+          "150"
+        ]
+      ]
+    },
+    {
+      "convention": "Boucherie Poissonnerie",
+      "idcc": "3254",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC771/sharp_/ANX/3254_CC771.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "V",
+          "Statut non spécifié",
+          "Agents de maîtrise",
+          "Responsable de laboratoire adjoint : Assiste dans toutes ses tâches le responsable de laboratoire (Niveau VII, échelon A), peut également le suppléer. Responsable de point de vente adjoint : Assiste dans toutes ses tâches le responsable de vente (Niveau VII, échelon A), peut le suppléer. Peut également assurer le fonctionnement normal d'un point de vente sous une responsabilité hiérarchique.",
+          "Les entreprises ont la faculté d'intégrer les salariés de ce niveau à la catégorie des \"cadres et assimilés\" pour le bénéfice des garanties collectives de protection sociale complémentaire (Avenant n°76 du 2024-10-24, étendu par arrêté du 2025-05-27, JO 2025-06-12)."
+        ]
+      ]
+    },
+    {
+      "convention": "Boulangerie-pâtisserie : entreprises artisanales",
+      "idcc": "843",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC079/sharp_/ANX/843_CC079.pdf",
+      "totalMatches": 36,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 18,
+      "examples": [
+        [
+          "Personnel de Fabrication",
+          "155",
+          "Personnel de fabrication sans C.A.P.",
+          "Statut non spécifié"
+        ],
+        [
+          "155",
+          "Personnel de fabrication titulaire du B.E.P.",
+          "Statut non spécifié"
+        ],
+        [
+          "160",
+          "Personnel de fabrication titulaire d'un CAP ou du CQP Tourier",
+          "Statut non spécifié"
+        ],
+        [
+          "175",
+          "Personnel de fabrication titulaire d'un CAP et d'un CQP Tourier",
+          "Statut non spécifié"
+        ],
+        [
+          "175",
+          "Personnel de fabrication titulaire d'une mention complémentaire",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Boulangerie-pâtisserie industrielle et oeufs",
+      "idcc": "3255",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC772/sharp_/ANX/3255_CC772.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "I",
+          "Statut non spécifié",
+          "60 à 66"
+        ]
+      ]
+    },
+    {
+      "convention": "Casinos",
+      "idcc": "2257",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC098/sharp_/ANX/2257_CC098.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "VII",
+          "Les responsabilités du titulaire du poste sont de même nature que celles prévues au niveau VI, mais les exigences des fonctions représentent une contribution particulièrement déterminante dans la réalisation des objectifs généraux de l’entreprise. L’occupation de ce poste entraîne de très larges initiatives et responsabilités. L’existence d’un tel poste ne se justifie que par la nature des fonctions exercées, la taille de l’entreprise, la nécessité d’une coordination entre plusieurs services, départements ou établissements, l’importance des moyens humains et financiers mis à sa disposition et la responsabilité quantitativement et qualitativement importantes pour l’entreprise de la fonction concernée.",
+          "Statut non spécifié",
+          "Directeur des jeux de table, directeur des machines à sous.",
+          "Directeur de la restauration, directeur d’exploitation, directeur technique.",
+          "Directeur commercial et/ou marketing, directeur des ressources humaines, directeur administratif et financier."
+        ]
+      ]
+    },
+    {
+      "convention": "Centres de gestion agréés",
+      "idcc": "1237",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC100/sharp_/ANX/1237_CC100.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "1 (Coeff. 200 à 210)",
+          "Statut non spécifié",
+          "Niveau de connaissance équivalent au CAP ou expérience professionnelle.",
+          "Assure des fonctions, travaux faciles à exécuter après une simple mise au courant.",
+          "Répétition de tâches caractérisées par leur simplicité, leur répétitivité ou leur analogie. Placé sous le contrôle direct d'un salarié de niveau de qualification supérieur.",
+          "200",
+          "Employé d'entretien (1er échelon), Standardiste, employé de bureau (1er échelon), Opérateur de saisie (1er échelon)"
+        ],
+        [
+          "2 (Coeff. 220 à 250)",
+          "Statut non spécifié",
+          "Emploi exigeant un niveau de formation minimum de type Baccalauréat Professionnel ou une expérience professionnelle équivalente.",
+          "D'après les instructions de travail précises et détaillées indiquant les actions à accomplir, les limites à respecter, les méthodes à utiliser, les moyens disponibles, il exécute un travail qualifié constitué par un ensemble d'opérations diverses à enchaîner de façon cohérente en fonction du résultat à atteindre.",
+          "Responsable de son propre travail dans les limites fixées ci-contre. Placé sous le contrôle direct du salarié d'un niveau de qualification supérieur.",
+          "220",
+          "Préparateur technique de dossiers effectuant la collecte et la relance des documents comptables et administratifs (1er échelon), Secrétaire (1er échelon)"
+        ],
+        [
+          "3 (Coeff. 260 à 290)",
+          "Statut non spécifié",
+          "Emploi exigeant un niveau de formation minimum de type Baccalauréat ou une expérience professionnelle équivalente.",
+          "Exécute des travaux en fonction d'instructions générales sur les modes opératoires et les buts à atteindre.",
+          "Responsable de son travail et peut avoir la responsabilité technique du travail exécuté par du personnel de qualification moindre. Placé sous le contrôle d'un salarié de niveau de qualification supérieur.",
+          "260",
+          "Assistant de formation ou d'études, spécialisé."
+        ],
+        [
+          "4 (Coeff. 300 à 380)",
+          "Statut non spécifié",
+          "Emploi exigeant un niveau de formation minimum de type BTS, DUT ou licence, ou une expérience professionnelle équivalente. Analyse et exploitation d'informations diverses. Nécessite des connaissances théoriques et pratiques.",
+          "Dispose d'une certaine initiative sur le choix des moyens et des méthodes en fonction d'instruction à caractère général.",
+          "Responsable de son propre travail, il peut aussi assurer la responsabilité technique du travail exécuté par du personnel de qualification moindre.",
+          "300",
+          "Comptable au sein du centre (1er échelon)"
+        ]
+      ]
+    },
+    {
+      "convention": "Chimie : industries",
+      "idcc": "44",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC114/sharp_/ANX/44_CC114.pdf",
+      "totalMatches": 22,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 11,
+      "examples": [
+        [
+          "I",
+          "130",
+          "Exécution de travaux ne demandant qu'une mise au courant sommaire.",
+          "Ouvrier, Employé, Technicien",
+          "Travaux élémentaires, souvent répétitifs, indépendants les uns des autres, effectués suivant des consignes précises, détaillées et contrôlables immédiatement. Connaissances acquises au cours de la scolarité obligatoire.",
+          "Statut non spécifié"
+        ],
+        [
+          "II",
+          "150",
+          "Exécution de travaux qualifiés courants.",
+          "Ouvrier, Employé, Technicien",
+          "Exécution de travaux qui constituent une suite ordonnée d'opérations effectuées suivant les instructions. Connaissances sanctionnées par un CAP ou un BEP.",
+          "Statut non spécifié"
+        ],
+        [
+          "160",
+          "Exécution de travaux qualifiés nécessitant la mise en œuvre d'une bonne connaissance du métier acquise par une expérience suffisante.",
+          "Statut non spécifié"
+        ],
+        [
+          "III",
+          "175",
+          "Mise en œuvre de moyens connus, d'une expérience particulière du métier et de l'esprit d'initiative pour exécuter des travaux comportant des difficultés techniques d'un bon niveau.",
+          "Ouvrier, Employé, Technicien",
+          "Exécution d'un programme d'opérations complexes du fait de leur technicité ou de leur diversité. Opérations effectuées selon des modalités générales d'utilisation de moyens connus. Connaissances acquises à l'issue de trois années au-delà de la troisième, sanctionnées par le baccalauréat.",
+          "Statut non spécifié"
+        ],
+        [
+          "190",
+          "Mise en œuvre de moyens connus et diversifiés pour exécuter des travaux requérant des initiatives et des connaissances professionnelles étendues.",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Cinéma : auditoriums cinématographiques (cadres, agents de maîtrise et assistants)",
+      "idcc": "388",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC129/sharp_/ANX/388_CC129.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "Enduiseur",
+          "Agent de maîtrise",
+          "Statut non spécifié",
+          "276",
+          "Assure le fonctionnement de la machine à enduire. Il est responsable du bon fonctionnement de cette machine, de son réglage et de la qualité technique de l’enduit; il assure le nettoyage des organes de la machine et, éventuellement, le lavage des copies."
+        ],
+        [
+          "Agent technique d’entretien",
+          "Agent de maîtrise",
+          "Statut non spécifié",
+          "276",
+          "Titulaire du brevet de technicien de la cinématographie, assure l’entretien du matériel sous la direction de l’ingénieur d’entretien ou du chef d’établissement."
+        ],
+        [
+          "Ingénieur diplômé chargé de l’entretien",
+          "Cadre",
+          "Statut non spécifié",
+          "475",
+          "Cadre possédant le diplôme d’ingénieur. Assure entre autres le dépannage, mesure, étudie et modifie si nécessaire les chaînes électro-acoustiques et la réponse acoustique des studios. Il travaille en collaboration avec le chef opérateur et est responsable auprès de la direction de l’établissement de la bonne marche des circuits et du matériel."
+        ]
+      ]
+    },
+    {
+      "convention": "Commerce de détail et de gros à prédominance alimentaire",
+      "idcc": "2216",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC620/sharp_/ANX/2216_CC620.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "Niveau 9",
+          "Statut non spécifié",
+          "Fonctions de responsabilités majeures, participation à la définition de la politique de l'entreprise."
+        ],
+        [
+          "Niveau 5",
+          "Statut non spécifié",
+          "13,461",
+          "2 041,63",
+          "2 143,66",
+          "RAS",
+          "27 868"
+        ],
+        [
+          "Niveau 6",
+          "Statut non spécifié",
+          "14,229",
+          "2 158,11",
+          "2 265,97",
+          "RAS",
+          "29 458"
+        ],
+        [
+          "Niveau 7",
+          "Statut non spécifié",
+          "18,471",
+          "2 801,50",
+          "2 941,51",
+          "RAS",
+          "38 240"
+        ],
+        [
+          "Niveau 8",
+          "Statut non spécifié",
+          "24,825",
+          "3 765,21",
+          "3 953,38",
+          "RAS",
+          "51 394"
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de détail alimentaires et non alimentaires : Loiret",
+      "idcc": "1042",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC136/sharp_/ANX/1042_CC136.pdf",
+      "totalMatches": 28,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 20,
+      "examples": [
+        [
+          "1re catégorie",
+          "Statut non spécifié",
+          "Vendeur ou vendeuse débutant",
+          "Ayant moins de trois mois de pratique professionnelle."
+        ],
+        [
+          "Femme de ménage",
+          "Non spécifié"
+        ],
+        [
+          "Veilleur de nuit",
+          "Non spécifié"
+        ],
+        [
+          "Étiqueteuse",
+          "Non spécifié"
+        ],
+        [
+          "Marqueuse",
+          "Non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de détail non alimentaires (Convention collective nationale)",
+      "idcc": "1517",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC138/sharp_/ANX/1517_CC138.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "1",
+          "Statut non spécifié",
+          "Emploi qui n'exige pas de compétences spécifiques ni de connaissances particulières et sans formation dans le métier",
+          "Exécute des tâches simples et répétitives concernant une seule activité. L'adaptation à l'emploi est immédiate.",
+          "Exécute des tâches courantes dans le respect des instructions, applique les consignes détaillées.",
+          "Emploi qui nécessite de savoir communiquer sur des sujets courants : écouter, informer et formuler.",
+          "- Employé(e) de vente ou de magasin débutant- Employé(e) de bureau débutant- Employé(e) de nettoyage- Manutentionnaire débutant(e)- Ouvrier(ère) débutant(e)- Employé(e) d'atelier débutant(e)"
+        ],
+        [
+          "2",
+          "Statut non spécifié",
+          "Emploi qui requiert un minimum de connaissance professionnelle correspondant à un niveau de formation CAP ou BEP (niveau V de l'éducation nationale) ou équivalent ou résultant d'une expérience professionnelle équivalente. Compétences simples mais permettant de tenir plusieurs postes de niveau 1.",
+          "Exécute des tâches simples, répétitives et variées concernant plusieurs filières ou activités limitées à deux postes ou exécute des tâches relatives à une seule activité mais plus complexes qu'au niveau 1. Adaptation à l'emploi ne dépassant pas une semaine.",
+          "Fait preuve d'initiative, applique des consignes générales nécessitant des adaptations occasionnelles, dans la limite des directives et des procédures.",
+          "Emploi qui nécessite de savoir communiquer sur des sujets courants et coopérer.",
+          "- Employé(e) de vente ou de magasin- Employé(e) de caisse (opérations de caisse de base)- Hôte(sse) d'accueil- Aide étalagiste- Employé(e) de bureau- Standardiste- Manutentionnaire- Chargé(e) de réception- Préparateur(trice) de commande- Chauffeur livreur VL- Coursier- Employé(e) d'atelier- Employé(e) de S.A.V.- Ouvrier(ère)- Ouvrier(ère)-réparateur(trice)"
+        ],
+        [
+          "3",
+          "Statut non spécifié",
+          "Emploi qui requiert un minimum de connaissance professionnelle correspondant à un niveau de formation équivalent au Baccalauréat général, technologique ou professionnel ou Brevet Professionnel ou avec une année d'étude supérieure (niveau IV de l'Éducation Nationale) ou résultant d'une expérience professionnelle équivalente. Compétences globales sur l'ensemble de l'activité relative au poste occupé.",
+          "Effectue des opérations plus élaborées relatives à une seule activité ou effectue des opérations variées concernant plusieurs postes de niveau inférieur. Adaptation à l'emploi correspondant à plusieurs semaines.",
+          "Fait preuve d'initiative dans les tâches qui lui sont confiées. Responsabilité limitée aux décisions prises dans le respect des procédures.",
+          "Emploi qui nécessite de savoir communiquer et coopérer sur l'ensemble des tâches qui lui sont confiées.",
+          "- Vendeur(se)- Conseiller(ère) de vente ou d'achat- Caissier(ère) ou hôte(sse) de caisse (effectue l'arrêté des comptes de la caisse)- Hôte(sse) d'accueil- Étalagiste- Employé(e) de Marchandising- Animateur(trice)/Démonstrateur(trice)- Aide comptable- Secrétaire ou Assistante- Standardiste bilingue- Employé(e) administratif- Documentaliste- Magasinier- Réceptionnaire- Agent de maintenance- Chargé de réception qualifié(e)- Préparateur(trice) de commande qualifié(e)- Ouvrier(ère) Professionnel(le)- Technicien(ne)"
+        ],
+        [
+          "4",
+          "Statut non spécifié",
+          "Emploi qui requiert un minimum de connaissance professionnelle correspondant un niveau de formation équivalent au moins à BAC+2 (niveau III de l'Éducation Nationale) ou résultant d'une expérience professionnelle équivalente. Compétences globales sur l'ensemble de l'activité relative au poste occupé et complétées par une spécialisation.",
+          "Effectue des opérations qualifiées nécessitant une bonne technicité et une spécialisation ou effectue des opérations qualifiées nécessitant une polyvalence sur plusieurs postes de niveaux inférieurs.",
+          "Fait preuve d'initiative dans la résolution des problèmes. Responsabilité limitée aux décisions d'adaptations prises dans le respect des directives et des procédures.",
+          "Emploi qui nécessite de savoir communiquer sur des sujets propres à leur métier, coopérer, former dans son domaine de compétence.",
+          "- Vendeur(se) qualifié(e)- Conseiller(ère) de vente ou d'achat qualifié(e)- Caissier(ère) ou hôte(sse) de caisse qualifié(e) (gère toutes les opérations de caisse même les plus complexes)- Étalagiste qualifié(e)- Assistant(e) Achats- Assistant(e) Marketing- Marchandiseur(se)- Aide Comptable qualifié(e)- Secrétaire ou Assistant(e) qualifié(e)- Assistant(e) administratif- Secrétaire bilingue- Employé(e) administratif qualifié(e)- Assistant(e) informatique- Archiviste/Documentaliste- Logisticien(ne)- Gestionnaire approvisionnement- Préparateur(trice) cariste- Assistant(e) technique- Ouvrier(ère) Professionnel(le) qualifié(e)- Technicien(ne) qualifié(e)"
+        ],
+        [
+          "5",
+          "Statut non spécifié",
+          "Emploi qui requiert des connaissances professionnelles reconnues par un diplôme d'étude supérieure de niveau BTS, DUT, DEUG ou équivalent (niveau III de l'Éducation Nationale) ou une expérience professionnelle confirmée. Emploi exigeant des compétences générales d'animation d'équipe ou des compétences spécialisées dans une filière ou activité.",
+          "Effectue des opérations complexes liées à l'animation d'une équipe ou à un poste spécialisé dans une activité nécessitant la connaissance et l'expérience professionnelle correspondantes.",
+          "Autonomie dans les tâches confiées. Aide à l'animation et à la coordination de l'activité de plusieurs salariés sous la responsabilité d'un salarié de niveau supérieur. Responsabilité étendue à l'organisation des tâches et la fixation des priorités.",
+          "Emploi qui nécessite de savoir communiquer sur des sujets complexes, coopérer, former dans son domaine de compétence.",
+          "- Vendeur(se) hautement qualifié(e)- Vendeur(se) spécialisé(e)- Étalagiste - Décorateur(trice)- Vendeur(se) principal(e)- Assistant(e) Marketing Qualifié(e)- Assistant(e) Achat Qualifié(e)- Animateur(trice) d'équipe (magasin)- Comptable- Secrétaire de direction- Assistant(e) administratif(ive) qualifié(e)- Assistant(e) informatique qualifié(e)- Archiviste/Documentaliste qualifié(e)- Animateur(trice) d'équipe (ou service)- Responsable de la réception- Logisticien(ne) Qualifié(e)- Préparateur(trice) cariste qualifié(e)- Assistant(e) technique qualifié(e)- Animateur(trice) d'équipe (technique ou logistique)- Ouvrier(ère) Professionnel(le)- Technicien(ne) Hautement Qualifié(e)- Animateur(trice) d'équipe (atelier)"
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de détail non alimentaires : Ain",
+      "idcc": "1240",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC142/sharp_/ANX/1240_CC142.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "1",
+          "Personnel de nettoyage, veilleur de nuit sans ronde.",
+          "Statut non spécifié."
+        ],
+        [
+          "8",
+          "Comptable 2e échelon, secrétaire de direction.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de détail non alimentaires : Meurthe-et-Moselle",
+      "idcc": "814",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC149/sharp_/ANX/814_CC149.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "V",
+          "Anciennes catégories 111 et 112. Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de détail non alimentaires : Morbihan",
+      "idcc": "1343",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC151/sharp_/ANX/1343_CC151.pdf",
+      "totalMatches": 75,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 32,
+      "examples": [
+        [
+          "Retoucheuse",
+          "Retoucheuse (débutante)",
+          "Non spécifié",
+          "Ouvrière qui travaille exclusivement à l'atelier et à titre exceptionnel est apte à prendre des retouches simples sur un client.",
+          "Jusqu'à 1 an (III)"
+        ],
+        [
+          "Retoucheuse qualifiée",
+          "Non spécifié",
+          "Statut non spécifié",
+          "Statut non spécifié"
+        ],
+        [
+          "Retoucheuse confirmée",
+          "Non spécifié",
+          "Après trois ans de pratique professionnelle",
+          "Après trois ans de pratique professionnelle"
+        ],
+        [
+          "Retoucheuse",
+          "V",
+          "Capable de démonter et de remonter un manteau-dame ou une veste tailleur dame et le faisant habituellement.",
+          "Statut non spécifié"
+        ],
+        [
+          "Retoucheuse",
+          "VI",
+          "Capable de démonter et de remonter une veste d'homme et un pantalon d'homme et le faisant habituellement.",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de détail non alimentaires : Rennes",
+      "idcc": "894",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC139/sharp_/ANX/894_CC139.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 6,
+      "examples": [
+        [
+          "1ère",
+          "Vendeur débutant ayant moins de trois mois de pratique professionnelle.",
+          "Non spécifié",
+          "Pratique professionnelle < 3 mois",
+          "Vendeur débutant"
+        ],
+        [
+          "2ème",
+          "Vendeur après trois mois de pratique professionnelle, vendeur débutant titulaire du CAP jusqu'à six mois de pratique professionnelle, employé administratif débutant moins de six mois de pratique.",
+          "Non spécifié",
+          "Pratique professionnelle > 3 mois, CAP, débutant",
+          "Vendeur, employé administratif, sténodactylographe, standardiste, manutentionnaire (petite manutention), veilleur de nuit (sans ronde), étiqueteur marqueur, liftier"
+        ],
+        [
+          "3ème",
+          "Vendeur après douze mois de pratique professionnelle, vendeur titulaire du CAP après six mois de pratique professionnelle, hôtesse d’accueil débutante.",
+          "Non spécifié",
+          "Pratique professionnelle > 12 mois, CAP, débutant",
+          "Vendeur, hôtesse d’accueil, retoucheuse, employé administratif, sténodactylographe, standardiste, manutentionnaire (petite manutention/force/réserviste), livreur, veilleur de nuit (avec ronde), étiqueteur marqueur, empaqueteur, emballeur, liftier, personnel d'entretien"
+        ],
+        [
+          "4ème",
+          "Vendeur qualifié après trois ans de pratique professionnelle, vendeur débiteur après trois ans de pratique professionnelle, hôtesse d’accueil.",
+          "Non spécifié",
+          "Pratique professionnelle > 3 ans, qualifié",
+          "Vendeur (qualifié/débiteur), hôtesse d’accueil, retoucheuse, aide étalagiste, étiquettiste (machine Tiflex), étalagiste, employé administratif, sténodactylographe, caissier, standardiste, manutentionnaire (force/réserviste), livreur encaisseur, chauffeur VL"
+        ],
+        [
+          "5ème",
+          "Vendeur très qualifié, hôtesse d’accueil donnant des renseignements, retoucheuse ayant trois ans de pratique professionnelle.",
+          "Non spécifié",
+          "Pratique professionnelle > 3 ans, très qualifié, spécialisé",
+          "Vendeur, hôtesse d’accueil, retoucheuse, étalagiste, employé administratif, caissier (magasin/libre-service), manutentionnaire réceptionnaire, livreur encaisseur monteur, chauffeur PL, cariste"
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de gros",
+      "idcc": "573",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC158/sharp_/ANX/573_CC158.pdf",
+      "totalMatches": 16,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 8,
+      "examples": [
+        [
+          "I",
+          "1",
+          "Statut non spécifié",
+          "Exécution de tâches simples selon des consignes précises, aucune formation spécifique requise.",
+          "Employé de magasinage, Employé de conditionnement, Agent de propreté, Gardien"
+        ],
+        [
+          "II",
+          "1",
+          "Statut non spécifié",
+          "Pratique encadrée d'un savoir-faire acquis par l'expérience ou une formation de base.",
+          "Cariste, Préparateur, Emballeur empaqueteur, Chauffeur-livreur, Employé de bureau, Aide technique"
+        ],
+        [
+          "III",
+          "1",
+          "Statut non spécifié",
+          "Maîtrise des procédures et prise d'initiative pour s'adapter aux situations courantes.",
+          "Préparateur vendeur, Réceptionnaire-vérificateur, Assistant-approvisionneur, Chauffeur livreur qualifié, Cariste qualifié, Personnel d'accueil, Employé commercial, Employé marketing, Preneur d'ordres, assistant de vente, Employé administratif, Agent de comptabilité, Agent technique, Coupeur vérificateur, Vendeur, Aide comptable"
+        ],
+        [
+          "IV",
+          "1",
+          "Statut non spécifié",
+          "Mise en œuvre de techniques et méthodes, prise d'initiative avec autonomie pour atteindre un objectif spécifique.",
+          "Assistant à la gestion des stocks, Chauffeur livreur avec action commerciale, Assistant commercial, Vendeur, Acheteur, Assistant administratif, Agent de comptabilité qualifié, Agent d'exploitation informatique, Agent technique qualifié, Employé très qualifié des services administratifs, commerciaux, comptables, achat, Assistant commercial, Hôte(esse) show-room"
+        ],
+        [
+          "V",
+          "1",
+          "Technicien, Statut non spécifié",
+          "Réalisation de travaux très qualifiés, organisation, relations avec autres services.",
+          "Gestionnaire de stocks, Magasinier principal, Vendeur qualifié, Acheteur qualifié, Assistant administratif qualifié, Comptable, Informaticien qualifié, Technicien qualifié, Technico-commercial, Chef de produit (grand public moyenne gamme) , Comptable, Attaché commercial, Assistant(e) de direction, Styliste, Acheteur(se), Chef de coupe, Chef de service échantillonnage"
+        ]
+      ]
+    },
+    {
+      "convention": "Commerces de gros et de détail alimentaires et non alimentaires : Sarthe",
+      "idcc": "239",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC163/sharp_/ANX/239_CC163.pdf",
+      "totalMatches": 54,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 27,
+      "examples": [
+        [
+          "Vendeur(se) technique / hautement qualifié(e)",
+          "VIII",
+          "Spécialisé(e) en permanence dans un rayon, un magasin, dans la vente d'articles qui nécessitent des connaissances techniques particulières en raison de leur destination et de leurs conditions d'emploi.",
+          "Statut non spécifié"
+        ],
+        [
+          "Étalagiste",
+          "Aide-étalagiste",
+          "IV",
+          "Ne possède pas de qualification professionnelle particulière, exécute exclusivement des travaux simples d'étalage courant.",
+          "Statut non spécifié"
+        ],
+        [
+          "Étalagiste",
+          "VI",
+          "Employé(e) chargé exclusivement de préparer et réaliser des présentations en vitrines et sur comptoirs.",
+          "Statut non spécifié"
+        ],
+        [
+          "Étalagiste décorateur",
+          "VII",
+          "Est chargé de préparer et réaliser des présentations en vitrines et sur comptoirs ; de plus, conçoit et réalise les décorations en vitrine ou sur comptoirs.",
+          "Statut non spécifié"
+        ],
+        [
+          "Comptabilité",
+          "Aide-comptable 1er échelon",
+          "IV",
+          "Exécute dans un bureau de comptabilité et suivant les directives du comptable tous les travaux élémentaires de chiffrage ne nécessitant pas la connaissance du mécanisme comptable.",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Commissaires de justice et sociétés de ventes volontaires",
+      "idcc": "3250",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC766/sharp_/ANX/3250_CC766.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "Échelon 2",
+          "215",
+          "Exercice d'un métier ne nécessitant pas de diplôme particulier ; sans autonomie ; requérant une certaine technicité",
+          "Statut non spécifié",
+          "Sans autonomie, Technicité",
+          "Appariteur"
+        ],
+        [
+          "Niveau 3",
+          "Échelon 1",
+          "270",
+          "Exercice d'un métier nécessitant a minima un diplôme, titre ou certification équivalent de BAC + 2 ; sans autonomie particulière ; requérant une certaine technicité",
+          "Statut non spécifié",
+          "BAC+2, Technicité",
+          "Assistants spécialisés (export / shipping)Responsable de parc /d'entrepôt/de services générauxWebmaster/photographe"
+        ],
+        [
+          "Échelon 2",
+          "231",
+          "Statut non spécifié",
+          "Clerc significateur titulaire de la CQP ou d'une ancienneté de 5 ansGestionnaire de dossierAdministrateur des ventesDocumentaliste"
+        ]
+      ]
+    },
+    {
+      "convention": "Coopération maritime",
+      "idcc": "2494",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC651/sharp_/ANX/2494_CC651.pdf",
+      "totalMatches": 14,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 14,
+      "examples": [
+        [
+          "Ouvriers / Employés",
+          "Niveau I",
+          "1",
+          "Non spécifié",
+          "Emploi se caractérisant par l'exécution de travaux élémentaires comparables à ceux de la vie courante et qui ne nécessitent pas d'utilisation de techniques ou d'équipements professionnels spécifiques."
+        ],
+        [
+          "2",
+          "Non spécifié",
+          "Emploi se caractérisant par l'exécution de tâches simples ne nécessitant pas une adaptation longue selon des directives précises."
+        ],
+        [
+          "Niveau II",
+          "1",
+          "Non spécifié",
+          "Emploi comportant la réalisation de tâches de difficulté moyenne, réalisées dans le cadre de modes opératoires connus et avec l'assistance d'un responsable technique."
+        ],
+        [
+          "2",
+          "Non spécifié",
+          "Emploi comportant la réalisation de tâches nécessitant une compétence technique dans le cadre de modes opératoires connus et sous le contrôle d'un responsable technique."
+        ],
+        [
+          "Niveau III",
+          "1",
+          "Non spécifié",
+          "Emploi nécessitant une parfaite technique dans la spécialité et une connaissance des techniques voisines. Organise son travail de façon autonome pour atteindre les objectifs fixés."
+        ]
+      ]
+    },
+    {
+      "convention": "Crédit agricole",
+      "idcc": "7501",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC552/sharp_/ANX/7501_CC552.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "Classe I",
+          "C",
+          "4",
+          "Responsabilité dans la réalisation de plusieurs activités variées, application de règles établies.",
+          "Statut non spécifié",
+          "Mobilisation autour des activités confiées et des principales priorités fixées ; Contribution à l'utilité clients, la qualité des prestations et relations ; Contribution à l'efficacité collective et à la fluidité du fonctionnement ; Engagement personnel, esprit d'équipe et sens du service.",
+          "Vente et Assistance ; Assistance (Relation client et appui commercial) ; Assistance (Fonctions supports)"
+        ],
+        [
+          "Classe II",
+          "D",
+          "5",
+          "Responsabilité dans la réalisation et la participation à la réalisation de nombreuses activités variées, participation à la définition des règles liées à ces activités.",
+          "Statut non spécifié",
+          "Cf. Classe I + Niveau d'enrichissement et d'élargissement des activités du métier ; Niveau d'autonomie et d'anticipation dans l'exercice du métier ; Niveau d'expertise supplémentaire reconnue ; Qualité et fréquence des initiatives dans l'activité et dans l'équipe ; Niveau de contribution aux performances de l'équipe.",
+          "Assistance et conseils (Relation Client et Conseil) ; Assistance et conseils techniques (Relation client et appui commercial) ; Assistance et conseils techniques (Fonctions supports)"
+        ]
+      ]
+    },
+    {
+      "convention": "Déchets",
+      "idcc": "2149",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC176/sharp_/ANX/2149_CC176.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "V",
+          "1",
+          "170",
+          "Statut non spécifié",
+          "Statut non spécifié",
+          "Statut non spécifié",
+          "Statut non spécifié",
+          "CADRES"
+        ]
+      ]
+    },
+    {
+      "convention": "Dentaires : cabinets",
+      "idcc": "1619",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC177/sharp_/ANX/1619_CC177.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Personnel d'entretien",
+          "Statut non spécifié",
+          "Assure le ménage et l'entretien des locaux professionnels et de leurs voies d'accès (sols, murs, portes, vitres, etc.). En cas de nécessité impérative occasionnée par la pratique journalière, le réceptionniste ou l'hôtesse d'accueil, l'aide dentaire, l'assistant stagiaire ou qualifié doivent assumer ces fonctions.",
+          "Taux horaire minimum : 11,88 € (au 01/01/2025). Bénéficie de la prime d'ancienneté."
+        ]
+      ]
+    },
+    {
+      "convention": "Dentaires : prothésistes et laboratoires de prothèse dentaire",
+      "idcc": "993",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC179/sharp_/ANX/993_CC179.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "Personnels de Service",
+          "RAS",
+          "Statut non spécifié",
+          "Employé n'ayant pas de fonction directe de production dans le laboratoire (ex: coursier, personnel d'entretien).",
+          "RAS",
+          "1 837,00 €",
+          "RAS"
+        ],
+        [
+          "Secrétaire Administrative - Aide Comptable",
+          "RAS",
+          "Statut non spécifié",
+          "Salarié(e) employé(e) à des tâches de réception, de facturation et à des travaux administratifs simples et/ou qui exécute tous les travaux de comptabilité courants de laboratoire, à l'exception des centralisations des journaux et de l'établissement des bilans.",
+          "RAS",
+          "1 854,00 €",
+          "RAS"
+        ],
+        [
+          "Comptable",
+          "RAS",
+          "Statut non spécifié",
+          "Enregistre et traite des informations relatives aux mouvements financiers de l'entreprise. Rend compte en termes monétaires ou financiers de l'activité économique (tenue des livres de paye, journal, compte d'exploitation).",
+          "RAS",
+          "2 000,00 €",
+          "RAS"
+        ],
+        [
+          "Employé en prothèse dentaire",
+          "RAS",
+          "Statut non spécifié (ne possédant pas de diplôme professionnel en prothèse dentaire)",
+          "Fonction directe de production dans le laboratoire, n'effectuant pas de travaux nécessitant les connaissances d'un technicien en prothèse dentaire.",
+          "Accède à la catégorie \"Auxiliaire en prothèse dentaire\" après 3 ans d'expérience dans cette catégorie (dans une ou plusieurs entreprises).",
+          "1 849,00 €",
+          "RAS"
+        ],
+        [
+          "Responsable de secteur",
+          "RAS",
+          "Statut non spécifié (compétences de management et d'encadrement)",
+          "Possède les compétences de management et d'encadrement d'équipes et une expérience professionnelle dans le secteur concerné. A la responsabilité d'un secteur défini au sein du laboratoire, organise, contrôle le travail et dirige les salariés de ce secteur.",
+          "RAS",
+          "2 701,00 €",
+          "RAS"
+        ]
+      ]
+    },
+    {
+      "convention": "Développement économique : organismes",
+      "idcc": "2070",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC373/sharp_/ANX/2070_CC373.pdf",
+      "totalMatches": 7,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "1",
+          "Accueil, secrétaire",
+          "Non spécifié",
+          "Assure l'accueil téléphonique et physique. Collaborateur avec bonnes connaissances en bureautique, capable d'accomplir tâches administratives (dossier, fichiers, classement, agenda, revue de presse) et de rédiger sur instruction sommaire (correspondance, compte rendu).",
+          "CAP, BEP, Baccalauréat professionnel.",
+          "110"
+        ],
+        [
+          "2",
+          "Secrétaire principale - aide comptable",
+          "Non spécifié",
+          "Collaborateur avec technique très sûre des outils bureautiques, capable d'accomplir travaux administratifs variés, notamment rédaction courante (correspondance, compte rendu).",
+          "Baccalauréat professionnel, BTS, DUT ou expérience équivalente.",
+          "110"
+        ],
+        [
+          "3",
+          "Secrétaire de direction - comptable - assistant(e)",
+          "Non spécifié",
+          "Secrétaire avec expérience confirmée, qualités d'ordre, méthode et initiative pour travail à responsabilité importante (comptabilité). Capable de rédiger correspondance courante et procès-verbal de réunion. Peut être multilingue.",
+          "Diplôme d'enseignement supérieur (DUT, BTS) ou expérience équivalente.",
+          "135"
+        ],
+        [
+          "6",
+          "Directeur - chef de mission - chef de projet - Directeur avec spécificité",
+          "Non spécifié",
+          "Collaborateur à expérience confirmée assumant fonctions d'organisation, d'animation et de réalisation technique dans les principaux champs d'intervention de la structure.",
+          "Formation supérieure et expérience en rapport avec le type de mission confiée (très expérimenté, forte spécialité).",
+          "256"
+        ],
+        [
+          "8",
+          "Fonctions spécifiques",
+          "Non spécifié",
+          "Fonctions liées à des missions particulières ne répondant pas aux définitions précédentes. Postes assimilés aux emplois-types de la nomenclature selon les conditions de responsabilité et niveaux de rémunération envisagés.",
+          "Non spécifié (dépend de l'assimilation).",
+          "Non spécifié (dépend de l'assimilation)."
+        ]
+      ]
+    },
+    {
+      "convention": "Distilleries viticoles (coopératives et union) et distillation (SICA)",
+      "idcc": "7503",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC553/sharp_/ANX/7503_CC553.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Ouvriers et Employés Spécialisés",
+          "1",
+          "400 à 427",
+          "Manœuvre, manutentionnaire, personnel chargé du nettoyage des locaux et/ou des abords",
+          "Statut non spécifié",
+          "Tâches simples, peu ou très peu d'adaptation, pas de connaissances particulières."
+        ]
+      ]
+    },
+    {
+      "convention": "Distribution directe",
+      "idcc": "2372",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC181/sharp_/ANX/2372_CC181.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "Cadres",
+          "3.1",
+          "Salariés possédant une compétence technique, administrative, juridique, commerciale et/ou financière et exerçant par délégation de l’employeur une responsabilité technique sur un secteur d’activité et/ou un commandement sur les collaborateurs. Cadre diplômé ou cadre acquérant cette qualité par expérience. Participe à l’organisation et au fonctionnement d’un service. Peut diriger une équipe ou un service.",
+          "Cadres administratifs, comptables ou informatiques, Cadre Commercial, Responsable de centre/Chargé de recrutement.",
+          "Statut non spécifié."
+        ],
+        [
+          "3.3",
+          "Niveau de cadre expérimenté. Assume la responsabilité de l’organisation, de l’activité, de la discipline et, en général, du fonctionnement d’un ou plusieurs services.",
+          "Directeurs Régionaux Commerciaux et/ou techniques.",
+          "Statut non spécifié."
+        ],
+        [
+          "Cadres de direction d’entreprise",
+          "Ces cadres ont la responsabilité de l’activité opérationnelle qui leur est confiée au niveau de l’ensemble de l’entreprise. Ils sont placés hors classification.",
+          "Cadres supérieurs participant à l’élaboration de la politique et la stratégie de l’entreprise.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Édition",
+      "idcc": "2121",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC186/sharp_/ANX/2121_CC186.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "VIII",
+          "L'occupation de ce poste entraîne de larges initiatives et responsabilités. Il/elle assure par délégation directe d'un supérieur hiérarchique ou de l'employeur la charge d'un ou plusieurs services et dispose d'une large autonomie d'action, de jugement et d'initiative.",
+          "Il/elle exerce une responsabilité d'ensemble sur un groupe ou un secteur. Il/elle est en mesure de faire preuve d'une capacité particulière d'innovation et d'expertise. Ce niveau peut correspondre à la reconnaissance d'un niveau d'expertise lié à une compétence professionnelle particulière.",
+          "Statut non spécifié",
+          "Cadre"
+        ],
+        [
+          "IX",
+          "Les responsabilités du titulaire du poste sont de même nature que celle prévues pour le niveau VIII.",
+          "L'existence d'un tel poste ne se justifie que par la nature des fonctions exercées, la taille de l'entreprise, la nécessité d'une coordination entre plusieurs services, départements ou établissements, l'importance des moyens humains et financiers mis à sa disposition, et, la responsabilité quantitativement et qualitativeement importantes, pour l'entreprise, de la fonction concernée.",
+          "Statut non spécifié",
+          "Cadre"
+        ],
+        [
+          "I",
+          "Niveau modeste de position hiérarchique et niveau faible d'autonomie. Certains emplois ne nécessitent pas de compétences particulières.",
+          "Diplôme de niveau V (CAP-BEP) ou diplôme de niveau IV (BAC général, technologique, professionnel) ou expérience professionnelle équivalente.",
+          "Statut non spécifié"
+        ],
+        [
+          "II.A",
+          "Niveau modeste et/ou moyen de position hiérarchique et niveau modeste d'autonomie.",
+          "Diplôme de niveau III (BTS - DUT) ou expérience professionnelle équivalente.",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Espaces de loisirs, d'attractions et culturels",
+      "idcc": "1790",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC389/sharp_/ANX/1790_CC389.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "4",
+          "300",
+          "Employé - Ouvrier - Opérateur",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Fleuristes, vente et services des animaux familiers",
+      "idcc": "1978",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC203/sharp_/ANX/1978_CC203.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "I : Personnels sans qualification professionnelle",
+          "1er",
+          "110",
+          "D'après des consignes simples et détaillées, données, expliquées et commentées, fixant la nature du travail et les modes opératoires à appliquer, elle/il exécute des tâches caractérisées par leur simplicité ou leur répétitivité conformément à des procédures indiquées et dans le respect des consignes d'hygiène et de sécurité. Elle/il est placé(e) sous le contrôle direct d'un supérieur hiérarchique auprès duquel elle/il peut avoir un recours permanent.",
+          "ACACED (Attestation de connaissance des animaux de compagnie d'espèces domestiques), Certificat de capacité animaux non-domestiques, CQP Agent animalier Gardien d'animaux, CQP Assistant Toiletteur.",
+          "Employé(e) administratif(tive), Personnel d'accueil F/H",
+          "Employé(e) d'atelier, Employé(e) de fabrication, Vendeur(euse) débutant(e), Employé(e) libre service débutant(e), Livreur(euse) débutant(e), Technicien(ne) de surface, Manœuvre F/H, Manutentionnaire F/H.",
+          "Agent d'entretien des locaux F/H, Agent animalier F/H, Manœuvre F/H, Manutentionnaire F/H, Employé(e) libre service débutant(e), Vendeur(euse) débutant(e), Employé(e) d'atelier, Employé(e) de fabrication, Réceptionnaire F/H, Livreur(euse) débutant(e), Préparateur(trice) de commande.",
+          "Statut non spécifié"
+        ],
+        [
+          "2ème",
+          "120",
+          "Employé(e) administratif(tive), Personnel d'accueil F/H, Personnel de gardiennage H/F",
+          "Employé(e) d'atelier, Employé(e) de fabrication, Vendeur(euse) débutant(e), Employé(e) libre service, Livreur(euse) débutant(e), Technicien(ne) de surface, Manœuvre F/H, Manutentionnaire F/H, Assistant(e) magasinier, Installateur(trice) débutant(e), Hôte(esse) de caisse débutant(e)",
+          "Agent d'entretien des locaux F/H, Agent animalier F/H, Technicien(ne) de surface, Manœuvre F/H, Manutentionnaire F/H, Employé(e) libre service, Vendeur(euse) débutant(e), Employé(e) d'atelier, Employé(e) de fabrication, Réceptionnaire F/H, Livreur(euse), Assistant(e) magasinier, Hôte(esse) de caisse débutant(e), Installateur(trice) débutant(e), Préparateur(trice) de commande.",
+          "Statut non spécifié"
+        ],
+        [
+          "3ème",
+          "630",
+          "Assistant(e) de direction, Chef/ Responsable comptable F/H, Gestionnaire de paie F/H, Responsable du personnel F/H, Contrôleur(euse) de gestion",
+          "Fleuriste expert(e), Chef d'atelier F/H, Chef de fabrication F/H, Chef des ventes F/H, Chef d'équipe F/H, Directeur(trice) de magasin, Acheteur(euse) (MIN, Grossistes, Fournisseurs…) dans les établissements de 10 salariés et plus), Responsable commercial F/H, Chef Produit F/H, Chef du département toilettage F/H",
+          "Chef d'atelier F/H, Chef de fabrication F/H, Chef d'équipe F/H, Responsable commercial F/H, Acheteur(euse) (MIN, Grossistes, Fournisseurs…), Directeur(trice) régional, Chef d'établissement de métiers de services aux animaux de compagnie F/H",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Grains : transformation",
+      "idcc": "1930",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC360/sharp_/ANX/1930_CC360.pdf",
+      "totalMatches": 16,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 8,
+      "examples": [
+        [
+          "Ouvriers/Employés",
+          "I",
+          "Jusqu'à 5",
+          "Ouvrier/Employé",
+          "Statut non spécifié"
+        ],
+        [
+          "II",
+          "6 à 10",
+          "Ouvrier/Employé",
+          "Statut non spécifié"
+        ],
+        [
+          "III",
+          "11 à 15",
+          "Ouvrier/Employé",
+          "Statut non spécifié"
+        ],
+        [
+          "Agents de maîtrise",
+          "IV",
+          "16 à 20",
+          "Agent de maîtrise",
+          "Statut non spécifié"
+        ],
+        [
+          "V",
+          "21 à 25",
+          "Agent de maîtrise",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Habillement et articles textiles : commerce de détail - Valenciennes",
+      "idcc": "483",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC219/sharp_/ANX/483_CC219.pdf",
+      "totalMatches": 7,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 7,
+      "examples": [
+        [
+          "5e catégorie",
+          "Vendeur, vendeuse très qualifié ; caissier, caissière de magasin (tenant un livre entrées et sorties, responsable de sa caisse, ajustant sa caisse chaque soir) ; étalagiste courant ; pompier homme.",
+          "Non spécifié."
+        ],
+        [
+          "7e catégorie",
+          "1er vendeur ; chef de rayon ; étalagiste décorateur ; chef d'atelier.",
+          "Non spécifié."
+        ],
+        [
+          "Cadres",
+          "A 1",
+          "Fonctions non détaillées dans la convention.",
+          "Non spécifié dans la convention."
+        ],
+        [
+          "A 2",
+          "Fonctions non détaillées dans la convention.",
+          "Non spécifié dans la convention."
+        ],
+        [
+          "B",
+          "Fonctions non détaillées dans la convention.",
+          "Non spécifié dans la convention."
+        ]
+      ]
+    },
+    {
+      "convention": "Habitat et logement accompagnés",
+      "idcc": "2336",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC206/sharp_/ANX/2336_CC206.pdf",
+      "totalMatches": 1,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Directeur Général",
+          "3 458 (minimum)",
+          "Non spécifié (peut dépasser 3 458)",
+          "Assure les mêmes missions que le poste de « directeur d'association ou d'organisme » mais, en plus, agit dans le cadre de délégations écrites très importantes accordées par le président du Conseil d'administration d'une association qui regroupe généralement des établissements et activités de différente nature. Implique une responsabilité de mandataire social."
+        ]
+      ]
+    },
+    {
+      "convention": "Hôtellerie de plein air",
+      "idcc": "1631",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC228/sharp_/ANX/1631_CC228.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Cadres dirigeants",
+          "Catégorie 6",
+          "250 à 700",
+          "**Définition générale :** Cadres auxquels sont confiées des responsabilités dont l'importance implique une grande indépendance dans l'organisation de leur emploi du temps, qui sont habilités à prendre des décisions de façon largement autonome et et qui perçoivent une rémunération se situant dans les niveaux les plus élevés des systèmes de rémunération pratiqués dans leur entreprise ou établissement. **Type d'activité - Niveau de technicité :** Mandataires sociaux, directeurs généraux. Chefs d'établissement F/H avec ou sans contrat de travail. **Responsabilité - Autonomie - Compétences requises :** Statut non spécifié.",
+          "Mandataires sociaux, directeurs généraux, Chefs d'établissement F/H (avec ou sans contrat de travail)"
+        ]
+      ]
+    },
+    {
+      "convention": "Hôtels, cafés, restaurants : Alpes de Haute-Provence",
+      "idcc": "601",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC232/sharp_/ANX/601_CC232.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "Assistant de direction moins de 2 ans de pratique",
+          "Statut non spécifié (Spécial hors réglementation)",
+          "190",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "Cadre",
+          "Statut non spécifié",
+          "370",
+          "370",
+          "N/A"
+        ],
+        [
+          "Cadre",
+          "Statut non spécifié",
+          "360",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "Cadre",
+          "Statut non spécifié",
+          "360",
+          "N/A",
+          "N/A"
+        ]
+      ]
+    },
+    {
+      "convention": "Hôtels, cafés, restaurants : Bouches-du-Rhône",
+      "idcc": "1017",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC233/sharp_/ANX/1017_CC233.pdf",
+      "totalMatches": 122,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 42,
+      "examples": [
+        [
+          "Assistant de direction moins de deux ans de pratique",
+          "Statut non spécifié",
+          "190",
+          "Statut non spécifié",
+          "Statut non spécifié"
+        ],
+        [
+          "Assistant de direction plus de deux ans de pratique",
+          "Statut non spécifié",
+          "220",
+          "Statut non spécifié",
+          "Statut non spécifié"
+        ],
+        [
+          "Chef contrôleur ayant trois contrôleurs/ordre",
+          "Maîtrise (2e échelon)",
+          "220",
+          "220",
+          "Statut non spécifié"
+        ],
+        [
+          "Chef d'étage",
+          "Maîtrise (1er échelon)",
+          "260",
+          "260",
+          "Statut non spécifié"
+        ],
+        [
+          "Chef économe ayant trois commis sous/ordre",
+          "Maîtrise (2e échelon)",
+          "220",
+          "220",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Hôtels, cafés, restaurants : Meurthe-et-Moselle",
+      "idcc": "1075",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC237/sharp_/ANX/1075_CC237.pdf",
+      "totalMatches": 5,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 5,
+      "examples": [
+        [
+          "160",
+          "Non spécifié."
+        ],
+        [
+          "165",
+          "Non spécifié."
+        ],
+        [
+          "180",
+          "Non spécifié."
+        ],
+        [
+          "185",
+          "Non spécifié."
+        ],
+        [
+          "190",
+          "Non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+      "idcc": "1140",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC240/sharp_/ANX/1140_CC240.pdf",
+      "totalMatches": 38,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 18,
+      "examples": [
+        [
+          "Commis",
+          "Statut non spécifié",
+          "Personne polyvalente, chargée de la manutention, de l'entretien et des menus travaux nécessaires à la bonne marche de l'hôtel.",
+          "SMIC",
+          "La convention ne prévoit rien à ce sujet."
+        ],
+        [
+          "Apprenti cuisinier",
+          "Statut non spécifié",
+          "Personne ayant été embauchée sans expérience professionnelle ou ayant une expérience continue de moins de trois ans.",
+          "110",
+          "La convention ne prévoit rien à ce sujet."
+        ],
+        [
+          "Femme de chambre",
+          "1re catégorie",
+          "Statut non spécifié",
+          "Moins de six mois d'ancienneté continue dans l'entreprise ; assure principalement l'entretien des locaux de l'hôtel (chambres, salles de bain, couloir, escalier, débarras, etc.) ; en période creuse ou hivernale, elle assure l'entretien et la remise en état des locaux et du linge.",
+          "115",
+          "Évolution vers la 2e catégorie après plus de six mois d'ancienneté continue dans l'entreprise."
+        ],
+        [
+          "2e catégorie",
+          "Statut non spécifié",
+          "Personne répondant à la définition de la 1re catégorie et ayant plus de six mois d'ancienneté continue dans l'entreprise.",
+          "120",
+          "Évolution depuis la 1re catégorie après plus de six mois d'ancienneté continue."
+        ],
+        [
+          "Plongeur, plongeuse",
+          "1re catégorie",
+          "Statut non spécifié",
+          "Moins de six mois d'ancienneté continue dans l'entreprise ; chargée du nettoyage et en particulier du nettoyage du matériel de cuisine, de la vaisselle, des locaux de la cuisine ainsi que de l'entretien du matériel dont elle a l'usage.",
+          "115",
+          "Évolution vers la 2e catégorie après plus de six mois d'ancienneté continue dans l'entreprise."
+        ]
+      ]
+    },
+    {
+      "convention": "Hôtels, cafés, restaurants : Var",
+      "idcc": "1260",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC582/sharp_/ANX/1260_CC582.pdf",
+      "totalMatches": 10,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "1ère catégorie",
+          "Statut non spécifié",
+          "Employés de lavabos et de vestiaires, sommelier-verseur, commis débarrasseur, commis de suite, commis de bar, hommes et femmes toutes mains, plongeur, vaisselier, commis de cuisine, veilleur de nuit. (Liste non limitative)",
+          "Non spécifié"
+        ],
+        [
+          "2ème catégorie",
+          "Statut non spécifié",
+          "Groom, chasseur, portier, fille de salle, garçon de restaurant, garçon de comptoir, garçon limonadier, garçon de café, sommelier de salle, chef de rang, serveurs, serveuses, cuisiniers, valet et femme de chambre, veilleur de nuit assurant la réception des clients. (Liste non limitative)",
+          "Non spécifié"
+        ],
+        [
+          "3ème catégorie",
+          "Statut non spécifié",
+          "Chef sommelier, maître d'hôtel, premier maître d'hôtel, trancheur, barman, chef barman, chef de rang et garçon de restaurant (dans les hôtels et restaurants classés tourisme en catégorie 4 étoiles et 4 étoiles luxe), chef cuisinier hautement qualifié et ayant du personnel (moins de 10) sous ses ordres. (Liste non limitative)",
+          "Non spécifié"
+        ],
+        [
+          "4ème catégorie",
+          "Cadres de haut niveau",
+          "Chef de cuisine avec plus de 10 personnes sous ses ordres, chef pâtissier avec plus de 5 personnes sous ses ordres, directeur de cuisine, directeur de restaurant ou de bar, directeur d'hôtel, sous-directeur d'hôtel, chef comptable, chef concierge, chef de réception. (Liste non limitative)",
+          "Non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Insertion : ateliers et chantiers",
+      "idcc": "3016",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC679/sharp_/ANX/3016_CC679.pdf",
+      "totalMatches": 44,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 22,
+      "examples": [
+        [
+          "Assistant(e) technique",
+          "A",
+          "265",
+          "1 868,25 €",
+          "Statut non spécifié"
+        ],
+        [
+          "B",
+          "270",
+          "1 903,50 €",
+          "Statut non spécifié"
+        ],
+        [
+          "C",
+          "285",
+          "2 009,25 €",
+          "Statut non spécifié"
+        ],
+        [
+          "Assistant(e) administratif(ve)",
+          "A",
+          "265",
+          "1 868,25 €",
+          "Statut non spécifié"
+        ],
+        [
+          "B",
+          "280",
+          "1 974,00 €",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Jeux, jouets, articles de fête",
+      "idcc": "1607",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC255/sharp_/ANX/1607_CC255.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "VI",
+          "a",
+          "330",
+          "Cadre",
+          "Large autonomie de jugement et d’initiative.",
+          "Remplit une mission dont il est responsable au niveau qualité, coût, délais. Responsable de la gestion de son secteur.",
+          "Études supérieures ou niveau équivalent acquis par expérience ou par la formation permanente. Ingénieur et cadre diplômé ou cadre non diplômé ayant acquis par une longue expérience les connaissances lui permettant de remplir les fonctions du niveau « Cadres ».",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Journalistes",
+      "idcc": "1480",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC257/sharp_/ANX/1480_CC257.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 0,
+      "examples": []
+    },
+    {
+      "convention": "Librairie",
+      "idcc": "3013",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC657/sharp_/ANX/3013_CC657.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "11",
+          "Statut non spécifié",
+          "3 602,00 €"
+        ],
+        [
+          "12",
+          "Statut non spécifié",
+          "3 947,00 €"
+        ]
+      ]
+    },
+    {
+      "convention": "Maisons familiales rurales",
+      "idcc": "7508",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC564/sharp_/ANX/7508_CC564.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Statut non spécifié",
+          "3",
+          "215",
+          "250",
+          "270",
+          "2 ans"
+        ]
+      ]
+    },
+    {
+      "convention": "Maroquinerie : industries",
+      "idcc": "2528",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC270/sharp_/ANX/2528_CC270.pdf",
+      "totalMatches": 1,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "2",
+          "Technicien/Agent de Maîtrise : Non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Matériaux de construction : négoce",
+      "idcc": "3216",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC733/sharp_/ANX/3216_CC733.pdf",
+      "totalMatches": 16,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 8,
+      "examples": [
+        [
+          "Cadres",
+          "VI",
+          "A",
+          "350",
+          "**Description :** Cadres débutants diplômés de l'enseignement supérieur long (Niveaux I et II Éducation Nationale) dont la formation est directement applicable à la fonction, devant assumer des responsabilités d'encadrement et n'ayant pas ou peu d'expérience pratique. Également ouvert aux agents de maîtrise issus de la promotion en préparation de la confirmation de leur prise de fonction de cadre. Période d'adaptation ou de formation complémentaire n'excédant pas deux années. Phase d'intégration et d'acquisition d'une bonne connaissance des mécanismes de l'entreprise et de la fonction. **Fonctions types :** Statut non spécifié."
+        ],
+        [
+          "B",
+          "380",
+          "**Description :** Phase d'acquisition de connaissances approfondies de la fonction à laquelle il est destiné. **Fonctions types :** Statut non spécifié."
+        ],
+        [
+          "VII",
+          "A",
+          "410",
+          "**Description :** Engage l'entreprise dans le cadre d'une délégation écrite, limitée, de pouvoir et d'action. Anime et gère une activité bien identifiée relevant d'une spécialisation professionnelle précise, ou un ensemble d'activités diversifiées dont il assure la coordination et la liaison avec les autres services ou filières, ou une agence/service. Regroupe chefs de service, responsables d'agence, cadres techniques. Responsables d'agence ou de service (effectifs **Fonctions types :** Statut non spécifié."
+        ],
+        [
+          "B",
+          "450",
+          "**Description :** Responsables d'agence ou de service de moyenne importance (effectifs **Fonctions types :** Statut non spécifié."
+        ],
+        [
+          "C",
+          "490",
+          "**Description :** Responsables d'agence de grande importance ou comportant plusieurs établissements ou services, ou très expérimentés. Conditions de fonctionnement de l'unité caractérisées par l'autonomie et l'initiative. **Fonctions types :** Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Médico-sociaux : établissements",
+      "idcc": "405",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC277/sharp_/ANX/405_CC277.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "G",
+          "Directeur adjoint",
+          "Titulaire d'un diplôme de niveau 2, le directeur adjoint ou le gestionnaire adjoint bénéficie de délégations pour remplir leur fonction.",
+          "Statut non spécifié",
+          "514 (pour 0-49 lits/places ou salariés) (Avenant n° 03-2013, applicable 2013-01-01)",
+          "Caferuis ou diplôme équivalent de niveau 2 : + 36 points Cafdes ou équivalent de niveau 1 : + 92 points"
+        ],
+        [
+          "J",
+          "Directeur d'établissement ou de service",
+          "Titulaire d'un diplôme de niveau 2 (petits établissements) ou de niveau 1, le directeur bénéficie de larges délégations écrites pour remplir sa fonction.",
+          "Statut non spécifié",
+          "600 (pour 0-49 lits/places ou salariés) (Avenant n° 05-2014, applicable 2014-01-01)",
+          "Caferuis ou diplôme équivalent de niveau 2 : + 36 points Cafdes ou équivalent de niveau 1 : + 92 points"
+        ],
+        [
+          "K",
+          "Directeur général",
+          "Titulaire d'un diplôme de niveau 1, le directeur général, le directeur d'association, ou le secrétaire général d'association bénéficient de larges délégations écrites du Président pour remplir leur fonction.",
+          "Statut non spécifié",
+          "710 (pour 0-49 lits/places ou salariés) (Note : La grille de salaires des directeurs utilise le \"Groupe X\" pour cette catégorie, avec le même coefficient de départ que le Groupe K défini dans la nomenclature.) (Avenant n° 05-2014, applicable 2014-01-01)",
+          "Cafdes ou équivalent de niveau 1 : + 92 points"
+        ]
+      ]
+    },
+    {
+      "convention": "Menuiseries, charpentes et constructions industrialisées",
+      "idcc": "3222",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC278/sharp_/ANX/3222_CC278.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Niveau 9",
+          "Non spécifié",
+          "Non spécifié",
+          "Emplois de cadres supérieurs."
+        ]
+      ]
+    },
+    {
+      "convention": "Métallurgie (convention collective nationale unique)",
+      "idcc": "3248",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC760/sharp_/ANX/3248_CC760.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "A",
+          "1",
+          "6 à 9",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Missions locales et PAIO",
+      "idcc": "2190",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC619/sharp_/ANX/2190_CC619.pdf",
+      "totalMatches": 20,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 10,
+      "examples": [
+        [
+          "Maintenance et hygiène des espaces",
+          "Agent d'hygiène et de maintenance des locaux et des espaces verts",
+          "6",
+          "375",
+          "Statut non spécifié"
+        ],
+        [
+          "Insertion sociale et professionnelle",
+          "Chargé d'accueil et d'animation",
+          "7",
+          "379",
+          "Statut non spécifié"
+        ],
+        [
+          "Conseiller en insertion sociale et professionnelle",
+          "11",
+          "435",
+          "Statut non spécifié"
+        ],
+        [
+          "Information-communication",
+          "Chargé de documentation",
+          "8",
+          "384",
+          "Statut non spécifié"
+        ],
+        [
+          "Chargé d'information et de communication",
+          "10",
+          "404",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Nautiques : industrie et services",
+      "idcc": "1423",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC366/sharp_/ANX/1423_CC366.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "Ingénieurs et Cadres",
+          "VII",
+          "1",
+          "Coefficient non spécifié",
+          "Ingénieur ou cadre",
+          "Responsabilité supposant un niveau de formation élevé (BAC + 3 et plus ou expérience équivalente) et/ou une expérience significative. Autonomie limitée et progressive. Prend en charge la démarche d'amélioration continue. Transmission de compétences. Management possible d'une petite équipe/transversal. Responsabilité partielle de gestion."
+        ],
+        [
+          "2",
+          "Coefficient non spécifié",
+          "Ingénieur ou cadre",
+          "Assume la réalisation des objectifs de son secteur et propose objectifs et moyens. Large autonomie de jugement et d'initiative dans une spécialisation. Responsable de l'amélioration continue. Optimise les moyens. Transmission de compétences. Management d'un atelier/équipe ou transversal. Responsabilité de la gestion de son poste et secteurs. (BAC + 3 et plus ou expérience équivalente)."
+        ],
+        [
+          "3",
+          "Coefficient non spécifié",
+          "Ingénieur ou cadre",
+          "Fonction de direction. Niveau de formation élevé (BAC + 4 et plus ou expérience équivalente). Fort degré d'initiative, coordination des services, réalisation d'objectifs. Qualités relationnelles essentielles. Autonomie très large de jugement et d'initiative. Niveau décisionnel. Responsable des démarches d'amélioration continue. Très large responsabilité de gestion."
+        ],
+        [
+          "4",
+          "Coefficient non spécifié",
+          "Ingénieur ou cadre",
+          "Définition de la politique de l'entreprise et des objectifs. Autonomie totale de jugement et d'initiative. Responsable des démarches d'amélioration continue. Optimise les moyens. Management d'un site/service. Responsabilité totale. (BAC + 4 et plus ou expérience équivalente)."
+        ]
+      ]
+    },
+    {
+      "convention": "Navigation intérieure : entreprises de transport",
+      "idcc": "3229",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC747/sharp_/ANX/3229_CC747.pdf",
+      "totalMatches": 14,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié",
+        "critères non spécifiés"
+      ],
+      "tableRowsCount": 6,
+      "examples": [
+        [
+          "Personnel Navigant Technique",
+          "Statut non spécifié",
+          "Matelot",
+          "22 066 (Sans ancienneté)22 241 (Après 3 ans)22 457 (Après 6 ans)22 891 (Après 9 ans)",
+          "Âge : ≥ 16 ansFonctions : Exécute toutes les tâches confiées par les supérieurs hiérarchiques pour la bonne marche du bateau, son entretien, l'accueil, les services et la sécurité des passagers.",
+          "RAS"
+        ],
+        [
+          "Personnel Navigant Hôtellerie Restauration",
+          "Statut non spécifié",
+          "Chef de cabine",
+          "22 354 (Sans ancienneté)22 535 (Après 3 ans)22 979 (Après 6 ans)23 421 (Après 9 ans)",
+          "Critères non spécifiés par la convention.",
+          "RAS"
+        ],
+        [
+          "Maître d'hôtel",
+          "24 396 (Sans ancienneté)24 834 (Après 3 ans)25 324 (Après 6 ans)25 811 (Après 9 ans)",
+          "Critères non spécifiés par la convention.",
+          "RAS"
+        ],
+        [
+          "Assistant du Directeur ou du Commissaire de bord",
+          "26 980 (Sans ancienneté)27 465 (Après 3 ans)28 005 (Après 6 ans)28 544 (Après 9 ans)",
+          "Critères non spécifiés par la convention.",
+          "RAS"
+        ],
+        [
+          "Chef de cuisine",
+          "31 285 (Sans ancienneté)31 848 (Après 3 ans)32 474 (Après 6 ans)33 100 (Après 9 ans)",
+          "Critères non spécifiés par la convention.",
+          "RAS"
+        ]
+      ]
+    },
+    {
+      "convention": "Papiers-cartons : production et transformation",
+      "idcc": "3238",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC755/sharp_/ANX/3238_CC755.pdf",
+      "totalMatches": 14,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 7,
+      "examples": [
+        [
+          "A",
+          "Débutant",
+          "Statut non spécifié"
+        ],
+        [
+          "1",
+          "Statut non spécifié"
+        ],
+        [
+          "2",
+          "Statut non spécifié"
+        ],
+        [
+          "B",
+          "1",
+          "Statut non spécifié"
+        ],
+        [
+          "2",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Particuliers employeurs et emploi à domicile",
+      "idcc": "3239",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC756/sharp_/ANX/3239_CC756.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "IX",
+          "Statut non spécifié",
+          "La convention ne précise pas de fonctions types pour ce niveau."
+        ],
+        [
+          "X",
+          "Statut non spécifié",
+          "La convention ne précise pas de fonctions types pour ce niveau."
+        ],
+        [
+          "XI",
+          "Statut non spécifié",
+          "La convention ne précise pas de fonctions types pour ce niveau."
+        ],
+        [
+          "XII",
+          "Statut non spécifié",
+          "La convention ne précise pas de fonctions types pour ce niveau."
+        ]
+      ]
+    },
+    {
+      "convention": "Pâtisserie",
+      "idcc": "1267",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC392/sharp_/ANX/1267_CC392.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Agent de maîtrise en fabrication",
+          "Statut non spécifié",
+          "250",
+          "Chef de partie : professionnel participant habituellement au travail sous les ordres d'un chef de fabrication salarié, autre que le chef d'établissement, dont il reçoit des instructions précises en ce qui concerne les formules. Il est chargé de faire exécuter et de contrôler une fabrication déterminée, ainsi que d'en assurer la surveillance."
+        ]
+      ]
+    },
+    {
+      "convention": "Paysage : entreprises",
+      "idcc": "7018",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC694/sharp_/ANX/7018_CC694.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "D",
+          "Cadre Dirigeant",
+          "Assure la totalité des responsabilités qui sont la caractéristique de l'autorité patronale, avec ou sans mandat social concomitant.",
+          "Statut non spécifié.",
+          "Statut non spécifié.",
+          "Statut non spécifié.",
+          "Statut non spécifié.",
+          "D'un commun accord"
+        ]
+      ]
+    },
+    {
+      "convention": "Pétrole : industrie",
+      "idcc": "1388",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC394/sharp_/ANX/1388_CC394.pdf",
+      "totalMatches": 14,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 7,
+      "examples": [
+        [
+          "Fabrication",
+          "Définitions générales",
+          "Ouvrier",
+          "Statut non spécifié",
+          "Chargé d'assurer un certain nombre de tâches planifiées n'exigeant pas la connaissance totale des installations sur lesquelles il travaille."
+        ],
+        [
+          "Opérateur (extérieur ou tableau/conduite)",
+          "Statut non spécifié",
+          "Opérateur extérieur : Chargé, sous les ordres d'un chef opérateur, de la surveillance d'une unité ou d'un ensemble d'unités, de la mise en service ou à l'arrêt du matériel et des divers réglages et interventions nécessaires au fonctionnement des installations.Opérateur tableau ou de conduite : Règle, contrôle et coordonne, sous les ordres d'un chef opérateur, à partir d'une salle de contrôle, la marche d'une unité ou d'un ensemble d'unités."
+        ],
+        [
+          "Maîtrise (Chef opérateur ou chef de quart)",
+          "Statut non spécifié",
+          "Est dénommé ainsi le chef de quart d'une unité de fabrication ou d'un groupe d'unités responsable de la marche de celle-ci et des caractéristiques des produits obtenus, placé sous les ordres d'un ingénieur dirigeant une ou plusieurs unités, ou d'un contremaître de fabrication de jour, lequel donne des directives et contrôle les résultats. Le classement dans les coefficients s'effectue comme pour les opérateurs de fabrication par référence à la nomenclature des unités et au tableau figurant ci-après."
+        ],
+        [
+          "Maîtrise (Contremaître de jour)",
+          "Statut non spécifié",
+          "Contremaître adjoint à un ingénieur et commandant à des chefs opérateurs. Il est classé dans la grille hiérarchique au moins au niveau immédiatement supérieur à celui de son chef opérateur ayant le coefficient le plus élevé."
+        ],
+        [
+          "Transports",
+          "Chauffeur livreur (p.t.c. inférieur ou égal à 10 tonnes)",
+          "K 160",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Pharmacie d'officine",
+      "idcc": "1996",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC397/sharp_/ANX/1996_CC397.pdf",
+      "totalMatches": 134,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 56,
+      "examples": [
+        [
+          "Préparateur/Technicien en Pharmacie",
+          "250",
+          "1er échelon",
+          "Statut non spécifié",
+          "Personnel titulaire du brevet professionnel de préparateur en pharmacie ou du diplôme d'études universitaires scientifiques et techniques de préparateur/technicien en pharmacie."
+        ],
+        [
+          "260",
+          "2ème échelon",
+          "Statut non spécifié",
+          "Préparateur/technicien en pharmacie après 1 année de pratique professionnelle dans l'échelon précédent."
+        ],
+        [
+          "270",
+          "3ème échelon",
+          "Statut non spécifié",
+          "Préparateur/technicien en pharmacie après 1 année de pratique professionnelle dans l'échelon précédent."
+        ],
+        [
+          "280",
+          "4ème échelon",
+          "Statut non spécifié",
+          "Préparateur/technicien en pharmacie après 2 années de pratique professionnelle dans l'échelon précédent."
+        ],
+        [
+          "290",
+          "5ème échelon",
+          "Statut non spécifié",
+          "Préparateur/technicien en pharmacie après 4 années de pratique professionnelle dans l'échelon précédent."
+        ]
+      ]
+    },
+    {
+      "convention": "Pharmacie d'officine : la Réunion",
+      "idcc": "1257",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC591/sharp_/ANX/1257_CC591.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Autres Employés",
+          "200",
+          "Vendeur en orthopédie ; Employé de laboratoire ; Secrétaire comptable ; Vendeur d'optique-lunetterie",
+          "Vendeur en orthopédie : après cinq années de pratique professionnelle. Employé de laboratoire : après une année. Secrétaire comptable : Statut non spécifié. Vendeur d'optique-lunetterie : après au moins cinq années de pratique professionnelle, suivant le CAP d'ouvrier monteur."
+        ]
+      ]
+    },
+    {
+      "convention": "Pharmacie, parapharmacie, produits vétérinaires : fabrication et commerce",
+      "idcc": "1555",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC400/sharp_/ANX/1555_CC400.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "I.1 à I.6",
+          "Ouvriers/Employés",
+          "1 805,72 €",
+          "Statut non spécifié (RMMG applicable)"
+        ],
+        [
+          "II.1 à II.7",
+          "Techniciens / Agents de Maîtrise",
+          "2 092,05 €",
+          "Statut non spécifié (RMMG applicable)"
+        ],
+        [
+          "III.1 à III.10",
+          "Cadres",
+          "Statut non spécifié (RAG applicable)",
+          "36 720,00 €"
+        ]
+      ]
+    },
+    {
+      "convention": "Photographie",
+      "idcc": "3168",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC401/sharp_/ANX/3168_CC401.pdf",
+      "totalMatches": 124,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 62,
+      "examples": [
+        [
+          "165",
+          "Opérateur vendeur 2e niveau",
+          "Mêmes fonctions que le niveau précédent. Assure en plus le comptage de caisse (sous la responsabilité de son supérieur hiérarchique). Possède une bonne connaissance technique des produits et assure le suivi des gammes. Réalise le comptage lors de l'inventaire. Réalise l'ensemble des tâches du traitement numérique des images et supervise le bon déroulement du développement photo.",
+          "Statut non spécifié.",
+          "1 823,00 €"
+        ],
+        [
+          "175",
+          "Opérateur vendeur 3e niveau",
+          "Mêmes fonctions que le niveau précédent. En plus, possède une bonne connaissance de tous les services susceptibles d'être vendus dans le magasin. Peut être appelé par la direction à établir des devis et à effectuer des ventes à l'extérieur de l'entreprise. Assure en plus la maintenance de l'outil de production (avec ou sans relation extérieure). Assure la remise en banque (sous la responsabilité de son supérieur hiérarchique).",
+          "Statut non spécifié.",
+          "1 845,00 €"
+        ],
+        [
+          "195",
+          "Technicien qualifié 1er échelon",
+          "Installe, répare les outils de production, contrôle leur fonctionnement et en assure la maintenance.",
+          "Statut non spécifié.",
+          "1 944,00 €"
+        ],
+        [
+          "205",
+          "Adjoint au responsable des ventes",
+          "Mêmes fonctions que le niveau précédent. Participe à l'élaboration de la politique de vente et aux décisions d'achat et de tarification. Assure en plus, en tout ou partie, la gestion du magasin et anime une équipe (sous la responsabilité de son supérieur hiérarchique). Peut être amené occasionnellement à remplacer le responsable.",
+          "Statut non spécifié.",
+          "2 022,00 €"
+        ],
+        [
+          "210",
+          "Responsable magasin 1er échelon",
+          "Assure la gestion d'un magasin et/ou anime une équipe comportant un effectif de moins de 3 salariés permanents avec l'aide de son supérieur hiérarchique.",
+          "Statut non spécifié.",
+          "2 125,00 €"
+        ]
+      ]
+    },
+    {
+      "convention": "Ports et manutention",
+      "idcc": "3017",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC699/sharp_/ANX/3017_CC699.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "Échelon 2",
+          "Exploitation portuaire",
+          "Dans le cadre et en plus des missions définies à l'échelon 1, quand l'entreprise le juge nécessaire, le titulaire d'un emploi de cet échelon coordonne l'action d'autres agents de maîtrise de son échelon ou de l'échelon 1, dans le cadre d'une opération de manutention et/ou d'exploitation portuaire. Il possède en outre les qualités requises pour contribuer à la formation d'agents de maîtrise de l'échelon 1 débutant. Il est capable d'assurer dans son domaine les relations avec le bord en langue anglaise. Le travail n'implique pas nécessairement l'animation d'une équipe mais requiert un niveau d'expertise très élevé.",
+          "Statut non spécifié."
+        ],
+        [
+          "Échelon 3",
+          "Uniquement applicable aux établissements portuaires.",
+          "Exploitation portuaire",
+          "Dans le cadre et en plus des missions définies à l'échelon 2, le titulaire d'un emploi de cet échelon : répartit les programmes et les tâches, en suit la réalisation, contrôle les résultats par rapport aux prévisions et prend les dispositions correctrices ; contrôle la gestion de son unité en comparant les résultats atteints avec les valeurs initialement fixées ; apprécie les compétences individuelles, participe à l'élaboration des programmes de formation et propose toute mesure en matière de ressources humaines.",
+          "Statut non spécifié."
+        ],
+        [
+          "Administration",
+          "Dans le cadre et en plus des missions définies à l'échelon 2, le titulaire d'un emploi de cet échelon coordonne la réalisation de travaux d'ensemble nécessitant la prise en compte et l'intégration de données observées et de contraintes d'ordre technique, économique, administratif. La réalisation de ces travaux est généralement constituée par des études, des recherches documentaires, la gestion d'activités ou de projets pouvant faire appel, à des degrés variables, à l'innovation et à l'autonomie.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Presse magazine : éditeurs",
+      "idcc": "3225",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC740/sharp_/ANX/3225_CC740.pdf",
+      "totalMatches": 3,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "7",
+          "Non spécifié",
+          "Titre, diplôme ou VAE équivalent au niveau II + première expérience significative ou expérience équivalente ou Titre, diplôme ou VAE équivalent au niveau III + expérience dans la filière professionnelle.",
+          "Coordonner les activités d'autres personnes (internes et ou externes à l'entreprise) spécialistes de leur domaine et coordonner la mise en œuvre des différents acteurs dans le cadre de la réalisation d'une mission ou d'une activité. Intervenir sur les cas litigieux.",
+          "Prendre en compte le contexte de l'entreprise pour l'élaboration des solutions. Fixer le périmètre de l'action à mener en fonction des objectifs attendus et mettre en œuvre les moyens nécessaires.",
+          "Cadre opérationnel : les problèmes rencontrés sont propres à un domaine clairement identifié. Traite des dossiers, conçoit des processus ou des solutions adaptées aux demandes formulées. Intègre la stratégie de l'entreprise. Gérer des besoins divers et des demandes simultanées. Détermine ce qu'il faut faire pour résoudre un problème (définition de méthodes,…). Est responsable de l'avancement de ses dossiers.",
+          "Manager de proximité : Responsable du suivi et de l'animation d'une équipe pour la réalisation d'un résultat. Fixe les objectifs individuels, contrôle les résultats et suit les plans de réalisation. Maîtrise le domaine d'expertise de son équipe.",
+          "Chef de projets : supervise la conception d'une solution la plus adaptée à la demande du client : assiste les utilisateurs dans la définition de leurs besoins, élabore un cahier des charges, estime le temps de travail et le budget nécessaire, établit les plannings (répartition des tâches), évalue les risques et les enjeux… Il a en général un domaine d'intervention (informatique, marketing, organisation, communication, web, etc)."
+        ],
+        [
+          "8",
+          "Non spécifié",
+          "Titre, diplôme ou VAE équivalent au niveau I ou expérience équivalente ou Titre, diplôme ou VAE équivalent au niveau II + expérience dans la filière professionnelle.",
+          "Assurer la responsabilité de la gestion d'un sous-domaine (ou d'une partie d'un domaine) pour le développement de produits, la mise en place de processus ou le pilotage de projets. Assurer la responsabilité du suivi et de l'animation d'une équipe pour l'optimisation de ses résultats. Gérer la charge de travail et les ressources disponibles. Coordonner les membres de l'équipe. Contrôler les résultats et suit les plans d'actions. Traiter les problèmes les plus pointus. Intégrer les problématiques propres à différentes expertises.",
+          "Gérer les ressources allouées en fonction des objectifs de résultats à atteindre. Fixer le rôle des entités ou services impliqués. Définir les objectifs d'un projet et de ses modalités de réalisation. Contrôler l'avancement des développements. Choisir les méthodes, définir les processus pour réaliser les objectifs visés. Peut également faire référence dans un domaine spécialisé.",
+          "Cadre Expert Métier : Constitue une référence dans un domaine spécialisé. Offre un éventail de solutions sur une problématique donnée et élabore des solutions spécifiques.",
+          "Manager d'équipe : responsable de la gestion d'un service. Décline les objectifs politiques et le choix des actions à mener. Définit les besoins de son organisation et les ressources nécessaires (gestion budget, recrutement,…). Contrôle la mise en œuvre des politiques et des lignes d'actions définies.",
+          "Responsable de projets : définit l'objectif du projet et ses modalités de réalisation ainsi que les rôles des entités impliquées. Coordonne l'équipe de réalisation interne sur sa partie. Peut décider de sous-traiter une partie ou la totalité de la réalisation. Peut être amené à encadrer des chefs de projets."
+        ],
+        [
+          "9",
+          "Non spécifié",
+          "Titre, diplôme ou VAE équivalent au niveau I + expérience significative dans une fonction équivalente.",
+          "Coordonner des actions sur plusieurs entités ou services. Réaliser des arbitrages entre des besoins contradictoires.",
+          "Superviser l'organisation des ressources et la mise en œuvre des politiques. Est associé aux réflexions stratégiques et négocie le cadre de sa mission et les moyens nécessaires.",
+          "RAS",
+          "Manager de domaine : Responsable des orientations stratégiques pour l'entreprise sur le ou les domaines couverts. Fixe les orientations pour le développement futur de l'entreprise et les priorités. Suit, sur son ou ses domaines, les résultats globaux de l'entreprise.",
+          "Directeur de projet : assure la coordination et le pilotage global (fonctionnel, humain, financier, technique et administratif) d'un portefeuille de projets, en s'appuyant sur une ou plusieurs équipes placées sous sa responsabilité."
+        ]
+      ]
+    },
+    {
+      "convention": "Presse quotidienne et hebdomadaire en régions",
+      "idcc": "3242",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC758/sharp_/ANX/3242_CC758.pdf",
+      "totalMatches": 14,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 11,
+      "examples": [
+        [
+          "Niveau I - Cadre opérationnel",
+          "158 (Cadre opérationnel IA)",
+          "2 148,64 €",
+          "Critères classants non spécifiés"
+        ],
+        [
+          "1",
+          "1 782,18 €",
+          "Fonctions types non spécifiées",
+          "Critères classants non spécifiés"
+        ],
+        [
+          "I",
+          "I 1",
+          "100",
+          "1 866,87 €",
+          "Fonctions types non spécifiées",
+          "Critères classants non spécifiés"
+        ],
+        [
+          "100",
+          "Garçon de Bureau",
+          "1 036,01 €",
+          "Critères classants non spécifiés"
+        ],
+        [
+          "124",
+          "Aide-comptable 2ème échelon",
+          "1 284,64 €",
+          "Critères classants non spécifiés"
+        ]
+      ]
+    },
+    {
+      "convention": "Prévention et sécurité",
+      "idcc": "1351",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC424/sharp_/ANX/1351_CC424.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 4,
+      "examples": [
+        [
+          "3e échelon",
+          "170",
+          "2 413,36 €",
+          "Statut non spécifié."
+        ],
+        [
+          "3e échelon",
+          "215",
+          "2 953,46 €",
+          "Statut non spécifié."
+        ],
+        [
+          "Ingénieurs et cadres",
+          "Position I",
+          "Statut non spécifié",
+          "300",
+          "2 887,62 €",
+          "Titulaires d'un diplôme des niveaux II et I de l'éducation nationale, ne pouvant justifier de plus de deux années de pratique dans un ou des emplois d'ingénieurs ou de cadres où ils ont été appelés à mettre en œuvre les connaissances théoriques sanctionnées par ce diplôme."
+        ],
+        [
+          "Position Supérieure",
+          "Statut non spécifié",
+          "RAS",
+          "RAS",
+          "Ingénieurs ou cadres exerçant la totalité d'une fonction de gestion dans l'entreprise. Ils n'entrent pas dans le champ d'application de la présente convention collective ni de ses avenants ou annexes et font l'objet de contrats particuliers."
+        ]
+      ]
+    },
+    {
+      "convention": "Produits du sol : négoce et industrie",
+      "idcc": "1077",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC425/sharp_/ANX/1077_CC425.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "Cadres",
+          "Niveau I (Cadres débutants)",
+          "350",
+          "Collaborateurs engagés pour occuper des fonctions de cadre commercial ou administratif, débutant dans le métier, titulaires d'un diplôme de l'enseignement supérieur. Période de formation (max 30 mois dans une seule entreprise, 5 ans dans plusieurs).",
+          "Statut non spécifié."
+        ],
+        [
+          "Niveau I (Ingénieurs débutants)",
+          "350",
+          "Collaborateurs engagés pour occuper des fonctions d'ingénieur, débutant dans le métier, titulaires d'un diplôme de l'enseignement supérieur. Période de formation (max 30 mois dans une seule entreprise, 5 ans dans plusieurs).",
+          "Statut non spécifié."
+        ],
+        [
+          "Hors niveau",
+          "Coefficients par accords individuels",
+          "Uniquement dans les entreprises à structure développée. Fonctions hiérarchiques découlant d'une valeur technique particulièrement élevée ou de la nécessité de coordonner plusieurs grands services d'une entreprise importante.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Publicité",
+      "idcc": "86",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC428/sharp_/ANX/86_CC428.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "3.2",
+          "400, 415, 425, 450 (le coefficient 450 s'applique exclusivement à l'emploi-repère chef de publicité junior)",
+          "Prise en charge de missions à partir d'orientations. Exige l'élaboration de solutions impliquant la définition de moyens à mettre en œuvre, mettant en jeu une responsabilité de résultat, faisant une part importante aux qualités personnelles.",
+          "Créativité, autorité, décision, jugement.",
+          "Cadre",
+          "Statut non spécifié.",
+          "Salaire minimum mensuel brut : 2 684 €."
+        ],
+        [
+          "3.3",
+          "450, 475, 500",
+          "Pleine maîtrise de la fonction, définie par référence aux caractéristiques du deuxième niveau, et permettant de faire face à toute situation professionnelle.",
+          "La maîtrise de la fonction se mesure à la capacité d'aborder et de résoudre des missions délicates.",
+          "Cadre",
+          "Statut non spécifié.",
+          "Salaire minimum mensuel brut : 3 164 €."
+        ],
+        [
+          "3.4",
+          "550",
+          "Haut niveau d'expertise et de responsabilité. Implique une responsabilité d'ensemble, exigeant une expertise et une capacité particulière d'innovation qui suppose en règle générale la constitution et la conduite d'une équipe, et la nécessité impérative d'organiser et de déléguer des missions particulières.",
+          "Expertise, responsabilité et exigence particulière d'innovation dans un domaine de compétence défini par l'autorité de direction de l'entreprise. Responsabilité particulière dans le choix, la formation et l'animation des collaborateurs, délégation et contrôle de manière habituelle.",
+          "Cadre (Au-delà de ce niveau, il s'agit généralement de fonctions concourant à la direction de l'entreprise, dites \"cadres hors catégorie\".)",
+          "Statut non spécifié.",
+          "Salaire minimum mensuel brut : 4 142 €."
+        ]
+      ]
+    },
+    {
+      "convention": "Récupération : industries et commerces",
+      "idcc": "637",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC442/sharp_/ANX/637_CC442.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "VI",
+          "B",
+          "Cadre confirmé. Participe à la détermination des objectifs, règles et moyens. Gère un secteur d'activités, assure les relations amont/aval, encadre. Spécialiste dans son domaine. Responsabilité sur tous les aspects du secteur, gestion professionnelle des équipes, grande initiative. Conséquences significatives sur le résultat financier.",
+          "Max 24 mois",
+          "Statut non spécifié",
+          "Statut non spécifié"
+        ],
+        [
+          "VII",
+          "B",
+          "Participe à la détermination des politiques et budgets du secteur. Maîtrise un secteur important d'activités, implique la gestion de tous ses composants et la coordination avec les secteurs voisins. Encadre des cadres, spécialiste avec connaissances approfondies. Responsabilité déterminante sur l'ensemble de l'entreprise.",
+          "Supérieur à 24 mois",
+          "Statut non spécifié",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Restauration ferroviaire",
+      "idcc": "1311",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC446/sharp_/ANX/1311_CC446.pdf",
+      "totalMatches": 1,
+      "uniqueMatches": [
+        "non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Dactylo",
+          "Exécution",
+          "1",
+          "Coefficient non spécifié",
+          "Capable de frapper sur toute machine à écrire au moins quarante mots/minute, sans faute d'orthographe, et présentant d'une façon satisfaisante son travail. Peut être occupé(e) à répondre et à donner des communications sur un standard téléphonique, ainsi qu'à utiliser un télex."
+        ]
+      ]
+    },
+    {
+      "convention": "Spectacle vivant : structures mobiles",
+      "idcc": "2903",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC701/sharp_/ANX/2903_CC701.pdf",
+      "totalMatches": 20,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 12,
+      "examples": [
+        [
+          "Employés et Ouvriers",
+          "Position I",
+          "120",
+          "Statut non spécifié",
+          "Type d'activité : Salarié exécutant des tâches simples ou répétitives en application de consignes précises. Responsabilité : Exécution du travail conforme aux consignes reçues sous le contrôle d'un salarié de qualification supérieure. Niveau de connaissance : Personnel occupant des emplois ne nécessitant aucune formation spécifique (Niveau VI Éducation Nationale).",
+          "aide monteur, aide tapissier, aide magasinier, aide laveur, aide préparateur, cariste, opératrice de saisie, standardiste, coursier, opératrice administrative.",
+          "Polycompétence : Lorsque le même agent est conduit à exercer, de manière permanente, des activités qui relèvent de fonctions différentes, la qualification retenue est celle qui se situe au niveau hiérarchique le plus élevé. Si un salarié exerce des emplois classés à des coefficients différents, il bénéficie du coefficient le plus élevé. Remplacements occasionnels ou temporaires : Si un salarié effectue un remplacement affectant la totalité des fonctions du salarié remplacé, son salaire ne pourra être inférieur, pendant la période considérée, au salaire minimal du poste du remplacé. Modalités de passage des classifications : Se feront dans chaque entreprise après discussion et consultation des représentants du personnel. Les entreprises s'attacheront à favoriser la promotion de leur personnel aux échelons supérieurs. Lien général avec la rémunération : Les niveaux et coefficients servent à la détermination des salaires minima garantis conventionnels annuels (Article 51). La grille des salaires (Article 54) fournit les taux horaires et salaires mensuels/annuels pour chaque coefficient."
+        ],
+        [
+          "130",
+          "Statut non spécifié",
+          "(Identique à Coeff. 120)",
+          "(Identique à Coeff. 120)"
+        ],
+        [
+          "Position II",
+          "140",
+          "Statut non spécifié",
+          "Type d'activité : Travaux d'exécution qualifiés dans le cadre de directives générales, ces travaux variés peuvent être effectués en fonction de l'activité de l'entreprise. Responsabilité : Responsable de l'exécution des tâches confiées sous le contrôle d'un supérieur hiérarchique. Niveau de connaissance : Niveau de qualification relevant d'une formation spécifique minimum, sanctionnée par diplôme reconnu relatif à l'emploi principal occupé ou des connaissances équivalentes (Niveau V Éducation Nationale).",
+          "monteur tapissier cariste, chauffeur VL, magasinier, mécanicien, coupeur, bâchiste, couturier, menuisier, électricien, soudeur, laveur, préparateur, assistance commerciale, télé-prospectrice, aide comptable, secrétaire administrative, Suivi en comptabilité."
+        ],
+        [
+          "160",
+          "Statut non spécifié",
+          "(Identique à Coeff. 140)",
+          "monteur qualifié 1er degré, chauffeur super lourd, Chauffeur Super Lourd (justifiant de 4 années dans l'entreprise), commercial, Secrétaire commerciale, service paie, assistant achats, assistant logistique."
+        ],
+        [
+          "Techniciens - Agents de maîtrise",
+          "Position III",
+          "170",
+          "Statut non spécifié",
+          "Définition générale : Font partie du personnel d'encadrement, leurs activités requièrent compétence, qualification et responsabilité. Certains peuvent exercer des fonctions de commandement et d'animation. Responsabilité : Personnel qui dispose d'initiatives dans la conduite et l'exécution de son travail. Niveau de connaissance : BEP/CAP Éducation Nationale, Expérience équivalente 6 ans minimum dans le poste.",
+          "Monteur tapissier cariste 2ème degré, chauffeur super lourd encadrement de petites équipes, Responsable magasin, responsable atelier mécanique, responsable bâcherie, responsable menuiserie, responsable électricité, téléprospectrice, Comptable secrétaire administrative."
+        ]
+      ]
+    },
+    {
+      "convention": "Sport : commerce des articles de sport",
+      "idcc": "1557",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC452/sharp_/ANX/1557_CC452.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "Adjoint(e) ou directeur(trice) général(e)",
+          "Statut non spécifié",
+          "550",
+          "C"
+        ],
+        [
+          "Directeur(trice) général(e)",
+          "Statut non spécifié",
+          "600",
+          "C"
+        ]
+      ]
+    },
+    {
+      "convention": "Sucreries, sucreries-distilleries, raffineries de sucre",
+      "idcc": "2728",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC453/sharp_/ANX/2728_CC453.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Cadre supérieur",
+          "77 848,81 €",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Thermiques : équipements - cadres et assimilés",
+      "idcc": "1256",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC461/sharp_/ANX/1256_CC461.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "V",
+          "RAS",
+          "180",
+          "Cadres de positions supérieures à celles de I à IV.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Travail temporaire : salariés permanents",
+      "idcc": "1413",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC478/sharp_/ANX/1413_CC478.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "A",
+          "Statut non spécifié",
+          "Assistant Cial",
+          "Assistant recrutement",
+          "Chargé d'accueil",
+          "Assistant de gestion",
+          "Assistant fonction support"
+        ]
+      ]
+    },
+    {
+      "convention": "Tuiles et briques : industries",
+      "idcc": "1170",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC483/sharp_/ANX/1170_CC483.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "Hors Catégories",
+          "Cadres supérieurs",
+          "Statut non spécifié"
+        ]
+      ]
+    },
+    {
+      "convention": "Verre : fabrication mécanique",
+      "idcc": "669",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC487/sharp_/ANX/669_CC487.pdf",
+      "totalMatches": 6,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 3,
+      "examples": [
+        [
+          "8",
+          "390 - 410",
+          "Cadres",
+          "Agents ayant acquis par des études, ou par expérience professionnelle, une formation appuyée sur des connaissances générales, souvent reconnues par un diplôme, qui lui permettent de se mettre rapidement au courant des questions propres au poste occupé. Met en œuvre ses compétences dans l'accomplissement de ses fonctions sans assumer une responsabilité complète et permanente qui revient en fait à son responsable hiérarchique.",
+          "Statut non spécifié."
+        ],
+        [
+          "660",
+          "Cadres",
+          "(Se référer à la définition de la catégorie 8b, niveau le plus élevé au sein de la catégorie)",
+          "Statut non spécifié."
+        ],
+        [
+          "9",
+          "880",
+          "Cadres",
+          "L'existence de ce niveau se justifie par la valeur technique élevée exigée par la nature des fonctions, l'importance de l'établissement, la nécessité d'une coordination entre plusieurs services et/ou unités. Ce niveau implique de très larges initiatives et responsabilités.",
+          "Statut non spécifié."
+        ]
+      ]
+    },
+    {
+      "convention": "Vétérinaires : personnel salarié",
+      "idcc": "1875",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC491/sharp_/ANX/1875_CC491.pdf",
+      "totalMatches": 2,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 1,
+      "examples": [
+        [
+          "3",
+          "110",
+          "Auxiliaire Vétérinaire trois",
+          "En plus des tâches de l'échelon 2 : Hygiène, sécurité et aide à la contention ; assistance technique du praticien ; aide à la consultation, aux soins, aux examens, à la radiologie et à la chirurgie ; préparation du matériel médical et chirurgical.",
+          "Statut non spécifié (implicitement, peut être atteint par évolution depuis l'échelon 2)."
+        ]
+      ]
+    },
+    {
+      "convention": "Vins : caves coopératives vinicoles et leurs unions",
+      "idcc": "7005",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC568/sharp_/ANX/7005_CC568.pdf",
+      "totalMatches": 4,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 2,
+      "examples": [
+        [
+          "I",
+          "O.E.",
+          "Statut non spécifié",
+          "1 811,80 €",
+          "1 848,04 €",
+          "1 940,44 €",
+          "RAS",
+          "11,946 €",
+          "12,185 €",
+          "12,794 €",
+          "RAS"
+        ],
+        [
+          "V",
+          "T.A.C.",
+          "Statut non spécifié",
+          "2 973,15 €",
+          "3 032,62 €",
+          "3 184,25 €",
+          "3 407,15 €",
+          "19,603 €",
+          "19,995 €",
+          "20,995 €",
+          "22,464 €"
+        ]
+      ]
+    },
+    {
+      "convention": "Vins, cidres, jus de fruits",
+      "idcc": "493",
+      "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC493/sharp_/ANX/493_CC493.pdf",
+      "totalMatches": 8,
+      "uniqueMatches": [
+        "non spécifié",
+        "statut non spécifié"
+      ],
+      "tableRowsCount": 7,
+      "examples": [
+        [
+          "Cadres et Ingénieurs",
+          "VII",
+          "A",
+          "Non spécifié"
+        ],
+        [
+          "VIII",
+          "A",
+          "Non spécifié"
+        ],
+        [
+          "IX",
+          "A, B",
+          "Non spécifié"
+        ],
+        [
+          "X",
+          "A",
+          "Non spécifié"
+        ],
+        [
+          "Positions Supérieures",
+          "Non spécifié"
+        ]
+      ]
+    }
+  ]
+}
