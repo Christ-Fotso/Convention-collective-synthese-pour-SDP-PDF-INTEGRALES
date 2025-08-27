@@ -158,6 +158,8 @@ export default function Chat() {
         
         if (backendCategory === "protection-sociale" && ["prevoyance", "retraite", "mutuelle"].includes(backendSubcategory)) {
           displayCategory = "cotisations";
+        } else if (backendCategory === "protection-sociale" && ["accident-travail", "maladie", "maternite-paternite"].includes(backendSubcategory)) {
+          displayCategory = "maintien-salaire";
         } else if (backendCategory === "formation" && backendSubcategory === "contributions") {
           displayCategory = "cotisations";
           displaySubcategory = "formation";

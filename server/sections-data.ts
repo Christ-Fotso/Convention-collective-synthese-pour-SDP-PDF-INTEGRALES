@@ -100,6 +100,7 @@ const SECTION_TYPE_MAPPING: Record<string, string> = {
   "Accident_de_travail": "protection-sociale.accident-travail",
   "Maladie": "protection-sociale.maladie",
   "Maternité_Paternité": "protection-sociale.maternite-paternite",
+  "Maternité___Paternité": "protection-sociale.maternite-paternite",
   "Cotisation_mutuelle": "protection-sociale.mutuelle",
   "Cotisation_prévoyance": "protection-sociale.prevoyance",
   "Cotisation_retraite": "protection-sociale.retraite",
