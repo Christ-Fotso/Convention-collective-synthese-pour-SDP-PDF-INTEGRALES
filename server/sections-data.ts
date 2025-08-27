@@ -88,6 +88,7 @@ const SECTION_TYPE_MAPPING: Record<string, string> = {
   "Indemnité_repas": "remuneration.repas",
   "Indemnité_astreinte": "remuneration.astreinte",
   "Primes,_Indemnités,_Avantages_et_Frais_Professionn": "remuneration.prime",
+  "__Primes,_Indemnités,_Avantages_en_Nature_et_Frais_Professionnels__": "remuneration.prime",
   "Apprenti": "remuneration.apprenti",
   "Contrat_de_professionalisation": "remuneration.contrat-pro",
   "Stagiaire": "remuneration.stagiaire",
