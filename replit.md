@@ -6,6 +6,8 @@ This platform is a web application designed for analyzing and managing French co
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 Content editing: User adds specific corrections/annotations to individual conventions (e.g., IDCC 0843, 575, and 2219 trial period corrections: durations mentioned in conventions may be inapplicable, requiring legal minimum durations instead).
+Navigation: Preference for accessible navigation with return button in sticky menu rather than top-of-page placement.
+Visual design: Orange/yellow colors harmonizing with green palette, diamond symbols instead of triangles, blue accent for navigation buttons.
 
 ## System Architecture
 ### Frontend
@@ -29,7 +31,8 @@ Content editing: User adds specific corrections/annotations to individual conven
 - **Database Schema**: `conventions` (metadata), `conventionSections` (extracted content), `chatpdfSources`, `apiMetrics`, `extractionTasks`.
 - **Content Management**: Over 30 predefined section types, JSON data provider for static content, Markdown processing, and automatic table normalization.
 - **UI Features**: Modern sidebar navigation, advanced keyword search with HTML preview and relevance scoring, and a refactored home interface with statistical insights.
-- **HTML Rendering**: Automatic Markdown to HTML conversion with `marked` library, professional formatting, and syntax highlighting via `highlight.js`.
+- **HTML Rendering**: Automatic Markdown to HTML conversion with `marked` library, professional formatting, and syntax highlighting via `highlight.js`. HTML table formatting issues resolved (336 ```html code blocks removed from data.json).
+- **Navigation UX**: Sticky header navigation with blue-accented return button, accessible without scrolling to top.
 
 ### Deployment Strategy
 - **Platform**: Google Cloud Run.
