@@ -37,17 +37,18 @@ export class PDFAnalysisService {
   }
 
   /**
-   * Analyse une convention avec Gemini 1.5 Flash avec chunks étendus
+   * Analyse une convention avec Gemini 1.5 Flash avec chunks étendus et historique
    */
-  async analyzeConventionPDF(idcc: string, question: string): Promise<{
+  async analyzeConventionPDF(idcc: string, question: string, chatHistory: Array<{question: string, answer: string}> = []): Promise<{
     response: string;
     source: string;
     cost: number;
+    isExtended: boolean;
   }> {
     try {
       console.log(`Analyse sections pour IDCC ${idcc}`);
       
-      // Préparer le prompt optimisé pour Gemini 1.5 Flash
+      // Préparer le prompt optimisé pour Gemini 1.5 Flash avec historique
       const systemPrompt = `Tu es un expert pédagogue en droit du travail français. Tu analyseras le contenu de convention collective fourni pour répondre avec précision et clarté.
 
 INSTRUCTIONS PRIORITAIRES:
@@ -58,12 +59,28 @@ INSTRUCTIONS PRIORITAIRES:
 - Sois PÉDAGOGUE : explique clairement les implications pratiques
 - Structure ta réponse de manière hiérarchique avec des titres clairs
 - Utilise le format markdown pour la lisibilité
-- RÈGLE CRUCIALE : Si le contenu analysé ne couvre pas entièrement le document original (chunks tronqués), tu DOIS terminer ta réponse par : "⚠️ **Note**: Cette analyse est basée sur une partie sélectionnée du document. Des informations complémentaires peuvent exister dans d'autres sections de la convention."
-- Si l'information n'existe pas dans le contenu fourni, dis clairement "Cette information n'est pas présente dans la partie de la convention analysée"`;
 
-      const userPrompt = `Question sur la convention collective IDCC ${idcc}: ${question}
+RÈGLES DE NOTIFICATION OBLIGATOIRES:
+- COMMENCE TOUJOURS ta réponse par "📋 **Analyse étendue**" si l'analyse couvre le document complet OU "⚠️ **Analyse non étendue**" si l'analyse ne couvre qu'une partie
+- Si l'analyse n'est pas étendue, TERMINE ta réponse par : "⚠️ **Note**: Cette analyse est basée sur une partie sélectionnée du document. Des informations complémentaires peuvent exister dans d'autres sections de la convention."
+- Si l'information n'existe pas dans le contenu fourni, dis clairement "Cette information n'est pas présente dans la partie de la convention analysée"
 
-Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
+HISTORIQUE DE CONVERSATION:
+- Tiens compte des questions et réponses précédentes pour éviter les répétitions
+- Si la question actuelle fait référence à une réponse précédente, utilise ce contexte pour compléter ta réponse`;
+
+      // Construire le contexte avec l'historique
+      let contextHistory = '';
+      if (chatHistory.length > 0) {
+        contextHistory = '\n\n=== HISTORIQUE DE LA CONVERSATION ===\n';
+        chatHistory.forEach((exchange, index) => {
+          contextHistory += `\nÉchange ${index + 1}:\nQ: ${exchange.question}\nR: ${exchange.answer}\n`;
+        });
+      }
+
+      const userPrompt = `Question sur la convention collective IDCC ${idcc}: ${question}${contextHistory}
+
+Analyse le contenu fourni et réponds en te basant uniquement sur celui-ci.`;
 
       // Trouver et analyser le PDF complet
       const pdfPath = this.findPDFByIDCC(idcc);
@@ -107,6 +124,7 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
 
       // Détecter si le contenu est tronqué (pour indiquer à l'utilisateur)
       const isTruncated = fullPdfText.length > 800000 || relevantSections.length > 0;
+      const isExtended = !isTruncated;
       
       // Appel à Gemini 1.5 Flash avec le texte extrait
       const model = geminiApi.getGenerativeModel({ model: MODEL });
@@ -136,8 +154,9 @@ ${isTruncated ? '\n\n[IMPORTANT: Ce contenu représente une partie sélectionné
 
       return {
         response: answer,
-        source: `Analyse complète (${Math.round(pdfText.length/1000)}k caractères)`,
-        cost: totalCost
+        source: `Analyse ${isExtended ? 'étendue' : 'non étendue'} (${Math.round(pdfText.length/1000)}k caractères)`,
+        cost: totalCost,
+        isExtended: isExtended
       };
 
     } catch (error) {

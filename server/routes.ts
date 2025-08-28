@@ -2145,10 +2145,13 @@ Consignes:
     }
   });
 
-  // Nouvelle route pour analyser avec les vrais PDFs et GPT-4o Mini
+  // Cache pour l'historique des conversations (en mémoire, par session)
+  const chatHistoryCache = new Map<string, Array<{question: string, answer: string}>>();
+
+  // Nouvelle route pour analyser avec les vrais PDFs et Gemini 1.5 Flash avec historique
   apiRouter.post("/chat-pdf", async (req, res) => {
     try {
-      const { question, conventionId } = req.body;
+      const { question, conventionId, sessionId, resetHistory } = req.body;
       
       if (!question || !conventionId) {
         return res.status(400).json({ 
@@ -2156,17 +2159,51 @@ Consignes:
         });
       }
       
-      console.log(`[PDF Chat] Question: "${question}" pour IDCC ${conventionId}`);
+      // Générer un sessionId unique si pas fourni
+      const chatSessionId = sessionId || `${conventionId}_${Date.now()}`;
       
-      // Utiliser le service d'analyse PDF avec GPT-4o Mini
-      const result = await pdfAnalysisService.analyzeConventionPDF(conventionId, question);
+      // Réinitialiser l'historique si demandé
+      if (resetHistory) {
+        chatHistoryCache.delete(chatSessionId);
+        console.log(`[PDF Chat] Historique réinitialisé pour session ${chatSessionId}`);
+      }
+      
+      // Récupérer l'historique de cette session
+      let chatHistory = chatHistoryCache.get(chatSessionId) || [];
+      
+      // Limiter l'historique à 3 questions maximum
+      if (chatHistory.length >= 3) {
+        return res.status(400).json({
+          error: "Limite d'historique atteinte",
+          message: "Vous avez atteint la limite de 3 questions. Veuillez réinitialiser la conversation pour poser de nouvelles questions.",
+          needsReset: true,
+          sessionId: chatSessionId
+        });
+      }
+      
+      console.log(`[PDF Chat] Question ${chatHistory.length + 1}/3: "${question}" pour IDCC ${conventionId} (session: ${chatSessionId})`);
+      
+      // Utiliser le service d'analyse PDF avec Gemini 1.5 Flash et historique
+      const result = await pdfAnalysisService.analyzeConventionPDF(conventionId, question, chatHistory);
+      
+      // Sauvegarder dans l'historique
+      chatHistory.push({
+        question: question,
+        answer: result.response
+      });
+      chatHistoryCache.set(chatSessionId, chatHistory);
       
       res.json({
         question,
         response: result.response,
         source: result.source,
         cost: result.cost,
-        conventionId
+        isExtended: result.isExtended,
+        conventionId,
+        sessionId: chatSessionId,
+        questionCount: chatHistory.length,
+        remainingQuestions: 3 - chatHistory.length,
+        needsReset: chatHistory.length >= 3
       });
       
     } catch (error: any) {
