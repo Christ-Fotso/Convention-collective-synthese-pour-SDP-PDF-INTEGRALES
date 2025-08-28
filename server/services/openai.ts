@@ -755,6 +755,8 @@ export async function queryOpenAIForLegalData(
   type: 'classification' | 'salaires'
 ): Promise<ChatResponse> {
   try {
+    console.log(`[DEBUG] queryOpenAIForLegalData appelée avec: conventionId="${conventionId}", conventionName="${conventionName}", type="${type}"`);
+    
     // Déterminer le type de section
     let sectionType = '';
     if (type === 'classification') {
@@ -826,87 +828,148 @@ export async function queryOpenAIForLegalData(
     let userPrompt = "";
     
     if (type === 'classification') {
-      systemPrompt = `Vous êtes un expert en droit du travail français spécialisé dans les classifications professionnelles. 
-Analysez la structure détaillée de la classification des emplois dans la convention collective IDCC ${conventionId} (${conventionName}).
+      systemPrompt = `# PROMPT SYSTÈME AMÉLIORÉ POUR EXTRACTION JURIDIQUE - VERSION 2.0
+
+## INSTRUCTIONS GÉNÉRALES POUR L'EXTRACTION D'INFORMATIONS DES CONVENTIONS COLLECTIVES
+
+### PRINCIPES DE BASE
+
+1. **Extraction Stricte et en Vigueur :**
+   - Extraire **uniquement** les informations **en vigueur** issues **strictement** de la convention collective fournie. Ignorer les informations obsolètes, abrogées, ou non présentes dans le texte.
+   - Ne **jamais** faire référence à des aspects illégaux ou supposer l'application de dispositions légales si la convention est muette.
+
+2. **Exhaustivité et Précision (Vigilance Accrue) :**
+   - **Toutes les facettes d'une règle :** Lorsqu'un droit, une obligation, un avantage (en nature ou autre), une prime ou une indemnité est mentionné, extraire non seulement ses conditions d'application principales mais aussi **toutes les alternatives, exceptions, modalités spécifiques, et compensations (financières ou en repos)** explicitement prévues par la convention pour différentes situations (ex: impossibilité de fournir l'avantage, cas particuliers, absences, etc.).
+   - **Recherche des liens :** Si le calcul ou la valeur d'un élément (prime, indemnité, avantage...) dépend d'une **valeur de référence définie ailleurs dans la convention** (ex: Minimum Garanti, valeur du point, SMIC conventionnel...), mentionner cette dépendance et **rechercher activement cette valeur de référence** dans les sections pertinentes (grilles de salaires, articles dédiés...) pour la fournir. Si la valeur n'est pas trouvable *dans la convention*, l'indiquer clairement.
+   - **Terminologie Exacte :** Conserver autant que possible la **terminologie exacte** de la convention collective. Ne pas reformuler ou paraphraser excessivement.
+
+3. **Traitement de l'Absence d'Information (OPTIMISÉ) :**
+   - Si la convention aborde un sujet mais **ne donne pas de détail précis** (ex: montant d'une prime non chiffré, modalité non décrite), mentionner explicitement : **"La convention ne prévoit rien à ce sujet"** ou **"La convention ne précise pas..."** pour ce détail spécifique.
+   - ⚠️ **LIMITATION CRITIQUE** : Ne **jamais** répéter plus d'**une seule fois** par section la phrase "La convention ne prévoit rien" ou "RAS". Si plusieurs éléments manquent, les grouper en une seule mention : *"La convention ne prévoit rien concernant [liste des éléments manquants]"*.
+   - Ne **jamais** écrire de phrases impliquant l'application de la loi par défaut ou un usage si la convention est muette.
+   - Mentionner **"RAS" (Rien À Signaler)** uniquement si la **totalité** de la section thématique demandée (ex: l'ensemble des primes) est absente de la convention.
+
+4. **Références et Spécificités :**
+   - Pour les accords/avenants cités (notamment pour les grilles de salaires ou dispositions clés), préciser systématiquement leur **statut** (étendu / non étendu) et les dates clés associées lorsque demandé spécifiquement.
+   - **Pour chaque thème abordé, vérifier et mentionner explicitement toute spécificité régionale ou départementale** prévue par la convention collective, si elle existe.
+
+### FORMAT DE RESTITUTION OPTIMISÉ
+
+#### **Structure et Organisation :**
+
+1. **Hiérarchie Limitée :** Utiliser **maximum 2 niveaux d'indentation** (## et ###). Éviter les sous-sous-sections qui complexifient la lecture.
+
+2. **Titres Intelligents :**
+   - ⚠️ **INTERDICTION TITRES REDONDANTS** : Ne **jamais** créer de titre H1 (# Grille de Rémunération) qui duplique exactement le nom de la section. Commencer directement par le contenu ou des sous-titres pertinents.
+   - Privilégier des titres fonctionnels : "## Dispositions Actuelles", "## Modalités d'Application", "## Cas Particuliers"
+
+3. **Groupement Logique :**
+   - Regrouper les informations similaires sous des **thèmes cohérents**
+   - Éviter la dispersion d'informations connexes dans plusieurs paragraphes
+   - Exemple : Tous les taux de majoration d'heures supplémentaires dans une même section
+
+4. Structure et Organisation
+- **Hiérarchie limitée** : maximum 2 niveaux d'indentation (## et ###).
+- **Titres intelligents** : pas de titres H1 dupliquant le nom de la section.
+- **Groupement logique** : regrouper les informations similaires, éviter la dispersion.
+
+5. Normalisation des Formats
+- **Dates** : afficher au format ISO 8601 (**AAAA-MM-JJ**) et en forme lisible (**JJ/MM/AAAA**).
+- **Montants** : format **1 789,71 €** avec espace insécable avant le symbole €.
+- **Pourcentages** : format **12,5 %** avec espace insécable avant %.
+- **Unités** : h, jour(s), semaine(s), mois, an(s) ; préciser la base de temps de travail si pertinente.
+
+---
+
+#### **Traitement des Tableaux (SPÉCIALISÉ) :**
+
+1. **Usage Stratégique :** Utiliser les tableaux **uniquement** s'ils sont **indispensables** pour la clarté :
+   - ✅ Grilles de salaires complexes avec multiple variables
+   - ✅ Classifications détaillées avec coefficients
+   - ✅ Taux de majoration multiples par statut/horaire
+   - ❌ Liste simple de 2-3 éléments (privilégier listes à puces)
+
+2. **Structure Optimisée :**
+   - **Fusionner les cellules verticalement** lorsque l'information est identique sur plusieurs lignes consécutives (ex: même catégorie)
+   - **Éliminer les colonnes vides** ou avec valeurs manquantes répétitives
+   - **Fusionner les lignes redondantes** : Si plusieurs lignes ont des valeurs quasi-identiques, les regrouper intelligemment
+   - Ne pas créer de tableaux imbriqués
+
+3. **Formatage HTML Professionnel :**
+- Utiliser HTML **sémantique** : \`<caption>\`, \`<thead>\`, \`<tbody>\`.
+- En-têtes \`<th>\` avec \`scope="col"\`, \`scope="row"\` ou \`scope="rowgroup"\`.
+- **Fusions obligatoires** :
+  - Verticale : \`rowspan\`
+  - Horizontale : \`colspan\`
+- Interdiction de simuler la fusion par CSS seul.
+- Colonnes vides supprimées.
+- Lignes quasi-identiques regroupées avec fusion appropriée.
+- Aucune table imbriquée.
+
+**Exemple conforme :**
+\`\`\`html
+<table>
+  <caption>Grille de salaires – application 01/10/2024</caption>
+  <thead>
+    <tr>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Coefficient</th>
+      <th scope="col">Salaire minimum</th>
+      <th scope="col">Date d'application</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="rowgroup" rowspan="2">Employé</th>
+      <td>100</td>
+      <td>1 789,71 €</td>
+      <td>01/10/2024</td>
+    </tr>
+    <tr>
+      <td>120</td>
+      <td>1 845,00 €</td>
+      <td>01/10/2024</td>
+    </tr>
+    <tr>
+      <th scope="row" colspan="2">Agent de maîtrise coeff. 200</th>
+      <td>2 050,00 €</td>
+      <td>01/10/2024</td>
+    </tr>
+  </tbody>
+</table>
+\`\`\`
 
 Ci-dessous se trouve le texte intégral du document PDF de cette convention collective. Ce texte a été extrait automatiquement et contient l'ensemble du document à votre disposition:
 
 ---DÉBUT DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
 ${conventionText}
----FIN DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---
-
-DIRECTIVES STRICTES POUR VOTRE ANALYSE:
-
-1. Structure et format de votre réponse :
-   - Présenter un tableau hiérarchique complet de TOUS les niveaux, échelons et coefficients que vous trouvez dans le texte
-   - Structure: du niveau le plus bas au plus élevé
-   - Inclure TOUTES les catégories mentionnées (employés, techniciens, cadres, etc.)
-
-2. Pour chaque niveau, votre réponse doit :
-   - Lister TOUS les niveaux hiérarchiques présents dans le texte
-   - Inclure TOUS les coefficients correspondants mentionnés
-   - Détailler les critères de classification pour chaque niveau
-   - Citer les articles précis trouvés dans le texte
-
-3. Format suggéré (à adapter selon les informations disponibles) :
-| Niveau/Classification | Description et Critères |
-|---------------------|------------------------|
-| Niveau 1 - Coef. XX | - Critères détaillés... |
-
-Si aucune information n'est disponible pour créer un tableau, ne pas inclure de tableau vide.
-
-4. Règles ESSENTIELLES :
-   - Basez-vous EXCLUSIVEMENT sur le texte fourni ci-dessus
-   - Recherchez méticuleusement dans TOUT le document les informations demandées
-   - Ne faites JAMAIS appel à des connaissances générales qui ne seraient pas présentes dans ce document spécifique
-   - Si une information n'est pas présente dans le texte, indiquez-le clairement: "Cette information n'apparaît pas dans le document de la convention collective IDCC ${conventionId}"
-   - N'inventez JAMAIS d'information qui ne serait pas explicitement mentionnée dans le document
-   - N'UTILISEZ PAS de balises HTML comme <br> ou autres. Utilisez uniquement la syntaxe Markdown standard.
-   - Pour les sauts de ligne dans les cellules du tableau, utilisez "\\n" ou des points d'énumération à la place de balises HTML.
-
-5. Après le tableau, ajoutez :
-   - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
-   - Les spécificités par filière si elles sont mentionnées dans le texte`;
+---FIN DU TEXTE COMPLET DE LA CONVENTION COLLECTIVE---`;
       
-      userPrompt = `Analyse en détail le système de classification professionnelle prévu par la convention collective.
+      userPrompt = `<!-- SECTION: Classification Con + Détails -->
+OBJECTIF :
+Extraire la structure de classification des salariés.
 
-1. Principes généraux de la classification :
-   - Type de système (Parodi, critères classants, etc.)
-   - Date de mise en place et éventuelles révisions
-   - Méthode d'évaluation des emplois
-   - Nombre de niveaux, échelons ou positions
+INFORMATIONS À EXTRAIRE (Strictement issues de la convention) :
+- Structure générale (Catégories, Niveaux, Échelons, Coefficients).
+- Critères classants et fonctions types.
+- Spécificités régionales/départementales.
 
-2. Structure détaillée de la classification :
-   - Intitulés exacts des niveaux et échelons
-   - Définition précise de chaque niveau/échelon
-   - Critères de positionnement (formation, compétences, responsabilité, autonomie, etc.)
-   - Coefficients ou points associés à chaque niveau
+INSTRUCTIONS IMPORTANTES POUR VOTRE RÉPONSE :
+- Utilisez OBLIGATOIREMENT un tableau HTML pour présenter la structure.
+- Si la convention n'a pas de système de classification, mentionnez "RAS".
+- Appliquez les règles générales : terminologie exacte, pas d'intro/conclusion.
 
-3. Emplois-repères ou exemples d'emplois :
-   - Liste des emplois-repères par niveau/catégorie
-   - Description des fonctions types
-   - Correspondance emplois/classification
-   - Exemples de positionnement
-
-4. Modalités pratiques d'application :
-   - Procédure de classement des salariés
-   - Règles de prise en compte de l'expérience et des diplômes
-   - Périodicité de révision des classements
-   - Commissions de classification éventuelles
-
-5. Évolution professionnelle :
-   - Critères de progression dans la grille
-   - Périodes probatoires ou d'adaptation
-   - Passerelles entre catégories
-   - Reconnaissance des formations et certifications
-
-FORMAT DE PRÉSENTATION :
-- Reproduction exacte de la grille de classification
-- Citation intégrale des définitions de niveaux/échelons
-- Présentation sous forme de tableau des critères classants
-- Référence précise des articles
-
-Si la convention ne contient que des éléments partiels sur la classification, indiquer les dispositions manquantes et préciser : "Pour les éléments non précisés, se référer aux accords d'entreprise ou aux usages."`;
+RÈGLE DE SORTIE — FORMAT
+- Le rendu final doit être du MARKDOWN.
+- Les descriptions générales doivent être en texte Markdown (titres, listes, puces).
+- Les tableaux doivent être inclus en balises <table> HTML, mais intégrés directement dans le rendu Markdown.
+- Pas de rendu HTML global (pas de <html>, <body>, etc.).
+- Le rendu doit être simple et synthétique. Ne pas trop charger.
+- Pas de texte inutile, uniquement faits et critères classants.
+- NE JAMAIS MENTIONNER LE SALAIRE ET LA REMUNERATION, NE JAMAIS MENTIONNER LE SALAIRE ET LA REMUNERATION
+- NE JAMAIS METTRE DEUX CLASSIFICATION DANS LA MËME LIGNE MËME SI ELLES SONT SEMBLABLES
+- NE JAMAIS METTRE CETTE BALISE \`\`\`html
+- NE JAMAIS METTRE DEUX CLASSIFICATION DANS LA MËME LIGNE MËME SI ELLES SONT SEMBLABLES`;
     }
     else if (type === 'salaires') {
       systemPrompt = `Vous êtes un expert en droit du travail français spécialisé dans l'analyse des rémunérations et grilles salariales.

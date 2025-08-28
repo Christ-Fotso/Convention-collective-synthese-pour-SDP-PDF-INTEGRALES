@@ -516,15 +516,12 @@ export function registerRoutes(app: Express): Server {
         
         // FORCER L'UTILISATION D'OPENAI AVEC LE PROMPT EXACT
         try {
-          const { queryOpenAIForLegalData } = await import('./services/openai');
           const conventionName = convention[0].name;
-          const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
           
           console.log(`Appel OpenAI avec prompt exact pour classification ${conventionId}`);
           const openaiResponse = await queryOpenAIForLegalData(
             conventionId,
             conventionName,
-            conventionUrl,
             'classification'
           );
           
