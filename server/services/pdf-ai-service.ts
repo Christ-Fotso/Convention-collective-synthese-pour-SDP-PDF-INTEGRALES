@@ -1,16 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const pdfParse = require('pdf-parse');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-// GPT-4o Mini - le modèle le moins cher et rapide
-const MODEL = "gpt-4o-mini";
+// Utilisation de Gemini 1.5 Flash - plus économique et context window 1M tokens
+const geminiApi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const MODEL = "gemini-1.5-flash";
 
 export class PDFAnalysisService {
   private pdfDirectory = './resultats_telechargements/complet_20250813_102543';
@@ -40,7 +37,7 @@ export class PDFAnalysisService {
   }
 
   /**
-   * Analyse une convention avec GPT-4o Mini en envoyant le PDF complet
+   * Analyse une convention avec Gemini 1.5 Flash avec chunks étendus
    */
   async analyzeConventionPDF(idcc: string, question: string): Promise<{
     response: string;
@@ -50,17 +47,19 @@ export class PDFAnalysisService {
     try {
       console.log(`Analyse sections pour IDCC ${idcc}`);
       
-      // Préparer le prompt optimisé pour GPT-4o Mini
-      const systemPrompt = `Tu es un expert en droit du travail français. Tu analyseras le PDF de convention collective fourni pour répondre précisément aux questions.
+      // Préparer le prompt optimisé pour Gemini 1.5 Flash
+      const systemPrompt = `Tu es un expert pédagogue en droit du travail français. Tu analyseras le contenu de convention collective fourni pour répondre avec précision et clarté.
 
 INSTRUCTIONS PRIORITAIRES:
-- Réponds uniquement en te basant sur le contenu exact du PDF
+- Réponds EXCLUSIVEMENT en te basant sur le contenu fourni de la convention collective
 - PRIVILÉGIE TOUJOURS LES INFORMATIONS LES PLUS RÉCENTES : si plusieurs dispositions/versions/dates existent, présente en priorité les plus récentes
 - Pour les salaires, grilles, montants : donne systématiquement les valeurs les plus récentes en premier
-- Cite les articles/paragraphes pertinents avec leurs dates si disponibles
-- Si l'information n'est pas dans le PDF, dis-le clairement
-- Sois concis et précis
-- Formate ta réponse en markdown`;
+- Cite PRÉCISÉMENT les articles, paragraphes, ou sections avec leurs numéros exacts
+- Sois PÉDAGOGUE : explique clairement les implications pratiques
+- Structure ta réponse de manière hiérarchique avec des titres clairs
+- Utilise le format markdown pour la lisibilité
+- RÈGLE CRUCIALE : Si le contenu analysé ne couvre pas entièrement le document original (chunks tronqués), tu DOIS terminer ta réponse par : "⚠️ **Note**: Cette analyse est basée sur une partie sélectionnée du document. Des informations complémentaires peuvent exister dans d'autres sections de la convention."
+- Si l'information n'existe pas dans le contenu fourni, dis clairement "Cette information n'est pas présente dans la partie de la convention analysée"`;
 
       const userPrompt = `Question sur la convention collective IDCC ${idcc}: ${question}
 
@@ -97,41 +96,43 @@ Analyse le PDF joint et réponds en te basant uniquement sur son contenu.`;
         pdfText = `=== SECTIONS PERTINENTES TROUVÉES ===\n\n${relevantSections.join('\n\n=== SECTION SUIVANTE ===\n\n')}`;
         console.log(`${relevantSections.length} sections pertinentes trouvées (${pdfText.length} caractères)`);
       } else {
-        // Fallback: premiers 300k caractères + fin du document
-        const startChunk = fullPdfText.substring(0, 250000);
-        const endChunk = fullPdfText.length > 300000 
-          ? fullPdfText.substring(fullPdfText.length - 50000) 
+        // Fallback: chunks plus larges pour Gemini 1.5 Flash (800k caractères au lieu de 300k)
+        const startChunk = fullPdfText.substring(0, 700000);
+        const endChunk = fullPdfText.length > 800000 
+          ? fullPdfText.substring(fullPdfText.length - 100000) 
           : '';
         pdfText = startChunk + (endChunk ? '\n\n=== FIN DU DOCUMENT ===\n\n' + endChunk : '');
-        console.log(`Analyse par chunks (début + fin): ${pdfText.length} caractères`);
+        console.log(`Analyse par chunks étendus (début + fin): ${pdfText.length} caractères`);
       }
 
-      // Appel à GPT-4o Mini avec le texte extrait
-      const response = await openai.chat.completions.create({
-        model: MODEL,
-        messages: [
-          {
-            role: "system",
-            content: systemPrompt
-          },
-          {
-            role: "user",
-            content: `${userPrompt}\n\n=== CONTENU DE LA CONVENTION COLLECTIVE ===\n\n${pdfText}`
-          }
-        ],
-        max_tokens: 2000, // Chunks longs comme demandé
-        temperature: 0.1, // Précision maximale
-      });
-
-      const answer = response.choices[0]?.message?.content || "Pas de réponse générée";
+      // Détecter si le contenu est tronqué (pour indiquer à l'utilisateur)
+      const isTruncated = fullPdfText.length > 800000 || relevantSections.length > 0;
       
-      // Calcul du coût approximatif (GPT-4o Mini très bon marché)
-      const usage = response.usage;
-      const inputCost = (usage?.prompt_tokens || 0) * 0.000000150; // $0.000150 per 1K tokens
-      const outputCost = (usage?.completion_tokens || 0) * 0.000000600; // $0.000600 per 1K tokens
+      // Appel à Gemini 1.5 Flash avec le texte extrait
+      const model = geminiApi.getGenerativeModel({ model: MODEL });
+      const finalPrompt = `${systemPrompt}
+
+${userPrompt}
+
+=== CONTENU DE LA CONVENTION COLLECTIVE ===
+
+${pdfText}
+
+${isTruncated ? '\n\n[IMPORTANT: Ce contenu représente une partie sélectionnée du document complet. Respecte la règle de notification si des informations pourraient manquer.]' : ''}`;
+
+      const result = await model.generateContent(finalPrompt);
+      const response = await result.response;
+
+      const answer = response.text() || "Pas de réponse générée";
+      
+      // Calcul du coût approximatif (Gemini 1.5 Flash très économique)
+      const estimatedInputTokens = Math.ceil(finalPrompt.length / 4); // ~4 chars par token
+      const estimatedOutputTokens = Math.ceil(answer.length / 4);
+      const inputCost = (estimatedInputTokens / 1000000) * 0.075; // $0.075 per 1M tokens
+      const outputCost = (estimatedOutputTokens / 1000000) * 0.30; // $0.30 per 1M tokens
       const totalCost = inputCost + outputCost;
 
-      console.log(`Analyse terminée - Tokens: ${usage?.total_tokens} - Coût: $${totalCost.toFixed(6)}`);
+      console.log(`Analyse terminée - Tokens estimés: ~${estimatedInputTokens + estimatedOutputTokens} - Coût: $${totalCost.toFixed(6)}`);
 
       return {
         response: answer,

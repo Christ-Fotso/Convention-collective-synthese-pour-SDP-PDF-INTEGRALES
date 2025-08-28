@@ -57,12 +57,12 @@ function findRelevantSections(text: string, question: string): string[] {
     .filter(item => item.score > 0)
     .sort((a, b) => b.score - a.score);
   
-  // Prendre les sections les plus pertinentes jusqu'à 400k caractères
+  // Prendre les sections les plus pertinentes jusqu'à 800k caractères (capacité étendue Gemini 1.5 Flash)
   const selectedSections: string[] = [];
   let totalLength = 0;
   
   for (const item of sortedSections) {
-    if (totalLength + item.length < 400000) {
+    if (totalLength + item.length < 800000) {
       selectedSections.push(item.section);
       totalLength += item.length;
     } else {
@@ -70,9 +70,9 @@ function findRelevantSections(text: string, question: string): string[] {
     }
   }
   
-  // Si aucune section pertinente, prendre le début du document
+  // Si aucune section pertinente, prendre le début du document avec capacité étendue
   if (selectedSections.length === 0) {
-    selectedSections.push(text.substring(0, 400000));
+    selectedSections.push(text.substring(0, 800000));
   }
   
   console.log(`[INFO] Recherche intelligente: ${selectedSections.length} sections sélectionnées (${totalLength} caractères)`);
