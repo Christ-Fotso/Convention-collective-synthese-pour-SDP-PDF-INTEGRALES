@@ -510,43 +510,37 @@ export function registerRoutes(app: Express): Server {
       const { sourceId, messages, category, subcategory, conventionId } = req.body;
       const convention = await db.select().from(conventions).where(eq(conventions.id, conventionId)).limit(1);
 
-      // Traitement spécial pour la classification
+      // TEST FORCE AVEC PROMPT EXACT - Traitement spécial pour la classification
       if (convention.length > 0 && category === 'classification' && subcategory === 'classification') {
-        console.log('POST: Traitement de la classification pour la convention', conventionId);
+        console.log('POST: TEST FORCE avec prompt exact pour la convention', conventionId);
         
-        // Clé de cache
-        const cacheKey = `classification_${conventionId}`;
-        
-        // Vérifier si la réponse est en cache
-        if (openaiCache.has(cacheKey)) {
-          console.log('Utilisation de la classification en cache');
-          return res.json(openaiCache.get(cacheKey));
-        }
-        
-        // Rechercher la section dans les données statiques
-        const sectionType = `${category}.${subcategory}`;
-        const { getSection } = await import('./sections-data');
-        const section = getSection(conventionId, sectionType);
-        
-        if (section) {
-          console.log(`Utilisation de la section ${sectionType} depuis les données statiques pour la convention ${conventionId}`);
-          const response = {
-            content: section.content,
-            fromCache: true
-          };
+        // FORCER L'UTILISATION D'OPENAI AVEC LE PROMPT EXACT
+        try {
+          const { queryOpenAIForLegalData } = await import('./services/openai');
+          const conventionName = convention[0].name;
+          const conventionUrl = `https://www.elnet-rh.fr/documentation/Document?id=CCNS${conventionId}`;
           
-          // Mettre en cache pour les requêtes suivantes
-          openaiCache.set(cacheKey, response);
-          console.log('Classification obtenue et mise en cache avec succès');
+          console.log(`Appel OpenAI avec prompt exact pour classification ${conventionId}`);
+          const openaiResponse = await queryOpenAIForLegalData(
+            conventionId,
+            conventionName,
+            conventionUrl,
+            'classification'
+          );
           
-          return res.json(response);
+          console.log('Réponse OpenAI obtenue avec prompt exact');
+          return res.json({
+            content: openaiResponse,
+            fromCache: false,
+            promptUsed: 'exact_user_prompt'
+          });
+        } catch (error: any) {
+          console.error('Erreur lors de l\'appel OpenAI avec prompt exact:', error);
+          return res.status(500).json({
+            message: 'Erreur lors de la génération avec prompt exact',
+            error: error.message
+          });
         }
-        
-        // Si la section n'existe pas, renvoyer un message d'erreur
-        return res.status(404).json({
-          message: `Section ${sectionType} non disponible pour la convention ${conventionId}`,
-          content: `La classification n'est pas disponible pour cette convention collective. Nous sommes en train de compléter notre base de données de sections pré-extraites.`
-        });
       }
       
       // Traitement spécial pour la grille de rémunération

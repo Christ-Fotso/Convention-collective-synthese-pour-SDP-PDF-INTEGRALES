@@ -868,7 +868,45 @@ Si aucune information n'est disponible pour créer un tableau, ne pas inclure de
    - Une section "Informations complémentaires" avec les modalités de passage d'un niveau à l'autre
    - Les spécificités par filière si elles sont mentionnées dans le texte`;
       
-      userPrompt = `En vous basant uniquement sur le texte extrait fourni, présentez la classification complète des emplois pour la convention collective IDCC ${conventionId} (${conventionName}).`;
+      userPrompt = `Analyse en détail le système de classification professionnelle prévu par la convention collective.
+
+1. Principes généraux de la classification :
+   - Type de système (Parodi, critères classants, etc.)
+   - Date de mise en place et éventuelles révisions
+   - Méthode d'évaluation des emplois
+   - Nombre de niveaux, échelons ou positions
+
+2. Structure détaillée de la classification :
+   - Intitulés exacts des niveaux et échelons
+   - Définition précise de chaque niveau/échelon
+   - Critères de positionnement (formation, compétences, responsabilité, autonomie, etc.)
+   - Coefficients ou points associés à chaque niveau
+
+3. Emplois-repères ou exemples d'emplois :
+   - Liste des emplois-repères par niveau/catégorie
+   - Description des fonctions types
+   - Correspondance emplois/classification
+   - Exemples de positionnement
+
+4. Modalités pratiques d'application :
+   - Procédure de classement des salariés
+   - Règles de prise en compte de l'expérience et des diplômes
+   - Périodicité de révision des classements
+   - Commissions de classification éventuelles
+
+5. Évolution professionnelle :
+   - Critères de progression dans la grille
+   - Périodes probatoires ou d'adaptation
+   - Passerelles entre catégories
+   - Reconnaissance des formations et certifications
+
+FORMAT DE PRÉSENTATION :
+- Reproduction exacte de la grille de classification
+- Citation intégrale des définitions de niveaux/échelons
+- Présentation sous forme de tableau des critères classants
+- Référence précise des articles
+
+Si la convention ne contient que des éléments partiels sur la classification, indiquer les dispositions manquantes et préciser : "Pour les éléments non précisés, se référer aux accords d'entreprise ou aux usages."`;
     }
     else if (type === 'salaires') {
       systemPrompt = `Vous êtes un expert en droit du travail français spécialisé dans l'analyse des rémunérations et grilles salariales.
