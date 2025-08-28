@@ -58,8 +58,17 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
     // Chargement de pdfjs-dist pour environnement Node.js
     const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
     
-    // Configuration pour Node.js (pas de workers dans cet environnement)
-    pdfjsLib.GlobalWorkerOptions.workerSrc = false;
+    // Configuration pour Node.js avec worker local
+    try {
+      const path = await import('path');
+      const { fileURLToPath } = await import('url');
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = path.dirname(__filename);
+      pdfjsLib.GlobalWorkerOptions.workerSrc = path.join(__dirname, '../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs');
+    } catch (error) {
+      // Fallback : désactiver complètement les workers
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+    }
     
     console.log(`[INFO] Chargement du PDF...`);
     const loadingTask = pdfjsLib.getDocument({ url: pdfPath });
