@@ -2052,7 +2052,113 @@ Consignes:
     }
   });
 
-  // Route de recherche par mots-clés
+  // Route de recherche pour la page d'accueil (indexe UNIQUEMENT les libellés des conventions et IDCC)
+  apiRouter.get("/search/conventions", async (req, res) => {
+    try {
+      const { q: query, limit = 50 } = req.query;
+      
+      if (!query || typeof query !== 'string' || query.trim().length < 2) {
+        return res.status(400).json({
+          error: "La requête de recherche doit contenir au moins 2 caractères"
+        });
+      }
+
+      console.log(`[Convention Search] Recherche globale: "${query}"`);
+      
+      // Obtenir toutes les conventions
+      const allConventions = getConventions();
+      
+      if (!allConventions || allConventions.length === 0) {
+        return res.json({ 
+          results: [], 
+          total: 0, 
+          query 
+        });
+      }
+
+      // Préparer les termes de recherche
+      const searchTerms = query.toLowerCase().trim().split(/\s+/).filter(term => term.length > 1);
+      const results: any[] = [];
+
+      // Rechercher UNIQUEMENT dans les libellés et IDCC des conventions
+      for (const convention of allConventions) {
+        if (!convention.id || !convention.name) continue;
+
+        const id = String(convention.id).toLowerCase();
+        const name = String(convention.name).toLowerCase();
+        let score = 0;
+        const matches: string[] = [];
+
+        // Calculer le score de pertinence
+        for (const term of searchTerms) {
+          let termScore = 0;
+          
+          // Correspondance exacte IDCC (score élevé)
+          if (term.match(/^\d+$/) && id === term) {
+            termScore = 10;
+            matches.push(`IDCC ${term}`);
+          }
+          // IDCC avec préfixe
+          else if (term.startsWith('idcc') && id === term.replace('idcc', '').trim()) {
+            termScore = 10;
+            matches.push(`IDCC ${id}`);
+          }
+          // Inclusion dans le nom de la convention
+          else if (name.includes(term)) {
+            // Score plus élevé si le terme apparaît au début du nom
+            if (name.startsWith(term)) {
+              termScore = 5;
+            } else {
+              termScore = 2;
+            }
+            matches.push(term);
+          }
+          
+          score += termScore;
+        }
+
+        // Si des correspondances sont trouvées
+        if (score > 0) {
+          results.push({
+            id: convention.id,
+            name: convention.name,
+            idcc: convention.id,
+            url: convention.url,
+            matches,
+            score: score / searchTerms.length // Score normalisé
+          });
+        }
+      }
+
+      // Trier par score de pertinence (décroissant), puis par nom
+      results.sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+      });
+
+      // Limiter les résultats
+      const limitedResults = results.slice(0, Math.min(parseInt(String(limit)), 100));
+
+      console.log(`[Convention Search] ${limitedResults.length} conventions trouvées pour "${query}"`);
+
+      res.json({ 
+        results: limitedResults,
+        total: limitedResults.length,
+        query 
+      });
+
+    } catch (error: any) {
+      console.error("[Convention Search] Erreur:", error);
+      res.status(500).json({
+        error: "Erreur lors de la recherche",
+        message: "Une erreur est survenue lors de la recherche des conventions."
+      });
+    }
+  });
+
+  // Route de recherche par mots-clés DANS LE CONTENU d'une convention spécifique
   apiRouter.post("/search/convention/:conventionId", async (req, res) => {
     try {
       const { conventionId } = req.params;
@@ -2064,7 +2170,7 @@ Consignes:
         });
       }
 
-      console.log(`[Search] Recherche pour convention ${conventionId}: "${query}"`);
+      console.log(`[Content Search] Recherche DANS le contenu de la convention ${conventionId}: "${query}"`);
 
       // Obtenir toutes les sections de la convention
       const sections = getSectionsByConvention(conventionId);
@@ -2128,7 +2234,7 @@ Consignes:
       // Limiter les résultats
       const limitedResults = results.slice(0, Math.min(limit, 50));
 
-      console.log(`[Search] ${limitedResults.length} résultats trouvés pour "${query}"`);
+      console.log(`[Content Search] ${limitedResults.length} résultats trouvés dans le contenu pour "${query}"`);
 
       res.json({ 
         results: limitedResults,
@@ -2137,10 +2243,10 @@ Consignes:
       });
 
     } catch (error: any) {
-      console.error("[Search] Erreur:", error);
+      console.error("[Content Search] Erreur:", error);
       res.status(500).json({
         error: "Erreur lors de la recherche",
-        message: "Une erreur est survenue lors de la recherche."
+        message: "Une erreur est survenue lors de la recherche dans le contenu."
       });
     }
   });
