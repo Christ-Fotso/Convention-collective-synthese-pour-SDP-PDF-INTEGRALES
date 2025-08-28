@@ -59,7 +59,7 @@ export async function extractTextFromPDF(pdfPath: string): Promise<string> {
     const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
     
     // Configuration pour Node.js (pas de workers dans cet environnement)
-    pdfjsLib.GlobalWorkerOptions.workerSrc = null;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = false;
     
     console.log(`[INFO] Chargement du PDF...`);
     const loadingTask = pdfjsLib.getDocument({ url: pdfPath });
