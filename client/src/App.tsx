@@ -7,6 +7,8 @@ import Chat from "@/pages/chat";
 import NotFound from "@/pages/not-found";
 import AdminPage from "@/pages/admin";
 import SectionViewer from "@/pages/section-viewer";
+import ConventionViewer from "@/pages/convention-viewer";
+import AdminConventionViewer from "@/pages/admin-convention-viewer";
 
 
 function Router() {
@@ -15,8 +17,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/chat" component={Home} />
       <Route path="/chat/:id" component={Chat} />
-      <Route path="/convention/:id" component={Chat} />
+      <Route path="/convention/:id" component={ConventionViewer} />
       <Route path="/admin" component={AdminPage} />
+      <Route path="/admin/convention/:id" component={AdminConventionViewer} />
 
       <Route path="/convention/:conventionId/section/:sectionType" component={SectionViewer} />
       <Route component={NotFound} />

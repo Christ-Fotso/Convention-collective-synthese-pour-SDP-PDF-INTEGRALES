@@ -389,4 +389,58 @@ router.delete('/convention/:idcc/section/:sectionName', async (req, res) => {
   }
 });
 
+/**
+ * Endpoint pour vider le cache d'une section spécifique (régénération forcée)
+ */
+router.delete('/cache/clear', async (req, res) => {
+  try {
+    const { conventionId, sectionType } = req.body;
+    
+    if (!conventionId || !sectionType) {
+      return res.status(400).json({ 
+        error: "Les paramètres conventionId et sectionType sont requis" 
+      });
+    }
+    
+    console.log(`Suppression du cache pour la convention ${conventionId}, section ${sectionType}`);
+    
+    // Importer le service OpenAI pour accéder au cache
+    const openaiModule = await import('../services/openai');
+    
+    // Vider le cache OpenAI pour cette section
+    if (typeof openaiModule.clearCacheForSection === 'function') {
+      await openaiModule.clearCacheForSection(conventionId, sectionType);
+    }
+    
+    // Supprimer aussi de la base de données si nécessaire
+    try {
+      const { db } = await import('../../db');
+      const { conventionSections } = await import('../../db/schema');
+      const { eq, and } = await import('drizzle-orm');
+      
+      await db.delete(conventionSections)
+        .where(and(
+          eq(conventionSections.conventionId, conventionId),
+          eq(conventionSections.sectionType, sectionType)
+        ));
+      
+      console.log(`Cache BDD supprimé pour convention ${conventionId}, section ${sectionType}`);
+    } catch (dbError) {
+      console.log("Pas de suppression BDD nécessaire:", dbError);
+    }
+    
+    res.json({ 
+      success: true, 
+      message: `Cache vidé pour la convention ${conventionId}, section ${sectionType}` 
+    });
+    
+  } catch (error) {
+    console.error("Erreur lors de la suppression du cache:", error);
+    res.status(500).json({ 
+      error: "Erreur lors de la suppression du cache",
+      details: error instanceof Error ? error.message : String(error)
+    });
+  }
+});
+
 export default router;
