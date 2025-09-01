@@ -141,22 +141,24 @@ export default function ConventionViewer() {
           <Card>
             <CardHeader>
               <CardTitle>IDCC {convention.id}</CardTitle>
-              <CardDescription className="flex flex-col gap-2">
-                <span>Sélectionnez une section à consulter</span>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4" />
-                  <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-                </div>
-                <div className="mt-3">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => setIsLegalDialogOpen(true)}
-                    className="w-fit"
-                  >
-                    <BookOpen className="mr-2 h-4 w-4" />
-                    Informations légales
-                  </Button>
+              <CardDescription>
+                <div className="flex flex-col gap-2">
+                  <span>Sélectionnez une section à consulter</span>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+                  </div>
+                  <div className="mt-3">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setIsLegalDialogOpen(true)}
+                      className="w-fit"
+                    >
+                      <BookOpen className="mr-2 h-4 w-4" />
+                      Informations légales
+                    </Button>
+                  </div>
                 </div>
               </CardDescription>
             </CardHeader>
