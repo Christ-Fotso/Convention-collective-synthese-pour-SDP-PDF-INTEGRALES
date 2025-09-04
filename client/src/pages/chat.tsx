@@ -78,7 +78,14 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
         <h3 className="text-xl font-semibold text-green-600 dark:text-green-400">
           {getSectionName()}
         </h3>
-        {hasDispositifLegal(section.sectionType) && (
+        {(() => {
+          const hasLegal = hasDispositifLegal(section.sectionType);
+          console.log(`Section: ${section.sectionType}, hasDispositifLegal: ${hasLegal}`);
+          if (hasLegal) {
+            console.log(`Dispositif trouvé pour ${section.sectionType}`);
+          }
+          return hasLegal;
+        })() && (
           <Button 
             variant="outline" 
             size="sm"
