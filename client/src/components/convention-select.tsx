@@ -31,6 +31,16 @@ export function ConventionSelect({
   const [search, setSearch] = useState("");
 
   const filteredConventions = useMemo(() => {
+    // Si moins de 3 caractères, ne pas filtrer et retourner un tableau vide
+    if (search.length > 0 && search.length < 3) {
+      return [];
+    }
+    
+    // Si pas de recherche, retourner toutes les conventions
+    if (search.length === 0) {
+      return conventions;
+    }
+    
     const searchLower = search.toLowerCase();
     return conventions.filter(
       conv => 
@@ -38,6 +48,14 @@ export function ConventionSelect({
         conv.name.toLowerCase().includes(searchLower)
     );
   }, [conventions, search]);
+
+  // Déterminer le message à afficher
+  const getEmptyMessage = () => {
+    if (search.length > 0 && search.length < 3) {
+      return "Saisissez au moins 3 caractères pour rechercher";
+    }
+    return "Aucune convention trouvée.";
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -58,11 +76,11 @@ export function ConventionSelect({
       <PopoverContent className="w-[400px] p-0">
         <Command>
           <CommandInput 
-            placeholder="Rechercher par IDCC ou nom..." 
+            placeholder="Rechercher par IDCC ou nom (min. 3 caractères)..." 
             value={search}
             onValueChange={setSearch}
           />
-          <CommandEmpty>Aucune convention trouvée.</CommandEmpty>
+          <CommandEmpty>{getEmptyMessage()}</CommandEmpty>
           <CommandGroup className="max-h-[300px] overflow-y-auto">
             {filteredConventions.map((convention) => (
               <CommandItem
