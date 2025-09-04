@@ -119,6 +119,17 @@ export default function ConventionViewer() {
                 convention ? `Convention collective: ${convention.name}` : "Convention non trouvée"
               )}
             </h1>
+            {convention && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setIsLegalDialogOpen(true)}
+                className="ml-4"
+              >
+                <BookOpen className="mr-2 h-4 w-4" />
+                Consulter les valeurs légales
+              </Button>
+            )}
           </div>
           {convention && (
             <div className="ml-12 flex items-center gap-2 text-sm text-muted-foreground bg-green-50 px-3 py-2 rounded-md border border-green-200">
@@ -147,17 +158,6 @@ export default function ConventionViewer() {
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
                     <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-                  </div>
-                  <div className="mt-3">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => setIsLegalDialogOpen(true)}
-                      className="w-fit"
-                    >
-                      <BookOpen className="mr-2 h-4 w-4" />
-                      Informations légales
-                    </Button>
                   </div>
                 </div>
               </CardDescription>
