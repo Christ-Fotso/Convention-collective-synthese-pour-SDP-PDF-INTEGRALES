@@ -68,29 +68,22 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
   return (
     <div 
       id={`section-${section.sectionType}`}
-      className={`border rounded-lg p-6 transition-all duration-300 ${
+      className={`border rounded-lg p-4 transition-all duration-300 ${
         isActive 
           ? "border-green-500 border-2 shadow-lg" 
           : "border-gray-200 dark:border-gray-700"
       }`}
     >
-      <div className="mb-4 flex justify-between items-center">
-        <h3 className="text-xl font-semibold text-green-600 dark:text-green-400">
+      <div className="mb-3 flex justify-between items-start gap-4">
+        <h3 className="text-xl font-semibold text-green-600 dark:text-green-400 flex-1">
           {getSectionName()}
         </h3>
-        {(() => {
-          const hasLegal = hasDispositifLegal(section.sectionType);
-          console.log(`Section: ${section.sectionType}, hasDispositifLegal: ${hasLegal}`);
-          if (hasLegal) {
-            console.log(`Dispositif trouvé pour ${section.sectionType}`);
-          }
-          return hasLegal;
-        })() && (
+        {hasDispositifLegal(section.sectionType) && (
           <Button 
             variant="outline" 
             size="sm"
             onClick={() => setIsLegalDialogOpen(true)}
-            className="flex items-center gap-2 orange-button"
+            className="flex items-center gap-2 orange-button flex-shrink-0"
           >
             <BookOpen className="h-4 w-4" />
             Voir le dispositif légal
