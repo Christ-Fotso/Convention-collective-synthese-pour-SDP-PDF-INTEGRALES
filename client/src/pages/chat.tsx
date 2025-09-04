@@ -74,10 +74,21 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
           : "border-gray-200 dark:border-gray-700"
       }`}
     >
-      <div className="mb-4">
+      <div className="mb-4 flex justify-between items-center">
         <h3 className="text-xl font-semibold text-green-600 dark:text-green-400">
           {getSectionName()}
         </h3>
+        {hasDispositifLegal(section.sectionType) && (
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => setIsLegalDialogOpen(true)}
+            className="flex items-center gap-2 orange-button"
+          >
+            <BookOpen className="h-4 w-4" />
+            Voir le dispositif légal
+          </Button>
+        )}
       </div>
       
       {isLoading ? (
@@ -98,6 +109,16 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
         <div className="text-red-500">
           <p>Aucune donnée disponible pour cette section.</p>
         </div>
+      )}
+      
+      {/* Modale du dispositif légal */}
+      {hasDispositifLegal(section.sectionType) && (
+        <DispositifLegalDialog
+          isOpen={isLegalDialogOpen}
+          setIsOpen={setIsLegalDialogOpen}
+          title={`Dispositif légal - ${getSectionName()}`}
+          content={getDispositifLegal(section.sectionType)}
+        />
       )}
     </div>
   );
