@@ -76,6 +76,8 @@
   /* Assurer que la police Inter s'applique à tout le contenu des conventions */
   .prose, .prose-sm, .markdown-content, .legal-document {
     font-family: 'Inter', system-ui, sans-serif;
+    max-width: none !important;
+    width: 100% !important;
   }
 
   /* Styles pour les barres de défilement standards */
@@ -239,9 +241,11 @@
   .markdown-content > div,
   .markdown-content section {
     position: relative;
-    padding: 1.5rem;
-    margin: 1rem 0;
+    padding: 0.25rem;
+    margin: 0;
     background: white;
+    width: 100%;
+    max-width: none;
   }
 
   .markdown-content > div::before,
