@@ -68,13 +68,13 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
   return (
     <div 
       id={`section-${section.sectionType}`}
-      className={`border rounded-lg p-4 transition-all duration-300 ${
+      className={`border rounded-lg p-1 transition-all duration-300 ${
         isActive 
           ? "border-green-500 border-2 shadow-lg" 
           : "border-gray-200 dark:border-gray-700"
       }`}
     >
-      <div className="mb-3 flex justify-between items-start gap-4">
+      <div className="mb-1 flex justify-between items-start gap-2">
         <h3 className="text-xl font-semibold text-green-600 dark:text-green-400 flex-1">
           {getSectionName()}
         </h3>
@@ -92,7 +92,7 @@ function SectionContent({ section, conventionId, isActive }: SectionContentProps
       </div>
       
       {isLoading ? (
-        <div className="space-y-4">
+        <div className="space-y-1">
           <Skeleton className="h-4 w-full" />
           <Skeleton className="h-4 w-3/4" />
           <Skeleton className="h-4 w-5/6" />
@@ -306,7 +306,7 @@ export default function Chat() {
   };
   
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-1">
 
       
       {!isLoadingConvention && !convention && (
@@ -386,13 +386,13 @@ export default function Chat() {
           )}
           
           {/* Contenu principal avec marge gauche conditionnelle et responsive */}
-          <div className={`flex-1 space-y-6 transition-all duration-300 ${
+          <div className={`flex-1 space-y-1 transition-all duration-300 ${
             expandedCategory && expandedCategory !== "informations-generales" ? "md:ml-56" : ""
           }`}>
 
           {/* Barre de navigation avec nom de convention et navigation */}
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b shadow-sm">
-            <div className="px-6 py-4 space-y-3">
+            <div className="px-2 py-2 space-y-2">
               {/* Première ligne: Nom de la convention et assistant IA */}
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-2">
@@ -541,14 +541,14 @@ export default function Chat() {
                   return (
                     <div key={category}>
                       {/* Titre de catégorie */}
-                      <div className="border-t pt-6">
-                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
+                      <div className="border-t pt-1">
+                        <h2 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">
                           {categoryDefinition.name}
                         </h2>
                       </div>
                       
                       {/* Sous-sections dans l'ordre défini */}
-                      <div className="space-y-6">
+                      <div className="space-y-1">
                         {categoryDefinition.subcategories.map((subcategoryDef) => {
                           const section = categorySections.find((s: SectionType) => s.subcategory === subcategoryDef.id);
                           if (!section) return null;
@@ -568,7 +568,7 @@ export default function Chat() {
                 })}
               </>
             ) : (
-              <div className="text-center py-6 text-gray-500">
+              <div className="text-center py-1 text-gray-500">
                 Aucune section disponible
               </div>
             )}
@@ -581,7 +581,7 @@ export default function Chat() {
       {showScrollToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-20 rounded-full w-12 h-12 shadow-lg bg-green-600 hover:bg-green-700 text-white"
+          className="fixed bottom-2 right-2 z-20 rounded-full w-12 h-12 shadow-lg bg-green-600 hover:bg-green-700 text-white"
           size="icon"
           title="Retour en haut"
         >

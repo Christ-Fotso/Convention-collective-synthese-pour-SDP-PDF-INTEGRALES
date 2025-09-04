@@ -66,10 +66,10 @@ export function HtmlTestViewer({ conventionId, sectionType, onClose }: HtmlTestV
   if (!conversion) return null;
 
   return (
-    <div className="mb-6">
+    <div className="mb-0">
       <style dangerouslySetInnerHTML={{ __html: conversion.css }} />
       <div 
-        className="legal-document max-w-none rounded-lg border shadow-sm"
+        className="legal-document max-w-none border-0"
         dangerouslySetInnerHTML={{ __html: conversion.html }} 
       />
     </div>
