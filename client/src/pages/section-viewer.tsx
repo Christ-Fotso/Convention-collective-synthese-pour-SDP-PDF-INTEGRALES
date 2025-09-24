@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'wouter';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, BookOpen, Calendar } from "lucide-react";
+import { ArrowLeft, BookOpen, Calendar, Edit } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { MarkdownTableRendererEnhanced } from '@/components/markdown-table-renderer-enhanced';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { HtmlTestViewer } from "@/components/html-test-viewer";
+import { SectionEditDialog } from "@/components/section-edit-dialog";
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, ConventionSection, Category, Subcategory } from '@/types';
@@ -36,6 +37,7 @@ export default function SectionViewer() {
   const params = useParams<{ conventionId: string, sectionType: string }>();
   const [, navigate] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
   const { conventionId, sectionType } = params;
 
   const { data: conventions, isLoading: isLoadingConventions } = useQuery({
@@ -215,17 +217,28 @@ export default function SectionViewer() {
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
-            {hasDispositifLegal(sectionType) && (
+            <div className="flex items-center gap-2">
               <Button 
                 variant="outline" 
                 size="sm"
-                onClick={() => setIsLegalDialogOpen(true)}
-                className="flex items-center gap-2 orange-button"
+                onClick={() => setIsEditDialogOpen(true)}
+                className="flex items-center gap-2"
               >
-                <BookOpen className="h-4 w-4" />
-                Voir le dispositif légal
+                <Edit className="h-4 w-4" />
+                Éditer
               </Button>
-            )}
+              {hasDispositifLegal(sectionType) && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setIsLegalDialogOpen(true)}
+                  className="flex items-center gap-2 orange-button"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Voir le dispositif légal
+                </Button>
+              )}
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -256,6 +269,18 @@ export default function SectionViewer() {
           setIsOpen={setIsLegalDialogOpen}
           title={`Dispositif légal - ${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
           content={getDispositifLegal(sectionType)}
+        />
+      )}
+
+      {/* Modale d'édition de section */}
+      {section && conventionId && sectionType && (
+        <SectionEditDialog
+          isOpen={isEditDialogOpen}
+          setIsOpen={setIsEditDialogOpen}
+          conventionId={conventionId}
+          sectionType={sectionType}
+          currentContent={section.content}
+          sectionTitle={`${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
         />
       )}
     </div>
