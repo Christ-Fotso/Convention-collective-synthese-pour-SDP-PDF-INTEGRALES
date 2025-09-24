@@ -1,0 +1,4242 @@
+[
+  {
+    "id": "1000",
+    "name": "Avocats personnel salarié",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC035/sharp_/ANX/1000_CC035.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1000_Avocats personnel salarié",
+    "idcc": "1000"
+  },
+  {
+    "id": "1001",
+    "name": "Handicapés : établissements et services pour personnes inadaptées et handicapées ; médecins",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC222/sharp_/ANX/1001_CC222.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1001_Handicapés : établissements et services pour personnes inadaptées et handicapées ; médecins",
+    "idcc": "1001"
+  },
+  {
+    "id": "1007",
+    "name": "Métallurgie : Thiers (Région de)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC334/sharp_/ANX/1007_CC334.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1007_Métallurgie : Thiers (Région de)",
+    "idcc": "1007"
+  },
+  {
+    "id": "1016",
+    "name": "Musique : édition - AM et Cadres",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC363/sharp_/ANX/1016_CC363.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1016_Musique : édition - AM et Cadres",
+    "idcc": "1016"
+  },
+  {
+    "id": "1017",
+    "name": "Hôtels, cafés, restaurants : Bouches-du-Rhône",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC233/sharp_/ANX/1017_CC233.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1017_Hôtels, cafés, restaurants : Bouches-du-Rhône",
+    "idcc": "1017"
+  },
+  {
+    "id": "1030",
+    "name": "Hôtels, cafés, restaurants : Seine Maritime",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC241/sharp_/ANX/1030_CC241.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1030_Hôtels, cafés, restaurants : Seine Maritime",
+    "idcc": "1030"
+  },
+  {
+    "id": "1031",
+    "name": "Familles rurales",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC574/sharp_/ANX/1031_CC574.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1031_Familles rurales",
+    "idcc": "1031"
+  },
+  {
+    "id": "1042",
+    "name": "Commerces de détail alimentaires et non alimentaires : Loiret",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC136/sharp_/ANX/1042_CC136.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1042_Commerces de détail alimentaires et non alimentaires : Loiret",
+    "idcc": "1042"
+  },
+  {
+    "id": "1043",
+    "name": "Gardiens, concierges et employés d'immeubles",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC210/sharp_/ANX/1043_CC210.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1043_Gardiens, concierges et employés d'immeubles",
+    "idcc": "1043"
+  },
+  {
+    "id": "1044",
+    "name": "Horlogerie : commerce de gros",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC223/sharp_/ANX/1044_CC223.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1044_Horlogerie : commerce de gros",
+    "idcc": "1044"
+  },
+  {
+    "id": "1049",
+    "name": "Bâtiment et Travaux publics : Saint-Pierre-et-Miquelon",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC058/sharp_/ANX/1049_CC058.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1049_Bâtiment et Travaux publics : Saint-Pierre-et-Miquelon",
+    "idcc": "1049"
+  },
+  {
+    "id": "1059",
+    "name": "Métallurgie : Midi-Pyrénées",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC322/sharp_/ANX/1059_CC322.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1059_Métallurgie : Midi-Pyrénées",
+    "idcc": "1059"
+  },
+  {
+    "id": "1060",
+    "name": "Métallurgie : Martinique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC320/sharp_/ANX/1060_CC320.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1060_Métallurgie : Martinique",
+    "idcc": "1060"
+  },
+  {
+    "id": "1075",
+    "name": "Hôtels, cafés, restaurants : Meurthe-et-Moselle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC237/sharp_/ANX/1075_CC237.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1075_Hôtels, cafés, restaurants : Meurthe-et-Moselle",
+    "idcc": "1075"
+  },
+  {
+    "id": "1077",
+    "name": "Produits du sol : négoce et industrie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC425/sharp_/ANX/1077_CC425.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1077_Produits du sol : négoce et industrie",
+    "idcc": "1077"
+  },
+  {
+    "id": "1090",
+    "name": "Automobile",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC033/sharp_/ANX/1090_CC033.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1090_Automobile",
+    "idcc": "1090"
+  },
+  {
+    "id": "112",
+    "name": "Lait : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC258/sharp_/ANX/112_CC258.pdf",
+    "has_idcc": true,
+    "filename_pattern": "112_Lait : industries",
+    "idcc": "112"
+  },
+  {
+    "id": "1128",
+    "name": "Hôtels, cafés, restaurants : Haute-Saône",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC637/sharp_/ANX/1128_CC637.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1128_Hôtels, cafés, restaurants : Haute-Saône",
+    "idcc": "1128"
+  },
+  {
+    "id": "1140",
+    "name": "Hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC240/sharp_/ANX/1140_CC240.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1140_Hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+    "idcc": "1140"
+  },
+  {
+    "id": "1147",
+    "name": "Cabinets médicaux",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC089/sharp_/ANX/1147_CC089.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1147_Cabinets médicaux",
+    "idcc": "1147"
+  },
+  {
+    "id": "1159",
+    "name": "Métallurgie : Nièvre",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC323/sharp_/ANX/1159_CC323.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1159_Métallurgie : Nièvre",
+    "idcc": "1159"
+  },
+  {
+    "id": "1170",
+    "name": "Tuiles et briques : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC483/sharp_/ANX/1170_CC483.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1170_Tuiles et briques : industries",
+    "idcc": "1170"
+  },
+  {
+    "id": "1182",
+    "name": "Ports de plaisance",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC406/sharp_/ANX/1182_CC406.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1182_Ports de plaisance",
+    "idcc": "1182"
+  },
+  {
+    "id": "1194",
+    "name": "Musique : édition - employés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC364/sharp_/ANX/1194_CC364.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1194_Musique : édition - employés",
+    "idcc": "1194"
+  },
+  {
+    "id": "1202",
+    "name": "Commerces de détail non alimentaires : Maine-et-Loire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC144/sharp_/ANX/1202_CC144.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1202_Commerces de détail non alimentaires : Maine-et-Loire",
+    "idcc": "1202"
+  },
+  {
+    "id": "1237",
+    "name": "Centres de gestion agréés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC100/sharp_/ANX/1237_CC100.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1237_Centres de gestion agréés",
+    "idcc": "1237"
+  },
+  {
+    "id": "1240",
+    "name": "Commerces de détail non alimentaires : Ain",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC142/sharp_/ANX/1240_CC142.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1240_Commerces de détail non alimentaires : Ain",
+    "idcc": "1240"
+  },
+  {
+    "id": "1247",
+    "name": "Auto moto de la Réunion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC032/sharp_/ANX/1247_CC032.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1247_Auto moto de la Réunion",
+    "idcc": "1247"
+  },
+  {
+    "id": "1256",
+    "name": "Thermiques : équipements - cadres et assimilés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC461/sharp_/ANX/1256_CC461.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1256_Thermiques : équipements - cadres et assimilés",
+    "idcc": "1256"
+  },
+  {
+    "id": "1257",
+    "name": "Pharmacie d'officine : la Réunion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC591/sharp_/ANX/1257_CC591.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1257_Pharmacie d'officine : la Réunion",
+    "idcc": "1257"
+  },
+  {
+    "id": "1260",
+    "name": "Hôtels, cafés, restaurants : Var",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC582/sharp_/ANX/1260_CC582.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1260_Hôtels, cafés, restaurants : Var",
+    "idcc": "1260"
+  },
+  {
+    "id": "1261",
+    "name": "Sociaux et socioculturels (centres) et autres acteurs du lien social (associations)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC450/sharp_/ANX/1261_CC450.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1261_Sociaux et socioculturels (centres) et autres acteurs du lien social (associations)",
+    "idcc": "1261"
+  },
+  {
+    "id": "1266",
+    "name": "Restauration de collectivités",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC445/sharp_/ANX/1266_CC445.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1266_Restauration de collectivités",
+    "idcc": "1266"
+  },
+  {
+    "id": "1267",
+    "name": "Pâtisserie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC392/sharp_/ANX/1267_CC392.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1267_Pâtisserie",
+    "idcc": "1267"
+  },
+  {
+    "id": "1274",
+    "name": "Métallurgie : Corrèze",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC293/sharp_/ANX/1274_CC293.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1274_Métallurgie : Corrèze",
+    "idcc": "1274"
+  },
+  {
+    "id": "1276",
+    "name": "Commerces de détail non alimentaires : Finistère",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC150/sharp_/ANX/1276_CC150.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1276_Commerces de détail non alimentaires : Finistère",
+    "idcc": "1276"
+  },
+  {
+    "id": "1278",
+    "name": "Habitat : personnels PACT et ARIM",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC220/sharp_/ANX/1278_CC220.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1278_Habitat : personnels PACT et ARIM",
+    "idcc": "1278"
+  },
+  {
+    "id": "1285",
+    "name": "Artistique : entreprises artistiques et culturelles",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC020/sharp_/ANX/1734_CC020.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1285_Artistique : entreprises artistiques et culturelles",
+    "idcc": "1285"
+  },
+  {
+    "id": "1286",
+    "name": "Confiserie, chocolaterie, biscuiterie : détaillants, détaillants fabricants",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC166/sharp_/ANX/1286_CC166.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1286_Confiserie, chocolaterie, biscuiterie : détaillants, détaillants fabricants",
+    "idcc": "1286"
+  },
+  {
+    "id": "1298",
+    "name": "Commerces de détail alimentaires et non alimentaires : Cambrai",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC135/sharp_/ANX/1298_CC135.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1298_Commerces de détail alimentaires et non alimentaires : Cambrai",
+    "idcc": "1298"
+  },
+  {
+    "id": "1307",
+    "name": "Cinéma : exploitation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC121/sharp_/ANX/1307_CC121.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1307_Cinéma : exploitation",
+    "idcc": "1307"
+  },
+  {
+    "id": "1311",
+    "name": "Restauration ferroviaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC446/sharp_/ANX/1311_CC446.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1311_Restauration ferroviaire",
+    "idcc": "1311"
+  },
+  {
+    "id": "1314",
+    "name": "Alimentation : gérants mandataires non salariés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC009/sharp_/ANX/1314_CC009.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1314_Alimentation : gérants mandataires non salariés",
+    "idcc": "1314"
+  },
+  {
+    "id": "1315",
+    "name": "Métallurgie : Marne (Haute-) et Meuse",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC319/sharp_/ANX/1315_CC319.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1315_Métallurgie : Marne (Haute-) et Meuse",
+    "idcc": "1315"
+  },
+  {
+    "id": "1316",
+    "name": "Tourisme social et familial",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC468/sharp_/ANX/1316_CC468.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1316_Tourisme social et familial",
+    "idcc": "1316"
+  },
+  {
+    "id": "1325",
+    "name": "Coopératives de consommation : gérants non salariés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC169/sharp_/ANX/1325_CC169.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1325_Coopératives de consommation : gérants non salariés",
+    "idcc": "1325"
+  },
+  {
+    "id": "1326",
+    "name": "Enseignement privé : maîtres (primaire)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC192/sharp_/ANX/1326_CC192.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1326_Enseignement privé : maîtres (primaire)",
+    "idcc": "1326"
+  },
+  {
+    "id": "1334",
+    "name": "Enseignement privé : psychologues",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC197/sharp_/ANX/1334_CC197.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1334_Enseignement privé : psychologues",
+    "idcc": "1334"
+  },
+  {
+    "id": "1341",
+    "name": "Alimentation : industries agroalimentaires de la Réunion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC012/sharp_/ANX/1341_CC012.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1341_Alimentation : industries agroalimentaires de la Réunion",
+    "idcc": "1341"
+  },
+  {
+    "id": "1343",
+    "name": "Commerces de détail non alimentaires : Morbihan",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC151/sharp_/ANX/1343_CC151.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1343_Commerces de détail non alimentaires : Morbihan",
+    "idcc": "1343"
+  },
+  {
+    "id": "135",
+    "name": "Carrières et matériaux : employés, techniciens et agents de maîtrise",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC095/sharp_/ANX/135_CC095.pdf",
+    "has_idcc": true,
+    "filename_pattern": "135_Carrières et matériaux : employés, techniciens et agents de maîtrise",
+    "idcc": "135"
+  },
+  {
+    "id": "1351",
+    "name": "Prévention et sécurité",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC424/sharp_/ANX/1351_CC424.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1351_Prévention et sécurité",
+    "idcc": "1351"
+  },
+  {
+    "id": "1353",
+    "name": "Métallurgie : Dordogne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC297/sharp_/ANX/1353_CC297.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1353_Métallurgie : Dordogne",
+    "idcc": "1353"
+  },
+  {
+    "id": "1365",
+    "name": "Métallurgie : Meurthe-et-Moselle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC357/sharp_/ANX/1365_CC357.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1365_Métallurgie : Meurthe-et-Moselle",
+    "idcc": "1365"
+  },
+  {
+    "id": "1369",
+    "name": "Métallurgie : Loire-Atlantique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC313/sharp_/ANX/1369_CC313.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1369_Métallurgie : Loire-Atlantique",
+    "idcc": "1369"
+  },
+  {
+    "id": "1370",
+    "name": "Hôtels de tourisme : trois, quatre, quatre étoiles de luxe (Région parisienne)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC230/sharp_/ANX/1370_CC230.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1370_Hôtels de tourisme : trois, quatre, quatre étoiles de luxe (Région parisienne)",
+    "idcc": "1370"
+  },
+  {
+    "id": "1384",
+    "name": "Champagne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC103/sharp_/ANX/1384_CC103.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1384_Champagne",
+    "idcc": "1384"
+  },
+  {
+    "id": "1385",
+    "name": "Commerces de détail non alimentaires : Ardennes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC141/sharp_/ANX/1385_CC141.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1385_Commerces de détail non alimentaires : Ardennes",
+    "idcc": "1385"
+  },
+  {
+    "id": "1387",
+    "name": "Métallurgie : Flandres-Douaisis",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC325/sharp_/ANX/1387_CC325.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1387_Métallurgie : Flandres-Douaisis",
+    "idcc": "1387"
+  },
+  {
+    "id": "1388",
+    "name": "Pétrole : industrie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC394/sharp_/ANX/1388_CC394.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1388_Pétrole : industrie",
+    "idcc": "1388"
+  },
+  {
+    "id": "1391",
+    "name": "Aéroports : région parisienne",
+    "url": "https://,https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC003/sharp_/ANX/1391_CC003.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1391_Aéroports : région parisienne",
+    "idcc": "1391"
+  },
+  {
+    "id": "1394",
+    "name": "Commerces de détail non alimentaires : Tarn",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC152/sharp_/ANX/1394_CC152.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1394_Commerces de détail non alimentaires : Tarn",
+    "idcc": "1394"
+  },
+  {
+    "id": "1396",
+    "name": "Produits alimentaires élaborés : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC167/sharp_/ANX/1396_CC167.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1396_Produits alimentaires élaborés : industries",
+    "idcc": "1396"
+  },
+  {
+    "id": "1404",
+    "name": "Matériels agricoles, de BTP et de manutention : maintenance, distribution et location",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC720/sharp_/ANX/1404_CC720.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1404_Matériels agricoles, de BTP et de manutention : maintenance, distribution et location",
+    "idcc": "1404"
+  },
+  {
+    "id": "1405",
+    "name": "Fruits et légumes : entreprises d'expédition et exportation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC207/sharp_/ANX/1405_CC207.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1405_Fruits et légumes : entreprises d'expédition et exportation",
+    "idcc": "1405"
+  },
+  {
+    "id": "1406",
+    "name": "Commerces de détail non alimentaires : Gironde",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC143/sharp_/ANX/1406_CC143.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1406_Commerces de détail non alimentaires : Gironde",
+    "idcc": "1406"
+  },
+  {
+    "id": "1408",
+    "name": "Combustibles : négoce et distribution",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC134/sharp_/ANX/1408_CC134.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1408_Combustibles : négoce et distribution",
+    "idcc": "1408"
+  },
+  {
+    "id": "1411",
+    "name": "Ameublement : fabrication",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC015/sharp_/ANX/1411_CC015.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1411_Ameublement : fabrication",
+    "idcc": "1411"
+  },
+  {
+    "id": "1412",
+    "name": "Aéraulique, thermique et frigorifique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC002/sharp_/ANX/1412_CC002.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1412_Aéraulique, thermique et frigorifique",
+    "idcc": "1412"
+  },
+  {
+    "id": "1413",
+    "name": "Travail temporaire : salariés permanents",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC478/sharp_/ANX/1413_CC478.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1413_Travail temporaire : salariés permanents",
+    "idcc": "1413"
+  },
+  {
+    "id": "1415",
+    "name": "Commerces de détail non alimentaires : Loire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC148/sharp_/ANX/1415_CC148.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1415_Commerces de détail non alimentaires : Loire",
+    "idcc": "1415"
+  },
+  {
+    "id": "1420",
+    "name": "Institutions d'assurance chômage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC250/sharp_/ANX/1420_CC250.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1420_Institutions d'assurance chômage",
+    "idcc": "1420"
+  },
+  {
+    "id": "1423",
+    "name": "Nautiques : industrie et services",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC366/sharp_/ANX/1423_CC366.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1423_Nautiques : industrie et services",
+    "idcc": "1423"
+  },
+  {
+    "id": "1424",
+    "name": "Transports publics urbains : réseaux de voyageurs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC473/sharp_/ANX/1424_CC473.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1424_Transports publics urbains : réseaux de voyageurs",
+    "idcc": "1424"
+  },
+  {
+    "id": "1431",
+    "name": "Optique - lunetterie de détail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC372/sharp_/ANX/1431_CC372.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1431_Optique - lunetterie de détail",
+    "idcc": "1431"
+  },
+  {
+    "id": "1446",
+    "name": "Enseignement privé technique hors contrat",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC195/sharp_/ANX/1446_CC195.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1446_Enseignement privé technique hors contrat",
+    "idcc": "1446"
+  },
+  {
+    "id": "1472",
+    "name": "Métallurgie : Pas-de-Calais",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC332/sharp_/ANX/1472_CC332.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1472_Métallurgie : Pas-de-Calais",
+    "idcc": "1472"
+  },
+  {
+    "id": "1480",
+    "name": "Journalistes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC257/sharp_/ANX/1480_CC257.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1480_Journalistes",
+    "idcc": "1480"
+  },
+  {
+    "id": "1483",
+    "name": "Habillement et articles textiles : commerce de détail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC218/sharp_/ANX/1483_CC218.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1483_Habillement et articles textiles : commerce de détail",
+    "idcc": "1483"
+  },
+  {
+    "id": "1486",
+    "name": "Bureaux d'études techniques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC088/sharp_/ANX/1486_CC088.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1486_Bureaux d'études techniques",
+    "idcc": "1486"
+  },
+  {
+    "id": "1487",
+    "name": "Horlogerie-bijouterie : commerce de détail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC224/sharp_/ANX/1487_CC224.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1487_Horlogerie-bijouterie : commerce de détail",
+    "idcc": "1487"
+  },
+  {
+    "id": "1499",
+    "name": "Miroiterie : transformation et négoce du verre",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC361/sharp_/ANX/1499_CC361.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1499_Miroiterie : transformation et négoce du verre",
+    "idcc": "1499"
+  },
+  {
+    "id": "1501",
+    "name": "Restauration rapide",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC448/sharp_/ANX/1501_CC448.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1501_Restauration rapide",
+    "idcc": "1501"
+  },
+  {
+    "id": "1504",
+    "name": "Poissonnerie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC402/sharp_/ANX/1504_CC402.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1504_Poissonnerie",
+    "idcc": "1504"
+  },
+  {
+    "id": "1505",
+    "name": "Commerce de détail alimentaire non spécialisé",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC208/sharp_/ANX/1505_CC208.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1505_Commerce de détail alimentaire non spécialisé",
+    "idcc": "1505"
+  },
+  {
+    "id": "1512",
+    "name": "Promotion immobilière",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC168/sharp_/ANX/1512_CC168.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1512_Promotion immobilière",
+    "idcc": "1512"
+  },
+  {
+    "id": "1513",
+    "name": "Eaux embouteillées, boissons sans alcool, bières : production",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC185/sharp_/ANX/1513_CC185.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1513_Eaux embouteillées, boissons sans alcool, bières : production",
+    "idcc": "1513"
+  },
+  {
+    "id": "1516",
+    "name": "Formation : organismes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC204/sharp_/ANX/1516_CC204.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1516_Formation : organismes",
+    "idcc": "1516"
+  },
+  {
+    "id": "1517",
+    "name": "Commerces de détail non alimentaires (Convention collective nationale)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC138/sharp_/ANX/1517_CC138.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1517_Commerces de détail non alimentaires (Convention collective nationale)",
+    "idcc": "1517"
+  },
+  {
+    "id": "1518",
+    "name": "Animation : métiers de l'éducation, de la culture, des loisirs et de l'animation (ECLAT)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC017/sharp_/ANX/1518_CC017.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1518_Animation : métiers de l'éducation, de la culture, des loisirs et de l'animation (ECLAT)",
+    "idcc": "1518"
+  },
+  {
+    "id": "1525",
+    "name": "Métallurgie : Dunkerque (région de)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC324/sharp_/ANX/1525_CC324.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1525_Métallurgie : Dunkerque (région de)",
+    "idcc": "1525"
+  },
+  {
+    "id": "1527",
+    "name": "Immobilier",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC244/sharp_/ANX/1527_CC244.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1527_Immobilier",
+    "idcc": "1527"
+  },
+  {
+    "id": "1534",
+    "name": "Viandes : industries et commerce en gros",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC492/sharp_/ANX/1534_CC492.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1534_Viandes : industries et commerce en gros",
+    "idcc": "1534"
+  },
+  {
+    "id": "1536",
+    "name": "Boissons : distributeurs conseils hors domicile",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC076/sharp_/ANX/1536_CC076.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1536_Boissons : distributeurs conseils hors domicile",
+    "idcc": "1536"
+  },
+  {
+    "id": "1539",
+    "name": "Bureau et numérique (entreprises) : commerces et services",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC379/sharp_/ANX/1539_CC379.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1539_Bureau et numérique (entreprises) : commerces et services",
+    "idcc": "1539"
+  },
+  {
+    "id": "1539",
+    "name": "Papeterie, fournitures de bureau, bureautique et informatique (commerces de détail)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC765/sharp_/ANX/1539_CC765.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1539_Papeterie, fournitures de bureau, bureautique et informatique (commerces de détail)",
+    "idcc": "1539"
+  },
+  {
+    "id": "1543",
+    "name": "Boyauderie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC085/sharp_/ANX/1543_CC085.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1543_Boyauderie",
+    "idcc": "1543"
+  },
+  {
+    "id": "1545",
+    "name": "Enseignement privé : maîtres (primaire catholique)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC190/sharp_/ANX/1545_CC190.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1545_Enseignement privé : maîtres (primaire catholique)",
+    "idcc": "1545"
+  },
+  {
+    "id": "1555",
+    "name": "Pharmacie, parapharmacie, produits vétérinaires : fabrication et commerce",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC400/sharp_/ANX/1555_CC400.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1555_Pharmacie, parapharmacie, produits vétérinaires : fabrication et commerce",
+    "idcc": "1555"
+  },
+  {
+    "id": "1557",
+    "name": "Sport : commerce des articles de sport",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC452/sharp_/ANX/1557_CC452.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1557_Sport : commerce des articles de sport",
+    "idcc": "1557"
+  },
+  {
+    "id": "1558",
+    "name": "Céramiques de France : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC102/sharp_/ANX/1558_CC102.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1558_Céramiques de France : industries",
+    "idcc": "1558"
+  },
+  {
+    "id": "1560",
+    "name": "Métallurgie : Alpes-Maritimes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC285/sharp_/ANX/1560_CC285.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1560_Métallurgie : Alpes-Maritimes",
+    "idcc": "1560"
+  },
+  {
+    "id": "1561",
+    "name": "Cordonnerie multiservice",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC106/sharp_/ANX/1561_CC106.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1561_Cordonnerie multiservice",
+    "idcc": "1561"
+  },
+  {
+    "id": "1564",
+    "name": "Métallurgie : Saône-et-Loire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC338/sharp_/ANX/1564_CC338.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1564_Métallurgie : Saône-et-Loire",
+    "idcc": "1564"
+  },
+  {
+    "id": "1572",
+    "name": "Métallurgie : Charente",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC290/sharp_/ANX/1572_CC290.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1572_Métallurgie : Charente",
+    "idcc": "1572"
+  },
+  {
+    "id": "1576",
+    "name": "Métallurgie : Cher",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC292/sharp_/ANX/1576_CC292.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1576_Métallurgie : Cher",
+    "idcc": "1576"
+  },
+  {
+    "id": "1577",
+    "name": "Métallurgie : Hérault, Aude et Pyrénées-Orientales",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC305/sharp_/ANX/1577_CC305.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1577_Métallurgie : Hérault, Aude et Pyrénées-Orientales",
+    "idcc": "1577"
+  },
+  {
+    "id": "1578",
+    "name": "Métallurgie : Loire et arrondissement d'Yssingeaux",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC312/sharp_/ANX/1578_CC312.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1578_Métallurgie : Loire et arrondissement d'Yssingeaux",
+    "idcc": "1578"
+  },
+  {
+    "id": "158",
+    "name": "Bois et scieries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC075/sharp_/ANX/158_CC075.pdf",
+    "has_idcc": true,
+    "filename_pattern": "158_Bois et scieries",
+    "idcc": "158"
+  },
+  {
+    "id": "1580",
+    "name": "Chaussure et articles chaussants : industrie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC107/sharp_/ANX/1580_CC107.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1580_Chaussure et articles chaussants : industrie",
+    "idcc": "1580"
+  },
+  {
+    "id": "1586",
+    "name": "Charcuterie : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC105/sharp_/ANX/1586_CC105.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1586_Charcuterie : industries",
+    "idcc": "1586"
+  },
+  {
+    "id": "1588",
+    "name": "HLM : personnels des sociétés coopératives",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC215/sharp_/ANX/1588_CC215.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1588_HLM : personnels des sociétés coopératives",
+    "idcc": "1588"
+  },
+  {
+    "id": "1589",
+    "name": "Mareyeurs-expéditeurs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC269/sharp_/ANX/1589_CC269.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1589_Mareyeurs-expéditeurs",
+    "idcc": "1589"
+  },
+  {
+    "id": "1592",
+    "name": "Métallurgie : Valenciennes et Cambrai",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC326/sharp_/ANX/1592_CC326.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1592_Métallurgie : Valenciennes et Cambrai",
+    "idcc": "1592"
+  },
+  {
+    "id": "1596",
+    "name": "Bâtiment : ouvriers (Nationale ? 10 salariés)(ancienne CCN)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC045/sharp_/ANX/1596_CC045.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1596_Bâtiment : ouvriers (Nationale ? 10 salariés)(ancienne CCN)",
+    "idcc": "1596"
+  },
+  {
+    "id": "1597",
+    "name": "Bâtiment : ouvriers (Nationale > 10 salariés)(ancienne CCN)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC040/sharp_/ANX/1597_CC040.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1597_Bâtiment : ouvriers (Nationale > 10 salariés)(ancienne CCN)",
+    "idcc": "1597"
+  },
+  {
+    "id": "16",
+    "name": "Transports de fonds et de valeurs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC472/sharp_/ANX/16_CC472.pdf",
+    "has_idcc": true,
+    "filename_pattern": "16_Transports de fonds et de valeurs",
+    "idcc": "16"
+  },
+  {
+    "id": "16",
+    "name": "Transports routiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC474/sharp_/ANX/16_CC474.pdf",
+    "has_idcc": true,
+    "filename_pattern": "16_Transports routiers",
+    "idcc": "16"
+  },
+  {
+    "id": "1604",
+    "name": "Métallurgie : Rouen et Dieppe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC343/sharp_/ANX/1604_CC343.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1604_Métallurgie : Rouen et Dieppe",
+    "idcc": "1604"
+  },
+  {
+    "id": "1605",
+    "name": "Désinfection, désinsectisation et dératisation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC180/sharp_/ANX/1605_CC180.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1605_Désinfection, désinsectisation et dératisation",
+    "idcc": "1605"
+  },
+  {
+    "id": "1606",
+    "name": "Bricolage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC087/sharp_/ANX/1606_CC087.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1606_Bricolage",
+    "idcc": "1606"
+  },
+  {
+    "id": "1607",
+    "name": "Jeux, jouets, articles de fête",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC255/sharp_/ANX/1607_CC255.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1607_Jeux, jouets, articles de fête",
+    "idcc": "1607"
+  },
+  {
+    "id": "161",
+    "name": "Verrerie au chalumeau : travail mécanique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC489/sharp_/ANX/161_CC489.pdf",
+    "has_idcc": true,
+    "filename_pattern": "161_Verrerie au chalumeau : travail mécanique",
+    "idcc": "161"
+  },
+  {
+    "id": "1611",
+    "name": "Logistique de communication écrite directe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC260/sharp_/ANX/1611_CC260.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1611_Logistique de communication écrite directe",
+    "idcc": "1611"
+  },
+  {
+    "id": "1612",
+    "name": "Travail aérien : personnel navigant des essais et réception",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC669/sharp_/ANX/1612_CC669.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1612_Travail aérien : personnel navigant des essais et réception",
+    "idcc": "1612"
+  },
+  {
+    "id": "1618",
+    "name": "Camping : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC090/sharp_/ANX/1618_CC090.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1618_Camping : industries",
+    "idcc": "1618"
+  },
+  {
+    "id": "1619",
+    "name": "Dentaires : cabinets",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC177/sharp_/ANX/1619_CC177.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1619_Dentaires : cabinets",
+    "idcc": "1619"
+  },
+  {
+    "id": "1621",
+    "name": "Pharmacie : répartition pharmaceutique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC399/sharp_/ANX/1621_CC399.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1621_Pharmacie : répartition pharmaceutique",
+    "idcc": "1621"
+  },
+  {
+    "id": "1626",
+    "name": "Métallurgie : Pyrénées (Hautes)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC335/sharp_/ANX/1626_CC335.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1626_Métallurgie : Pyrénées (Hautes)",
+    "idcc": "1626"
+  },
+  {
+    "id": "1627",
+    "name": "Métallurgie : Puy-de-Dôme et Clermont-Ferrand",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC333/sharp_/ANX/1627_CC333.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1627_Métallurgie : Puy-de-Dôme et Clermont-Ferrand",
+    "idcc": "1627"
+  },
+  {
+    "id": "1628",
+    "name": "Métallurgie : Sèvres (Deux-)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC296/sharp_/ANX/1628_CC296.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1628_Métallurgie : Sèvres (Deux-)",
+    "idcc": "1628"
+  },
+  {
+    "id": "1631",
+    "name": "Hôtellerie de plein air",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC228/sharp_/ANX/1631_CC228.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1631_Hôtellerie de plein air",
+    "idcc": "1631"
+  },
+  {
+    "id": "1634",
+    "name": "Métallurgie : Côtes-d'Armor",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC295/sharp_/ANX/1634_CC295.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1634_Métallurgie : Côtes-d'Armor",
+    "idcc": "1634"
+  },
+  {
+    "id": "1635",
+    "name": "Métallurgie : Gironde-Landes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC303/sharp_/ANX/1635_CC303.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1635_Métallurgie : Gironde-Landes",
+    "idcc": "1635"
+  },
+  {
+    "id": "1638",
+    "name": "Bâtiment : ouvriers (Cher - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC044/sharp_/ANX/1638_CC044.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1638_Bâtiment : ouvriers (Cher - 10 salariés)",
+    "idcc": "1638"
+  },
+  {
+    "id": "1642",
+    "name": "Bâtiment : ouvriers (Cher +10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC039/sharp_/ANX/1642_CC039.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1642_Bâtiment : ouvriers (Cher +10 salariés)",
+    "idcc": "1642"
+  },
+  {
+    "id": "1659",
+    "name": "Lin : rouissage-teillage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC259/sharp_/ANX/1659_CC259.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1659_Lin : rouissage-teillage",
+    "idcc": "1659"
+  },
+  {
+    "id": "1668",
+    "name": "Bâtiment : ouvriers (Alsace)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC049/sharp_/ANX/1668_CC049.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1668_Bâtiment : ouvriers (Alsace)",
+    "idcc": "1668"
+  },
+  {
+    "id": "1671",
+    "name": "Maisons d'étudiants",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC266/sharp_/ANX/1671_CC266.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1671_Maisons d'étudiants",
+    "idcc": "1671"
+  },
+  {
+    "id": "1672",
+    "name": "Assurances : sociétés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC029/sharp_/ANX/1672_CC029.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1672_Assurances : sociétés",
+    "idcc": "1672"
+  },
+  {
+    "id": "1679",
+    "name": "Assurances : inspection",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC026/sharp_/ANX/1679_CC026.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1679_Assurances : inspection",
+    "idcc": "1679"
+  },
+  {
+    "id": "1686",
+    "name": "Électronique, audiovisuel et équipement ménager : commerces et services",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC187/sharp_/ANX/1686_CC187.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1686_Électronique, audiovisuel et équipement ménager : commerces et services",
+    "idcc": "1686"
+  },
+  {
+    "id": "1702",
+    "name": "Travaux publics : ouvriers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC482/sharp_/ANX/1702_CC482.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1702_Travaux publics : ouvriers",
+    "idcc": "1702"
+  },
+  {
+    "id": "1710",
+    "name": "Tourisme : agences de voyages et de tourisme",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC464/sharp_/ANX/1710_CC464.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1710_Tourisme : agences de voyages et de tourisme",
+    "idcc": "1710"
+  },
+  {
+    "id": "172",
+    "name": "Bois de pin maritime en forêt de Gascogne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC074/sharp_/ANX/172_CC074.pdf",
+    "has_idcc": true,
+    "filename_pattern": "172_Bois de pin maritime en forêt de Gascogne",
+    "idcc": "172"
+  },
+  {
+    "id": "1722",
+    "name": "Bâtiment : ouvriers (Normandie Haute)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC051/sharp_/ANX/1722_CC051.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1722_Bâtiment : ouvriers (Normandie Haute)",
+    "idcc": "1722"
+  },
+  {
+    "id": "1732",
+    "name": "Métallurgie : Yonne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC353/sharp_/ANX/1732_CC353.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1732_Métallurgie : Yonne",
+    "idcc": "1732"
+  },
+  {
+    "id": "1734",
+    "name": "Artistes interprètes : émissions de télévision",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC021/sharp_/ANX/1285_CC021.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1734_Artistes interprètes : émissions de télévision",
+    "idcc": "1734"
+  },
+  {
+    "id": "1740",
+    "name": "Bâtiment : ouvriers (Région parisienne - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC047/sharp_/ANX/1740_CC047.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1740_Bâtiment : ouvriers (Région parisienne - 10 salariés)",
+    "idcc": "1740"
+  },
+  {
+    "id": "1740",
+    "name": "Bâtiment : ouvriers (Région parisienne + 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC042/sharp_/ANX/1740_CC042.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1740_Bâtiment : ouvriers (Région parisienne + 10 salariés)",
+    "idcc": "1740"
+  },
+  {
+    "id": "1747",
+    "name": "Boulangerie-pâtisserie industrielle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC080/sharp_/ANX/1747_CC080.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1747_Boulangerie-pâtisserie industrielle",
+    "idcc": "1747"
+  },
+  {
+    "id": "1758",
+    "name": "Bâtiment : ouvriers (Tarn - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC048/sharp_/ANX/1758_CC048.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1758_Bâtiment : ouvriers (Tarn - 10 salariés)",
+    "idcc": "1758"
+  },
+  {
+    "id": "1759",
+    "name": "Bâtiment : ouvriers (Tarn + 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC043/sharp_/ANX/1759_CC043.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1759_Bâtiment : ouvriers (Tarn + 10 salariés)",
+    "idcc": "1759"
+  },
+  {
+    "id": "176",
+    "name": "Pharmacie : industrie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC395/sharp_/ANX/176_CC395.pdf",
+    "has_idcc": true,
+    "filename_pattern": "176_Pharmacie : industrie",
+    "idcc": "176"
+  },
+  {
+    "id": "1760",
+    "name": "Jardineries et graineteries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC253/sharp_/ANX/1760_CC253.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1760_Jardineries et graineteries",
+    "idcc": "1760"
+  },
+  {
+    "id": "1761",
+    "name": "Tissus, tapis et linge de maison : commerce de gros",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC463/sharp_/ANX/1761_CC463.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1761_Tissus, tapis et linge de maison : commerce de gros",
+    "idcc": "1761"
+  },
+  {
+    "id": "1779",
+    "name": "Bâtiment : ouvriers (Provence-Alpes-Côte d'Azur - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC046/sharp_/ANX/1779_CC046.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1779_Bâtiment : ouvriers (Provence-Alpes-Côte d'Azur - 10 salariés)",
+    "idcc": "1779"
+  },
+  {
+    "id": "1780",
+    "name": "Bâtiment : ouvriers (Provence-Alpes-Côte d'Azur + 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC041/sharp_/ANX/1780_CC041.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1780_Bâtiment : ouvriers (Provence-Alpes-Côte d'Azur + 10 salariés)",
+    "idcc": "1780"
+  },
+  {
+    "id": "1785",
+    "name": "Bâtiment : ouvriers (Normandie Basse)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC050/sharp_/ANX/1785_CC050.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1785_Bâtiment : ouvriers (Normandie Basse)",
+    "idcc": "1785"
+  },
+  {
+    "id": "1790",
+    "name": "Espaces de loisirs, d'attractions et culturels",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC389/sharp_/ANX/1790_CC389.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1790_Espaces de loisirs, d'attractions et culturels",
+    "idcc": "1790"
+  },
+  {
+    "id": "1794",
+    "name": "Institutions de retraite complémentaire et de prévoyance",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC251/sharp_/ANX/1794_CC251.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1794_Institutions de retraite complémentaire et de prévoyance",
+    "idcc": "1794"
+  },
+  {
+    "id": "18",
+    "name": "Textiles : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC458/sharp_/ANX/18_CC458.pdf",
+    "has_idcc": true,
+    "filename_pattern": "18_Textiles : industries",
+    "idcc": "18"
+  },
+  {
+    "id": "1800",
+    "name": "Céramique d'art",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC101/sharp_/ANX/1800_CC101.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1800_Céramique d'art",
+    "idcc": "1800"
+  },
+  {
+    "id": "1801",
+    "name": "Assistance",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC022/sharp_/ANX/1801_CC022.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1801_Assistance",
+    "idcc": "1801"
+  },
+  {
+    "id": "1813",
+    "name": "Métallurgie : Maubeuge",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC356/sharp_/ANX/1813_CC356.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1813_Métallurgie : Maubeuge",
+    "idcc": "1813"
+  },
+  {
+    "id": "1821",
+    "name": "Cristal, Verre et Vitrail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC486/sharp_/ANX/1821_CC486.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1821_Cristal, Verre et Vitrail",
+    "idcc": "1821"
+  },
+  {
+    "id": "184",
+    "name": "Imprimeries de labeur et industries graphiques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC249/sharp_/ANX/184_CC249.pdf",
+    "has_idcc": true,
+    "filename_pattern": "184_Imprimeries de labeur et industries graphiques",
+    "idcc": "184"
+  },
+  {
+    "id": "1843",
+    "name": "Bâtiment : cadres (Région parisienne)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC053/sharp_/ANX/1843_CC053.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1843_Bâtiment : cadres (Région parisienne)",
+    "idcc": "1843"
+  },
+  {
+    "id": "1850",
+    "name": "Avocats salariés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC527/sharp_/ANX/1850_CC527.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1850_Avocats salariés",
+    "idcc": "1850"
+  },
+  {
+    "id": "1867",
+    "name": "Métallurgie : Drôme et Ardèche",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC534/sharp_/ANX/1867_CC534.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1867_Métallurgie : Drôme et Ardèche",
+    "idcc": "1867"
+  },
+  {
+    "id": "1875",
+    "name": "Vétérinaires : personnel salarié",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC491/sharp_/ANX/1875_CC491.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1875_Vétérinaires : personnel salarié",
+    "idcc": "1875"
+  },
+  {
+    "id": "1876",
+    "name": "Bâtiment : ouvriers (Bretagne)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC541/sharp_/ANX/1876_CC541.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1876_Bâtiment : ouvriers (Bretagne)",
+    "idcc": "1876"
+  },
+  {
+    "id": "1880",
+    "name": "Ameublement : négoce",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC014/sharp_/ANX/1880_CC014.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1880_Ameublement : négoce",
+    "idcc": "1880"
+  },
+  {
+    "id": "1885",
+    "name": "Métallurgie : Côte-d'Or",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC294/sharp_/ANX/1885_CC294.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1885_Métallurgie : Côte-d'Or",
+    "idcc": "1885"
+  },
+  {
+    "id": "1886",
+    "name": "Bâtiment : ouvriers (Loire)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC542/sharp_/ANX/1886_CC542.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1886_Bâtiment : ouvriers (Loire)",
+    "idcc": "1886"
+  },
+  {
+    "id": "1902",
+    "name": "Métallurgie : Maine-et-Loire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC316/sharp_/ANX/1902_CC316.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1902_Métallurgie : Maine-et-Loire",
+    "idcc": "1902"
+  },
+  {
+    "id": "1909",
+    "name": "Tourisme : organismes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC540/sharp_/ANX/1909_CC540.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1909_Tourisme : organismes",
+    "idcc": "1909"
+  },
+  {
+    "id": "1912",
+    "name": "Métallurgie : Rhin (Haut-)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC355/sharp_/ANX/1912_CC355.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1912_Métallurgie : Rhin (Haut-)",
+    "idcc": "1912"
+  },
+  {
+    "id": "1921",
+    "name": "Huissiers de justice : personnel",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC535/sharp_/ANX/1921_CC535.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1921_Huissiers de justice : personnel",
+    "idcc": "1921"
+  },
+  {
+    "id": "1922",
+    "name": "Radiodiffusion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC571/sharp_/ANX/1922_CC571.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1922_Radiodiffusion",
+    "idcc": "1922"
+  },
+  {
+    "id": "1923",
+    "name": "Manutention portuaire : Guadeloupe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC607/sharp_/ANX/1923_CC607.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1923_Manutention portuaire : Guadeloupe",
+    "idcc": "1923"
+  },
+  {
+    "id": "1930",
+    "name": "Grains : transformation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC360/sharp_/ANX/1930_CC360.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1930_Grains : transformation",
+    "idcc": "1930"
+  },
+  {
+    "id": "1938",
+    "name": "Volailles : industries de la transformation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC661/sharp_/ANX/1938_CC661.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1938_Volailles : industries de la transformation",
+    "idcc": "1938"
+  },
+  {
+    "id": "1942",
+    "name": "Textiles artificiels et synthétiques et produits assimilés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC459/sharp_/ANX/1942_CC459.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1942_Textiles artificiels et synthétiques et produits assimilés",
+    "idcc": "1942"
+  },
+  {
+    "id": "1944",
+    "name": "Hélicoptères : personnel navigant technique des exploitants",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC573/sharp_/ANX/1944_CC573.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1944_Hélicoptères : personnel navigant technique des exploitants",
+    "idcc": "1944"
+  },
+  {
+    "id": "1945",
+    "name": "Vitrail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC494/sharp_/ANX/1945_CC494.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1945_Vitrail",
+    "idcc": "1945"
+  },
+  {
+    "id": "1947",
+    "name": "Bois d'oeuvre et produits dérivés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC575/sharp_/ANX/1947_CC575.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1947_Bois d'oeuvre et produits dérivés",
+    "idcc": "1947"
+  },
+  {
+    "id": "1951",
+    "name": "Expertises en automobile",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC578/sharp_/ANX/1951_CC578.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1951_Expertises en automobile",
+    "idcc": "1951"
+  },
+  {
+    "id": "1960",
+    "name": "Métallurgie : Lot et Garonne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC315/sharp_/ANX/1960_CC315.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1960_Métallurgie : Lot et Garonne",
+    "idcc": "1960"
+  },
+  {
+    "id": "1966",
+    "name": "Métallurgie : Loiret",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC314/sharp_/ANX/1966_CC314.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1966_Métallurgie : Loiret",
+    "idcc": "1966"
+  },
+  {
+    "id": "1967",
+    "name": "Métallurgie : Rhin (Bas-)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC354/sharp_/ANX/1967_CC354.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1967_Métallurgie : Rhin (Bas-)",
+    "idcc": "1967"
+  },
+  {
+    "id": "1970",
+    "name": "Commerces de détail non alimentaires : Rhin (Bas et Haut)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC140/sharp_/ANX/1970_CC140.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1970_Commerces de détail non alimentaires : Rhin (Bas et Haut)",
+    "idcc": "1970"
+  },
+  {
+    "id": "1978",
+    "name": "Fleuristes, vente et services des animaux familiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC203/sharp_/ANX/1978_CC203.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1978_Fleuristes, vente et services des animaux familiers",
+    "idcc": "1978"
+  },
+  {
+    "id": "1979",
+    "name": "Hôtels, cafés, restaurants",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC581/sharp_/ANX/1979_CC581.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1979_Hôtels, cafés, restaurants",
+    "idcc": "1979"
+  },
+  {
+    "id": "1980",
+    "name": "Commissionnaires en douane et agents auxiliaires : Martinique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC544/sharp_/ANX/1980_CC544.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1980_Commissionnaires en douane et agents auxiliaires : Martinique",
+    "idcc": "1980"
+  },
+  {
+    "id": "1982",
+    "name": "Médico-techniques : négoce et prestations de services",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC576/sharp_/ANX/1982_CC576.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1982_Médico-techniques : négoce et prestations de services",
+    "idcc": "1982"
+  },
+  {
+    "id": "1987",
+    "name": "Pâtes alimentaires",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC391/sharp_/ANX/1987_CC391.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1987_Pâtes alimentaires",
+    "idcc": "1987"
+  },
+  {
+    "id": "1996",
+    "name": "Pharmacie d'officine",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC397/sharp_/ANX/1996_CC397.pdf",
+    "has_idcc": true,
+    "filename_pattern": "1996_Pharmacie d'officine",
+    "idcc": "1996"
+  },
+  {
+    "id": "200",
+    "name": "Exploitations frigorifiques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC201/sharp_/ANX/200_CC201.pdf",
+    "has_idcc": true,
+    "filename_pattern": "200_Exploitations frigorifiques",
+    "idcc": "200"
+  },
+  {
+    "id": "2002",
+    "name": "Blanchisserie, teinturerie, nettoyage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC530/sharp_/ANX/2002_CC530.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2002_Blanchisserie, teinturerie, nettoyage",
+    "idcc": "2002"
+  },
+  {
+    "id": "2003",
+    "name": "Métallurgie : Vosges",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC352/sharp_/ANX/2003_CC352.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2003_Métallurgie : Vosges",
+    "idcc": "2003"
+  },
+  {
+    "id": "2021",
+    "name": "Golf",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC531/sharp_/ANX/2021_CC531.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2021_Golf",
+    "idcc": "2021"
+  },
+  {
+    "id": "2025",
+    "name": "Mines : Guyane",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC602/sharp_/ANX/2025_CC602.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2025_Mines : Guyane",
+    "idcc": "2025"
+  },
+  {
+    "id": "2032",
+    "name": "Bâtiment : ouvriers (Isère - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC600/sharp_/ANX/2032_CC600.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2032_Bâtiment : ouvriers (Isère - 10 salariés)",
+    "idcc": "2032"
+  },
+  {
+    "id": "2033",
+    "name": "Bâtiment : ouvriers (Isère +10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC599/sharp_/ANX/2033_CC599.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2033_Bâtiment : ouvriers (Isère +10 salariés)",
+    "idcc": "2033"
+  },
+  {
+    "id": "2034",
+    "name": "Travaux publics ouvriers (Isère)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC666/sharp_/ANX/2034_CC666.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2034_Travaux publics ouvriers (Isère)",
+    "idcc": "2034"
+  },
+  {
+    "id": "2046",
+    "name": "Cancer : centres de lutte",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC091/sharp_/ANX/2046_CC091.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2046_Cancer : centres de lutte",
+    "idcc": "2046"
+  },
+  {
+    "id": "2060",
+    "name": "Cafétérias",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC584/sharp_/ANX/2060_CC584.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2060_Cafétérias",
+    "idcc": "2060"
+  },
+  {
+    "id": "207",
+    "name": "Cuirs et peaux : industrie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC174/sharp_/ANX/207_CC174.pdf",
+    "has_idcc": true,
+    "filename_pattern": "207_Cuirs et peaux : industrie",
+    "idcc": "207"
+  },
+  {
+    "id": "2070",
+    "name": "Développement économique : organismes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC373/sharp_/ANX/2070_CC373.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2070_Développement économique : organismes",
+    "idcc": "2070"
+  },
+  {
+    "id": "2075",
+    "name": "Oeufs et industries en produits d'oeufs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC371/sharp_/ANX/2075_CC371.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2075_Oeufs et industries en produits d'oeufs",
+    "idcc": "2075"
+  },
+  {
+    "id": "2089",
+    "name": "Bois : panneaux à base de bois",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC376/sharp_/ANX/2089_CC376.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2089_Bois : panneaux à base de bois",
+    "idcc": "2089"
+  },
+  {
+    "id": "2098",
+    "name": "Prestataires de services",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC423/sharp_/ANX/2098_CC423.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2098_Prestataires de services",
+    "idcc": "2098"
+  },
+  {
+    "id": "2101",
+    "name": "Enseignement privé à distance",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC198/sharp_/ANX/2101_CC198.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2101_Enseignement privé à distance",
+    "idcc": "2101"
+  },
+  {
+    "id": "2104",
+    "name": "Thermalisme",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC608/sharp_/ANX/2104_CC608.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2104_Thermalisme",
+    "idcc": "2104"
+  },
+  {
+    "id": "211",
+    "name": "Carrières et matériaux : cadres et assimilés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC094/sharp_/ANX/211_CC094.pdf",
+    "has_idcc": true,
+    "filename_pattern": "211_Carrières et matériaux : cadres et assimilés",
+    "idcc": "211"
+  },
+  {
+    "id": "2111",
+    "name": "Particulier employeur : salariés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC188/sharp_/ANX/2111_CC188.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2111_Particulier employeur : salariés",
+    "idcc": "2111"
+  },
+  {
+    "id": "2120",
+    "name": "Banques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC037/sharp_/ANX/2120_CC037.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2120_Banques",
+    "idcc": "2120"
+  },
+  {
+    "id": "2121",
+    "name": "Édition",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC186/sharp_/ANX/2121_CC186.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2121_Édition",
+    "idcc": "2121"
+  },
+  {
+    "id": "2126",
+    "name": "Métallurgie : Gard et Lozère",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC641/sharp_/ANX/2126_CC641.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2126_Métallurgie : Gard et Lozère",
+    "idcc": "2126"
+  },
+  {
+    "id": "2128",
+    "name": "Mutualité",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC375/sharp_/ANX/2128_CC375.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2128_Mutualité",
+    "idcc": "2128"
+  },
+  {
+    "id": "2145",
+    "name": "Bâtiment : ouvriers (Corse)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC614/sharp_/ANX/2145_CC614.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2145_Bâtiment : ouvriers (Corse)",
+    "idcc": "2145"
+  },
+  {
+    "id": "2147",
+    "name": "Eau : services et assainissement",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC184/sharp_/ANX/2147_CC184.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2147_Eau : services et assainissement",
+    "idcc": "2147"
+  },
+  {
+    "id": "2148",
+    "name": "Télécommunications",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC598/sharp_/ANX/2148_CC598.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2148_Télécommunications",
+    "idcc": "2148"
+  },
+  {
+    "id": "2149",
+    "name": "Déchets",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC176/sharp_/ANX/2149_CC176.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2149_Déchets",
+    "idcc": "2149"
+  },
+  {
+    "id": "2150",
+    "name": "HLM : personnels des sociétés anonymes et fondations",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC214/sharp_/ANX/2150_CC214.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2150_HLM : personnels des sociétés anonymes et fondations",
+    "idcc": "2150"
+  },
+  {
+    "id": "2152",
+    "name": "Enseignement privé : formateurs des CFA et des CFC",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC610/sharp_/ANX/2152_CC610.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2152_Enseignement privé : formateurs des CFA et des CFC",
+    "idcc": "2152"
+  },
+  {
+    "id": "2156",
+    "name": "Magasins (grands) et magasins populaires",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC262/sharp_/ANX/2156_CC262.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2156_Magasins (grands) et magasins populaires",
+    "idcc": "2156"
+  },
+  {
+    "id": "2190",
+    "name": "Missions locales et PAIO",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC619/sharp_/ANX/2190_CC619.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2190_Missions locales et PAIO",
+    "idcc": "2190"
+  },
+  {
+    "id": "2194",
+    "name": "Bâtiment : ouvriers (Aquitaine -10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC617/sharp_/ANX/2194_CC617.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2194_Bâtiment : ouvriers (Aquitaine -10 salariés)",
+    "idcc": "2194"
+  },
+  {
+    "id": "2195",
+    "name": "Bâtiment : ouvriers (Aquitaine +10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC616/sharp_/ANX/2195_CC616.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2195_Bâtiment : ouvriers (Aquitaine +10 salariés)",
+    "idcc": "2195"
+  },
+  {
+    "id": "2198",
+    "name": "Commerce à distance (entreprises)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC625/sharp_/ANX/2198_CC625.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2198_Commerce à distance (entreprises)",
+    "idcc": "2198"
+  },
+  {
+    "id": "2205",
+    "name": "Notariat",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC368/sharp_/ANX/2205_CC368.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2205_Notariat",
+    "idcc": "2205"
+  },
+  {
+    "id": "2216",
+    "name": "Commerce de détail et de gros à prédominance alimentaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC620/sharp_/ANX/2216_CC620.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2216_Commerce de détail et de gros à prédominance alimentaire",
+    "idcc": "2216"
+  },
+  {
+    "id": "2219",
+    "name": "Taxis",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC621/sharp_/ANX/2219_CC621.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2219_Taxis",
+    "idcc": "2219"
+  },
+  {
+    "id": "2221",
+    "name": "Métallurgie : Isère et Hautes-Alpes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC309/sharp_/ANX/2221_CC309.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2221_Métallurgie : Isère et Hautes-Alpes",
+    "idcc": "2221"
+  },
+  {
+    "id": "2230",
+    "name": "Surveillance de la qualité de l'air : associations agréées",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC639/sharp_/ANX/2230_CC639.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2230_Surveillance de la qualité de l'air : associations agréées",
+    "idcc": "2230"
+  },
+  {
+    "id": "2247",
+    "name": "Assurances : courtage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC024/sharp_/ANX/2247_CC024.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2247_Assurances : courtage",
+    "idcc": "2247"
+  },
+  {
+    "id": "2257",
+    "name": "Casinos",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC098/sharp_/ANX/2257_CC098.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2257_Casinos",
+    "idcc": "2257"
+  },
+  {
+    "id": "2264",
+    "name": "Hospitalisation privée à but lucratif",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC629/sharp_/ANX/2264_CC629.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2264_Hospitalisation privée à but lucratif",
+    "idcc": "2264"
+  },
+  {
+    "id": "2266",
+    "name": "Métallurgie : Mayenne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC642/sharp_/ANX/2266_CC642.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2266_Métallurgie : Mayenne",
+    "idcc": "2266"
+  },
+  {
+    "id": "2267",
+    "name": "Bâtiment : ouvriers (Languedoc-Roussillon - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC635/sharp_/ANX/2267_CC635.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2267_Bâtiment : ouvriers (Languedoc-Roussillon - 10 salariés)",
+    "idcc": "2267"
+  },
+  {
+    "id": "2272",
+    "name": "Assainissement et maintenance industrielle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC630/sharp_/ANX/2272_CC630.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2272_Assainissement et maintenance industrielle",
+    "idcc": "2272"
+  },
+  {
+    "id": "2281",
+    "name": "Enseignement privé : directeurs (primaire catholique)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC631/sharp_/ANX/2281_CC631.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2281_Enseignement privé : directeurs (primaire catholique)",
+    "idcc": "2281"
+  },
+  {
+    "id": "2294",
+    "name": "Métallurgie : Aube",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC640/sharp_/ANX/2294_CC640.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2294_Métallurgie : Aube",
+    "idcc": "2294"
+  },
+  {
+    "id": "2306",
+    "name": "Verre : fabrication à la main, semi-automatique et mixte",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC983/sharp_/ANX/2306_CC983.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2306_Verre : fabrication à la main, semi-automatique et mixte",
+    "idcc": "2306"
+  },
+  {
+    "id": "2306",
+    "name": "Verre : métiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC633/sharp_/ANX/2306_CC633.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2306_Verre : métiers",
+    "idcc": "2306"
+  },
+  {
+    "id": "2328",
+    "name": "Bâtiment et travaux publics : Guadeloupe (ouvriers)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC054/sharp_/ANX/2328_CC054.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2328_Bâtiment et travaux publics : Guadeloupe (ouvriers)",
+    "idcc": "2328"
+  },
+  {
+    "id": "2329",
+    "name": "Avocats au Conseil d'État et à la Cour de cassation : personnel salarié",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC615/sharp_/ANX/2329_CC615.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2329_Avocats au Conseil d'État et à la Cour de cassation : personnel salarié",
+    "idcc": "2329"
+  },
+  {
+    "id": "2332",
+    "name": "Architecture : entreprises",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC018/sharp_/ANX/2332_CC018.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2332_Architecture : entreprises",
+    "idcc": "2332"
+  },
+  {
+    "id": "2335",
+    "name": "Assurances : agences générales",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC023/sharp_/ANX/2335_CC023.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2335_Assurances : agences générales",
+    "idcc": "2335"
+  },
+  {
+    "id": "2336",
+    "name": "Habitat et logement accompagnés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC206/sharp_/ANX/2336_CC206.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2336_Habitat et logement accompagnés",
+    "idcc": "2336"
+  },
+  {
+    "id": "2344",
+    "name": "Sidérurgie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC623/sharp_/ANX/2344_CC623.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2344_Sidérurgie",
+    "idcc": "2344"
+  },
+  {
+    "id": "2345",
+    "name": "Transport sanitaire : Martinique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC649/sharp_/ANX/2345_CC649.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2345_Transport sanitaire : Martinique",
+    "idcc": "2345"
+  },
+  {
+    "id": "2354",
+    "name": "Bâtiment : ouvriers (Savoie)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC648/sharp_/ANX/2354_CC648.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2354_Bâtiment : ouvriers (Savoie)",
+    "idcc": "2354"
+  },
+  {
+    "id": "2357",
+    "name": "Assurances : cadres de direction des sociétés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC025/sharp_/ANX/2357_CC025.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2357_Assurances : cadres de direction des sociétés",
+    "idcc": "2357"
+  },
+  {
+    "id": "2360",
+    "name": "Automobile : Guyane",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC647/sharp_/ANX/2360_CC647.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2360_Automobile : Guyane",
+    "idcc": "2360"
+  },
+  {
+    "id": "2372",
+    "name": "Distribution directe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC181/sharp_/ANX/2372_CC181.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2372_Distribution directe",
+    "idcc": "2372"
+  },
+  {
+    "id": "2378",
+    "name": "Travail temporaire : salariés intérimaires",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC477/sharp_/ANX/2378_CC477.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2378_Travail temporaire : salariés intérimaires",
+    "idcc": "2378"
+  },
+  {
+    "id": "239",
+    "name": "Commerces de gros et de détail alimentaires et non alimentaires : Sarthe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC163/sharp_/ANX/239_CC163.pdf",
+    "has_idcc": true,
+    "filename_pattern": "239_Commerces de gros et de détail alimentaires et non alimentaires : Sarthe",
+    "idcc": "239"
+  },
+  {
+    "id": "2395",
+    "name": "Assistants maternels",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC643/sharp_/ANX/2395_CC643.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2395_Assistants maternels",
+    "idcc": "2395"
+  },
+  {
+    "id": "2397",
+    "name": "Agences de mannequins",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC004/sharp_/ANX/2397_CC004.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2397_Agences de mannequins",
+    "idcc": "2397"
+  },
+  {
+    "id": "240",
+    "name": "Greffiers des tribunaux de commerce : personnel",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC213/sharp_/ANX/240_CC213.pdf",
+    "has_idcc": true,
+    "filename_pattern": "240_Greffiers des tribunaux de commerce : personnel",
+    "idcc": "240"
+  },
+  {
+    "id": "2408",
+    "name": "Enseignement privé : personnels des services administratifs et économiques, personnels d'éducation et documentalistes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC644/sharp_/ANX/2408_CC644.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2408_Enseignement privé : personnels des services administratifs et économiques, personnels d'éducation et documentalistes",
+    "idcc": "2408"
+  },
+  {
+    "id": "2411",
+    "name": "Chaînes thématiques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC646/sharp_/ANX/2411_CC646.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2411_Chaînes thématiques",
+    "idcc": "2411"
+  },
+  {
+    "id": "2412",
+    "name": "Films d'animation : production",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC645/sharp_/ANX/2412_CC645.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2412_Films d'animation : production",
+    "idcc": "2412"
+  },
+  {
+    "id": "2420",
+    "name": "Bâtiment : cadres",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC052/sharp_/ANX/2420_CC052.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2420_Bâtiment : cadres",
+    "idcc": "2420"
+  },
+  {
+    "id": "247",
+    "name": "Habillement : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC216/sharp_/ANX/247_CC216.pdf",
+    "has_idcc": true,
+    "filename_pattern": "247_Habillement : industries",
+    "idcc": "247"
+  },
+  {
+    "id": "2489",
+    "name": "Métallurgie : Vendée",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC349/sharp_/ANX/2489_CC349.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2489_Métallurgie : Vendée",
+    "idcc": "2489"
+  },
+  {
+    "id": "2494",
+    "name": "Coopération maritime",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC651/sharp_/ANX/2494_CC651.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2494_Coopération maritime",
+    "idcc": "2494"
+  },
+  {
+    "id": "2511",
+    "name": "Sport",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC609/sharp_/ANX/2511_CC609.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2511_Sport",
+    "idcc": "2511"
+  },
+  {
+    "id": "2526",
+    "name": "Habitat social : organisations professionnelles",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC655/sharp_/ANX/2526_CC655.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2526_Habitat social : organisations professionnelles",
+    "idcc": "2526"
+  },
+  {
+    "id": "2528",
+    "name": "Maroquinerie : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC270/sharp_/ANX/2528_CC270.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2528_Maroquinerie : industries",
+    "idcc": "2528"
+  },
+  {
+    "id": "2542",
+    "name": "Métallurgie : Aisne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC283/sharp_/ANX/2542_CC283.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2542_Métallurgie : Aisne",
+    "idcc": "2542"
+  },
+  {
+    "id": "2543",
+    "name": "Géomètres-experts, topographes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC211/sharp_/ANX/2543_CC211.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2543_Géomètres-experts, topographes",
+    "idcc": "2543"
+  },
+  {
+    "id": "2564",
+    "name": "Vétérinaires : praticiens salariés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC660/sharp_/ANX/2564_CC660.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2564_Vétérinaires : praticiens salariés",
+    "idcc": "2564"
+  },
+  {
+    "id": "2579",
+    "name": "Métallurgie : Loir-et-Cher",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC673/sharp_/ANX/2579_CC673.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2579_Métallurgie : Loir-et-Cher",
+    "idcc": "2579"
+  },
+  {
+    "id": "2582",
+    "name": "Travaux publics ouvriers (Savoie)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC665/sharp_/ANX/2582_CC665.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2582_Travaux publics ouvriers (Savoie)",
+    "idcc": "2582"
+  },
+  {
+    "id": "2583",
+    "name": "Autoroutes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC034/sharp_/ANX/2583_CC034.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2583_Autoroutes",
+    "idcc": "2583"
+  },
+  {
+    "id": "2584",
+    "name": "Bâtiment : ouvriers (Champagne-Ardenne + 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC663/sharp_/ANX/2584_CC663.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2584_Bâtiment : ouvriers (Champagne-Ardenne + 10 salariés)",
+    "idcc": "2584"
+  },
+  {
+    "id": "2585",
+    "name": "Bâtiment : ouvriers (Champagne-Ardenne - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC664/sharp_/ANX/2585_CC664.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2585_Bâtiment : ouvriers (Champagne-Ardenne - 10 salariés)",
+    "idcc": "2585"
+  },
+  {
+    "id": "2596",
+    "name": "Coiffure",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC133/sharp_/ANX/2596_CC133.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2596_Coiffure",
+    "idcc": "2596"
+  },
+  {
+    "id": "2609",
+    "name": "Bâtiment : ETAM",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC059/sharp_/ANX/2609_CC059.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2609_Bâtiment : ETAM",
+    "idcc": "2609"
+  },
+  {
+    "id": "2614",
+    "name": "Travaux publics : ETAM",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC481/sharp_/ANX/2614_CC481.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2614_Travaux publics : ETAM",
+    "idcc": "2614"
+  },
+  {
+    "id": "2615",
+    "name": "Métallurgie : Pyrénées-Atlantiques et Seignanx",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC677/sharp_/ANX/2615_CC677.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2615_Métallurgie : Pyrénées-Atlantiques et Seignanx",
+    "idcc": "2615"
+  },
+  {
+    "id": "2625",
+    "name": "Bâtiment : ouvriers (Pays de la Loire)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC668/sharp_/ANX/2625_CC668.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2625_Bâtiment : ouvriers (Pays de la Loire)",
+    "idcc": "2625"
+  },
+  {
+    "id": "2630",
+    "name": "Métallurgie : Bouches-du-Rhône",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC288/sharp_/ANX/2630_CC288.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2630_Métallurgie : Bouches-du-Rhône",
+    "idcc": "2630"
+  },
+  {
+    "id": "2636",
+    "name": "Enseignement supérieur privé",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC191/sharp_/ANX/2636_CC191.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2636_Enseignement supérieur privé",
+    "idcc": "2636"
+  },
+  {
+    "id": "2642",
+    "name": "Audiovisuel : production",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC671/sharp_/ANX/2642_CC671.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2642_Audiovisuel : production",
+    "idcc": "2642"
+  },
+  {
+    "id": "2649",
+    "name": "Banques : Guadeloupe, Saint Martin et Saint Barthélemy",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC683/sharp_/ANX/2649_CC683.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2649_Banques : Guadeloupe, Saint Martin et Saint Barthélemy",
+    "idcc": "2649"
+  },
+  {
+    "id": "2658",
+    "name": "Tourisme : guides et accompagnateurs en milieu amazonien",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC684/sharp_/ANX/2658_CC684.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2658_Tourisme : guides et accompagnateurs en milieu amazonien",
+    "idcc": "2658"
+  },
+  {
+    "id": "2666",
+    "name": "Acteurs du développement et de l'ingénierie territoriale d'intérêt général (ADITIG)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC675/sharp_/ANX/2666_CC675.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2666_Acteurs du développement et de l'ingénierie territoriale d'intérêt général (ADITIG)",
+    "idcc": "2666"
+  },
+  {
+    "id": "2667",
+    "name": "Bâtiment : ouvriers (Drôme-Ardèche)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC676/sharp_/ANX/2667_CC676.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2667_Bâtiment : ouvriers (Drôme-Ardèche)",
+    "idcc": "2667"
+  },
+  {
+    "id": "2683",
+    "name": "Presse : portage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC622/sharp_/ANX/2683_CC622.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2683_Presse : portage",
+    "idcc": "2683"
+  },
+  {
+    "id": "2691",
+    "name": "Enseignement privé indépendant",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC624/sharp_/ANX/2691_CC624.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2691_Enseignement privé indépendant",
+    "idcc": "2691"
+  },
+  {
+    "id": "2697",
+    "name": "Chasse : personnels des structures associatives cynégétiques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC659/sharp_/ANX/2697_CC659.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2697_Chasse : personnels des structures associatives cynégétiques",
+    "idcc": "2697"
+  },
+  {
+    "id": "2700",
+    "name": "Métallurgie : Oise",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC680/sharp_/ANX/2700_CC680.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2700_Métallurgie : Oise",
+    "idcc": "2700"
+  },
+  {
+    "id": "2701",
+    "name": "Banques : Guyane",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC681/sharp_/ANX/2701_CC681.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2701_Banques : Guyane",
+    "idcc": "2701"
+  },
+  {
+    "id": "2702",
+    "name": "Banques : Martinique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC682/sharp_/ANX/2702_CC682.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2702_Banques : Martinique",
+    "idcc": "2702"
+  },
+  {
+    "id": "2706",
+    "name": "Administrateurs et mandataires judiciaires (personnel)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC686/sharp_/ANX/2706_CC686.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2706_Administrateurs et mandataires judiciaires (personnel)",
+    "idcc": "2706"
+  },
+  {
+    "id": "2707",
+    "name": "Bâtiment : ETAM (Région parisienne)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC060/sharp_/ANX/2707_CC060.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2707_Bâtiment : ETAM (Région parisienne)",
+    "idcc": "2707"
+  },
+  {
+    "id": "2717",
+    "name": "Création et événement (entreprises techniques)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC685/sharp_/ANX/2717_CC685.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2717_Création et événement (entreprises techniques)",
+    "idcc": "2717"
+  },
+  {
+    "id": "2728",
+    "name": "Sucreries, sucreries-distilleries, raffineries de sucre",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC453/sharp_/ANX/2728_CC453.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2728_Sucreries, sucreries-distilleries, raffineries de sucre",
+    "idcc": "2728"
+  },
+  {
+    "id": "275",
+    "name": "Transport aérien : personnel au sol",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC470/sharp_/ANX/275_CC470.pdf",
+    "has_idcc": true,
+    "filename_pattern": "275_Transport aérien : personnel au sol",
+    "idcc": "275"
+  },
+  {
+    "id": "275",
+    "name": "Transport aérien : personnel navigant",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC595/sharp_/ANX/275_CC595.pdf",
+    "has_idcc": true,
+    "filename_pattern": "275_Transport aérien : personnel navigant",
+    "idcc": "275"
+  },
+  {
+    "id": "2754",
+    "name": "Cuisine à usage domestique : magasins prestataires de service",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC689/sharp_/ANX/2754_CC689.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2754_Cuisine à usage domestique : magasins prestataires de service",
+    "idcc": "2754"
+  },
+  {
+    "id": "2755",
+    "name": "Métallurgie : Belfort / Montbéliard",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC692/sharp_/ANX/2755_CC692.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2755_Métallurgie : Belfort / Montbéliard",
+    "idcc": "2755"
+  },
+  {
+    "id": "2770",
+    "name": "Édition phonographique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC658/sharp_/ANX/2770_CC658.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2770_Édition phonographique",
+    "idcc": "2770"
+  },
+  {
+    "id": "2785",
+    "name": "Commissaires-priseurs judiciaires et sociétés de ventes volontaires",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC697/sharp_/ANX/2785_CC697.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2785_Commissaires-priseurs judiciaires et sociétés de ventes volontaires",
+    "idcc": "2785"
+  },
+  {
+    "id": "2847",
+    "name": "Pôle emploi",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC700/sharp_/ANX/2847_CC700.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2847_Pôle emploi",
+    "idcc": "2847"
+  },
+  {
+    "id": "2870",
+    "name": "Bâtiment et Travaux publics : Guyane (ouvriers)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC055/sharp_/ANX/2870_CC055.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2870_Bâtiment et Travaux publics : Guyane (ouvriers)",
+    "idcc": "2870"
+  },
+  {
+    "id": "29",
+    "name": "Hospitalisation privée à but non lucratif",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC227/sharp_/ANX/29_CC227.pdf",
+    "has_idcc": true,
+    "filename_pattern": "29_Hospitalisation privée à but non lucratif",
+    "idcc": "29"
+  },
+  {
+    "id": "2903",
+    "name": "Spectacle vivant : structures mobiles",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC701/sharp_/ANX/2903_CC701.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2903_Spectacle vivant : structures mobiles",
+    "idcc": "2903"
+  },
+  {
+    "id": "292",
+    "name": "Plasturgie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC274/sharp_/ANX/292_CC274.pdf",
+    "has_idcc": true,
+    "filename_pattern": "292_Plasturgie",
+    "idcc": "292"
+  },
+  {
+    "id": "2931",
+    "name": "Marchés financiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC706/sharp_/ANX/2931_CC706.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2931_Marchés financiers",
+    "idcc": "2931"
+  },
+  {
+    "id": "2941",
+    "name": "Aide à domicile : accompagnement, soins et services",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC705/sharp_/ANX/2941_CC705.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2941_Aide à domicile : accompagnement, soins et services",
+    "idcc": "2941"
+  },
+  {
+    "id": "2972",
+    "name": "Navigation (entreprises) : personnel sédentaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC365/sharp_/ANX/2972_CC365.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2972_Navigation (entreprises) : personnel sédentaire",
+    "idcc": "2972"
+  },
+  {
+    "id": "2978",
+    "name": "Recherches privées : agences",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC698/sharp_/ANX/2978_CC698.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2978_Recherches privées : agences",
+    "idcc": "2978"
+  },
+  {
+    "id": "2980",
+    "name": "Métallurgie : Somme",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC345/sharp_/ANX/2980_CC345.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2980_Métallurgie : Somme",
+    "idcc": "2980"
+  },
+  {
+    "id": "2992",
+    "name": "Métallurgie : Indre-et-Loire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC308/sharp_/ANX/2992_CC308.pdf",
+    "has_idcc": true,
+    "filename_pattern": "2992_Métallurgie : Indre-et-Loire",
+    "idcc": "2992"
+  },
+  {
+    "id": "3013",
+    "name": "Librairie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC657/sharp_/ANX/3013_CC657.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3013_Librairie",
+    "idcc": "3013"
+  },
+  {
+    "id": "3016",
+    "name": "Insertion : ateliers et chantiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC679/sharp_/ANX/3016_CC679.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3016_Insertion : ateliers et chantiers",
+    "idcc": "3016"
+  },
+  {
+    "id": "3017",
+    "name": "Ports et manutention",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC699/sharp_/ANX/3017_CC699.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3017_Ports et manutention",
+    "idcc": "3017"
+  },
+  {
+    "id": "3028",
+    "name": "Transports routiers : Guadeloupe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC707/sharp_/ANX/3028_CC707.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3028_Transports routiers : Guadeloupe",
+    "idcc": "3028"
+  },
+  {
+    "id": "303",
+    "name": "Couture Parisienne et autres métiers de la mode",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC171/sharp_/ANX/303_CC171.pdf",
+    "has_idcc": true,
+    "filename_pattern": "303_Couture Parisienne et autres métiers de la mode",
+    "idcc": "303"
+  },
+  {
+    "id": "3032",
+    "name": "Esthétique-cosmétique et enseignement associé",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC696/sharp_/ANX/3032_CC696.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3032_Esthétique-cosmétique et enseignement associé",
+    "idcc": "3032"
+  },
+  {
+    "id": "3043",
+    "name": "Propreté",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC427/sharp_/ANX/3043_CC427.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3043_Propreté",
+    "idcc": "3043"
+  },
+  {
+    "id": "3053",
+    "name": "Métallurgie : Saône (Haute)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC708/sharp_/ANX/3053_CC708.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3053_Métallurgie : Saône (Haute)",
+    "idcc": "3053"
+  },
+  {
+    "id": "3090",
+    "name": "Spectacle vivant : secteur privé",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC710/sharp_/ANX/3090_CC710.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3090_Spectacle vivant : secteur privé",
+    "idcc": "3090"
+  },
+  {
+    "id": "3097",
+    "name": "Cinéma : production cinématographique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC719/sharp_/ANX/3097_CC719.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3097_Cinéma : production cinématographique",
+    "idcc": "3097"
+  },
+  {
+    "id": "3105",
+    "name": "Régies de quartier",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC702/sharp_/ANX/3105_CC702.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3105_Régies de quartier",
+    "idcc": "3105"
+  },
+  {
+    "id": "3107",
+    "name": "Bâtiment et travaux publics : Martinique (ETAM)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC711/sharp_/ANX/3107_CC711.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3107_Bâtiment et travaux publics : Martinique (ETAM)",
+    "idcc": "3107"
+  },
+  {
+    "id": "3109",
+    "name": "Alimentation : industries alimentaires diverses (5 branches)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC713/sharp_/ANX/3109_CC713.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3109_Alimentation : industries alimentaires diverses (5 branches)",
+    "idcc": "3109"
+  },
+  {
+    "id": "3123",
+    "name": "Ambulances (ouvriers, employés et techniciens) : Guyane",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC730/sharp_/ANX/3123_CC730.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3123_Ambulances (ouvriers, employés et techniciens) : Guyane",
+    "idcc": "3123"
+  },
+  {
+    "id": "3127",
+    "name": "Services à la personne (entreprises)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC656/sharp_/ANX/3127_CC656.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3127_Services à la personne (entreprises)",
+    "idcc": "3127"
+  },
+  {
+    "id": "3128",
+    "name": "Bâtiment et travaux publics : Guyane (ETAM)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC712/sharp_/ANX/3128_CC712.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3128_Bâtiment et travaux publics : Guyane (ETAM)",
+    "idcc": "3128"
+  },
+  {
+    "id": "3140",
+    "name": "Commerces, services commerciaux et hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC715/sharp_/ANX/3140_CC715.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3140_Commerces, services commerciaux et hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+    "idcc": "3140"
+  },
+  {
+    "id": "3144",
+    "name": "Bâtiment et Travaux publics : Guadeloupe (ETAM)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC714/sharp_/ANX/3144_CC714.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3144_Bâtiment et Travaux publics : Guadeloupe (ETAM)",
+    "idcc": "3144"
+  },
+  {
+    "id": "3160",
+    "name": "Associations de gestion et de comptabilité",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC634/sharp_/ANX/3160_CC634.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3160_Associations de gestion et de comptabilité",
+    "idcc": "3160"
+  },
+  {
+    "id": "3168",
+    "name": "Photographie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC401/sharp_/ANX/3168_CC401.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3168_Photographie",
+    "idcc": "3168"
+  },
+  {
+    "id": "3203",
+    "name": "Pêche de loisir et protection du milieu aquatique : structures associatives",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC723/sharp_/ANX/3203_CC723.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3203_Pêche de loisir et protection du milieu aquatique : structures associatives",
+    "idcc": "3203"
+  },
+  {
+    "id": "3204",
+    "name": "Bâtiment et travaux publics : Guyane (ingénieurs et cadres)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC728/sharp_/ANX/3204_CC728.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3204_Bâtiment et travaux publics : Guyane (ingénieurs et cadres)",
+    "idcc": "3204"
+  },
+  {
+    "id": "3205",
+    "name": "Coopératives de consommation : salariés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC170/sharp_/ANX/3205_CC170.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3205_Coopératives de consommation : salariés",
+    "idcc": "3205"
+  },
+  {
+    "id": "3207",
+    "name": "Transports sanitaires : Guadeloupe, Saint-Barthélemy et Saint-Martin",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC729/sharp_/ANX/3207_CC729.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3207_Transports sanitaires : Guadeloupe, Saint-Barthélemy et Saint-Martin",
+    "idcc": "3207"
+  },
+  {
+    "id": "3209",
+    "name": "Métallurgie : Doubs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC298/sharp_/ANX/3209_CC298.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3209_Métallurgie : Doubs",
+    "idcc": "3209"
+  },
+  {
+    "id": "3210",
+    "name": "Banque Populaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC732/sharp_/ANX/3210_CC732.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3210_Banque Populaire",
+    "idcc": "3210"
+  },
+  {
+    "id": "3211",
+    "name": "Enseignement privé : salariés des établissements privés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC731/sharp_/ANX/3211_CC731.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3211_Enseignement privé : salariés des établissements privés",
+    "idcc": "3211"
+  },
+  {
+    "id": "3212",
+    "name": "Travaux publics : cadres",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC480/sharp_/ANX/3212_CC480.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3212_Travaux publics : cadres",
+    "idcc": "3212"
+  },
+  {
+    "id": "3213",
+    "name": "Métreurs-vérificateurs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC359/sharp_/ANX/3213_CC359.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3213_Métreurs-vérificateurs",
+    "idcc": "3213"
+  },
+  {
+    "id": "3216",
+    "name": "Matériaux de construction : négoce",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC733/sharp_/ANX/3216_CC733.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3216_Matériaux de construction : négoce",
+    "idcc": "3216"
+  },
+  {
+    "id": "3217",
+    "name": "Transport ferroviaire et activités associées",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC674/sharp_/ANX/3217_CC674.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3217_Transport ferroviaire et activités associées",
+    "idcc": "3217"
+  },
+  {
+    "id": "3218",
+    "name": "Enseignement privé non lucratif (EPNL)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC736/sharp_/ANX/3218_CC736.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3218_Enseignement privé non lucratif (EPNL)",
+    "idcc": "3218"
+  },
+  {
+    "id": "3219",
+    "name": "Portage salarial",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC735/sharp_/ANX/3219_CC735.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3219_Portage salarial",
+    "idcc": "3219"
+  },
+  {
+    "id": "3220",
+    "name": "Habitat : offices publics de l'habitat et sociétés de coordination",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC744/sharp_/ANX/3220_CC744.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3220_Habitat : offices publics de l'habitat et sociétés de coordination",
+    "idcc": "3220"
+  },
+  {
+    "id": "3221",
+    "name": "Presse : agences",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC737/sharp_/ANX/3221_CC737.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3221_Presse : agences",
+    "idcc": "3221"
+  },
+  {
+    "id": "3222",
+    "name": "Menuiseries, charpentes et constructions industrialisées",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC278/sharp_/ANX/3222_CC278.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3222_Menuiseries, charpentes et constructions industrialisées",
+    "idcc": "3222"
+  },
+  {
+    "id": "3223",
+    "name": "Transports et services maritimes : personnels navigants officiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC753/sharp_/ANX/3223_CC753.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3223_Transports et services maritimes : personnels navigants officiers",
+    "idcc": "3223"
+  },
+  {
+    "id": "3224",
+    "name": "Papier-cartons : distribution et commerce de gros",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC739/sharp_/ANX/3224_CC739.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3224_Papier-cartons : distribution et commerce de gros",
+    "idcc": "3224"
+  },
+  {
+    "id": "3225",
+    "name": "Presse magazine : éditeurs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC740/sharp_/ANX/3225_CC740.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3225_Presse magazine : éditeurs",
+    "idcc": "3225"
+  },
+  {
+    "id": "3227",
+    "name": "Chaux (industries de la fabrication de la) (nouvelle CCN)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC716/sharp_/ANX/3227_CC716.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3227_Chaux (industries de la fabrication de la) (nouvelle CCN)",
+    "idcc": "3227"
+  },
+  {
+    "id": "3229",
+    "name": "Navigation intérieure : entreprises de transport",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC747/sharp_/ANX/3229_CC747.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3229_Navigation intérieure : entreprises de transport",
+    "idcc": "3229"
+  },
+  {
+    "id": "3230",
+    "name": "Presse d'information spécialisée",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC746/sharp_/ANX/3230_CC746.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3230_Presse d'information spécialisée",
+    "idcc": "3230"
+  },
+  {
+    "id": "3231",
+    "name": "Métallurgie : Jura",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC310/sharp_/ANX/3231_CC310.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3231_Métallurgie : Jura",
+    "idcc": "3231"
+  },
+  {
+    "id": "3233",
+    "name": "Ciments : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC749/sharp_/ANX/3233_CC749.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3233_Ciments : industries",
+    "idcc": "3233"
+  },
+  {
+    "id": "3235",
+    "name": "Parfumerie sélective",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC752/sharp_/ANX/3235_CC752.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3235_Parfumerie sélective",
+    "idcc": "3235"
+  },
+  {
+    "id": "3237",
+    "name": "Commerce de détail alimentaire spécialisé",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC754/sharp_/ANX/3237_CC754.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3237_Commerce de détail alimentaire spécialisé",
+    "idcc": "3237"
+  },
+  {
+    "id": "3238",
+    "name": "Papiers-cartons : production et transformation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC755/sharp_/ANX/3238_CC755.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3238_Papiers-cartons : production et transformation",
+    "idcc": "3238"
+  },
+  {
+    "id": "3239",
+    "name": "Particuliers employeurs et emploi à domicile",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC756/sharp_/ANX/3239_CC756.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3239_Particuliers employeurs et emploi à domicile",
+    "idcc": "3239"
+  },
+  {
+    "id": "3241",
+    "name": "Télédiffusion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC757/sharp_/ANX/3241_CC757.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3241_Télédiffusion",
+    "idcc": "3241"
+  },
+  {
+    "id": "3242",
+    "name": "Presse quotidienne et hebdomadaire en régions",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC758/sharp_/ANX/3242_CC758.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3242_Presse quotidienne et hebdomadaire en régions",
+    "idcc": "3242"
+  },
+  {
+    "id": "3243",
+    "name": "Quincaillerie : commerces",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC759/sharp_/ANX/3243_CC759.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3243_Quincaillerie : commerces",
+    "idcc": "3243"
+  },
+  {
+    "id": "3245",
+    "name": "Voyages : opérateurs et guides",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC762/sharp_/ANX/3245_CC762.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3245_Voyages : opérateurs et guides",
+    "idcc": "3245"
+  },
+  {
+    "id": "3248",
+    "name": "Métallurgie (convention collective nationale unique)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC760/sharp_/ANX/3248_CC760.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3248_Métallurgie (convention collective nationale unique)",
+    "idcc": "3248"
+  },
+  {
+    "id": "3250",
+    "name": "Commissaires de justice et sociétés de ventes volontaires",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC766/sharp_/ANX/3250_CC766.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3250_Commissaires de justice et sociétés de ventes volontaires",
+    "idcc": "3250"
+  },
+  {
+    "id": "3251",
+    "name": "Bijouterie, joaillerie, orfèvrerie, horlogerie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC061/sharp_/ANX/3251_CC061.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3251_Bijouterie, joaillerie, orfèvrerie, horlogerie",
+    "idcc": "3251"
+  },
+  {
+    "id": "3252",
+    "name": "Création et événement : entreprises",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC770/sharp_/ANX/3252_CC770.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3252_Création et événement : entreprises",
+    "idcc": "3252"
+  },
+  {
+    "id": "3253",
+    "name": "Avocats : salariés des cabinets",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC769/sharp_/ANX/3253_CC769.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3253_Avocats : salariés des cabinets",
+    "idcc": "3253"
+  },
+  {
+    "id": "3254",
+    "name": "Boucherie Poissonnerie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC771/sharp_/ANX/3254_CC771.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3254_Boucherie Poissonnerie",
+    "idcc": "3254"
+  },
+  {
+    "id": "3255",
+    "name": "Boulangerie-pâtisserie industrielle et oeufs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC772/sharp_/ANX/3255_CC772.pdf",
+    "has_idcc": true,
+    "filename_pattern": "3255_Boulangerie-pâtisserie industrielle et oeufs",
+    "idcc": "3255"
+  },
+  {
+    "id": "349",
+    "name": "Tourisme : guides interprètes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC467/sharp_/ANX/349_CC467.pdf",
+    "has_idcc": true,
+    "filename_pattern": "349_Tourisme : guides interprètes",
+    "idcc": "349"
+  },
+  {
+    "id": "350",
+    "name": "Mode et chapellerie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC362/sharp_/ANX/350_CC362.pdf",
+    "has_idcc": true,
+    "filename_pattern": "350_Mode et chapellerie",
+    "idcc": "350"
+  },
+  {
+    "id": "354",
+    "name": "Ganterie de peau",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC209/sharp_/ANX/354_CC209.pdf",
+    "has_idcc": true,
+    "filename_pattern": "354_Ganterie de peau",
+    "idcc": "354"
+  },
+  {
+    "id": "379",
+    "name": "Commerces de gros et de détail alimentaires et non alimentaires : Martinique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC160/sharp_/ANX/379_CC160.pdf",
+    "has_idcc": true,
+    "filename_pattern": "379_Commerces de gros et de détail alimentaires et non alimentaires : Martinique",
+    "idcc": "379"
+  },
+  {
+    "id": "388",
+    "name": "Cinéma : auditoriums cinématographiques (cadres, agents de maîtrise et assistants)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC129/sharp_/ANX/388_CC129.pdf",
+    "has_idcc": true,
+    "filename_pattern": "388_Cinéma : auditoriums cinématographiques (cadres, agents de maîtrise et assistants)",
+    "idcc": "388"
+  },
+  {
+    "id": "390",
+    "name": "Enseignement privé : professeurs du secondaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC196/sharp_/ANX/390_CC196.pdf",
+    "has_idcc": true,
+    "filename_pattern": "390_Enseignement privé : professeurs du secondaire",
+    "idcc": "390"
+  },
+  {
+    "id": "405",
+    "name": "Médico-sociaux : établissements",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC277/sharp_/ANX/405_CC277.pdf",
+    "has_idcc": true,
+    "filename_pattern": "405_Médico-sociaux : établissements",
+    "idcc": "405"
+  },
+  {
+    "id": "409",
+    "name": "Bâtiment : ouvriers (Limousin)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC572/sharp_/ANX/409_CC572.pdf",
+    "has_idcc": true,
+    "filename_pattern": "409_Bâtiment : ouvriers (Limousin)",
+    "idcc": "409"
+  },
+  {
+    "id": "412",
+    "name": "Tourisme : guides accompagnateurs",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC465/sharp_/ANX/412_CC465.pdf",
+    "has_idcc": true,
+    "filename_pattern": "412_Tourisme : guides accompagnateurs",
+    "idcc": "412"
+  },
+  {
+    "id": "413",
+    "name": "Handicapés : établissements et services pour personnes inadaptées et handicapées",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC221/sharp_/ANX/413_CC221.pdf",
+    "has_idcc": true,
+    "filename_pattern": "413_Handicapés : établissements et services pour personnes inadaptées et handicapées",
+    "idcc": "413"
+  },
+  {
+    "id": "418",
+    "name": "Chemiserie sur mesure",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC113/sharp_/ANX/418_CC113.pdf",
+    "has_idcc": true,
+    "filename_pattern": "418_Chemiserie sur mesure",
+    "idcc": "418"
+  },
+  {
+    "id": "43",
+    "name": "Import-export et commerce international",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC245/sharp_/ANX/43_CC245.pdf",
+    "has_idcc": true,
+    "filename_pattern": "43_Import-export et commerce international",
+    "idcc": "43"
+  },
+  {
+    "id": "44",
+    "name": "Chimie : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC114/sharp_/ANX/44_CC114.pdf",
+    "has_idcc": true,
+    "filename_pattern": "44_Chimie : industries",
+    "idcc": "44"
+  },
+  {
+    "id": "45",
+    "name": "Caoutchouc",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC092/sharp_/ANX/45_CC092.pdf",
+    "has_idcc": true,
+    "filename_pattern": "45_Caoutchouc",
+    "idcc": "45"
+  },
+  {
+    "id": "454",
+    "name": "Remontées mécaniques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC457/sharp_/ANX/454_CC457.pdf",
+    "has_idcc": true,
+    "filename_pattern": "454_Remontées mécaniques",
+    "idcc": "454"
+  },
+  {
+    "id": "468",
+    "name": "Chaussure : commerce succursaliste",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC109/sharp_/ANX/468_CC109.pdf",
+    "has_idcc": true,
+    "filename_pattern": "468_Chaussure : commerce succursaliste",
+    "idcc": "468"
+  },
+  {
+    "id": "478",
+    "name": "Sociétés financières",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC451/sharp_/ANX/478_CC451.pdf",
+    "has_idcc": true,
+    "filename_pattern": "478_Sociétés financières",
+    "idcc": "478"
+  },
+  {
+    "id": "483",
+    "name": "Habillement et articles textiles : commerce de détail - Valenciennes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC219/sharp_/ANX/483_CC219.pdf",
+    "has_idcc": true,
+    "filename_pattern": "483_Habillement et articles textiles : commerce de détail - Valenciennes",
+    "idcc": "483"
+  },
+  {
+    "id": "489",
+    "name": "Cartonnage : industries",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC097/sharp_/ANX/489_CC097.pdf",
+    "has_idcc": true,
+    "filename_pattern": "489_Cartonnage : industries",
+    "idcc": "489"
+  },
+  {
+    "id": "490",
+    "name": "Commerces de détail alimentaires et non alimentaires : Vosges",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC157/sharp_/ANX/490_CC157.pdf",
+    "has_idcc": true,
+    "filename_pattern": "490_Commerces de détail alimentaires et non alimentaires : Vosges",
+    "idcc": "490"
+  },
+  {
+    "id": "493",
+    "name": "Vins, cidres, jus de fruits",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC493/sharp_/ANX/493_CC493.pdf",
+    "has_idcc": true,
+    "filename_pattern": "493_Vins, cidres, jus de fruits",
+    "idcc": "493"
+  },
+  {
+    "id": "50",
+    "name": "Commerces de gros et de détail alimentaires et non alimentaires : Rodez",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC162/sharp_/ANX/50_CC162.pdf",
+    "has_idcc": true,
+    "filename_pattern": "50_Commerces de gros et de détail alimentaires et non alimentaires : Rodez",
+    "idcc": "50"
+  },
+  {
+    "id": "500",
+    "name": "Habillement, mercerie, chaussure et jouet",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC077/sharp_/ANX/500_CC077.pdf",
+    "has_idcc": true,
+    "filename_pattern": "500_Habillement, mercerie, chaussure et jouet",
+    "idcc": "500"
+  },
+  {
+    "id": "538",
+    "name": "Manutention ferroviaire et travaux connexes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC267/sharp_/ANX/538_CC267.pdf",
+    "has_idcc": true,
+    "filename_pattern": "538_Manutention ferroviaire et travaux connexes",
+    "idcc": "538"
+  },
+  {
+    "id": "54",
+    "name": "Métallurgie : Région parisienne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC336/sharp_/ANX/54_CC336.pdf",
+    "has_idcc": true,
+    "filename_pattern": "54_Métallurgie : Région parisienne",
+    "idcc": "54"
+  },
+  {
+    "id": "5507",
+    "name": "Football : personnels administratifs et assimilés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC603/sharp_/ANX/5507_CC603.pdf",
+    "has_idcc": true,
+    "filename_pattern": "5507_Football : personnels administratifs et assimilés",
+    "idcc": "5507"
+  },
+  {
+    "id": "573",
+    "name": "Commerces de gros",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC158/sharp_/ANX/573_CC158.pdf",
+    "has_idcc": true,
+    "filename_pattern": "573_Commerces de gros",
+    "idcc": "573"
+  },
+  {
+    "id": "575",
+    "name": "Restaurants : chaîne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC447/sharp_/ANX/575_CC447.pdf",
+    "has_idcc": true,
+    "filename_pattern": "575_Restaurants : chaîne",
+    "idcc": "575"
+  },
+  {
+    "id": "601",
+    "name": "Hôtels, cafés, restaurants : Alpes de Haute-Provence",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC232/sharp_/ANX/601_CC232.pdf",
+    "has_idcc": true,
+    "filename_pattern": "601_Hôtels, cafés, restaurants : Alpes de Haute-Provence",
+    "idcc": "601"
+  },
+  {
+    "id": "614",
+    "name": "Sérigraphie : industrie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC449/sharp_/ANX/614_CC449.pdf",
+    "has_idcc": true,
+    "filename_pattern": "614_Sérigraphie : industrie",
+    "idcc": "614"
+  },
+  {
+    "id": "625",
+    "name": "Cinéma : exploitation (services généraux et administratifs : cadres)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC122/sharp_/ANX/625_CC122.pdf",
+    "has_idcc": true,
+    "filename_pattern": "625_Cinéma : exploitation (services généraux et administratifs : cadres)",
+    "idcc": "625"
+  },
+  {
+    "id": "637",
+    "name": "Récupération : industries et commerces",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC442/sharp_/ANX/637_CC442.pdf",
+    "has_idcc": true,
+    "filename_pattern": "637_Récupération : industries et commerces",
+    "idcc": "637"
+  },
+  {
+    "id": "650",
+    "name": "Métallurgie (ingénieurs et cadres)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC279/sharp_/ANX/650_CC279.pdf",
+    "has_idcc": true,
+    "filename_pattern": "650_Métallurgie (ingénieurs et cadres)",
+    "idcc": "650"
+  },
+  {
+    "id": "653",
+    "name": "Assurances : salariés commerciaux des sociétés",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC748/sharp_/ANX/653_CC748.pdf",
+    "has_idcc": true,
+    "filename_pattern": "653_Assurances : salariés commerciaux des sociétés",
+    "idcc": "653"
+  },
+  {
+    "id": "669",
+    "name": "Verre : fabrication mécanique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC487/sharp_/ANX/669_CC487.pdf",
+    "has_idcc": true,
+    "filename_pattern": "669_Verre : fabrication mécanique",
+    "idcc": "669"
+  },
+  {
+    "id": "673",
+    "name": "Fourrure",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC205/sharp_/ANX/673_CC205.pdf",
+    "has_idcc": true,
+    "filename_pattern": "673_Fourrure",
+    "idcc": "673"
+  },
+  {
+    "id": "675",
+    "name": "Habillement : maisons à succursales de vente au détail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC217/sharp_/ANX/675_CC217.pdf",
+    "has_idcc": true,
+    "filename_pattern": "675_Habillement : maisons à succursales de vente au détail",
+    "idcc": "675"
+  },
+  {
+    "id": "7001",
+    "name": "Bétail et viandes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC546/sharp_/ANX/7001_CC546.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7001_Bétail et viandes",
+    "idcc": "7001"
+  },
+  {
+    "id": "7002",
+    "name": "Céréales, meunerie, approvisionnement, alimentation (bétail), oléagineux",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC550/sharp_/ANX/7002_CC550.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7002_Céréales, meunerie, approvisionnement, alimentation (bétail), oléagineux",
+    "idcc": "7002"
+  },
+  {
+    "id": "7003",
+    "name": "Conserveries : Coopératives et SICA",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC551/sharp_/ANX/7003_CC551.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7003_Conserveries : Coopératives et SICA",
+    "idcc": "7003"
+  },
+  {
+    "id": "7004",
+    "name": "Lait : coopératives agricoles et SICA",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC561/sharp_/ANX/7004_CC561.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7004_Lait : coopératives agricoles et SICA",
+    "idcc": "7004"
+  },
+  {
+    "id": "7005",
+    "name": "Vins : caves coopératives vinicoles et leurs unions",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC568/sharp_/ANX/7005_CC568.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7005_Vins : caves coopératives vinicoles et leurs unions",
+    "idcc": "7005"
+  },
+  {
+    "id": "7006",
+    "name": "Fleurs, fruits et légumes : coopératives agricoles et SICA",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC558/sharp_/ANX/7006_CC558.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7006_Fleurs, fruits et légumes : coopératives agricoles et SICA",
+    "idcc": "7006"
+  },
+  {
+    "id": "7007",
+    "name": "Lin : teillage (coopératives agricoles et SICA)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC563/sharp_/ANX/7007_CC563.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7007_Lin : teillage (coopératives agricoles et SICA)",
+    "idcc": "7007"
+  },
+  {
+    "id": "7008",
+    "name": "Lait : organismes de contrôle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC632/sharp_/ANX/7008_CC632.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7008_Lait : organismes de contrôle",
+    "idcc": "7008"
+  },
+  {
+    "id": "7009",
+    "name": "Accouvage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC545/sharp_/ANX/7009_CC545.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7009_Accouvage",
+    "idcc": "7009"
+  },
+  {
+    "id": "7010",
+    "name": "Aquaculture",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC567/sharp_/ANX/7010_CC567.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7010_Aquaculture",
+    "idcc": "7010"
+  },
+  {
+    "id": "7012",
+    "name": "Centres équestres",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC549/sharp_/ANX/7012_CC549.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7012_Centres équestres",
+    "idcc": "7012"
+  },
+  {
+    "id": "7013",
+    "name": "Centres d'entrainement : chevaux de courses au trot",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC548/sharp_/ANX/7013_CC548.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7013_Centres d'entrainement : chevaux de courses au trot",
+    "idcc": "7013"
+  },
+  {
+    "id": "7014",
+    "name": "Centres d'entrainement : chevaux de courses au galop",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC547/sharp_/ANX/7014_CC547.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7014_Centres d'entrainement : chevaux de courses au galop",
+    "idcc": "7014"
+  },
+  {
+    "id": "7015",
+    "name": "Gardes-chasse et gardes-pêche particuliers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC559/sharp_/ANX/7015_CC559.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7015_Gardes-chasse et gardes-pêche particuliers",
+    "idcc": "7015"
+  },
+  {
+    "id": "7017",
+    "name": "Zoos",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC569/sharp_/ANX/7017_CC569.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7017_Zoos",
+    "idcc": "7017"
+  },
+  {
+    "id": "7018",
+    "name": "Paysage : entreprises",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC694/sharp_/ANX/7018_CC694.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7018_Paysage : entreprises",
+    "idcc": "7018"
+  },
+  {
+    "id": "7019",
+    "name": "Conchyliculture et cultures marines",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC618/sharp_/ANX/7019_CC618.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7019_Conchyliculture et cultures marines",
+    "idcc": "7019"
+  },
+  {
+    "id": "7020",
+    "name": "Associations de gestion et de comptabilité : réseau CERFRANCE",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC636/sharp_/ANX/7020_CC636.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7020_Associations de gestion et de comptabilité : réseau CERFRANCE",
+    "idcc": "7020"
+  },
+  {
+    "id": "7021",
+    "name": "Sélection et reproduction animale (entreprises)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC688/sharp_/ANX/7021_CC688.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7021_Sélection et reproduction animale (entreprises)",
+    "idcc": "7021"
+  },
+  {
+    "id": "7023",
+    "name": "Déshydratation (entreprises agricoles)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC745/sharp_/ANX/7023_CC745.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7023_Déshydratation (entreprises agricoles)",
+    "idcc": "7023"
+  },
+  {
+    "id": "7024",
+    "name": "Agriculture : production agricole et CUMA",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC738/sharp_/ANX/7024_CC738.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7024_Agriculture : production agricole et CUMA",
+    "idcc": "7024"
+  },
+  {
+    "id": "7025",
+    "name": "Agriculture : travaux et services agricoles, ruraux et forestiers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC751/sharp_/ANX/7025_CC751.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7025_Agriculture : travaux et services agricoles, ruraux et forestiers",
+    "idcc": "7025"
+  },
+  {
+    "id": "7026",
+    "name": "Activités hippiques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC768/sharp_/ANX/7026_CC768.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7026_Activités hippiques",
+    "idcc": "7026"
+  },
+  {
+    "id": "7027",
+    "name": "Conseil et service en élevage",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC767/sharp_/ANX/7027_CC767.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7027_Conseil et service en élevage",
+    "idcc": "7027"
+  },
+  {
+    "id": "706",
+    "name": "Reprographie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC444/sharp_/ANX/706_CC444.pdf",
+    "has_idcc": true,
+    "filename_pattern": "706_Reprographie",
+    "idcc": "706"
+  },
+  {
+    "id": "711",
+    "name": "Commerces de détail non alimentaires : Lyon",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC146/sharp_/ANX/711_CC146.pdf",
+    "has_idcc": true,
+    "filename_pattern": "711_Commerces de détail non alimentaires : Lyon",
+    "idcc": "711"
+  },
+  {
+    "id": "714",
+    "name": "Métallurgie : Moselle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC358/sharp_/ANX/714_CC358.pdf",
+    "has_idcc": true,
+    "filename_pattern": "714_Métallurgie : Moselle",
+    "idcc": "714"
+  },
+  {
+    "id": "715",
+    "name": "Instruments à écrire et industries connexes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC252/sharp_/ANX/715_CC252.pdf",
+    "has_idcc": true,
+    "filename_pattern": "715_Instruments à écrire et industries connexes",
+    "idcc": "715"
+  },
+  {
+    "id": "716",
+    "name": "Cinéma : distribution des films",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC119/sharp_/ANX/716_CC119.pdf",
+    "has_idcc": true,
+    "filename_pattern": "716_Cinéma : distribution des films",
+    "idcc": "716"
+  },
+  {
+    "id": "733",
+    "name": "Chaussures : détaillants",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC108/sharp_/ANX/733_CC108.pdf",
+    "has_idcc": true,
+    "filename_pattern": "733_Chaussures : détaillants",
+    "idcc": "733"
+  },
+  {
+    "id": "735",
+    "name": "Machines à coudre : commerce",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC261/sharp_/ANX/735_CC261.pdf",
+    "has_idcc": true,
+    "filename_pattern": "735_Machines à coudre : commerce",
+    "idcc": "735"
+  },
+  {
+    "id": "749",
+    "name": "Bâtiment et Travaux publics : Martinique (ouvriers)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC057/sharp_/ANX/749_CC057.pdf",
+    "has_idcc": true,
+    "filename_pattern": "749_Bâtiment et Travaux publics : Martinique (ouvriers)",
+    "idcc": "749"
+  },
+  {
+    "id": "7501",
+    "name": "Crédit agricole",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC552/sharp_/ANX/7501_CC552.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7501_Crédit agricole",
+    "idcc": "7501"
+  },
+  {
+    "id": "7503",
+    "name": "Distilleries viticoles (coopératives et union) et distillation (SICA)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC553/sharp_/ANX/7503_CC553.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7503_Distilleries viticoles (coopératives et union) et distillation (SICA)",
+    "idcc": "7503"
+  },
+  {
+    "id": "7505",
+    "name": "Enseignement privé (agricole) : personnel de formation",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC557/sharp_/ANX/7505_CC557.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7505_Enseignement privé (agricole) : personnel de formation",
+    "idcc": "7505"
+  },
+  {
+    "id": "7506",
+    "name": "Enseignement privé (agricole) : personnel de la vie scolaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC556/sharp_/ANX/7506_CC556.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7506_Enseignement privé (agricole) : personnel de la vie scolaire",
+    "idcc": "7506"
+  },
+  {
+    "id": "7507",
+    "name": "Enseignement privé (agricole) : personnels administratifs et techniques",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC555/sharp_/ANX/7507_CC555.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7507_Enseignement privé (agricole) : personnels administratifs et techniques",
+    "idcc": "7507"
+  },
+  {
+    "id": "7508",
+    "name": "Maisons familiales rurales",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC564/sharp_/ANX/7508_CC564.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7508_Maisons familiales rurales",
+    "idcc": "7508"
+  },
+  {
+    "id": "7509",
+    "name": "Enseignement privé (agricole) : personnel relevant du groupement des organismes de formation et de promotion agricoles",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC554/sharp_/ANX/7509_CC554.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7509_Enseignement privé (agricole) : personnel relevant du groupement des organismes de formation et de promotion agricoles",
+    "idcc": "7509"
+  },
+  {
+    "id": "7520",
+    "name": "Enseignement privé agricole",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC734/sharp_/ANX/7520_CC734.pdf",
+    "has_idcc": true,
+    "filename_pattern": "7520_Enseignement privé agricole",
+    "idcc": "7520"
+  },
+  {
+    "id": "759",
+    "name": "Pompes funèbres",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC403/sharp_/ANX/759_CC403.pdf",
+    "has_idcc": true,
+    "filename_pattern": "759_Pompes funèbres",
+    "idcc": "759"
+  },
+  {
+    "id": "771",
+    "name": "Bâtiment et Travaux publics : la Réunion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC056/sharp_/ANX/771_CC056.pdf",
+    "has_idcc": true,
+    "filename_pattern": "771_Bâtiment et Travaux publics : la Réunion",
+    "idcc": "771"
+  },
+  {
+    "id": "779",
+    "name": "Voies ferrées d'intérêt local",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC495/sharp_/ANX/779_CC495.pdf",
+    "has_idcc": true,
+    "filename_pattern": "779_Voies ferrées d'intérêt local",
+    "idcc": "779"
+  },
+  {
+    "id": "780",
+    "name": "Tailleurs sur mesure : région parisienne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC456/sharp_/ANX/780_CC456.pdf",
+    "has_idcc": true,
+    "filename_pattern": "780_Tailleurs sur mesure : région parisienne",
+    "idcc": "780"
+  },
+  {
+    "id": "783",
+    "name": "Centres d'hébergement et de réadaptation sociale",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC099/sharp_/ANX/783_CC099.pdf",
+    "has_idcc": true,
+    "filename_pattern": "783_Centres d'hébergement et de réadaptation sociale",
+    "idcc": "783"
+  },
+  {
+    "id": "787",
+    "name": "Experts-comptables et commissaires aux comptes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC200/sharp_/ANX/787_CC200.pdf",
+    "has_idcc": true,
+    "filename_pattern": "787_Experts-comptables et commissaires aux comptes",
+    "idcc": "787"
+  },
+  {
+    "id": "800",
+    "name": "Hôtels",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC229/sharp_/ANX/800_CC229.pdf",
+    "has_idcc": true,
+    "filename_pattern": "800_Hôtels",
+    "idcc": "800"
+  },
+  {
+    "id": "804",
+    "name": "Voyageurs, représentants, placiers (VRP)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC496/sharp_/ANX/804_CC496.pdf",
+    "has_idcc": true,
+    "filename_pattern": "804_Voyageurs, représentants, placiers (VRP)",
+    "idcc": "804"
+  },
+  {
+    "id": "814",
+    "name": "Commerces de détail non alimentaires : Meurthe-et-Moselle",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC149/sharp_/ANX/814_CC149.pdf",
+    "has_idcc": true,
+    "filename_pattern": "814_Commerces de détail non alimentaires : Meurthe-et-Moselle",
+    "idcc": "814"
+  },
+  {
+    "id": "822",
+    "name": "Métallurgie : Savoie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC340/sharp_/ANX/822_CC340.pdf",
+    "has_idcc": true,
+    "filename_pattern": "822_Métallurgie : Savoie",
+    "idcc": "822"
+  },
+  {
+    "id": "827",
+    "name": "Métallurgie : Ardennes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC286/sharp_/ANX/827_CC286.pdf",
+    "has_idcc": true,
+    "filename_pattern": "827_Métallurgie : Ardennes",
+    "idcc": "827"
+  },
+  {
+    "id": "828",
+    "name": "Métallurgie : Manche",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC317/sharp_/ANX/828_CC317.pdf",
+    "has_idcc": true,
+    "filename_pattern": "828_Métallurgie : Manche",
+    "idcc": "828"
+  },
+  {
+    "id": "829",
+    "name": "Métallurgie : Vaucluse",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC348/sharp_/ANX/829_CC348.pdf",
+    "has_idcc": true,
+    "filename_pattern": "829_Métallurgie : Vaucluse",
+    "idcc": "829"
+  },
+  {
+    "id": "836",
+    "name": "Métallurgie : Savoie (Haute-)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC341/sharp_/ANX/836_CC341.pdf",
+    "has_idcc": true,
+    "filename_pattern": "836_Métallurgie : Savoie (Haute-)",
+    "idcc": "836"
+  },
+  {
+    "id": "843",
+    "name": "Boulangerie-pâtisserie : entreprises artisanales",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC079/sharp_/ANX/843_CC079.pdf",
+    "has_idcc": true,
+    "filename_pattern": "843_Boulangerie-pâtisserie : entreprises artisanales",
+    "idcc": "843"
+  },
+  {
+    "id": "86",
+    "name": "Publicité",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC428/sharp_/ANX/86_CC428.pdf",
+    "has_idcc": true,
+    "filename_pattern": "86_Publicité",
+    "idcc": "86"
+  },
+  {
+    "id": "860",
+    "name": "Métallurgie : Finistère",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC301/sharp_/ANX/860_CC301.pdf",
+    "has_idcc": true,
+    "filename_pattern": "860_Métallurgie : Finistère",
+    "idcc": "860"
+  },
+  {
+    "id": "863",
+    "name": "Métallurgie : Ille-et-Vilaine - Morbihan",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC306/sharp_/ANX/863_CC306.pdf",
+    "has_idcc": true,
+    "filename_pattern": "863_Métallurgie : Ille-et-Vilaine - Morbihan",
+    "idcc": "863"
+  },
+  {
+    "id": "87",
+    "name": "Carrières et matériaux : ouvriers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC096/sharp_/ANX/87_CC096.pdf",
+    "has_idcc": true,
+    "filename_pattern": "87_Carrières et matériaux : ouvriers",
+    "idcc": "87"
+  },
+  {
+    "id": "878",
+    "name": "Métallurgie : Rhône",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC337/sharp_/ANX/878_CC337.pdf",
+    "has_idcc": true,
+    "filename_pattern": "878_Métallurgie : Rhône",
+    "idcc": "878"
+  },
+  {
+    "id": "887",
+    "name": "Métallurgie : Eure",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC299/sharp_/ANX/887_CC299.pdf",
+    "has_idcc": true,
+    "filename_pattern": "887_Métallurgie : Eure",
+    "idcc": "887"
+  },
+  {
+    "id": "889",
+    "name": "Cinéma : exploitation (services généraux et administratifs : ouvriers, employés, techniciens)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC123/sharp_/ANX/889_CC123.pdf",
+    "has_idcc": true,
+    "filename_pattern": "889_Cinéma : exploitation (services généraux et administratifs : ouvriers, employés, techniciens)",
+    "idcc": "889"
+  },
+  {
+    "id": "894",
+    "name": "Commerces de détail non alimentaires : Rennes",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC139/sharp_/ANX/894_CC139.pdf",
+    "has_idcc": true,
+    "filename_pattern": "894_Commerces de détail non alimentaires : Rennes",
+    "idcc": "894"
+  },
+  {
+    "id": "897",
+    "name": "Santé au travail : services interentreprises",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC275/sharp_/ANX/897_CC275.pdf",
+    "has_idcc": true,
+    "filename_pattern": "897_Santé au travail : services interentreprises",
+    "idcc": "897"
+  },
+  {
+    "id": "898",
+    "name": "Métallurgie : Allier",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC284/sharp_/ANX/898_CC284.pdf",
+    "has_idcc": true,
+    "filename_pattern": "898_Métallurgie : Allier",
+    "idcc": "898"
+  },
+  {
+    "id": "899",
+    "name": "Métallurgie : Marne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC318/sharp_/ANX/899_CC318.pdf",
+    "has_idcc": true,
+    "filename_pattern": "899_Métallurgie : Marne",
+    "idcc": "899"
+  },
+  {
+    "id": "901",
+    "name": "Boulangerie-pâtisserie : Martinique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC081/sharp_/ANX/901_CC081.pdf",
+    "has_idcc": true,
+    "filename_pattern": "901_Boulangerie-pâtisserie : Martinique",
+    "idcc": "901"
+  },
+  {
+    "id": "911",
+    "name": "Métallurgie : Seine-et-Marne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC344/sharp_/ANX/911_CC344.pdf",
+    "has_idcc": true,
+    "filename_pattern": "911_Métallurgie : Seine-et-Marne",
+    "idcc": "911"
+  },
+  {
+    "id": "914",
+    "name": "Métallurgie : Ain",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC280/sharp_/ANX/914_CC280.pdf",
+    "has_idcc": true,
+    "filename_pattern": "914_Métallurgie : Ain",
+    "idcc": "914"
+  },
+  {
+    "id": "915",
+    "name": "Expertises et évaluations",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC199/sharp_/ANX/915_CC199.pdf",
+    "has_idcc": true,
+    "filename_pattern": "915_Expertises et évaluations",
+    "idcc": "915"
+  },
+  {
+    "id": "923",
+    "name": "Métallurgie : Charente-Maritime",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC291/sharp_/ANX/923_CC291.pdf",
+    "has_idcc": true,
+    "filename_pattern": "923_Métallurgie : Charente-Maritime",
+    "idcc": "923"
+  },
+  {
+    "id": "930",
+    "name": "Métallurgie : Sarthe",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC339/sharp_/ANX/930_CC339.pdf",
+    "has_idcc": true,
+    "filename_pattern": "930_Métallurgie : Sarthe",
+    "idcc": "930"
+  },
+  {
+    "id": "934",
+    "name": "Métallurgie : Indre",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC307/sharp_/ANX/934_CC307.pdf",
+    "has_idcc": true,
+    "filename_pattern": "934_Métallurgie : Indre",
+    "idcc": "934"
+  },
+  {
+    "id": "937",
+    "name": "Métallurgie : Vienne (Haute-) et Creuse",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC351/sharp_/ANX/937_CC351.pdf",
+    "has_idcc": true,
+    "filename_pattern": "937_Métallurgie : Vienne (Haute-) et Creuse",
+    "idcc": "937"
+  },
+  {
+    "id": "943",
+    "name": "Métallurgie : Calvados",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC289/sharp_/ANX/943_CC289.pdf",
+    "has_idcc": true,
+    "filename_pattern": "943_Métallurgie : Calvados",
+    "idcc": "943"
+  },
+  {
+    "id": "948",
+    "name": "Métallurgie : Orne",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC331/sharp_/ANX/948_CC331.pdf",
+    "has_idcc": true,
+    "filename_pattern": "948_Métallurgie : Orne",
+    "idcc": "948"
+  },
+  {
+    "id": "953",
+    "name": "Charcuterie de détail",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC104/sharp_/ANX/953_CC104.pdf",
+    "has_idcc": true,
+    "filename_pattern": "953_Charcuterie de détail",
+    "idcc": "953"
+  },
+  {
+    "id": "959",
+    "name": "Laboratoires de biologie médicale extrahospitaliers",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC016/sharp_/ANX/959_CC016.pdf",
+    "has_idcc": true,
+    "filename_pattern": "959_Laboratoires de biologie médicale extrahospitaliers",
+    "idcc": "959"
+  },
+  {
+    "id": "965",
+    "name": "Métallurgie : Var",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC347/sharp_/ANX/965_CC347.pdf",
+    "has_idcc": true,
+    "filename_pattern": "965_Métallurgie : Var",
+    "idcc": "965"
+  },
+  {
+    "id": "979",
+    "name": "Métallurgie : Havre (arrondissement du)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC342/sharp_/ANX/979_CC342.pdf",
+    "has_idcc": true,
+    "filename_pattern": "979_Métallurgie : Havre (arrondissement du)",
+    "idcc": "979"
+  },
+  {
+    "id": "984",
+    "name": "Métallurgie : Eure-et-Loir",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC300/sharp_/ANX/984_CC300.pdf",
+    "has_idcc": true,
+    "filename_pattern": "984_Métallurgie : Eure-et-Loir",
+    "idcc": "984"
+  },
+  {
+    "id": "992",
+    "name": "Boucherie, boucherie charcuterie, boucherie hippophagique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC078/sharp_/ANX/992_CC078.pdf",
+    "has_idcc": true,
+    "filename_pattern": "992_Boucherie, boucherie charcuterie, boucherie hippophagique",
+    "idcc": "992"
+  },
+  {
+    "id": "993",
+    "name": "Dentaires : prothésistes et laboratoires de prothèse dentaire",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC179/sharp_/ANX/993_CC179.pdf",
+    "has_idcc": true,
+    "filename_pattern": "993_Dentaires : prothésistes et laboratoires de prothèse dentaire",
+    "idcc": "993"
+  },
+  {
+    "id": "998",
+    "name": "Thermiques : équipements - OETAM",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC462/sharp_/ANX/998_CC462.pdf",
+    "has_idcc": true,
+    "filename_pattern": "998_Thermiques : équipements - OETAM",
+    "idcc": "998"
+  },
+  {
+    "id": "Agriculture_accords_nationaux",
+    "name": "Agriculture : accords nationaux",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/OC577/sharp_/ANX/OC577.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Agriculture : accords nationaux",
+    "idcc": null
+  },
+  {
+    "id": "Agriculture_centres_d'initiatives_pour_valoriser_l'agriculture_et_le_milieu_rural",
+    "name": "Agriculture : centres d'initiatives pour valoriser l'agriculture et le milieu rural",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC687/sharp_/ANX/CC687.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Agriculture : centres d'initiatives pour valoriser l'agriculture et le milieu rural",
+    "idcc": null
+  },
+  {
+    "id": "Alimentation_industries_agroalimentaires_accords_nationaux",
+    "name": "Alimentation : industries agroalimentaires (accords nationaux)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC011/sharp_/ANX/CC011.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Alimentation : industries agroalimentaires (accords nationaux)",
+    "idcc": null
+  },
+  {
+    "id": "Arts,_métiers_d'arts_et_design",
+    "name": "Arts, métiers d'arts et design",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC763/sharp_/ANX/CC763.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Arts, métiers d'arts et design",
+    "idcc": null
+  },
+  {
+    "id": "Audiovisuel,_cinéma,_publicité,_loisirs_et_spectacle_accords_nationaux",
+    "name": "Audiovisuel, cinéma, publicité, loisirs et spectacle (accords nationaux)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC653/sharp_/ANX/CC653.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Audiovisuel, cinéma, publicité, loisirs et spectacle (accords nationaux)",
+    "idcc": null
+  },
+  {
+    "id": "Aérodromes_commerciaux_aéroports_personnels_des_exploitants",
+    "name": "Aérodromes commerciaux (aéroports) : personnels des exploitants",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC678/sharp_/ANX/CC678.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Aérodromes commerciaux (aéroports) : personnels des exploitants",
+    "idcc": null
+  },
+  {
+    "id": "Boulangerie-pâtisserie_Guyane",
+    "name": "Boulangerie-pâtisserie : Guyane",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC628/sharp_/ANX/CC628.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Boulangerie-pâtisserie : Guyane",
+    "idcc": null
+  },
+  {
+    "id": "Bâtiment_et_travaux_publics_accords_nationaux",
+    "name": "Bâtiment et travaux publics (accords nationaux)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC528/sharp_/ANX/CC528.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Bâtiment et travaux publics (accords nationaux)",
+    "idcc": null
+  },
+  {
+    "id": "Bâtiment_ouvriers_Nationale_10_salariés_nouvelle_CCN",
+    "name": "Bâtiment : ouvriers (Nationale > 10 salariés)(nouvelle CCN)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC742/sharp_/ANX/CC742.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Bâtiment : ouvriers (Nationale > 10 salariés)(nouvelle CCN)",
+    "idcc": null
+  },
+  {
+    "id": "Bâtiment_ouvriers_Nationale_10_salariés_nouvelle_CCN",
+    "name": "Bâtiment : ouvriers (Nationale ? 10 salariés) (nouvelle CCN)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC743/sharp_/ANX/CC743.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Bâtiment : ouvriers (Nationale ? 10 salariés) (nouvelle CCN)",
+    "idcc": null
+  },
+  {
+    "id": "Bâtiment_ouvriers_Nord_-_Pas-de-Calais_+_10_salariés",
+    "name": "Bâtiment : ouvriers (Nord - Pas-de-Calais + 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC725/sharp_/ANX/CC725.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Bâtiment : ouvriers (Nord - Pas-de-Calais + 10 salariés)",
+    "idcc": null
+  },
+  {
+    "id": "Bâtiment_ouvriers_Nord_-_Pas-de-Calais_-_10_salariés",
+    "name": "Bâtiment : ouvriers (Nord - Pas-de-Calais - 10 salariés)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC726/sharp_/ANX/CC726.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Bâtiment : ouvriers (Nord - Pas-de-Calais - 10 salariés)",
+    "idcc": null
+  },
+  {
+    "id": "Carrières_et_matériaux_CCN_unique",
+    "name": "Carrières et matériaux : CCN unique",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC764/sharp_/ANX/CC764.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Carrières et matériaux : CCN unique",
+    "idcc": null
+  },
+  {
+    "id": "Ciments_industries_accords_nationaux",
+    "name": "Ciments : industries (accords nationaux)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC115/sharp_/ANX/CC115.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Ciments : industries (accords nationaux)",
+    "idcc": null
+  },
+  {
+    "id": "Commerce_de_La_Réunion",
+    "name": "Commerce de La Réunion",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC709/sharp_/ANX/CC709.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Commerce de La Réunion",
+    "idcc": null
+  },
+  {
+    "id": "Commerces_de_détail_non_alimentaires_Pyrénées_Hautes",
+    "name": "Commerces de détail non alimentaires : Pyrénées (Hautes)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC147/sharp_/ANX/CC147.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Commerces de détail non alimentaires : Pyrénées (Hautes)",
+    "idcc": null
+  },
+  {
+    "id": "Diagnostic_technique_du_bâti",
+    "name": "Diagnostic technique du bâti",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC690/sharp_/ANX/CC690.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Diagnostic technique du bâti",
+    "idcc": null
+  },
+  {
+    "id": "Enseignement_privé_accords_de_branche_du_secteur",
+    "name": "Enseignement privé (accords de branche du secteur)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC539/sharp_/ANX/CC539.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Enseignement privé (accords de branche du secteur)",
+    "idcc": null
+  },
+  {
+    "id": "Foyers_de_jeunes_travailleurs_organismes_gestionnaires",
+    "name": "Foyers de jeunes travailleurs (organismes gestionnaires)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC750/sharp_/ANX/CC750.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Foyers de jeunes travailleurs (organismes gestionnaires)",
+    "idcc": null
+  },
+  {
+    "id": "Intermittents_du_spectacle_accords_de_branche_du_secteur",
+    "name": "Intermittents du spectacle : accords de branche du secteur",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC691/sharp_/ANX/CC691.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Intermittents du spectacle : accords de branche du secteur",
+    "idcc": null
+  },
+  {
+    "id": "Métallurgie_accords_nationaux_ouvriers,_ETAM,_ingénieurs_et_cadres",
+    "name": "Métallurgie (accords nationaux : ouvriers, ETAM, ingénieurs et cadres)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC282/sharp_/ANX/CC282.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Métallurgie (accords nationaux : ouvriers, ETAM, ingénieurs et cadres)",
+    "idcc": null
+  },
+  {
+    "id": "Papiers-cartons_accords_nationaux",
+    "name": "Papiers-cartons : accords nationaux",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC380/sharp_/ANX/CC380.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Papiers-cartons : accords nationaux",
+    "idcc": null
+  },
+  {
+    "id": "Poste_activités_postales",
+    "name": "Poste : activités postales",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC693/sharp_/ANX/CC693.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Poste : activités postales",
+    "idcc": null
+  },
+  {
+    "id": "Presse_quotidienne_régionale_vendeurs_administratifs_salariés_portage_VASP",
+    "name": "Presse quotidienne régionale : vendeurs administratifs salariés portage (VASP)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC413/sharp_/ANX/CC413.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Presse quotidienne régionale : vendeurs administratifs salariés portage (VASP)",
+    "idcc": null
+  },
+  {
+    "id": "Professions_réglementées_auprès_des_juridictions",
+    "name": "Professions réglementées auprès des juridictions",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC761/sharp_/ANX/CC761.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Professions réglementées auprès des juridictions",
+    "idcc": null
+  },
+  {
+    "id": "Retraite_et_prévoyance_des_cadres_convention_du_14_mars_1947",
+    "name": "Retraite et prévoyance des cadres : convention du 14 mars 1947",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC583/sharp_/ANX/CC583.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Retraite et prévoyance des cadres : convention du 14 mars 1947",
+    "idcc": null
+  },
+  {
+    "id": "Sanitaire,_social_et_médico-social_accords_de_branche_du_secteur",
+    "name": "Sanitaire, social et médico-social : accords de branche du secteur",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC670/sharp_/ANX/CC670.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Sanitaire, social et médico-social : accords de branche du secteur",
+    "idcc": null
+  },
+  {
+    "id": "Spectacle_vivant_public_et_privé_accords_interbranches",
+    "name": "Spectacle vivant public et privé : accords interbranches",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC695/sharp_/ANX/CC695.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Spectacle vivant public et privé : accords interbranches",
+    "idcc": null
+  },
+  {
+    "id": "Thalassothérapie",
+    "name": "Thalassothérapie",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC662/sharp_/ANX/CC662.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Thalassothérapie",
+    "idcc": null
+  },
+  {
+    "id": "Travaux_publics_accords_nationaux",
+    "name": "Travaux publics (accords nationaux)",
+    "url": "https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC529/sharp_/ANX/CC529.pdf",
+    "has_idcc": false,
+    "filename_pattern": "Travaux publics (accords nationaux)",
+    "idcc": null
+  }
+]

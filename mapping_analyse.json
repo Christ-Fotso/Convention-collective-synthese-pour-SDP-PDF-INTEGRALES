@@ -1,0 +1,3189 @@
+{
+  "conventions_avec_idcc": [
+    {
+      "idcc": "7009",
+      "nom": "Accouvage",
+      "filename": "7009_Accouvage.pdf",
+      "mapping_key": "7009"
+    },
+    {
+      "idcc": "2666",
+      "nom": "Acteurs du développement et de l'ingénierie territoriale d'intérêt général (ADITIG)",
+      "filename": "2666_Acteurs_du_développement_et_de_l'ingénierie_territoriale_d'intérêt_général_(ADITIG).pdf",
+      "mapping_key": "2666"
+    },
+    {
+      "idcc": "7026",
+      "nom": "Activités hippiques",
+      "filename": "7026_Activités_hippiques.pdf",
+      "mapping_key": "7026"
+    },
+    {
+      "idcc": "2706",
+      "nom": "Administrateurs et mandataires judiciaires (personnel)",
+      "filename": "2706_Administrateurs_et_mandataires_judiciaires_(personnel).pdf",
+      "mapping_key": "2706"
+    },
+    {
+      "idcc": "1412",
+      "nom": "Aéraulique, thermique et frigorifique",
+      "filename": "1412_Aéraulique,_thermique_et_frigorifique.pdf",
+      "mapping_key": "1412"
+    },
+    {
+      "idcc": "2397",
+      "nom": "Agences de mannequins",
+      "filename": "2397_Agences_de_mannequins.pdf",
+      "mapping_key": "2397"
+    },
+    {
+      "idcc": "7024",
+      "nom": "Agriculture : production agricole et CUMA",
+      "filename": "7024_Agriculture___production_agricole_et_CUMA.pdf",
+      "mapping_key": "7024"
+    },
+    {
+      "idcc": "7025",
+      "nom": "Agriculture : travaux et services agricoles, ruraux et forestiers",
+      "filename": "7025_Agriculture___travaux_et_services_agricoles,_ruraux_et_forestiers.pdf",
+      "mapping_key": "7025"
+    },
+    {
+      "idcc": "2941",
+      "nom": "Aide à domicile : accompagnement, soins et services",
+      "filename": "2941_Aide_à_domicile___accompagnement,_soins_et_services.pdf",
+      "mapping_key": "2941"
+    },
+    {
+      "idcc": "1314",
+      "nom": "Alimentation : gérants mandataires non salariés",
+      "filename": "1314_Alimentation___gérants_mandataires_non_salariés.pdf",
+      "mapping_key": "1314"
+    },
+    {
+      "idcc": "1341",
+      "nom": "Alimentation : industries agroalimentaires de la Réunion",
+      "filename": "1341_Alimentation___industries_agroalimentaires_de_la_Réunion.pdf",
+      "mapping_key": "1341"
+    },
+    {
+      "idcc": "3109",
+      "nom": "Alimentation : industries alimentaires diverses (5 branches)",
+      "filename": "3109_Alimentation___industries_alimentaires_diverses_(5_branches).pdf",
+      "mapping_key": "3109"
+    },
+    {
+      "idcc": "3123",
+      "nom": "Ambulances (ouvriers, employés et techniciens) : Guyane",
+      "filename": "3123_Ambulances_(ouvriers,_employés_et_techniciens)___Guyane.pdf",
+      "mapping_key": "3123"
+    },
+    {
+      "idcc": "1411",
+      "nom": "Ameublement : fabrication",
+      "filename": "1411_Ameublement___fabrication.pdf",
+      "mapping_key": "1411"
+    },
+    {
+      "idcc": "1880",
+      "nom": "Ameublement : négoce",
+      "filename": "1880_Ameublement___négoce.pdf",
+      "mapping_key": "1880"
+    },
+    {
+      "idcc": "1518",
+      "nom": "Animation : métiers de l'éducation, de la culture, des loisirs et de l'animation (ECLAT)",
+      "filename": "1518_Animation___métiers_de_l'éducation,_de_la_culture,_des_loisirs_et_de_l'animation_(ECLAT).pdf",
+      "mapping_key": "1518"
+    },
+    {
+      "idcc": "7010",
+      "nom": "Aquaculture",
+      "filename": "7010_Aquaculture.pdf",
+      "mapping_key": "7010"
+    },
+    {
+      "idcc": "2332",
+      "nom": "Architecture : entreprises",
+      "filename": "2332_Architecture___entreprises.pdf",
+      "mapping_key": "2332"
+    },
+    {
+      "idcc": "1734",
+      "nom": "Artistes interprètes : émissions de télévision",
+      "filename": "1734_Artistes_interprètes___émissions_de_télévision.pdf",
+      "mapping_key": "1734"
+    },
+    {
+      "idcc": "1285",
+      "nom": "Artistique : entreprises artistiques et culturelles",
+      "filename": "1285_Artistique___entreprises_artistiques_et_culturelles.pdf",
+      "mapping_key": "1285"
+    },
+    {
+      "idcc": "2272",
+      "nom": "Assainissement et maintenance industrielle",
+      "filename": "2272_Assainissement_et_maintenance_industrielle.pdf",
+      "mapping_key": "2272"
+    },
+    {
+      "idcc": "1801",
+      "nom": "Assistance",
+      "filename": "1801_Assistance.pdf",
+      "mapping_key": "1801"
+    },
+    {
+      "idcc": "2395",
+      "nom": "Assistants maternels",
+      "filename": "2395_Assistants_maternels.pdf",
+      "mapping_key": "2395"
+    },
+    {
+      "idcc": "3160",
+      "nom": "Associations de gestion et de comptabilité",
+      "filename": "3160_Associations_de_gestion_et_de_comptabilité.pdf",
+      "mapping_key": "3160"
+    },
+    {
+      "idcc": "7020",
+      "nom": "Associations de gestion et de comptabilité : réseau CERFRANCE",
+      "filename": "7020_Associations_de_gestion_et_de_comptabilité___réseau_CERFRANCE.pdf",
+      "mapping_key": "7020"
+    },
+    {
+      "idcc": "2335",
+      "nom": "Assurances : agences générales",
+      "filename": "2335_Assurances___agences_générales.pdf",
+      "mapping_key": "2335"
+    },
+    {
+      "idcc": "2357",
+      "nom": "Assurances : cadres de direction des sociétés",
+      "filename": "2357_Assurances___cadres_de_direction_des_sociétés.pdf",
+      "mapping_key": "2357"
+    },
+    {
+      "idcc": "2247",
+      "nom": "Assurances : courtage",
+      "filename": "2247_Assurances___courtage.pdf",
+      "mapping_key": "2247"
+    },
+    {
+      "idcc": "1679",
+      "nom": "Assurances : inspection",
+      "filename": "1679_Assurances___inspection.pdf",
+      "mapping_key": "1679"
+    },
+    {
+      "idcc": "653",
+      "nom": "Assurances : salariés commerciaux des sociétés",
+      "filename": "653_Assurances___salariés_commerciaux_des_sociétés.pdf",
+      "mapping_key": "653"
+    },
+    {
+      "idcc": "1672",
+      "nom": "Assurances : sociétés",
+      "filename": "1672_Assurances___sociétés.pdf",
+      "mapping_key": "1672"
+    },
+    {
+      "idcc": "2642",
+      "nom": "Audiovisuel : production",
+      "filename": "2642_Audiovisuel___production.pdf",
+      "mapping_key": "2642"
+    },
+    {
+      "idcc": "1247",
+      "nom": "Auto moto de la Réunion",
+      "filename": "1247_Auto_moto_de_la_Réunion.pdf",
+      "mapping_key": "1247"
+    },
+    {
+      "idcc": "1090",
+      "nom": "Automobile",
+      "filename": "1090_Automobile.pdf",
+      "mapping_key": "1090"
+    },
+    {
+      "idcc": "2360",
+      "nom": "Automobile : Guyane",
+      "filename": "2360_Automobile___Guyane.pdf",
+      "mapping_key": "2360"
+    },
+    {
+      "idcc": "2583",
+      "nom": "Autoroutes",
+      "filename": "2583_Autoroutes.pdf",
+      "mapping_key": "2583"
+    },
+    {
+      "idcc": "3253",
+      "nom": "Avocats : salariés des cabinets",
+      "filename": "3253_Avocats___salariés_des_cabinets.pdf",
+      "mapping_key": "3253"
+    },
+    {
+      "idcc": "2329",
+      "nom": "Avocats au Conseil d'État et à la Cour de cassation : personnel salarié",
+      "filename": "2329_Avocats_au_Conseil_d'État_et_à_la_Cour_de_cassation___personnel_salarié.pdf",
+      "mapping_key": "2329"
+    },
+    {
+      "idcc": "1000",
+      "nom": "Avocats personnel salarié",
+      "filename": "1000_Avocats_personnel_salarié.pdf",
+      "mapping_key": "1000"
+    },
+    {
+      "idcc": "1850",
+      "nom": "Avocats salariés",
+      "filename": "1850_Avocats_salariés.pdf",
+      "mapping_key": "1850"
+    },
+    {
+      "idcc": "3210",
+      "nom": "Banque Populaire",
+      "filename": "3210_Banque_Populaire.pdf",
+      "mapping_key": "3210"
+    },
+    {
+      "idcc": "2120",
+      "nom": "Banques",
+      "filename": "2120_Banques.pdf",
+      "mapping_key": "2120"
+    },
+    {
+      "idcc": "2649",
+      "nom": "Banques : Guadeloupe, Saint Martin et Saint Barthélemy",
+      "filename": "2649_Banques___Guadeloupe,_Saint_Martin_et_Saint_Barthélemy.pdf",
+      "mapping_key": "2649"
+    },
+    {
+      "idcc": "2701",
+      "nom": "Banques : Guyane",
+      "filename": "2701_Banques___Guyane.pdf",
+      "mapping_key": "2701"
+    },
+    {
+      "idcc": "2702",
+      "nom": "Banques : Martinique",
+      "filename": "2702_Banques___Martinique.pdf",
+      "mapping_key": "2702"
+    },
+    {
+      "idcc": "2420",
+      "nom": "Bâtiment : cadres",
+      "filename": "2420_Bâtiment___cadres.pdf",
+      "mapping_key": "2420"
+    },
+    {
+      "idcc": "1843",
+      "nom": "Bâtiment : cadres (Région parisienne)",
+      "filename": "1843_Bâtiment___cadres_(Région_parisienne).pdf",
+      "mapping_key": "1843"
+    },
+    {
+      "idcc": "2609",
+      "nom": "Bâtiment : ETAM",
+      "filename": "2609_Bâtiment___ETAM.pdf",
+      "mapping_key": "2609"
+    },
+    {
+      "idcc": "2707",
+      "nom": "Bâtiment : ETAM (Région parisienne)",
+      "filename": "2707_Bâtiment___ETAM_(Région_parisienne).pdf",
+      "mapping_key": "2707"
+    },
+    {
+      "idcc": "1668",
+      "nom": "Bâtiment : ouvriers (Alsace)",
+      "filename": "1668_Bâtiment___ouvriers_(Alsace).pdf",
+      "mapping_key": "1668"
+    },
+    {
+      "idcc": "2195",
+      "nom": "Bâtiment : ouvriers (Aquitaine +10 salariés)",
+      "filename": "2195_Bâtiment___ouvriers_(Aquitaine_+10_salariés).pdf",
+      "mapping_key": "2195"
+    },
+    {
+      "idcc": "2194",
+      "nom": "Bâtiment : ouvriers (Aquitaine -10 salariés)",
+      "filename": "2194_Bâtiment___ouvriers_(Aquitaine_-10_salariés).pdf",
+      "mapping_key": "2194"
+    },
+    {
+      "idcc": "1876",
+      "nom": "Bâtiment : ouvriers (Bretagne)",
+      "filename": "1876_Bâtiment___ouvriers_(Bretagne).pdf",
+      "mapping_key": "1876"
+    },
+    {
+      "idcc": "2585",
+      "nom": "Bâtiment : ouvriers (Champagne-Ardenne - 10 salariés)",
+      "filename": "2585_Bâtiment___ouvriers_(Champagne-Ardenne_-_10_salariés).pdf",
+      "mapping_key": "2585"
+    },
+    {
+      "idcc": "2584",
+      "nom": "Bâtiment : ouvriers (Champagne-Ardenne + 10 salariés)",
+      "filename": "2584_Bâtiment___ouvriers_(Champagne-Ardenne_+_10_salariés).pdf",
+      "mapping_key": "2584"
+    },
+    {
+      "idcc": "1638",
+      "nom": "Bâtiment : ouvriers (Cher - 10 salariés)",
+      "filename": "1638_Bâtiment___ouvriers_(Cher_-_10_salariés).pdf",
+      "mapping_key": "1638"
+    },
+    {
+      "idcc": "1642",
+      "nom": "Bâtiment : ouvriers (Cher +10 salariés)",
+      "filename": "1642_Bâtiment___ouvriers_(Cher_+10_salariés).pdf",
+      "mapping_key": "1642"
+    },
+    {
+      "idcc": "2145",
+      "nom": "Bâtiment : ouvriers (Corse)",
+      "filename": "2145_Bâtiment___ouvriers_(Corse).pdf",
+      "mapping_key": "2145"
+    },
+    {
+      "idcc": "2667",
+      "nom": "Bâtiment : ouvriers (Drôme-Ardèche)",
+      "filename": "2667_Bâtiment___ouvriers_(Drôme-Ardèche).pdf",
+      "mapping_key": "2667"
+    },
+    {
+      "idcc": "2032",
+      "nom": "Bâtiment : ouvriers (Isère - 10 salariés)",
+      "filename": "2032_Bâtiment___ouvriers_(Isère_-_10_salariés).pdf",
+      "mapping_key": "2032"
+    },
+    {
+      "idcc": "2033",
+      "nom": "Bâtiment : ouvriers (Isère +10 salariés)",
+      "filename": "2033_Bâtiment___ouvriers_(Isère_+10_salariés).pdf",
+      "mapping_key": "2033"
+    },
+    {
+      "idcc": "2267",
+      "nom": "Bâtiment : ouvriers (Languedoc-Roussillon - 10 salariés)",
+      "filename": "2267_Bâtiment___ouvriers_(Languedoc-Roussillon_-_10_salariés).pdf",
+      "mapping_key": "2267"
+    },
+    {
+      "idcc": "409",
+      "nom": "Bâtiment : ouvriers (Limousin)",
+      "filename": "409_Bâtiment___ouvriers_(Limousin).pdf",
+      "mapping_key": "409"
+    },
+    {
+      "idcc": "1886",
+      "nom": "Bâtiment : ouvriers (Loire)",
+      "filename": "1886_Bâtiment___ouvriers_(Loire).pdf",
+      "mapping_key": "1886"
+    },
+    {
+      "idcc": "1597",
+      "nom": "Bâtiment : ouvriers (Nationale > 10 salariés)(ancienne CCN)",
+      "filename": "1597_Bâtiment___ouvriers_(Nationale___10_salariés)(ancienne_CCN).pdf",
+      "mapping_key": "1597"
+    },
+    {
+      "idcc": "1596",
+      "nom": "Bâtiment : ouvriers (Nationale ? 10 salariés)(ancienne CCN)",
+      "filename": "1596_Bâtiment___ouvriers_(Nationale___10_salariés)(ancienne_CCN).pdf",
+      "mapping_key": "1596"
+    },
+    {
+      "idcc": "1785",
+      "nom": "Bâtiment : ouvriers (Normandie Basse)",
+      "filename": "1785_Bâtiment___ouvriers_(Normandie_Basse).pdf",
+      "mapping_key": "1785"
+    },
+    {
+      "idcc": "1722",
+      "nom": "Bâtiment : ouvriers (Normandie Haute)",
+      "filename": "1722_Bâtiment___ouvriers_(Normandie_Haute).pdf",
+      "mapping_key": "1722"
+    },
+    {
+      "idcc": "2625",
+      "nom": "Bâtiment : ouvriers (Pays de la Loire)",
+      "filename": "2625_Bâtiment___ouvriers_(Pays_de_la_Loire).pdf",
+      "mapping_key": "2625"
+    },
+    {
+      "idcc": "1779",
+      "nom": "Bâtiment : ouvriers (Provence-Alpes-Côte d'Azur - 10 salariés)",
+      "filename": "1779_Bâtiment___ouvriers_(Provence-Alpes-Côte_d'Azur_-_10_salariés).pdf",
+      "mapping_key": "1779"
+    },
+    {
+      "idcc": "1780",
+      "nom": "Bâtiment : ouvriers (Provence-Alpes-Côte d'Azur + 10 salariés)",
+      "filename": "1780_Bâtiment___ouvriers_(Provence-Alpes-Côte_d'Azur_+_10_salariés).pdf",
+      "mapping_key": "1780"
+    },
+    {
+      "idcc": "1740",
+      "nom": "Bâtiment : ouvriers (Région parisienne - 10 salariés)",
+      "filename": "1740_Bâtiment___ouvriers_(Région_parisienne_-_10_salariés).pdf",
+      "mapping_key": "1740"
+    },
+    {
+      "idcc": "1740",
+      "nom": "Bâtiment : ouvriers (Région parisienne + 10 salariés)",
+      "filename": "1740_Bâtiment___ouvriers_(Région_parisienne_+_10_salariés).pdf",
+      "mapping_key": "1740"
+    },
+    {
+      "idcc": "2354",
+      "nom": "Bâtiment : ouvriers (Savoie)",
+      "filename": "2354_Bâtiment___ouvriers_(Savoie).pdf",
+      "mapping_key": "2354"
+    },
+    {
+      "idcc": "1758",
+      "nom": "Bâtiment : ouvriers (Tarn - 10 salariés)",
+      "filename": "1758_Bâtiment___ouvriers_(Tarn_-_10_salariés).pdf",
+      "mapping_key": "1758"
+    },
+    {
+      "idcc": "1759",
+      "nom": "Bâtiment : ouvriers (Tarn + 10 salariés)",
+      "filename": "1759_Bâtiment___ouvriers_(Tarn_+_10_salariés).pdf",
+      "mapping_key": "1759"
+    },
+    {
+      "idcc": "3144",
+      "nom": "Bâtiment et Travaux publics : Guadeloupe (ETAM)",
+      "filename": "3144_Bâtiment_et_Travaux_publics___Guadeloupe_(ETAM).pdf",
+      "mapping_key": "3144"
+    },
+    {
+      "idcc": "2328",
+      "nom": "Bâtiment et travaux publics : Guadeloupe (ouvriers)",
+      "filename": "2328_Bâtiment_et_travaux_publics___Guadeloupe_(ouvriers).pdf",
+      "mapping_key": "2328"
+    },
+    {
+      "idcc": "3128",
+      "nom": "Bâtiment et travaux publics : Guyane (ETAM)",
+      "filename": "3128_Bâtiment_et_travaux_publics___Guyane_(ETAM).pdf",
+      "mapping_key": "3128"
+    },
+    {
+      "idcc": "3204",
+      "nom": "Bâtiment et travaux publics : Guyane (ingénieurs et cadres)",
+      "filename": "3204_Bâtiment_et_travaux_publics___Guyane_(ingénieurs_et_cadres).pdf",
+      "mapping_key": "3204"
+    },
+    {
+      "idcc": "2870",
+      "nom": "Bâtiment et Travaux publics : Guyane (ouvriers)",
+      "filename": "2870_Bâtiment_et_Travaux_publics___Guyane_(ouvriers).pdf",
+      "mapping_key": "2870"
+    },
+    {
+      "idcc": "771",
+      "nom": "Bâtiment et Travaux publics : la Réunion",
+      "filename": "771_Bâtiment_et_Travaux_publics___la_Réunion.pdf",
+      "mapping_key": "771"
+    },
+    {
+      "idcc": "3107",
+      "nom": "Bâtiment et travaux publics : Martinique (ETAM)",
+      "filename": "3107_Bâtiment_et_travaux_publics___Martinique_(ETAM).pdf",
+      "mapping_key": "3107"
+    },
+    {
+      "idcc": "749",
+      "nom": "Bâtiment et Travaux publics : Martinique (ouvriers)",
+      "filename": "749_Bâtiment_et_Travaux_publics___Martinique_(ouvriers).pdf",
+      "mapping_key": "749"
+    },
+    {
+      "idcc": "1049",
+      "nom": "Bâtiment et Travaux publics : Saint-Pierre-et-Miquelon",
+      "filename": "1049_Bâtiment_et_Travaux_publics___Saint-Pierre-et-Miquelon.pdf",
+      "mapping_key": "1049"
+    },
+    {
+      "idcc": "7001",
+      "nom": "Bétail et viandes",
+      "filename": "7001_Bétail_et_viandes.pdf",
+      "mapping_key": "7001"
+    },
+    {
+      "idcc": "3251",
+      "nom": "Bijouterie, joaillerie, orfèvrerie, horlogerie",
+      "filename": "3251_Bijouterie,_joaillerie,_orfèvrerie,_horlogerie.pdf",
+      "mapping_key": "3251"
+    },
+    {
+      "idcc": "2002",
+      "nom": "Blanchisserie, teinturerie, nettoyage",
+      "filename": "2002_Blanchisserie,_teinturerie,_nettoyage.pdf",
+      "mapping_key": "2002"
+    },
+    {
+      "idcc": "2089",
+      "nom": "Bois : panneaux à base de bois",
+      "filename": "2089_Bois___panneaux_à_base_de_bois.pdf",
+      "mapping_key": "2089"
+    },
+    {
+      "idcc": "172",
+      "nom": "Bois de pin maritime en forêt de Gascogne",
+      "filename": "172_Bois_de_pin_maritime_en_forêt_de_Gascogne.pdf",
+      "mapping_key": "172"
+    },
+    {
+      "idcc": "1947",
+      "nom": "Bois d'oeuvre et produits dérivés",
+      "filename": "1947_Bois_d'oeuvre_et_produits_dérivés.pdf",
+      "mapping_key": "1947"
+    },
+    {
+      "idcc": "158",
+      "nom": "Bois et scieries",
+      "filename": "158_Bois_et_scieries.pdf",
+      "mapping_key": "158"
+    },
+    {
+      "idcc": "1536",
+      "nom": "Boissons : distributeurs conseils hors domicile",
+      "filename": "1536_Boissons___distributeurs_conseils_hors_domicile.pdf",
+      "mapping_key": "1536"
+    },
+    {
+      "idcc": "3254",
+      "nom": "Boucherie Poissonnerie",
+      "filename": "3254_Boucherie_Poissonnerie.pdf",
+      "mapping_key": "3254"
+    },
+    {
+      "idcc": "992",
+      "nom": "Boucherie, boucherie charcuterie, boucherie hippophagique",
+      "filename": "992_Boucherie,_boucherie_charcuterie,_boucherie_hippophagique.pdf",
+      "mapping_key": "992"
+    },
+    {
+      "idcc": "843",
+      "nom": "Boulangerie-pâtisserie : entreprises artisanales",
+      "filename": "843_Boulangerie-pâtisserie___entreprises_artisanales.pdf",
+      "mapping_key": "843"
+    },
+    {
+      "idcc": "901",
+      "nom": "Boulangerie-pâtisserie : Martinique",
+      "filename": "901_Boulangerie-pâtisserie___Martinique.pdf",
+      "mapping_key": "901"
+    },
+    {
+      "idcc": "1747",
+      "nom": "Boulangerie-pâtisserie industrielle",
+      "filename": "1747_Boulangerie-pâtisserie_industrielle.pdf",
+      "mapping_key": "1747"
+    },
+    {
+      "idcc": "3255",
+      "nom": "Boulangerie-pâtisserie industrielle et oeufs",
+      "filename": "3255_Boulangerie-pâtisserie_industrielle_et_oeufs.pdf",
+      "mapping_key": "3255"
+    },
+    {
+      "idcc": "1543",
+      "nom": "Boyauderie",
+      "filename": "1543_Boyauderie.pdf",
+      "mapping_key": "1543"
+    },
+    {
+      "idcc": "1606",
+      "nom": "Bricolage",
+      "filename": "1606_Bricolage.pdf",
+      "mapping_key": "1606"
+    },
+    {
+      "idcc": "1539",
+      "nom": "Bureau et numérique (entreprises) : commerces et services",
+      "filename": "1539_Bureau_et_numérique_(entreprises)___commerces_et_services.pdf",
+      "mapping_key": "1539"
+    },
+    {
+      "idcc": "1486",
+      "nom": "Bureaux d'études techniques",
+      "filename": "1486_Bureaux_d'études_techniques.pdf",
+      "mapping_key": "1486"
+    },
+    {
+      "idcc": "1147",
+      "nom": "Cabinets médicaux",
+      "filename": "1147_Cabinets_médicaux.pdf",
+      "mapping_key": "1147"
+    },
+    {
+      "idcc": "2060",
+      "nom": "Cafétérias",
+      "filename": "2060_Cafétérias.pdf",
+      "mapping_key": "2060"
+    },
+    {
+      "idcc": "1618",
+      "nom": "Camping : industries",
+      "filename": "1618_Camping___industries.pdf",
+      "mapping_key": "1618"
+    },
+    {
+      "idcc": "2046",
+      "nom": "Cancer : centres de lutte",
+      "filename": "2046_Cancer___centres_de_lutte.pdf",
+      "mapping_key": "2046"
+    },
+    {
+      "idcc": "45",
+      "nom": "Caoutchouc",
+      "filename": "45_Caoutchouc.pdf",
+      "mapping_key": "45"
+    },
+    {
+      "idcc": "211",
+      "nom": "Carrières et matériaux : cadres et assimilés",
+      "filename": "211_Carrières_et_matériaux___cadres_et_assimilés.pdf",
+      "mapping_key": "211"
+    },
+    {
+      "idcc": "135",
+      "nom": "Carrières et matériaux : employés, techniciens et agents de maîtrise",
+      "filename": "135_Carrières_et_matériaux___employés,_techniciens_et_agents_de_maîtrise.pdf",
+      "mapping_key": "135"
+    },
+    {
+      "idcc": "87",
+      "nom": "Carrières et matériaux : ouvriers",
+      "filename": "87_Carrières_et_matériaux___ouvriers.pdf",
+      "mapping_key": "87"
+    },
+    {
+      "idcc": "489",
+      "nom": "Cartonnage : industries",
+      "filename": "489_Cartonnage___industries.pdf",
+      "mapping_key": "489"
+    },
+    {
+      "idcc": "2257",
+      "nom": "Casinos",
+      "filename": "2257_Casinos.pdf",
+      "mapping_key": "2257"
+    },
+    {
+      "idcc": "1237",
+      "nom": "Centres de gestion agréés",
+      "filename": "1237_Centres_de_gestion_agréés.pdf",
+      "mapping_key": "1237"
+    },
+    {
+      "idcc": "7014",
+      "nom": "Centres d'entrainement : chevaux de courses au galop",
+      "filename": "7014_Centres_d'entrainement___chevaux_de_courses_au_galop.pdf",
+      "mapping_key": "7014"
+    },
+    {
+      "idcc": "7013",
+      "nom": "Centres d'entrainement : chevaux de courses au trot",
+      "filename": "7013_Centres_d'entrainement___chevaux_de_courses_au_trot.pdf",
+      "mapping_key": "7013"
+    },
+    {
+      "idcc": "783",
+      "nom": "Centres d'hébergement et de réadaptation sociale",
+      "filename": "783_Centres_d'hébergement_et_de_réadaptation_sociale.pdf",
+      "mapping_key": "783"
+    },
+    {
+      "idcc": "7012",
+      "nom": "Centres équestres",
+      "filename": "7012_Centres_équestres.pdf",
+      "mapping_key": "7012"
+    },
+    {
+      "idcc": "1800",
+      "nom": "Céramique d'art",
+      "filename": "1800_Céramique_d'art.pdf",
+      "mapping_key": "1800"
+    },
+    {
+      "idcc": "1558",
+      "nom": "Céramiques de France : industries",
+      "filename": "1558_Céramiques_de_France___industries.pdf",
+      "mapping_key": "1558"
+    },
+    {
+      "idcc": "7002",
+      "nom": "Céréales, meunerie, approvisionnement, alimentation (bétail), oléagineux",
+      "filename": "7002_Céréales,_meunerie,_approvisionnement,_alimentation_(bétail),_oléagineux.pdf",
+      "mapping_key": "7002"
+    },
+    {
+      "idcc": "2411",
+      "nom": "Chaînes thématiques",
+      "filename": "2411_Chaînes_thématiques.pdf",
+      "mapping_key": "2411"
+    },
+    {
+      "idcc": "1384",
+      "nom": "Champagne",
+      "filename": "1384_Champagne.pdf",
+      "mapping_key": "1384"
+    },
+    {
+      "idcc": "1586",
+      "nom": "Charcuterie : industries",
+      "filename": "1586_Charcuterie___industries.pdf",
+      "mapping_key": "1586"
+    },
+    {
+      "idcc": "953",
+      "nom": "Charcuterie de détail",
+      "filename": "953_Charcuterie_de_détail.pdf",
+      "mapping_key": "953"
+    },
+    {
+      "idcc": "2697",
+      "nom": "Chasse : personnels des structures associatives cynégétiques",
+      "filename": "2697_Chasse___personnels_des_structures_associatives_cynégétiques.pdf",
+      "mapping_key": "2697"
+    },
+    {
+      "idcc": "468",
+      "nom": "Chaussure : commerce succursaliste",
+      "filename": "468_Chaussure___commerce_succursaliste.pdf",
+      "mapping_key": "468"
+    },
+    {
+      "idcc": "1580",
+      "nom": "Chaussure et articles chaussants : industrie",
+      "filename": "1580_Chaussure_et_articles_chaussants___industrie.pdf",
+      "mapping_key": "1580"
+    },
+    {
+      "idcc": "733",
+      "nom": "Chaussures : détaillants",
+      "filename": "733_Chaussures___détaillants.pdf",
+      "mapping_key": "733"
+    },
+    {
+      "idcc": "3227",
+      "nom": "Chaux (industries de la fabrication de la) (nouvelle CCN)",
+      "filename": "3227_Chaux_(industries_de_la_fabrication_de_la)_(nouvelle_CCN).pdf",
+      "mapping_key": "3227"
+    },
+    {
+      "idcc": "418",
+      "nom": "Chemiserie sur mesure",
+      "filename": "418_Chemiserie_sur_mesure.pdf",
+      "mapping_key": "418"
+    },
+    {
+      "idcc": "44",
+      "nom": "Chimie : industries",
+      "filename": "44_Chimie___industries.pdf",
+      "mapping_key": "44"
+    },
+    {
+      "idcc": "3233",
+      "nom": "Ciments : industries",
+      "filename": "3233_Ciments___industries.pdf",
+      "mapping_key": "3233"
+    },
+    {
+      "idcc": "388",
+      "nom": "Cinéma : auditoriums cinématographiques (cadres, agents de maîtrise et assistants)",
+      "filename": "388_Cinéma___auditoriums_cinématographiques_(cadres,_agents_de_maîtrise_et_assistants).pdf",
+      "mapping_key": "388"
+    },
+    {
+      "idcc": "716",
+      "nom": "Cinéma : distribution des films",
+      "filename": "716_Cinéma___distribution_des_films.pdf",
+      "mapping_key": "716"
+    },
+    {
+      "idcc": "1307",
+      "nom": "Cinéma : exploitation",
+      "filename": "1307_Cinéma___exploitation.pdf",
+      "mapping_key": "1307"
+    },
+    {
+      "idcc": "625",
+      "nom": "Cinéma : exploitation (services généraux et administratifs : cadres)",
+      "filename": "625_Cinéma___exploitation_(services_généraux_et_administratifs___cadres).pdf",
+      "mapping_key": "625"
+    },
+    {
+      "idcc": "889",
+      "nom": "Cinéma : exploitation (services généraux et administratifs : ouvriers, employés, techniciens)",
+      "filename": "889_Cinéma___exploitation_(services_généraux_et_administratifs___ouvriers,_employés,_techniciens).pdf",
+      "mapping_key": "889"
+    },
+    {
+      "idcc": "3097",
+      "nom": "Cinéma : production cinématographique",
+      "filename": "3097_Cinéma___production_cinématographique.pdf",
+      "mapping_key": "3097"
+    },
+    {
+      "idcc": "2596",
+      "nom": "Coiffure",
+      "filename": "2596_Coiffure.pdf",
+      "mapping_key": "2596"
+    },
+    {
+      "idcc": "1408",
+      "nom": "Combustibles : négoce et distribution",
+      "filename": "1408_Combustibles___négoce_et_distribution.pdf",
+      "mapping_key": "1408"
+    },
+    {
+      "idcc": "2198",
+      "nom": "Commerce à distance (entreprises)",
+      "filename": "2198_Commerce_à_distance_(entreprises).pdf",
+      "mapping_key": "2198"
+    },
+    {
+      "idcc": "1505",
+      "nom": "Commerce de détail alimentaire non spécialisé",
+      "filename": "1505_Commerce_de_détail_alimentaire_non_spécialisé.pdf",
+      "mapping_key": "1505"
+    },
+    {
+      "idcc": "3237",
+      "nom": "Commerce de détail alimentaire spécialisé",
+      "filename": "3237_Commerce_de_détail_alimentaire_spécialisé.pdf",
+      "mapping_key": "3237"
+    },
+    {
+      "idcc": "2216",
+      "nom": "Commerce de détail et de gros à prédominance alimentaire",
+      "filename": "2216_Commerce_de_détail_et_de_gros_à_prédominance_alimentaire.pdf",
+      "mapping_key": "2216"
+    },
+    {
+      "idcc": "1298",
+      "nom": "Commerces de détail alimentaires et non alimentaires : Cambrai",
+      "filename": "1298_Commerces_de_détail_alimentaires_et_non_alimentaires___Cambrai.pdf",
+      "mapping_key": "1298"
+    },
+    {
+      "idcc": "1042",
+      "nom": "Commerces de détail alimentaires et non alimentaires : Loiret",
+      "filename": "1042_Commerces_de_détail_alimentaires_et_non_alimentaires___Loiret.pdf",
+      "mapping_key": "1042"
+    },
+    {
+      "idcc": "490",
+      "nom": "Commerces de détail alimentaires et non alimentaires : Vosges",
+      "filename": "490_Commerces_de_détail_alimentaires_et_non_alimentaires___Vosges.pdf",
+      "mapping_key": "490"
+    },
+    {
+      "idcc": "1517",
+      "nom": "Commerces de détail non alimentaires (Convention collective nationale)",
+      "filename": "1517_Commerces_de_détail_non_alimentaires_(Convention_collective_nationale).pdf",
+      "mapping_key": "1517"
+    },
+    {
+      "idcc": "1240",
+      "nom": "Commerces de détail non alimentaires : Ain",
+      "filename": "1240_Commerces_de_détail_non_alimentaires___Ain.pdf",
+      "mapping_key": "1240"
+    },
+    {
+      "idcc": "1385",
+      "nom": "Commerces de détail non alimentaires : Ardennes",
+      "filename": "1385_Commerces_de_détail_non_alimentaires___Ardennes.pdf",
+      "mapping_key": "1385"
+    },
+    {
+      "idcc": "1276",
+      "nom": "Commerces de détail non alimentaires : Finistère",
+      "filename": "1276_Commerces_de_détail_non_alimentaires___Finistère.pdf",
+      "mapping_key": "1276"
+    },
+    {
+      "idcc": "1406",
+      "nom": "Commerces de détail non alimentaires : Gironde",
+      "filename": "1406_Commerces_de_détail_non_alimentaires___Gironde.pdf",
+      "mapping_key": "1406"
+    },
+    {
+      "idcc": "1415",
+      "nom": "Commerces de détail non alimentaires : Loire",
+      "filename": "1415_Commerces_de_détail_non_alimentaires___Loire.pdf",
+      "mapping_key": "1415"
+    },
+    {
+      "idcc": "711",
+      "nom": "Commerces de détail non alimentaires : Lyon",
+      "filename": "711_Commerces_de_détail_non_alimentaires___Lyon.pdf",
+      "mapping_key": "711"
+    },
+    {
+      "idcc": "1202",
+      "nom": "Commerces de détail non alimentaires : Maine-et-Loire",
+      "filename": "1202_Commerces_de_détail_non_alimentaires___Maine-et-Loire.pdf",
+      "mapping_key": "1202"
+    },
+    {
+      "idcc": "814",
+      "nom": "Commerces de détail non alimentaires : Meurthe-et-Moselle",
+      "filename": "814_Commerces_de_détail_non_alimentaires___Meurthe-et-Moselle.pdf",
+      "mapping_key": "814"
+    },
+    {
+      "idcc": "1343",
+      "nom": "Commerces de détail non alimentaires : Morbihan",
+      "filename": "1343_Commerces_de_détail_non_alimentaires___Morbihan.pdf",
+      "mapping_key": "1343"
+    },
+    {
+      "idcc": "894",
+      "nom": "Commerces de détail non alimentaires : Rennes",
+      "filename": "894_Commerces_de_détail_non_alimentaires___Rennes.pdf",
+      "mapping_key": "894"
+    },
+    {
+      "idcc": "1970",
+      "nom": "Commerces de détail non alimentaires : Rhin (Bas et Haut)",
+      "filename": "1970_Commerces_de_détail_non_alimentaires___Rhin_(Bas_et_Haut).pdf",
+      "mapping_key": "1970"
+    },
+    {
+      "idcc": "1394",
+      "nom": "Commerces de détail non alimentaires : Tarn",
+      "filename": "1394_Commerces_de_détail_non_alimentaires___Tarn.pdf",
+      "mapping_key": "1394"
+    },
+    {
+      "idcc": "573",
+      "nom": "Commerces de gros",
+      "filename": "573_Commerces_de_gros.pdf",
+      "mapping_key": "573"
+    },
+    {
+      "idcc": "379",
+      "nom": "Commerces de gros et de détail alimentaires et non alimentaires : Martinique",
+      "filename": "379_Commerces_de_gros_et_de_détail_alimentaires_et_non_alimentaires___Martinique.pdf",
+      "mapping_key": "379"
+    },
+    {
+      "idcc": "50",
+      "nom": "Commerces de gros et de détail alimentaires et non alimentaires : Rodez",
+      "filename": "50_Commerces_de_gros_et_de_détail_alimentaires_et_non_alimentaires___Rodez.pdf",
+      "mapping_key": "50"
+    },
+    {
+      "idcc": "239",
+      "nom": "Commerces de gros et de détail alimentaires et non alimentaires : Sarthe",
+      "filename": "239_Commerces_de_gros_et_de_détail_alimentaires_et_non_alimentaires___Sarthe.pdf",
+      "mapping_key": "239"
+    },
+    {
+      "idcc": "3140",
+      "nom": "Commerces, services commerciaux et hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+      "filename": "3140_Commerces,_services_commerciaux_et_hôtels,_cafés,_restaurants___Saint-Pierre-et-Miquelon.pdf",
+      "mapping_key": "3140"
+    },
+    {
+      "idcc": "3250",
+      "nom": "Commissaires de justice et sociétés de ventes volontaires",
+      "filename": "3250_Commissaires_de_justice_et_sociétés_de_ventes_volontaires.pdf",
+      "mapping_key": "3250"
+    },
+    {
+      "idcc": "2785",
+      "nom": "Commissaires-priseurs judiciaires et sociétés de ventes volontaires",
+      "filename": "2785_Commissaires-priseurs_judiciaires_et_sociétés_de_ventes_volontaires.pdf",
+      "mapping_key": "2785"
+    },
+    {
+      "idcc": "1980",
+      "nom": "Commissionnaires en douane et agents auxiliaires : Martinique",
+      "filename": "1980_Commissionnaires_en_douane_et_agents_auxiliaires___Martinique.pdf",
+      "mapping_key": "1980"
+    },
+    {
+      "idcc": "7019",
+      "nom": "Conchyliculture et cultures marines",
+      "filename": "7019_Conchyliculture_et_cultures_marines.pdf",
+      "mapping_key": "7019"
+    },
+    {
+      "idcc": "1286",
+      "nom": "Confiserie, chocolaterie, biscuiterie : détaillants, détaillants fabricants",
+      "filename": "1286_Confiserie,_chocolaterie,_biscuiterie___détaillants,_détaillants_fabricants.pdf",
+      "mapping_key": "1286"
+    },
+    {
+      "idcc": "7027",
+      "nom": "Conseil et service en élevage",
+      "filename": "7027_Conseil_et_service_en_élevage.pdf",
+      "mapping_key": "7027"
+    },
+    {
+      "idcc": "7003",
+      "nom": "Conserveries : Coopératives et SICA",
+      "filename": "7003_Conserveries___Coopératives_et_SICA.pdf",
+      "mapping_key": "7003"
+    },
+    {
+      "idcc": "2494",
+      "nom": "Coopération maritime",
+      "filename": "2494_Coopération_maritime.pdf",
+      "mapping_key": "2494"
+    },
+    {
+      "idcc": "1325",
+      "nom": "Coopératives de consommation : gérants non salariés",
+      "filename": "1325_Coopératives_de_consommation___gérants_non_salariés.pdf",
+      "mapping_key": "1325"
+    },
+    {
+      "idcc": "3205",
+      "nom": "Coopératives de consommation : salariés",
+      "filename": "3205_Coopératives_de_consommation___salariés.pdf",
+      "mapping_key": "3205"
+    },
+    {
+      "idcc": "1561",
+      "nom": "Cordonnerie multiservice",
+      "filename": "1561_Cordonnerie_multiservice.pdf",
+      "mapping_key": "1561"
+    },
+    {
+      "idcc": "303",
+      "nom": "Couture Parisienne et autres métiers de la mode",
+      "filename": "303_Couture_Parisienne_et_autres_métiers_de_la_mode.pdf",
+      "mapping_key": "303"
+    },
+    {
+      "idcc": "2717",
+      "nom": "Création et événement (entreprises techniques)",
+      "filename": "2717_Création_et_événement_(entreprises_techniques).pdf",
+      "mapping_key": "2717"
+    },
+    {
+      "idcc": "3252",
+      "nom": "Création et événement : entreprises",
+      "filename": "3252_Création_et_événement___entreprises.pdf",
+      "mapping_key": "3252"
+    },
+    {
+      "idcc": "7501",
+      "nom": "Crédit agricole",
+      "filename": "7501_Crédit_agricole.pdf",
+      "mapping_key": "7501"
+    },
+    {
+      "idcc": "1821",
+      "nom": "Cristal, Verre et Vitrail",
+      "filename": "1821_Cristal,_Verre_et_Vitrail.pdf",
+      "mapping_key": "1821"
+    },
+    {
+      "idcc": "207",
+      "nom": "Cuirs et peaux : industrie",
+      "filename": "207_Cuirs_et_peaux___industrie.pdf",
+      "mapping_key": "207"
+    },
+    {
+      "idcc": "2754",
+      "nom": "Cuisine à usage domestique : magasins prestataires de service",
+      "filename": "2754_Cuisine_à_usage_domestique___magasins_prestataires_de_service.pdf",
+      "mapping_key": "2754"
+    },
+    {
+      "idcc": "2149",
+      "nom": "Déchets",
+      "filename": "2149_Déchets.pdf",
+      "mapping_key": "2149"
+    },
+    {
+      "idcc": "1619",
+      "nom": "Dentaires : cabinets",
+      "filename": "1619_Dentaires___cabinets.pdf",
+      "mapping_key": "1619"
+    },
+    {
+      "idcc": "993",
+      "nom": "Dentaires : prothésistes et laboratoires de prothèse dentaire",
+      "filename": "993_Dentaires___prothésistes_et_laboratoires_de_prothèse_dentaire.pdf",
+      "mapping_key": "993"
+    },
+    {
+      "idcc": "7023",
+      "nom": "Déshydratation (entreprises agricoles)",
+      "filename": "7023_Déshydratation_(entreprises_agricoles).pdf",
+      "mapping_key": "7023"
+    },
+    {
+      "idcc": "1605",
+      "nom": "Désinfection, désinsectisation et dératisation",
+      "filename": "1605_Désinfection,_désinsectisation_et_dératisation.pdf",
+      "mapping_key": "1605"
+    },
+    {
+      "idcc": "2070",
+      "nom": "Développement économique : organismes",
+      "filename": "2070_Développement_économique___organismes.pdf",
+      "mapping_key": "2070"
+    },
+    {
+      "idcc": "7503",
+      "nom": "Distilleries viticoles (coopératives et union) et distillation (SICA)",
+      "filename": "7503_Distilleries_viticoles_(coopératives_et_union)_et_distillation_(SICA).pdf",
+      "mapping_key": "7503"
+    },
+    {
+      "idcc": "2372",
+      "nom": "Distribution directe",
+      "filename": "2372_Distribution_directe.pdf",
+      "mapping_key": "2372"
+    },
+    {
+      "idcc": "2147",
+      "nom": "Eau : services et assainissement",
+      "filename": "2147_Eau___services_et_assainissement.pdf",
+      "mapping_key": "2147"
+    },
+    {
+      "idcc": "1513",
+      "nom": "Eaux embouteillées, boissons sans alcool, bières : production",
+      "filename": "1513_Eaux_embouteillées,_boissons_sans_alcool,_bières___production.pdf",
+      "mapping_key": "1513"
+    },
+    {
+      "idcc": "2121",
+      "nom": "Édition",
+      "filename": "2121_Édition.pdf",
+      "mapping_key": "2121"
+    },
+    {
+      "idcc": "2770",
+      "nom": "Édition phonographique",
+      "filename": "2770_Édition_phonographique.pdf",
+      "mapping_key": "2770"
+    },
+    {
+      "idcc": "1686",
+      "nom": "Électronique, audiovisuel et équipement ménager : commerces et services",
+      "filename": "1686_Électronique,_audiovisuel_et_équipement_ménager___commerces_et_services.pdf",
+      "mapping_key": "1686"
+    },
+    {
+      "idcc": "7505",
+      "nom": "Enseignement privé (agricole) : personnel de formation",
+      "filename": "7505_Enseignement_privé_(agricole)___personnel_de_formation.pdf",
+      "mapping_key": "7505"
+    },
+    {
+      "idcc": "7506",
+      "nom": "Enseignement privé (agricole) : personnel de la vie scolaire",
+      "filename": "7506_Enseignement_privé_(agricole)___personnel_de_la_vie_scolaire.pdf",
+      "mapping_key": "7506"
+    },
+    {
+      "idcc": "7509",
+      "nom": "Enseignement privé (agricole) : personnel relevant du groupement des organismes de formation et de promotion agricoles",
+      "filename": "7509_Enseignement_privé_(agricole)___personnel_relevant_du_groupement_des_organismes_de_formation_et_de_promotion_agricoles.pdf",
+      "mapping_key": "7509"
+    },
+    {
+      "idcc": "7507",
+      "nom": "Enseignement privé (agricole) : personnels administratifs et techniques",
+      "filename": "7507_Enseignement_privé_(agricole)___personnels_administratifs_et_techniques.pdf",
+      "mapping_key": "7507"
+    },
+    {
+      "idcc": "2281",
+      "nom": "Enseignement privé : directeurs (primaire catholique)",
+      "filename": "2281_Enseignement_privé___directeurs_(primaire_catholique).pdf",
+      "mapping_key": "2281"
+    },
+    {
+      "idcc": "2152",
+      "nom": "Enseignement privé : formateurs des CFA et des CFC",
+      "filename": "2152_Enseignement_privé___formateurs_des_CFA_et_des_CFC.pdf",
+      "mapping_key": "2152"
+    },
+    {
+      "idcc": "1545",
+      "nom": "Enseignement privé : maîtres (primaire catholique)",
+      "filename": "1545_Enseignement_privé___maîtres_(primaire_catholique).pdf",
+      "mapping_key": "1545"
+    },
+    {
+      "idcc": "1326",
+      "nom": "Enseignement privé : maîtres (primaire)",
+      "filename": "1326_Enseignement_privé___maîtres_(primaire).pdf",
+      "mapping_key": "1326"
+    },
+    {
+      "idcc": "2408",
+      "nom": "Enseignement privé : personnels des services administratifs et économiques, personnels d'éducation et documentalistes",
+      "filename": "2408_Enseignement_privé___personnels_des_services_administratifs_et_économiques,_personnels_d'éducation_et_documentalistes.pdf",
+      "mapping_key": "2408"
+    },
+    {
+      "idcc": "390",
+      "nom": "Enseignement privé : professeurs du secondaire",
+      "filename": "390_Enseignement_privé___professeurs_du_secondaire.pdf",
+      "mapping_key": "390"
+    },
+    {
+      "idcc": "1334",
+      "nom": "Enseignement privé : psychologues",
+      "filename": "1334_Enseignement_privé___psychologues.pdf",
+      "mapping_key": "1334"
+    },
+    {
+      "idcc": "3211",
+      "nom": "Enseignement privé : salariés des établissements privés",
+      "filename": "3211_Enseignement_privé___salariés_des_établissements_privés.pdf",
+      "mapping_key": "3211"
+    },
+    {
+      "idcc": "2101",
+      "nom": "Enseignement privé à distance",
+      "filename": "2101_Enseignement_privé_à_distance.pdf",
+      "mapping_key": "2101"
+    },
+    {
+      "idcc": "7520",
+      "nom": "Enseignement privé agricole",
+      "filename": "7520_Enseignement_privé_agricole.pdf",
+      "mapping_key": "7520"
+    },
+    {
+      "idcc": "2691",
+      "nom": "Enseignement privé indépendant",
+      "filename": "2691_Enseignement_privé_indépendant.pdf",
+      "mapping_key": "2691"
+    },
+    {
+      "idcc": "3218",
+      "nom": "Enseignement privé non lucratif (EPNL)",
+      "filename": "3218_Enseignement_privé_non_lucratif_(EPNL).pdf",
+      "mapping_key": "3218"
+    },
+    {
+      "idcc": "1446",
+      "nom": "Enseignement privé technique hors contrat",
+      "filename": "1446_Enseignement_privé_technique_hors_contrat.pdf",
+      "mapping_key": "1446"
+    },
+    {
+      "idcc": "2636",
+      "nom": "Enseignement supérieur privé",
+      "filename": "2636_Enseignement_supérieur_privé.pdf",
+      "mapping_key": "2636"
+    },
+    {
+      "idcc": "1790",
+      "nom": "Espaces de loisirs, d'attractions et culturels",
+      "filename": "1790_Espaces_de_loisirs,_d'attractions_et_culturels.pdf",
+      "mapping_key": "1790"
+    },
+    {
+      "idcc": "3032",
+      "nom": "Esthétique-cosmétique et enseignement associé",
+      "filename": "3032_Esthétique-cosmétique_et_enseignement_associé.pdf",
+      "mapping_key": "3032"
+    },
+    {
+      "idcc": "1951",
+      "nom": "Expertises en automobile",
+      "filename": "1951_Expertises_en_automobile.pdf",
+      "mapping_key": "1951"
+    },
+    {
+      "idcc": "915",
+      "nom": "Expertises et évaluations",
+      "filename": "915_Expertises_et_évaluations.pdf",
+      "mapping_key": "915"
+    },
+    {
+      "idcc": "787",
+      "nom": "Experts-comptables et commissaires aux comptes",
+      "filename": "787_Experts-comptables_et_commissaires_aux_comptes.pdf",
+      "mapping_key": "787"
+    },
+    {
+      "idcc": "200",
+      "nom": "Exploitations frigorifiques",
+      "filename": "200_Exploitations_frigorifiques.pdf",
+      "mapping_key": "200"
+    },
+    {
+      "idcc": "1031",
+      "nom": "Familles rurales",
+      "filename": "1031_Familles_rurales.pdf",
+      "mapping_key": "1031"
+    },
+    {
+      "idcc": "2412",
+      "nom": "Films d'animation : production",
+      "filename": "2412_Films_d'animation___production.pdf",
+      "mapping_key": "2412"
+    },
+    {
+      "idcc": "1978",
+      "nom": "Fleuristes, vente et services des animaux familiers",
+      "filename": "1978_Fleuristes,_vente_et_services_des_animaux_familiers.pdf",
+      "mapping_key": "1978"
+    },
+    {
+      "idcc": "7006",
+      "nom": "Fleurs, fruits et légumes : coopératives agricoles et SICA",
+      "filename": "7006_Fleurs,_fruits_et_légumes___coopératives_agricoles_et_SICA.pdf",
+      "mapping_key": "7006"
+    },
+    {
+      "idcc": "5507",
+      "nom": "Football : personnels administratifs et assimilés",
+      "filename": "5507_Football___personnels_administratifs_et_assimilés.pdf",
+      "mapping_key": "5507"
+    },
+    {
+      "idcc": "1516",
+      "nom": "Formation : organismes",
+      "filename": "1516_Formation___organismes.pdf",
+      "mapping_key": "1516"
+    },
+    {
+      "idcc": "673",
+      "nom": "Fourrure",
+      "filename": "673_Fourrure.pdf",
+      "mapping_key": "673"
+    },
+    {
+      "idcc": "1405",
+      "nom": "Fruits et légumes : entreprises d'expédition et exportation",
+      "filename": "1405_Fruits_et_légumes___entreprises_d'expédition_et_exportation.pdf",
+      "mapping_key": "1405"
+    },
+    {
+      "idcc": "354",
+      "nom": "Ganterie de peau",
+      "filename": "354_Ganterie_de_peau.pdf",
+      "mapping_key": "354"
+    },
+    {
+      "idcc": "7015",
+      "nom": "Gardes-chasse et gardes-pêche particuliers",
+      "filename": "7015_Gardes-chasse_et_gardes-pêche_particuliers.pdf",
+      "mapping_key": "7015"
+    },
+    {
+      "idcc": "1043",
+      "nom": "Gardiens, concierges et employés d'immeubles",
+      "filename": "1043_Gardiens,_concierges_et_employés_d'immeubles.pdf",
+      "mapping_key": "1043"
+    },
+    {
+      "idcc": "2543",
+      "nom": "Géomètres-experts, topographes",
+      "filename": "2543_Géomètres-experts,_topographes.pdf",
+      "mapping_key": "2543"
+    },
+    {
+      "idcc": "2021",
+      "nom": "Golf",
+      "filename": "2021_Golf.pdf",
+      "mapping_key": "2021"
+    },
+    {
+      "idcc": "1930",
+      "nom": "Grains : transformation",
+      "filename": "1930_Grains___transformation.pdf",
+      "mapping_key": "1930"
+    },
+    {
+      "idcc": "240",
+      "nom": "Greffiers des tribunaux de commerce : personnel",
+      "filename": "240_Greffiers_des_tribunaux_de_commerce___personnel.pdf",
+      "mapping_key": "240"
+    },
+    {
+      "idcc": "247",
+      "nom": "Habillement : industries",
+      "filename": "247_Habillement___industries.pdf",
+      "mapping_key": "247"
+    },
+    {
+      "idcc": "675",
+      "nom": "Habillement : maisons à succursales de vente au détail",
+      "filename": "675_Habillement___maisons_à_succursales_de_vente_au_détail.pdf",
+      "mapping_key": "675"
+    },
+    {
+      "idcc": "1483",
+      "nom": "Habillement et articles textiles : commerce de détail",
+      "filename": "1483_Habillement_et_articles_textiles___commerce_de_détail.pdf",
+      "mapping_key": "1483"
+    },
+    {
+      "idcc": "483",
+      "nom": "Habillement et articles textiles : commerce de détail - Valenciennes",
+      "filename": "483_Habillement_et_articles_textiles___commerce_de_détail_-_Valenciennes.pdf",
+      "mapping_key": "483"
+    },
+    {
+      "idcc": "500",
+      "nom": "Habillement, mercerie, chaussure et jouet",
+      "filename": "500_Habillement,_mercerie,_chaussure_et_jouet.pdf",
+      "mapping_key": "500"
+    },
+    {
+      "idcc": "3220",
+      "nom": "Habitat : offices publics de l'habitat et sociétés de coordination",
+      "filename": "3220_Habitat___offices_publics_de_l'habitat_et_sociétés_de_coordination.pdf",
+      "mapping_key": "3220"
+    },
+    {
+      "idcc": "1278",
+      "nom": "Habitat : personnels PACT et ARIM",
+      "filename": "1278_Habitat___personnels_PACT_et_ARIM.pdf",
+      "mapping_key": "1278"
+    },
+    {
+      "idcc": "2336",
+      "nom": "Habitat et logement accompagnés",
+      "filename": "2336_Habitat_et_logement_accompagnés.pdf",
+      "mapping_key": "2336"
+    },
+    {
+      "idcc": "2526",
+      "nom": "Habitat social : organisations professionnelles",
+      "filename": "2526_Habitat_social___organisations_professionnelles.pdf",
+      "mapping_key": "2526"
+    },
+    {
+      "idcc": "413",
+      "nom": "Handicapés : établissements et services pour personnes inadaptées et handicapées",
+      "filename": "413_Handicapés___établissements_et_services_pour_personnes_inadaptées_et_handicapées.pdf",
+      "mapping_key": "413"
+    },
+    {
+      "idcc": "1001",
+      "nom": "Handicapés : établissements et services pour personnes inadaptées et handicapées ; médecins",
+      "filename": "1001_Handicapés___établissements_et_services_pour_personnes_inadaptées_et_handicapées_;_médecins.pdf",
+      "mapping_key": "1001"
+    },
+    {
+      "idcc": "1944",
+      "nom": "Hélicoptères : personnel navigant technique des exploitants",
+      "filename": "1944_Hélicoptères___personnel_navigant_technique_des_exploitants.pdf",
+      "mapping_key": "1944"
+    },
+    {
+      "idcc": "2150",
+      "nom": "HLM : personnels des sociétés anonymes et fondations",
+      "filename": "2150_HLM___personnels_des_sociétés_anonymes_et_fondations.pdf",
+      "mapping_key": "2150"
+    },
+    {
+      "idcc": "1588",
+      "nom": "HLM : personnels des sociétés coopératives",
+      "filename": "1588_HLM___personnels_des_sociétés_coopératives.pdf",
+      "mapping_key": "1588"
+    },
+    {
+      "idcc": "1044",
+      "nom": "Horlogerie : commerce de gros",
+      "filename": "1044_Horlogerie___commerce_de_gros.pdf",
+      "mapping_key": "1044"
+    },
+    {
+      "idcc": "1487",
+      "nom": "Horlogerie-bijouterie : commerce de détail",
+      "filename": "1487_Horlogerie-bijouterie___commerce_de_détail.pdf",
+      "mapping_key": "1487"
+    },
+    {
+      "idcc": "2264",
+      "nom": "Hospitalisation privée à but lucratif",
+      "filename": "2264_Hospitalisation_privée_à_but_lucratif.pdf",
+      "mapping_key": "2264"
+    },
+    {
+      "idcc": "29",
+      "nom": "Hospitalisation privée à but non lucratif",
+      "filename": "29_Hospitalisation_privée_à_but_non_lucratif.pdf",
+      "mapping_key": "29"
+    },
+    {
+      "idcc": "1631",
+      "nom": "Hôtellerie de plein air",
+      "filename": "1631_Hôtellerie_de_plein_air.pdf",
+      "mapping_key": "1631"
+    },
+    {
+      "idcc": "800",
+      "nom": "Hôtels",
+      "filename": "800_Hôtels.pdf",
+      "mapping_key": "800"
+    },
+    {
+      "idcc": "1370",
+      "nom": "Hôtels de tourisme : trois, quatre, quatre étoiles de luxe (Région parisienne)",
+      "filename": "1370_Hôtels_de_tourisme___trois,_quatre,_quatre_étoiles_de_luxe_(Région_parisienne).pdf",
+      "mapping_key": "1370"
+    },
+    {
+      "idcc": "1979",
+      "nom": "Hôtels, cafés, restaurants",
+      "filename": "1979_Hôtels,_cafés,_restaurants.pdf",
+      "mapping_key": "1979"
+    },
+    {
+      "idcc": "601",
+      "nom": "Hôtels, cafés, restaurants : Alpes de Haute-Provence",
+      "filename": "601_Hôtels,_cafés,_restaurants___Alpes_de_Haute-Provence.pdf",
+      "mapping_key": "601"
+    },
+    {
+      "idcc": "1017",
+      "nom": "Hôtels, cafés, restaurants : Bouches-du-Rhône",
+      "filename": "1017_Hôtels,_cafés,_restaurants___Bouches-du-Rhône.pdf",
+      "mapping_key": "1017"
+    },
+    {
+      "idcc": "1128",
+      "nom": "Hôtels, cafés, restaurants : Haute-Saône",
+      "filename": "1128_Hôtels,_cafés,_restaurants___Haute-Saône.pdf",
+      "mapping_key": "1128"
+    },
+    {
+      "idcc": "1075",
+      "nom": "Hôtels, cafés, restaurants : Meurthe-et-Moselle",
+      "filename": "1075_Hôtels,_cafés,_restaurants___Meurthe-et-Moselle.pdf",
+      "mapping_key": "1075"
+    },
+    {
+      "idcc": "1140",
+      "nom": "Hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon",
+      "filename": "1140_Hôtels,_cafés,_restaurants___Saint-Pierre-et-Miquelon.pdf",
+      "mapping_key": "1140"
+    },
+    {
+      "idcc": "1030",
+      "nom": "Hôtels, cafés, restaurants : Seine Maritime",
+      "filename": "1030_Hôtels,_cafés,_restaurants___Seine_Maritime.pdf",
+      "mapping_key": "1030"
+    },
+    {
+      "idcc": "1260",
+      "nom": "Hôtels, cafés, restaurants : Var",
+      "filename": "1260_Hôtels,_cafés,_restaurants___Var.pdf",
+      "mapping_key": "1260"
+    },
+    {
+      "idcc": "1921",
+      "nom": "Huissiers de justice : personnel",
+      "filename": "1921_Huissiers_de_justice___personnel.pdf",
+      "mapping_key": "1921"
+    },
+    {
+      "idcc": "1527",
+      "nom": "Immobilier",
+      "filename": "1527_Immobilier.pdf",
+      "mapping_key": "1527"
+    },
+    {
+      "idcc": "43",
+      "nom": "Import-export et commerce international",
+      "filename": "43_Import-export_et_commerce_international.pdf",
+      "mapping_key": "43"
+    },
+    {
+      "idcc": "184",
+      "nom": "Imprimeries de labeur et industries graphiques",
+      "filename": "184_Imprimeries_de_labeur_et_industries_graphiques.pdf",
+      "mapping_key": "184"
+    },
+    {
+      "idcc": "3016",
+      "nom": "Insertion : ateliers et chantiers",
+      "filename": "3016_Insertion___ateliers_et_chantiers.pdf",
+      "mapping_key": "3016"
+    },
+    {
+      "idcc": "1420",
+      "nom": "Institutions d'assurance chômage",
+      "filename": "1420_Institutions_d'assurance_chômage.pdf",
+      "mapping_key": "1420"
+    },
+    {
+      "idcc": "1794",
+      "nom": "Institutions de retraite complémentaire et de prévoyance",
+      "filename": "1794_Institutions_de_retraite_complémentaire_et_de_prévoyance.pdf",
+      "mapping_key": "1794"
+    },
+    {
+      "idcc": "715",
+      "nom": "Instruments à écrire et industries connexes",
+      "filename": "715_Instruments_à_écrire_et_industries_connexes.pdf",
+      "mapping_key": "715"
+    },
+    {
+      "idcc": "1760",
+      "nom": "Jardineries et graineteries",
+      "filename": "1760_Jardineries_et_graineteries.pdf",
+      "mapping_key": "1760"
+    },
+    {
+      "idcc": "1607",
+      "nom": "Jeux, jouets, articles de fête",
+      "filename": "1607_Jeux,_jouets,_articles_de_fête.pdf",
+      "mapping_key": "1607"
+    },
+    {
+      "idcc": "1480",
+      "nom": "Journalistes",
+      "filename": "1480_Journalistes.pdf",
+      "mapping_key": "1480"
+    },
+    {
+      "idcc": "959",
+      "nom": "Laboratoires de biologie médicale extrahospitaliers",
+      "filename": "959_Laboratoires_de_biologie_médicale_extrahospitaliers.pdf",
+      "mapping_key": "959"
+    },
+    {
+      "idcc": "7004",
+      "nom": "Lait : coopératives agricoles et SICA",
+      "filename": "7004_Lait___coopératives_agricoles_et_SICA.pdf",
+      "mapping_key": "7004"
+    },
+    {
+      "idcc": "112",
+      "nom": "Lait : industries",
+      "filename": "112_Lait___industries.pdf",
+      "mapping_key": "112"
+    },
+    {
+      "idcc": "7008",
+      "nom": "Lait : organismes de contrôle",
+      "filename": "7008_Lait___organismes_de_contrôle.pdf",
+      "mapping_key": "7008"
+    },
+    {
+      "idcc": "3013",
+      "nom": "Librairie",
+      "filename": "3013_Librairie.pdf",
+      "mapping_key": "3013"
+    },
+    {
+      "idcc": "1659",
+      "nom": "Lin : rouissage-teillage",
+      "filename": "1659_Lin___rouissage-teillage.pdf",
+      "mapping_key": "1659"
+    },
+    {
+      "idcc": "7007",
+      "nom": "Lin : teillage (coopératives agricoles et SICA)",
+      "filename": "7007_Lin___teillage_(coopératives_agricoles_et_SICA).pdf",
+      "mapping_key": "7007"
+    },
+    {
+      "idcc": "1611",
+      "nom": "Logistique de communication écrite directe",
+      "filename": "1611_Logistique_de_communication_écrite_directe.pdf",
+      "mapping_key": "1611"
+    },
+    {
+      "idcc": "735",
+      "nom": "Machines à coudre : commerce",
+      "filename": "735_Machines_à_coudre___commerce.pdf",
+      "mapping_key": "735"
+    },
+    {
+      "idcc": "2156",
+      "nom": "Magasins (grands) et magasins populaires",
+      "filename": "2156_Magasins_(grands)_et_magasins_populaires.pdf",
+      "mapping_key": "2156"
+    },
+    {
+      "idcc": "1671",
+      "nom": "Maisons d'étudiants",
+      "filename": "1671_Maisons_d'étudiants.pdf",
+      "mapping_key": "1671"
+    },
+    {
+      "idcc": "7508",
+      "nom": "Maisons familiales rurales",
+      "filename": "7508_Maisons_familiales_rurales.pdf",
+      "mapping_key": "7508"
+    },
+    {
+      "idcc": "538",
+      "nom": "Manutention ferroviaire et travaux connexes",
+      "filename": "538_Manutention_ferroviaire_et_travaux_connexes.pdf",
+      "mapping_key": "538"
+    },
+    {
+      "idcc": "1923",
+      "nom": "Manutention portuaire : Guadeloupe",
+      "filename": "1923_Manutention_portuaire___Guadeloupe.pdf",
+      "mapping_key": "1923"
+    },
+    {
+      "idcc": "2931",
+      "nom": "Marchés financiers",
+      "filename": "2931_Marchés_financiers.pdf",
+      "mapping_key": "2931"
+    },
+    {
+      "idcc": "1589",
+      "nom": "Mareyeurs-expéditeurs",
+      "filename": "1589_Mareyeurs-expéditeurs.pdf",
+      "mapping_key": "1589"
+    },
+    {
+      "idcc": "2528",
+      "nom": "Maroquinerie : industries",
+      "filename": "2528_Maroquinerie___industries.pdf",
+      "mapping_key": "2528"
+    },
+    {
+      "idcc": "3216",
+      "nom": "Matériaux de construction : négoce",
+      "filename": "3216_Matériaux_de_construction___négoce.pdf",
+      "mapping_key": "3216"
+    },
+    {
+      "idcc": "1404",
+      "nom": "Matériels agricoles, de BTP et de manutention : maintenance, distribution et location",
+      "filename": "1404_Matériels_agricoles,_de_BTP_et_de_manutention___maintenance,_distribution_et_location.pdf",
+      "mapping_key": "1404"
+    },
+    {
+      "idcc": "405",
+      "nom": "Médico-sociaux : établissements",
+      "filename": "405_Médico-sociaux___établissements.pdf",
+      "mapping_key": "405"
+    },
+    {
+      "idcc": "1982",
+      "nom": "Médico-techniques : négoce et prestations de services",
+      "filename": "1982_Médico-techniques___négoce_et_prestations_de_services.pdf",
+      "mapping_key": "1982"
+    },
+    {
+      "idcc": "3222",
+      "nom": "Menuiseries, charpentes et constructions industrialisées",
+      "filename": "3222_Menuiseries,_charpentes_et_constructions_industrialisées.pdf",
+      "mapping_key": "3222"
+    },
+    {
+      "idcc": "3248",
+      "nom": "Métallurgie (convention collective nationale unique)",
+      "filename": "3248_Métallurgie_(convention_collective_nationale_unique).pdf",
+      "mapping_key": "3248"
+    },
+    {
+      "idcc": "650",
+      "nom": "Métallurgie (ingénieurs et cadres)",
+      "filename": "650_Métallurgie_(ingénieurs_et_cadres).pdf",
+      "mapping_key": "650"
+    },
+    {
+      "idcc": "914",
+      "nom": "Métallurgie : Ain",
+      "filename": "914_Métallurgie___Ain.pdf",
+      "mapping_key": "914"
+    },
+    {
+      "idcc": "2542",
+      "nom": "Métallurgie : Aisne",
+      "filename": "2542_Métallurgie___Aisne.pdf",
+      "mapping_key": "2542"
+    },
+    {
+      "idcc": "898",
+      "nom": "Métallurgie : Allier",
+      "filename": "898_Métallurgie___Allier.pdf",
+      "mapping_key": "898"
+    },
+    {
+      "idcc": "1560",
+      "nom": "Métallurgie : Alpes-Maritimes",
+      "filename": "1560_Métallurgie___Alpes-Maritimes.pdf",
+      "mapping_key": "1560"
+    },
+    {
+      "idcc": "827",
+      "nom": "Métallurgie : Ardennes",
+      "filename": "827_Métallurgie___Ardennes.pdf",
+      "mapping_key": "827"
+    },
+    {
+      "idcc": "2294",
+      "nom": "Métallurgie : Aube",
+      "filename": "2294_Métallurgie___Aube.pdf",
+      "mapping_key": "2294"
+    },
+    {
+      "idcc": "2755",
+      "nom": "Métallurgie : Belfort / Montbéliard",
+      "filename": "2755_Métallurgie___Belfort___Montbéliard.pdf",
+      "mapping_key": "2755"
+    },
+    {
+      "idcc": "2630",
+      "nom": "Métallurgie : Bouches-du-Rhône",
+      "filename": "2630_Métallurgie___Bouches-du-Rhône.pdf",
+      "mapping_key": "2630"
+    },
+    {
+      "idcc": "943",
+      "nom": "Métallurgie : Calvados",
+      "filename": "943_Métallurgie___Calvados.pdf",
+      "mapping_key": "943"
+    },
+    {
+      "idcc": "1572",
+      "nom": "Métallurgie : Charente",
+      "filename": "1572_Métallurgie___Charente.pdf",
+      "mapping_key": "1572"
+    },
+    {
+      "idcc": "923",
+      "nom": "Métallurgie : Charente-Maritime",
+      "filename": "923_Métallurgie___Charente-Maritime.pdf",
+      "mapping_key": "923"
+    },
+    {
+      "idcc": "1576",
+      "nom": "Métallurgie : Cher",
+      "filename": "1576_Métallurgie___Cher.pdf",
+      "mapping_key": "1576"
+    },
+    {
+      "idcc": "1274",
+      "nom": "Métallurgie : Corrèze",
+      "filename": "1274_Métallurgie___Corrèze.pdf",
+      "mapping_key": "1274"
+    },
+    {
+      "idcc": "1885",
+      "nom": "Métallurgie : Côte-d'Or",
+      "filename": "1885_Métallurgie___Côte-d'Or.pdf",
+      "mapping_key": "1885"
+    },
+    {
+      "idcc": "1634",
+      "nom": "Métallurgie : Côtes-d'Armor",
+      "filename": "1634_Métallurgie___Côtes-d'Armor.pdf",
+      "mapping_key": "1634"
+    },
+    {
+      "idcc": "1353",
+      "nom": "Métallurgie : Dordogne",
+      "filename": "1353_Métallurgie___Dordogne.pdf",
+      "mapping_key": "1353"
+    },
+    {
+      "idcc": "3209",
+      "nom": "Métallurgie : Doubs",
+      "filename": "3209_Métallurgie___Doubs.pdf",
+      "mapping_key": "3209"
+    },
+    {
+      "idcc": "1867",
+      "nom": "Métallurgie : Drôme et Ardèche",
+      "filename": "1867_Métallurgie___Drôme_et_Ardèche.pdf",
+      "mapping_key": "1867"
+    },
+    {
+      "idcc": "1525",
+      "nom": "Métallurgie : Dunkerque (région de)",
+      "filename": "1525_Métallurgie___Dunkerque_(région_de).pdf",
+      "mapping_key": "1525"
+    },
+    {
+      "idcc": "887",
+      "nom": "Métallurgie : Eure",
+      "filename": "887_Métallurgie___Eure.pdf",
+      "mapping_key": "887"
+    },
+    {
+      "idcc": "984",
+      "nom": "Métallurgie : Eure-et-Loir",
+      "filename": "984_Métallurgie___Eure-et-Loir.pdf",
+      "mapping_key": "984"
+    },
+    {
+      "idcc": "860",
+      "nom": "Métallurgie : Finistère",
+      "filename": "860_Métallurgie___Finistère.pdf",
+      "mapping_key": "860"
+    },
+    {
+      "idcc": "1387",
+      "nom": "Métallurgie : Flandres-Douaisis",
+      "filename": "1387_Métallurgie___Flandres-Douaisis.pdf",
+      "mapping_key": "1387"
+    },
+    {
+      "idcc": "2126",
+      "nom": "Métallurgie : Gard et Lozère",
+      "filename": "2126_Métallurgie___Gard_et_Lozère.pdf",
+      "mapping_key": "2126"
+    },
+    {
+      "idcc": "1635",
+      "nom": "Métallurgie : Gironde-Landes",
+      "filename": "1635_Métallurgie___Gironde-Landes.pdf",
+      "mapping_key": "1635"
+    },
+    {
+      "idcc": "979",
+      "nom": "Métallurgie : Havre (arrondissement du)",
+      "filename": "979_Métallurgie___Havre_(arrondissement_du).pdf",
+      "mapping_key": "979"
+    },
+    {
+      "idcc": "1577",
+      "nom": "Métallurgie : Hérault, Aude et Pyrénées-Orientales",
+      "filename": "1577_Métallurgie___Hérault,_Aude_et_Pyrénées-Orientales.pdf",
+      "mapping_key": "1577"
+    },
+    {
+      "idcc": "863",
+      "nom": "Métallurgie : Ille-et-Vilaine - Morbihan",
+      "filename": "863_Métallurgie___Ille-et-Vilaine_-_Morbihan.pdf",
+      "mapping_key": "863"
+    },
+    {
+      "idcc": "934",
+      "nom": "Métallurgie : Indre",
+      "filename": "934_Métallurgie___Indre.pdf",
+      "mapping_key": "934"
+    },
+    {
+      "idcc": "2992",
+      "nom": "Métallurgie : Indre-et-Loire",
+      "filename": "2992_Métallurgie___Indre-et-Loire.pdf",
+      "mapping_key": "2992"
+    },
+    {
+      "idcc": "2221",
+      "nom": "Métallurgie : Isère et Hautes-Alpes",
+      "filename": "2221_Métallurgie___Isère_et_Hautes-Alpes.pdf",
+      "mapping_key": "2221"
+    },
+    {
+      "idcc": "3231",
+      "nom": "Métallurgie : Jura",
+      "filename": "3231_Métallurgie___Jura.pdf",
+      "mapping_key": "3231"
+    },
+    {
+      "idcc": "1578",
+      "nom": "Métallurgie : Loire et arrondissement d'Yssingeaux",
+      "filename": "1578_Métallurgie___Loire_et_arrondissement_d'Yssingeaux.pdf",
+      "mapping_key": "1578"
+    },
+    {
+      "idcc": "1369",
+      "nom": "Métallurgie : Loire-Atlantique",
+      "filename": "1369_Métallurgie___Loire-Atlantique.pdf",
+      "mapping_key": "1369"
+    },
+    {
+      "idcc": "1966",
+      "nom": "Métallurgie : Loiret",
+      "filename": "1966_Métallurgie___Loiret.pdf",
+      "mapping_key": "1966"
+    },
+    {
+      "idcc": "2579",
+      "nom": "Métallurgie : Loir-et-Cher",
+      "filename": "2579_Métallurgie___Loir-et-Cher.pdf",
+      "mapping_key": "2579"
+    },
+    {
+      "idcc": "1960",
+      "nom": "Métallurgie : Lot et Garonne",
+      "filename": "1960_Métallurgie___Lot_et_Garonne.pdf",
+      "mapping_key": "1960"
+    },
+    {
+      "idcc": "1902",
+      "nom": "Métallurgie : Maine-et-Loire",
+      "filename": "1902_Métallurgie___Maine-et-Loire.pdf",
+      "mapping_key": "1902"
+    },
+    {
+      "idcc": "828",
+      "nom": "Métallurgie : Manche",
+      "filename": "828_Métallurgie___Manche.pdf",
+      "mapping_key": "828"
+    },
+    {
+      "idcc": "899",
+      "nom": "Métallurgie : Marne",
+      "filename": "899_Métallurgie___Marne.pdf",
+      "mapping_key": "899"
+    },
+    {
+      "idcc": "1315",
+      "nom": "Métallurgie : Marne (Haute-) et Meuse",
+      "filename": "1315_Métallurgie___Marne_(Haute-)_et_Meuse.pdf",
+      "mapping_key": "1315"
+    },
+    {
+      "idcc": "1060",
+      "nom": "Métallurgie : Martinique",
+      "filename": "1060_Métallurgie___Martinique.pdf",
+      "mapping_key": "1060"
+    },
+    {
+      "idcc": "1813",
+      "nom": "Métallurgie : Maubeuge",
+      "filename": "1813_Métallurgie___Maubeuge.pdf",
+      "mapping_key": "1813"
+    },
+    {
+      "idcc": "2266",
+      "nom": "Métallurgie : Mayenne",
+      "filename": "2266_Métallurgie___Mayenne.pdf",
+      "mapping_key": "2266"
+    },
+    {
+      "idcc": "1365",
+      "nom": "Métallurgie : Meurthe-et-Moselle",
+      "filename": "1365_Métallurgie___Meurthe-et-Moselle.pdf",
+      "mapping_key": "1365"
+    },
+    {
+      "idcc": "1059",
+      "nom": "Métallurgie : Midi-Pyrénées",
+      "filename": "1059_Métallurgie___Midi-Pyrénées.pdf",
+      "mapping_key": "1059"
+    },
+    {
+      "idcc": "714",
+      "nom": "Métallurgie : Moselle",
+      "filename": "714_Métallurgie___Moselle.pdf",
+      "mapping_key": "714"
+    },
+    {
+      "idcc": "1159",
+      "nom": "Métallurgie : Nièvre",
+      "filename": "1159_Métallurgie___Nièvre.pdf",
+      "mapping_key": "1159"
+    },
+    {
+      "idcc": "2700",
+      "nom": "Métallurgie : Oise",
+      "filename": "2700_Métallurgie___Oise.pdf",
+      "mapping_key": "2700"
+    },
+    {
+      "idcc": "948",
+      "nom": "Métallurgie : Orne",
+      "filename": "948_Métallurgie___Orne.pdf",
+      "mapping_key": "948"
+    },
+    {
+      "idcc": "1472",
+      "nom": "Métallurgie : Pas-de-Calais",
+      "filename": "1472_Métallurgie___Pas-de-Calais.pdf",
+      "mapping_key": "1472"
+    },
+    {
+      "idcc": "1627",
+      "nom": "Métallurgie : Puy-de-Dôme et Clermont-Ferrand",
+      "filename": "1627_Métallurgie___Puy-de-Dôme_et_Clermont-Ferrand.pdf",
+      "mapping_key": "1627"
+    },
+    {
+      "idcc": "1626",
+      "nom": "Métallurgie : Pyrénées (Hautes)",
+      "filename": "1626_Métallurgie___Pyrénées_(Hautes).pdf",
+      "mapping_key": "1626"
+    },
+    {
+      "idcc": "2615",
+      "nom": "Métallurgie : Pyrénées-Atlantiques et Seignanx",
+      "filename": "2615_Métallurgie___Pyrénées-Atlantiques_et_Seignanx.pdf",
+      "mapping_key": "2615"
+    },
+    {
+      "idcc": "54",
+      "nom": "Métallurgie : Région parisienne",
+      "filename": "54_Métallurgie___Région_parisienne.pdf",
+      "mapping_key": "54"
+    },
+    {
+      "idcc": "1967",
+      "nom": "Métallurgie : Rhin (Bas-)",
+      "filename": "1967_Métallurgie___Rhin_(Bas-).pdf",
+      "mapping_key": "1967"
+    },
+    {
+      "idcc": "1912",
+      "nom": "Métallurgie : Rhin (Haut-)",
+      "filename": "1912_Métallurgie___Rhin_(Haut-).pdf",
+      "mapping_key": "1912"
+    },
+    {
+      "idcc": "878",
+      "nom": "Métallurgie : Rhône",
+      "filename": "878_Métallurgie___Rhône.pdf",
+      "mapping_key": "878"
+    },
+    {
+      "idcc": "1604",
+      "nom": "Métallurgie : Rouen et Dieppe",
+      "filename": "1604_Métallurgie___Rouen_et_Dieppe.pdf",
+      "mapping_key": "1604"
+    },
+    {
+      "idcc": "3053",
+      "nom": "Métallurgie : Saône (Haute)",
+      "filename": "3053_Métallurgie___Saône_(Haute).pdf",
+      "mapping_key": "3053"
+    },
+    {
+      "idcc": "1564",
+      "nom": "Métallurgie : Saône-et-Loire",
+      "filename": "1564_Métallurgie___Saône-et-Loire.pdf",
+      "mapping_key": "1564"
+    },
+    {
+      "idcc": "930",
+      "nom": "Métallurgie : Sarthe",
+      "filename": "930_Métallurgie___Sarthe.pdf",
+      "mapping_key": "930"
+    },
+    {
+      "idcc": "822",
+      "nom": "Métallurgie : Savoie",
+      "filename": "822_Métallurgie___Savoie.pdf",
+      "mapping_key": "822"
+    },
+    {
+      "idcc": "836",
+      "nom": "Métallurgie : Savoie (Haute-)",
+      "filename": "836_Métallurgie___Savoie_(Haute-).pdf",
+      "mapping_key": "836"
+    },
+    {
+      "idcc": "911",
+      "nom": "Métallurgie : Seine-et-Marne",
+      "filename": "911_Métallurgie___Seine-et-Marne.pdf",
+      "mapping_key": "911"
+    },
+    {
+      "idcc": "1628",
+      "nom": "Métallurgie : Sèvres (Deux-)",
+      "filename": "1628_Métallurgie___Sèvres_(Deux-).pdf",
+      "mapping_key": "1628"
+    },
+    {
+      "idcc": "2980",
+      "nom": "Métallurgie : Somme",
+      "filename": "2980_Métallurgie___Somme.pdf",
+      "mapping_key": "2980"
+    },
+    {
+      "idcc": "1007",
+      "nom": "Métallurgie : Thiers (Région de)",
+      "filename": "1007_Métallurgie___Thiers_(Région_de).pdf",
+      "mapping_key": "1007"
+    },
+    {
+      "idcc": "1592",
+      "nom": "Métallurgie : Valenciennes et Cambrai",
+      "filename": "1592_Métallurgie___Valenciennes_et_Cambrai.pdf",
+      "mapping_key": "1592"
+    },
+    {
+      "idcc": "965",
+      "nom": "Métallurgie : Var",
+      "filename": "965_Métallurgie___Var.pdf",
+      "mapping_key": "965"
+    },
+    {
+      "idcc": "829",
+      "nom": "Métallurgie : Vaucluse",
+      "filename": "829_Métallurgie___Vaucluse.pdf",
+      "mapping_key": "829"
+    },
+    {
+      "idcc": "2489",
+      "nom": "Métallurgie : Vendée",
+      "filename": "2489_Métallurgie___Vendée.pdf",
+      "mapping_key": "2489"
+    },
+    {
+      "idcc": "937",
+      "nom": "Métallurgie : Vienne (Haute-) et Creuse",
+      "filename": "937_Métallurgie___Vienne_(Haute-)_et_Creuse.pdf",
+      "mapping_key": "937"
+    },
+    {
+      "idcc": "2003",
+      "nom": "Métallurgie : Vosges",
+      "filename": "2003_Métallurgie___Vosges.pdf",
+      "mapping_key": "2003"
+    },
+    {
+      "idcc": "1732",
+      "nom": "Métallurgie : Yonne",
+      "filename": "1732_Métallurgie___Yonne.pdf",
+      "mapping_key": "1732"
+    },
+    {
+      "idcc": "3213",
+      "nom": "Métreurs-vérificateurs",
+      "filename": "3213_Métreurs-vérificateurs.pdf",
+      "mapping_key": "3213"
+    },
+    {
+      "idcc": "2025",
+      "nom": "Mines : Guyane",
+      "filename": "2025_Mines___Guyane.pdf",
+      "mapping_key": "2025"
+    },
+    {
+      "idcc": "1499",
+      "nom": "Miroiterie : transformation et négoce du verre",
+      "filename": "1499_Miroiterie___transformation_et_négoce_du_verre.pdf",
+      "mapping_key": "1499"
+    },
+    {
+      "idcc": "2190",
+      "nom": "Missions locales et PAIO",
+      "filename": "2190_Missions_locales_et_PAIO.pdf",
+      "mapping_key": "2190"
+    },
+    {
+      "idcc": "350",
+      "nom": "Mode et chapellerie",
+      "filename": "350_Mode_et_chapellerie.pdf",
+      "mapping_key": "350"
+    },
+    {
+      "idcc": "1016",
+      "nom": "Musique : édition - AM et Cadres",
+      "filename": "1016_Musique___édition_-_AM_et_Cadres.pdf",
+      "mapping_key": "1016"
+    },
+    {
+      "idcc": "1194",
+      "nom": "Musique : édition - employés",
+      "filename": "1194_Musique___édition_-_employés.pdf",
+      "mapping_key": "1194"
+    },
+    {
+      "idcc": "2128",
+      "nom": "Mutualité",
+      "filename": "2128_Mutualité.pdf",
+      "mapping_key": "2128"
+    },
+    {
+      "idcc": "1423",
+      "nom": "Nautiques : industrie et services",
+      "filename": "1423_Nautiques___industrie_et_services.pdf",
+      "mapping_key": "1423"
+    },
+    {
+      "idcc": "2972",
+      "nom": "Navigation (entreprises) : personnel sédentaire",
+      "filename": "2972_Navigation_(entreprises)___personnel_sédentaire.pdf",
+      "mapping_key": "2972"
+    },
+    {
+      "idcc": "3229",
+      "nom": "Navigation intérieure : entreprises de transport",
+      "filename": "3229_Navigation_intérieure___entreprises_de_transport.pdf",
+      "mapping_key": "3229"
+    },
+    {
+      "idcc": "2205",
+      "nom": "Notariat",
+      "filename": "2205_Notariat.pdf",
+      "mapping_key": "2205"
+    },
+    {
+      "idcc": "2075",
+      "nom": "Oeufs et industries en produits d'oeufs",
+      "filename": "2075_Oeufs_et_industries_en_produits_d'oeufs.pdf",
+      "mapping_key": "2075"
+    },
+    {
+      "idcc": "1431",
+      "nom": "Optique - lunetterie de détail",
+      "filename": "1431_Optique_-_lunetterie_de_détail.pdf",
+      "mapping_key": "1431"
+    },
+    {
+      "idcc": "1539",
+      "nom": "Papeterie, fournitures de bureau, bureautique et informatique (commerces de détail)",
+      "filename": "1539_Papeterie,_fournitures_de_bureau,_bureautique_et_informatique_(commerces_de_détail).pdf",
+      "mapping_key": "1539"
+    },
+    {
+      "idcc": "3224",
+      "nom": "Papier-cartons : distribution et commerce de gros",
+      "filename": "3224_Papier-cartons___distribution_et_commerce_de_gros.pdf",
+      "mapping_key": "3224"
+    },
+    {
+      "idcc": "3238",
+      "nom": "Papiers-cartons : production et transformation",
+      "filename": "3238_Papiers-cartons___production_et_transformation.pdf",
+      "mapping_key": "3238"
+    },
+    {
+      "idcc": "3235",
+      "nom": "Parfumerie sélective",
+      "filename": "3235_Parfumerie_sélective.pdf",
+      "mapping_key": "3235"
+    },
+    {
+      "idcc": "2111",
+      "nom": "Particulier employeur : salariés",
+      "filename": "2111_Particulier_employeur___salariés.pdf",
+      "mapping_key": "2111"
+    },
+    {
+      "idcc": "3239",
+      "nom": "Particuliers employeurs et emploi à domicile",
+      "filename": "3239_Particuliers_employeurs_et_emploi_à_domicile.pdf",
+      "mapping_key": "3239"
+    },
+    {
+      "idcc": "1987",
+      "nom": "Pâtes alimentaires",
+      "filename": "1987_Pâtes_alimentaires.pdf",
+      "mapping_key": "1987"
+    },
+    {
+      "idcc": "1267",
+      "nom": "Pâtisserie",
+      "filename": "1267_Pâtisserie.pdf",
+      "mapping_key": "1267"
+    },
+    {
+      "idcc": "7018",
+      "nom": "Paysage : entreprises",
+      "filename": "7018_Paysage___entreprises.pdf",
+      "mapping_key": "7018"
+    },
+    {
+      "idcc": "3203",
+      "nom": "Pêche de loisir et protection du milieu aquatique : structures associatives",
+      "filename": "3203_Pêche_de_loisir_et_protection_du_milieu_aquatique___structures_associatives.pdf",
+      "mapping_key": "3203"
+    },
+    {
+      "idcc": "1388",
+      "nom": "Pétrole : industrie",
+      "filename": "1388_Pétrole___industrie.pdf",
+      "mapping_key": "1388"
+    },
+    {
+      "idcc": "176",
+      "nom": "Pharmacie : industrie",
+      "filename": "176_Pharmacie___industrie.pdf",
+      "mapping_key": "176"
+    },
+    {
+      "idcc": "1621",
+      "nom": "Pharmacie : répartition pharmaceutique",
+      "filename": "1621_Pharmacie___répartition_pharmaceutique.pdf",
+      "mapping_key": "1621"
+    },
+    {
+      "idcc": "1996",
+      "nom": "Pharmacie d'officine",
+      "filename": "1996_Pharmacie_d'officine.pdf",
+      "mapping_key": "1996"
+    },
+    {
+      "idcc": "1257",
+      "nom": "Pharmacie d'officine : la Réunion",
+      "filename": "1257_Pharmacie_d'officine___la_Réunion.pdf",
+      "mapping_key": "1257"
+    },
+    {
+      "idcc": "1555",
+      "nom": "Pharmacie, parapharmacie, produits vétérinaires : fabrication et commerce",
+      "filename": "1555_Pharmacie,_parapharmacie,_produits_vétérinaires___fabrication_et_commerce.pdf",
+      "mapping_key": "1555"
+    },
+    {
+      "idcc": "3168",
+      "nom": "Photographie",
+      "filename": "3168_Photographie.pdf",
+      "mapping_key": "3168"
+    },
+    {
+      "idcc": "292",
+      "nom": "Plasturgie",
+      "filename": "292_Plasturgie.pdf",
+      "mapping_key": "292"
+    },
+    {
+      "idcc": "1504",
+      "nom": "Poissonnerie",
+      "filename": "1504_Poissonnerie.pdf",
+      "mapping_key": "1504"
+    },
+    {
+      "idcc": "2847",
+      "nom": "Pôle emploi",
+      "filename": "2847_Pôle_emploi.pdf",
+      "mapping_key": "2847"
+    },
+    {
+      "idcc": "759",
+      "nom": "Pompes funèbres",
+      "filename": "759_Pompes_funèbres.pdf",
+      "mapping_key": "759"
+    },
+    {
+      "idcc": "3219",
+      "nom": "Portage salarial",
+      "filename": "3219_Portage_salarial.pdf",
+      "mapping_key": "3219"
+    },
+    {
+      "idcc": "1182",
+      "nom": "Ports de plaisance",
+      "filename": "1182_Ports_de_plaisance.pdf",
+      "mapping_key": "1182"
+    },
+    {
+      "idcc": "3017",
+      "nom": "Ports et manutention",
+      "filename": "3017_Ports_et_manutention.pdf",
+      "mapping_key": "3017"
+    },
+    {
+      "idcc": "3221",
+      "nom": "Presse : agences",
+      "filename": "3221_Presse___agences.pdf",
+      "mapping_key": "3221"
+    },
+    {
+      "idcc": "2683",
+      "nom": "Presse : portage",
+      "filename": "2683_Presse___portage.pdf",
+      "mapping_key": "2683"
+    },
+    {
+      "idcc": "3230",
+      "nom": "Presse d'information spécialisée",
+      "filename": "3230_Presse_d'information_spécialisée.pdf",
+      "mapping_key": "3230"
+    },
+    {
+      "idcc": "3225",
+      "nom": "Presse magazine : éditeurs",
+      "filename": "3225_Presse_magazine___éditeurs.pdf",
+      "mapping_key": "3225"
+    },
+    {
+      "idcc": "3242",
+      "nom": "Presse quotidienne et hebdomadaire en régions",
+      "filename": "3242_Presse_quotidienne_et_hebdomadaire_en_régions.pdf",
+      "mapping_key": "3242"
+    },
+    {
+      "idcc": "2098",
+      "nom": "Prestataires de services",
+      "filename": "2098_Prestataires_de_services.pdf",
+      "mapping_key": "2098"
+    },
+    {
+      "idcc": "1351",
+      "nom": "Prévention et sécurité",
+      "filename": "1351_Prévention_et_sécurité.pdf",
+      "mapping_key": "1351"
+    },
+    {
+      "idcc": "1396",
+      "nom": "Produits alimentaires élaborés : industries",
+      "filename": "1396_Produits_alimentaires_élaborés___industries.pdf",
+      "mapping_key": "1396"
+    },
+    {
+      "idcc": "1077",
+      "nom": "Produits du sol : négoce et industrie",
+      "filename": "1077_Produits_du_sol___négoce_et_industrie.pdf",
+      "mapping_key": "1077"
+    },
+    {
+      "idcc": "1512",
+      "nom": "Promotion immobilière",
+      "filename": "1512_Promotion_immobilière.pdf",
+      "mapping_key": "1512"
+    },
+    {
+      "idcc": "3043",
+      "nom": "Propreté",
+      "filename": "3043_Propreté.pdf",
+      "mapping_key": "3043"
+    },
+    {
+      "idcc": "86",
+      "nom": "Publicité",
+      "filename": "86_Publicité.pdf",
+      "mapping_key": "86"
+    },
+    {
+      "idcc": "3243",
+      "nom": "Quincaillerie : commerces",
+      "filename": "3243_Quincaillerie___commerces.pdf",
+      "mapping_key": "3243"
+    },
+    {
+      "idcc": "1922",
+      "nom": "Radiodiffusion",
+      "filename": "1922_Radiodiffusion.pdf",
+      "mapping_key": "1922"
+    },
+    {
+      "idcc": "2978",
+      "nom": "Recherches privées : agences",
+      "filename": "2978_Recherches_privées___agences.pdf",
+      "mapping_key": "2978"
+    },
+    {
+      "idcc": "637",
+      "nom": "Récupération : industries et commerces",
+      "filename": "637_Récupération___industries_et_commerces.pdf",
+      "mapping_key": "637"
+    },
+    {
+      "idcc": "3105",
+      "nom": "Régies de quartier",
+      "filename": "3105_Régies_de_quartier.pdf",
+      "mapping_key": "3105"
+    },
+    {
+      "idcc": "454",
+      "nom": "Remontées mécaniques",
+      "filename": "454_Remontées_mécaniques.pdf",
+      "mapping_key": "454"
+    },
+    {
+      "idcc": "706",
+      "nom": "Reprographie",
+      "filename": "706_Reprographie.pdf",
+      "mapping_key": "706"
+    },
+    {
+      "idcc": "575",
+      "nom": "Restaurants : chaîne",
+      "filename": "575_Restaurants___chaîne.pdf",
+      "mapping_key": "575"
+    },
+    {
+      "idcc": "1266",
+      "nom": "Restauration de collectivités",
+      "filename": "1266_Restauration_de_collectivités.pdf",
+      "mapping_key": "1266"
+    },
+    {
+      "idcc": "1311",
+      "nom": "Restauration ferroviaire",
+      "filename": "1311_Restauration_ferroviaire.pdf",
+      "mapping_key": "1311"
+    },
+    {
+      "idcc": "1501",
+      "nom": "Restauration rapide",
+      "filename": "1501_Restauration_rapide.pdf",
+      "mapping_key": "1501"
+    },
+    {
+      "idcc": "897",
+      "nom": "Santé au travail : services interentreprises",
+      "filename": "897_Santé_au_travail___services_interentreprises.pdf",
+      "mapping_key": "897"
+    },
+    {
+      "idcc": "7021",
+      "nom": "Sélection et reproduction animale (entreprises)",
+      "filename": "7021_Sélection_et_reproduction_animale_(entreprises).pdf",
+      "mapping_key": "7021"
+    },
+    {
+      "idcc": "614",
+      "nom": "Sérigraphie : industrie",
+      "filename": "614_Sérigraphie___industrie.pdf",
+      "mapping_key": "614"
+    },
+    {
+      "idcc": "3127",
+      "nom": "Services à la personne (entreprises)",
+      "filename": "3127_Services_à_la_personne_(entreprises).pdf",
+      "mapping_key": "3127"
+    },
+    {
+      "idcc": "2344",
+      "nom": "Sidérurgie",
+      "filename": "2344_Sidérurgie.pdf",
+      "mapping_key": "2344"
+    },
+    {
+      "idcc": "1261",
+      "nom": "Sociaux et socioculturels (centres) et autres acteurs du lien social (associations)",
+      "filename": "1261_Sociaux_et_socioculturels_(centres)_et_autres_acteurs_du_lien_social_(associations).pdf",
+      "mapping_key": "1261"
+    },
+    {
+      "idcc": "478",
+      "nom": "Sociétés financières",
+      "filename": "478_Sociétés_financières.pdf",
+      "mapping_key": "478"
+    },
+    {
+      "idcc": "3090",
+      "nom": "Spectacle vivant : secteur privé",
+      "filename": "3090_Spectacle_vivant___secteur_privé.pdf",
+      "mapping_key": "3090"
+    },
+    {
+      "idcc": "2903",
+      "nom": "Spectacle vivant : structures mobiles",
+      "filename": "2903_Spectacle_vivant___structures_mobiles.pdf",
+      "mapping_key": "2903"
+    },
+    {
+      "idcc": "2511",
+      "nom": "Sport",
+      "filename": "2511_Sport.pdf",
+      "mapping_key": "2511"
+    },
+    {
+      "idcc": "1557",
+      "nom": "Sport : commerce des articles de sport",
+      "filename": "1557_Sport___commerce_des_articles_de_sport.pdf",
+      "mapping_key": "1557"
+    },
+    {
+      "idcc": "2728",
+      "nom": "Sucreries, sucreries-distilleries, raffineries de sucre",
+      "filename": "2728_Sucreries,_sucreries-distilleries,_raffineries_de_sucre.pdf",
+      "mapping_key": "2728"
+    },
+    {
+      "idcc": "2230",
+      "nom": "Surveillance de la qualité de l'air : associations agréées",
+      "filename": "2230_Surveillance_de_la_qualité_de_l'air___associations_agréées.pdf",
+      "mapping_key": "2230"
+    },
+    {
+      "idcc": "780",
+      "nom": "Tailleurs sur mesure : région parisienne",
+      "filename": "780_Tailleurs_sur_mesure___région_parisienne.pdf",
+      "mapping_key": "780"
+    },
+    {
+      "idcc": "2219",
+      "nom": "Taxis",
+      "filename": "2219_Taxis.pdf",
+      "mapping_key": "2219"
+    },
+    {
+      "idcc": "2148",
+      "nom": "Télécommunications",
+      "filename": "2148_Télécommunications.pdf",
+      "mapping_key": "2148"
+    },
+    {
+      "idcc": "3241",
+      "nom": "Télédiffusion",
+      "filename": "3241_Télédiffusion.pdf",
+      "mapping_key": "3241"
+    },
+    {
+      "idcc": "18",
+      "nom": "Textiles : industries",
+      "filename": "18_Textiles___industries.pdf",
+      "mapping_key": "18"
+    },
+    {
+      "idcc": "1942",
+      "nom": "Textiles artificiels et synthétiques et produits assimilés",
+      "filename": "1942_Textiles_artificiels_et_synthétiques_et_produits_assimilés.pdf",
+      "mapping_key": "1942"
+    },
+    {
+      "idcc": "2104",
+      "nom": "Thermalisme",
+      "filename": "2104_Thermalisme.pdf",
+      "mapping_key": "2104"
+    },
+    {
+      "idcc": "1256",
+      "nom": "Thermiques : équipements - cadres et assimilés",
+      "filename": "1256_Thermiques___équipements_-_cadres_et_assimilés.pdf",
+      "mapping_key": "1256"
+    },
+    {
+      "idcc": "998",
+      "nom": "Thermiques : équipements - OETAM",
+      "filename": "998_Thermiques___équipements_-_OETAM.pdf",
+      "mapping_key": "998"
+    },
+    {
+      "idcc": "1761",
+      "nom": "Tissus, tapis et linge de maison : commerce de gros",
+      "filename": "1761_Tissus,_tapis_et_linge_de_maison___commerce_de_gros.pdf",
+      "mapping_key": "1761"
+    },
+    {
+      "idcc": "1710",
+      "nom": "Tourisme : agences de voyages et de tourisme",
+      "filename": "1710_Tourisme___agences_de_voyages_et_de_tourisme.pdf",
+      "mapping_key": "1710"
+    },
+    {
+      "idcc": "412",
+      "nom": "Tourisme : guides accompagnateurs",
+      "filename": "412_Tourisme___guides_accompagnateurs.pdf",
+      "mapping_key": "412"
+    },
+    {
+      "idcc": "2658",
+      "nom": "Tourisme : guides et accompagnateurs en milieu amazonien",
+      "filename": "2658_Tourisme___guides_et_accompagnateurs_en_milieu_amazonien.pdf",
+      "mapping_key": "2658"
+    },
+    {
+      "idcc": "349",
+      "nom": "Tourisme : guides interprètes",
+      "filename": "349_Tourisme___guides_interprètes.pdf",
+      "mapping_key": "349"
+    },
+    {
+      "idcc": "1909",
+      "nom": "Tourisme : organismes",
+      "filename": "1909_Tourisme___organismes.pdf",
+      "mapping_key": "1909"
+    },
+    {
+      "idcc": "1316",
+      "nom": "Tourisme social et familial",
+      "filename": "1316_Tourisme_social_et_familial.pdf",
+      "mapping_key": "1316"
+    },
+    {
+      "idcc": "275",
+      "nom": "Transport aérien : personnel au sol",
+      "filename": "275_Transport_aérien___personnel_au_sol.pdf",
+      "mapping_key": "275"
+    },
+    {
+      "idcc": "275",
+      "nom": "Transport aérien : personnel navigant",
+      "filename": "275_Transport_aérien___personnel_navigant.pdf",
+      "mapping_key": "275"
+    },
+    {
+      "idcc": "3217",
+      "nom": "Transport ferroviaire et activités associées",
+      "filename": "3217_Transport_ferroviaire_et_activités_associées.pdf",
+      "mapping_key": "3217"
+    },
+    {
+      "idcc": "2345",
+      "nom": "Transport sanitaire : Martinique",
+      "filename": "2345_Transport_sanitaire___Martinique.pdf",
+      "mapping_key": "2345"
+    },
+    {
+      "idcc": "16",
+      "nom": "Transports de fonds et de valeurs",
+      "filename": "16_Transports_de_fonds_et_de_valeurs.pdf",
+      "mapping_key": "16"
+    },
+    {
+      "idcc": "3223",
+      "nom": "Transports et services maritimes : personnels navigants officiers",
+      "filename": "3223_Transports_et_services_maritimes___personnels_navigants_officiers.pdf",
+      "mapping_key": "3223"
+    },
+    {
+      "idcc": "1424",
+      "nom": "Transports publics urbains : réseaux de voyageurs",
+      "filename": "1424_Transports_publics_urbains___réseaux_de_voyageurs.pdf",
+      "mapping_key": "1424"
+    },
+    {
+      "idcc": "16",
+      "nom": "Transports routiers",
+      "filename": "16_Transports_routiers.pdf",
+      "mapping_key": "16"
+    },
+    {
+      "idcc": "3028",
+      "nom": "Transports routiers : Guadeloupe",
+      "filename": "3028_Transports_routiers___Guadeloupe.pdf",
+      "mapping_key": "3028"
+    },
+    {
+      "idcc": "3207",
+      "nom": "Transports sanitaires : Guadeloupe, Saint-Barthélemy et Saint-Martin",
+      "filename": "3207_Transports_sanitaires___Guadeloupe,_Saint-Barthélemy_et_Saint-Martin.pdf",
+      "mapping_key": "3207"
+    },
+    {
+      "idcc": "1612",
+      "nom": "Travail aérien : personnel navigant des essais et réception",
+      "filename": "1612_Travail_aérien___personnel_navigant_des_essais_et_réception.pdf",
+      "mapping_key": "1612"
+    },
+    {
+      "idcc": "2378",
+      "nom": "Travail temporaire : salariés intérimaires",
+      "filename": "2378_Travail_temporaire___salariés_intérimaires.pdf",
+      "mapping_key": "2378"
+    },
+    {
+      "idcc": "1413",
+      "nom": "Travail temporaire : salariés permanents",
+      "filename": "1413_Travail_temporaire___salariés_permanents.pdf",
+      "mapping_key": "1413"
+    },
+    {
+      "idcc": "3212",
+      "nom": "Travaux publics : cadres",
+      "filename": "3212_Travaux_publics___cadres.pdf",
+      "mapping_key": "3212"
+    },
+    {
+      "idcc": "2614",
+      "nom": "Travaux publics : ETAM",
+      "filename": "2614_Travaux_publics___ETAM.pdf",
+      "mapping_key": "2614"
+    },
+    {
+      "idcc": "1702",
+      "nom": "Travaux publics : ouvriers",
+      "filename": "1702_Travaux_publics___ouvriers.pdf",
+      "mapping_key": "1702"
+    },
+    {
+      "idcc": "2034",
+      "nom": "Travaux publics ouvriers (Isère)",
+      "filename": "2034_Travaux_publics_ouvriers_(Isère).pdf",
+      "mapping_key": "2034"
+    },
+    {
+      "idcc": "2582",
+      "nom": "Travaux publics ouvriers (Savoie)",
+      "filename": "2582_Travaux_publics_ouvriers_(Savoie).pdf",
+      "mapping_key": "2582"
+    },
+    {
+      "idcc": "1170",
+      "nom": "Tuiles et briques : industries",
+      "filename": "1170_Tuiles_et_briques___industries.pdf",
+      "mapping_key": "1170"
+    },
+    {
+      "idcc": "2306",
+      "nom": "Verre : fabrication à la main, semi-automatique et mixte",
+      "filename": "2306_Verre___fabrication_à_la_main,_semi-automatique_et_mixte.pdf",
+      "mapping_key": "2306"
+    },
+    {
+      "idcc": "669",
+      "nom": "Verre : fabrication mécanique",
+      "filename": "669_Verre___fabrication_mécanique.pdf",
+      "mapping_key": "669"
+    },
+    {
+      "idcc": "2306",
+      "nom": "Verre : métiers",
+      "filename": "2306_Verre___métiers.pdf",
+      "mapping_key": "2306"
+    },
+    {
+      "idcc": "161",
+      "nom": "Verrerie au chalumeau : travail mécanique",
+      "filename": "161_Verrerie_au_chalumeau___travail_mécanique.pdf",
+      "mapping_key": "161"
+    },
+    {
+      "idcc": "1875",
+      "nom": "Vétérinaires : personnel salarié",
+      "filename": "1875_Vétérinaires___personnel_salarié.pdf",
+      "mapping_key": "1875"
+    },
+    {
+      "idcc": "2564",
+      "nom": "Vétérinaires : praticiens salariés",
+      "filename": "2564_Vétérinaires___praticiens_salariés.pdf",
+      "mapping_key": "2564"
+    },
+    {
+      "idcc": "1534",
+      "nom": "Viandes : industries et commerce en gros",
+      "filename": "1534_Viandes___industries_et_commerce_en_gros.pdf",
+      "mapping_key": "1534"
+    },
+    {
+      "idcc": "7005",
+      "nom": "Vins : caves coopératives vinicoles et leurs unions",
+      "filename": "7005_Vins___caves_coopératives_vinicoles_et_leurs_unions.pdf",
+      "mapping_key": "7005"
+    },
+    {
+      "idcc": "493",
+      "nom": "Vins, cidres, jus de fruits",
+      "filename": "493_Vins,_cidres,_jus_de_fruits.pdf",
+      "mapping_key": "493"
+    },
+    {
+      "idcc": "1945",
+      "nom": "Vitrail",
+      "filename": "1945_Vitrail.pdf",
+      "mapping_key": "1945"
+    },
+    {
+      "idcc": "779",
+      "nom": "Voies ferrées d'intérêt local",
+      "filename": "779_Voies_ferrées_d'intérêt_local.pdf",
+      "mapping_key": "779"
+    },
+    {
+      "idcc": "1938",
+      "nom": "Volailles : industries de la transformation",
+      "filename": "1938_Volailles___industries_de_la_transformation.pdf",
+      "mapping_key": "1938"
+    },
+    {
+      "idcc": "3245",
+      "nom": "Voyages : opérateurs et guides",
+      "filename": "3245_Voyages___opérateurs_et_guides.pdf",
+      "mapping_key": "3245"
+    },
+    {
+      "idcc": "804",
+      "nom": "Voyageurs, représentants, placiers (VRP)",
+      "filename": "804_Voyageurs,_représentants,_placiers_(VRP).pdf",
+      "mapping_key": "804"
+    },
+    {
+      "idcc": "7017",
+      "nom": "Zoos",
+      "filename": "7017_Zoos.pdf",
+      "mapping_key": "7017"
+    }
+  ],
+  "conventions_sans_idcc": [
+    {
+      "idcc": null,
+      "nom": "Aérodromes commerciaux (aéroports) : personnels des exploitants",
+      "filename": "Aérodromes_commerciaux_(aéroports)___personnels_des_exploitants.pdf",
+      "mapping_key": "Aérodromes_commerciaux_(aéroports)___personnels_des_exploitants"
+    },
+    {
+      "idcc": null,
+      "nom": "Agriculture : accords nationaux",
+      "filename": "Agriculture___accords_nationaux.pdf",
+      "mapping_key": "Agriculture___accords_nationaux"
+    },
+    {
+      "idcc": null,
+      "nom": "Agriculture : centres d'initiatives pour valoriser l'agriculture et le milieu rural",
+      "filename": "Agriculture___centres_d'initiatives_pour_valoriser_l'agriculture_et_le_milieu_rural.pdf",
+      "mapping_key": "Agriculture___centres_d'initiatives_pour_valoriser_l'agriculture_et_le_milieu_rural"
+    },
+    {
+      "idcc": null,
+      "nom": "Alimentation : industries agroalimentaires (accords nationaux)",
+      "filename": "Alimentation___industries_agroalimentaires_(accords_nationaux).pdf",
+      "mapping_key": "Alimentation___industries_agroalimentaires_(accords_nationaux)"
+    },
+    {
+      "idcc": null,
+      "nom": "Arts, métiers d'arts et design",
+      "filename": "Arts,_métiers_d'arts_et_design.pdf",
+      "mapping_key": "Arts,_métiers_d'arts_et_design"
+    },
+    {
+      "idcc": null,
+      "nom": "Audiovisuel, cinéma, publicité, loisirs et spectacle (accords nationaux)",
+      "filename": "Audiovisuel,_cinéma,_publicité,_loisirs_et_spectacle_(accords_nationaux).pdf",
+      "mapping_key": "Audiovisuel,_cinéma,_publicité,_loisirs_et_spectacle_(accords_nationaux)"
+    },
+    {
+      "idcc": null,
+      "nom": "Bâtiment : ouvriers (Nationale > 10 salariés)(nouvelle CCN)",
+      "filename": "Bâtiment___ouvriers_(Nationale___10_salariés)(nouvelle_CCN).pdf",
+      "mapping_key": "Bâtiment___ouvriers_(Nationale___10_salariés)(nouvelle_CCN)"
+    },
+    {
+      "idcc": null,
+      "nom": "Bâtiment : ouvriers (Nationale ? 10 salariés) (nouvelle CCN)",
+      "filename": "Bâtiment___ouvriers_(Nationale___10_salariés)_(nouvelle_CCN).pdf",
+      "mapping_key": "Bâtiment___ouvriers_(Nationale___10_salariés)_(nouvelle_CCN)"
+    },
+    {
+      "idcc": null,
+      "nom": "Bâtiment : ouvriers (Nord - Pas-de-Calais - 10 salariés)",
+      "filename": "Bâtiment___ouvriers_(Nord_-_Pas-de-Calais_-_10_salariés).pdf",
+      "mapping_key": "Bâtiment___ouvriers_(Nord_-_Pas-de-Calais_-_10_salariés)"
+    },
+    {
+      "idcc": null,
+      "nom": "Bâtiment : ouvriers (Nord - Pas-de-Calais + 10 salariés)",
+      "filename": "Bâtiment___ouvriers_(Nord_-_Pas-de-Calais_+_10_salariés).pdf",
+      "mapping_key": "Bâtiment___ouvriers_(Nord_-_Pas-de-Calais_+_10_salariés)"
+    },
+    {
+      "idcc": null,
+      "nom": "Bâtiment et travaux publics (accords nationaux)",
+      "filename": "Bâtiment_et_travaux_publics_(accords_nationaux).pdf",
+      "mapping_key": "Bâtiment_et_travaux_publics_(accords_nationaux)"
+    },
+    {
+      "idcc": null,
+      "nom": "Boulangerie-pâtisserie : Guyane",
+      "filename": "Boulangerie-pâtisserie___Guyane.pdf",
+      "mapping_key": "Boulangerie-pâtisserie___Guyane"
+    },
+    {
+      "idcc": null,
+      "nom": "Carrières et matériaux : CCN unique",
+      "filename": "Carrières_et_matériaux___CCN_unique.pdf",
+      "mapping_key": "Carrières_et_matériaux___CCN_unique"
+    },
+    {
+      "idcc": null,
+      "nom": "Ciments : industries (accords nationaux)",
+      "filename": "Ciments___industries_(accords_nationaux).pdf",
+      "mapping_key": "Ciments___industries_(accords_nationaux)"
+    },
+    {
+      "idcc": null,
+      "nom": "Commerce de La Réunion",
+      "filename": "Commerce_de_La_Réunion.pdf",
+      "mapping_key": "Commerce_de_La_Réunion"
+    },
+    {
+      "idcc": null,
+      "nom": "Commerces de détail non alimentaires : Pyrénées (Hautes)",
+      "filename": "Commerces_de_détail_non_alimentaires___Pyrénées_(Hautes).pdf",
+      "mapping_key": "Commerces_de_détail_non_alimentaires___Pyrénées_(Hautes)"
+    },
+    {
+      "idcc": null,
+      "nom": "Diagnostic technique du bâti",
+      "filename": "Diagnostic_technique_du_bâti.pdf",
+      "mapping_key": "Diagnostic_technique_du_bâti"
+    },
+    {
+      "idcc": null,
+      "nom": "Enseignement privé (accords de branche du secteur)",
+      "filename": "Enseignement_privé_(accords_de_branche_du_secteur).pdf",
+      "mapping_key": "Enseignement_privé_(accords_de_branche_du_secteur)"
+    },
+    {
+      "idcc": null,
+      "nom": "Foyers de jeunes travailleurs (organismes gestionnaires)",
+      "filename": "Foyers_de_jeunes_travailleurs_(organismes_gestionnaires).pdf",
+      "mapping_key": "Foyers_de_jeunes_travailleurs_(organismes_gestionnaires)"
+    },
+    {
+      "idcc": null,
+      "nom": "Intermittents du spectacle : accords de branche du secteur",
+      "filename": "Intermittents_du_spectacle___accords_de_branche_du_secteur.pdf",
+      "mapping_key": "Intermittents_du_spectacle___accords_de_branche_du_secteur"
+    },
+    {
+      "idcc": null,
+      "nom": "Métallurgie (accords nationaux : ouvriers, ETAM, ingénieurs et cadres)",
+      "filename": "Métallurgie_(accords_nationaux___ouvriers,_ETAM,_ingénieurs_et_cadres).pdf",
+      "mapping_key": "Métallurgie_(accords_nationaux___ouvriers,_ETAM,_ingénieurs_et_cadres)"
+    },
+    {
+      "idcc": null,
+      "nom": "Papiers-cartons : accords nationaux",
+      "filename": "Papiers-cartons___accords_nationaux.pdf",
+      "mapping_key": "Papiers-cartons___accords_nationaux"
+    },
+    {
+      "idcc": null,
+      "nom": "Poste : activités postales",
+      "filename": "Poste___activités_postales.pdf",
+      "mapping_key": "Poste___activités_postales"
+    },
+    {
+      "idcc": null,
+      "nom": "Presse quotidienne régionale : vendeurs administratifs salariés portage (VASP)",
+      "filename": "Presse_quotidienne_régionale___vendeurs_administratifs_salariés_portage_(VASP).pdf",
+      "mapping_key": "Presse_quotidienne_régionale___vendeurs_administratifs_salariés_portage_(VASP)"
+    },
+    {
+      "idcc": null,
+      "nom": "Professions réglementées auprès des juridictions",
+      "filename": "Professions_réglementées_auprès_des_juridictions.pdf",
+      "mapping_key": "Professions_réglementées_auprès_des_juridictions"
+    },
+    {
+      "idcc": null,
+      "nom": "Retraite et prévoyance des cadres : convention du 14 mars 1947",
+      "filename": "Retraite_et_prévoyance_des_cadres___convention_du_14_mars_1947.pdf",
+      "mapping_key": "Retraite_et_prévoyance_des_cadres___convention_du_14_mars_1947"
+    },
+    {
+      "idcc": null,
+      "nom": "Sanitaire, social et médico-social : accords de branche du secteur",
+      "filename": "Sanitaire,_social_et_médico-social___accords_de_branche_du_secteur.pdf",
+      "mapping_key": "Sanitaire,_social_et_médico-social___accords_de_branche_du_secteur"
+    },
+    {
+      "idcc": null,
+      "nom": "Spectacle vivant public et privé : accords interbranches",
+      "filename": "Spectacle_vivant_public_et_privé___accords_interbranches.pdf",
+      "mapping_key": "Spectacle_vivant_public_et_privé___accords_interbranches"
+    },
+    {
+      "idcc": null,
+      "nom": "Thalassothérapie",
+      "filename": "Thalassothérapie.pdf",
+      "mapping_key": "Thalassothérapie"
+    },
+    {
+      "idcc": null,
+      "nom": "Travaux publics (accords nationaux)",
+      "filename": "Travaux_publics_(accords_nationaux).pdf",
+      "mapping_key": "Travaux_publics_(accords_nationaux)"
+    }
+  ],
+  "problemes": [
+    {
+      "idcc": "1391",
+      "nom": "Aéroports : région parisienne",
+      "expected_filename": "1391_Aéroports___région_parisienne.pdf"
+    }
+  ],
+  "total_mappable": 529,
+  "total_problemes": 1
+}
