@@ -1,0 +1,155 @@
+2025-09-24 09:56:02,035 - INFO - Dossier d'extraction créé : extraction_2025-09-24
+2025-09-24 09:56:02,035 - INFO - === DÉBUT DU TÉLÉCHARGEMENT DES PDFs ===
+2025-09-24 09:56:02,035 - INFO - Date : 24 septembre 2025
+2025-09-24 09:56:02,035 - INFO - Dossier de destination : extraction_2025-09-24
+2025-09-24 09:56:02,037 - INFO - Chargé 530 conventions depuis attached_assets/conventions_collectives_integrales_lienpdf_nettoye_1755080256357.json
+2025-09-24 09:56:02,038 - INFO - [1/530] IDCC 7009: Accouvage
+2025-09-24 09:56:02,038 - INFO - Téléchargement : 7009_Accouvage.pdf
+2025-09-24 09:56:02,039 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC545/sharp_/ANX/7009_CC545.pdf
+2025-09-24 09:56:03,004 - INFO - ✅ Téléchargé : 7009_Accouvage.pdf (29,392 bytes)
+2025-09-24 09:56:03,505 - INFO - [2/530] IDCC 2666: Acteurs du développement et de l'ingénierie territoriale d'intérêt général (ADITIG)
+2025-09-24 09:56:03,505 - INFO - Téléchargement : 2666_Acteurs_du_développement_et_de_l'ingénierie_territoriale_d'intérêt_général_(ADITIG).pdf
+2025-09-24 09:56:03,506 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC675/sharp_/ANX/2666_CC675.pdf
+2025-09-24 09:56:03,950 - INFO - ✅ Téléchargé : 2666_Acteurs_du_développement_et_de_l'ingénierie_territoriale_d'intérêt_général_(ADITIG).pdf (151,411 bytes)
+2025-09-24 09:56:04,451 - INFO - [3/530] IDCC 7026: Activités hippiques
+2025-09-24 09:56:04,451 - INFO - Téléchargement : 7026_Activités_hippiques.pdf
+2025-09-24 09:56:04,453 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC768/sharp_/ANX/7026_CC768.pdf
+2025-09-24 09:56:06,204 - INFO - ✅ Téléchargé : 7026_Activités_hippiques.pdf (1,110,876 bytes)
+2025-09-24 09:56:06,705 - INFO - [4/530] IDCC 2706: Administrateurs et mandataires judiciaires (personnel)
+2025-09-24 09:56:06,706 - INFO - Téléchargement : 2706_Administrateurs_et_mandataires_judiciaires_(personnel).pdf
+2025-09-24 09:56:06,706 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC686/sharp_/ANX/2706_CC686.pdf
+2025-09-24 09:56:06,858 - INFO - ✅ Téléchargé : 2706_Administrateurs_et_mandataires_judiciaires_(personnel).pdf (24,294 bytes)
+2025-09-24 09:56:07,358 - INFO - [5/530] IDCC 1412: Aéraulique, thermique et frigorifique
+2025-09-24 09:56:07,359 - INFO - Téléchargement : 1412_Aéraulique,_thermique_et_frigorifique.pdf
+2025-09-24 09:56:07,360 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC002/sharp_/ANX/1412_CC002.pdf
+2025-09-24 09:56:10,067 - INFO - ✅ Téléchargé : 1412_Aéraulique,_thermique_et_frigorifique.pdf (1,558,390 bytes)
+2025-09-24 09:56:10,568 - INFO - [6/530] IDCC : Aérodromes commerciaux (aéroports) : personnels des exploitants
+2025-09-24 09:56:10,569 - INFO - Téléchargement : Aérodromes_commerciaux_(aéroports)___personnels_des_exploitants.pdf
+2025-09-24 09:56:10,569 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC678/sharp_/ANX/CC678.pdf
+2025-09-24 09:56:10,844 - INFO - ✅ Téléchargé : Aérodromes_commerciaux_(aéroports)___personnels_des_exploitants.pdf (41,929 bytes)
+2025-09-24 09:56:11,345 - INFO - [7/530] IDCC 1391: Aéroports : région parisienne
+2025-09-24 09:56:11,345 - INFO - Téléchargement : 1391_Aéroports___région_parisienne.pdf
+2025-09-24 09:56:11,345 - INFO - URL : ,https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC003/sharp_/ANX/1391_CC003.pdf
+2025-09-24 09:56:11,346 - WARNING - Tentative 1/3 échouée pour 1391_Aéroports___région_parisienne.pdf: No connection adapters were found for ',https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC003/sharp_/ANX/1391_CC003.pdf'
+2025-09-24 09:56:13,347 - WARNING - Tentative 2/3 échouée pour 1391_Aéroports___région_parisienne.pdf: No connection adapters were found for ',https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC003/sharp_/ANX/1391_CC003.pdf'
+2025-09-24 09:56:15,348 - WARNING - Tentative 3/3 échouée pour 1391_Aéroports___région_parisienne.pdf: No connection adapters were found for ',https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC003/sharp_/ANX/1391_CC003.pdf'
+2025-09-24 09:56:15,349 - ERROR - ❌ Échec définitif : 1391_Aéroports___région_parisienne.pdf
+2025-09-24 09:56:15,849 - INFO - [8/530] IDCC 2397: Agences de mannequins
+2025-09-24 09:56:15,850 - INFO - Téléchargement : 2397_Agences_de_mannequins.pdf
+2025-09-24 09:56:15,850 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC004/sharp_/ANX/2397_CC004.pdf
+2025-09-24 09:56:16,233 - INFO - ✅ Téléchargé : 2397_Agences_de_mannequins.pdf (24,682 bytes)
+2025-09-24 09:56:16,733 - INFO - [9/530] IDCC : Agriculture : accords nationaux
+2025-09-24 09:56:16,734 - INFO - Téléchargement : Agriculture___accords_nationaux.pdf
+2025-09-24 09:56:16,734 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/OC577/sharp_/ANX/OC577.pdf
+2025-09-24 09:56:37,796 - INFO - ✅ Téléchargé : Agriculture___accords_nationaux.pdf (15,298,160 bytes)
+2025-09-24 09:56:38,298 - INFO - [10/530] IDCC : Agriculture : centres d'initiatives pour valoriser l'agriculture et le milieu rural
+2025-09-24 09:56:38,299 - INFO - Téléchargement : Agriculture___centres_d'initiatives_pour_valoriser_l'agriculture_et_le_milieu_rural.pdf
+2025-09-24 09:56:38,299 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC687/sharp_/ANX/CC687.pdf
+2025-09-24 09:56:38,621 - INFO - ✅ Téléchargé : Agriculture___centres_d'initiatives_pour_valoriser_l'agriculture_et_le_milieu_rural.pdf (162,755 bytes)
+2025-09-24 09:56:39,122 - INFO - [11/530] IDCC 7024: Agriculture : production agricole et CUMA
+2025-09-24 09:56:39,125 - INFO - Téléchargement : 7024_Agriculture___production_agricole_et_CUMA.pdf
+2025-09-24 09:56:39,125 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC738/sharp_/ANX/7024_CC738.pdf
+2025-09-24 09:56:42,040 - INFO - ✅ Téléchargé : 7024_Agriculture___production_agricole_et_CUMA.pdf (1,032,917 bytes)
+2025-09-24 09:56:42,540 - INFO - [12/530] IDCC 7025: Agriculture : travaux et services agricoles, ruraux et forestiers
+2025-09-24 09:56:42,541 - INFO - Téléchargement : 7025_Agriculture___travaux_et_services_agricoles,_ruraux_et_forestiers.pdf
+2025-09-24 09:56:42,541 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC751/sharp_/ANX/7025_CC751.pdf
+2025-09-24 09:56:43,973 - INFO - ✅ Téléchargé : 7025_Agriculture___travaux_et_services_agricoles,_ruraux_et_forestiers.pdf (563,796 bytes)
+2025-09-24 09:56:44,474 - INFO - [13/530] IDCC 2941: Aide à domicile : accompagnement, soins et services
+2025-09-24 09:56:44,475 - INFO - Téléchargement : 2941_Aide_à_domicile___accompagnement,_soins_et_services.pdf
+2025-09-24 09:56:44,475 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC705/sharp_/ANX/2941_CC705.pdf
+2025-09-24 09:56:47,285 - INFO - ✅ Téléchargé : 2941_Aide_à_domicile___accompagnement,_soins_et_services.pdf (1,480,639 bytes)
+2025-09-24 09:56:47,785 - INFO - [14/530] IDCC 1314: Alimentation : gérants mandataires non salariés
+2025-09-24 09:56:47,786 - INFO - Téléchargement : 1314_Alimentation___gérants_mandataires_non_salariés.pdf
+2025-09-24 09:56:47,786 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC009/sharp_/ANX/1314_CC009.pdf
+2025-09-24 09:56:48,283 - INFO - ✅ Téléchargé : 1314_Alimentation___gérants_mandataires_non_salariés.pdf (287,341 bytes)
+2025-09-24 09:56:48,858 - INFO - [15/530] IDCC : Alimentation : industries agroalimentaires (accords nationaux)
+2025-09-24 09:56:48,859 - INFO - Téléchargement : Alimentation___industries_agroalimentaires_(accords_nationaux).pdf
+2025-09-24 09:56:48,859 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC011/sharp_/ANX/CC011.pdf
+2025-09-24 09:58:33,125 - INFO - ✅ Téléchargé : Alimentation___industries_agroalimentaires_(accords_nationaux).pdf (46,032,432 bytes)
+2025-09-24 09:58:33,629 - INFO - [16/530] IDCC 1341: Alimentation : industries agroalimentaires de la Réunion
+2025-09-24 09:58:33,630 - INFO - Téléchargement : 1341_Alimentation___industries_agroalimentaires_de_la_Réunion.pdf
+2025-09-24 09:58:33,631 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC012/sharp_/ANX/1341_CC012.pdf
+2025-09-24 09:58:34,285 - INFO - ✅ Téléchargé : 1341_Alimentation___industries_agroalimentaires_de_la_Réunion.pdf (262,749 bytes)
+2025-09-24 09:58:34,790 - INFO - [17/530] IDCC 3109: Alimentation : industries alimentaires diverses (5 branches)
+2025-09-24 09:58:34,791 - INFO - Téléchargement : 3109_Alimentation___industries_alimentaires_diverses_(5_branches).pdf
+2025-09-24 09:58:34,791 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC713/sharp_/ANX/3109_CC713.pdf
+2025-09-24 09:58:37,257 - INFO - ✅ Téléchargé : 3109_Alimentation___industries_alimentaires_diverses_(5_branches).pdf (1,546,143 bytes)
+2025-09-24 09:58:37,757 - INFO - [18/530] IDCC 3123: Ambulances (ouvriers, employés et techniciens) : Guyane
+2025-09-24 09:58:37,758 - INFO - Téléchargement : 3123_Ambulances_(ouvriers,_employés_et_techniciens)___Guyane.pdf
+2025-09-24 09:58:37,759 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC730/sharp_/ANX/3123_CC730.pdf
+2025-09-24 09:58:39,701 - INFO - ✅ Téléchargé : 3123_Ambulances_(ouvriers,_employés_et_techniciens)___Guyane.pdf (780,683 bytes)
+2025-09-24 09:58:40,202 - INFO - [19/530] IDCC 1411: Ameublement : fabrication
+2025-09-24 09:58:40,203 - INFO - Téléchargement : 1411_Ameublement___fabrication.pdf
+2025-09-24 09:58:40,203 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC015/sharp_/ANX/1411_CC015.pdf
+2025-09-24 09:58:44,934 - INFO - ✅ Téléchargé : 1411_Ameublement___fabrication.pdf (1,909,641 bytes)
+2025-09-24 09:58:45,434 - INFO - [20/530] IDCC 1880: Ameublement : négoce
+2025-09-24 09:58:45,437 - INFO - Téléchargement : 1880_Ameublement___négoce.pdf
+2025-09-24 09:58:45,437 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC014/sharp_/ANX/1880_CC014.pdf
+2025-09-24 09:58:50,140 - INFO - ✅ Téléchargé : 1880_Ameublement___négoce.pdf (1,916,666 bytes)
+2025-09-24 09:58:50,641 - INFO - [21/530] IDCC 1518: Animation : métiers de l'éducation, de la culture, des loisirs et de l'animation (ECLAT)
+2025-09-24 09:58:50,642 - INFO - Téléchargement : 1518_Animation___métiers_de_l'éducation,_de_la_culture,_des_loisirs_et_de_l'animation_(ECLAT).pdf
+2025-09-24 09:58:50,642 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC017/sharp_/ANX/1518_CC017.pdf
+2025-09-24 09:58:53,198 - INFO - ✅ Téléchargé : 1518_Animation___métiers_de_l'éducation,_de_la_culture,_des_loisirs_et_de_l'animation_(ECLAT).pdf (1,337,391 bytes)
+2025-09-24 09:58:53,698 - INFO - [22/530] IDCC 7010: Aquaculture
+2025-09-24 09:58:53,699 - INFO - Téléchargement : 7010_Aquaculture.pdf
+2025-09-24 09:58:53,699 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC567/sharp_/ANX/7010_CC567.pdf
+2025-09-24 09:58:54,251 - INFO - ✅ Téléchargé : 7010_Aquaculture.pdf (324,843 bytes)
+2025-09-24 09:58:54,751 - INFO - [23/530] IDCC 2332: Architecture : entreprises
+2025-09-24 09:58:54,752 - INFO - Téléchargement : 2332_Architecture___entreprises.pdf
+2025-09-24 09:58:54,753 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC018/sharp_/ANX/2332_CC018.pdf
+2025-09-24 09:59:45,835 - INFO - ✅ Téléchargé : 2332_Architecture___entreprises.pdf (22,080,685 bytes)
+2025-09-24 09:59:46,338 - INFO - [24/530] IDCC 1734: Artistes interprètes : émissions de télévision
+2025-09-24 09:59:46,339 - INFO - Téléchargement : 1734_Artistes_interprètes___émissions_de_télévision.pdf
+2025-09-24 09:59:46,339 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC021/sharp_/ANX/1285_CC021.pdf
+2025-09-24 09:59:49,282 - INFO - ✅ Téléchargé : 1734_Artistes_interprètes___émissions_de_télévision.pdf (1,896,228 bytes)
+2025-09-24 09:59:49,783 - INFO - [25/530] IDCC 1285: Artistique : entreprises artistiques et culturelles
+2025-09-24 09:59:49,784 - INFO - Téléchargement : 1285_Artistique___entreprises_artistiques_et_culturelles.pdf
+2025-09-24 09:59:49,784 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC020/sharp_/ANX/1734_CC020.pdf
+2025-09-24 09:59:50,490 - INFO - ✅ Téléchargé : 1285_Artistique___entreprises_artistiques_et_culturelles.pdf (446,686 bytes)
+2025-09-24 09:59:50,998 - INFO - [26/530] IDCC : Arts, métiers d'arts et design
+2025-09-24 09:59:50,999 - INFO - Téléchargement : Arts,_métiers_d'arts_et_design.pdf
+2025-09-24 09:59:50,999 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC763/sharp_/ANX/CC763.pdf
+2025-09-24 09:59:51,518 - INFO - ✅ Téléchargé : Arts,_métiers_d'arts_et_design.pdf (192,302 bytes)
+2025-09-24 09:59:52,023 - INFO - [27/530] IDCC 2272: Assainissement et maintenance industrielle
+2025-09-24 09:59:52,024 - INFO - Téléchargement : 2272_Assainissement_et_maintenance_industrielle.pdf
+2025-09-24 09:59:52,025 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC630/sharp_/ANX/2272_CC630.pdf
+2025-09-24 09:59:56,813 - INFO - ✅ Téléchargé : 2272_Assainissement_et_maintenance_industrielle.pdf (1,884,845 bytes)
+2025-09-24 09:59:57,314 - INFO - [28/530] IDCC 1801: Assistance
+2025-09-24 09:59:57,316 - INFO - Téléchargement : 1801_Assistance.pdf
+2025-09-24 09:59:57,316 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC022/sharp_/ANX/1801_CC022.pdf
+2025-09-24 09:59:59,612 - INFO - ✅ Téléchargé : 1801_Assistance.pdf (1,133,244 bytes)
+2025-09-24 10:00:00,113 - INFO - [29/530] IDCC 2395: Assistants maternels
+2025-09-24 10:00:00,113 - INFO - Téléchargement : 2395_Assistants_maternels.pdf
+2025-09-24 10:00:00,114 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC643/sharp_/ANX/2395_CC643.pdf
+2025-09-24 10:00:00,389 - INFO - ✅ Téléchargé : 2395_Assistants_maternels.pdf (27,482 bytes)
+2025-09-24 10:00:00,890 - INFO - [30/530] IDCC 3160: Associations de gestion et de comptabilité
+2025-09-24 10:00:00,890 - INFO - Téléchargement : 3160_Associations_de_gestion_et_de_comptabilité.pdf
+2025-09-24 10:00:00,891 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC634/sharp_/ANX/3160_CC634.pdf
+2025-09-24 10:00:01,289 - INFO - ✅ Téléchargé : 3160_Associations_de_gestion_et_de_comptabilité.pdf (24,889 bytes)
+2025-09-24 10:00:01,791 - INFO - [31/530] IDCC 7020: Associations de gestion et de comptabilité : réseau CERFRANCE
+2025-09-24 10:00:01,791 - INFO - Téléchargement : 7020_Associations_de_gestion_et_de_comptabilité___réseau_CERFRANCE.pdf
+2025-09-24 10:00:01,792 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC636/sharp_/ANX/7020_CC636.pdf
+2025-09-24 10:00:03,738 - INFO - ✅ Téléchargé : 7020_Associations_de_gestion_et_de_comptabilité___réseau_CERFRANCE.pdf (1,348,011 bytes)
+2025-09-24 10:00:04,239 - INFO - [32/530] IDCC 2335: Assurances : agences générales
+2025-09-24 10:00:04,241 - INFO - Téléchargement : 2335_Assurances___agences_générales.pdf
+2025-09-24 10:00:04,241 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC023/sharp_/ANX/2335_CC023.pdf
+2025-09-24 10:00:06,697 - INFO - ✅ Téléchargé : 2335_Assurances___agences_générales.pdf (1,229,535 bytes)
+2025-09-24 10:00:07,197 - INFO - [33/530] IDCC 2357: Assurances : cadres de direction des sociétés
+2025-09-24 10:00:07,198 - INFO - Téléchargement : 2357_Assurances___cadres_de_direction_des_sociétés.pdf
+2025-09-24 10:00:07,199 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC025/sharp_/ANX/2357_CC025.pdf
+2025-09-24 10:00:07,645 - INFO - ✅ Téléchargé : 2357_Assurances___cadres_de_direction_des_sociétés.pdf (181,230 bytes)
+2025-09-24 10:00:08,146 - INFO - [34/530] IDCC 2247: Assurances : courtage
+2025-09-24 10:00:08,147 - INFO - Téléchargement : 2247_Assurances___courtage.pdf
+2025-09-24 10:00:08,148 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC024/sharp_/ANX/2247_CC024.pdf
+2025-09-24 10:00:15,308 - INFO - ✅ Téléchargé : 2247_Assurances___courtage.pdf (5,251,357 bytes)
+2025-09-24 10:00:15,808 - INFO - [35/530] IDCC 1679: Assurances : inspection
+2025-09-24 10:00:15,809 - INFO - Téléchargement : 1679_Assurances___inspection.pdf
+2025-09-24 10:00:15,809 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC026/sharp_/ANX/1679_CC026.pdf
+2025-09-24 10:00:16,881 - INFO - ✅ Téléchargé : 1679_Assurances___inspection.pdf (563,741 bytes)
+2025-09-24 10:00:17,381 - INFO - [36/530] IDCC 653: Assurances : salariés commerciaux des sociétés
+2025-09-24 10:00:17,382 - INFO - Téléchargement : 653_Assurances___salariés_commerciaux_des_sociétés.pdf
+2025-09-24 10:00:17,382 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC748/sharp_/ANX/653_CC748.pdf
+2025-09-24 10:00:17,798 - INFO - ✅ Téléchargé : 653_Assurances___salariés_commerciaux_des_sociétés.pdf (259,943 bytes)
+2025-09-24 10:00:18,299 - INFO - [37/530] IDCC 1672: Assurances : sociétés
+2025-09-24 10:00:18,299 - INFO - Téléchargement : 1672_Assurances___sociétés.pdf
+2025-09-24 10:00:18,299 - INFO - URL : https://www.elnet.fr/documentation/hulkStatic/EL/CD15/CCOL/CC029/sharp_/ANX/1672_CC029.pdf
