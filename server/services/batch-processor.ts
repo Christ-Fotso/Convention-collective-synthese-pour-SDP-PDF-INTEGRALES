@@ -42,7 +42,7 @@ export class BatchProcessor {
    * Scan du dossier PDF pour préparer la liste
    */
   async scanConventions(): Promise<ConventionFile[]> {
-    const pdfDir = 'resultats_telechargements/complet_20250813_102543';
+    const pdfDir = 'extraction_2025-09-24';
     
     if (!fs.existsSync(pdfDir)) {
       throw new Error(`Dossier PDF introuvable: ${pdfDir}`);
@@ -174,7 +174,7 @@ export class BatchProcessor {
       };
       
     } catch (error) {
-      throw new Error(`Erreur traitement ${convention.idcc}: ${error.message}`);
+      throw new Error(`Erreur traitement ${convention.idcc}: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
     }
   }
 

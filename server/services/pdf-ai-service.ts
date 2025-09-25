@@ -10,7 +10,7 @@ const geminiApi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 const MODEL = "gemini-1.5-flash";
 
 export class PDFAnalysisService {
-  private pdfDirectory = './resultats_telechargements/complet_20250813_102543';
+  private pdfDirectory = './extraction_2025-09-24';
 
   /**
    * Trouve le fichier PDF d'une convention par IDCC
