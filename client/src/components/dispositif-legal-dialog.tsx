@@ -19,8 +19,8 @@ export const DispositifLegalDialog: React.FC<DispositifLegalDialogProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="w-[90vw] max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle className="flex items-center">
             <BookOpen className="mr-2 h-5 w-5 text-green-600" />
             <span>Dispositif légal : {title}</span>
@@ -30,8 +30,10 @@ export const DispositifLegalDialog: React.FC<DispositifLegalDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
         
-        <div className="mt-4">
-          <MarkdownTableWrapper content={content} />
+        <div className="flex-1 overflow-y-auto min-h-0 modal-scroll-container">
+          <div className="modal-table-wrapper">
+            <MarkdownTableWrapper content={content} />
+          </div>
         </div>
       </DialogContent>
     </Dialog>

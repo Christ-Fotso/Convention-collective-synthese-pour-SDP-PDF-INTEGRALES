@@ -64,6 +64,48 @@
   margin-bottom: 0.3rem;
 }
 
+/* Styles spécifiques pour les modales et dialogues */
+.dialog-content-custom {
+  max-width: min(90vw, 1200px);
+  max-height: min(85vh, 800px);
+  margin: auto;
+}
+
+/* Amélioration du scrolling dans les modales */
+.modal-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+.modal-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+}
+
+.modal-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(155, 155, 155, 0.8);
+}
+
+/* Styles pour éviter les débordements des tableaux dans les modales */
+.modal-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.modal-table-wrapper table {
+  min-width: 100%;
+  table-layout: fixed;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -71,6 +113,11 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  /* Empêcher le scroll du body quand une modal est ouverte */
+  body[data-scroll-locked] {
+    overflow: hidden;
   }
 
   /* Assurer que la police Inter s'applique à tout le contenu des conventions */

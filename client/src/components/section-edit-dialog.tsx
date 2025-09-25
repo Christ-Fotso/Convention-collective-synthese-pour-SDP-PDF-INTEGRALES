@@ -99,8 +99,8 @@ export function SectionEditDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-6xl max-h-[90vh]">
-        <DialogHeader>
+      <DialogContent className="w-[95vw] max-w-4xl max-h-[85vh] overflow-hidden flex flex-col">
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle className="flex items-center gap-2">
             <Eye className="h-5 w-5" />
             Édition de section - {sectionTitle}
@@ -114,7 +114,7 @@ export function SectionEditDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4">
+        <div className="space-y-4 flex-1 overflow-hidden flex flex-col">
           {/* Affichage des erreurs */}
           {regenerateMutation.error && (
             <Alert variant="destructive">
@@ -136,17 +136,17 @@ export function SectionEditDialog({
 
           {!isPreviewMode ? (
             /* Mode initial - affichage du contenu actuel */
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Contenu actuel :</h3>
-                <div className="border rounded-md p-4 bg-muted/50 max-h-96 overflow-y-auto">
+            <div className="space-y-4 flex-1 flex flex-col overflow-hidden">
+              <div className="flex-1 flex flex-col overflow-hidden">
+                <h3 className="text-lg font-semibold mb-2 flex-shrink-0">Contenu actuel :</h3>
+                <div className="border rounded-md p-4 bg-muted/50 flex-1 overflow-y-auto min-h-0">
                   <div className="prose prose-sm max-w-none dark:prose-invert">
                     <MarkdownTableRendererEnhanced content={currentContent} />
                   </div>
                 </div>
               </div>
               
-              <div className="flex justify-end gap-2">
+              <div className="flex justify-end gap-2 flex-shrink-0 pt-4 border-t mt-4">
                 <Button variant="outline" onClick={handleClose}>
                   Annuler
                 </Button>
@@ -167,23 +167,23 @@ export function SectionEditDialog({
             </div>
           ) : (
             /* Mode prévisualisation - comparaison ancien/nouveau */
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-4 flex-1 flex flex-col overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 overflow-hidden">
                 {/* Contenu actuel */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 text-gray-600">Contenu actuel :</h3>
-                  <div className="border rounded-md p-4 bg-muted/50 max-h-96 overflow-y-auto">
-                    <div className="prose prose-sm max-w-none dark:prose-invert">
+                <div className="flex flex-col overflow-hidden">
+                  <h3 className="text-lg font-semibold mb-2 text-gray-600 flex-shrink-0">Contenu actuel :</h3>
+                  <div className="border rounded-md p-3 bg-muted/50 flex-1 overflow-y-auto min-h-0 modal-scroll-container">
+                    <div className="prose prose-sm max-w-none dark:prose-invert modal-table-wrapper">
                       <MarkdownTableRendererEnhanced content={currentContent} />
                     </div>
                   </div>
                 </div>
                 
                 {/* Nouveau contenu */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 text-green-600">Nouveau contenu :</h3>
-                  <div className="border-2 border-green-200 rounded-md p-4 bg-green-50/50 max-h-96 overflow-y-auto">
-                    <div className="prose prose-sm max-w-none dark:prose-invert">
+                <div className="flex flex-col overflow-hidden">
+                  <h3 className="text-lg font-semibold mb-2 text-green-600 flex-shrink-0">Nouveau contenu :</h3>
+                  <div className="border-2 border-green-200 rounded-md p-3 bg-green-50/50 flex-1 overflow-y-auto min-h-0 modal-scroll-container">
+                    <div className="prose prose-sm max-w-none dark:prose-invert modal-table-wrapper">
                       <MarkdownTableRendererEnhanced content={regeneratedContent} />
                     </div>
                   </div>

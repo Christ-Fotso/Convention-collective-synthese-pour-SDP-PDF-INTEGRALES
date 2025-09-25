@@ -1,7 +1,7 @@
 # Convention Collective Analytics Platform - replit.md
 
 ## Overview
-This platform is a web application designed for analyzing and managing French collective bargaining agreements (conventions collectives). Its primary purpose is to provide AI-powered extraction and analysis of legal documents, specifically focusing on employment law provisions within collective agreements. It serves HR professionals, legal experts, and organizations by enabling efficient navigation and extraction of information from numerous collective agreements using advanced AI technologies. The project aims to leverage AI to parse complex legal documents, offering a specialized tool for legal compliance and information retrieval.
+This platform is a web application designed for analyzing and managing French collective bargaining agreements (conventions collectives). Its primary purpose is to provide AI-powered extraction and analysis of legal documents, specifically focusing on employment law provisions within collective agreements. It serves HR professionals, legal experts, and organizations by enabling efficient navigation and extraction of information from numerous collective agreements using advanced AI technologies. The project now features a **unified admin interface** that allows administrators to use the same interface as regular users, with conditional admin buttons that appear only when accessing via admin routes (/admin/...).
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
@@ -33,6 +33,7 @@ Visual design: Orange/yellow colors harmonizing with green palette, diamond symb
 - **UI Features**: Modern sidebar navigation, advanced keyword search with HTML preview and relevance scoring, and a refactored home interface with statistical insights.
 - **HTML Rendering**: Automatic Markdown to HTML conversion with `marked` library, professional formatting, and syntax highlighting via `highlight.js`. HTML table formatting issues resolved (336 ```html code blocks removed from data.json).
 - **Navigation UX**: Sticky header navigation with blue-accented return button, accessible without scrolling to top.
+- **Admin Interface**: Unified admin interface using the same pages as regular users, with conditional admin buttons ("Régénérer IA" and "Éditer") that appear only when accessing via /admin/* routes. Features robust error handling with fallback prompts, improved modal layouts with appropriate sizing (max-width-4xl), and enhanced z-index management for proper dialog rendering.
 
 ### Deployment Strategy
 - **Platform**: Google Cloud Run.

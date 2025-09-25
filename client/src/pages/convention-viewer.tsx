@@ -67,8 +67,11 @@ function getCategoryLabel(category: string, subcategory: string): string {
 
 export default function ConventionViewer() {
   const { id } = useParams<{ id: string }>();
-  const [_, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState(false);
+  
+  // Détection du mode admin à partir de l'URL
+  const isAdminMode = location.startsWith('/admin/');
   
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
@@ -172,16 +175,22 @@ export default function ConventionViewer() {
               ) : (
                 <ScrollArea className="h-[calc(100vh-300px)]">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {groupedSections.map((section, index) => (
-                      <Link 
-                        key={index} 
-                        href={`/convention/${id}/section/${section.category}/${section.subcategory}`}
-                      >
-                        <div className="cursor-pointer rounded-md border p-4 hover:bg-slate-100 dark:hover:bg-slate-900/20">
-                          <h3 className="font-medium">{section.label}</h3>
-                        </div>
-                      </Link>
-                    ))}
+                    {groupedSections.map((section, index) => {
+                      // Construire l'URL en fonction du mode admin ou normal
+                      const baseUrl = isAdminMode ? '/admin' : '';
+                      const sectionUrl = `${baseUrl}/convention/${id}/section/${section.category}.${section.subcategory}`;
+                      
+                      return (
+                        <Link 
+                          key={index} 
+                          href={sectionUrl}
+                        >
+                          <div className="cursor-pointer rounded-md border p-4 hover:bg-slate-100 dark:hover:bg-slate-900/20">
+                            <h3 className="font-medium">{section.label}</h3>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </ScrollArea>
               )}
