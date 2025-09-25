@@ -366,8 +366,8 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
     console.log(`[INFO] Envoi de la requête à l'API Gemini`);
     
     try {
-      // 4. Appel à l'API Gemini avec le modèle gemini-1.5-flash
-      const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
+      // 4. Appel à l'API Gemini avec le modèle gemini-1.5-flash-latest
+      const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
@@ -400,7 +400,7 @@ export async function askQuestionWithGemini(conventionId: string, question: stri
         `;
         
         try {
-          const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash" });
+          const model = geminiApi.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
           const result = await model.generateContent(shorterPrompt);
           const response = await result.response;
           const text = response.text();
