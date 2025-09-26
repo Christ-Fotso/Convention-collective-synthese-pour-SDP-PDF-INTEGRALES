@@ -15,7 +15,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/chat" component={Home} />
       <Route path="/chat/:id" component={Chat} />
-      <Route path="/convention/:id" component={Chat} />
+      <Route path="/convention/:id" component={ConventionViewer} />
       <Route path="/admin" component={Home} />
       <Route path="/admin/convention/:id" component={ConventionViewer} />
       <Route path="/admin/convention/:conventionId/section/:sectionType" component={SectionViewer} />
