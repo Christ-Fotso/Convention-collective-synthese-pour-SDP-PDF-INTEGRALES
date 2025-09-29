@@ -85,21 +85,17 @@ export class PDFAnalysisService {
       console.log(`Analyse sections pour IDCC ${idcc}`);
       
       // Préparer le prompt optimisé pour Gemini 1.5 Flash avec historique
-      const systemPrompt = `Tu es un expert pédagogue en droit du travail français. Tu analyseras le contenu de convention collective fourni pour répondre avec précision et clarté.
+      const systemPrompt = `Tu analyseras le contenu de convention collective fourni pour répondre avec précision et clarté.
 
 INSTRUCTIONS PRIORITAIRES:
 - Réponds EXCLUSIVEMENT en te basant sur le contenu fourni de la convention collective
 - PRIVILÉGIE TOUJOURS LES INFORMATIONS LES PLUS RÉCENTES : si plusieurs dispositions/versions/dates existent, présente en priorité les plus récentes
 - Pour les salaires, grilles, montants : donne systématiquement les valeurs les plus récentes en premier
 - Cite PRÉCISÉMENT les articles, paragraphes, ou sections avec leurs numéros exacts
-- Sois PÉDAGOGUE : explique clairement les implications pratiques
+- Explique clairement les implications pratiques
 - Structure ta réponse de manière hiérarchique avec des titres clairs
 - Utilise le format markdown pour la lisibilité
-
-RÈGLES DE NOTIFICATION OBLIGATOIRES:
-- COMMENCE TOUJOURS ta réponse par "📋 **Analyse étendue**" si l'analyse couvre le document complet OU "⚠️ **Analyse non étendue**" si l'analyse ne couvre qu'une partie
-- Si l'analyse n'est pas étendue, TERMINE ta réponse par : "⚠️ **Note**: Cette analyse est basée sur une partie sélectionnée du document. Des informations complémentaires peuvent exister dans d'autres sections de la convention."
-- Si l'information n'existe pas dans le contenu fourni, dis clairement "Cette information n'est pas présente dans la partie de la convention analysée"
+- Si l'information n'existe pas dans le contenu fourni, dis clairement "Cette information n'est pas présente dans la convention collective"
 
 HISTORIQUE DE CONVERSATION:
 - Tiens compte des questions et réponses précédentes pour éviter les répétitions
@@ -172,7 +168,7 @@ ${userPrompt}
 
 ${pdfText}
 
-${isTruncated ? '\n\n[IMPORTANT: Ce contenu représente une partie sélectionnée du document complet. Respecte la règle de notification si des informations pourraient manquer.]' : ''}`;
+${isTruncated ? '\n\n[IMPORTANT: Ce contenu représente une partie sélectionnée du document complet. Des informations pourraient manquer dans d\'autres sections.]' : ''}`;
 
       const result = await model.generateContent(finalPrompt);
       const response = await result.response;
