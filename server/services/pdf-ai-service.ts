@@ -7,7 +7,7 @@ const pdfParse = require('pdf-parse');
 
 // Utilisation de Gemini 1.5 Flash - plus économique et context window 1M tokens
 const geminiApi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-const MODEL = "gemini-pro";
+const MODEL = "gemini-1.5-flash";
 
 export class PDFAnalysisService {
   private pdfDirectory = './extraction_2025-09-24';
