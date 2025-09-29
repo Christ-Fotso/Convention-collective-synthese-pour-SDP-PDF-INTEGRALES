@@ -12,7 +12,7 @@ import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legau
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { MarkdownTableRendererEnhanced } from "@/components/markdown-table-renderer-enhanced";
 import { HtmlTestViewer } from "@/components/html-test-viewer";
-import { ChatConventionDialog } from "@/components/chat-convention-dialog";
+import { ChatAssistantPanel } from "@/components/chat-assistant-panel";
 import { SearchDialog } from "@/components/search-dialog";
 import { GLOBAL_CONFIG } from "@/lib/constants";
 
@@ -589,9 +589,9 @@ export default function Chat() {
         </Button>
       )}
       
-      {/* Dialog de chat */}
+      {/* Panneau de chat */}
       {convention && (
-        <ChatConventionDialog
+        <ChatAssistantPanel
           open={isChatDialogOpen}
           onOpenChange={setIsChatDialogOpen}
           conventionId={id || ""}
