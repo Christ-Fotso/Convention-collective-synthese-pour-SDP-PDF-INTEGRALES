@@ -183,10 +183,10 @@ export function ChatConventionDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col p-6">
-        <DialogHeader className="pb-2">
+      <DialogContent className="chat-modal-content sm:max-w-4xl max-h-[90vh] flex flex-col p-6">
+        <DialogHeader className="chat-header pb-2">
           <DialogTitle className="flex items-center justify-between">
-            <span className="text-green-600 font-semibold">
+            <span className="text-green-600 font-semibold text-sm sm:text-base">
               Chat avec la convention "{conventionName}"
             </span>
             <Button
@@ -198,14 +198,14 @@ export function ChatConventionDialog({
               <X className="h-4 w-4" />
             </Button>
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-xs sm:text-sm">
             Posez des questions précises sur cette convention collective.
           </DialogDescription>
         </DialogHeader>
         
         <div className="flex flex-col h-[70vh] mt-4">
           {/* Zone de chat avec les messages */}
-          <ScrollArea className="flex-1 pr-4 overflow-y-auto" ref={scrollAreaRef}>
+          <ScrollArea className="chat-scroll-area flex-1 pr-4 overflow-y-auto" ref={scrollAreaRef}>
             <div className="space-y-4 py-4">
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground py-8">
@@ -216,10 +216,10 @@ export function ChatConventionDialog({
                   <div 
                     key={msg.id} 
                     className={cn(
-                      "flex items-start gap-3 rounded-lg p-4",
+                      "chat-message flex items-start gap-3 rounded-lg p-4",
                       msg.role === "user" 
-                        ? "bg-muted/50 ml-12" 
-                        : "bg-primary/10 mr-12"
+                        ? "bg-muted/50 ml-6 sm:ml-12" 
+                        : "bg-primary/10 mr-6 sm:mr-12"
                     )}
                   >
                     <div className={cn(
@@ -289,7 +289,7 @@ export function ChatConventionDialog({
           )}
           
           {/* Zone d'input pour les questions - fixée en bas */}
-          <div className="border-t pt-3 mt-2 bg-background">
+          <div className="chat-input-area border-t pt-3 mt-2 bg-background">
             <div className="flex gap-2">
               <div className="flex-1">
                 <Textarea
@@ -298,7 +298,7 @@ export function ChatConventionDialog({
                   onChange={(e) => setCurrentQuestion(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Posez votre question sur la convention..."
-                  className="flex-1 min-h-[60px] max-h-[80px] resize-none"
+                  className="flex-1 min-h-[60px] max-h-[80px] resize-none text-sm"
                   disabled={isLoading}
                 />
               </div>
