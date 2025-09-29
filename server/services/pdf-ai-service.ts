@@ -10,20 +10,56 @@ const geminiApi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 const MODEL = "gemini-1.5-flash";
 
 export class PDFAnalysisService {
-  private pdfDirectory = './resultats_telechargements/complet_20250813_102543';
+  private pdfDirectory = './extraction_2025-09-24';
 
   /**
-   * Trouve le fichier PDF d'une convention par IDCC
+   * Trouve le fichier PDF d'une convention par IDCC ou nom de convention
    */
   private findPDFByIDCC(idcc: string): string | null {
     try {
       const files = fs.readdirSync(this.pdfDirectory);
-      const pdfFile = files.find(file => 
+      
+      // D'abord, chercher par IDCC (format: {IDCC}_{nom}.pdf)
+      let pdfFile = files.find(file => 
         file.startsWith(`${idcc}_`) && file.endsWith('.pdf')
       );
-      return pdfFile ? path.join(this.pdfDirectory, pdfFile) : null;
+      
+      // Si pas trouvé et que idcc contient des caractères non-numériques,
+      // chercher par nom de convention (format: {nom}.pdf pour conventions sans IDCC)
+      if (!pdfFile && !/^\d+$/.test(idcc)) {
+        console.log(`Recherche par nom de convention: ${idcc}`);
+        // Nettoyer le nom pour la recherche (remplacer espaces par underscores, etc.)
+        const cleanName = idcc.replace(/\s+/g, '_')
+                             .replace(/[<>:"/\\|?*]/g, '_')
+                             .replace(/[()]/g, '_')
+                             .replace(/_+/g, '_')
+                             .replace(/^_|_$/g, '');
+        
+        // Chercher un fichier qui correspond au nom nettoyé
+        pdfFile = files.find(file => {
+          const fileName = file.replace('.pdf', '');
+          return fileName.toLowerCase().includes(cleanName.toLowerCase()) && file.endsWith('.pdf');
+        });
+        
+        // Si toujours pas trouvé, essayer une recherche plus large
+        if (!pdfFile) {
+          const searchTerms = idcc.toLowerCase().split(/\s+|_/).filter(term => term.length > 2);
+          pdfFile = files.find(file => {
+            const fileLower = file.toLowerCase();
+            return searchTerms.some(term => fileLower.includes(term)) && file.endsWith('.pdf');
+          });
+        }
+      }
+      
+      if (pdfFile) {
+        console.log(`PDF trouvé: ${pdfFile} pour convention: ${idcc}`);
+        return path.join(this.pdfDirectory, pdfFile);
+      }
+      
+      console.log(`Aucun PDF trouvé pour: ${idcc}`);
+      return null;
     } catch (error) {
-      console.error(`Erreur recherche PDF IDCC ${idcc}:`, error);
+      console.error(`Erreur recherche PDF ${idcc}:`, error);
       return null;
     }
   }
@@ -243,9 +279,14 @@ ${isTruncated ? '\n\n[IMPORTANT: Ce contenu représente une partie sélectionné
       );
 
       if (match) {
-        // Extraire l'IDCC du nom de fichier
+        // Extraire l'IDCC du nom de fichier s'il y en a un
         const idccMatch = match.match(/^(\d+)_/);
-        return idccMatch ? idccMatch[1] : null;
+        if (idccMatch) {
+          return idccMatch[1];
+        } else {
+          // Pour les conventions sans IDCC, retourner le nom du fichier sans .pdf
+          return match.replace('.pdf', '');
+        }
       }
       
       return null;
@@ -268,13 +309,38 @@ ${isTruncated ? '\n\n[IMPORTANT: Ce contenu représente une partie sélectionné
           const stats = fs.statSync(filePath);
           const match = file.match(/^(\d+)_(.+)\.pdf$/);
           
-          return {
-            idcc: match ? match[1] : 'unknown',
-            name: match ? match[2].replace(/_/g, ' ') : file,
-            size: stats.size
-          };
+          if (match) {
+            // Convention avec IDCC
+            return {
+              idcc: match[1],
+              name: match[2].replace(/_/g, ' '),
+              size: stats.size
+            };
+          } else {
+            // Convention sans IDCC - utiliser le nom de fichier
+            const fileName = file.replace('.pdf', '');
+            return {
+              idcc: fileName, // Utiliser le nom de fichier comme identifiant
+              name: fileName.replace(/_/g, ' ').replace(/,/g, ' : '),
+              size: stats.size
+            };
+          }
         })
-        .sort((a, b) => parseInt(a.idcc) - parseInt(b.idcc));
+        .sort((a, b) => {
+          // Trier par IDCC numérique d'abord, puis par nom pour les conventions sans IDCC
+          const aIsNumeric = /^\d+$/.test(a.idcc);
+          const bIsNumeric = /^\d+$/.test(b.idcc);
+          
+          if (aIsNumeric && bIsNumeric) {
+            return parseInt(a.idcc) - parseInt(b.idcc);
+          } else if (aIsNumeric && !bIsNumeric) {
+            return -1; // Les conventions avec IDCC d'abord
+          } else if (!aIsNumeric && bIsNumeric) {
+            return 1; // Les conventions avec IDCC d'abord
+          } else {
+            return a.name.localeCompare(b.name); // Tri alphabétique pour les conventions sans IDCC
+          }
+        });
 
       return conventions;
     } catch (error) {
