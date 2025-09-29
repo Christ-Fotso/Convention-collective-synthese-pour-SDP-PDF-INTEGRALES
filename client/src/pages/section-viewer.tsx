@@ -185,79 +185,81 @@ export default function SectionViewer() {
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="flex flex-col gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
-        <div className="flex items-center gap-4">
-          <Button variant="outline" onClick={() => navigate(`/chat/${conventionId}`)} className="hover:bg-background">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour à la convention
-          </Button>
-          <h1 className="text-2xl font-bold">
-            {convention.id ? `IDCC ${convention.id} - ` : <span className="text-orange-600">Convention sans IDCC - </span>}
-            {convention.name}
-          </h1>
+    <div className="iframe-optimized">
+      <div className="container mx-auto py-8 px-4">
+        <div className="nav-compact mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Button variant="outline" size="sm" onClick={() => navigate(`/chat/${conventionId}`)} className="p-1">
+              <ArrowLeft className="mr-1 h-3 w-3" />
+              Retour
+            </Button>
+            <h1 className="text-lg font-semibold flex-1">
+              {convention.id ? `IDCC ${convention.id} - ` : <span className="text-orange-600">Sans IDCC - </span>}
+              {convention.name}
+            </h1>
+          </div>
+          <div className="flex items-center gap-1 text-xs text-green-700 bg-green-50 px-2 py-1 rounded border border-green-200">
+            <Calendar className="h-3 w-3 text-green-600" />
+            <span className="font-medium">MAJ : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2 text-sm bg-green-50 px-3 py-2 rounded-md border border-green-200">
-          <Calendar className="h-4 w-4 text-green-600" />
-          <span className="text-green-700 font-medium">Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-        </div>
-      </div>
 
-      {/* Système de conversion HTML pour les documents légaux */}
-      {conventionId && sectionType && (
-        <HtmlTestViewer 
-          conventionId={conventionId} 
-          sectionType={sectionType}
-        />
-      )}
+        {/* Système de conversion HTML pour les documents légaux */}
+        {conventionId && sectionType && (
+          <HtmlTestViewer 
+            conventionId={conventionId} 
+            sectionType={sectionType}
+          />
+        )}
 
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle className="flex justify-between items-center">
-            <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
-            {hasDispositifLegal(sectionType) && (
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setIsLegalDialogOpen(true)}
-                className="flex items-center gap-2 orange-button"
-              >
-                <BookOpen className="h-4 w-4" />
-                Voir le dispositif légal
-              </Button>
+        <Card className="mb-4">
+          <CardHeader>
+            <CardTitle className="flex justify-between items-center text-base">
+              <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
+              {hasDispositifLegal(sectionType) && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setIsLegalDialogOpen(true)}
+                  className="flex items-center gap-1 orange-button text-xs"
+                >
+                  <BookOpen className="h-3 w-3" />
+                  Dispositif légal
+                </Button>
+              )}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {sectionError ? (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Erreur</AlertTitle>
+                <AlertDescription>
+                  Impossible de charger cette section. Cette information n'est peut-être pas disponible pour cette convention collective.
+                </AlertDescription>
+              </Alert>
+            ) : section ? (
+              <div className="prose prose-sm max-w-none dark:prose-invert" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
+                <MarkdownTableRendererEnhanced content={section.content} />
+              </div>
+            ) : (
+              <div className="text-center text-muted-foreground">
+                Section non disponible
+              </div>
             )}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {sectionError ? (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Erreur</AlertTitle>
-              <AlertDescription>
-                Impossible de charger cette section. Cette information n'est peut-être pas disponible pour cette convention collective.
-              </AlertDescription>
-            </Alert>
-          ) : section ? (
-            <div className="prose prose-sm max-w-none dark:prose-invert" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
-              <MarkdownTableRendererEnhanced content={section.content} />
-            </div>
-          ) : (
-            <div className="text-center text-muted-foreground">
-              Section non disponible
-            </div>
-          )}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* Modale du dispositif légal */}
-      {hasDispositifLegal(sectionType) && (
-        <DispositifLegalDialog
-          isOpen={isLegalDialogOpen}
-          setIsOpen={setIsLegalDialogOpen}
-          title={`Dispositif légal - ${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
-          content={getDispositifLegal(sectionType)}
-        />
-      )}
+        {/* Modale du dispositif légal */}
+        {hasDispositifLegal(sectionType) && (
+          <DispositifLegalDialog
+            isOpen={isLegalDialogOpen}
+            setIsOpen={setIsLegalDialogOpen}
+            title={`Dispositif légal - ${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
+            content={getDispositifLegal(sectionType)}
+          />
+        )}
+      </div>
     </div>
   );
 }

@@ -284,4 +284,157 @@
   .markdown-content dd {
     @apply pl-4 mb-3;
   }
+
+  /* Styles optimisés pour intégration iframe - version allégée */
+  .iframe-optimized {
+    padding: 0.75rem;
+    margin: 0;
+    width: 100%;
+  }
+
+  .iframe-optimized .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+  }
+
+  .iframe-optimized h1 {
+    font-size: 1.375rem;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+
+  .iframe-optimized h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .iframe-optimized .card-header {
+    padding: 1rem;
+  }
+
+  .iframe-optimized .card-content {
+    padding: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .iframe-optimized .py-8 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .iframe-optimized .py-6 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .iframe-optimized .mb-8 {
+    margin-bottom: 1rem;
+  }
+
+  .iframe-optimized .mb-6 {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Navigation compacte pour iframe */
+  .iframe-optimized .nav-compact {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background-color: rgb(248 250 252);
+    border-radius: 0.375rem;
+    border: 1px solid rgb(226 232 240);
+  }
+
+  .iframe-optimized .nav-compact h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .iframe-optimized .nav-compact .text-sm {
+    font-size: 0.875rem;
+  }
+
+  /* Optimisations d'espace pour iframe */
+  .iframe-optimized .scroll-area {
+    height: calc(100vh - 200px);
+  }
+
+  .iframe-optimized .grid {
+    gap: 0.75rem;
+  }
+
+  .iframe-optimized .grid > * {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  /* Amélioration de lisibilité pour le contenu légal */
+  .iframe-optimized .prose-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .iframe-optimized .prose-sm p {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+
+  .iframe-optimized .prose-sm h1,
+  .iframe-optimized .prose-sm h2,
+  .iframe-optimized .prose-sm h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .iframe-optimized .html-viewer {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .iframe-optimized .html-viewer h2 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Optimisation des modals pour iframe */
+  .iframe-optimized .dialog-content {
+    max-width: 95vw;
+    max-height: 90vh;
+    padding: 1.25rem;
+  }
+
+  .iframe-optimized .dialog-header {
+    padding-bottom: 0.75rem;
+  }
+
+  .iframe-optimized .dialog-title {
+    font-size: 1.25rem;
+  }
+
+  /* Assurer l'utilisation optimale de l'espace */
+  .iframe-optimized .legal-document {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  /* Optimisation responsive pour iframe */
+  @media (max-width: 768px) {
+    .iframe-optimized .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    
+    .iframe-optimized .nav-compact {
+      padding: 0.5rem 0.75rem;
+    }
+    
+    .iframe-optimized .prose-sm {
+      font-size: 0.8rem;
+    }
+  }
 }

@@ -105,97 +105,89 @@ export default function ConventionViewer() {
     groupSectionTypes(processedSectionTypes) : [];
   
   return (
-    <div className="container mx-auto py-6 px-4 md:px-6">
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={() => setLocation("/")}>
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <h1 className="text-2xl font-bold">
-              {isLoadingConvention ? (
-                <Skeleton className="h-8 w-64" />
-              ) : (
-                convention ? `Convention collective: ${convention.name}` : "Convention non trouvée"
-              )}
-            </h1>
-            {convention && (
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setIsLegalDialogOpen(true)}
-                className="ml-4"
-              >
-                <BookOpen className="mr-2 h-4 w-4" />
-                Consulter les valeurs légales
+    <div className="iframe-optimized">
+      <div className="container mx-auto py-6 px-4 md:px-6">
+        <div className="flex flex-col gap-6">
+          <div className="nav-compact">
+            <div className="flex items-center gap-2 mb-2">
+              <Button variant="ghost" size="sm" onClick={() => setLocation("/")} className="p-1">
+                <ChevronLeft className="h-4 w-4" />
               </Button>
+              <h1 className="text-lg font-semibold flex-1">
+                {isLoadingConvention ? (
+                  <Skeleton className="h-6 w-48" />
+                ) : (
+                  convention ? `${convention.name}` : "Convention non trouvée"
+                )}
+              </h1>
+              {convention && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setIsLegalDialogOpen(true)}
+                  className="text-xs"
+                >
+                  <BookOpen className="mr-1 h-3 w-3" />
+                  Valeurs légales
+                </Button>
+              )}
+            </div>
+            {convention && (
+              <div className="flex items-center gap-1 text-xs text-green-700 bg-green-50 px-2 py-1 rounded border border-green-200">
+                <Calendar className="h-3 w-3 text-green-600" />
+                <span className="font-medium">MAJ : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+              </div>
             )}
           </div>
+          
+          {!isLoadingConvention && !convention && (
+            <Alert variant="destructive">
+              <AlertTitle>Erreur</AlertTitle>
+              <AlertDescription>
+                La convention collective demandée n'a pas été trouvée.
+              </AlertDescription>
+            </Alert>
+          )}
+          
           {convention && (
-            <div className="ml-12 flex items-center gap-2 text-sm text-muted-foreground bg-green-50 px-3 py-2 rounded-md border border-green-200">
-              <Calendar className="h-4 w-4 text-green-600" />
-              <span className="text-green-700 font-medium">Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-            </div>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">IDCC {convention.id} - Sections disponibles</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {isLoadingSections ? (
+                  <div className="space-y-2">
+                    <Skeleton className="h-8 w-full" />
+                    <Skeleton className="h-8 w-full" />
+                    <Skeleton className="h-8 w-full" />
+                  </div>
+                ) : (
+                  <ScrollArea className="scroll-area">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {groupedSections.map((section, index) => (
+                        <Link 
+                          key={index} 
+                          href={`/convention/${id}/section/${section.category}/${section.subcategory}`}
+                        >
+                          <div className="cursor-pointer rounded border p-3 hover:bg-slate-100 dark:hover:bg-slate-900/20 transition-colors">
+                            <h3 className="text-sm font-medium">{section.label}</h3>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                )}
+              </CardContent>
+            </Card>
           )}
         </div>
         
-        {!isLoadingConvention && !convention && (
-          <Alert variant="destructive">
-            <AlertTitle>Erreur</AlertTitle>
-            <AlertDescription>
-              La convention collective demandée n'a pas été trouvée.
-            </AlertDescription>
-          </Alert>
-        )}
-        
-        {convention && (
-          <Card>
-            <CardHeader>
-              <CardTitle>IDCC {convention.id}</CardTitle>
-              <CardDescription>
-                <div className="flex flex-col gap-2">
-                  <span>Sélectionnez une section à consulter</span>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
-                  </div>
-                </div>
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {isLoadingSections ? (
-                <div className="space-y-2">
-                  <Skeleton className="h-12 w-full" />
-                  <Skeleton className="h-12 w-full" />
-                  <Skeleton className="h-12 w-full" />
-                </div>
-              ) : (
-                <ScrollArea className="h-[calc(100vh-300px)]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {groupedSections.map((section, index) => (
-                      <Link 
-                        key={index} 
-                        href={`/convention/${id}/section/${section.category}/${section.subcategory}`}
-                      >
-                        <div className="cursor-pointer rounded-md border p-4 hover:bg-slate-100 dark:hover:bg-slate-900/20">
-                          <h3 className="font-medium">{section.label}</h3>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </ScrollArea>
-              )}
-            </CardContent>
-          </Card>
-        )}
-      </div>
-      
-      {/* Dialog des informations légales */}
-      <DispositifLegalDialog
-        isOpen={isLegalDialogOpen}
-        setIsOpen={setIsLegalDialogOpen}
-        title={convention ? `Convention ${convention.name}` : "Convention"}
-        content={`## Informations légales générales
+        {/* Dialog des informations légales */}
+        <DispositifLegalDialog
+          isOpen={isLegalDialogOpen}
+          setIsOpen={setIsLegalDialogOpen}
+          title={convention ? `Convention ${convention.name}` : "Convention"}
+          content={`## Informations légales générales
 
 Cette convention collective s'applique aux entreprises et salariés du secteur concerné.
 
@@ -210,7 +202,8 @@ Les dispositions de cette convention collective complètent et ne peuvent dérog
 
 ### Application territoriale
 Cette convention s'applique sur l'ensemble du territoire français, y compris dans les départements et territoires d'outre-mer, sauf dispositions spécifiques contraires.`}
-      />
+        />
+      </div>
     </div>
   );
 }
