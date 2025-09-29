@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'wouter';
 import axios from 'axios';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ArrowLeft, BookOpen, Calendar, Edit, Loader2 } from "lucide-react";
+import { useQuery } from '@tanstack/react-query';
+import { ArrowLeft, BookOpen, Calendar } from "lucide-react";
 import { MarkdownTableRenderer } from '@/components/markdown-table-renderer';
 import { MarkdownTableWrapper } from '@/components/markdown-table-wrapper';
 import { MarkdownTableRendererEnhanced } from '@/components/markdown-table-renderer-enhanced';
 import { hasDispositifLegal, getDispositifLegal, SECTION_TYPE_MAPPINGS } from "@/data/dispositifs-legaux";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { HtmlTestViewer } from "@/components/html-test-viewer";
-import { SectionEditDialog } from "@/components/section-edit-dialog";
 import { getConventions } from '@/lib/api';
 import { CATEGORIES } from '@/lib/categories';
 import type { Convention, ConventionSection, Category, Subcategory } from '@/types';
@@ -19,7 +18,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { GLOBAL_CONFIG } from "@/lib/constants";
-import { useToast } from "@/hooks/use-toast";
 
 // Fonction pour récupérer une section spécifique
 async function getConventionSection(conventionId: string, sectionType: string): Promise<ConventionSection> {
@@ -36,103 +34,9 @@ function normalizeParams(category?: string, subcategory?: string): string {
 
 export default function SectionViewer() {
   const params = useParams<{ conventionId: string, sectionType: string }>();
-  const [location, navigate] = useLocation();
+  const [, navigate] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState<boolean>(false);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
   const { conventionId, sectionType } = params;
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
-  
-  // Détecter si on est en mode admin en vérifiant l'URL
-  const isAdminMode = location.startsWith('/admin/');
-  
-  // État pour la régénération de section
-  const [isRegenerating, setIsRegenerating] = useState<boolean>(false);
-  
-  // Import du système de mapping des prompts
-  const getSectionPromptMapping = async () => {
-    const { getSectionPrompt, getSystemPrompt } = await import('@/lib/section-prompt-mapping');
-    return { getSectionPrompt, getSystemPrompt };
-  };
-  
-  // Mutation pour régénérer une section
-  const regenerateMutation = useMutation({
-    mutationFn: async () => {
-      if (!conventionId || !sectionType) throw new Error("Paramètres manquants");
-      
-      setIsRegenerating(true);
-      const { getSectionPrompt, getSystemPrompt } = await getSectionPromptMapping();
-      
-      // Récupérer les prompts
-      const systemPrompt = await getSystemPrompt();
-      const userPrompt = await getSectionPrompt(sectionType);
-      
-      // Appeler l'API de régénération
-      const response = await axios.post(`/api/convention/${conventionId}/section/${sectionType}/regenerate`, {
-        systemPrompt,
-        userPrompt
-      });
-      
-      return response.data;
-    },
-    onSuccess: (data) => {
-      toast({
-        title: "Régénération réussie",
-        description: `La section a été régénérée avec succès. Coût: ${data.cost?.toFixed(4)}€`,
-        variant: "default"
-      });
-      
-      // Ouvrir le dialog d'édition avec le nouveau contenu
-      setIsEditDialogOpen(true);
-      
-      setIsRegenerating(false);
-    },
-    onError: (error: any) => {
-      console.error("Erreur lors de la régénération:", error);
-      
-      toast({
-        title: "Erreur de régénération",
-        description: `Impossible de régénérer la section: ${error.response?.data?.message || error.message}`,
-        variant: "destructive"
-      });
-      
-      setIsRegenerating(false);
-    }
-  });
-  
-  // Mutation pour mettre à jour le contenu d'une section
-  const updateSectionMutation = useMutation({
-    mutationFn: async (newContent: string) => {
-      if (!conventionId || !sectionType) throw new Error("Paramètres manquants");
-      
-      const response = await axios.put(`/api/convention/${conventionId}/section/${sectionType}`, {
-        content: newContent
-      });
-      
-      return response.data;
-    },
-    onSuccess: () => {
-      toast({
-        title: "Section mise à jour",
-        description: "Le contenu de la section a été sauvegardé avec succès.",
-        variant: "default"
-      });
-      
-      // Invalider le cache pour recharger la section
-      queryClient.invalidateQueries({ queryKey: [`/api/convention/${conventionId}/section/${sectionType}`] });
-      
-      setIsEditDialogOpen(false);
-    },
-    onError: (error: any) => {
-      console.error("Erreur lors de la sauvegarde:", error);
-      
-      toast({
-        title: "Erreur de sauvegarde",
-        description: `Impossible de sauvegarder: ${error.response?.data?.message || error.message}`,
-        variant: "destructive"
-      });
-    }
-  });
 
   const { data: conventions, isLoading: isLoadingConventions } = useQuery({
     queryKey: ['/api/conventions'],
@@ -311,51 +215,17 @@ export default function SectionViewer() {
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>{categoryName} {subcategoryName ? `- ${subcategoryName}` : ''}</span>
-            <div className="flex items-center gap-2">
-              {isAdminMode && (
-                <>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => regenerateMutation.mutate()}
-                    disabled={isRegenerating || regenerateMutation.isPending}
-                    className="flex items-center gap-2 bg-orange-50 hover:bg-orange-100 border-orange-200"
-                  >
-                    {isRegenerating || regenerateMutation.isPending ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        Régénération...
-                      </>
-                    ) : (
-                      <>
-                        <Edit className="h-4 w-4" />
-                        Régénérer IA
-                      </>
-                    )}
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => setIsEditDialogOpen(true)}
-                    className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 border-blue-200"
-                  >
-                    <Edit className="h-4 w-4" />
-                    Éditer
-                  </Button>
-                </>
-              )}
-              {hasDispositifLegal(sectionType) && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => setIsLegalDialogOpen(true)}
-                  className="flex items-center gap-2 orange-button"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Voir le dispositif légal
-                </Button>
-              )}
-            </div>
+            {hasDispositifLegal(sectionType) && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setIsLegalDialogOpen(true)}
+                className="flex items-center gap-2 orange-button"
+              >
+                <BookOpen className="h-4 w-4" />
+                Voir le dispositif légal
+              </Button>
+            )}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -386,18 +256,6 @@ export default function SectionViewer() {
           setIsOpen={setIsLegalDialogOpen}
           title={`Dispositif légal - ${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
           content={getDispositifLegal(sectionType)}
-        />
-      )}
-
-      {/* Modale d'édition de section */}
-      {section && conventionId && sectionType && (
-        <SectionEditDialog
-          isOpen={isEditDialogOpen}
-          setIsOpen={setIsEditDialogOpen}
-          conventionId={conventionId}
-          sectionType={sectionType}
-          currentContent={section.content}
-          sectionTitle={`${categoryName} ${subcategoryName ? `- ${subcategoryName}` : ''}`}
         />
       )}
     </div>

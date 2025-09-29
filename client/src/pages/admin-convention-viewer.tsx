@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { ChevronLeft, Calendar, BookOpen } from "lucide-react";
+import { ChevronLeft, Calendar, BookOpen, RotateCcw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -11,6 +11,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { GLOBAL_CONFIG } from "@/lib/constants";
 import { DispositifLegalDialog } from "@/components/dispositif-legal-dialog";
 import { hasDispositifLegal, getDispositifLegal } from "@/data/dispositifs-legaux";
+import { useToast } from "@/hooks/use-toast";
 
 interface Convention {
   id: string;
@@ -65,10 +66,13 @@ function getCategoryLabel(category: string, subcategory: string): string {
   return `${categoryLabel} - ${subcategoryLabel}`;
 }
 
-export default function ConventionViewer() {
+export default function AdminConventionViewer() {
   const { id } = useParams<{ id: string }>();
   const [_, setLocation] = useLocation();
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState(false);
+  const [regeneratingSection, setRegeneratingSection] = useState<string | null>(null);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
   
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
@@ -94,6 +98,64 @@ export default function ConventionViewer() {
     staleTime: 1000 * 60 * 5 // 5 minutes
   });
   
+  // Mutation pour régénérer une section
+  const regenerateMutation = useMutation({
+    mutationFn: async ({ conventionId, category, subcategory }: { 
+      conventionId: string, 
+      category: string, 
+      subcategory: string 
+    }) => {
+      const sectionKey = `${category}.${subcategory}`;
+      setRegeneratingSection(sectionKey);
+      
+      // 1. Vider le cache pour cette section
+      await axios.delete(`/api/admin/cache/clear`, {
+        data: { 
+          conventionId, 
+          sectionType: sectionKey 
+        }
+      });
+      
+      // 2. Forcer une nouvelle génération
+      const response = await axios.post('/api/chat/message', {
+        sourceId: `admin_regen_${Date.now()}`,
+        messages: [{ role: "user", content: "Régénérer la section" }],
+        category,
+        subcategory,
+        conventionId,
+        forceRegenerate: true
+      });
+      
+      return response.data;
+    },
+    onSuccess: (data, variables) => {
+      const sectionKey = `${variables.category}.${variables.subcategory}`;
+      
+      toast({
+        title: "Régénération réussie",
+        description: `La section "${getCategoryLabel(variables.category, variables.subcategory)}" a été régénérée avec succès.`,
+        variant: "default"
+      });
+      
+      // Invalider les caches
+      queryClient.invalidateQueries({ queryKey: ['section', variables.conventionId, sectionKey] });
+      queryClient.invalidateQueries({ queryKey: ['sectionTypes', variables.conventionId] });
+      
+      setRegeneratingSection(null);
+    },
+    onError: (error, variables) => {
+      console.error("Erreur lors de la régénération:", error);
+      
+      toast({
+        title: "Erreur de régénération",
+        description: `Impossible de régénérer la section "${getCategoryLabel(variables.category, variables.subcategory)}".`,
+        variant: "destructive"
+      });
+      
+      setRegeneratingSection(null);
+    }
+  });
+  
   // Convertir les données en tableau si nécessaire et vérifier que ce sont des chaînes
   const processedSectionTypes = sectionTypes ? 
     (Array.isArray(sectionTypes) ? sectionTypes : []) : [];
@@ -104,37 +166,37 @@ export default function ConventionViewer() {
   const groupedSections = processedSectionTypes.length > 0 ? 
     groupSectionTypes(processedSectionTypes) : [];
   
+  // Fonction pour gérer la régénération
+  const handleRegenerate = (section: SectionType) => {
+    if (!id || !section.subcategory) return;
+    
+    regenerateMutation.mutate({
+      conventionId: id,
+      category: section.category,
+      subcategory: section.subcategory
+    });
+  };
+  
   return (
     <div className="container mx-auto py-6 px-4 md:px-6">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={() => setLocation("/")}>
+            <Button variant="ghost" size="icon" onClick={() => setLocation("/admin")}>
               <ChevronLeft className="h-5 w-5" />
             </Button>
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-2xl font-bold text-orange-600">
               {isLoadingConvention ? (
                 <Skeleton className="h-8 w-64" />
               ) : (
-                convention ? `Convention collective: ${convention.name}` : "Convention non trouvée"
+                convention ? `[ADMIN] Convention: ${convention.name}` : "Convention non trouvée"
               )}
             </h1>
-            {convention && (
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setIsLegalDialogOpen(true)}
-                className="ml-4"
-              >
-                <BookOpen className="mr-2 h-4 w-4" />
-                Consulter les valeurs légales
-              </Button>
-            )}
           </div>
           {convention && (
-            <div className="ml-12 flex items-center gap-2 text-sm text-muted-foreground bg-green-50 px-3 py-2 rounded-md border border-green-200">
-              <Calendar className="h-4 w-4 text-green-600" />
-              <span className="text-green-700 font-medium">Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+            <div className="ml-12 flex items-center gap-2 text-sm text-muted-foreground bg-orange-50 px-3 py-2 rounded-md border border-orange-200">
+              <Calendar className="h-4 w-4 text-orange-600" />
+              <span className="text-orange-700 font-medium">Mode Administration - Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
             </div>
           )}
         </div>
@@ -151,13 +213,24 @@ export default function ConventionViewer() {
         {convention && (
           <Card>
             <CardHeader>
-              <CardTitle>IDCC {convention.id}</CardTitle>
+              <CardTitle className="text-orange-600">IDCC {convention.id} - Mode Administration</CardTitle>
               <CardDescription>
                 <div className="flex flex-col gap-2">
-                  <span>Sélectionnez une section à consulter</span>
+                  <span>Sélectionnez une section à consulter ou à régénérer</span>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
                     <span>Dernière mise à jour : {GLOBAL_CONFIG.LAST_UPDATE_DATE}</span>
+                  </div>
+                  <div className="mt-3">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setIsLegalDialogOpen(true)}
+                      className="w-fit"
+                    >
+                      <BookOpen className="mr-2 h-4 w-4" />
+                      Informations légales
+                    </Button>
                   </div>
                 </div>
               </CardDescription>
@@ -171,17 +244,43 @@ export default function ConventionViewer() {
                 </div>
               ) : (
                 <ScrollArea className="h-[calc(100vh-300px)]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {groupedSections.map((section, index) => (
-                      <Link 
-                        key={index} 
-                        href={`/convention/${id}/section/${section.category}/${section.subcategory}`}
-                      >
-                        <div className="cursor-pointer rounded-md border p-4 hover:bg-slate-100 dark:hover:bg-slate-900/20">
-                          <h3 className="font-medium">{section.label}</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {groupedSections.map((section, index) => {
+                      const sectionKey = `${section.category}.${section.subcategory}`;
+                      const isRegenerating = regeneratingSection === sectionKey;
+                      
+                      return (
+                        <div key={index} className="flex items-center gap-3 p-4 border rounded-lg">
+                          <div className="flex-1">
+                            <Link href={`/convention/${id}/section/${section.category}/${section.subcategory}`}>
+                              <div className="cursor-pointer">
+                                <h3 className="font-medium hover:text-blue-600">{section.label}</h3>
+                                <p className="text-sm text-muted-foreground">Cliquer pour consulter</p>
+                              </div>
+                            </Link>
+                          </div>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleRegenerate(section)}
+                            disabled={isRegenerating || regenerateMutation.isPending}
+                            className="min-w-[120px]"
+                          >
+                            {isRegenerating ? (
+                              <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                Régénération...
+                              </>
+                            ) : (
+                              <>
+                                <RotateCcw className="mr-2 h-4 w-4" />
+                                Régénérer
+                              </>
+                            )}
+                          </Button>
                         </div>
-                      </Link>
-                    ))}
+                      );
+                    })}
                   </div>
                 </ScrollArea>
               )}
