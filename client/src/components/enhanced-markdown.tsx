@@ -22,7 +22,7 @@ export function EnhancedMarkdown({ content, className = '' }: EnhancedMarkdownPr
   }
 
   return (
-    <div className={`prose prose-sm max-w-none dark:prose-invert markdown-content ${className}`}>
+    <div className={`prose prose-sm dark:prose-invert markdown-content ${className}`} style={{ maxWidth: '100%', width: '100%' }}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{

@@ -76,8 +76,8 @@
   /* Assurer que la police Inter s'applique à tout le contenu des conventions */
   .prose, .prose-sm, .markdown-content, .legal-document {
     font-family: 'Inter', system-ui, sans-serif;
-    max-width: none !important;
-    width: 100% !important;
+    max-width: 100%;
+    width: 100%;
   }
 
   /* Styles pour les barres de défilement standards */
@@ -181,8 +181,21 @@
 
   /* Tableaux - style renforcé */
   .markdown-content table {
-    @apply w-full min-w-[650px] border-collapse my-6 text-sm rounded-md border border-border shadow-sm;
+    @apply w-full border-collapse my-6 text-sm rounded-md border border-border shadow-sm;
     table-layout: auto;
+  }
+
+  /* Tables dans iframe: largeur adaptative avec scroll horizontal si nécessaire */
+  .iframe-optimized .markdown-content table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
+
+  .iframe-optimized .markdown-content td {
+    overflow-wrap: anywhere;
+    word-break: break-word;
     font-family: 'Inter', system-ui, sans-serif;
   }
 
@@ -420,6 +433,43 @@
     max-width: 100%;
     margin: 0;
     padding: 1rem;
+    overflow-x: hidden;
+  }
+
+  /* Contraintes de largeur pour éviter le débordement horizontal dans l'iframe */
+  .iframe-optimized .prose {
+    max-width: 100% !important;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .iframe-optimized .prose table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
+
+  .iframe-optimized .overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .iframe-optimized .enhanced-table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .iframe-optimized .markdown-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Container scrollable pour les tables dans l'iframe */
+  .iframe-optimized .markdown-content .table-container {
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   /* Optimisation du modal de chat pour iframe */

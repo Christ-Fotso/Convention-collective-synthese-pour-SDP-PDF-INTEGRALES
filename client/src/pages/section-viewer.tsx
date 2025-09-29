@@ -239,7 +239,7 @@ export default function SectionViewer() {
                 </AlertDescription>
               </Alert>
             ) : section ? (
-              <div className="prose prose-sm max-w-none dark:prose-invert" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
+              <div className="prose prose-sm dark:prose-invert" style={{ width: '100%', maxWidth: '100%', display: 'block' }}>
                 <MarkdownTableRendererEnhanced content={section.content} />
               </div>
             ) : (
