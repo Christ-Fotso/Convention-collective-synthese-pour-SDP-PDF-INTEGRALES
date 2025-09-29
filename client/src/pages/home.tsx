@@ -34,7 +34,10 @@ export default function Home() {
   const [isSearchingNaf, setIsSearchingNaf] = useState(false);
   const [showNafModal, setShowNafModal] = useState(false);
   const [nafSearchTerm, setNafSearchTerm] = useState("");
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
+  
+  // Détecter si on est en mode admin
+  const isAdminMode = location === '/admin' || location.startsWith('/admin/');
 
   const { data: conventions = [] as Convention[] } = useQuery<Convention[]>({
     queryKey: ['/api/conventions'],
@@ -219,7 +222,7 @@ export default function Home() {
                     <Card 
                       key={entry.conventionId}
                       className="cursor-pointer hover:shadow-md transition-all bg-white hover:bg-blue-50 border-blue-200"
-                      onClick={() => navigate(`/convention/${entry.conventionId}`)}
+                      onClick={() => navigate(isAdminMode ? `/admin/convention/${entry.conventionId}` : `/convention/${entry.conventionId}`)}
                     >
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between mb-2">
@@ -303,7 +306,7 @@ export default function Home() {
                       className="hover:shadow-lg transition-all cursor-pointer group border-green-100 hover:border-green-300"
                       onClick={() => {
                         const conventionId = convention.id || encodeURIComponent(convention.name);
-                        navigate(`/convention/${conventionId}`);
+                        navigate(isAdminMode ? `/admin/convention/${conventionId}` : `/convention/${conventionId}`);
                       }}
                     >
                       <CardHeader>
@@ -384,7 +387,7 @@ export default function Home() {
                         className="hover:shadow-md transition-shadow cursor-pointer border-orange-100 hover:border-orange-300"
                         onClick={() => {
                           const conventionId = result.conventionId || result.idcc;
-                          navigate(`/convention/${conventionId}`);
+                          navigate(isAdminMode ? `/admin/convention/${conventionId}` : `/convention/${conventionId}`);
                           setShowNafModal(false);
                         }}
                       >

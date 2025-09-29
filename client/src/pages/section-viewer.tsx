@@ -44,7 +44,7 @@ export default function SectionViewer() {
   const queryClient = useQueryClient();
   
   // Détecter si on est en mode admin en vérifiant l'URL
-  const isAdminMode = location.startsWith('/admin/');
+  const isAdminMode = location === '/admin' || location.startsWith('/admin/');
   
   // État pour la régénération de section
   const [isRegenerating, setIsRegenerating] = useState<boolean>(false);
@@ -284,7 +284,7 @@ export default function SectionViewer() {
     <div className="container mx-auto py-8 px-4">
       <div className="flex flex-col gap-4 mb-8 bg-muted/50 p-4 rounded-lg shadow-sm">
         <div className="flex items-center gap-4">
-          <Button variant="outline" onClick={() => navigate(`/chat/${conventionId}`)} className="hover:bg-background">
+          <Button variant="outline" onClick={() => navigate(isAdminMode ? `/admin/convention/${conventionId}` : `/convention/${conventionId}`)} className="hover:bg-background">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Retour à la convention
           </Button>

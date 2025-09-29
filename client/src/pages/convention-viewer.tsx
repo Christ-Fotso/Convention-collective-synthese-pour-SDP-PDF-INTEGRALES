@@ -71,7 +71,7 @@ export default function ConventionViewer() {
   const [isLegalDialogOpen, setIsLegalDialogOpen] = useState(false);
   
   // Détection du mode admin à partir de l'URL
-  const isAdminMode = location.startsWith('/admin/');
+  const isAdminMode = location === '/admin' || location.startsWith('/admin/');
   
   // Requête pour obtenir les informations sur la convention
   const { data: convention, isLoading: isLoadingConvention } = useQuery({
